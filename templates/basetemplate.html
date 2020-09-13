@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -12,216 +13,64 @@
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-    <link rel="stylesheet" href="../static/css/style.css">
-	
-    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
-
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            text-decoration: none;
-            font-family: "Open Sans", sans-serif;
-        }
-
-        .navbar {
-            background: #16222A !important;
-        }
-
-        .navbar .nav-item .nav-link {
-            color: #fff !important;
-            font-family: Helvatica;
-
-
-        }
-
-        .navbar-toggler {
-
-            background-color: #fff;
-        }
-
-        .navbar .nav-item .nav-link:hover {
-            color: #33adff !important;
-
-        }
-
-
-
-        @-webkit-keyframes mover {
-            0% {
-                transform: translateY(0);
-            }
-
-            100% {
-                transform: translateY(-20px);
-            }
-        }
-
-        @keyframes mover {
-            0% {
-                transform: translateY(0);
-            }
-
-            100% {
-                transform: translateY(-20px);
-            }
-        }
-
-
-
-        .nav-tabs {
-            margin-top: 3%;
-            border: none;
-            background: #16222A;
-            border-radius: 1.5rem;
-            width: 28%;
-            float: right;
-        }
-
-        .nav-tabs .nav-link {
-            padding: 2%;
-            height: 34px;
-            font-weight: 600;
-            color: #fff;
-            border-top-right-radius: 1.5rem;
-            border-bottom-right-radius: 1.5rem;
-        }
-
-        .nav-tabs .nav-link:hover {
-            border: none;
-        }
-
-        .nav-tabs .nav-link.active {
-            width: 100px;
-            color: #16222A;
-            border: 2px solid #16222Acc;
-            border-top-left-radius: 1.5rem;
-            border-bottom-left-radius: 1.5rem;
-        }
-
-
-
-
-
-
-
-        ul {
-            margin: 0;
-            padding: 0;
-            list-style: none;
-        }
-
-
-
-
-
-        .home {
-            color: #ff6b6b;
-        }
-
-        .about {
-            color: #0abde3;
-        }
-
-        .works {
-            color: #feca57;
-        }
-
-        .qna {
-            color: #ff6b6b;
-        }
-
-        .team {
-            color: #5f27cd;
-        }
-
-        .contact {
-            color: #1dd1a1;
-        }
-
-        .logout {
-            color: gold;
-        }
-
-        .navbar-nav a {
-            margin-left: 10px;
-            color: #ddd;
-            text-transform: uppercase;
-            font-size: 14px;
-            padding: 12px 20px;
-            border-radius: 4px;
-            transition: 0.3s linear;
-        }
-
-        .navbar-nav a:hover {
-            background: #fff;
-            color: #2f3640;
-            transform: scale(1.1);
-        }
-    </style>
-
-	
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
     <!--Navbar Starts here-->
-    <nav class="navbar navbar-expand-sm navbar-light bg-light fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="/">
-                <img class="logo horizontal-logo" src="logo.jpeg" style="width:60px;">
-                <span style="color: #fff;"><strong>TRAVMAKS</strong></span>
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item ">
-                        <a class="nav-link" href="#"><i class="fas fa-home home"></i> Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fas fa-align-left about"></i> About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fas fa-headset contact"></i> Contact</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fa fa-question-circle qna" aria-hidden="true"></i>QNA</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fab fa-buffer works"></i>Blog</a>
-                    </li>
-                    <li class="nav-item dropdown">
-
-                        <a class="nav-link" href="#" data-toggle="dropdown"><i class="fas fa-users team"></i>My
-                            Account</a>
-
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">My Profile</a>
-                            <a class="dropdown-item" href="#">Agency</a>
-                            <a class="dropdown-item" href="#">My Order</a>
-                            <a class="dropdown-item" href="#">My Tour</a>
-                            <a class="dropdown-item" href="#">link1</a>
-                            <a class="dropdown-item" href="#">link1</a>
-
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fas fa-sign-out-alt logout"></i>Logout</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <br><br>
-	<!--Navbar Ends Here-->
-<br><br><br>
+    <div class="super_container">
+      <nav class="navbar navbar-expand-sm navbar-light bg-light fixed-top">
+<div class="container">
+  <a class="navbar-brand" href="#">
+    <img class="logo horizontal-logo" src="{% static 'img/logo.jpeg' %}" style="width:60px;">
+    </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="index.html">HOME</a>
+      </li>
+  <li class="nav-item">
+        <a class="nav-link" href="#">ABOUT US</a>
+      </li>
+  <li class="nav-item">
+        <a class="nav-link" href="#">CONTACT US</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/qna/">QNA</a>
+</li>
+<li class="nav-item">
+  <a class="nav-link" href="#">BLOG</a>
+</li>
+    {% if user.is_authenticated %}
+    <li class="nav-item">
+      <a class="nav-link" href="/accounts/editprofile/{{request.session.access_type}}/{{user.id}}">{{user.name}}</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/accounts/user/logout">LOGOUT</a>
+    </li>
+      {% else %}
+      <li class="nav-item dropdown">
+        <a class="nav-link " href="#" data-toggle="dropdown">
+    ACCOUNTS
+  </a>
+  <div class="dropdown-menu">
+    <a class="dropdown-item" href="/accounts/seller/account">SELLER ACCOUNT</a>
+    <a class="dropdown-item" href="/accounts/traveller/account">USER ACCOUNT</a>
+  </div>
+</li> 
+    {% endif %}
+  </ul>
+  </div>
+</div>
+</nav>
+    <!--Navbar Ends Here-->
+<br><br><hr>
 {% if messages %}
   {% for message in messages %}
-  <hr>
 <div class="alert alert-{{message.tags}}" role="alert">
     {{message}}  
   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -231,83 +80,6 @@
   {% endfor %}
 {% endif %}
 <hr>
-
-  <!--Continious Advertisements sections starts -->    
-<div class="owl-carousel owl-theme mb-3">
-  <div class="item"><a href="#"><img src="../static/img/2.jpg"></a></div>
-  <div class="item"><a href="#"><img src="../static/img/2.jpg"></a></div>
-  <div class="item"><a href="#"><img src="../static/img/2.jpg"></a></div>
-  <div class="item"><a href="#"><img src="../static/img/2.jpg"></a></div>
-  <div class="item"><a href="#"><img src="../static/img/2.jpg"></a></div>
-  <div class="item"><a href="#"><img src="../static/img/2.jpg"></a></div>
-  <div class="item"><a href="#"><img src="../static/img/2.jpg"></a></div>
-  <div class="item"><a href="#"><img src="../static/img/2.jpg"></a></div>
-  <div class="item"><a href="#"><img src="../static/img/2.jpg"></a></div>
-  <div class="item"><a href="#"><img src="../static/img/2.jpg"></a></div>
-  <div class="item"><a href="#"><img src="../static/img/2.jpg"></a></div>
-  <div class="item"><a href="#"><img src="../static/img/2.jpg"></a></div>
-</div>
-<hr>
-<!--Continious Advertisements sections ends -->
-  <!--Slider strats here-->
-    <div id="myCarousel" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
-          <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-          <li data-target="#myCarousel" data-slide-to="1" class=""></li>
-          <li data-target="#myCarousel" data-slide-to="2" class=""></li>
-        </ol>
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img class="bd-placeholder-img" width="100%" height="100%" src="../static/img/c1.jpg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
-            <div class="container">
-              <div class="carousel-caption text-left">      
-                <p>
-                    <h3>Example headline.</h3>
-                    Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit
-                     non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula
-                      ut id elit.</p>
-                <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <img class="bd-placeholder-img" width="100%" height="100%" src="../static/img/c2.jpg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
-            <div class="container">
-              <div class="carousel-caption">
-                <p>
-                    <h3>Another example headline.</h3>
-                    Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id 
-                    elit non mi porta gravida at eget metus. Nullam id dolor id nibh 
-                    ultricies vehicula ut id elit.
-                </p>
-                <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <img class="bd-placeholder-img" width="100%" height="100%" src="../static/img/c3.jpg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
-            <div class="container">
-              <div class="carousel-caption text-right">
-                
-                <p>
-                    <h3>One more for good measure.</h3>
-                    Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="sr-only">Next</span>
-        </a>
-      </div>
-    <!--Slider ends here-->
-    
     <!--Main body-->
     {% block body %}
     {% endblock body%}
