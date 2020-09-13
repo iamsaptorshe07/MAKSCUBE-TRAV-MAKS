@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head> 
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>new project</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            text-decoration: none;
+            font-family: "Open Sans", sans-serif;
+        }
+
+        .navbar {
+            background: #16222A !important;
+        }
+
+        .navbar .nav-item .nav-link {
+            color: #fff !important;
+            font-family: Helvatica;
+
+
+        }
+
+        .navbar-toggler {
+
+            background-color: #fff;
+        }
+
+        .navbar .nav-item .nav-link:hover {
+            color: #33adff !important;
+
+        }
+
+
+
+        @-webkit-keyframes mover {
+            0% {
+                transform: translateY(0);
+            }
+
+            100% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes mover {
+            0% {
+                transform: translateY(0);
+            }
+
+            100% {
+                transform: translateY(-20px);
+            }
+        }
+
+
+
+        .nav-tabs {
+            margin-top: 3%;
+            border: none;
+            background: #16222A;
+            border-radius: 1.5rem;
+            width: 28%;
+            float: right;
+        }
+
+        .nav-tabs .nav-link {
+            padding: 2%;
+            height: 34px;
+            font-weight: 600;
+            color: #fff;
+            border-top-right-radius: 1.5rem;
+            border-bottom-right-radius: 1.5rem;
+        }
+
+        .nav-tabs .nav-link:hover {
+            border: none;
+        }
+
+        .nav-tabs .nav-link.active {
+            width: 100px;
+            color: #16222A;
+            border: 2px solid #16222Acc;
+            border-top-left-radius: 1.5rem;
+            border-bottom-left-radius: 1.5rem;
+        }
+
+
+
+
+
+
+
+        ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+
+
+
+
+        .home {
+            color: #ff6b6b;
+        }
+
+        .about {
+            color: #0abde3;
+        }
+
+        .works {
+            color: #feca57;
+        }
+
+        .qna {
+            color: #ff6b6b;
+        }
+
+        .team {
+            color: #5f27cd;
+        }
+
+        .contact {
+            color: #1dd1a1;
+        }
+
+        .logout {
+            color: gold;
+        }
+
+        .navbar-nav a {
+            margin-left: 10px;
+            color: #ddd;
+            text-transform: uppercase;
+            font-size: 14px;
+            padding: 12px 20px;
+            border-radius: 4px;
+            transition: 0.3s linear;
+        }
+
+        .navbar-nav a:hover {
+            background: #fff;
+            color: #2f3640;
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-sm navbar-light bg-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <img class="logo horizontal-logo" src="logo.jpeg" style="width:60px;">
+                <span style="color: #fff;"><strong>TRAVMAKS</strong></span>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item ">
+                        <a class="nav-link" href="#"><i class="fas fa-home home"></i> Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fas fa-align-left about"></i> About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fas fa-headset contact"></i> Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fa fa-question-circle qna" aria-hidden="true"></i>QNA</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fab fa-buffer works"></i>Blog</a>
+                    </li>
+                    <li class="nav-item dropdown">
+
+                        <a class="nav-link" href="#" data-toggle="dropdown"><i class="fas fa-users team"></i>My
+                            Account</a>
+
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">My Profile</a>
+                            <a class="dropdown-item" href="#">Agency</a>
+                            <a class="dropdown-item" href="#">My Order</a>
+                            <a class="dropdown-item" href="#">My Tour</a>
+                            <a class="dropdown-item" href="#">link1</a>
+                            <a class="dropdown-item" href="#">link1</a>
+
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fas fa-sign-out-alt logout"></i>Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <br><br>
+
+    <!-- Geo data Solutions API-->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <!--Geo data solutions API ends here-->
+    <script type="text/javascript">
+        const $dropdown = $(".dropdown");
+        const $dropdownToggle = $(".dropdown-toggle");
+        const $dropdownMenu = $(".dropdown-menu");
+        const showClass = "show";
+
+        $(window).on("load resize", function () {
+            if (this.matchMedia("(min-width: 768px)").matches) {
+                $dropdown.hover(
+                    function () {
+                        const $this = $(this);
+                        $this.addClass(showClass);
+                        $this.find($dropdownToggle).attr("aria-expanded", "true");
+                        $this.find($dropdownMenu).addClass(showClass);
+                    },
+                    function () {
+                        const $this = $(this);
+                        $this.removeClass(showClass);
+                        $this.find($dropdownToggle).attr("aria-expanded", "false");
+                        $this.find($dropdownMenu).removeClass(showClass);
+                    }
+                );
+            } else {
+                $dropdown.off("mouseenter mouseleave");
+            }
+        });
+
+        jQuery(document).ready(function ($) {
+            $(window).scroll(function () {
+                if ($(document).scrollTop() > 200) {
+                    // Navigation Bar
+                    $('.navbar').removeClass('fadeIn');
+                    $('body').addClass('shrink');
+                    $('.navbar').addClass('animated fadeInDown');
+                } else {
+                    $('.navbar').removeClass('fadeInDown');
+                    $('body').removeClass('shrink');
+                    $('.navbar').addClass('animated fadeIn');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

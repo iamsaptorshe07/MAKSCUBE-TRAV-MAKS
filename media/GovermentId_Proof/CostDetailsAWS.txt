@@ -1,0 +1,18 @@
+﻿SuperSox Backend design requirement :- 
+
+1. Amazon Elastic Cloud Compute (EC2)
+
+		Backend django server will be set in this AWS service . Selected T2 medium as our requirement .
+	Cost Deatils :- 
+		$0.0464x75 x 30 = 104 rs per month (estimation)
+
+
+
+2. Amazon Simple Storage Service (S3)
+	
+		S3 Standard - General purpose storage for any type of data, typically used for frequently accessed data
+
+	Cost details :-
+		First 50TB/month  per gb cost - $ 0.025 x 75 x 30 = 57 rs per month(estimated)
+
+

@@ -1,0 +1,269 @@
+body {
+            background-color: #eeeeee;
+        }
+		.navbar{
+    background: #16222A !important;
+}
+.jumbotron{
+    position: relative;
+    padding:0 !important;
+    margin-top:70px !important;
+	color: #fff;
+    background-image: url("../img/s2.jpg");
+    margin-top: 23px;
+    text-align:center;
+    margin-bottom: 0 !important;
+	font-family: Helvatica;
+}
+.navbar .nav-item .nav-link{
+    color:#fff !important;
+		font-family: Helvatica;
+		
+    
+}
+.navbar-toggler{
+
+background-color: #fff;
+}
+.navbar .nav-item .nav-link:hover{
+    color:#33adff !important;
+    
+}
+
+        .h7 {
+            font-size: 0.8rem;
+        }
+		
+        .gedf-wrapper {
+            margin-top: 0.97rem;
+			
+        }
+		
+        @media (min-width: 992px) {
+            .gedf-main {
+                padding-left: 4rem;
+                padding-right: 4rem;
+            }
+            .gedf-card {
+                margin-bottom: 2.77rem;
+            }
+        }
+
+        /**Reset Bootstrap*/
+        .dropdown-toggle::after {
+            content: none;
+            display: none;
+        }
+		.hvr{
+	cursor: pointer;
+}
+		.facebook-reaction { max-width: 100%; position: relative; margin-top:0px; }
+
+.like-btn { color: #777777; position: relative; cursor: pointer; padding: 20px 20px 0 0; }
+
+.like-btn:hover { color: #0db5e4; }
+
+.like-btn-default:before { font-family: FontAwesome; content: "\f087"; color: #FFFFFF; width: 22px; height: 22px; text-align: center; border-radius: 50%; font-weight: normal; line-height: 22px; background: #777777; }
+
+.like-btn-emo { display: inline-block; margin: 0 0px -3px 0; color: #FFFFFF; width: 22px; height: 22px; text-align: center; border-radius: 50%; font-weight: normal; line-height: 22px !important; background: #777777; }
+
+.reactions-box { height: 62px; width: auto; padding: 10px; position: absolute; top: -45px; left: 1px; box-shadow: 1px 1px 2px #cccccc, -1px 0px 2px #eeeeee; border-radius: 44px 44px; display: none; background: #ffffff; }
+
+.reaction { list-style-type: none; cursor: pointer; display: table-cell; position: relative; text-align: center; padding-left: 5px; padding-right: 5px; }
+
+.like-btn:hover .reactions-box { display: block; }
+
+.reaction-like::after { font-family: FontAwesome; content: "\f087"; font-size: 2em; color: rgb(100,160,240);}
+
+.reaction-love::after { font-family: FontAwesome; content: "\f004"; font-size: 2em; color: rgb(242, 82, 104);}
+
+.reaction-haha::after { font-family: FontAwesome; content: "\f118"; font-size: 2em; color: rgb(240, 186, 21);}
+
+.reaction-wow::after { font-family: FontAwesome; content: "\f005"; font-size: 2em; color: rgb(240, 186, 21);}
+
+.reaction-sad::after { font-family: FontAwesome; content: "\f119"; font-size: 2em; color: rgb(240, 186, 21);}
+
+.reaction-angry::after { font-family: FontAwesome; content: "\f11a"; font-size: 2em; color: rgb(247, 113, 75);}
+
+.like-btn:hover .reaction { opacity: 1; }
+
+.reaction:hover { transform: scale(1.3, 1.3); top: 2px }
+
+.reaction::before { display: inline-block; color: #ffffff; text-align: center; min-width: 80%; line-height: 17px; font-size: .6em; height: 17px; margin-left: auto; margin-right: auto; padding-left: 5px; padding-right: 5px; background-color: rgba(0, 0, 0, 1); border-radius: 20px; position: absolute; top: -20px; opacity: 0; transition: opacity .2s ease-in-out 0s; }
+
+.reaction:hover::before { opacity: 1 }
+
+.reaction-like::before { content: 'Like' }
+
+.reaction-love::before { content: 'Love' }
+
+.reaction-haha::before { content: 'Haha' }
+
+.reaction-wow::before { content: 'Wow' }
+
+.reaction-sad::before { content: 'Sad' }
+
+.reaction-angry::before { content: 'Angry' }
+
+.like-stat { margin-top: 10px; }
+
+.like-btn-like { background: rgb(100,160,240); color: #ffffff; }
+
+.like-btn-like:before { font-family: FontAwesome; content: "\f087"; }
+
+.like-btn-love { background: rgb(242, 82, 104); color: #ffffff; }
+
+.like-btn-love:before { font-family: FontAwesome; content: "\f004"; }
+
+.like-btn-haha { background: rgb(240, 186, 21); color: #ffffff; }
+
+.like-btn-haha:before { font-family: FontAwesome; content: "\f118"; }
+
+.like-btn-wow { background: rgb(240, 186, 21); color: #ffffff; }
+
+.like-btn-wow:before { font-family: FontAwesome; content: "\f005"; }
+
+.like-btn-sad { background: rgb(240, 186, 21); color: #ffffff; }
+
+.like-btn-sad:before { font-family: FontAwesome; content: "\f119"; }
+
+.like-btn-angry { background: rgb(247, 113, 75); color: #ffffff; }
+
+.like-btn-angry:before { font-family: FontAwesome; content: "\f11a"; }
+
+.like-btn-text-like { color: rgb(88, 144, 255); }
+
+.like-btn-text-wow, .like-btn-text-haha, .like-btn-text-sad { color: rgb(240, 186, 21) }
+
+.like-btn-text-love { color: rgb(242, 82, 104) }
+
+.like-btn-text-angry { color: rgb(247, 113, 75); }
+
+.like-emo > span { display: inline-block; margin: 0 -3px -3px 0px; width: 22px; height: 22px; border: 1px solid #EEE; border-radius: 50%; text-align: center; }
+
+.like-details { margin-left: 10px; color: #9197a3; font-size: 12px; }
+
+footer {
+  background: #16222A;
+  background: -webkit-linear-gradient(59deg, #3A6073, #16222A);
+  background: linear-gradient(59deg, #3A6073, #16222A);
+  color: white;
+  margin-top:20px;
+}
+
+footer a {
+  color: #fff;
+  font-size: 14px;
+  transition-duration: 0.2s;
+}
+
+footer a:hover {
+  color: #FA944B;
+  text-decoration: none;
+}
+
+.copy {
+  font-size: 12px;
+  padding: 10px;
+  border-top: 1px solid #FFFFFF;
+}
+
+.footer-middle {
+  padding-top: 2em;
+  color: white;
+}
+
+
+
+ul.social-network {
+  list-style: none;
+  display: inline;
+  margin-left: 0 !important;
+  padding: 0;
+}
+
+ul.social-network li {
+  display: inline;
+  margin: 0 5px;
+}
+
+
+.social-network a.icoFacebook:hover {
+  background-color: #3B5998;
+}
+
+.social-network a.icoLinkedin:hover {
+  background-color: #007bb7;
+}
+
+.social-network a.icoFacebook:hover i,
+.social-network a.icoLinkedin:hover i {
+  color: #fff;
+}
+
+.social-network a.socialIcon:hover,
+.socialHoverClass {
+  color: #44BCDD;
+}
+
+.social-circle li a {
+  display: inline-block;
+  position: relative;
+  margin: 0 auto 0 auto;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  text-align: center;
+  width: 30px;
+  height: 30px;
+  font-size: 15px;
+}
+
+.social-circle li i {
+  margin: 0;
+  line-height: 30px;
+  text-align: center;
+}
+
+.social-circle li a:hover i,
+.triggeredHover {
+  -moz-transform: rotate(360deg);
+  -webkit-transform: rotate(360deg);
+  -ms--transform: rotate(360deg);
+  transform: rotate(360deg);
+  -webkit-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+  -o-transition: all 0.2s;
+  -ms-transition: all 0.2s;
+  transition: all 0.2s;
+}
+
+.social-circle i {
+  color: #595959;
+  -webkit-transition: all 0.8s;
+  -moz-transition: all 0.8s;
+  -o-transition: all 0.8s;
+  -ms-transition: all 0.8s;
+  transition: all 0.8s;
+}
+
+.social-network a {
+  background-color: #F9F9F9;
+}
+
+
+.row.heading h2 {
+    color: #fff;
+    font-size: 52.52px;
+    line-height: 95px;
+    font-weight: 400;
+    text-align: center;
+    margin: 0 0 40px;
+    padding-bottom: 20px;
+    text-transform: uppercase;
+}
+ul{
+  margin:0;
+  padding:0;
+  list-style:none;
+}	

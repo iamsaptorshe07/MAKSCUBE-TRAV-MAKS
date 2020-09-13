@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>new project</title>
+    <link rel="icon" href="/static/img/logo.jpg" type="image/gif" sizes="20x20">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+
+
+    <style>
+        .navbar {
+            background: #16222A !important;
+        }
+
+        .navbar .nav-item .nav-link {
+            color: #fff !important;
+            font-family: Helvatica;
+
+
+        }
+
+        .navbar-toggler {
+
+            background-color: #fff;
+        }
+
+        .navbar .nav-item .nav-link:hover {
+            color: #33adff !important;
+
+        }
+
+        .register {
+            background: -webkit-linear-gradient(left, #16222A, #3A6073);
+            margin-top: 3%;
+            padding: 3%;
+        }
+
+        .register-left {
+            text-align: center;
+            color: #fff;
+            margin-top: 4%;
+        }
+
+        .register-left input {
+            border: none;
+            border-radius: 1.5rem;
+            padding: 2%;
+            width: 60%;
+            background: #f8f9fa;
+            font-weight: bold;
+            color: #383d41;
+            margin-top: 30%;
+            margin-bottom: 3%;
+            cursor: pointer;
+        }
+
+        .register-right {
+            background: #f8f9fa;
+            border-top-left-radius: 10% 50%;
+            border-bottom-left-radius: 10% 50%;
+        }
+
+        .register-left img {
+            margin-top: 15%;
+            margin-bottom: 5%;
+            width: 25%;
+            -webkit-animation: mover 2s infinite alternate;
+            animation: mover 1s infinite alternate;
+        }
+
+        @-webkit-keyframes mover {
+            0% {
+                transform: translateY(0);
+            }
+
+            100% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes mover {
+            0% {
+                transform: translateY(0);
+            }
+
+            100% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .register-left p {
+            font-weight: lighter;
+            padding: 12%;
+            margin-top: -9%;
+        }
+
+        .register .register-form {
+            padding: 10%;
+            margin-top: 10%;
+        }
+
+        .btnRegister {
+            float: right;
+            margin-top: 10%;
+            border: none;
+            border-radius: 1.5rem;
+            padding: 2%;
+            background: #16222A;
+            color: #fff;
+            font-weight: 600;
+            width: 50%;
+            cursor: pointer;
+        }
+
+        .btn {
+            min-width: 250px;
+            font-size: 20px;
+
+        }
+
+        .register .nav-tabs {
+            margin-top: 3%;
+            border: none;
+            background: #16222A;
+            border-radius: 1.5rem;
+            width: 28%;
+            float: right;
+        }
+
+        .register .nav-tabs .nav-link {
+            padding: 2%;
+            height: 34px;
+            font-weight: 600;
+            color: #fff;
+            border-top-right-radius: 1.5rem;
+            border-bottom-right-radius: 1.5rem;
+        }
+
+        .register .nav-tabs .nav-link:hover {
+            border: none;
+        }
+
+        .register .nav-tabs .nav-link.active {
+            width: 100px;
+            color: #16222A;
+            border: 2px solid #16222Acc;
+            border-top-left-radius: 1.5rem;
+            border-bottom-left-radius: 1.5rem;
+        }
+
+        .register-heading {
+            text-align: center;
+            margin-top: 8%;
+            margin-bottom: -15%;
+            color: #495057;
+        }
+
+        footer {
+            background: #16222A;
+            background: -webkit-linear-gradient(59deg, #3A6073, #16222A);
+            background: linear-gradient(59deg, #3A6073, #16222A);
+            color: white;
+            margin-top: 20px;
+        }
+
+        footer a {
+            color: #fff;
+            font-size: 14px;
+            transition-duration: 0.2s;
+        }
+
+        footer a:hover {
+            color: #FA944B;
+            text-decoration: none;
+        }
+
+        .copy {
+            font-size: 12px;
+            padding: 10px;
+            border-top: 1px solid #FFFFFF;
+        }
+
+        .footer-middle {
+            padding-top: 2em;
+            color: white;
+        }
+
+
+
+        ul.social-network {
+            list-style: none;
+            display: inline;
+            margin-left: 0 !important;
+            padding: 0;
+        }
+
+        ul.social-network li {
+            display: inline;
+            margin: 0 5px;
+        }
+
+
+        .social-network a.icoFacebook:hover {
+            background-color: #3B5998;
+        }
+
+        .social-network a.icoLinkedin:hover {
+            background-color: #007bb7;
+        }
+
+        .social-network a.icoFacebook:hover i,
+        .social-network a.icoLinkedin:hover i {
+            color: #fff;
+        }
+
+        .social-network a.socialIcon:hover,
+        .socialHoverClass {
+            color: #44BCDD;
+        }
+
+        .social-circle li a {
+            display: inline-block;
+            position: relative;
+            margin: 0 auto 0 auto;
+            -moz-border-radius: 50%;
+            -webkit-border-radius: 50%;
+            border-radius: 50%;
+            text-align: center;
+            width: 30px;
+            height: 30px;
+            font-size: 15px;
+        }
+
+        .social-circle li i {
+            margin: 0;
+            line-height: 30px;
+            text-align: center;
+        }
+
+        .social-circle li a:hover i,
+        .triggeredHover {
+            -moz-transform: rotate(360deg);
+            -webkit-transform: rotate(360deg);
+            -ms--transform: rotate(360deg);
+            transform: rotate(360deg);
+            -webkit-transition: all 0.2s;
+            -moz-transition: all 0.2s;
+            -o-transition: all 0.2s;
+            -ms-transition: all 0.2s;
+            transition: all 0.2s;
+        }
+
+        .social-circle i {
+            color: #595959;
+            -webkit-transition: all 0.8s;
+            -moz-transition: all 0.8s;
+            -o-transition: all 0.8s;
+            -ms-transition: all 0.8s;
+            transition: all 0.8s;
+        }
+
+        .social-network a {
+            background-color: #F9F9F9;
+        }
+
+
+        .row.heading h2 {
+            color: #fff;
+            font-size: 52.52px;
+            line-height: 95px;
+            font-weight: 400;
+            text-align: center;
+            margin: 0 0 40px;
+            padding-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        body {
+            margin-top: 20px;
+            background: #f8f8f8
+        }
+
+        .btn {
+            min-width: 9rem;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-sm navbar-light bg-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <img class="logo horizontal-logo" src="../../static/img/Logo.jpeg" style="width:60px;">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">HOME</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">ABOUT US</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">CONTACT US</a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link " href="#" data-toggle="dropdown">
+                            SIGN UP
+                        </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">SELLER ACCOUNT</a>
+                            <a class="dropdown-item" href="/accounts/traveller/account">USER ACCOUNT</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <br><br>
+
+    <br><br>
+    <div class="container">
+        <div class="row flex-lg-nowrap">
+
+
+            <div class="col">
+                <div class="row">
+                    <div class="col mb-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="e-profile">
+                                    <div class="row">
+
+                                        <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
+                                            <div class="text-center text-sm-left mb-2 mb-sm-0">
+                                                <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">karan</h4>
+                                                <p class="mb-0">@email.com</p>
+                                                <div class="text-muted"><small>Last seen 2 hours ago</small></div>
+
+                                            </div>
+                                            <div class="text-center text-sm-right">
+                                                <span class="badge badge-secondary">TRAVMAKS User</span>
+                                                <div class="text-muted"><small>Joined 09 Dec 2017</small></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <ul class="nav nav-tabs">
+                                        <li class="nav-item"><a href="" class="active nav-link">Settings</a></li>
+                                    </ul>
+                                    <div class="tab-content pt-3">
+                                        <div class="tab-pane active">
+                                            <form class="form" novalidate="">
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <div class="form-group">
+                                                                    <label>Full Name</label>
+                                                                    <input type="text" class="form-control"
+                                                                        placeholder="Full Name *" name="name"
+                                                                        id="fullname" required />
+                                                                </div>
+                                                            </div>
+                                                            <div class="col">
+                                                                <div class="form-group">
+                                                                    <label>Gender</label>
+                                                                    <div class="maxl">
+                                                                        <label class="radio inline">
+
+
+                                                                            &nbsp;
+                                                                            <input type="radio" name="gender"
+                                                                                value="male" checked>
+                                                                            <span> Male </span>
+                                                                        </label>
+                                                                        <label class="radio inline">
+                                                                            <input type="radio" name="gender"
+                                                                                value="female">
+                                                                            <span>Female </span>
+                                                                        </label>
+                                                                        <label class="radio inline">
+                                                                            <input type="radio" name="gender"
+                                                                                value="female">
+                                                                            <span>Others</span>
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <div class="form-group">
+                                                                    <label>Select Country</label>
+                                                                    <select class="form-control countries"
+                                                                        name="country" id="countryId" required>
+                                                                        <option value="">Select Country</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col">
+                                                                <div class="form-group">
+                                                                    <label>Select State</label>
+                                                                    <select class="form-control states" name="state"
+                                                                        id="stateId" required>
+                                                                        <option value="">Select State</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+
+                                                            <div class="col">
+                                                                <div class="form-group">
+                                                                    <label>Select City</label>
+                                                                    <select class="form-control cities" name="city"
+                                                                        id="cityId" required>
+                                                                        <option value="">Select City</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col">
+                                                                <div class="form-group">
+                                                                    <label>Birthdate</label>
+                                                                    <input type="text" placeholder="Birthdate"
+                                                                        class="form-control"
+                                                                        onfocus="(this.type='date')" name="bdate"
+                                                                        id="bdate" required />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <div class="form-group">
+                                                                    <label>Email</label>
+                                                                    <input type="email" class="form-control"
+                                                                        placeholder="Your Email *" name="email"
+                                                                        id="mail" required />
+                                                                </div>
+                                                            </div>
+                                                            <div class="col">
+                                                                <div class="form-group">
+                                                                    <label>Phone</label>
+                                                                    <input type="text" minlength="10" maxlength="10"
+                                                                        name="phone" class="form-control"
+                                                                        placeholder="Your Phone *" id="phone" value=""
+                                                                        required />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <div class="form-group">
+                                                                    <label></label>
+                                                                    <input type="number" class="form-control"
+                                                                        placeholder="Enter ZIP Code *" name="zip"
+                                                                        id="zip" required />
+                                                                </div>
+                                                            </div>
+                                                            <div class="col">
+                                                                <div class="form-group">
+                                                                    <label>Address</label>
+                                                                    <input type="text" class="form-control"
+                                                                        placeholder="Enter Full Address *"
+                                                                        name='address' id="address" required />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-12 col-sm-6 mb-3">
+                                                        <div class="mb-2"><b>Change Password</b></div>
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <div class="form-group">
+                                                                    <label>Current Password</label>
+                                                                    <input class="form-control" type="password"
+                                                                        placeholder="••••••">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <div class="form-group">
+                                                                    <label>New Password</label>
+                                                                    <input class="form-control" type="password"
+                                                                        placeholder="••••••">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <div class="form-group">
+                                                                    <label>Confirm <span
+                                                                            class="d-none d-xl-inline">Password</span></label>
+                                                                    <input class="form-control" type="password"
+                                                                        placeholder="••••••"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card">
+                                                        <div class="card-body">
+                                                            <h6 class="card-title font-weight-bold">Support</h6>
+                                                            <p class="card-text">Get fast, free help from our friendly
+                                                                assistants.</p>
+                                                            <button type="button" class="btn btn-primary">Contact
+                                                                Us</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col d-flex justify-content-end">
+                                                        <button class="btn btn-primary" type="submit">Save
+                                                            Changes</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <footer class="mainfooter mt-2" role="contentinfo">
+        <div class="footer-middle">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3 col-sm-6">
+                        <!--Column1-->
+                        <div class="footer-pad">
+                            <h4>Heading 1</h4>
+                            <ul class="list-unstyled">
+                                <li><a href="#"></a></li>
+                                <li><a href="#">Payment Center</a></li>
+                                <li><a href="#">Contact Directory</a></li>
+                                <li><a href="#">Forms</a></li>
+                                <li><a href="#">News and Updates</a></li>
+                                <li><a href="#">FAQs</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <!--Column1-->
+                        <div class="footer-pad">
+                            <h4>Heading 2</h4>
+                            <ul class="list-unstyled">
+                                <li><a href="#">Website Tutorial</a></li>
+                                <li><a href="#">Accessibility</a></li>
+                                <li><a href="#">Disclaimer</a></li>
+                                <li><a href="#">Privacy Policy</a></li>
+                                <li><a href="#">FAQs</a></li>
+                                <li><a href="#">Webmaster</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <!--Column1-->
+                        <div class="footer-pad">
+                            <h4>Heading 3</h4>
+                            <ul class="list-unstyled">
+                                <li><a href="#">Parks and Recreation</a></li>
+                                <li><a href="#">Public Works</a></li>
+                                <li><a href="#">Police Department</a></li>
+                                <li><a href="#">Fire</a></li>
+                                <li><a href="#">Mayor and City Council</a></li>
+                                <li>
+                                    <a href="#"></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <h4>Follow Us</h4>
+                        <ul class="social-network social-circle">
+                            <li><a href="#" class="icoFacebook" title="Facebook"><i class="fa fa-facebook"></i></a>
+                            </li>
+                            <li><a href="#" class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a>
+                            </li>
+                            <li><a href="#" class="icoLinkedin" title="Linkedin"><i class="fa fa-github"></i></a>
+                            </li>
+                            <li><a href="#" class="icoLinkedin" title="Linkedin"><i class="fa fa-twitter"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 copy">
+                        <p class="text-center">&copy; Copyright 2018 - Company Name. All rights reserved.</p>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+        </div>
+    </footer>
+    <!-- Geo data Solutions API-->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="//geodata.solutions/includes/countrystatecity.js"></script>
+    <!--Geo data solutions API ends here-->
+    <script type="text/javascript">
+        const $dropdown = $(".dropdown");
+        const $dropdownToggle = $(".dropdown-toggle");
+        const $dropdownMenu = $(".dropdown-menu");
+        const showClass = "show";
+
+        $(window).on("load resize", function () {
+            if (this.matchMedia("(min-width: 768px)").matches) {
+                $dropdown.hover(
+                    function () {
+                        const $this = $(this);
+                        $this.addClass(showClass);
+                        $this.find($dropdownToggle).attr("aria-expanded", "true");
+                        $this.find($dropdownMenu).addClass(showClass);
+                    },
+                    function () {
+                        const $this = $(this);
+                        $this.removeClass(showClass);
+                        $this.find($dropdownToggle).attr("aria-expanded", "false");
+                        $this.find($dropdownMenu).removeClass(showClass);
+                    }
+                );
+            } else {
+                $dropdown.off("mouseenter mouseleave");
+            }
+        });
+
+        jQuery(document).ready(function ($) {
+            $(window).scroll(function () {
+                if ($(document).scrollTop() > 150) {
+                    // Navigation Bar
+                    $('.navbar').removeClass('fadeIn');
+                    $('body').addClass('shrink');
+                    $('.navbar').addClass('animated fadeInDown');
+                } else {
+                    $('.navbar').removeClass('fadeInDown');
+                    $('body').removeClass('shrink');
+                    $('.navbar').addClass('animated fadeIn');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

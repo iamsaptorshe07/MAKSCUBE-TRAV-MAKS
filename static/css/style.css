@@ -1,0 +1,887 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800|Oswald:400,500,600,700');
+*
+{
+	margin: 0;
+	padding: 0;
+	-webkit-font-smoothing: antialiased;
+	-webkit-text-shadow: rgba(0,0,0,.01) 0 0 1px;
+	text-shadow: rgba(0,0,0,.01) 0 0 1px;
+}
+body {
+
+}
+div
+{
+	display: block;
+	position: relative;
+	-webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.owl-dots{
+		display: none;
+}
+.owl-carousel owl-theme.item img{
+	display: block;
+  width: 100%;
+  height: auto;
+} 
+.navbar{
+    background: #16222A !important;
+}
+.navbar .nav-item .nav-link{
+    color:#fff !important;
+		font-family: Helvatica;
+		font-size: 18px;
+    
+}
+.navbar .nav-item .nav-link:hover{
+    color:#33adff !important;
+    
+}
+.navbar-toggler{
+
+background-color: #fff;
+}
+
+.dropdown-toggle::after {
+   transition: transform 0.15s linear; 
+}
+
+.show.dropdown .dropdown-toggle::after {
+  transform: translateY(3px);
+}
+
+.dropdown-menu {
+  margin-top: 0;
+}
+
+
+.popular_places_area {
+  padding-top: 142px;
+  padding-bottom: 150px;
+  background: #F7FAFD;
+}
+
+@media (max-width: 767px) {
+  .popular_places_area {
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+}
+
+
+.popular_places_area .single_place {
+  background: #fff;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  overflow: hidden;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s;
+  margin-bottom: 30px;
+}
+
+/* line 15, ../../Arafath/CL/December/231. Travel-02/HTML/scss/_popular_place.scss */
+.popular_places_area .single_place .thumb {
+  position: relative;
+  overflow: hidden;
+}
+
+/* line 18, ../../Arafath/CL/December/231. Travel-02/HTML/scss/_popular_place.scss */
+.popular_places_area .single_place .thumb img {
+  width: 100%;
+}
+
+/* line 21, ../../Arafath/CL/December/231. Travel-02/HTML/scss/_popular_place.scss */
+.popular_places_area .single_place .thumb .prise {
+  position: absolute;
+  background: #1EC6B6;
+  padding: 7px 18px 4px 18px;
+  display: inline-block;
+  top: 20px;
+  left: 20px;
+  -webkit-border-radius: 18px;
+  -moz-border-radius: 18px;
+  border-radius: 18px;
+  color: #fff;
+  font-size: 16px;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s;
+}
+
+/* line 34, ../../Arafath/CL/December/231. Travel-02/HTML/scss/_popular_place.scss */
+.popular_places_area .single_place .place_info {
+  padding: 27px 20px 25px 20px;
+}
+
+/* line 36, ../../Arafath/CL/December/231. Travel-02/HTML/scss/_popular_place.scss */
+.popular_places_area .single_place .place_info h3 {
+  font-size: 22px;
+  font-weight: 400;
+  color: #040E27;
+  margin-bottom: 0;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s;
+}
+
+/* line 43, ../../Arafath/CL/December/231. Travel-02/HTML/scss/_popular_place.scss */
+.popular_places_area .single_place .place_info p {
+  font-size: 14px;
+  font-weight: 400;
+  color: #7A838B;
+  margin-top: 2px;
+  margin-bottom: 7px;
+}
+
+/* line 52, ../../Arafath/CL/December/231. Travel-02/HTML/scss/_popular_place.scss */
+.popular_places_area .single_place .place_info .rating_days span i {
+  font-size: 12px;
+  color: #FDAE5C;
+}
+
+/* line 56, ../../Arafath/CL/December/231. Travel-02/HTML/scss/_popular_place.scss */
+.popular_places_area .single_place .place_info .rating_days span a {
+  font-size: 14px;
+  color: #7A838B;
+  margin-left: 5px;
+}
+
+/* line 62, ../../Arafath/CL/December/231. Travel-02/HTML/scss/_popular_place.scss */
+.popular_places_area .single_place .place_info .rating_days .days {
+  font-size: 14px;
+  font-weight: 400;
+  color: #7A838B;
+}
+
+/* line 66, ../../Arafath/CL/December/231. Travel-02/HTML/scss/_popular_place.scss */
+.popular_places_area .single_place .place_info .rating_days .days i {
+  margin-right: 8px;
+}
+
+/* line 69, ../../Arafath/CL/December/231. Travel-02/HTML/scss/_popular_place.scss */
+.popular_places_area .single_place .place_info .rating_days .days a {
+  font-size: 14px;
+  color: #7A838B;
+}
+
+/* line 76, ../../Arafath/CL/December/231. Travel-02/HTML/scss/_popular_place.scss */
+.popular_places_area .single_place:hover {
+  -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+  -moz-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+}
+
+/* line 79, ../../Arafath/CL/December/231. Travel-02/HTML/scss/_popular_place.scss */
+.popular_places_area .single_place:hover .place_info h3 {
+  color: #FF4A52;
+}
+
+/* line 85, ../../Arafath/CL/December/231. Travel-02/HTML/scss/_popular_place.scss */
+.popular_places_area .single_place:hover .thumb .prise {
+  background: #FF4A52;
+}
+
+/* line 91, ../../Arafath/CL/December/231. Travel-02/HTML/scss/_popular_place.scss */
+.popular_places_area .more_place_btn {
+  margin-top: 40px;
+}
+
+/* line 97, ../../Arafath/CL/December/231. Travel-02/HTML/scss/_popular_place.scss */
+.filter_result_wrap h3 {
+  font-size: 16px;
+  font-weight: 500;
+  color: #001D38;
+  margin-bottom: 26px;
+}
+
+/* line 103, ../../Arafath/CL/December/231. Travel-02/HTML/scss/_popular_place.scss */
+.filter_result_wrap .filter_bordered {
+  border: 1px solid #DEE2E7;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  padding: 25px;
+}
+
+@media (max-width: 767px) {
+  /* line 103, ../../Arafath/CL/December/231. Travel-02/HTML/scss/_popular_place.scss */
+  .filter_result_wrap .filter_bordered {
+    margin-bottom: 30px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  /* line 103, ../../Arafath/CL/December/231. Travel-02/HTML/scss/_popular_place.scss */
+  .filter_result_wrap .filter_bordered {
+    margin-bottom: 30px;
+  }
+}
+
+/* line 114, ../../Arafath/CL/December/231. Travel-02/HTML/scss/_popular_place.scss */
+.filter_result_wrap .filter_inner {
+  display: block;
+  overflow: visible;
+}
+
+/* line 118, ../../Arafath/CL/December/231. Travel-02/HTML/scss/_popular_place.scss */
+.filter_result_wrap .filter_inner .nice-select {
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  font-size: 16px;
+  color: #AAB1B7;
+  font-weight: 300;
+  background: transparent;
+  border: 1px solid #DEE2E7;
+  margin-bottom: 15px;
+}
+
+/* line 128, ../../Arafath/CL/December/231. Travel-02/HTML/scss/_popular_place.scss */
+.filter_result_wrap .filter_inner .nice-select::after {
+  content: '\f0d7 ';
+  right: 21px;
+  top: 5px;
+  font-family: 'fontawesome';
+  color: #AAB1B7;
+  font-size: 16px;
+}
+
+/* line 136, ../../Arafath/CL/December/231. Travel-02/HTML/scss/_popular_place.scss */
+.filter_result_wrap .filter_inner .nice-select .option {
+  cursor: pointer;
+  font-weight: 400;
+  line-height: 40px;
+  list-style: none;
+  min-height: 40px;
+  outline: none;
+  padding-left: 18px;
+  padding-right: 29px;
+  text-align: left;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+  color: #000;
+  font-weight: 400;
+}
+
+/* line 151, ../../Arafath/CL/December/231. Travel-02/HTML/scss/_popular_place.scss */
+.filter_result_wrap .filter_inner .nice-select.open .list {
+  width: 100%;
+}
+
+/* line 157, ../../Arafath/CL/December/231. Travel-02/HTML/scss/_popular_place.scss */
+.filter_result_wrap .range_slider_wrap span.range {
+  color: #040E27;
+  font-size: 16px;
+  font-weight: 400;
+  display: block;
+  margin-bottom: 15px;
+}
+
+/* line 164, ../../Arafath/CL/December/231. Travel-02/HTML/scss/_popular_place.scss */
+.filter_result_wrap .range_slider_wrap p {
+  margin-top: 14px;
+  margin-bottom: 27px;
+}
+
+/* line 167, ../../Arafath/CL/December/231. Travel-02/HTML/scss/_popular_place.scss */
+.filter_result_wrap .range_slider_wrap p input {
+  background-color: transparent;
+}
+
+/* line 171, ../../Arafath/CL/December/231. Travel-02/HTML/scss/_popular_place.scss */
+.filter_result_wrap .range_slider_wrap .ui-widget.ui-widget-content {
+  border: 0;
+  background: #FFD8DA;
+}
+
+/* line 175, ../../Arafath/CL/December/231. Travel-02/HTML/scss/_popular_place.scss */
+.filter_result_wrap .range_slider_wrap .ui-slider-horizontal {
+  height: 2px;
+}
+
+/* line 178, ../../Arafath/CL/December/231. Travel-02/HTML/scss/_popular_place.scss */
+.filter_result_wrap .range_slider_wrap .ui-state-default, .filter_result_wrap .range_slider_wrap .ui-widget-content .ui-state-default, .filter_result_wrap .range_slider_wrap .ui-widget-header .ui-state-default, .filter_result_wrap .range_slider_wrap .ui-button, .filter_result_wrap .range_slider_wrap html .ui-button.ui-state-disabled:hover, .filter_result_wrap .range_slider_wrap html .ui-button.ui-state-disabled:active {
+  border: 2px solid #FF4A52;
+  background: #fff;
+  font-weight: normal;
+  width: 14px;
+  height: 16px;
+  border-radius: 5px;
+}
+
+/* line 186, ../../Arafath/CL/December/231. Travel-02/HTML/scss/_popular_place.scss */
+.filter_result_wrap .range_slider_wrap .ui-widget-header {
+  background: #FF4A52;
+}
+
+/* line 189, ../../Arafath/CL/December/231. Travel-02/HTML/scss/_popular_place.scss */
+.filter_result_wrap .range_slider_wrap .ui-slider-horizontal .ui-slider-handle {
+  top: -7px;
+  margin-left: -.6em;
+}
+
+/* line 195, ../../Arafath/CL/December/231. Travel-02/HTML/scss/_popular_place.scss */
+.filter_result_wrap .reset_btn button {
+  width: 100%;
+}
+.where_togo_area {
+  background: #040E27;
+  padding: 70px 0;
+}
+
+
+.where_togo_area .form_area h3 {
+  font-size: 24px;
+  color: #fff;
+  font-weight: 400;
+  margin-bottom: 0;
+}
+
+@media (max-width: 767px) {
+  .where_togo_area .form_area h3 {
+    margin-bottom: 15px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .where_togo_area .form_area h3 {
+    margin-bottom: 30px;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1200px) {
+  .where_togo_area .form_area h3 {
+    font-size: 18px;
+  }
+}
+
+.where_togo_area .search_wrap .search_form {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: space-between;
+  -moz-justify-content: space-between;
+  -ms-justify-content: space-between;
+  justify-content: space-between;
+  -ms-flex-pack: space-between;
+}
+
+@media (max-width: 767px) {
+  .where_togo_area .search_wrap .search_form {
+    display: block !important;
+  }
+}
+
+.where_togo_area .search_wrap .input_field {
+  width: 220px;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .where_togo_area .search_wrap .input_field {
+    max-width: 150px;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1200px) {
+  .where_togo_area .search_wrap .input_field {
+    max-width: 170px;
+  }
+}
+
+@media (max-width: 767px) {
+  .where_togo_area .search_wrap .input_field {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+}
+
+.where_togo_area .search_wrap .input_field input {
+  width: 100%;
+  height: 50px;
+  background: transparent;
+  border: 1px solid #363E52;
+  padding-left: 15px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  color: #fff;
+}
+
+.where_togo_area .search_wrap .input_field input::placeholder {
+  font-size: 16px;
+  color: #AAB1B7;
+  font-weight: 300;
+}
+
+.where_togo_area .search_wrap .input_field input:focus {
+  outline: none;
+}
+.travel_variation_area {
+  padding-top: 150px;
+  padding-bottom: 114px;
+	background-image:linear-gradient(rgba(246, 247, 249, 0.8), rgba(246, 247, 249, 0.8)), url(https://res.cloudinary.com/dxfq3iotg/image/upload/v1564049481/bg-clouds.jpg) ;
+	
+}
+
+@media (max-width: 767px) {
+  /* line 1, ../../Arafath/CL/December/231. Travel-02/HTML/scss/_travel_variation.scss */
+  .travel_variation_area {
+    padding: 60px 0;
+  }
+}
+
+
+/* line 7, ../../Arafath/CL/December/231. Travel-02/HTML/scss/_travel_variation.scss */
+.travel_variation_area .single_travel {
+  margin-bottom: 30px;
+}
+
+/* line 12, ../../Arafath/CL/December/231. Travel-02/HTML/scss/_travel_variation.scss */
+.travel_variation_area .single_travel h3 {
+  font-size: 22px;
+  font-weight: 400;
+  color: #040E27;
+  margin-bottom: 10px;
+  margin-top: 41px;
+}
+
+@media (max-width: 767px) {
+  /* line 12, ../../Arafath/CL/December/231. Travel-02/HTML/scss/_travel_variation.scss */
+  .travel_variation_area .single_travel h3 {
+    margin-top: 20px;
+  }
+}
+
+/* line 23, ../../Arafath/CL/December/231. Travel-02/HTML/scss/_travel_variation.scss */
+.travel_variation_area .single_travel p {
+  font-size: 16px;
+  font-weight: 400;
+  color: #6E6E6E;
+}
+
+
+
+.boxed-btn4 {
+    background: #FF4A52;
+    color: #fff;
+    display: inline-block;
+    padding: 13px 39px;
+    font-family: "Rubik", sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    border: 0;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    text-align: center;
+    text-transform: capitalize;
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.popular_places_area {
+  padding-top: 142px;
+  padding-bottom: 150px;
+  background: #F7FAFD;
+}
+
+@media (max-width: 767px) {
+  .popular_places_area {
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+}
+
+
+.popular_places_area .single_place {
+  background: #fff;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  overflow: hidden;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s;
+  margin-bottom: 30px;
+}
+
+/* line 15, ../../Arafath/CL/December/231. Travel-02/HTML/scss/_popular_place.scss */
+.popular_places_area .single_place .thumb {
+  position: relative;
+  overflow: hidden;
+}
+
+/* line 18, ../../Arafath/CL/December/231. Travel-02/HTML/scss/_popular_place.scss */
+.popular_places_area .single_place .thumb img {
+  width: 100%;
+}
+
+/* line 21, ../../Arafath/CL/December/231. Travel-02/HTML/scss/_popular_place.scss */
+.popular_places_area .single_place .thumb .prise {
+  position: absolute;
+  background: #1EC6B6;
+  padding: 7px 18px 4px 18px;
+  display: inline-block;
+  top: 20px;
+  left: 20px;
+  -webkit-border-radius: 18px;
+  -moz-border-radius: 18px;
+  border-radius: 18px;
+  color: #fff;
+  font-size: 16px;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s;
+}
+
+/* line 34, ../../Arafath/CL/December/231. Travel-02/HTML/scss/_popular_place.scss */
+.popular_destination_area {
+  padding-top: 140px;
+  padding-bottom: 120px;
+}
+
+@media (max-width: 767px) {
+  /* line 1, ../../Arafath/CL/December/231. Travel-02/HTML/scss/_destination.scss */
+  .popular_destination_area {
+    padding-top: 60px;
+    padding-bottom: 30px;
+  }
+}
+
+/* line 8, ../../Arafath/CL/December/231. Travel-02/HTML/scss/_destination.scss */
+.popular_destination_area .single_destination {
+  position: relative;
+  margin-bottom: 30px;
+  border-radius: 5px;
+  overflow: hidden;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s;
+}
+
+/* line 14, ../../Arafath/CL/December/231. Travel-02/HTML/scss/_destination.scss */
+.popular_destination_area .single_destination:before {
+  /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#040e27+0,040e27+100&0+0,0.7+100 */
+  background: -moz-linear-gradient(top, rgba(4, 14, 39, 0) 0%, rgba(4, 14, 39, 0.7) 100%);
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, rgba(4, 14, 39, 0) 0%, rgba(4, 14, 39, 0.7) 100%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, rgba(4, 14, 39, 0) 0%, rgba(4, 14, 39, 0.7) 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00040e27', endColorstr='#b3040e27',GradientType=0 );
+  /* IE6-9 */
+  content: '';
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  position: absolute;
+}
+
+/* line 30, ../../Arafath/CL/December/231. Travel-02/HTML/scss/_destination.scss */
+.popular_destination_area .single_destination .thumb img {
+  width: 100%;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+
+/* line 35, ../../Arafath/CL/December/231. Travel-02/HTML/scss/_destination.scss */
+.popular_destination_area .single_destination .content {
+ position: absolute;
+  top: 10px;
+  left: 0px;
+  right: 110px;
+  bottom: 90px;
+  z-index: 7;
+}
+
+/* line 40, ../../Arafath/CL/December/231. Travel-02/HTML/scss/_destination.scss */
+.popular_destination_area .single_destination .content p {
+  margin-bottom: 10;
+  font-size: 22px;
+  color: #fff;
+  font-weight: 400;
+  font-family: "Rubik", sans-serif;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s;
+}
+
+/* line 47, ../../Arafath/CL/December/231. Travel-02/HTML/scss/_destination.scss */
+.popular_destination_area .single_destination .content p a {
+  display: inline-block;
+  background: #1EC6B6;
+  font-size: 15px;
+  border-radius: 30px;
+  font-weight: 400;
+  padding: 0px 12px;
+  height: 25px;
+  line-height: 25px;
+  color: #fff;
+  margin-left: 10px;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s;
+}
+
+/* line 62, ../../Arafath/CL/December/231. Travel-02/HTML/scss/_destination.scss */
+.popular_destination_area .single_destination:hover {
+  -webkit-transform: translateY(-10px);
+  -moz-transform: translateY(-10px);
+  -ms-transform: translateY(-10px);
+  transform: translateY(-10px);
+}
+
+/* line 65, ../../Arafath/CL/December/231. Travel-02/HTML/scss/_destination.scss */
+.popular_destination_area .single_destination:hover .content p {
+  color: #FF4A52;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s;
+}
+
+/* line 68, ../../Arafath/CL/December/231. Travel-02/HTML/scss/_destination.scss */
+.popular_destination_area .single_destination:hover .content p a {
+  background: #FF4A52;
+  color: #fff;
+}
+footer {
+  background: #16222A;
+  background: -webkit-linear-gradient(59deg, #3A6073, #16222A);
+  background: linear-gradient(59deg, #3A6073, #16222A);
+  color: white;
+  margin-top:100px;
+}
+
+footer a {
+  color: #fff;
+  font-size: 14px;
+  transition-duration: 0.2s;
+}
+
+footer a:hover {
+  color: #FA944B;
+  text-decoration: none;
+}
+
+.copy {
+  font-size: 12px;
+  padding: 10px;
+  border-top: 1px solid #FFFFFF;
+}
+
+.footer-middle {
+  padding-top: 2em;
+  color: white;
+}
+
+
+
+ul.social-network {
+  list-style: none;
+  display: inline;
+  margin-left: 0 !important;
+  padding: 0;
+}
+
+ul.social-network li {
+  display: inline;
+  margin: 0 5px;
+}
+
+
+.social-network a.icoFacebook:hover {
+  background-color: #3B5998;
+}
+
+.social-network a.icoLinkedin:hover {
+  background-color: #007bb7;
+}
+
+.social-network a.icoFacebook:hover i,
+.social-network a.icoLinkedin:hover i {
+  color: #fff;
+}
+
+.social-network a.socialIcon:hover,
+.socialHoverClass {
+  color: #44BCDD;
+}
+
+.social-circle li a {
+  display: inline-block;
+  position: relative;
+  margin: 0 auto 0 auto;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  text-align: center;
+  width: 30px;
+  height: 30px;
+  font-size: 15px;
+}
+
+.social-circle li i {
+  margin: 0;
+  line-height: 30px;
+  text-align: center;
+}
+
+.social-circle li a:hover i,
+.triggeredHover {
+  -moz-transform: rotate(360deg);
+  -webkit-transform: rotate(360deg);
+  -ms--transform: rotate(360deg);
+  transform: rotate(360deg);
+  -webkit-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+  -o-transition: all 0.2s;
+  -ms-transition: all 0.2s;
+  transition: all 0.2s;
+}
+
+.social-circle i {
+  color: #595959;
+  -webkit-transition: all 0.8s;
+  -moz-transition: all 0.8s;
+  -o-transition: all 0.8s;
+  -ms-transition: all 0.8s;
+  transition: all 0.8s;
+}
+
+.social-network a {
+  background-color: #F9F9F9;
+}
+
+
+.row.heading h2 {
+    color: #fff;
+    font-size: 52.52px;
+    line-height: 95px;
+    font-weight: 400;
+    text-align: center;
+    margin: 0 0 40px;
+    padding-bottom: 20px;
+    text-transform: uppercase;
+}
+ul{
+  margin:0;
+  padding:0;
+  list-style:none;
+}
+.heading.heading-icon {
+    display: block;
+}
+.padding-lg {
+	display: block;
+	padding-top: 60px;
+	padding-bottom: 60px;
+}
+.practice-area.padding-lg {
+    padding-bottom: 55px;
+    padding-top: 55px;
+}
+.practice-area .inner{ 
+     border:1px solid #999999; 
+	 text-align:center; 
+	 margin-bottom:28px; 
+	 padding:40px 25px;
+}
+.our-webcoderskull .cnt-block:hover {
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
+    border: 0;
+}
+.practice-area .inner h3{ 
+    color:#3c3c3c; 
+	font-size:24px; 
+	font-weight:500;
+	font-family: 'Poppins', sans-serif;
+	padding: 10px 0;
+}
+.practice-area .inner p{ 
+    font-size:14px; 
+	line-height:22px; 
+	font-weight:400;
+}
+.practice-area .inner img{
+	display:inline-block;
+}
+
+
+
+.carousel-item{
+	height: 60vh;
+	min-height: 300px;
+	background: no-repeat center center scroll;
+	-webkit-background-size: cover;
+	background-size: cover;
+}
+.carousel-caption{
+	bottom: 30px;
+}
+.carousel-caption h5{
+	font-size: 45px;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	margin-top: 25px;
+	font-family: merienda;
+}
+.carousel-caption p{
+	width: 60%;
+	margin: auto;
+	font-size: 18px;
+	line-height: 1.9;
+	font-family: poppins;
+}
+.carousel-caption a{
+	text-transform: uppercase;
+	background: #0f1c30;
+	padding: 10px 30px;
+	display: inline-block;
+	color: #fff;
+	margin-top: 15px;
+}
+@media only screen and (min width: 768px)and (max width: 991px){
+	.carousel-caption{
+		padding-bottom: 350px;
+	} 
+	
+	.carousel-caption h5{
+		font-size: 50px;
+	}
+}
+@media only screen and (max width: 767px){
+	.carousel-caption{
+		padding-top: 120px;
+	}
+	
+	.carousel-caption h5{
+		font-size: 25px;
+	}
+	.carousel-caption p{
+		font-size: 18px;
+	}
+	.carousel-caption a{
+		padding: 10px 25px;
+	}
+}
