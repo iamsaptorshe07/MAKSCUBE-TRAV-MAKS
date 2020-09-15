@@ -1,14 +1,16 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title> MAKS CUB3 </title>
-	<link rel="icon" href="../static/img/logo.jpeg" type="image/gif" sizes="50x50">
+    <link rel="icon" href="../static/img/logo.jpeg" type="image/gif" sizes="50x50">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
@@ -18,377 +20,400 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
     <style type="text/css">
-        
+
     </style>
 </head>
+
 <body>
     <!--Navbar Starts here-->
     <div class="super_container">
-      <nav class="navbar navbar-expand-sm navbar-light bg-light fixed-top">
-<div class="container">
-  <a class="navbar-brand" href="#">
-    <img class="logo horizontal-logo" src="{% static 'img/logo.jpeg' %}" style="width:60px;">
-    </a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" >
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="index.html">HOME</a>
-      </li>
-  <li class="nav-item">
-        <a class="nav-link" href="#">ABOUT US</a>
-      </li>
-  <li class="nav-item">
-        <a class="nav-link" href="#">CONTACT US</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="/qna/">QNA</a>
-</li>
-<li class="nav-item">
-  <a class="nav-link" href="#">BLOG</a>
-</li>
-    {% if user.is_authenticated %}
-    <li class="nav-item">
-      <a class="nav-link" href="/accounts/editprofile/{{request.session.access_type}}/{{user.id}}">{{user.name}}</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="/accounts/user/logout">LOGOUT</a>
-    </li>
-      {% else %}
-      <li class="nav-item dropdown">
-        <a class="nav-link " href="#" data-toggle="dropdown">
-    ACCOUNTS
-  </a>
-  <div class="dropdown-menu">
-    <a class="dropdown-item" href="/accounts/seller/account">SELLER ACCOUNT</a>
-    <a class="dropdown-item" href="/accounts/traveller/account">USER ACCOUNT</a>
-  </div>
-</li> 
-    {% endif %}
-  </ul>
-  </div>
-</div>
-</nav>
-    <!--Navbar Ends Here-->
-<br><br><hr>
-{% if messages %}
-  {% for message in messages %}
-<div class="alert alert-{{message.tags}}" role="alert">
-    {{message}}  
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
-</div>
-  {% endfor %}
-{% endif %}
-<hr>
-    <div class="container mt-5">
-        <div class="row flex-lg-nowrap">
-            <div class="col">
-                <div class="row"> 
-                    <div class="col mb-3">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="e-profile">
-                                    <div class="row">
+        <nav class="navbar navbar-expand-sm navbar-light bg-light fixed-top">
+            <div class="container">
+                <a class="navbar-brand" href="#">
+                    <img class="logo horizontal-logo" src="{% static 'img/logo.jpeg' %}" style="width:60px;">
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">HOME</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">ABOUT US</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">CONTACT US</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/qna/">QNA</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">BLOG</a>
+                        </li>
+                        {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link"
+                                href="/accounts/editprofile/{{request.session.access_type}}/{{user.id}}">{{user.name}}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/accounts/user/logout">LOGOUT</a>
+                        </li>
+                        {% else %}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link " href="#" data-toggle="dropdown">
+                                ACCOUNTS
+                            </a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="/accounts/seller/account">SELLER ACCOUNT</a>
+                                <a class="dropdown-item" href="/accounts/traveller/account">USER ACCOUNT</a>
+                            </div>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!--Navbar Ends Here-->
+        <br><br>
+        <hr>
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-{{message.tags}}" role="alert">
+            {{message}}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {% endfor %}
+        {% endif %}
+        <hr>
+        <div class="container mt-5">
+            <div class="row flex-lg-nowrap">
+                <div class="col">
+                    <div class="row">
+                        <div class="col mb-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="e-profile">
+                                        <div class="row">
 
-                                        <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
-                                      
-                                            <div class="text-center text-sm-left mb-2 mb-sm-0">
-                                                <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">YOUR USER ID : {{user.userAccess.userId}} </h4>
-                                                <p class="mb-0">{{user.email}}</p>
-                                                <div class="text-muted"><small>Last Login : {{user.last_login}}</small></div>
-                                            </div>
-                                            
-                                            <form>
-                                                <div class="row">
-                                                    <div class="col d-flex justify-content-end">
-                                                        <input class="btn btn-primary" type='button' name="edit"
-                                                            value='Edit'>
-                                                    </div>
+                                            <div
+                                                class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
+
+                                                <div class="text-center text-sm-left mb-2 mb-sm-0">
+                                                    <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">YOUR USER ID :
+                                                        {{user.userAccess.userId}} </h4>
+                                                    <p class="mb-0">{{user.email}}</p>
+                                                    <div class="text-muted"><small>Last Login :
+                                                            {{user.last_login}}</small></div>
                                                 </div>
-                                            </form>
+
+                                                <form>
+                                                    <div class="row">
+                                                        <div class="col d-flex justify-content-end">
+                                                            <input class="btn btn-primary" type='button' name="edit"
+                                                                value='Edit'>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <ul class="nav nav-tabs">
-                                        <li class="nav-item"><a href="" class="active nav-link">Settings</a></li>
-                                    </ul>
-                                    <div class="tab-content pt-3">
-                                        
-                                        <div class="tab-pane active">
-                                            <form class="form" onvalidate="" method="POST" action="{{request.path}}" enctype="multipart/form-data" id="user">
-                                                {% csrf_token %}
-                                                <div class="row">
-                                                    <div class="col">
-                                                        <div class="row">
-                                                            <div class="col">
-                                                                <div class="form-group">
-                                                                    <label>Full Name</label>
-                                                                    <input type="text" class="form-control"
-                                                                    value="{{user.name}}" name="name"
-                                                                        id="fullname" required disabled />
+                                        <ul class="nav nav-tabs">
+                                            <li class="nav-item"><a href="" class="active nav-link">Settings</a></li>
+                                        </ul>
+                                        <div class="tab-content pt-3">
+
+                                            <div class="tab-pane active">
+                                                <form class="form" onvalidate="" method="POST" action="{{request.path}}"
+                                                    enctype="multipart/form-data" id="user">
+                                                    {% csrf_token %}
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    <div class="form-group">
+                                                                        <label>Full Name</label>
+                                                                        <input type="text" class="form-control"
+                                                                            value="{{user.name}}" name="name"
+                                                                            id="fullname" required disabled />
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                            <div class="col">
-                                                                <div class="form-group">
-                                                                    <label>Gender</label>
-                                                                    <div class="maxl">
-                                                                        <label class="radio inline">
-                                                                            &nbsp;
-                                                                            <input type="radio" name="gender"
-                                                                                value="male" checked disabled>
-                                                                            <span> Male </span>
-                                                                        </label>
-                                                                        <label class="radio inline">
-                                                                            <input type="radio" name="gender"
-                                                                                value="female" disabled>
-                                                                            <span>Female </span>
-                                                                        </label>
-                                                                        <label class="radio inline">
-                                                                            <input type="radio" name="gender"
-                                                                                value="female" disabled>
-                                                                            <span>Others</span>
-                                                                        </label>
+                                                                <div class="col">
+                                                                    <div class="form-group">
+                                                                        <label>Gender</label>
+                                                                        <div class="maxl">
+                                                                            <label class="radio inline">
+                                                                                &nbsp;
+                                                                                <input type="radio" name="gender"
+                                                                                    value="Male" checked disabled>
+                                                                                <span> Male </span>
+                                                                            </label>
+                                                                            <label class="radio inline">
+                                                                                <input type="radio" name="gender"
+                                                                                    value="Female" disabled>
+                                                                                <span>Female </span>
+                                                                            </label>
+                                                                            <label class="radio inline">
+                                                                                <input type="radio" name="gender"
+                                                                                    value="Other" disabled>
+                                                                                <span>Others</span>
+                                                                            </label>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col">
-                                                                <div class="form-group">
-                                                                    <label>Address</label>
-                                                                    <input type="text" class="form-control"
-                                                                        placeholder="Enter Full Address *"
-                                                                        name='address' id="address" value="{{user.address}}" required disabled />
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    <div class="form-group">
+                                                                        <label>Address</label>
+                                                                        <input type="text" class="form-control"
+                                                                            placeholder="Enter Full Address *"
+                                                                            name='address' id="address"
+                                                                            value="{{user.address}}" required
+                                                                            disabled />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col">
+                                                                    <div class="form-group">
+                                                                        <label>Phone</label>
+                                                                        <input type="text" minlength="10" maxlength="10"
+                                                                            name="phone" class="form-control"
+                                                                            placeholder="Your Phone *" id="phone"
+                                                                            value="{{user.phNo}}" required disabled />
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="col">
-                                                                <div class="form-group">
-                                                                    <label>Phone</label>
-                                                                    <input type="text" minlength="10" maxlength="10"
-                                                                        name="phone" class="form-control"
-                                                                        placeholder="Your Phone *" id="phone" value="{{user.phNo}}"
-                                                                        required disabled />
-                                                                </div>
-                                                            </div>
-                                                        </div>
 
-                                                        <div class="row">
-                                                            <div class="col">
-                                                                <div class="form-group">
-                                                                    <label>Birthdate</label>
-                                                                    <input type="date" value="{{user.DOB|date:'c'}}"
-                                                                        class="form-control"
-                                                                        name="bdate"
-                                                                        id="bdate" required disabled />
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    <div class="form-group">
+                                                                        <label>Birthdate</label>
+                                                                        <input type="date" value="{{user.DOB|date:'c'}}"
+                                                                            class="form-control" name="bdate" id="bdate"
+                                                                            required disabled />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col">
+                                                                    <div class="form-group">
+                                                                        <label>Zip</label>
+                                                                        <input type="number" class="form-control"
+                                                                            placeholder="Enter ZIP Code *" name="zip"
+                                                                            id="zip" value="{{user.zipCode}}" required
+                                                                            disabled />
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="col">
-                                                                <div class="form-group">
-                                                                    <label>Zip</label>
-                                                                    <input type="number" class="form-control"
-                                                                        placeholder="Enter ZIP Code *" name="zip"
-                                                                        id="zip" value="{{user.zipCode}}" required disabled />
+
+                                                            <div class="row">
+                                                                <div class="col-12">
+                                                                    <div class="form-group">
+                                                                        <button name="submit" type="submit"
+                                                                            class="form-control btn-primary btn-sm mt-2">
+                                                                            SAVE CHANGES
+                                                                        </button>
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        
-                                                        <div class="row">
-                                                            <div class="col-12">
-                                                                <div class="form-group"> 
-                                                                    <button name="submit" type="submit" class="form-control btn-primary btn-sm mt-2">
-                                                                        SAVE CHANGES
-                                                                    </button>                                                                  
+
+                                                            <div class="row">
+                                                                <div class="col-12 errormsgbg">
+                                                                    <div id="errormsg"
+                                                                        onclick="getElementById('errormsg').innerHTML = null">
+                                                                    </div>
                                                                 </div>
-                                                            </div>                                                          
-                                                        </div>
-                                                        
-                                                        <div class="row">
-                                                            <div class="col-12 errormsgbg">
-                                                                <div id="errormsg" onclick="getElementById('errormsg').innerHTML = null"></div>
                                                             </div>
+
                                                         </div>
-                                                    
                                                     </div>
-                                                </div>
                                                 </form>
                                                 <hr>
                                                 <div class="row">
                                                     <div class="col-12 col-sm-12 mb-3">
                                                         <div class="mb-2">
-                                                        <button class="badge badge-secondary" onclick="showChangePassword();">Chnage Password</button>
-                                                        <script type="text/javascript">
-                                                         function showChangePassword()
-                                                         {
-                                                             document.getElementById('changePassword').style.display = 'block';
-                                                         }
-                                                        </script>
-                                                         </div>
-                                                         <!-- /accounts/change-password -->
-                                                        <form  method="post" id='changePassword' style="display: none;" action="/accounts/change-password" enctype="multipart/form-data" onsubmit="return validPassword()">
-                                                        {% csrf_token %}
-                                                        <div class="row">
-                                                            <div class="col">
-                                                                <div class="form-group">
-                                                                    <label>Current Password</label>
-                                                                    <input class="form-control" type="password"
-                                                                        placeholder="*********" name="oldpassword" id="oldpassword" required>
+                                                            <button class="badge badge-secondary"
+                                                                onclick="showChangePassword();">Chnage Password</button>
+                                                            <script type="text/javascript">
+                                                                function showChangePassword() {
+                                                                    document.getElementById('changePassword').style.display = 'block';
+                                                                }
+                                                            </script>
+                                                        </div>
+                                                        <!-- /accounts/change-password -->
+                                                        <form method="post" id='changePassword' style="display: none;"
+                                                            action="/accounts/change-password"
+                                                            enctype="multipart/form-data"
+                                                            onsubmit="return validPassword()">
+                                                            {% csrf_token %}
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    <div class="form-group">
+                                                                        <label>Current Password</label>
+                                                                        <input class="form-control" type="password"
+                                                                            placeholder="*********" name="oldpassword"
+                                                                            id="oldpassword" required>
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col">
-                                                                <div class="form-group">
-                                                                    <label>New Password</label>
-                                                                    <input class="form-control" type="password"
-                                                                        placeholder="********" name="password1" id="password1" required>
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    <div class="form-group">
+                                                                        <label>New Password</label>
+                                                                        <input class="form-control" type="password"
+                                                                            placeholder="********" name="password1"
+                                                                            id="password1" required>
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col">
-                                                                <div class="form-group">
-                                                                    <label>Confirm <span
-                                                                            class="d-none d-xl-inline">Password</span></label>
-                                                                    <input class="form-control" type="password"
-                                                                        placeholder="********" name="password2" id="password2" required>
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    <div class="form-group">
+                                                                        <label>Confirm <span
+                                                                                class="d-none d-xl-inline">Password</span></label>
+                                                                        <input class="form-control" type="password"
+                                                                            placeholder="********" name="password2"
+                                                                            id="password2" required>
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col col-sm-12 mb-3">
-                                                                <div class="form-group">
-                                                                    <center>
-                                                                    <button type="submit" name="submit" class="btn-primary btn-sm">Change Password</button>
-                                                                    </center>
+                                                            <div class="row">
+                                                                <div class="col col-sm-12 mb-3">
+                                                                    <div class="form-group">
+                                                                        <center>
+                                                                            <button type="submit" name="submit"
+                                                                                class="btn-primary btn-sm">Change
+                                                                                Password</button>
+                                                                        </center>
                                                                     </div>
                                                                     <hr>
-                                                                </form>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col-12 errorhellobg">
-                                                                <div id="errorhello" onclick="getElementById('errorhello').innerHTML = null"></div>
-                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-12 errorhellobg">
+                                                        <div id="errorhello"
+                                                            onclick="getElementById('errorhello').innerHTML = null">
                                                         </div>
                                                     </div>
-                                                    <div class="col-12 col-sm-12 mb-3">
-                                                        <div class="row">
-                                                            <div class="col">
-                                                                <div class="custom-controls-stacked px-2">
-                                                                    <div class="card-body">
-                                                                        <h6 class="card-title font-weight-bold">
-                                                                            Support</h6>
-                                                                        <p class="card-text">Get fast,
-                                                                            free help from our friendly
-                                                                            assistants.
-                                                                        </p>
-                                                                        <button type="button"
-                                                                            class="btn btn-primary">Contact
-                                                                            Us</button>
-                                                                    </div>
-                                                                </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-sm-12 mb-3">
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <div class="custom-controls-stacked px-2">
+                                                            <div class="card-body">
+                                                                <h6 class="card-title font-weight-bold">
+                                                                    Support</h6>
+                                                                <p class="card-text">Get fast,
+                                                                    free help from our friendly
+                                                                    assistants.
+                                                                </p>
+                                                                <button type="button" class="btn btn-primary">Contact
+                                                                    Us</button>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            
-
+                                            </div>
                                         </div>
+
+
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-
                 </div>
 
+
             </div>
+
         </div>
     </div>
+    </div>
     <script>
-        function validPassword(){
-            var password2=document.getElementById('password2').value;
-            var password1=document.getElementById('password1').value;
-            var oldpassword=document.getElementById('oldpassword').value;
-            var errorhello=document.getElementById('errorhello');
-            var errorhellobg=document.querySelector('.errorhellobg');
-            var hello=new Array();
-            if(password1.length<8){
+        function validPassword() {
+            var password2 = document.getElementById('password2').value;
+            var password1 = document.getElementById('password1').value;
+            var oldpassword = document.getElementById('oldpassword').value;
+            var errorhello = document.getElementById('errorhello');
+            var errorhellobg = document.querySelector('.errorhellobg');
+            var hello = new Array();
+            if (password1.length < 8) {
                 // console.log('3rd');
                 // alert('hi');
                 hello.push('Password Length must be atleast 8 charecters');
                 // console.log(hello[0]);
             }
-            else{
-                if(password1!=password2){
+            else {
+                if (password1 != password2) {
                     // console.log('2nd');
                     // hello.push('not same');
-                        // alert('not same');
+                    // alert('not same');
                     hello.push('Password did not match');
                 }
                 // hello.push('Password must be with in 8 to 20 charecter');
             }
-            for(let i=0;i<password1.length;i++){
-                if(password1[i]==='<'||password1[i]==='>'){
+            for (let i = 0; i < password1.length; i++) {
+                if (password1[i] === '<' || password1[i] === '>') {
                     hello.push('< / > not allowed');
                 }
             }
-            if(hello.length>0){
-                errorhello.innerHTML=hello.join(',\n');
-                errorhellobg.style.backgroundColor='red';
-                errorhello.style.color='#fff';
+            if (hello.length > 0) {
+                errorhello.innerHTML = hello.join(',\n');
+                errorhellobg.style.backgroundColor = 'red';
+                errorhello.style.color = '#fff';
                 return false;
             }
             // console.log(password1,password2,oldpassword);
             return true;
         }
 
-        const errormsgbg=document.querySelector('.errormsgbg')
-        const errormsg=document.getElementById('errormsg')
-        const user=document.getElementById('user')
-        const cd=new Date().getFullYear()
+        const errormsgbg = document.querySelector('.errormsgbg')
+        const errormsg = document.getElementById('errormsg')
+        const user = document.getElementById('user')
+        const cd = new Date().getFullYear()
         // document.getElementById("bdate").addEventListener("change", function() {
         //     const input = this.value;
         // });
-        user.addEventListener('submit',(e)=>{
-            let msg=[]
+        user.addEventListener('submit', (e) => {
+            let msg = []
             // if(bdate.value.substring(date.lastIndexOf("-")+1)>cd){
             //     msg.push('Please Enter a valid Birthday')
             // }
-            if(name.value===''||name.value===null){
+            if (name.value === '' || name.value === null) {
                 msg.push('Name is Required')
             }
-            if(address.value===''||address.value===null){
-                msg.push('Address is Required')   
+            if (address.value === '' || address.value === null) {
+                msg.push('Address is Required')
             }
-            if(phone.value===''||phone.value===null){
-                msg.push('Phone number is Required')   
+            if (phone.value === '' || phone.value === null) {
+                msg.push('Phone number is Required')
             }
-            if(phone.value!=Number(phone.value)){
+            if (phone.value != Number(phone.value)) {
                 msg.push('Your phone must be number')
             }
-            if(zip.value===''||zip.value===null){
-                msg.push('Zip code is Required')   
+            if (zip.value === '' || zip.value === null) {
+                msg.push('Zip code is Required')
             }
-            if(bdate.value===''||bdate.value===null){
-                msg.push('Birthday is Required')   
+            if (bdate.value === '' || bdate.value === null) {
+                msg.push('Birthday is Required')
             }
-            if(phone.value.length!=10){
-                msg.push('Please Enter a valid Phone number')   
+            if (phone.value.length != 10) {
+                msg.push('Please Enter a valid Phone number')
             }
-            if(zip.value.length!=6){
-                msg.push('Please Enter a valid Zip Code')   
+            if (zip.value.length != 6) {
+                msg.push('Please Enter a valid Zip Code')
             }
-            if(msg.length>0){
+            if (msg.length > 0) {
                 e.preventDefault()
-                errormsg.innerText=msg.join(',\n')
-                errormsgbg.style.backgroundColor='red'
-                errormsg.style.color='#fff'
-                
+                errormsg.innerText = msg.join(',\n')
+                errormsgbg.style.backgroundColor = 'red'
+                errormsg.style.color = '#fff'
+
             }
 
 
@@ -414,137 +439,138 @@
 
     </script>
     <!--Footer-->
-	<footer class="mainfooter" role="contentinfo">
+    <footer class="mainfooter" role="contentinfo">
         <div class="footer-middle">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-3 col-sm-6">
-              <!--Column1-->
-              <div class="footer-pad">
-                <h4>Heading 1</h4>
-                <ul class="list-unstyled">
-                  <li><a href="#"></a></li>
-                  <li><a href="#">Payment Center</a></li>
-                  <li><a href="#">Contact Directory</a></li>
-                  <li><a href="#">Forms</a></li>
-                  <li><a href="#">News and Updates</a></li>
-                  <li><a href="#">FAQs</a></li>
-                </ul>
-              </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3 col-sm-6">
+                        <!--Column1-->
+                        <div class="footer-pad">
+                            <h4>Heading 1</h4>
+                            <ul class="list-unstyled">
+                                <li><a href="#"></a></li>
+                                <li><a href="#">Payment Center</a></li>
+                                <li><a href="#">Contact Directory</a></li>
+                                <li><a href="#">Forms</a></li>
+                                <li><a href="#">News and Updates</a></li>
+                                <li><a href="#">FAQs</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <!--Column1-->
+                        <div class="footer-pad">
+                            <h4>Heading 2</h4>
+                            <ul class="list-unstyled">
+                                <li><a href="#">Website Tutorial</a></li>
+                                <li><a href="#">Accessibility</a></li>
+                                <li><a href="#">Disclaimer</a></li>
+                                <li><a href="#">Privacy Policy</a></li>
+                                <li><a href="#">FAQs</a></li>
+                                <li><a href="#">Webmaster</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <!--Column1-->
+                        <div class="footer-pad">
+                            <h4>Heading 3</h4>
+                            <ul class="list-unstyled">
+                                <li><a href="#">Parks and Recreation</a></li>
+                                <li><a href="#">Public Works</a></li>
+                                <li><a href="#">Police Department</a></li>
+                                <li><a href="#">Fire</a></li>
+                                <li><a href="#">Mayor and City Council</a></li>
+                                <li>
+                                    <a href="#"></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <h4>Follow Us</h4>
+                        <ul class="social-network social-circle">
+                            <li><a href="#" class="icoFacebook" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#" class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
+                            <li><a href="#" class="icoLinkedin" title="Linkedin"><i class="fa fa-github"></i></a></li>
+                            <li><a href="#" class="icoLinkedin" title="Linkedin"><i class="fa fa-twitter"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 copy">
+                        <p class="text-center">&copy; Copyright 2018 - Company Name. All rights reserved.</p>
+                    </div>
+                </div>
+
+
             </div>
-            <div class="col-md-3 col-sm-6">
-              <!--Column1-->
-              <div class="footer-pad">
-                <h4>Heading 2</h4>
-                <ul class="list-unstyled">
-                  <li><a href="#">Website Tutorial</a></li>
-                  <li><a href="#">Accessibility</a></li>
-                  <li><a href="#">Disclaimer</a></li>
-                  <li><a href="#">Privacy Policy</a></li>
-                  <li><a href="#">FAQs</a></li>
-                  <li><a href="#">Webmaster</a></li>
-                </ul>
-              </div>
-            </div>
-            <div class="col-md-3 col-sm-6">
-              <!--Column1-->
-              <div class="footer-pad">
-                <h4>Heading 3</h4>
-                <ul class="list-unstyled">
-                  <li><a href="#">Parks and Recreation</a></li>
-                  <li><a href="#">Public Works</a></li>
-                  <li><a href="#">Police Department</a></li>
-                  <li><a href="#">Fire</a></li>
-                  <li><a href="#">Mayor and City Council</a></li>
-                  <li>
-                    <a href="#"></a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <h4>Follow Us</h4>
-                  <ul class="social-network social-circle">
-                   <li><a href="#" class="icoFacebook" title="Facebook"><i class="fa fa-facebook"></i></a></li>
-                   <li><a href="#" class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
-             <li><a href="#" class="icoLinkedin" title="Linkedin"><i class="fa fa-github"></i></a></li>
-             <li><a href="#" class="icoLinkedin" title="Linkedin"><i class="fa fa-twitter"></i></a></li>
-                  </ul>				
-          </div>
-          </div>
-        <div class="row">
-          <div class="col-md-12 copy">
-            <p class="text-center">&copy; Copyright 2018 - Company Name.  All rights reserved.</p>
-          </div>
-        </div>
-      
-      
         </div>
         </div>
-        </div>
-      </footer>
-        <!--Footer Ends here-->
-        <!--Javascript for continous advertisement-->
-        <script type="text/javascript">
-          const $dropdown = $(".dropdown");
-          const $dropdownToggle = $(".dropdown-toggle");
-          const $dropdownMenu = $(".dropdown-menu");
-          const showClass = "show";
-    
-          $(window).on("load resize", function () {
-              if (this.matchMedia("(min-width: 768px)").matches) {
-                  $dropdown.hover(
-                      function () {
-                          const $this = $(this);
-                          $this.addClass(showClass);
-                          $this.find($dropdownToggle).attr("aria-expanded", "true");
-                          $this.find($dropdownMenu).addClass(showClass);
-                      },
-                      function () {
-                          const $this = $(this);
-                          $this.removeClass(showClass);
-                          $this.find($dropdownToggle).attr("aria-expanded", "false");
-                          $this.find($dropdownMenu).removeClass(showClass);
-                      }
-                  );
-              } else {
-                  $dropdown.off("mouseenter mouseleave");
-              }
-          });
-    
-          $('.owl-carousel').owlCarousel({
-              loop: true,
-              margin: 10,
-              nav: false,
-              pagination: false,
-              autoplay: 1000,
-              responsive: {
-                  0: {
-                      items: 7
-                  },
-                  600: {
-                      items: 7
-                  },
-                  1000: {
-                      items: 7
-                  }
-              }
-          })
-    jQuery( document ).ready( function($) {
-    $( window ).scroll( function () {
-      if ( $(document).scrollTop() > 150 ) {
-        // Navigation Bar
-        $('.navbar').removeClass('fadeIn');
-        $('body').addClass('shrink');
-        $('.navbar').addClass('animated fadeInDown');
-      } else {
-        $('.navbar').removeClass('fadeInDown');
-        $('body').removeClass('shrink');
-        $('.navbar').addClass('animated fadeIn');
-      }
-    });
-    });
-      </script>
-        <!--Javascript for continious ad ends here-->
-    </body>
-    </html>
+    </footer>
+    <!--Footer Ends here-->
+    <!--Javascript for continous advertisement-->
+    <script type="text/javascript">
+        const $dropdown = $(".dropdown");
+        const $dropdownToggle = $(".dropdown-toggle");
+        const $dropdownMenu = $(".dropdown-menu");
+        const showClass = "show";
+
+        $(window).on("load resize", function () {
+            if (this.matchMedia("(min-width: 768px)").matches) {
+                $dropdown.hover(
+                    function () {
+                        const $this = $(this);
+                        $this.addClass(showClass);
+                        $this.find($dropdownToggle).attr("aria-expanded", "true");
+                        $this.find($dropdownMenu).addClass(showClass);
+                    },
+                    function () {
+                        const $this = $(this);
+                        $this.removeClass(showClass);
+                        $this.find($dropdownToggle).attr("aria-expanded", "false");
+                        $this.find($dropdownMenu).removeClass(showClass);
+                    }
+                );
+            } else {
+                $dropdown.off("mouseenter mouseleave");
+            }
+        });
+
+        $('.owl-carousel').owlCarousel({
+            loop: true,
+            margin: 10,
+            nav: false,
+            pagination: false,
+            autoplay: 1000,
+            responsive: {
+                0: {
+                    items: 7
+                },
+                600: {
+                    items: 7
+                },
+                1000: {
+                    items: 7
+                }
+            }
+        })
+        jQuery(document).ready(function ($) {
+            $(window).scroll(function () {
+                if ($(document).scrollTop() > 150) {
+                    // Navigation Bar
+                    $('.navbar').removeClass('fadeIn');
+                    $('body').addClass('shrink');
+                    $('.navbar').addClass('animated fadeInDown');
+                } else {
+                    $('.navbar').removeClass('fadeInDown');
+                    $('body').removeClass('shrink');
+                    $('.navbar').addClass('animated fadeIn');
+                }
+            });
+        });
+    </script>
+    <!--Javascript for continious ad ends here-->
+</body>
+
+</html>
