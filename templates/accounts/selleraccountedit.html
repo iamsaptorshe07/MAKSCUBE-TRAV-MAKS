@@ -1,609 +1,782 @@
-{% extends 'basetemplate.html' %}
-{% block body %}
-    <div class="container-fluid gedf-wrapper">
-        <div class="row">
-            <div class="col-md-6">
-                <div class="container emp-profile">
-                    <div class="container">
-                        <div class="row flex-lg-nowrap">
-                            <div class="col">
-                                <div class="row">
-                                    <div class="col mb-3">
-                                        <div class="card">
-                                            <div class="card-body">
-                                                <div class="e-profile">
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title> MAKS CUB3 </title>
+	<link rel="icon" href="../static/img/logo.jpeg" type="image/gif" sizes="50x50">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <!--Navbar Starts here-->
+    <div class="super_container">
+      <nav class="navbar navbar-expand-sm navbar-light bg-light fixed-top">
+<div class="container">
+  <a class="navbar-brand" href="#">
+    <img class="logo horizontal-logo" src="{% static 'img/logo.jpeg' %}" style="width:60px;">
+    </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="index.html">HOME</a>
+      </li>
+  <li class="nav-item">
+        <a class="nav-link" href="#">ABOUT US</a>
+      </li>
+  <li class="nav-item">
+        <a class="nav-link" href="#">CONTACT US</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/qna/">QNA</a>
+</li>
+<li class="nav-item">
+  <a class="nav-link" href="#">BLOG</a>
+</li>
+    {% if user.is_authenticated %}
+    <li class="nav-item">
+      <a class="nav-link" href="/accounts/editprofile/{{request.session.access_type}}/{{user.id}}">{{user.name}}</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/accounts/user/logout">LOGOUT</a>
+    </li>
+      {% else %}
+      <li class="nav-item dropdown">
+        <a class="nav-link " href="#" data-toggle="dropdown">
+    ACCOUNTS
+  </a>
+  <div class="dropdown-menu">
+    <a class="dropdown-item" href="/accounts/seller/account">SELLER ACCOUNT</a>
+    <a class="dropdown-item" href="/accounts/traveller/account">USER ACCOUNT</a>
+  </div>
+</li> 
+    {% endif %}
+  </ul>
+  </div>
+</div>
+</nav>
+    <!--Navbar Ends Here-->
+<br><br><hr>
+{% if messages %}
+  {% for message in messages %}
+<div class="alert alert-{{message.tags}}" role="alert">
+    {{message}}  
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+  {% endfor %}
+{% endif %}
+<hr>
+    <!--Main body-->
+<div class="container mt-5">
+    <div class="row flex-lg-nowrap">
+        <div class="col">
+            <div class="row">
+                <div class="col mb-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="e-profile">
+                                <div class="col-12 col-sm-12 mb-3">
+
+                                <div id="editAgent" style="display:contents;">
+                                    <div class="row">
+
+                                    <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
+
+                                        <div class="text-center text-sm-left mb-2 mb-sm-0">
+                                            <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">YOUR AGENT ID :
+                                                {{request.user.userAccess.agentId}} </h4>
+                                            <p class="mb-0">{{request.user.email}}</p>
+                                            <div class="text-muted"><small>Last Login :
+                                                    {{request.user.last_login}}</small></div>
+                                        </div>
+
+                                        <form>
+                                            <div class="row">
+                                                <div class="col d-flex justify-content-end">
+                                                    <input class="btn btn-primary" type='button' name="edit"
+                                                        value='Edit'>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <ul class="nav nav-tabs">
+                                    <li class="nav-item"><a href="" class="active nav-link">Settings</a></li>
+                                </ul>
+                                <div class="tab-content pt-3">
+
+                                    <div class="tab-pane active">
+                                        <form class="form" onvalidate="" method="POST" action="{{request.path}}"
+                                            enctype="multipart/form-data" id="sellerform" onsubmit="return validSeller()">
+                                            {% csrf_token %}
+                                            <div class="row">
+                                                <div class="col">
                                                     <div class="row">
-
-                                                        <div
-                                                            class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
-                                                            <div class="text-center text-sm-left mb-2 mb-sm-0">
-                                                                <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">{{request.user.userAccess.agentId}}</h4>
-                                                                <label>{{request.user.email}}</label>
-                                                                <div class="text-muted"><small>Last login : {{request.user.last_login}}</small></div>
-                                                                
+                                                        <div class="col">
+                                                            <div class="form-group">
+                                                                <label>Full Name</label>
+                                                                <input type="text" class="form-control"
+                                                                    value="{{request.user.name}}" name="name"
+                                                                    id="fullname" required disabled />
                                                             </div>
-                                                            <div class="text-center text-sm-right">
-                                                                <span class="badge badge-secondary">Seller Acount</span>
-                                                                <div class="text-muted"><small>{{request.user.creationTime}}</small></div>
-                                                            </div>
-                                                            <form>
-                                                                <div class="row">
-                                                                    <div class="col d-flex justify-content-end">
-                                                                        <input class="btn btn-primary" type='button'
-                                                                            name="edit" value='Edit'
-                                                                            onclick='myeditFunction()' />
-                                                                    </div>
+                                                        </div>
+                                                        <div class="col">
+                                                            <div class="form-group">
+                                                                <label>Gender</label>
+                                                                <div class="maxl">
+                                                                    <label class="radio inline">
+                                                                        &nbsp;
+                                                                        <input type="radio" name="gender" value="male"
+                                                                            checked disabled>
+                                                                        <span> Male </span>
+                                                                    </label>
+                                                                    <label class="radio inline">
+                                                                        <input type="radio" name="gender" value="female"
+                                                                            disabled>
+                                                                        <span>Female </span>
+                                                                    </label>
+                                                                    <label class="radio inline">
+                                                                        <input type="radio" name="gender" value="female"
+                                                                            disabled>
+                                                                        <span>Others</span>
+                                                                    </label>
                                                                 </div>
-                                                            </form>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                    <ul class="nav nav-tabs">
-                                                        <li class="nav-item"><a href=""
-                                                                class="active nav-link">Settings</a></li>
-                                                    </ul>
-                                                    <div class="tab-content pt-3">
-                                                        <div class="tab-pane active">
-                                                            <form class="form" novalidate="">
-                                                                <div class="row">
-                                                                    <div class="col">
-                                                                        <div class="row">
-                                                                            <div class="col">
-                                                                                <div class="form-group">
-                                                                                    <label>Full Name</label>
-                                                                                    <input type="text"
-                                                                                        class="form-control"
-                                                                                        value="{{request.user.name}}"
-                                                                                        name="name" id="fullname"
-                                                                                        required disabled />
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col">
-                                                                                <div class="form-group">
-                                                                                    <label>Gender</label>
-                                                                                    <div class="maxl">
-                                                                                        <label class="radio inline">
-                                                                                            &nbsp;
-                                                                                            <input class='ender' id='ma'
-                                                                                                type="radio"
-                                                                                                name='gender'
-                                                                                                value="male" disabled>
-                                                                                            <span> Male </span>
-                                                                                        </label>
-                                                                                        <label class="radio inline">
-                                                                                            <input class='ender' id='fe'
-                                                                                                type="radio"
-                                                                                                name='gender'
-                                                                                                value="female" disabled>
-                                                                                            <span>Female </span>
-                                                                                        </label>
-                                                                                        <label class="radio inline">
-                                                                                            <input class='ender' id='ot'
-                                                                                                type="radio"
-                                                                                                name='gender'
-                                                                                                value="female" disabled>
-                                                                                            <span>Others</span>
-                                                                                        </label>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="row">
-                                                                            <div class="col">
-                                                                                <div class="form-group">
-                                                                                    <label>Select Country</label>
-                                                                                    <select
-                                                                                        class="form-control countries"
-                                                                                        name="country" id='countryId'
-                                                                                        type='checkbox' required
-                                                                                        disabled='true'>
-                                                                                        <option value="{{request.user.country}}">Select Country
-                                                                                        </option>
-                                                                                    </select>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col">
-                                                                                <div class="form-group">
-                                                                                    <label>Select State</label>
-                                                                                    <select class="form-control states"
-                                                                                        name="state" id='stateId'
-                                                                                        type='checkbox' required
-                                                                                        disabled>
-                                                                                        <option value="{{request.user.state}}">Select State
-                                                                                        </option>
-                                                                                    </select>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="row">
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <div class="form-group">
+                                                                <label>Address</label>
+                                                                <input type="text" class="form-control"
+                                                                    placeholder="Enter Full Address *" name='address'
+                                                                    id="address" value="{{request.user.address}}"
+                                                                    required disabled />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col">
+                                                            <div class="form-group">
+                                                                <label>Phone</label>
+                                                                <input type="text" minlength="10" maxlength="10"
+                                                                    name="phone" class="form-control"
+                                                                    placeholder="Your Phone *" id="phone"
+                                                                    value="{{request.user.phNo}}" required disabled />
+                                                            </div>
+                                                        </div>
+                                                    </div>
 
-                                                                            <div class="col">
-                                                                                <div class="form-group">
-                                                                                    <label>Select City</label>
-                                                                                    <select class="form-control cities"
-                                                                                        name="city" id='cityId'
-                                                                                        type='checkbox' required
-                                                                                        disabled>
-                                                                                        <option value="{{user.city}}">Select City
-                                                                                        </option>
-                                                                                    </select>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col">
-                                                                                <div class="form-group">
-                                                                                    <label>Birthdate</label>
-                                                                                    <input type="text"
-                                                                                        value="{{request.user.DOB}}"
-                                                                                        class="form-control"
-                                                                                        onfocus="(this.type='date')"
-                                                                                        name="bdate" id='bdate' required
-                                                                                        disabled />
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="row">
-                                                                            <div class="col">
-                                                                                <div class="form-group">
-                                                                                    <label>Address</label>
-                                                                                    <input type="text"
-                                                                                        class="form-control"
-                                                                                        value="{{request.user.address}}"
-                                                                                        name='address' id="address"
-                                                                                        required disabled />
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="row">
-                                                                            <div class="col">
-                                                                                <div class="form-group">
-                                                                                    <label>Zip</label>
-                                                                                    <input type="number"
-                                                                                        class="form-control"
-                                                                                        value="{{request.user.zipCode}}"
-                                                                                        name="zip" id="zip" required
-                                                                                        disabled />
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col">
-                                                                                <div class="form-group">
-                                                                                    <label>Phone</label>
-                                                                                    <input type="text" minlength="10"
-                                                                                        maxlength="10" name="phone"
-                                                                                        class="form-control"
-                                                                                        value="{{request.user.phNo}}"
-                                                                                        id="phone" value="" required
-                                                                                        disabled />
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="row">
-                                                                            <div class="col">
-                                                                                <div class="form-group">
-                                                                                    <label>Select ID Proof type</label>
-                                                                                    <select name="govIdName" 
-                                                                                        id='proofType' type='checkbox'
-                                                                                        class="form-control" required
-                                                                                        disabled>
-                                                                                        <option class="hidden"
-                                                                                            id='proofType' value="{{request.user.userGov.govIdType}}"
-                                                                                            disabled="" selected="">
-                                                                                            Select ID Proof type
-                                                                                        </option>
-                                                                                        <option value="ADHAR">Adhar
-                                                                                        </option>
-                                                                                        <option value="PAN">PAN</option>
-                                                                                    </select>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col">
-                                                                                <div class="form-group">
-                                                                                    <label>Enter Your Proof ID</label>
-                                                                                    <input type="text"
-                                                                                        class="form-control"
-                                                                                        value="{{request.user.userGov.govIdNo}}"
-                                                                                        name="govIdNo" id="govIdNo"
-                                                                                        required disabled />
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="row">
-                                                                            <div class="col">
-                                                                                <div class="form-group">
-                                                                                    <label>Upload
-                                                                                        ID Proof</label>
-                                                                                    <input type="file" name="govIdImage"
-                                                                                        id="img" class="form-control"
-                                                                                        required disabled />
-                                                                                    <label for="img">Click me to update the ID Proof
-                                                                                        ID Proof</label>
-                                                                                </div>
-                                                                            </div>
-
-                                                                        </div>
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <div class="form-group">
+                                                                <label>Birthdate</label>
+                                                                <input type="date" value="{{request.user.DOB|date:'c'}}"
+                                                                    class="form-control" name="bdate" id="bdate"
+                                                                    required disabled />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col">
+                                                            <div class="form-group">
+                                                                <label>Zip</label>
+                                                                <input type="number" class="form-control"
+                                                                    placeholder="Enter ZIP Code *" name="zip" id="zip"
+                                                                    value="{{request.user.zipCode}}" required
+                                                                    disabled />
+                                                            </div>
+                                                        </div>
+                                                    </div>
 
 
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <div class="form-group">
+                                                                <label>Select ID Proof type</label>
+                                                                <select name="govIdName" id='proofType' type='checkbox'
+                                                                    class="form-control" required disabled>
+                                                                    <option class="hidden" id='proofType' selected='' value="" disabled=''>
+                                                                        Select ID Proof type
+                                                                    </option>
+                                                                    <option value="ADHAR">Adhar</option>
+                                                                    <option value="PAN">PAN</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col">
+                                                            <div class="form-group">
+                                                                <label>Enter Your Proof ID</label>
+                                                                <input type="text" class="form-control"
+                                                                    value="{{request.user.userGov.govIdNo}}"
+                                                                    name="govIdNo" id="govIdNo" required disabled />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <div class="form-group">
+                                                                <label>Upload
+                                                                    ID Proof</label>
+                                                                <input type="file" name="govIdImage" id="img"
+                                                                    class="form-control" disabled />
+                                                                <a for="img"></a><a
+                                                                    href='{{request.user.userGov.govIdImage.url}}'>Current
+                                                                    ID Proof</a>
+
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            <div class="form-group">
+                                                                <button type="submit" name="submit" 
+                                                                    class="form-control btn-primary btn-sm mt-2">
+                                                                    SAVE CHANGES
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col-12 errormsgbg">
+                                                            <div id="errormsg" onclick="getElementById('errormsg').innerHTML = null"></div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </form>
+                                        <hr>
+
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                            </div>
+                            <div class="e-profile">
+                                <div class="col-12 col-sm-12 mb-3">
+                                    <div class="col d-flex justify-content-end">
+                                        <div class="row">
+                                            <div class="col" id="AgentChange" style="display: none;">
+                                                <input class="btn btn-primary" type='button' name="Agent" value='Change Agent Details'
+                                                    onclick="showAgentChange();">
+                                            </div>
+                                            <div class="col">
+                                                <input class="btn btn-primary" type='button' name="AgencyEdit"
+                                                    value='Edit Agency Details' onclick="hideAgent(),showChangeAgency();"></div>
+                                            <div class="col">
+                                                <input class="btn btn-primary" type='button' value='Change Password'
+                                                    onclick="showChangePassword();">
+                                            </div>
+                                        </div>
+                                        <script type="text/javascript">
+                                            function showChangeAgency() {
+                                                document.getElementById('editAgency').style.display = 'block';
+                                            }
+                                            function hideAgent(){
+                                                document.getElementById('editAgent').style.display = 'none';
+                                                document.getElementById('AgentChange').style.display = 'block';
+                                            }
+                                            function showAgentChange(){
+                                                document.getElementById('editAgent').style.display = 'contents';
+                                                document.getElementById('editAgency').style.display = 'none';
+                                                document.getElementById('AgentChange').style.display = 'none';
+                                            }
+                                        </script>
+                                    </div>
+                                    <div id='editAgency' style="display: none;">
+                                        <div class="row">
+                                            <div
+                                                class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
+
+                                                <div class="text-center text-sm-left mb-2 mb-sm-0">
+                                                    <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">YOUR AGENCY ID :
+                                                        {{request.user.userAgency.agency_Id}} </h4>
+                                                    <p class="mb-0">{{request.user.email}}</p>
+                                                    <div class="text-muted"><small>Last Login :
+                                                            {{request.user.last_login}}</small></div>
+                                                </div>
+                                                <div class="text-center text-sm-right">
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <ul class="nav nav-tabs">
+                                            <li class="nav-item"><a href="" class="active nav-link">Settings</a></li>
+                                        </ul>
+                                        <div class="tab-content pt-3">
+
+                                            <div class="tab-pane active">
+                                                <form class="form" onvalidate="" method="POST" action="{{request.path}}"
+                                                    enctype="multipart/form-data" onsubmit="return validAgency()">
+                                                    {% csrf_token %}
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    <div class="form-group">
+                                                                        <label>Agency Name</label>
+                                                                        <input type="text" class="form-control"
+                                                                            value="{{request.user.userAgency.agencyName}}"
+                                                                            name="name" id="Agency" required disabled />
                                                                     </div>
                                                                 </div>
-                                                                <div class="row">
-                                                                    <div class="col-12 col-sm-6 mb-3">
-                                                                        <div class="mb-2"><b>Change Password</b></div>
-                                                                        <div class="row">
-                                                                            <div class="col">
-                                                                                <div class="form-group">
-                                                                                    <label>Current Password</label>
-                                                                                    <input class="form-control"
-                                                                                        id="current" type="password"
-                                                                                        placeholder="••••••" disabled>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="row">
-                                                                            <div class="col">
-                                                                                <div class="form-group">
-                                                                                    <label>New Password</label>
-                                                                                    <input class="form-control"
-                                                                                        id="pass" type="password"
-                                                                                        placeholder="••••••" disabled>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="row">
-                                                                            <div class="col">
-                                                                                <div class="form-group">
-                                                                                    <label>Confirm <span
-                                                                                            class="d-none d-xl-inline">Password</span></label>
-                                                                                    <input class="form-control"
-                                                                                        id="confirm" type="password"
-                                                                                        placeholder="••••••" disabled>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-12 col-sm-5 offset-sm-1 mb-3">
-
-                                                                        <div class="row">
-                                                                            <div class="col">
-
-                                                                                <div
-                                                                                    class="custom-controls-stacked px-2">
-                                                                                    <div class="card-body">
-                                                                                        <h6
-                                                                                            class="card-title font-weight-bold">
-                                                                                            Support</h6>
-                                                                                        <p class="card-text">Get fast,
-                                                                                            free help from our friendly
-                                                                                            assistants.
-                                                                                        </p>
-                                                                                        <button type="button"
-                                                                                            class="btn btn-primary">Contact
-                                                                                            Us</button>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
+                                                                <div class="col">
+                                                                    <div class="form-group">
+                                                                        <label>Phone</label>
+                                                                        <input type="text" minlength="10" maxlength="10"
+                                                                            name="phone" class="form-control"
+                                                                            placeholder="Your Phone *" id="phoneA"
+                                                                            value="{{request.user.userAgency.agencyPhNo}}"
+                                                                            required disabled />
                                                                     </div>
                                                                 </div>
-                                                                <div class="row">
-                                                                    <div class="col d-flex justify-content-end">
-                                                                        <input class="btn btn-primary" type='submit'
-                                                                            value='Save Changes' name='Savechanges'
-                                                                            onclick='mySavechangesFunction()' />
+                                                            </div>
+
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    <div class="form-group">
+                                                                        <label>Address</label>
+                                                                        <input type="text" class="form-control"
+                                                                            placeholder="Agency Address *"
+                                                                            name='address' id="address"
+                                                                            value="{{request.user.userAgency.agencyAddress}}"
+                                                                            required disabled />
                                                                     </div>
                                                                 </div>
-                                                            </form>
+                                                                <div class="col">
+                                                                    <div class="form-group">
+                                                                        <label>Zip</label>
+                                                                        <input type="number" class="form-control"
+                                                                            placeholder="Enter ZIP Code *" name="zip"
+                                                                            id="zipA" value="{{user.zipCode}}" required
+                                                                            disabled />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    <div class="form-group">
+                                                                        <label>Government
+                                                                            Approved or Not</label>
+                                                                        <select disabled class="form-control"
+                                                                            id='govProof' name="govApproved"
+                                                                            onchange='takeProof()' required>
+                                                                            <option selected='' disabled='' value="Government Approved or Not">Government
+                                                                                Approved or Not:</option>
+                                                                            <option value=1>Yes</option>
+                                                                            <option value=0>No</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col">
+                                                                    <div class="form-group" id='takeValue'>
+                                                                        <label>Government
+                                                                            Approved ID number</label>
+                                                                        <input type="number" class="form-control"
+                                                                            value="{{request.user.userAgency.govApprovedId}}"
+                                                                            id="takeValued" name="govApprovedId" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="row">
+                                                                <div class="col-12">
+                                                                    <div class="form-group">
+                                                                        <button type="submit"
+                                                                            class="form-control btn-primary btn-sm mt-2">
+                                                                            SAVE CHANGES
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-12 errormsgbgA">
+                                                                    <div id="errormsgA" onclick="getElementById('errormsgA').innerHTML = null"></div>
+                                                                </div>
+                                                            </div>
 
                                                         </div>
                                                     </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="tab-pane active">
+                                    <div class="row">
+                                        <div class="col-12 col-sm-12 mb-3">
+                                            <div class="col d-flex justify-content-end">
+
+                                                <script type="text/javascript">
+                                                    function showChangePassword() {
+                                                        document.getElementById('changePassword').style.display = 'block';
+                                                    }
+                                                </script>
+                                            </div>
+                                            <form method="post" id='changePassword' style="display: none;"
+                                                action="/accounts/change-password" enctype="multipart/form-data" onsubmit="return validPassword()">
+                                                {% csrf_token %}
+                                                <div class="mb-2"><b>Change Password</b></div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <div class="form-group">
+                                                            <label>Current Password</label>
+                                                            <input class="form-control" type="password"
+                                                                placeholder="********" name="oldpassword" id="oldpassword">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <div class="form-group">
+                                                            <label>New Password</label>
+                                                            <input class="form-control" type="password"
+                                                                placeholder="********" name="password1" id="password1">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <div class="form-group">
+                                                            <label>Confirm <span
+                                                                    class="d-none d-xl-inline">Password</span></label>
+                                                            <input class="form-control" type="password"
+                                                                placeholder="*******" name="password2" id="password2">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col col-sm-12 mb-3">
+                                                        <div class="form-group">
+                                                            <center>
+                                                                <button type="submit" name="submit" class="btn-primary btn-sm">Change
+                                                                    Password</button>
+                                                            </center>
+                                                        </div>
+                                                        <hr>
+                                                <div class="row">
+                                                    <div class="col-12 errormsgbgP">
+                                                        <div id="errormsgP" onclick="getElementById('errormsgP').innerHTML = null"></div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-12 mb-3">
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="custom-controls-stacked px-2">
+                                                <div class="card-body">
+                                                    <h6 class="card-title font-weight-bold">
+                                                        Support</h6>
+                                                    <p class="card-text">Get fast,
+                                                        free help from our friendly
+                                                        assistants.
+                                                    </p>
+                                                    <button type="button" class="btn btn-primary">Contact
+                                                        Us</button>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-
-
                                 </div>
-
                             </div>
+
+
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-            <script>
-
-                function mySavechangesFunction() {
-                    document.getElementById('fullname').disabled = true;
-                    document.getElementById('countryId').disabled = true;
-                    document.getElementById('ma').disabled = true;
-                    document.getElementById('fe').disabled = true;
-                    document.getElementById('ot').disabled = true;
-                  
-                    document.getElementById('stateId').disabled = true;
-                    document.getElementById('cityId').disabled = true;
-                    document.getElementById('bdate').disabled = true;
-                    document.getElementById('mail').disabled = true;
-                    document.getElementById('phone').disabled = true;
-                    document.getElementById('zip').disabled = true;
-                    document.getElementById('address').disabled = true;
-                    document.getElementById('proofType').disabled = true;
-                    document.getElementById('govIdNo').disabled = true;
-                    document.getElementById('img').disabled = true;
-                    document.getElementById('current').disabled = true;
-                    document.getElementById('pass').disabled = true;
-                    document.getElementById('confirm').disabled = true;
-                }
-                function myeditFunction() {
-                    document.getElementById('fullname').disabled = false;
-                    document.getElementById('ma').disabled = false;
-                    document.getElementById('fe').disabled = false;
-                    document.getElementById('ot').disabled = false;
-                    document.getElementById('address').disabled = false;
-                    document.getElementById('zip').disabled = false;
-                    document.getElementById('phone').disabled = false;
-                    document.getElementById('proofType').disabled = false;
-                    document.getElementById('govIdNo').disabled = false;
-                    document.getElementById('img').disabled = false;
-                    document.getElementById('current').disabled = false;
-                    document.getElementById('pass').disabled = false;
-                    document.getElementById('confirm').disabled = false;
-
-
-                    document.getElementById('countryId').disabled = false;
-                    document.getElementById('stateId').disabled = false;
-                    document.getElementById('cityId').disabled = false;
-                    document.getElementById('bdate').disabled = false;
-                    document.getElementById('mail').disabled = false;
-                    
-                   
-                    
-                    
-                    
-                }
-            </script>
-            <div class="col-md-6 gedf-main">
-
-
-                <div class="container emp-profile">
-                    <div class="container">
-                        <div class="row flex-lg-nowrap">
-
-
-                            <div class="col">
-                                <div class="row">
-                                    <div class="col mb-3">
-                                        <div class="card">
-                                            <div class="card-body">
-                                                <div class="e-profile">
-                                                    <div class="row">
-
-                                                        <div
-                                                            class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
-                                                            <div class="text-center text-sm-left mb-2 mb-sm-0">
-                                                                <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">{{request.user.userAgency.agency_Id}}</h4>
-                                                                <p class="mb-0">{{request.user.email}}</p>
-                                                                <div class="text-muted"><small>Last login : {{request.user.last_login}}</small></div>
-
-                                                            </div>
-                                                            <div class="text-center text-sm-right">
-                                                                <span class="badge badge-secondary">Agency
-                                                                    account</span>
-                                                                <div class="text-muted"><small>{{request.user.creationTime}}</small></div>
-                                                            </div>
-                                                            <form>
-                                                                <div class="row">
-                                                                    <div class="col d-flex justify-content-end">
-                                                                        <input id='botton' class="btn btn-primary" type='button'
-                                                                            value='Edit' onclick='myFunction()' />
-                                                                    </div>
-                                                                </div>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                    <ul class="nav nav-tabs">
-                                                        <li class="nav-item"><a href=""
-                                                                class="active nav-link">Settings</a></li>
-                                                    </ul>
-                                                    <div class="tab-content pt-3">
-                                                        <div class="tab-pane active">
-                                                            <form class="form" novalidate="">
-                                                                <div class="row">
-                                                                    <div class="col">
-                                                                        <div class="row">
-                                                                            <div class="col">
-                                                                                <div class="form-group">
-                                                                                    <label>Agency Name</label>
-                                                                                    <input type="text"
-                                                                                        class="form-control"
-                                                                                        value="{{request.user.userAgency.agencyName}}"
-                                                                                        name="name" id="full" required
-                                                                                        disabled />
-                                                                                </div>
-                                                                            </div>
-
-                                                                        </div>
-                                                                        <div class="row">
-                                                                            <div class="col">
-                                                                                <div class="form-group">
-                                                                                    <label>Phone</label>
-                                                                                    <input type="number"
-                                                                                        class="form-control"
-                                                                                        minlength="10" maxlength="10"
-                                                                                        value="{{request.user.userAgency.agencyPhNo}}"
-                                                                                        name="phone" id="phon" required
-                                                                                        disabled />
-                                                                                </div>
-                                                                            </div>
-
-                                                                                                                          
-
-                                                                        </div>
-                                                                        <div class="row">
-
-                                                                            <div class="col">
-                                                                                <div class="form-group">
-                                                                                    <label>Select Country</label>
-                                                                                    <select name="country"
-                                                                                        class="countries form-control"
-                                                                                        id="country" required disabled>
-                                                                                        <option value="">Select Country
-                                                                                        </option>
-                                                                                    </select>
-                                                                                </div>
-                                                                            </div>
-
-                                                                        </div>
-                                                                        <div class="row">
-                                                                            <div class="col">
-                                                                                <div class="form-group">
-                                                                                    <label>Select State</label>
-                                                                                    <select name="state"
-                                                                                        class="states form-control"
-                                                                                        id="state" required disabled>
-                                                                                        <option value="">Select State
-                                                                                        </option>
-                                                                                    </select>
-                                                                                </div>
-                                                                            </div>
-
-                                                                        </div>
-                                                                        <div class="row">
-                                                                            <div class="col">
-                                                                                <div class="form-group">
-                                                                                    <label>Select city</label>
-                                                                                    <select name="city"
-                                                                                        class="cities form-control"
-                                                                                        id="city" required disabled>
-                                                                                        <option value="">Select City
-                                                                                        </option>
-                                                                                    </select>
-                                                                                </div>
-                                                                            </div>
-
-                                                                        </div>
-                                                                        <div class="row">
-                                                                            <div class="col">
-                                                                                <div class="form-group">
-                                                                                    <label>Zip</label>
-                                                                                    <input type="number"
-                                                                                        class="form-control"
-                                                                                        value="{{request.user.userAgency.agencyZipCode}}"
-                                                                                        name="zip1" id="zipc" required
-                                                                                        disabled />
-                                                                                </div>
-                                                                            </div>
-
-                                                                        </div>
-                                                                        <div class="row">
-                                                                            <div class="col">
-                                                                                <div class="form-group">
-                                                                                    <label>Government
-                                                                                        Approved or Not</label>
-                                                                                    <select disabled
-                                                                                        class="form-control"
-                                                                                        id='govProof' name="govApproved"
-                                                                                        onchange='takeProof()' required>
-                                                                                        <option class="hidden"
-                                                                                            id='govproo' selected=''
-                                                                                            value="" disabled=''>
-                                                                                            Government
-                                                                                            Approved or Not:</option>
-                                                                                        <option value=1>Yes</option>
-                                                                                        <option value=0>No</option>
-                                                                                    </select>
-                                                                                </div>
-
-                                                                                <div class="form-group"
-                                                                                    style="display: none;"
-                                                                                    id='takeValue'>
-                                                                                    <input type="text"
-                                                                                        class="form-control"
-                                                                                        value="{{request.user.userAgency.govApprovedId}}"
-                                                                                        id="takeValued"
-                                                                                        name="govApprovedId" />
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <script>
-                                                                            function takeProof() {
-                                                                                var getBox = document.getElementById('govProof');
-                                                                                var mvalue = getBox.options[getBox.selectedIndex].value;
-                                                                                if (mvalue == 1) {
-                                                                                    document.getElementById('takeValue').style.display = "block";
-                                                                                    document.getElementById('takeValued').required = true;
-                                                                                }
-                                                                                else {
-                                                                                    document.getElementById('takeValue').style.display = "none";
-                                                                                    document.getElementById('takeValued').required = false;
-                                                                                }
-                                                                            }
-                                                                        </script>
-                                                                        <div class="row">
-                                                                            <div class="col">
-                                                                                <div class="form-group">
-                                                                                    <label>AgencyAddress</label>
-                                                                                    <input type="text"
-                                                                                        class="form-control"
-                                                                                        value="{{request.user.userAgency.agencyAddress}}"
-                                                                                        name='address' id='addres'
-                                                                                        required disabled>
-                                                                                </div>
-                                                                            </div>
-
-                                                                        </div>
-
-
-
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="row">
-                                                                    <div class="col d-flex justify-content-end">
-                                                                        <input class="btn btn-primary" type='submit'
-                                                                            value='Save Changes'
-                                                                            onclick='mysaveFunction()' />
-                                                                    </div>
-                                                                </div>
-                                                            </form>
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-
             </div>
         </div>
     </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script>
-        function mysaveFunction() {
-            document.getElementById('full').disabled = true;
-            document.getElementById('phon').disabled = true;
-            document.getElementById('country').disabled = true;
-            document.getElementById('state').disabled = true;
-            document.getElementById('city').disabled = true;
-            document.getElementById('zipc').disabled = true;
-            document.getElementById('govProof').disabled = true;
-            document.getElementById('addres').disabled = true;
+
+
+</div>
+
+</div>
+</div>
+</div>
+
+<script>
+
+    function validSeller(){
+        var phone=document.getElementById('phone').value;
+        var zip=document.getElementById('zip').value;
+
+        var proofType=document.getElementById('proofType').value;
+        const errormsgbg=document.querySelector('.errormsgbg');
+        const errormsg=document.getElementById('errormsg');
+        var hello2=new Array();
+        if(phone!=Number(phone)){
+            hello2.push('Your phone must be number');
         }
-        function myFunction() {
-            document.getElementById('full').disabled = false;
-            document.getElementById('phon').disabled = false;
-            document.getElementById('country').disabled = false;
-            document.getElementById('state').disabled = false;
-            document.getElementById('city').disabled = false;
-            document.getElementById('zipc').disabled = false;
-            document.getElementById('govProof').disabled = false;
-            document.getElementById('addres').disabled = false;
+        if(phone.length!=10){
+            hello2.push('Please Enter a valid Phone number');
         }
-    </script>
-   {% endblock body %}
+        if(zip.length!=6){
+            hello2.push('Please Enter a valid Zip Code');  
+        }
+        if(proofType=='{{request.user.userGov.govIdType}}'){
+            hello2.push('please select a proofType');
+        }
+        if(hello2.length>0){
+            errormsg.innerHTML=hello2.join(',\n');
+            errormsgbg.style.backgroundColor='red';
+            errormsg.style.color='#fff';
+            return false;
+            
+        }
+        return true;
+    }
+
+
+    function validAgency(){
+
+        var Agency=document.getElementById('Agency').value;
+        var zipA=document.getElementById('zipA').value;
+        var phoneA=document.getElementById('phoneA').value;
+        var govProof=document.getElementById('govProof').value;
+        const errormsgbgA=document.querySelector('.errormsgbgA');
+        const errormsgA=document.getElementById('errormsgA');
+        var hello3=new Array();
+        if(phoneA!=Number(phoneA)){
+            hello3.push('Your phone must be number');
+        }
+        if(phoneA.length!=10){
+            hello3.push('Please Enter a valid Phone number');
+        }
+        if(zipA.length!=6){
+            hello3.push('Please Enter a valid Zip Code');  
+        }
+        if(govProof=="Government Approved or Not"){
+            hello3.push('please select Government Approved or not');
+        }
+
+        if(hello3.length>0){
+            errormsgA.innerHTML=hello3.join(', \n');
+            errormsgbgA.style.backgroundColor='red';
+            errormsgA.style.color='#fff';
+            return false;
+            
+        }
+        return true;
+    }
+
+    function validPassword(){
+        var password2=document.getElementById('password2').value;
+        var password1=document.getElementById('password1').value;
+        var oldpassword=document.getElementById('oldpassword').value;
+        var errormsgP=document.getElementById('errormsgP');
+        var errormsgbgP=document.querySelector('.errormsgbgP');
+        var hello4=new Array();
+        if(password1.length<8){
+            // console.log('3rd');
+            // alert('hi');
+            hello4.push('Password Length must be atleast 8 charecters');
+            // console.log(hello[0]);
+        }
+        else{
+            if(password1!=password2){
+                // console.log('2nd');
+                // hello.push('not same');
+                    // alert('not same');
+                hello4.push('Password did not match');
+            }
+            // hello.push('Password must be with in 8 to 20 charecter');
+        }
+        for(let i=0;i<password1.length;i++){
+            if(password1[i]==='<'||password1[i]==='>'){
+                hello4.push('< / > not allowed');
+            }
+        }
+        if(hello4.length>0){
+            errormsgP.innerHTML=hello4.join(',\n');
+            errormsgbgP.style.backgroundColor='red';
+            errormsgP.style.color='#fff';
+            return false;
+        }
+        // console.log(password1,password2,oldpassword);
+        return true;
+    }
+
+    $(document).ready(function () {
+
+        $("form input[type=text],form input[type=file],form input[type=radio],form input[type=date],form select[type=checkbox],form input[type=email],form input[type=number]").prop("disabled", true);
+
+        $("input[name=edit]").on("click", function () {
+
+            $("input[type=text],form input[type=file],input[type=radio],select[type=checkbox],form input[type=date],input[type=email],input[type=number],input[type=password],select").removeAttr("disabled");
+        })
+        $("input[name=Agent]").on("click", function () {
+
+$("input[type=text],form input[type=file],input[type=radio],select[type=checkbox],form input[type=date],input[type=email],input[type=number],input[type=password],select").removeAttr("disabled");
+})
+        $("input[name=AgencyEdit]").on("click", function () {
+
+            $("input[type=text],select[type=checkbox],input[type=number],select").removeAttr("disabled");
+        })
+
+        $("input[name=Savechanges]").on("click", function () {
+
+            $("input[type=text],form input[type=file],input[type=radio],select[type=checkbox],input[type=email],input[type=number],input[type=password],select").prop("disabled", true);
+        })
+
+
+    })
+
+</script>
+
+    <!--Footer-->
+	<footer class="mainfooter" role="contentinfo">
+        <div class="footer-middle">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-3 col-sm-6">
+              <!--Column1-->
+              <div class="footer-pad">
+                <h4>Heading 1</h4>
+                <ul class="list-unstyled">
+                  <li><a href="#"></a></li>
+                  <li><a href="#">Payment Center</a></li>
+                  <li><a href="#">Contact Directory</a></li>
+                  <li><a href="#">Forms</a></li>
+                  <li><a href="#">News and Updates</a></li>
+                  <li><a href="#">FAQs</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+              <!--Column1-->
+              <div class="footer-pad">
+                <h4>Heading 2</h4>
+                <ul class="list-unstyled">
+                  <li><a href="#">Website Tutorial</a></li>
+                  <li><a href="#">Accessibility</a></li>
+                  <li><a href="#">Disclaimer</a></li>
+                  <li><a href="#">Privacy Policy</a></li>
+                  <li><a href="#">FAQs</a></li>
+                  <li><a href="#">Webmaster</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+              <!--Column1-->
+              <div class="footer-pad">
+                <h4>Heading 3</h4>
+                <ul class="list-unstyled">
+                  <li><a href="#">Parks and Recreation</a></li>
+                  <li><a href="#">Public Works</a></li>
+                  <li><a href="#">Police Department</a></li>
+                  <li><a href="#">Fire</a></li>
+                  <li><a href="#">Mayor and City Council</a></li>
+                  <li>
+                    <a href="#"></a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <h4>Follow Us</h4>
+                  <ul class="social-network social-circle">
+                   <li><a href="#" class="icoFacebook" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                   <li><a href="#" class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
+             <li><a href="#" class="icoLinkedin" title="Linkedin"><i class="fa fa-github"></i></a></li>
+             <li><a href="#" class="icoLinkedin" title="Linkedin"><i class="fa fa-twitter"></i></a></li>
+                  </ul>				
+          </div>
+          </div>
+        <div class="row">
+          <div class="col-md-12 copy">
+            <p class="text-center">&copy; Copyright 2018 - Company Name.  All rights reserved.</p>
+          </div>
+        </div>
+      
+      
+        </div>
+        </div>
+        </div>
+      </footer>
+        <!--Footer Ends here-->
+        <!--Javascript for continous advertisement-->
+        <script type="text/javascript">
+          const $dropdown = $(".dropdown");
+          const $dropdownToggle = $(".dropdown-toggle");
+          const $dropdownMenu = $(".dropdown-menu");
+          const showClass = "show";
+    
+          $(window).on("load resize", function () {
+              if (this.matchMedia("(min-width: 768px)").matches) {
+                  $dropdown.hover(
+                      function () {
+                          const $this = $(this);
+                          $this.addClass(showClass);
+                          $this.find($dropdownToggle).attr("aria-expanded", "true");
+                          $this.find($dropdownMenu).addClass(showClass);
+                      },
+                      function () {
+                          const $this = $(this);
+                          $this.removeClass(showClass);
+                          $this.find($dropdownToggle).attr("aria-expanded", "false");
+                          $this.find($dropdownMenu).removeClass(showClass);
+                      }
+                  );
+              } else {
+                  $dropdown.off("mouseenter mouseleave");
+              }
+          });
+    
+          $('.owl-carousel').owlCarousel({
+              loop: true,
+              margin: 10,
+              nav: false,
+              pagination: false,
+              autoplay: 1000,
+              responsive: {
+                  0: {
+                      items: 7
+                  },
+                  600: {
+                      items: 7
+                  },
+                  1000: {
+                      items: 7
+                  }
+              }
+          })
+    jQuery( document ).ready( function($) {
+    $( window ).scroll( function () {
+      if ( $(document).scrollTop() > 150 ) {
+        // Navigation Bar
+        $('.navbar').removeClass('fadeIn');
+        $('body').addClass('shrink');
+        $('.navbar').addClass('animated fadeInDown');
+      } else {
+        $('.navbar').removeClass('fadeInDown');
+        $('body').removeClass('shrink');
+        $('.navbar').addClass('animated fadeIn');
+      }
+    });
+    });
+      </script>
+        <!--Javascript for continious ad ends here-->
+    </body>
+    </html>

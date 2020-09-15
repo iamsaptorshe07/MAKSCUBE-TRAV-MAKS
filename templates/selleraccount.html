@@ -265,68 +265,6 @@ ul{
   </style>
 </head>
    <body>
-<<<<<<< HEAD
-    <nav class="navbar navbar-expand-sm navbar-light bg-light fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="/" >
-                <img class="logo horizontal-logo" src="../static/img/logo.jpeg" style="width:60px;">
-                <span style="color: #fff;"><strong>TRAVMAKS</strong></span>
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item ">
-                        <a class="nav-link" href="/"><i class="fas fa-home home"></i> Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fas fa-align-left about"></i> About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fas fa-headset contact"></i> Contact</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/qna/"><i class="fa fa-question-circle qna" aria-hidden="true"></i>QNA</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fab fa-buffer works"></i>Blog</a>
-                    </li>
-                    {% if user.is_authenticated %}
-                    <li class="nav-item dropdown">
-
-                        <a class="nav-link" href="#" data-toggle="dropdown"><i class="fas fa-users team"></i>{{user.name}}</a>
-
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="/accounts/editprofile/{{request.session.access_type}}/{{user.id}}">My Profile</a>
-                            <a class="dropdown-item" href="#">My Order</a>
-                            <a class="dropdown-item" href="#">Agency</a>
-                            <a class="dropdown-item" href="#">My Tour</a>
-
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/accounts/user/logout"><i class="fas fa-sign-out-alt logout"></i>Logout</a>
-                    </li>
-                    {% else %}    
-                    <li class="nav-item dropdown">
-
-                        <a class="nav-link" href="#" data-toggle="dropdown"><i class="fas fa-users team"></i>ACCOUNTS</a>
-
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="/accounts/seller/account">SELLER ACCOUNT</a>
-                            <a class="dropdown-item" href="/accounts/traveller/account">USER ACCOUNT</a>
-
-                        </div>
-                    </li>
-                    {% endif %}
-                </ul>
-            </div>
-        </div>
-    </nav>
-<br><br>
-=======
    <nav class="navbar navbar-expand-sm navbar-light bg-light fixed-top">
   <div class="container">
     <a class="navbar-brand" href="/">
@@ -361,7 +299,6 @@ ul{
   </div>
 </nav>
 <br><br>    
->>>>>>> 4faaeef... User Password Change and traveler accoun edit done
    <div class="container register">
                 <div class="row">
                     <div class="col-md-3 register-left">

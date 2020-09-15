@@ -450,7 +450,20 @@ def userProfile(request, account_type, uid):
                     messages.success(request, 'Successfully updated')
                     return redirect(request.META.get('HTTP_REFERER'))
                 elif account_type == 'seller':
-                    pass
+                    user.name = request.POST.get('name')
+                    user.DOB = request.POST.get('bdate')
+                    user.phNo = request.POST.get('phone')
+                    user.gender = request.POST.get('gender')
+                    user.zipCode = request.POST.get('zip')
+                    user.address = request.POST.get('address')
+                    user.userGov.govIdType = request.POST.get('govIdName')
+                    user.userGov.govIdNo = request.POST.get('govIdNo')
+                    if(request.FILES.get('govIdImage')!=None):
+                        user.userGov.govIdImage = request.FILES.get('govIdImage')
+                    user.save()
+                    user.userGov.save()
+                    messages.success(request, 'Successfully updated')
+                    return redirect(request.META.get('HTTP_REFERER'))
                 else:
                     return HttpResponse("BAD REQUEST")
             else:
