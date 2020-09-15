@@ -319,9 +319,9 @@ ul{
 <div class="container">
   <div class="row">
   
-  <div class="card gedf-card">
+  <div class="card gedf-card" style="border:none; outline:none; width:100%;">
                    
-                    <div class="card-body">
+                    <form><div class="card-body" >
                       {% if messages %}
                                     {% for message in messages %}
                                     <div class="col-md-12">
@@ -334,12 +334,13 @@ ul{
                                     </div>
                                     {% endfor %}
                       {% endif %}
-                            <h3 class="card-title" style="color: #33adff;">{{Question.title}}</h3>
+                            <h3 class="card-title" style="color: #33adff;">{{Question.title}}&nbsp;<button type="button" class="btn btn-primary btn-sm">Edit</button> <button type="button" class="btn btn-danger btn-sm">Delete</button></h3>  
+							
 							<div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i> {{Question.timestamp_question}}</div>
-                        <p class="card-text">
+                        <p class="card-text" >
                           {{Question.question_body}}    
                         </p>
-                    </div>
+                    </div></form>
 
     <div class="col-12">
       <div class="comments">
@@ -381,7 +382,7 @@ ul{
           </p>
           <div class="comment-meta">
             <button class="comment-like"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 99</button>
-            <button class="comment-dislike"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i> 149</button> 
+             
             <button class="comment-reply reply-popup{{answer.id}}"><i class="fa fa-reply-all" aria-hidden="true"></i> Reply</button>         
           </div>
           <div class="comment-box add-comment reply-box{{answer.id}}">

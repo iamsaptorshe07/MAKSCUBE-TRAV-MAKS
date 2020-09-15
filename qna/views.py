@@ -107,5 +107,6 @@ def postAnswer(request,slug):
         
 
 
-
+def editQuestion(request):
+	return render(request,'QNA/qna_edit.html')
 

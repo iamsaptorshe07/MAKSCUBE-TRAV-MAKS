@@ -1,0 +1,29 @@
+    {% extends 'basetemplate.html' %}
+    {% block body %}
+    <div class="container" style="width:100%;">
+      <div class="card-header">
+							<h5 class="text-center" style="font-family: Helvatica;">You can ask any question releated to travelling</h5>
+                                        </div>
+							<div class="card-body">
+                                <form action='/qna/askQuestion' method="POST" enctype="multipart/form-data">
+                                    {% csrf_token %}
+								                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="Question Title" name="title" required/>
+                                        </div>
+                                      <div class="form-group">
+                                          <label class="sr-only" for="message">post</label>
+                                          <textarea class="form-control" id="message" rows="5" placeholder="Describe Your Question" name='body' required></textarea>
+                                      </div>
+								                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Tags, Add tags by comma" name="tags" required/>
+                                </div>
+                                
+                                  <button type="SUBMIT" class="btn  btn-lg btn-block" style=" background-color:#16222A; color:#fff;">SAVE CHANGES</button>
+                                
+                         </form>   
+                        </div>
+                    </div>
+    </div>
+	   
+
+{% endblock body %}

@@ -6,5 +6,6 @@ urlpatterns = [
     path('askQuestion',askQuestion,name='AskQuestion'),
     path('question/<str:slug>',readQna,name='fullQna'),
     path('question/delete/<str:slug>',deleteQuestion,name='deletQna'),
-    path('answer/<str:slug>',postAnswer,name='postAnswer')
+    path('answer/<str:slug>',postAnswer,name='postAnswer'),
+	path('myquestion/edit',editQuestion,name='editQuestion'),
     ]
