@@ -151,7 +151,7 @@
                                                                                     required disabled>
                                                                                     <option class="hidden"
                                                                                         id='proofType'
-                                                                                        value="{{request.user.userGov.govIdType}}"  selected>
+                                                                                          selected='' disabled="" value="">
                                                                                         Select ID Proof type
                                                                                     </option>
                                                                                     <option value="ADHAR">Adhar
@@ -333,7 +333,7 @@
                                                                             <div class="form-group">
                                                                                 <label>Government
                                                                                     Approved or Not</label>
-                                                                                <select disabled class="form-control"
+                                                                                <select class="form-control"
                                                                                     id='govProof' name="govApproved"
                                                                                     onchange='takeProof()' required>
                                                                                     <option selected='' disabled=''
