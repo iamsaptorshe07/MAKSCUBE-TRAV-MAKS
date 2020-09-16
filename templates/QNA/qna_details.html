@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -280,41 +281,56 @@ ul{
 
 </style>
 <body>
-<nav class="navbar navbar-expand-sm navbar-light bg-light fixed-top">
-  <div class="container">
-    <a class="navbar-brand" href="/">
-      <img class="logo horizontal-logo" src="logo.png" style="width:30px; height: 30px;">
-      </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-            <a class="nav-link" href="/">HOME</a>
-          </li>
+  <!--Navbar Starts here-->
+    <div class="super_container">
+      <nav class="navbar navbar-expand-sm navbar-light bg-light fixed-top">
+<div class="container">
+  <a class="navbar-brand" href="#">
+    <img class="logo horizontal-logo" src="{% static 'img/logo.jpeg' %}" style="width:60px;">
+    </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav ml-auto">
       <li class="nav-item">
-            <a class="nav-link" href="#">ABOUT US</a>
-          </li>
-      <li class="nav-item">
-            <a class="nav-link" href="#">CONTACT US</a>
-          </li>
-          
-      <li class="nav-item dropdown">
-            <a class="nav-link " href="#" data-toggle="dropdown">
-        SIGN UP
-      </a>
-      <div class="dropdown-menu">
-        <a class="dropdown-item" href="#">SELLER ACCOUNT</a>
-        <a class="dropdown-item" href="/accounts/traveller/account">USER ACCOUNT</a>
-        
-      </div>
+        <a class="nav-link" href="index.html">HOME</a>
+      </li>
+  <li class="nav-item">
+        <a class="nav-link" href="#">ABOUT US</a>
+      </li>
+  <li class="nav-item">
+        <a class="nav-link" href="#">CONTACT US</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/qna/">QNA</a>
+</li>
+<li class="nav-item">
+  <a class="nav-link" href="#">BLOG</a>
+</li>
+    {% if user.is_authenticated %}
+    <li class="nav-item">
+      <a class="nav-link" href="/accounts/editprofile/{{request.session.access_type}}/{{user.id}}">{{user.name}}</a>
     </li>
-           
-      </ul>
-    </div>
+    <li class="nav-item">
+      <a class="nav-link" href="/accounts/user/logout">LOGOUT</a>
+    </li>
+      {% else %}
+      <li class="nav-item dropdown">
+        <a class="nav-link " href="#" data-toggle="dropdown">
+    ACCOUNTS
+  </a>
+  <div class="dropdown-menu">
+    <a class="dropdown-item" href="/accounts/seller/account">SELLER ACCOUNT</a>
+    <a class="dropdown-item" href="/accounts/traveller/account">USER ACCOUNT</a>
   </div>
+</li> 
+    {% endif %}
+  </ul>
+  </div>
+</div>
 </nav>
+    <!--Navbar Ends Here-->
 <br><br><br>
 <div class="container">
   <div class="row">
@@ -334,9 +350,17 @@ ul{
                                     </div>
                                     {% endfor %}
                       {% endif %}
-                            <h3 class="card-title" style="color: #33adff;">{{Question.title}}&nbsp;<button type="button" class="btn btn-primary btn-sm">Edit</button> <button type="button" class="btn btn-danger btn-sm">Delete</button></h3>  
-							
-							<div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i> {{Question.timestamp_question}}</div>
+                            <h3 class="card-title" style="color: #33adff;">{{Question.title}}</h3>
+                              {% if user.is_authenticated and Question.author == user %}
+                            &nbsp;
+                            <a href="/qna/myquestion/edit/{{Question.slug}}">
+                            <button type="button" class="btn btn-primary btn-sm">Edit</button> 
+                            </a>
+                            <a href="/qna/question/delete/{{Question.slug}}" onclick="return confirm('Are you sure You Want to Delete?')">
+                            <button type="button" class="btn btn-danger btn-sm">Delete</button>  
+                            </a>
+                            {% endif %}
+							          <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i> {{Question.timestamp_question}}</div>
                         <p class="card-text" >
                           {{Question.question_body}}    
                         </p>
@@ -372,7 +396,7 @@ ul{
         {% for answer in Answer %}
         <div class="comment-box">
           <span class="commenter-pic">
-            <img src="logo.png" class="img-fluid">
+            <img src="{% static 'img/logo.png' %}" class="img-fluid">
           </span>
           <span class="commenter-name">
             <a href="#">{{answer.user}}</a> <span class="comment-time">{{answer.timestamp_answer}}</span>
@@ -382,14 +406,16 @@ ul{
           </p>
           <div class="comment-meta">
             <button class="comment-like"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 99</button>
-             
             <button class="comment-reply reply-popup{{answer.id}}"><i class="fa fa-reply-all" aria-hidden="true"></i> Reply</button>         
           </div>
           <div class="comment-box add-comment reply-box{{answer.id}}">
             <span class="commenter-pic">
-              <img src="logo.png" class="img-fluid">
+              <img src="{% static 'img/logo.png' %}" class="img-fluid">
             </span>
             <span class="commenter-name">
+              <div class="comment-box">
+                   replied by
+              </div>
               <form action='/qna/answer/{{Question.slug}}' method="POST">
               {% csrf_token %}
               <input type="text" placeholder="Add a public reply" name="Answer">

@@ -58,11 +58,13 @@ def askQuestion(request):
 def readQna(request,slug):
     if len(Qna.objects.filter(slug=slug))>0:
         question = Qna.objects.get(slug=slug)
-        answer = QnaAnswer.objects.filter(question=question)
+        answer = QnaAnswer.objects.filter(question=question,parent=None)
+        replies = QnaAnswer.objects.filter(question=question).exclude(parent=None)
         context = {
             'Question':question,
-            'Answer':answer
-            }
+            'Answer':answer,
+            'Replies':replies,
+        }
         return render(request,'QNA/qna_details.html',context=context)
     else:
         return HttpResponse("ERROR 404")
@@ -107,8 +109,44 @@ def postAnswer(request,slug):
         
 
 
-def editQuestion(request):
-	return render(request,'QNA/qna_edit.html')
+def editQuestion(request,slug):
+    if len(Qna.objects.filter(slug=slug))>0:
+        qna =Qna.objects.get(slug=slug)
+        if request.user == qna.author:
+            if request.method == 'POST':
+                qna.title = request.POST.get('title')
+                qna.question_body = request.POST.get('body')
+                author = request.user
+                slug = ''
+                for character in qna.title:
+                    if character.isalnum():
+                        slug+=character
+                qna.slug+='_asked_by_{}-{}'.format(author.name.replace(" ",""),author.id)
+                qna.save()
+                '''
+                tags = request.POST.get('tags').split(',')
+                for i in tags:
+                    tag = QnaTags.objects.filter(tag=i)
+                    if len(tag)==0:
+                        tag = QnaTags(tag=i)
+                        tag.save()
+                        qna.tags.add(tag)
+                    else:
+                        tag = QnaTags.objects.get(tag=i)
+                        qna.tags.add(tag)
+                '''
+                messages.success(request,'Successfully updated Your Question')
+                return redirect('qnaHome')
+            else:
+                context ={
+                    'Question':qna
+                }
+                return render(request,'QNA/qna_edit.html',context=context)
+        else:
+            return HttpResponse("Not authorized to access")
+    else:
+        return HttpResponse("Bad Request")
+    
 
 
 
