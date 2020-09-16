@@ -72,23 +72,58 @@
 							<h5 class="text-center" style="font-family: Helvatica;">You can ask any question releated to travelling</h5>
                                         </div>
 							<div class="card-body">
-                                <form action='/qna/askQuestion' method="POST" enctype="multipart/form-data">
+                                <form action='/qna/askQuestion' method="POST" enctype="multipart/form-data" onsubmit="return validqn()">
                                     {% csrf_token %}
 								                        <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="Question Title" name="title" required/>
+                                            <input type="text" class="form-control" placeholder="Question Title" name="title" id="qntitle" required/>
                                         </div>
                                       <div class="form-group">
                                           <label class="sr-only" for="message">post</label>
-                                          <textarea class="form-control" id="message" rows="3" placeholder="Describe Your Question" name='body' required></textarea>
+                                          <textarea class="form-control" id="qnmsg" rows="3" placeholder="Describe Your Question" name='body' required></textarea>
                                       </div>
 								                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Tags, Add tags by comma" name="tags" required/>
+                                    <input type="text" class="form-control" placeholder="Tags, Add tags by comma" name="tags" id="qntags" required />
                                 </div>
                                 <div class="btn-toolbar justify-content-center">
                                 <div class="btn-group ">
-                                  <button type="SUBMIT" class="btn btn-lg " style="background-color:#212529; color:#fff;">Ask</button>
+                                <div id="errormsgbg">
+                                <div id="errormsg" onclick="getElementById('errormsg').innerHTML = null;getElementById('errormsg').style.padding='0px'"></div>
                                 </div>
-                         </form>   
+                                  <button type="submit" name="submit" class="btn btn-lg " style="background-color:#212529; color:#fff;">Ask</button>
+                                </div>
+                         </form>
+                         <script type="text/javascript">
+                            function validqn(){
+                                var qntitle=document.getElementById('qntitle').value;
+                                var qntags=document.getElementById('qntags').value;
+                                var qnmsg=document.getElementById('qnmsg').value;
+                                var errormsg=document.getElementById('errormsg');
+                                var errormsgbg=document.getElementById('errormsgbg');
+                                var msg=[];
+
+                                // alert(qntitle.length);
+
+                                if(qntitle.length<10){
+                                    // alert('hi');
+                                    msg.push('Title must atleast contains 10 charecters');
+                                }
+                                if(qnmsg.length<20){
+                                    // alert(qnmsg)
+                                    msg.push('Your question must atleast contains 20 charecters');
+                                }
+                                if(msg.length>0){
+                                    errormsg.innerHTML=msg.join(", \n");
+                                    errormsgbg.style.width="500px";
+                                    errormsg.style.padding="8px";
+                                    errormsgbg.style.borderRadius="25px";
+                                    errormsgbg.style.backgroundColor='red';
+                                    errormsg.style.color='#fff';
+                                    errormsg.style.fontWeight="bold";
+                                    return false;
+                                }
+                                return true;
+                            }
+                         </script>
                         </div>
                     </div>
       </div>
@@ -146,14 +181,19 @@
                     <div class="d-flex justify-content-between align-items-center my-1">
                                     <div class="col">
                                         <div class="facebook-reaction"><!-- container div for reaction system --> 
-                   <a href="#"> <span class="like-btn"> <!-- Default like button --> 
+                    <span class="like-btn"> <!-- Default like button --> 
                     <span class="fa like-btn-emo fa-thumbs-o-up"></span> <!-- Default like button emotion--> 
                     <span class="like-btn-text">Like</span> <!-- Default like button text,(Like, wow, sad..) default:Like  -->
                     <ul class="reactions-box">
                       <!-- Reaction buttons container-->
                       <li class="reaction reaction-like" data-reaction="Like"></li>
+                      <li class="reaction reaction-love" data-reaction="Love"></li>
+                      <li class="reaction reaction-haha" data-reaction="HaHa"></li>
+                      <li class="reaction reaction-wow" data-reaction="Wow"></li>
+                      <li class="reaction reaction-sad" data-reaction="Sad"></li>
+                      <li class="reaction reaction-angry" data-reaction="Angry"></li>
                     </ul>
-                    </span></a>
+                    </span>
                         
                     </div>
                                     </div>
@@ -177,11 +217,11 @@
             </div>
             <div class="col-md-3">
 			
-			<form class="form-inline">
+			<form class="form-inline" method="GET" action='/qna/myquestion/ask/search'>
             <div class="input-group">
-                <input type="text" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2" placeholder="Search QNA">
+                <input type="text" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2" placeholder="Search QNA" name="search">
                 <div class="input-group-append">
-                    <button class="btn btn-outline-primary" type="button" id="button-addon2">
+                    <button class="btn btn-outline-primary" type="submit" id="button-addon2">
                         <i class="fa fa-search"></i>
                     </button>
                 </div>

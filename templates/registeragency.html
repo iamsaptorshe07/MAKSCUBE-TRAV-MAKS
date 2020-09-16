@@ -336,6 +336,9 @@
             </div>
           </div>
         </div>
+        <div id="errormsgbg">
+            <div id="errormsg" onclick="getElementById('errormsg').innerHTML = null;getElementById('errormsg').style.padding='0px'"></div>
+        </div>
         <center><input type="submit" class="btnSubmit" value="Submit" /></center>
       </form>
   </div>
@@ -352,33 +355,48 @@
         var takeValued=document.getElementById("takeValued").value;
         var govApproved=document.getElementById("govProof").value;
         var phone=document.getElementById("phone").value;
-
-       if(name!=="" && country!=="" && state!=="" && district!=="" && zip!=="" && agencyaddress!=="" && govApproved!=="" && phone!=="")
-       {
-          if(govApproved==1)
-          {
-              if(takeValued!=="")
-              {
-                return true;
-              }
-              else
-              {
-                alert("enter the gov id");
-                return false;
-              }
-          }
-          else
-          {
-            document.getElementById('takeValued').value="";
-            return true;
-          }
-          
-       }
-       else
-       {
-          alert("Enter All Details");
-          return false;
-       }
+        var errormsgbg=document.getElementById('errormsgbg');
+        var errormsg=document.getElementById('errormsg');
+        var msg=[];
+        if(name!=="" && country!=="" && state!=="" && district!=="" && zip!=="" && agencyaddress!=="" && govApproved!=="" && phone!=="")
+        {  
+            if(phone!=Number(phone)){
+                msg.push("Your phone must be number");
+            }
+            if(phone.length!=10){
+                msg.push("Please Enter a valid Phone number");
+            }
+            if(zip.length!=6){
+                msg.push("Please Enter a valid Zip Code");  
+            }
+            if(govApproved==1)
+            {
+                if(takeValued==="" || takeValued==null)
+                {
+                    msg.push("Please Enter the Government Id")
+                }
+            }
+            else
+            {
+                document.getElementById('takeValued').value="";
+            }          
+        }
+        else
+        {
+            msg.push("Please enter all the Details")
+        }
+        console.log(msg,phone,zip,govApproved,takeValued);
+        if(msg.length>0){
+            errormsg.innerHTML=msg.join(", \n");
+            errormsgbg.style.width="500px";
+            errormsg.style.padding="8px";
+            errormsgbg.style.borderRadius="25px";
+            errormsgbg.style.backgroundColor='red';
+            errormsg.style.color='#fff';
+            errormsg.style.fontWeight="bold";
+            return false;
+        }
+        return true;
     }
 </script>
   <footer class="mainfooter mt-2" role="contentinfo">

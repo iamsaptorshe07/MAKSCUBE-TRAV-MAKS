@@ -110,3 +110,16 @@ def postAnswer(request,slug):
 def editQuestion(request):
 	return render(request,'QNA/qna_edit.html')
 
+
+
+def qnaSearch(request):
+	query = request.GET.get('search')
+	qna1 = Qna.objects.filter(title__icontains=query)
+	qna2 = Qna.objects.filter(question_body__icontains=query)
+	qna = qna1.union(qna2)
+	count = Qna.objects.all()
+	context = {
+		'QNA':qna,
+		'Count':count
+	}
+	return render(request,'QNA/qna_search.html',context=context)

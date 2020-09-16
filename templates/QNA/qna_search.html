@@ -1,0 +1,287 @@
+{% extends 'basetemplate.html' %}
+{% block body %}
+<div class="containe" style="width:100%;">
+  <hr>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card ml-1">
+                <div class="card-body">          
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <a href='#'>My Questions</a> 
+                                    </li>
+                                <li class="list-group-item">
+                                    <div class="h6 text-muted">Total Queries</div>
+                                    <div class="h5">{{Count.count}}</div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="h6 text-muted">Solved Queries</div>
+                                    <div class="h5">32758</div>
+                                </li>
+                            </ul>
+                            <hr>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="mr-2">
+                                    <img class="rounded-circle" height="45" width="45" src="../../static/img/logo.jpeg" alt="">
+                                </div>
+                                    <div class="h5">FAQ - Frequently Ask Questions</div>
+                                </div>
+                            <hr>
+                            
+                            {% for i in "40"|rjust:"40" %}
+                        
+                            <div class="h6 text-muted ml-2">
+                                 <a href ="#">This is my question about this topic</a>
+                            </div>
+                            {% endfor %}
+                          
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="col-md-6 gedf-main mt-2">
+            <!--- \\\\\\\Post-->
+            {% if user.is_authenticated %}
+            <div class="card gedf-card"><a class="hvr" data-toggle="modal" data-target="#exampleModal">
+                <div class="card-header">
+                        <div class="d-flex justify-content-start">
+                                    <div class="h7 ml-1 text-muted">
+                                        <h6>Hi! {{user.name}}</h6>
+                                    </div>
+                                </div>
+                                <hr>
+                    <h3 class="text-muted">Ask Your Question</h3>
+                </div>
+                </a></div>
+                <!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content">
+  <div class="modal-header">
+  <img src="../../static/img/logo.jpeg" width="30" height="30" >
+    <h5 class="modal-title" id="exampleModalLongTitle">&nbsp;&nbsp;&nbsp; Ask your Question <strong>{{request.user.name}}</strong></h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+  <div class="card-header">
+                        <h5 class="text-center" style="font-family: Helvatica;">You can ask any question releated to travelling</h5>
+                                    </div>
+                        <div class="card-body">
+                            <form action='/qna/askQuestion' method="POST" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="Question Title" name="title" required/>
+                                    </div>
+                                  <div class="form-group">
+                                      <label class="sr-only" for="message">post</label>
+                                      <textarea class="form-control" id="message" rows="3" placeholder="Describe Your Question" name='body' required></textarea>
+                                  </div>
+                                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Tags, Add tags by comma" name="tags" required/>
+                            </div>
+                            <div class="btn-toolbar justify-content-center">
+                            <div class="btn-group ">
+                              <button type="SUBMIT" class="btn btn-lg " style="background-color:#212529; color:#fff;">Ask</button>
+                            </div>
+                     </form>   
+                    </div>
+                </div>
+  </div>
+</div>
+</div>
+</div>
+{% else %}
+<center><h3>Please register yourself to ask question </h3></center>
+<br>
+{% endif %}
+            
+            <!-- Post /////-->
+        
+            <!--- \\\\\\\Post-->
+            {% if QNA %}
+            {% for qna in QNA %}
+            <div class="card gedf-card mt-2">
+                <div class="card-header">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="mr-2">
+                                <img class="rounded-circle" height="45" width="45" src="../../static/img/logo.jpeg" alt="">
+                            </div>
+                            <div class="ml-2">
+                                <div class="h7 m-0">Asked By {{qna.author.name}}</div>
+                            </div>
+                        </div>
+                        <div>
+                            {% if user.is_authenticated and qna.author == user %}
+                            <div class="dropdown">
+                                <button class="btn btn-link dropdown-toggle" type="button" id="gedf-drop1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fa fa-ellipsis-h"></i>
+                                </button>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="gedf-drop1">
+                                    <div class="h6 dropdown-header">Configuration</div>
+                                    <a class="dropdown-item" href="/qna/question/{{qna.slug}}">Edit</a>
+                                    <a class="dropdown-item" href="/qna/question/delete/{{qna.slug}}" id="confirmDelete" onclick = "return confirm('Are you sure You Want to Delete?') ">Delete</a>
+                                </div>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i>  Posted On {{qna.timestamp_question}}</div>
+                    <a class="card-link" href="question/{{qna.slug}}">
+                        <h5 class="card-title">{{qna.title}}</h5>
+                    </a>
+
+                    <p class="card-text">
+                      {{qna.question_body| truncatechars:200}}
+                    </p>
+                </div>
+                <div class="card-footer">
+                <div class="d-flex justify-content-between align-items-center my-1">
+                                <div class="col">
+                                    <div class="facebook-reaction"><!-- container div for reaction system --> 
+                <span class="like-btn"> <!-- Default like button --> 
+                <span class="fa like-btn-emo fa-thumbs-o-up"></span> <!-- Default like button emotion--> 
+                <span class="like-btn-text">Like</span> <!-- Default like button text,(Like, wow, sad..) default:Like  -->
+                <ul class="reactions-box">
+                  <!-- Reaction buttons container-->
+                  <li class="reaction reaction-like" data-reaction="Like"></li>
+                  <li class="reaction reaction-love" data-reaction="Love"></li>
+                  <li class="reaction reaction-haha" data-reaction="HaHa"></li>
+                  <li class="reaction reaction-wow" data-reaction="Wow"></li>
+                  <li class="reaction reaction-sad" data-reaction="Sad"></li>
+                  <li class="reaction reaction-angry" data-reaction="Angry"></li>
+                </ul>
+                </span>
+                    
+                </div>
+                                </div>
+                                <div class="col">
+                                    <a href="question/{{qna.slug}}">
+                                    <button type="button" class="btn btn-fbook btn-block btn-sm"><i class="fa fa-comment"aria-hidden="true"></i> 
+                                      Answer Question
+                                    </button>
+                                    </a>
+                                    </div>
+                                <div class="col">
+                                    <button type="button" class="btn btn-fbook btn-block btn-sm"><i class="fa fa-share"
+                                            aria-hidden="true"></i> Share</button>
+                                </div>
+                            </div>
+                            </div>
+            </div>
+            <!-- Post /////-->
+            {% endfor %}
+            {% else %}
+                <h1>Sorry No Simillar questions found</h1>
+            {% endif %}
+
+        </div>
+        <div class="col-md-3">
+        
+        <form class="form-inline" method="GET" action='/qna/myquestion/ask/search'>
+        <div class="input-group">
+            <input type="text" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2" placeholder="Search QNA" name="search">
+            <div class="input-group-append">
+                <button class="btn btn-outline-primary" type="submit" id="button-addon2">
+                    <i class="fa fa-search"></i>
+                </button>
+            </div>
+        </div>
+    </form>
+    <br>
+            {% for i in "5"|rjust:"5" %}
+            <div class="card gedf-card">
+                <div class="card-body">
+                    <h5 class="card-title">Tour Title</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">5000 per people</h6>
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in volup.</p>
+                    <a href="#" class="card-link">View</a>
+                    <a href="#" class="card-link">Buy</a>
+                </div>
+            </div>
+            {% endfor %}
+            <br>
+            
+        </div>
+    </div>
+</div>
+</div>
+   
+<script type="text/javascript">
+const $dropdown = $(".dropdown");
+  const $dropdownToggle = $(".dropdown-toggle");
+  const $dropdownMenu = $(".dropdown-menu");
+  const showClass = "show";
+
+  $(window).on("load resize", function () {
+      if (this.matchMedia("(min-width: 768px)").matches) {
+          $dropdown.hover(
+              function () {
+                  const $this = $(this);
+                  $this.addClass(showClass);
+                  $this.find($dropdownToggle).attr("aria-expanded", "true");
+                  $this.find($dropdownMenu).addClass(showClass);
+              },
+              function () {
+                  const $this = $(this);
+                  $this.removeClass(showClass);
+                  $this.find($dropdownToggle).attr("aria-expanded", "false");
+                  $this.find($dropdownMenu).removeClass(showClass);
+              }
+          );
+      } else {
+          $dropdown.off("mouseenter mouseleave");
+      }
+  });
+  
+  jQuery( document ).ready( function($) {
+$( window ).scroll( function () {
+if ( $(document).scrollTop() > 150 ) {
+// Navigation Bar
+$('.navbar').removeClass('fadeIn');
+$('body').addClass('shrink');
+$('.navbar').addClass('animated fadeInDown');
+} else {
+$('.navbar').removeClass('fadeInDown');
+$('body').removeClass('shrink');
+$('.navbar').addClass('animated fadeIn');
+}
+});
+});
+
+
+$(document).ready(function(){
+"use strict";
+$(".reaction").on("click",function(){   // like click
+var data_reaction = $(this).attr("data-reaction");
+$(".like-details").html("You, Dhaval Rana and 1k others");
+$(".like-btn-emo").removeClass().addClass('like-btn-emo').addClass('like-btn-'+data_reaction.toLowerCase());
+$(".like-btn-text").text(data_reaction).removeClass().addClass('like-btn-text').addClass('like-btn-text-'+data_reaction.toLowerCase()).addClass("active");
+
+if(data_reaction === "Like"){
+  $(".like-emo").html('<span class="like-btn-like"></span>');
+}
+else{
+  $(".like-emo").html('<span class="like-btn-like"></span><span class="like-btn-'+data_reaction.toLowerCase()+'"></span>');
+}
+});
+$(".like-btn-text").on("click",function(){ // undo like click
+  if($(this).hasClass("active")){
+      $(".like-btn-text").text("Like").removeClass().addClass('like-btn-text');
+      $(".like-btn-emo").removeClass().addClass('like-btn-emo').addClass("like-btn-default");
+      $(".like-emo").html('<span class="like-btn-like"></span>');
+      $(".like-details").html("Dhaval Rana and 1k others");
+      
+  }	  
+});  
+});
+</script>
+{% endblock body %}
