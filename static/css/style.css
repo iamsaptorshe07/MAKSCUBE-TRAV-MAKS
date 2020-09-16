@@ -27,17 +27,19 @@ div
   height: auto;
 } 
 .navbar{
-    background: #16222A !important;
+    background-image: linear-gradient(to top, #00c6fb 0%, #2debc5 50%);
+
 }
 .navbar .nav-item .nav-link{
-    color:#fff !important;
+    color:#000000 !important;
 		font-family: Helvatica;
 		font-size: 18px;
     
 }
 .navbar .nav-item .nav-link:hover{
-    color:#33adff !important;
-    
+    background-color: #fff;
+  color: black;
+  border-radius: 5px;
 }
 .navbar-toggler{
 
@@ -428,8 +430,8 @@ background-color: #fff;
 .travel_variation_area {
   padding-top: 150px;
   padding-bottom: 114px;
-	background-image:linear-gradient(rgba(246, 247, 249, 0.8), rgba(246, 247, 249, 0.8)), url(https://res.cloudinary.com/dxfq3iotg/image/upload/v1564049481/bg-clouds.jpg) ;
-	
+	background-image: linear-gradient(to top, #00c6fb 0%, #2debc5 100%);
+
 }
 
 @media (max-width: 767px) {
@@ -666,15 +668,13 @@ background-color: #fff;
   color: #fff;
 }
 footer {
-  background: #16222A;
-  background: -webkit-linear-gradient(59deg, #3A6073, #16222A);
-  background: linear-gradient(59deg, #3A6073, #16222A);
-  color: white;
+  background-image: linear-gradient(to top, #00c6fb 0%, #2debc5 50%);
+ color: #000000;
   margin-top:100px;
 }
 
 footer a {
-  color: #fff;
+  color: #000000;
   font-size: 14px;
   transition-duration: 0.2s;
 }
@@ -692,7 +692,7 @@ footer a:hover {
 
 .footer-middle {
   padding-top: 2em;
-  color: white;
+  color: #000000;
 }
 
 
@@ -884,4 +884,30 @@ ul{
 	.carousel-caption a{
 		padding: 10px 25px;
 	}
+}
+
+/*search tab*/
+#tabs{
+	background-image: linear-gradient(to top, #00c6fb 0%, #2debc5 100%);
+
+	color: #000000;
+}
+#tabs h6.section-title{
+    color: #000000;
+}
+
+#tabs .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+    color: #000000;
+    background-color: transparent;
+    border-color: transparent transparent #f3f3f3;
+    border-bottom: 4px solid !important;
+    font-size: 20px;
+    font-weight: bold;
+}
+#tabs .nav-tabs .nav-link {
+    border: 1px solid transparent;
+    border-top-left-radius: .25rem;
+    border-top-right-radius: .25rem;
+    color: #9c27b0;
+    font-size: 20px;
 }

@@ -76,138 +76,189 @@
 <!--Slider ends here-->
 <!--FRom-->
 <hr>
-  <div class="ftco-section-search" style="background-image: url('../static/img/fbackground.jpg');">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12 tabulation-search">
-            <div class="element-animate">
-              <div class="nav nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                <a class="nav-link p-3 active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab"
-                  aria-controls="v-pills-home" aria-selected="true"><span>01</span> Flight</a>
-                <a class="nav-link p-3" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab"
-                  aria-controls="v-pills-profile" aria-selected="false"><span>02</span> Hotel</a>
-                <a class="nav-link p-3" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab"
-                  aria-controls="v-pills-messages" aria-selected="false"><span>03</span> Car Rent</a>
-                <a class="nav-link p-3" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab"
-                  aria-controls="v-pills-settings" aria-selected="false"><span>04</span> Cruises</a>
-              </div>
-            </div>
-  
-            <div class="tab-content py-5" id="v-pills-tabContent">
-              <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
-                <div class="block-17">
-                  <form action="" method="post" class="d-block d-lg-flex">
-                    <div class="fields d-block d-lg-flex">
-  
-                      <div class="textfield-search one-third"><input type="text" class="form-control"
-                          placeholder="Search Location"></div>
-  
-                      <div class="check-in one-third"><input type="date" id="checkin_date" class="form-control"
-                          placeholder="Check-in date"></div>
-  
-                      <div class="check-out one-third"><input type="date" id="checkout_date" class="form-control"
-                          placeholder="Check-out date"></div>
-                      <div class="select-wrap one-third">
-                        <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                        <select name="" id="" class="form-control">
-                          <option value="">Guest</option>
-                          <option value="">1</option>
-                          <option value="">2</option>
-                          <option value="">3</option>
-                          <option value="">4+</option>
-                        </select>
-                      </div>
-                    </div>
-                    <input type="submit" class="search-submit btn btn-primary" value="Find Flights">
-                  </form>
+  <section id="tabs">
+	<div class="container">
+		
+		<div class="row">
+			<div class="col-xs-12 ">
+				<nav>
+					<div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+						<a class="nav-item nav-link active" id="nav-flight-tab" data-toggle="tab" href="#nav-flight" role="tab" aria-controls="nav-flight" aria-selected="true">Flight</a>
+						<a class="nav-item nav-link" id="nav-hotel-tab" data-toggle="tab" href="#nav-hotel" role="tab" aria-controls="nav-hotel" aria-selected="false">Hotel</a>
+						<a class="nav-item nav-link" id="nav-car-tab" data-toggle="tab" href="#nav-car" role="tab" aria-controls="nav-car" aria-selected="false">Car Rent</a>
+						<a class="nav-item nav-link" id="nav-cruise-tab" data-toggle="tab" href="#nav-cruise" role="tab" aria-controls="nav-cruise" aria-selected="false">Cruises</a>
+					</div>
+				</nav>
+				<div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+					<div class="tab-pane fade show active" id="nav-flight" role="tabpanel" aria-labelledby="nav-flight-tab">
+						<div class="form-content">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <input type="date" class="form-control" placeholder="Starting Date *" value=""/>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <input type="date" class="form-control" placeholder="Ending Date *" value=""/>
+                            </div>					
+                        </div>
+						
+						<div class="col-md-5">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Starting Location *" value=""/>
+                            </div>
+                           
+							</div>
+							
+						<div class="col-md-5">
+                            <div class="form-group">
+                                            <select name="tour" id="tourtype" class="form-control" required>
+                                                <option class="hidden" id="tourtype" value="" disabled="" selected="">Guest</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+												<option value="3">3</option>
+												<option value="4+">4+</option>
+                                            </select>
+                                        </div>
+                            							
+                        </div>
+						<div class="col-md-5">
+                            <div class="form-group">
+                                <button type="button" class="btn btn-dark">Find Flights</button>
+                            </div>
+                    </div>   
                 </div>
-              </div>
-              <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-                <div class="block-17">
-                  <form action="" method="post" class="d-block d-lg-flex">
-                    <div class="fields d-block d-lg-flex">
-                      <div class="textfield-search one-third"><input type="text" class="form-control"
-                          placeholder="Search Hotel"></div>
-  
-                      <div class="check-in one-third"><input type="date" id="checkin_date" class="form-control"
-                          placeholder="Check-in date"></div>
-  
-                      <div class="check-out one-third"><input type="date" id="checkout_date" class="form-control"
-                          placeholder="Check-out date"></div>
-                      <div class="select-wrap one-third">
-                        <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                        <select name="" id="" class="form-control">
-                          <option value="">Guest</option>
-                          <option value="">1</option>
-                          <option value="">2</option>
-                          <option value="">3</option>
-                          <option value="">4+</option>
-                        </select>
-                      </div>
-                    </div>
-                    <input type="submit" class="search-submit btn btn-primary" value="Find Hotels">
-                  </form>
+					</div>
+					</div>
+					<div class="tab-pane fade" id="nav-hotel" role="tabpanel" aria-labelledby="nav-hotel-tab">
+						<div class="form-content">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <input type="date" class="form-control" placeholder="Starting Date *" value=""/>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <input type="date" class="form-control" placeholder="Ending Date *" value=""/>
+                            </div>					
+                        </div>
+						
+						<div class="col-md-5">
+                            <div class="form-group">
+                                <input type="date" class="form-control" placeholder="Starting Location *" value=""/>
+                            </div>
+                           
+							</div>
+							
+						<div class="col-md-5">
+                            <div class="form-group">
+                                            <select name="tour" id="tourtype" class="form-control" required>
+                                                <option class="hidden" id="tourtype" value="" disabled="" selected="">Guest</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+												<option value="3">3</option>
+												<option value="4+">4+</option>
+                                            </select>
+                                        </div>
+                            							
+                        </div>
+						<div class="col-md-5">
+                            <div class="form-group">
+                                <button type="button" class="btn btn-dark">Find Hotels</button>
+                            </div>
+                    </div>   
                 </div>
-              </div>
-              <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
-                <div class="block-17">
-                  <form action="" method="post" class="d-block d-lg-flex">
-                    <div class="fields d-block d-lg-flex">
-                      <div class="textfield-search one-third"><input type="text" class="form-control"
-                          placeholder="Search Location"></div>
-  
-                      <div class="check-in one-third"><input type="date" id="start_date" class="form-control"
-                          placeholder="Start date"></div>
-  
-                      <div class="check-out one-third"><input type="date" id="return_date" class="form-control"
-                          placeholder="Return date"></div>
-                      <div class="select-wrap one-third">
-                        <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                        <select name="" id="" class="form-control">
-                          <option value="">Guest</option>
-                          <option value="">1</option>
-                          <option value="">2</option>
-                          <option value="">3</option>
-                          <option value="">4+</option>
-                        </select>
-                      </div>
-                    </div>
-                    <input type="submit" class="search-submit btn btn-primary" value="Find Car">
-                  </form>
+					</div>
+					</div>
+					<div class="tab-pane fade" id="nav-car" role="tabpanel" aria-labelledby="nav-car-tab">
+						<div class="form-content">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <input type="date" class="form-control" placeholder="Starting Date *" value=""/>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <input type="date" class="form-control" placeholder="Ending Date *" value=""/>
+                            </div>					
+                        </div>
+						
+						<div class="col-md-5">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Starting Location *" value=""/>
+                            </div>
+							<div class="form-group">
+                                            <select name="tour" id="tourtype" class="form-control" required>
+                                                <option class="hidden" id="tourtype" value="" disabled="" selected="">Guest</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+												<option value="3">3</option>
+												<option value="4+">4+</option>
+                                            </select>
+                                        </div>
+                           
+							</div>
+							
+						<div class="col-md-5">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Ending Location *" value=""/>
+                            </div>
+                            							
+                        </div>
+						<div class="col-md-5">
+                            <div class="form-group">
+                                <button type="button" class="btn btn-dark">Find Cars</button>
+                            </div>
+                    </div>   
                 </div>
-              </div>
-              <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
-                <div class="block-17">
-                  <form action="" method="post" class="d-block d-lg-flex">
-                    <div class="fields d-block d-lg-flex">
-                      <div class="textfield-search one-third one-third-1"><input type="text" class="form-control"
-                          placeholder="Search Location"></div>
-  
-  
-                      <div class="check-out one-third one-third-1"><input type="date" id="start_date" class="form-control"
-                          placeholder="Check-out date"></div>
-  
-                      <div class="select-wrap one-third one-third-1">
-                        <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                        <select name="" id="" class="form-control">
-                          <option value="">Categories</option>
-                          <option value="">Suite</option>
-                          <option value="">Super Deluxe</option>
-                          <option value="">Balcony</option>
-                          <option value="">Economy</option>
-                          <option value="">Luxury</option>
-                        </select>
-                      </div>
-                    </div>
-                    <input type="submit" class="search-submit btn btn-primary" value="Find Cruise">
-                  </form>
+					</div>
+					</div>
+					<div class="tab-pane fade" id="nav-cruise" role="tabpanel" aria-labelledby="nav-cruise-tab">
+						<div class="form-content">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <input type="date" class="form-control" placeholder="Starting Date *" value=""/>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <input type="date" class="form-control" placeholder="Ending Date *" value=""/>
+                            </div>					
+                        </div>
+						
+						
+							
+						<div class="col-md-5">
+                            <div class="form-group">
+                                            <select name="tour" id="tourtype" class="form-control" required>
+                                                <option class="hidden" id="tourtype" value="" disabled="" selected="">Categories</option>
+                                                <option value="suite">Suite</option>
+                                                <option value="super">Super Deluxe</option>
+												<option value="balcoy">Balcony</option>
+												<option value="economy">Economy</option>
+												<option value="luxury">Luxury</option>
+                                            </select>
+                                        </div>
+                            							
+                        </div>
+						<div class="col-md-5">
+                            <div class="form-group">
+                                <button type="button" class="btn btn-dark">Find Cruise</button>
+                            </div>
+                    </div>   
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+					</div>
+					</div>
+				</div>
+			
+			</div>
+		</div>
+	</div>
+</section>
   <!--End from-->
 <!--Random design-->
 <div class="travel_variation_area mt-3">

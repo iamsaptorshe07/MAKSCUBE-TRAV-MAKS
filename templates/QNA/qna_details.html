@@ -13,32 +13,33 @@
   </head>
 <style>
 .navbar{
-    background: #16222A !important;
+    background-image: linear-gradient(to top, #00c6fb 0%, #2debc5 50%);
+
 }
 .navbar .nav-item .nav-link{
-    color:#fff !important;
+    color:#000000 !important;
 		font-family: Helvatica;
-		
+		font-size: 18px;
     
+}
+.navbar .nav-item .nav-link:hover{
+    background-color: #fff;
+  color: black;
+  border-radius: 5px;
 }
 .navbar-toggler{
 
 background-color: #fff;
 }
-.navbar .nav-item .nav-link:hover{
-    color:#33adff !important;
-    
-}
+
 footer {
-  background: #16222A;
-  background: -webkit-linear-gradient(59deg, #3A6073, #16222A);
-  background: linear-gradient(59deg, #3A6073, #16222A);
-  color: white;
-  margin-top:20px;
+  background-image: linear-gradient(to top, #00c6fb 0%, #2debc5 50%);
+ color: #000000;
+  margin-top:100px;
 }
 
 footer a {
-  color: #fff;
+  color: #000000;
   font-size: 14px;
   transition-duration: 0.2s;
 }
@@ -56,7 +57,7 @@ footer a:hover {
 
 .footer-middle {
   padding-top: 2em;
-  color: white;
+  color: #000000;
 }
 
 
@@ -174,10 +175,9 @@ ul{
 .comments .comment-box {
     width: 100%;
     float: left;
-    height: 100%;
-    background-color: #fff;
+    height: 80%;
+    
     padding: 10px 10px 10px;
-    margin-bottom: 15px;
     border-radius: 5px;
     border: 1px solid #ddd;
 }
@@ -185,7 +185,7 @@ ul{
     background-color: transparent;
     border: none;
     position: relative;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
 }
 .comments .commenter-pic {
     width: 50px;
@@ -253,13 +253,19 @@ ul{
     font-size: 14px;
     color: #333;
     padding: 2px 5px 0px;
-    line-height: 20px;
+    line-height: 1px;
     float: right;
 }
 .comments .reply-box {
     display: none;
 }
-
+.comments .replied {
+    background-color: #fff;
+    width: 95%;
+    float: right;
+    margin-top: 0px;
+	
+}
 
 /*======Responsive CSS=======*/
 @media (max-width: 767px){
@@ -278,6 +284,7 @@ ul{
   display: block;
   margin-left: 0px;
 }
+}
 
 </style>
 <body>
@@ -286,7 +293,7 @@ ul{
       <nav class="navbar navbar-expand-sm navbar-light bg-light fixed-top">
 <div class="container">
   <a class="navbar-brand" href="#">
-    <img class="logo horizontal-logo" src="{% static 'img/logo.jpeg' %}" style="width:60px;">
+    <img class="logo horizontal-logo" src="{% static 'img/logo.jpeg' %}" style="width:40px;">
     </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" >
     <span class="navbar-toggler-icon"></span>
@@ -393,46 +400,73 @@ ul{
           </span>
         </div>
 
-        {% for answer in Answer %}
-        <div class="comment-box">
+        
+		<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <div class="comments">
+        
+		
+		
+		
+		<div class="comment-box">
           <span class="commenter-pic">
-            <img src="{% static 'img/logo.png' %}" class="img-fluid">
+            <img src="/images/user-icon.jpg" class="img-fluid">
           </span>
           <span class="commenter-name">
-            <a href="#">{{answer.user}}</a> <span class="comment-time">{{answer.timestamp_answer}}</span>
+            <a href="#">Happy uiuxStream</a> <span class="comment-time">2 hours ago</span>
           </span>       
-          <p class="comment-txt more">
-          {{answer.answer}}
-          </p>
+          <p class="comment-txt more">Suspendisse massa enim, condimentum sit amet maximus quis, pulvinar sit amet ante. Fusce eleifend dui mi, blandit vehicula orci iaculis ac.</p>
           <div class="comment-meta">
-            <button class="comment-like"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 99</button>
-            <button class="comment-reply reply-popup{{answer.id}}"><i class="fa fa-reply-all" aria-hidden="true"></i> Reply</button>         
+             
+            <button class="comment-reply reply-popup"><i class="fa fa-reply-all" aria-hidden="true"></i> Reply</button>         
           </div>
-          <div class="comment-box add-comment reply-box{{answer.id}}">
+          <div class="comment-box add-comment reply-box">
+            
+            <span class="commenter-name">
+              <input type="text" placeholder="Add a public reply" name="Add Comment">
+              <button type="submit" class="btn btn-default">Reply</button>
+              </span>
+		  </div>
+          <div class="comment-box replied" style="border:none;">
             <span class="commenter-pic">
-              <img src="{% static 'img/logo.png' %}" class="img-fluid">
+              <img src="/images/user-icon.jpg" class="img-fluid">
             </span>
             <span class="commenter-name">
-              <div class="comment-box">
-                   replied by
-              </div>
-              <form action='/qna/answer/{{Question.slug}}' method="POST">
-              {% csrf_token %}
-              <input type="text" placeholder="Add a public reply" name="Answer">
-              <input type="hidden" name='parent' value="{{answer.id}}">
-              <button type="submit" class="btn btn-default">Reply</button>
-              </form>
-            </span>
+              <a href="#">Happy uiuxStream</a> <span class="comment-time">2 hours ago</span>
+            </span>       
+            <p class="comment-txt more">Suspendisse massa enim, condimentum sit amet maximus quis, pulvinar sit amet ante. Fusce eleifend dui mi, blandit vehicula orci iaculis ac.</p>
+            
+            <div class="comment-box replied" style="border:none">
+              <span class="commenter-pic">
+                
+              </span>
+              
+            </div>
           </div>
-          <script type="text/javascript">
-                    $(document).ready(function(){
-            $(".reply-popup{{answer.id}}").click(function(){
-              $(".reply-box{{answer.id}}").toggle();
-            });
-          });
-        </script>
+		  
+          
+          </div>
+        
         </div>
-        {% endfor %}
+        
+        
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
+
+
+<script>
+// Reply box popup JS
+$(document).ready(function(){
+  $(".reply-popup").click(function(){
+    $(".reply-box").toggle();
+  });
+});
+</script>
       </div>
     </div>
   </div>
