@@ -256,9 +256,7 @@ ul{
     line-height: 1px;
     float: right;
 }
-.comments .reply-box {
-    display: none;
-}
+
 .comments .replied {
     background-color: #fff;
     width: 95%;
@@ -400,42 +398,55 @@ ul{
           </span>
         </div>
 
-        
+     
+    {% for answer in Answer %}
 		<div class="container">
   <div class="row">
     <div class="col-12">
       <div class="comments">
-        
-		
-		
-		
 		<div class="comment-box">
           <span class="commenter-pic">
             <img src="/images/user-icon.jpg" class="img-fluid">
           </span>
           <span class="commenter-name">
-            <a href="#">Happy uiuxStream</a> <span class="comment-time">2 hours ago</span>
+            <a href="#">{{answer.user.name}}</a> <span class="comment-time">{{answer.timestamp_answer}}</span>
           </span>       
-          <p class="comment-txt more">Suspendisse massa enim, condimentum sit amet maximus quis, pulvinar sit amet ante. Fusce eleifend dui mi, blandit vehicula orci iaculis ac.</p>
+          <p class="comment-txt more">
+            {{answer.answer}}
+          </p>
+
           <div class="comment-meta">
-             
-            <button class="comment-reply reply-popup"><i class="fa fa-reply-all" aria-hidden="true"></i> Reply</button>         
+            <button class="comment-reply reply-popup{{answer.id}}"><i class="fa fa-reply-all" aria-hidden="true"></i> Reply</button>         
           </div>
-          <div class="comment-box add-comment reply-box">
-            
-            <span class="commenter-name">
-              <input type="text" placeholder="Add a public reply" name="Add Comment">
+
+          <div class="comment-box add-comment reply-box{{answer.id}}" style="display: none;">  
+            <form class="commenter-name" action="/qna/answer/{{Question.slug}}" method="POST" >
+              {% csrf_token %}
+              <input type="hidden" name='parent' value="{{answer.id}}">
+              <input type="text" placeholder="Add a public reply" name="Answer" required>
               <button type="submit" class="btn btn-default">Reply</button>
-              </span>
-		  </div>
+            </form>
+              <script>
+                // Reply box popup JS
+                $(document).ready(function(){
+                  $(".reply-popup{{answer.id}}").click(function(){
+                    $(".reply-box{{answer.id}}").toggle();
+                  });
+                });
+                </script>
+      </div>
+          {% for reply in Replies %}
+            {% if reply.parent == answer %}
           <div class="comment-box replied" style="border:none;">
             <span class="commenter-pic">
               <img src="/images/user-icon.jpg" class="img-fluid">
             </span>
             <span class="commenter-name">
-              <a href="#">Happy uiuxStream</a> <span class="comment-time">2 hours ago</span>
+              <a href="#">{{reply.user.name}}</a> <span class="comment-time">{{reply.timestamp_answer}}</span>
             </span>       
-            <p class="comment-txt more">Suspendisse massa enim, condimentum sit amet maximus quis, pulvinar sit amet ante. Fusce eleifend dui mi, blandit vehicula orci iaculis ac.</p>
+            <p class="comment-txt more">
+              {{reply.answer}}
+            </p>
             
             <div class="comment-box replied" style="border:none">
               <span class="commenter-pic">
@@ -444,29 +455,24 @@ ul{
               
             </div>
           </div>
-		  
+            {% endif %}
+          {% endfor %}
           
           </div>
         
         </div>
-        
-        
       </div>
     </div>
   </div>
+  <br>
+  
+  {% endfor %}
 </div>
 </body>
 </html>
 
 
-<script>
-// Reply box popup JS
-$(document).ready(function(){
-  $(".reply-popup").click(function(){
-    $(".reply-box").toggle();
-  });
-});
-</script>
+
       </div>
     </div>
   </div>

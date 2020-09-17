@@ -81,9 +81,11 @@ def deleteQuestion(request,slug):
 
 
 def postAnswer(request,slug):
+    print(slug)
     if request.method == 'POST':
-        if len(Qna.objects.filter(slug=slug))>0:
+        if(Qna.objects.filter(slug=slug).exists()):
             qna = Qna.objects.get(slug=slug)
+            print(qna)
             answer = request.POST.get('Answer')
             if answer is not None:
                 if len(answer)>5:
@@ -94,7 +96,7 @@ def postAnswer(request,slug):
                         get_parent_question = QnaAnswer.objects.get(id=request.POST.get('parent'))
                         object = QnaAnswer(question=qna,user=request.user,answer=answer,parent=get_parent_question)
                         object.save()
-                    messages.success(request,'Successfully posted your question')
+                    messages.success(request,'Successfully posted your answer')
                     return redirect('/qna/question/{}'.format(qna.slug))
                 else:
                     messages.error(request,'Answer length should be greater than 5')
@@ -115,12 +117,13 @@ def editQuestion(request,slug):
         if request.user == qna.author:
             if request.method == 'POST':
                 qna.title = request.POST.get('title')
+                print(qna.title)
                 qna.question_body = request.POST.get('body')
                 author = request.user
-                slug = ''
+                qna.slug = ''
                 for character in qna.title:
                     if character.isalnum():
-                        slug+=character
+                        qna.slug+=character
                 qna.slug+='_asked_by_{}-{}'.format(author.name.replace(" ",""),author.id)
                 qna.save()
                 '''
