@@ -11,7 +11,7 @@ class Tour(models.Model):
     )
     seller = models.ForeignKey(User,on_delete=models.CASCADE,related_name='agencyOwner')
     agency = models.ForeignKey(AgencyDetail,on_delete=models.CASCADE,related_name='tourAgency')
-    tourId = models.CharField(max_length=400)
+    tourId = models.CharField(max_length=400,unique=True)
     tourHeading = models.CharField(max_length=1000)
     tourSlug = models.SlugField(unique=True,default="Test")
     startingLocation = models.CharField(max_length=300)
