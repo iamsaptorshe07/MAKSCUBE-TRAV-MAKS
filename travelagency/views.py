@@ -8,10 +8,12 @@ def travelagency_home(request,agid):
     return render(request,'travelagency/travelagent_home.html')
 
 def addTour(request,uid,agid):
-    if user.is_authenticated() and request.session['access_type']=='seller':
+    if request.user.is_authenticated() and request.session['access_type']=='seller':
         if request.method == 'POST':
             sdate = request.POST.get('sdate')
+            print(sdate)
             edate = request.POST.get('edate')
+            print(edate)
             slocation = request.POST.get('slocation')
             elocation = request.POST.get('elocation')
             price = request.POST.get('price')
@@ -35,6 +37,11 @@ def addTour(request,uid,agid):
             slug+='_tourfrom_{}to{}_startingfrom{}_by{}-{}_tourId-{}_{}'.format(
                 slocation,elocation,sdate,agid,uid,tourId,ttype
             )
+            description = descriptionMaker(description_dct)
+            tour = Tour(
+                #assign the values
+            )
+            tour.save()
             return HttpResponse("Okay")
         else:
             return render(request,'travelagency/travelagent_home.html')
