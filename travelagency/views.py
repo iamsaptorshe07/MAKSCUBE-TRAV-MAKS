@@ -8,7 +8,8 @@ def travelagency_home(request,agid):
     return render(request,'travelagency/travelagent_home.html')
 
 def addTour(request,uid,agid):
-    if request.user.is_authenticated() and request.session['access_type']=='seller':
+    user = request.user
+    if user.is_authenticated and request.session['access_type']=='seller':
         if request.method == 'POST':
             sdate = request.POST.get('sdate')
             print(sdate)
@@ -45,3 +46,5 @@ def addTour(request,uid,agid):
             return HttpResponse("Okay")
         else:
             return render(request,'travelagency/travelagent_home.html')
+    else:
+        return HttpResponse("BAD REQUEST")
