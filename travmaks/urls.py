@@ -10,6 +10,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('homeApp.urls'),name='homeapp'),
     path('accounts/',include('accounts.urls'),name='accounts'),
-    path('qna/',include('qna.urls'),name='qnaPage')
+    path('qna/',include('qna.urls'),name='qnaPage'),
+    path('travelagency/',include('travelagency.urls'),name='travelagency')
 ]
 urlpatterns = urlpatterns + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
