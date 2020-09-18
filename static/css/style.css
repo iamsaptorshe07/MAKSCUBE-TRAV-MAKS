@@ -34,13 +34,18 @@ div
     color:#000000 !important;
 		font-family: Helvatica;
 		font-size: 18px;
-    
-}
+		
+    }
 .navbar .nav-item .nav-link:hover{
     background-color: #fff;
   color: black;
   border-radius: 5px;
+  
 }
+.navbar-nav a {
+           
+            transition: 0.3s linear;
+        }
 .navbar-toggler{
 
 background-color: #fff;
