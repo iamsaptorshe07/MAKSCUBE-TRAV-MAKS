@@ -1,15 +1,286 @@
 {% extends 'basetemplate.html' %}
 {% load static %}
 {% block stylesheets %}
-<!-- Put your CSS here -->
-<!-- CSS ends here -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" >
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+  
+  
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+<style>
+/* Tabs*/
+#tabs {
+    background: none;
+}
+
+#nav-tab{
+background: #007b5e;
+    padding:10px 0;
+	  }
+#tabs .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+    color: #f3f3f3;
+    background-color: transparent;
+    border-color: transparent transparent #f3f3f3;
+    border-bottom: 4px solid !important;
+    font-size: 20px;
+    font-weight: bold;
+	background: #007b5e;
+    color: #eee;
+}
+#tabs .nav-tabs .nav-link {
+    border: 1px solid transparent;
+    border-top-left-radius: .25rem;
+    border-top-right-radius: .25rem;
+    color: #eee;
+    font-size: 20px;
+}
+
+</style>
 {% endblock stylesheets %}
 
 {% block body %}
-<!--Put normal html here -->
+<div class="breadcrumb">
+<div class="owl-carousel owl-theme">
+    <div class="item"><div class="card" ">
+  <img class="card-img-top" src="{% static 'img/logo.jpeg' %}" alt="" style="height:114px;">
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div></div>
+    <div class="item"><div class="card" >
+  <img class="card-img-top" src="{% static 'img/logo.jpeg' %}" alt="" style="height:114px;">
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div></div>
+    <div class="item"><div class="card">
+  <img class="card-img-top" src="{% static 'img/logo.jpeg' %}" alt="" style="height:114px;">
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div></div>
+    <div class="item"><div class="card">
+  <img class="card-img-top" src="{% static 'img/logo.jpeg' %}" alt="" style="height:114px;">
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div></div>
+    <div class="item"><div class="card">
+  <img class="card-img-top" src="{% static 'img/logo.jpeg' %}" alt="" style="height:114px;">
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div></div>
+    <div class="item"><div class="card" >
+  <img class="card-img-top" src="{% static 'img/logo.jpeg' %}" alt="" style="height:114px;">
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div></div>
+    <div class="item"><div class="card" >
+  <img class="card-img-top" src="../static/img/logo.jpeg" alt="" style="height:114px;">
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div></div>
+    <div class="item"><div class="card">
+  <img class="card-img-top" src="{% static 'img/logo.jpeg' %}" alt="" style="height:114px;">
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div></div>
+    <div class="item"><div class="card">
+  <img class="card-img-top" src="{% static 'img/logo.jpeg' %}" alt="" style="height:114px;">
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div></div>
+<div class="item"><div class="card">
+  <img class="card-img-top" src="{% static 'img/logo.jpeg' %}" alt="" style="height:114px;">
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div></div>
+</div>
+</div>
+<div class="container-fluid gedf-wrapper">
+        <div class="row">
+            <!-- Tabs -->
+<div class="col-md-9 gedf-main">
+<section id="tabs">
+		
+				<nav>
+					<div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+<a class="nav-item nav-link active" id="nav-overall-tab" data-toggle="tab" href="#nav-overall" role="tab" aria-controls="nav-overall" aria-selected="true">Overall Description</a>
+<a class="nav-item nav-link" id="nav-inclusive-tab" data-toggle="tab" href="#nav-inclusive" role="tab" aria-controls="nav-inclusive" aria-selected="false">Inclusive & Exclusive</a>
+<a class="nav-item nav-link" id="nav-near-tab" data-toggle="tab" href="#nav-near" role="tab" aria-controls="nav-near" aria-selected="false">Nearest Location to Visit</a>
+<a class="nav-item nav-link" id="nav-highlight-tab" data-toggle="tab" href="#nav-highlight" role="tab" aria-controls="nav-highlight" aria-selected="false">Tour Highlights</a>
+					</div>
+				</nav>
+				<div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+					<div class="tab-pane fade show active" id="nav-overall" role="tabpanel" aria-labelledby="nav-overall-tab">
+						<div class="container">
 
-<!--Normal html ends here-->
-<!--Put your js here -->
+  <h1 class="font-weight-light text-center text-lg-left mt-4 mb-0">Thumbnail Gallery</h1>
 
-<!-- JS ends here-->
-{% endblock body%}
+  <hr class="mt-2 mb-5">
+
+  <div class="row text-center text-lg-left">
+
+    <div class="col-lg-3 col-md-4 col-6">
+      <a href="#" class="d-block mb-4 h-100">
+            <img class="img-fluid img-thumbnail" src="https://source.unsplash.com/pWkk7iiCoDM/400x300" alt="">
+          </a>
+    </div>
+    <div class="col-lg-3 col-md-4 col-6">
+      <a href="#" class="d-block mb-4 h-100">
+            <img class="img-fluid img-thumbnail" src="https://source.unsplash.com/aob0ukAYfuI/400x300" alt="">
+          </a>
+    </div>
+    <div class="col-lg-3 col-md-4 col-6">
+      <a href="#" class="d-block mb-4 h-100">
+            <img class="img-fluid img-thumbnail" src="https://source.unsplash.com/EUfxH-pze7s/400x300" alt="">
+          </a>
+    </div>
+    <div class="col-lg-3 col-md-4 col-6">
+      <a href="#" class="d-block mb-4 h-100">
+            <img class="img-fluid img-thumbnail" src="https://source.unsplash.com/M185_qYH8vg/400x300" alt="">
+          </a>
+    </div>
+    <div class="col-lg-3 col-md-4 col-6">
+      <a href="#" class="d-block mb-4 h-100">
+            <img class="img-fluid img-thumbnail" src="https://source.unsplash.com/sesveuG_rNo/400x300" alt="">
+          </a>
+    </div>
+    <div class="col-lg-3 col-md-4 col-6">
+      <a href="#" class="d-block mb-4 h-100">
+            <img class="img-fluid img-thumbnail" src="https://source.unsplash.com/AvhMzHwiE_0/400x300" alt="">
+          </a>
+    </div>
+    <div class="col-lg-3 col-md-4 col-6">
+      <a href="#" class="d-block mb-4 h-100">
+            <img class="img-fluid img-thumbnail" src="https://source.unsplash.com/2gYsZUmockw/400x300" alt="">
+          </a>
+    </div>
+    <div class="col-lg-3 col-md-4 col-6">
+      <a href="#" class="d-block mb-4 h-100">
+            <img class="img-fluid img-thumbnail" src="https://source.unsplash.com/EMSDtjVHdQ8/400x300" alt="">
+          </a>
+    </div>
+    <div class="col-lg-3 col-md-4 col-6">
+      <a href="#" class="d-block mb-4 h-100">
+            <img class="img-fluid img-thumbnail" src="https://source.unsplash.com/8mUEy0ABdNE/400x300" alt="">
+          </a>
+    </div>
+    <div class="col-lg-3 col-md-4 col-6">
+      <a href="#" class="d-block mb-4 h-100">
+            <img class="img-fluid img-thumbnail" src="https://source.unsplash.com/G9Rfc1qccH4/400x300" alt="">
+          </a>
+    </div>
+    <div class="col-lg-3 col-md-4 col-6">
+      <a href="#" class="d-block mb-4 h-100">
+            <img class="img-fluid img-thumbnail" src="https://source.unsplash.com/aJeH0KcFkuc/400x300" alt="">
+          </a>
+    </div>
+    <div class="col-lg-3 col-md-4 col-6">
+      <a href="#" class="d-block mb-4 h-100">
+            <img class="img-fluid img-thumbnail" src="https://source.unsplash.com/p2TQ-3Bh3Oo/400x300" alt="">
+          </a>
+    </div>
+  </div>
+
+</div></div>
+					<div class="tab-pane fade" id="nav-inclusive" role="tabpanel" aria-labelledby="nav-inclusive-tab">
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in volup</div>
+					<div class="tab-pane fade" id="nav-near" role="tabpanel" aria-labelledby="nav-near-tab">
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in volup</div>
+					<div class="tab-pane fade" id="nav-highlight" role="tabpanel" aria-labelledby="nav-highlight-tab">
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in volup
+						</div>
+				</div>
+			
+			</div>
+		
+</section>
+<!-- ./Tabs -->
+                <!--- \\\\\\\Post-->
+                
+           
+			<div class="col-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        
+                        <div class="row">
+							<div class="col-lg-6 col-md-4 col-6">
+      <a href="#" class="d-block mb-4 h-100">
+            <img class="img-fluid img-thumbnail" src="https://source.unsplash.com/aJeH0KcFkuc/400x300" alt="">
+          </a>
+    </div>
+    <div class="col-lg-6 col-md-4 col-6">
+      <a href="#" class="d-block mb-4 h-100">
+            <img class="img-fluid img-thumbnail" src="https://source.unsplash.com/p2TQ-3Bh3Oo/400x300" alt="">
+          </a>
+    </div>
+                                </div>
+								<div class="h7">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in volup
+                        </div>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <div class="h6 text-muted">Duis aute</div>
+                            <div class="h5">5.2342</div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="h6 text-muted">Duis aute</div>
+                            <div class="h5">6758</div>
+                        </li>
+                        <li class="list-group-item">Vestibulum at eros</li>
+                    </ul>
+                </div>
+            </div>
+      </div> 
+      </div>
+<script type="text/javascript">
+ 
+$('.owl-carousel').owlCarousel({
+    loop:true,
+    margin:10,
+    nav:true,
+	autoplay:true,
+    responsive:{
+        0:{
+            items:2
+        },
+        600:{
+            items:4
+        },
+        1000:{
+            items:6
+        }
+    }
+})
+</script>
+{% endblock body %}
