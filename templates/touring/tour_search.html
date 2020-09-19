@@ -2,14 +2,577 @@
 {% load static %}
 
 {% block stylesheets %}
-<!-- Put your css link or inline css here -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" >
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+  
+  
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+	<style>
+	
+/*search tab*/
+#tabs{
+	background-image: linear-gradient(to top, #00c6fb 0%, #2debc5 100%);
+	color: #000000;
+	
+}
+#tabs h6.section-title{
+    color: #000000;
+}
+
+#tabs .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+    color: #000000;
+    background-color: transparent;
+    border-color: transparent transparent #f3f3f3;
+    border-bottom: 4px solid !important;
+    font-size: 20px;
+    font-weight: bold;
+}
+#tabs .nav-tabs .nav-link {
+    border: 1px solid transparent;
+    border-top-left-radius: .25rem;
+    border-top-right-radius: .25rem;
+    color: #9c27b0;
+    font-size: 20px;
+}
+
+.gedf-wrapper {
+            margin-top: 0.97rem;
+			
+        }
+	.column {
+	padding: 5px;
+    width: 56px;
+    height: 50px;
+    margin-right:5px;
+	left:20px;
+    overflow: hidden;
+    background-size: cover !important;
+    background-repeat: no-repeat;
+	position:relative;
+   
+}
+
+/* Style the images inside the grid */
+.column img {
+   
+  cursor: pointer; 
+}
+
+.column img:hover {
+  opacity: 1;
+}
+.tagNames {
+    margin-top: 10px;
+}
+.tagNames li {
+    display: inline-block;
+    padding: 5px 8px;
+    font-size: 11px;
+    font-weight: 700;
+    color: #4a4a4a;
+    border-radius: 4px;
+    background: #ebebeb;
+    margin-right: 10px;
+    margin-top: 5px;
+}
+.pushRight {
+    margin-left: auto;
+}
+.makeFlex {
+    display: flex;
+}
+.owl-dots{
+	display:none;
+}
+#prc{
+margin-left:340px;
+padding-top:30px;
+}
+
+.font12 {
+    font-size: 14px;
+    line-height: 10px;
+}
+.redText {
+    color: #eb2026;
+}
+.appendBottom5 {
+    margin-bottom: 5px;
+}
+.font16 {
+    font-size: 16px;
+    line-height: 16px;
+}
+.greyText {
+    color: #9b9b9b;
+}
+.lineThrough {
+    text-decoration: line-through;
+}
+.appendBottom5 {
+    margin-bottom: 5px;
+}
+.latoBold {
+    font-weight: 700;
+}
+.font26 {
+    font-size: 26px;
+    line-height: 26px;
+}
+.blackText {
+    color: #000000;
+}
+ 	</style>
 {% endblock stylesheets %}
 
 {% block body %}
-<!--Put normal html here -->
-This is searching Page
-<!--Normal html ends here-->
-<!--Put your js here -->
+<!--search Tab Start-->
+<section id="tabs">
+	<div class="container">
+		
+		<div class="row">
+			<div class="col-xs-12 ">
+				<nav>
+					<div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+						<a class="nav-item nav-link active" id="nav-flight-tab" data-toggle="tab" href="#nav-flight" role="tab" aria-controls="nav-flight" aria-selected="true">Flight</a>
+						<a class="nav-item nav-link" id="nav-hotel-tab" data-toggle="tab" href="#nav-hotel" role="tab" aria-controls="nav-hotel" aria-selected="false">Hotel</a>
+						<a class="nav-item nav-link" id="nav-car-tab" data-toggle="tab" href="#nav-car" role="tab" aria-controls="nav-car" aria-selected="false">Car Rent</a>
+						<a class="nav-item nav-link" id="nav-cruise-tab" data-toggle="tab" href="#nav-cruise" role="tab" aria-controls="nav-cruise" aria-selected="false">Cruises</a>
+					</div>
+				</nav>
+				<div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+					<div class="tab-pane fade show active" id="nav-flight" role="tabpanel" aria-labelledby="nav-flight-tab">
+						<div class="form-content">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <input type="date" class="form-control" placeholder="Starting Date *" value=""/>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <input type="date" class="form-control" placeholder="Ending Date *" value=""/>
+                            </div>					
+                        </div>
+						
+						<div class="col-md-5">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Starting Location *" value=""/>
+                            </div>
+                           
+							</div>
+							
+						<div class="col-md-5">
+                            <div class="form-group">
+                                            <select name="tour" id="tourtype" class="form-control" required>
+                                                <option class="hidden" id="tourtype" value="" disabled="" selected="">Guest</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+												<option value="3">3</option>
+												<option value="4+">4+</option>
+                                            </select>
+                                        </div>
+                            							
+                        </div>
+						<div class="col-md-5">
+                            <div class="form-group">
+                                <button type="button" class="btn btn-dark">Find Flights</button>
+                            </div>
+                    </div>   
+                </div>
+					</div>
+					</div>
+					<div class="tab-pane fade" id="nav-hotel" role="tabpanel" aria-labelledby="nav-hotel-tab">
+						<div class="form-content">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <input type="date" class="form-control" placeholder="Starting Date *" value=""/>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <input type="date" class="form-control" placeholder="Ending Date *" value=""/>
+                            </div>					
+                        </div>
+						
+						<div class="col-md-5">
+                            <div class="form-group">
+                                <input type="date" class="form-control" placeholder="Starting Location *" value=""/>
+                            </div>
+                           
+							</div>
+							
+						<div class="col-md-5">
+                            <div class="form-group">
+                                            <select name="tour" id="tourtype" class="form-control" required>
+                                                <option class="hidden" id="tourtype" value="" disabled="" selected="">Guest</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+												<option value="3">3</option>
+												<option value="4+">4+</option>
+                                            </select>
+                                        </div>
+                            							
+                        </div>
+						<div class="col-md-5">
+                            <div class="form-group">
+                                <button type="button" class="btn btn-dark">Find Hotels</button>
+                            </div>
+                    </div>   
+                </div>
+					</div>
+					</div>
+					<div class="tab-pane fade" id="nav-car" role="tabpanel" aria-labelledby="nav-car-tab">
+						<div class="form-content">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <input type="date" class="form-control" placeholder="Starting Date *" value=""/>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <input type="date" class="form-control" placeholder="Ending Date *" value=""/>
+                            </div>					
+                        </div>
+						
+						<div class="col-md-5">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Starting Location *" value=""/>
+                            </div>
+							<div class="form-group">
+                                            <select name="tour" id="tourtype" class="form-control" required>
+                                                <option class="hidden" id="tourtype" value="" disabled="" selected="">Guest</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+												<option value="3">3</option>
+												<option value="4+">4+</option>
+                                            </select>
+                                        </div>
+                           
+							</div>
+							
+						<div class="col-md-5">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Ending Location *" value=""/>
+                            </div>
+                            							
+                        </div>
+						<div class="col-md-5">
+                            <div class="form-group">
+                                <button type="button" class="btn btn-dark">Find Cars</button>
+                            </div>
+                    </div>   
+                </div>
+					</div>
+					</div>
+					<div class="tab-pane fade" id="nav-cruise" role="tabpanel" aria-labelledby="nav-cruise-tab">
+						<div class="form-content">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <input type="date" class="form-control" placeholder="Starting Date *" value=""/>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <input type="date" class="form-control" placeholder="Ending Date *" value=""/>
+                            </div>					
+                        </div>
+						
+						
+							
+						<div class="col-md-5">
+                            <div class="form-group">
+                                            <select name="tour" id="tourtype" class="form-control" required>
+                                                <option class="hidden" id="tourtype" value="" disabled="" selected="">Categories</option>
+                                                <option value="suite">Suite</option>
+                                                <option value="super">Super Deluxe</option>
+												<option value="balcoy">Balcony</option>
+												<option value="economy">Economy</option>
+												<option value="luxury">Luxury</option>
+                                            </select>
+                                        </div>
+                            							
+                        </div>
+						<div class="col-md-5">
+                            <div class="form-group">
+                                <button type="button" class="btn btn-dark">Find Cruise</button>
+                            </div>
+                    </div>   
+                </div>
+					</div>
+					</div>
+				</div>
+			
+			</div>
+		</div>
+	</div>
+</section>
+<!--search Tab End-->
+<div class="breadcrumb">
+<div class="owl-carousel owl-theme">
+    <div class="item"><div class="card" ">
+  <img class="card-img-top" src="{% static 'img/logo.jpeg' %}" alt="" style="height:114px;">
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div></div>
+    <div class="item"><div class="card" >
+  <img class="card-img-top" src="{% static 'img/logo.jpeg' %}" alt="" style="height:114px;">
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div></div>
+    <div class="item"><div class="card">
+  <img class="card-img-top" src="{% static 'img/logo.jpeg' %}" alt="" style="height:114px;">
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div></div>
+    <div class="item"><div class="card">
+  <img class="card-img-top" src="{% static 'img/logo.jpeg' %}" alt="" style="height:114px;">
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div></div>
+    <div class="item"><div class="card">
+  <img class="card-img-top" src="{% static 'img/logo.jpeg' %}" alt="" style="height:114px;">
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div></div>
+    <div class="item"><div class="card" >
+  <img class="card-img-top" src="{% static 'img/logo.jpeg' %}" alt="" style="height:114px;">
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div></div>
+    <div class="item"><div class="card" >
+  <img class="card-img-top" src="../static/img/logo.jpeg" alt="" style="height:114px;">
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div></div>
+    <div class="item"><div class="card">
+  <img class="card-img-top" src="{% static 'img/logo.jpeg' %}" alt="" style="height:114px;">
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div></div>
+    <div class="item"><div class="card">
+  <img class="card-img-top" src="{% static 'img/logo.jpeg' %}" alt="" style="height:114px;">
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div></div>
+    <div class="item"><div class="card">
+  <img class="card-img-top" src="{% static 'img/logo.jpeg' %}" alt="" style="height:114px;">
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div></div>
+</div>
+</div>
 
+    <div class="container-fluid gedf-wrapper">
+        <div class="row">
+            <div class="col-md-3">
+			
+			<h3 style="padding-left:20px;">heading</h3>
+		
+                <div class="card">
+                    <div class="card-body" >
+                        <div class="d-flex justify-content-between align-items-center">
+                                
+                                    <div class="h4">Lorem ipsum dolor</div>
+                                    
+                            </div>
+                        <div class="h7">Ad here</div>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <div class="h6 text-muted">Duis aute</div>
+                            <div class="h5">5.2342</div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="h6 text-muted">Duis aute</div>
+                            <div class="h5">6758</div>
+                        </li>
+                        <li class="list-group-item">Vestibulum at eros</li>
+                    </ul>
+                </div>
+            </div>
+			
+			<!--main box-->		
+            <div class="col-md-9">
+			<div class="card flex-row flex-wrap" style="border:none;">
+			<h2>heading</h2>
+			<div class="pushRight makeFlex hrtlCenter">
+			<span class="dropdown f-right">
+              <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">Sort By: <span class="caret"></span></button>
+              <div class="dropdown-menu">
+                <a href="#" class="dropdown-item">Top Answers</a>
+              <a href="#" class="dropdown-item">Newest First</a>
+              </div>
+          </span>
+		  <!-- Search form -->
+<input class="form-control" type="text" placeholder="Search" aria-label="Search">
+		  </div>
+		  </div>
+		  <br>
+		  <!-- Main card -->
+ <div class="card flex-row flex-wrap">
+        <div class="card-header border-0" style="background-color:#fff;">
+		
+  <img src="{% static 'img/2.jpg' %}" id="expandedImg" height="217" width="280">
+  
+			<div class="row">
+  <div class="column">
+    <img src="{% static 'img/2.jpg' %}" onclick="myFunction(this);">
+  </div>
+  <div class="column">
+    <img src="{% static 'img/3.jpg' %}"  onclick="myFunction(this);">
+  </div>
+  <div class="column">
+    <img src="{% static 'img/2.jpg' %}"  onclick="myFunction(this);">
+  </div>
+  <div class="column">
+    <img src="{% static 'img/3.jpg' %}"  onclick="myFunction(this);">
+  </div>
+</div>
+
+        </div>
+        <div class="card-block px-2">
+			<ul class="tagNames appendBottom6">
+			<li>Text</li>
+			<li>Text</li>
+			</ul>
+            <h4 class="card-title">TRAVMAKS</h4>
+            <p class="card-text">Description</p>
+        </div>
+		
+		<div class="card-block" id="prc">
+			<h4>Price</h4>
+			<span class="font12 redText appendRight5">
+			Save
+			₹69<i class="fa fa-tag"></i>
+			</span>
+			<p class="font16 greyText lineThrough appendBottom5">₹69</p>
+			<p class="font26 blackText latoBold appendBottom5">₹696969</p>
+			
+			</div>
+
+        <div class="w-100"></div>
+        <div class="card-footer w-100 text-muted">
+           Desciption
+        </div>
+    </div>
+	<!-- Main card end-->
+    <br>
+	<!-- Main card -->
+ <div class="card flex-row flex-wrap">
+        <div class="card-header border-0" style="background-color:#fff;">
+		
+  <img src="{% static 'img/2.jpg' %}" id="expandedImg" height="217" width="280">
+        </div>
+        <div class="card-block px-2">
+			<ul class="tagNames appendBottom6">
+			<li>Text</li>
+			<li>Text</li>
+			</ul>
+            <h4 class="card-title">TRAVMAKS</h4>
+            <p class="card-text">Description</p>
+            
+        </div>
+        <div class="w-100"></div>
+        <div class="card-footer w-100 text-muted">
+           Desciption
+        </div>
+    </div>
+	<!-- Main card end-->
+	<br>
+    <div class="card">
+        <div class="row no-gutters">
+            <div class="col-auto">
+                <img src="{% static 'img/2.jpg' %}" height="162" width="243">
+            </div>
+            <div class="col">
+                <div class="card-block px-2">
+				<ul class="tagNames appendBottom6">
+			<li>Text</li>
+			<li>Text</li>
+			</ul>
+                    <h4 class="card-title">Title</h4>
+                    <p class="card-text">Description</p>
+                    </div>
+            </div>
+        </div>
+        <div class="card-footer w-100 text-muted">
+            Desciption
+        </div>
+    </div>
+                <!--- \\\\\\\Post-->
+                
+            </div>
+            
+    </div>
+      </div> 
+
+<!--Put your js here -->
+<script type="text/javascript">
+ 
+
+$('.owl-carousel').owlCarousel({
+    loop:true,
+    margin:10,
+    nav:true,
+	autoplay:true,
+    responsive:{
+        0:{
+            items:1
+        },
+        600:{
+            items:3
+        },
+        1000:{
+            items:5
+        }
+    }
+})
+
+function myFunction(imgs) {
+  var expandImg = document.getElementById("expandedImg");
+  var imgText = document.getElementById("imgtext");
+  expandImg.src = imgs.src;
+  imgText.innerHTML = imgs.alt;
+  expandImg.parentElement.style.display = "block";
+}
+</script>
 <!-- JS ends here-->
 {% endblock body %}
