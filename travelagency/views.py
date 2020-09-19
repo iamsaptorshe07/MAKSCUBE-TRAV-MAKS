@@ -29,7 +29,7 @@ def addTour(request,uid,agid):
             tourId = tourIdMaker()
             description_dct = {}
             for i in range(duration):
-                description_dct['day{}'.format(i)]=[request.POST.get('dayTitle1'),request.POST.get('dayDescription1')]
+                description_dct['day{}'.format(i+1)]=[request.POST.get('dayTitle{}'.format(i+1)),request.POST.get('dayDescription{}'.format(i+1))]
             print(description_dct)
             slug = ''
             for character in ttitle:
@@ -40,7 +40,7 @@ def addTour(request,uid,agid):
             )
             description = descriptionMaker(description_dct)
             tour = Tour(
-                #assign the values
+                    #assign the values
             )
             tour.save()
             return HttpResponse("Okay")
@@ -48,3 +48,5 @@ def addTour(request,uid,agid):
             return render(request,'travelagency/travelagent_home.html')
     else:
         return HttpResponse("BAD REQUEST")
+
+
