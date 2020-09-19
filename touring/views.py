@@ -8,3 +8,6 @@ from django.contrib import messages
 
 def searchTour(request):
     return render(request,'touring/tour_search.html')
+
+def tourDetails(request):
+    return render(request,'touring/tour_details.html')

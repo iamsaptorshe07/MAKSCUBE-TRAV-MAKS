@@ -40,4 +40,7 @@ class Tour(models.Model):
     nearestLocation4_distance = models.FloatField(null=True, blank=True)
     nlocationconnected4 = models.TextField(null=True, blank=True)
 
+    def __str__(self):
+        return self.tourHeading
+
 
