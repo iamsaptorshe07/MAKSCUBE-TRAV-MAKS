@@ -11,12 +11,12 @@ def addTour(request,uid,agid):
     user = request.user
     if user.is_authenticated and request.session['access_type']=='seller':
         if request.method == 'POST':
-            sdate = request.POST.get('sdate')
-            print(sdate)
-            edate = request.POST.get('edate')
-            print(edate)
-            slocation = request.POST.get('slocation')
-            elocation = request.POST.get('elocation')
+            sdate = tourDate(request.POST.get('sdate'))
+            print("\n\n",sdate,"\n\n")
+            edate = tourDate(request.POST.get('edate'))
+            print("\n\n",edate,"\n\n")
+            slocation = request.POST.get('slocstate')+"**"+request.POST.get('sloccity')
+            elocation = request.POST.get('elocstate')+"**"+request.POST.get('eloccity')
             price = request.POST.get('price')
             ttype = request.POST.get('ttype')
             thumbnail = request.FILES.get('thumbnail')
@@ -25,8 +25,9 @@ def addTour(request,uid,agid):
             exclusive = request.POST.get('exclusive')
             highlight = request.POST.get('highlight')
             overview = request.POST.get('overview')
-            duration = (edate - sdate)+2
+            duration = tourDuration(request.POST.get('sdate'),request.POST.get('edate'))+2
             tourId = tourIdMaker()
+            print('\n\n',tourId,'\n\n')
             description_dct = {}
             for i in range(duration):
                 description_dct['day{}'.format(i+1)]=[request.POST.get('dayTitle{}'.format(i+1)),request.POST.get('dayDescription{}'.format(i+1))]
@@ -38,15 +39,32 @@ def addTour(request,uid,agid):
             slug+='_tourfrom_{}to{}_startingfrom{}_by{}-{}_tourId-{}_{}'.format(
                 slocation,elocation,sdate,agid,uid,tourId,ttype
             )
+            print('\n\n',slug,'\n\n')
             description = descriptionMaker(description_dct)
+            
             tour = Tour(
-                    #assign the values
+                #assign the values
+                seller = user,
+                agency = user.userAgency,
+                tourSlug = slug,
+                tourId = tourId,
+                tourHeading = ttitle,
+                startingLocation = slocation,
+                endLocation = elocation,
+                startDate = sdate,
+                endDate = edate,
+                description = description,
+                inclusive = inclusive,
+                exclusive = exclusive,
+                highlight = highlight,
+                price = price,
+                tour_type = ttype,
+                thumbnail = thumbnail,
+                
             )
             tour.save()
-            return HttpResponse("Okay")
+            return HttpResponse("TOUR IS ADDED")
         else:
             return render(request,'travelagency/travelagent_home.html')
     else:
         return HttpResponse("BAD REQUEST")
-
-
