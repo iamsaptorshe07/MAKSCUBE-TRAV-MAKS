@@ -1,15 +1,631 @@
 {% extends 'basetemplate.html' %}
 {% load static %}
-
 {% block stylesheets %}
 <!-- Put your css link or inline css here -->
+<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous"> -->
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css">
+<style type="text/css">
+	* {
+		list-style: none;
+	}
+
+	body {
+		background: rgb(186, 224, 245);
+		background: linear-gradient(90deg, rgba(186, 224, 245, 1) 21%, rgba(221, 221, 237, 1) 57%, rgba(143, 228, 245, 1) 100%);
+	}
+
+	.main {
+		/*position: relative;*/
+		height: auto;
+		/*min-height: 100vh;*/
+		/*width: 95vw;*/
+		padding: 0;
+		margin: 20px;
+		left: 0;
+		display: flex;
+		/*align-items: center;*/
+		justify-content: space-between;
+		/*background-color: #535963;*/
+
+	}
+
+	.main::before {
+		position: absolute;
+		width: 60%;
+		height: 100%;
+		transform: skew(25deg);
+		background-color: #343a40;
+	}
+
+	.sidebar {
+		width: 250px;
+		position: fixed;
+		height: 100%;
+		padding-top: 20px;
+		top: 60px;
+		left: 0;
+		z-index: 1;
+		border-radius: 5px;
+	}
+
+	.sidebar ul {
+		margin: 10px;
+	}
+
+	.sidebar ul li {
+		height: 70px;
+		display: flex;
+		align-items: center;
+		font-size: 20px;
+	}
+
+	.sidebar ul li a {
+		color: black;
+	}
+
+	.sidebar ul li:hover {
+		background-image: linear-gradient(to top, #00c6fb 0%, #2debc5 50%);
+	}
+
+	/*.sidebar ul li:hover a{
+
+		font-weight: bolder;
+		color: black!important;
+	}*/
+	.sidebar ul li img {
+		width: 35px;
+		height: 35px;
+	}
+
+	.content {
+		width: calc(100% - 300px);
+		margin-left: 300px;
+	}
+
+	.Dashboard {
+		text-decoration: underline;
+		font-size: 35px;
+		font-weight: bolder;
+	}
+
+	.title,
+	.Thumbnail {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		width: 80%;
+	}
+
+	.title label {
+		font-size: 25px;
+		width: 90px;
+		font-weight: bold;
+	}
+
+	.Thumbnail label {
+		font-size: 25px;
+		width: 200px;
+		font-weight: bold;
+	}
+
+	.info {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+		grid-column-gap: 10px;
+	}
+
+	.cd {
+		color: white;
+		width: 400px;
+		background: rgb(68, 62, 116);
+		background: linear-gradient(90deg, rgba(68, 62, 116, 1) 13%, rgba(108, 117, 205, 1) 49%, rgba(121, 160, 240, 1) 82%, rgba(121, 162, 245, 1) 100%);
+		height: auto;
+		/*width: 40%;*/
+		margin: 30px;
+		padding: 30px;
+		border-radius: 5px;
+	}
+
+	.cd label {
+		font-size: 20px;
+		font-weight: bold;
+	}
+
+	.form-control {
+		text-align: center;
+		cursor: pointer;
+		resize: none;
+	}
+
+	.info2 {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(550px, 1fr));
+		grid-column-gap: 10px;
+
+	}
+
+	/*.cd1{
+
+		display: flex;
+		align-items: center;
+		justify-content: space-around;
+		margin: 30px;
+		padding: 0 30px 0 30px;
+	}*/
+	.col-md-6 label {
+		font-size: 30px;
+		color: white;
+		font-weight: bold;
+	}
+
+	.col-md-6 {
+		/*background-color: #16113a;*/
+		background: rgb(68, 62, 116);
+		background: linear-gradient(90deg, rgba(68, 62, 116, 1) 13%, rgba(108, 117, 205, 1) 49%, rgba(121, 160, 240, 1) 82%, rgba(121, 162, 245, 1) 100%);
+		color: white;
+		border-radius: 5px;
+		padding: 30px;
+		margin: 15px 45px 15px 15px;
+		max-width: 95% !important;
+	}
+
+	#cards {
+		padding: 20px 50px 50px 20px;
+		/*display: grid;*/
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-flow: column;
+	}
+
+	.cardslabel {
+		font-size: 40px;
+		font-weight: bolder;
+		/*color: white;*/
+
+	}
+
+	.card {
+		width: 95%;
+		padding-top: 20px;
+		margin: 10px;
+		color: white;
+		background-color: #443e74;
+	}
+
+	.card-body {
+		/*background-color: #52525f;*/
+		background: rgb(68, 62, 116);
+		background: linear-gradient(90deg, rgba(68, 62, 116, 1) 13%, rgba(108, 117, 205, 1) 49%, rgba(121, 160, 240, 1) 82%, rgba(121, 162, 245, 1) 100%);
+	}
+
+	.card-body .title {
+		width: 100% !important;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.card-body .title .form-group {
+		width: 95%;
+	}
+
+	.submitbtn {
+		width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.submitbtn button {
+		width: 180px;
+		height: 50px;
+		border-radius: 5px;
+		background-color: #1d1d1d;
+		color: white;
+		font-weight: bold;
+	}
+
+	@media screen and (max-width: 800px) {
+		.sidebar {
+			width: 100%;
+			height: 120px;
+			background: rgb(186, 224, 245);
+			background: linear-gradient(90deg, rgba(186, 224, 245, 1) 21%, rgba(221, 221, 237, 1) 57%, rgba(143, 228, 245, 1) 100%);
+		}
+
+		.sidebar ul {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-flow: row;
+		}
+
+		.content {
+			width: 100%;
+			padding: 30px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-flow: column;
+			margin-left: 0;
+			margin-top: 80px;
+		}
+	}
+
+	@media screen and (max-width: 400px) {
+		.main {
+			width: 100%;
+			margin-left: 0;
+		}
+
+		.content {
+			width: 100%;
+			padding: 10px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-flow: column;
+			margin-left: 0;
+			left: 0;
+			margin-top: 80px;
+		}
+
+		.info2 {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+			grid-column-gap: 3px;
+			margin-left: 0;
+
+
+		}
+
+		.info {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+			grid-column-gap: 0px;
+			margin-left: 0 !important;
+		}
+
+		.cd,
+		.col-md-6 {
+			width: 320px;
+			margin: 10px 0 10px 0 !important;
+		}
+
+		.sidebar ul li {
+			border: 1px solid skyblue;
+			margin-left: 5px;
+			/*text-decoration:underline;*/
+			width: 70px;
+			font-size: 12px;
+			display: flex;
+			flex-flow: row;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.sidebar ul li img {
+			display: none;
+		}
+
+		.Thumbnail label {
+			font-size: 18px;
+		}
+	}
+</style>
+
 {% endblock stylesheets %}
 
 {% block body %}
-<!--Put normal html here -->
 
+<!--Put normal html here -->
+<div class="main">
+	<div class="sidebar">
+		<ul>
+			<li class="nav-item">
+				<img src="{% static 'travelagency_img/map.png' %}">
+				<a target="_blank" class="nav-link " href="#">Location</a>
+			</li>
+			<li class="nav-item">
+				<img src="{% static 'travelagency_img/calendar.png' %}">
+				<a target="_blank" class="nav-link" href="#">Date & Time</a>
+			</li>
+			<li class="nav-item">
+				<img src="{% static 'travelagency_img/clipboard.png' %}">
+				<a target="_blank" class="nav-link" href="#">Highlights</a>
+			</li>
+			<li class="nav-item">
+				<img src="{% static 'travelagency_img/picture.png' %}">
+				<a target="_blank" class="nav-link" href="#">Tour Images</a>
+			</li>
+			<li class="nav-item">
+				<img src="{% static 'travelagency_img/job.png' %}">
+				<a target="_blank" class="nav-link" href="#">Tour Descriptions</a>
+			</li>
+		</ul>
+	</div>
+	<form class="content" method="POST" action='/travelagency/myagency/addtour/{{request.user.userAccess.userId}}/{{request.user.userAccess.agentId}}' enctype="multipart/form-data">
+		{% csrf_token %}
+		<span class="Dashboard">Dashboard</span><br><br>
+		<span class="title">
+			<label>Title : </label>
+			<input type="text" name="ttitle" class="form-control" required>
+		</span>
+		<div style="margin-left:20px;" class="info">
+			<div class="cd">
+				<!-- <div class="block"><img src="{% static 'travelagency_img/calendar.png' %}"></div> -->
+				<label>Enter Date :</label>
+				<li>Startind Date<input id="txtF" name="sdate" class="form-control" style="text-align: center;"
+						placeholder="mm/dd/yyyy" required></li>
+				<br>
+				<li>Ending Date<input id="txtT" name="edate" class="form-control" style="text-align: center;"
+						onchange="fun();" placeholder="mm/dd/yyyy" required></li>
+			</div>
+			<div class="cd">
+				<label>Enter Location :</label>
+				<li>
+					Starting Point * <br>
+					<!-- <input type="text" class="form-control" name="slocation" placeholder="Starting Location *" value=""/> -->
+					<input type="hidden" name="country" id="countryId" value="IN" />
+					<select name="slocstate" class="states order-alpha form-control" id="stateId" required>
+						<option value="">Select State</option>
+					</select>
+					<select name="sloccity" class="cities order-alpha form-control" id="cityId" required>
+						<option value="">Select City</option>
+					</select>
+				</li>
+				<br>
+				<li>
+					Ending Point *
+					<br>
+					<input type="hidden" name="country" id="countryId" value="IN" />
+					<select name="elocstate" class="states order-alpha form-control" id="stateId" required>
+						<option value="">Select State</option>
+					</select>
+					<select name="eloccity" class="cities order-alpha form-control" id="cityId" required>
+						<option value="">Select City</option>
+					</select>
+
+				</li>
+			</div>
+			<div class="cd">
+				<label>Other Information :</label><br>
+				<li class="">
+					Enter Price *
+					<input type="number" class="form-control" name="price" placeholder="Price per People *" required />
+				</li>
+				<br>
+				<li class="">
+					Enter Type of the Tour *
+					<select id="tourtype" class="form-control" required name="ttype">
+						<option class="hidden" id="tourtype" value="" disabled="" selected="">Select Tour Type *
+						</option>
+						<option value="Family Special">Family Special</option>
+						<option value="Friends Special">Friends Special</option>
+						<option value="Couple Friendly">Couple Friendly</option>
+						<option value="Solo Tour">Solo Tour</option>
+					</select>
+				</li>
+			</div>
+		</div>
+		<span class="Thumbnail"><label>Thumbnail :</label>
+			<input type="file" name="thumbnail" id="upload_img" class="form-control upload" required multiple />
+		</span>
+		<br>
+		<div class="info2">
+			<!-- <div class="cd1"> -->
+			<div class="col-md-6">
+				<label>Tour Inclusive :</label>
+				<div class="form-group">
+					<textarea class="form-control" name="inclusive" placeholder="Enter some Text" rows="5" id="comment"
+						required></textarea>
+				</div>
+			</div>
+
+			<div class="col-md-6">
+				<label>Tour Exclusive :</label>
+				<div class="form-group">
+					<textarea class="form-control" name="exclusive" placeholder="Enter some Text" rows="5" id="comment"
+						required></textarea>
+				</div>
+			</div>
+			<!-- </div> -->
+			<!-- <div class="cd1"> -->
+			<div class="col-md-6">
+				<label>Special Highlights :</label>
+				<div class="form-group">
+					<textarea class="form-control" name="highlight" placeholder="Enter Text" rows="5" id="comment"
+						required></textarea>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<label>Overview :</label>
+				<div class="form-group">
+					<textarea class="form-control" name="overview" placeholder="Enter Text" rows="5" id="comment"
+						required></textarea>
+				</div>
+			</div>
+			<!-- </div> -->
+		</div>
+		<span class="cardslabel">Journey Dairy :</span>
+		<div id="cards">
+		</div>
+		<span class="submitbtn"><button type="sbumit">Submit</button></span>
+
+	</form>
+</div>
 <!--Normal html ends here-->
 <!--Put your js here -->
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+	crossorigin="anonymous">
+	</script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"
+	integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
+
+<script src="{% static 'travelagency_js/cities.js' %}"></script>
+<script type="text/javascript">
+	$(function () {
+		var mindate = new Date();
+		var currentDate = new Date();
+		currentDate.setDate(currentDate.getDate() + 1);
+		$('#txtF').datepicker({
+			numberOfMonths: 1,
+			showAnim: 'drop',
+			minDate: mindate,
+			dateFormat: 'mm/dd/yy',
+			onClose: function (sd) {
+				var k = new Date(sd);
+				var tomorrow = new Date(k.getTime() + (24 * 60 * 60 * 1000));
+				$('#txtT').datepicker("option", "minDate", tomorrow);
+			}
+		});
+		$('#txtT').datepicker({
+			showAnim: 'drop',
+			numberOfMonths: 1,
+			dateFormat: 'mm/dd/yy',
+			onClose: function (selectdate) {
+				$('#txtF').datepicker("option", "maxDate", selectdate);
+			}
+		});
+	});
+
+	function fun() {
+		let g = 0;
+		var sd = document.getElementById('txtF').value;
+		console.log(sd);
+		sd = new Date(sd);
+		var ed = document.getElementById('txtT').value;
+		console.log(ed);
+		ed = new Date(ed);
+		var d = ed.getTime() - sd.getTime();
+		var x = d / (1000 * 3600 * 24) + 1;
+		console.log($('#txf'), $('#txtT'));
+		console.log(sd, ed, d, x);
+		if (g == 0) {
+			$('#cards').empty();
+			g = 1;
+		}
+		for (let i = 0; i < x; i++) {
+			// console.log('hi');
+			var content = document.createElement("div");
+			content.classList.add('card');
+			var ch = document.createElement('div');
+			ch.classList.add('card-header');
+			var cht = document.createElement('h3');
+			var nodeh = document.createTextNode('Day ' + (i + 1));
+			var y = 'Day' + (i + 1);
+			content.classList.add(y);
+			cht.appendChild(nodeh);
+			ch.appendChild(cht);
+
+			var cb = document.createElement('div');
+			cb.classList.add('card-body');
+
+			var cb1 = document.createElement('div');
+			cb1.classList.add('col-md-12');
+			cb1.classList.add('title');
+			// var cb1l=document.createElement('label');
+			// var cb1ln=document.createTextNode('Title :');
+
+			// cb1l.appendChild(cb1ln);
+
+			var cb12 = document.createElement('div');
+			cb12.classList.add('form-group');
+
+			var cb12i = document.createElement('input');
+			cb12i.type = 'text';
+			cb12i.classList.add('form-control');
+			cb12i.placeholder = 'Title ' + (i + 1);
+			cb12i.name = 'dayTitle' + (i + 1);
+
+			cb12.appendChild(cb12i);
+
+			// cb1.appendChild(cb1l);
+			cb1.appendChild(cb12);
+
+			var cbl = document.createElement('label');
+			var cbln = document.createTextNode('Descriptions :');
+
+			cbl.appendChild(cbln);
+
+
+			var cb2 = document.createElement('div');
+			cb2.classList.add('form-group');
+
+			var cbt = document.createElement('textarea');
+			cbt.classList.add('form-control');
+			cbt.placeholder = 'Describe Your Day ' + (i + 1);
+			cbt.id = 'comment';
+			cbt.rows = "4";
+			cbt.name = 'dayDescription' + (i + 1);
+
+			cb2.appendChild(cbt);
+
+			cb.appendChild(cb1);
+			cb.appendChild(cb2);
+
+			content.appendChild(ch);
+			content.appendChild(cb);
+
+			var cards = document.getElementById('cards');
+			cards.appendChild(content);
+		}
+	}
+</script>
+
+
+<!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>  -->
+<!-- <script src="//geodata.solutions/includes/statecity.js"></script> -->
+<script type="text/javascript">
+	function ajaxCall() {
+		this.send = function (data, url, method, success, type) {
+			type = type || 'json'; var successRes = function (data) { success(data); }
+			var errorRes = function (e) { console.log(e); }
+			jQuery.ajax({ url: url, type: method, data: data, success: successRes, error: errorRes, dataType: type, timeout: 60000 });
+		}
+	}
+	function locationInfo() {
+		var rootUrl = "//geodata.solutions/api/api.php"; var username = 'demo'; var ordering = 'name'; var addParams = ''; if (jQuery("#gds_appid").length > 0) { addParams += '&appid=' + jQuery("#gds_appid").val(); }
+		if (jQuery("#gds_hash").length > 0) { addParams += '&hash=' + jQuery("#gds_hash").val(); }
+		var call = new ajaxCall(); this.confCity = function (id) {
+			var url = rootUrl + '?type=confCity&countryId=' + jQuery('#countryId').val() + '&stateId=' + jQuery('#stateId option:selected').attr('stateid') + '&cityId=' + id; var method = "post"; var data = {}; call.send(data, url, method, function (data) {
+				if (data) { }
+				else { }
+			});
+		}; this.getCities = function (id) {
+			jQuery(".cities option:gt(0)").remove(); var stateClasses = jQuery('#cityId').attr('class'); var cC = stateClasses.split(" "); cC.shift(); var addClasses = ''; if (cC.length > 0) { acC = cC.join(); addClasses = '&addClasses=' + encodeURIComponent(acC); }
+			var url = rootUrl + '?type=getCities&countryId=' + jQuery('#countryId').val() + '&stateId=' + id + addParams + addClasses; var method = "post"; var data = {}; jQuery('.cities').find("option:eq(0)").html("Please wait.."); call.send(data, url, method, function (data) {
+				jQuery('.cities').find("option:eq(0)").html("Select City"); if (data.tp == 1) {
+					if (data.hits > 1000) { console.log('Daily geodata.solutions request limit exceeded:' + data.hits + ' of 1000'); }
+					else { console.log('Daily geodata.solutions request count:' + data.hits + ' of 1000') }
+					var listlen = Object.keys(data['result']).length; if (listlen > 0) { jQuery.each(data['result'], function (key, val) { var option = jQuery('<option />'); option.attr('value', val).text(val); jQuery('.cities').append(option); }); }
+					else { var usestate = jQuery('#stateId option:selected').val(); var option = jQuery('<option />'); option.attr('value', usestate).text(usestate); option.attr('selected', 'selected'); jQuery('.cities').append(option); }
+					jQuery(".cities").prop("disabled", false);
+				}
+				else { alert(data.msg); }
+			});
+		}; this.getStates = function (id) {
+			jQuery(".states option:gt(0)").remove(); jQuery(".cities option:gt(0)").remove(); var stateClasses = jQuery('#stateId').attr('class'); console.log(stateClasses); var cC = stateClasses.split(" "); cC.shift(); var addClasses = ''; if (cC.length > 0) { acC = cC.join(); addClasses = '&addClasses=' + encodeURIComponent(acC); }
+			var url = rootUrl + '?type=getStates&countryId=' + id + addParams + addClasses; var method = "post"; var data = {}; jQuery('.states').find("option:eq(0)").html("Please wait.."); call.send(data, url, method, function (data) {
+				jQuery('.states').find("option:eq(0)").html("Select State"); if (data.tp == 1) {
+					if (data.hits > 1000) { console.log('Daily geodata.solutions request limit exceeded: ' + data.hits + ' of 1000.'); }
+					else { console.log('Daily geodata.solutions request count:' + data.hits + ' of 1000') }
+					jQuery.each(data['result'], function (key, val) { var option = jQuery('<option />'); option.attr('value', val).text(val); option.attr('stateid', key); jQuery('.states').append(option); }); jQuery(".states").prop("disabled", false);
+				}
+				else { alert(data.msg); }
+			});
+		};
+	}
+	jQuery(function () {
+		var loc = new locationInfo(); var coid = jQuery("#countryId").val(); loc.getStates(coid); jQuery(".states").on("change", function (ev) {
+			var stateId = jQuery("option:selected", this).attr('stateid'); if (stateId != '') { loc.getCities(stateId); }
+			else { jQuery(".cities option:gt(0)").remove(); }
+		}); jQuery(".cities").on("change", function (ev) { var cityId = jQuery("option:selected", this).val(); if (cityId != '') { loc.confCity(cityId); } });
+	});
+</script>
 
 <!-- JS ends here-->
-{% endblock body %}
+{% endblock body%}
