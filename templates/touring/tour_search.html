@@ -79,6 +79,9 @@
     margin-right: 10px;
     margin-top: 5px;
 }
+.makeFlex.hrtlCenter {
+    align-items: center;
+}
 .pushRight {
     margin-left: auto;
 }
@@ -89,7 +92,7 @@
 	display:none;
 }
 #prc{
-margin-left:340px;
+margin-left:20px;
 padding-top:30px;
 }
 
@@ -451,7 +454,7 @@ padding-top:30px;
 		  <br>
 <!-- Main card -->
 {% for tour in Tours %}
- <div class="card flex-row flex-wrap">
+ <a href="#"  target="_blank" style="text-decoration:none; color:#242627; cursor:pointer;"><div class="card flex-row flex-wrap">
         <div class="card-header border-0" style="background-color:#fff;">
 		
   <img src="{% static 'img/2.jpg' %}" id="expandedImg" height="217" width="280">
@@ -477,21 +480,25 @@ padding-top:30px;
 			<li>Text</li>
 			<li>Text</li>
 			</ul>
-            <h4 class="card-title">{{tour.tourHeading}}</h4>
-            <p class="card-text">{{tour.description | truncatechars:200 }}</p>
+            <!--<h4 class="card-title">{{tour.tourHeading}}</h4>
+            <p class="card-text">{{tour.description | truncatechars:200 }}It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distri…
+
+</p>-->
+			<h4 class="card-title">Heading</h4>
+  <p>Lorem ipsum dolor ipsum dolor ipsum dolor sit sit sit sit<br>ipsum doloripsum doloripsum doloripsum doloripsum dolor 
+  <br>ipsum doloripsum doloripsum doloripsum doloripsum dolor<br>ipsum doloripsum doloripsum doloripsum doloripsum dolor<br>ipsum doloripsum doloripsum doloripsum doloripsum dolor<br>ipsum doloripsum doloripsum doloripsum doloripsum dolor
+  </p>
         </div>
 		
 		<div class="card-block" id="prc">
             <h4>Price</h4>
-            <!--
 			<span class="font12 redText appendRight5">
 			Save
 			₹69<i class="fa fa-tag"></i>
             </span>
-            
             <p class="font16 greyText lineThrough appendBottom5">₹69</p>
-        -->
-			<p class="font26 blackText latoBold appendBottom5">₹{{tour.price}}/people</p>
+			<!--<p class="font26 blackText latoBold appendBottom5">₹{{tour.price}}/people</p>-->
+			<p class="font26 blackText latoBold appendBottom5">₹696</p>
 			
 			</div>
 
@@ -499,7 +506,7 @@ padding-top:30px;
         <div class="card-footer w-100 text-muted">
            Desciption
         </div>
-    </div>
+    </div></a>
 	<!-- Main card end-->
     <br>
     {% endfor %}
