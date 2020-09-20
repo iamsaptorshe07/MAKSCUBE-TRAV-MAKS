@@ -138,9 +138,9 @@ class AccountType(models.Model):
     user_access = models.BooleanField(default=False)
     agency_access = models.BooleanField(default=False)
     guide_access = models.BooleanField(default=False)
-    userId = models.CharField(max_length=10, unique=True, null=True, blank=True)
-    agentId = models.CharField(max_length=10, unique=True, null=True, blank=True)
-    guideId = models.CharField(max_length=10, unique=True, null=True, blank=True)
+    userId = models.CharField(max_length=50, unique=True, null=True, blank=True)
+    agentId = models.CharField(max_length=50, unique=True, null=True, blank=True)
+    guideId = models.CharField(max_length=50, unique=True, null=True, blank=True)
 
     def __str__(self):
         return self.user.email
@@ -176,7 +176,7 @@ class GovId(models.Model):
 class AgencyDetail(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='userAgency')
     agencyName = models.CharField(max_length=50)
-    agency_Id = models.CharField(max_length=10,default='test')
+    agency_Id = models.CharField(max_length=50)
     agencyPhNo = models.BigIntegerField()
     agencyCountry = models.CharField(max_length=25)
     agencyCity = models.CharField(max_length=20)
