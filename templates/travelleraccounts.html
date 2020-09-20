@@ -352,6 +352,14 @@ ul{
                                     </div>
                                     {% endfor %}
                                     {% endif %}
+                                    <div class="col-md-12">
+                                        <div id="errormsgbg">
+                                            <div id="errormsg" 
+                                                onclick="getElementById('errormsg').innerHTML = null;
+                                                getElementById('errormsg').style.padding='0px'">
+                                            </div>
+                                        </div> 
+                                    </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <input type="text" class="form-control" placeholder="Full Name *" name="name" id="fullname" required />
@@ -415,12 +423,7 @@ ul{
                                         <div class="form-group">
                                             <input type="password" class="form-control"  placeholder="Confirm Password *" name='password2' id="password2"  required />
                                         </div>
-                                        <div id="errormsgbg">
-                                            <div id="errormsg" 
-                                                onclick="getElementById('errormsg').innerHTML = null;
-                                                getElementById('errormsg').style.padding='0px'">
-                                            </div>
-                                        </div>      
+                                             
                                         <input type="submit" class="btnRegister"  value="Register"/>
                                     </form>
                                 </div>
@@ -476,47 +479,56 @@ ul{
                                     res = reg.test(mail);
 
                     if((cy-dy)<14){
-                        msg.push("You must be 14 years old to Register");
+                        msg.push("You must be 14 years old to Register.");
                     }
                     if(res==false)
                     {
-                        msg.push("Enter Proper Email");
+                        msg.push("Enter Proper Email.");
                     }
                     if(phone!=Number(phone)){
-                        msg.push("Your phone must be number");
+                        msg.push("Your phone must be number.");
                     }
                     if(phone.length!=10){
-                        msg.push("Please Enter a valid Phone number");
+                        msg.push("Please Enter a valid Phone number.");
                     }
                     if(zip.length!=6){
-                        msg.push("Please Enter a valid Zip Code");  
+                        msg.push("Please Enter a valid Zip Code.");  
                     }
                     if(password1.length<8)
                     {
-                        msg.push("Your Password must contain atleast 8 characters");
+                        msg.push("Your Password must contain atleast 8 characters.");
                     }
                     else{
                         for(let i=0;i<password1.length;i++){
                             if(password1[i]==='<'||password1[i]==='>'){
-                                msg.push("< / > not allowed");
+                                msg.push("< / > not allowed.");
                             }
                         }
                         if(password1!==password2){
-                            msg.push("Password didn't match");
+                            msg.push("Password didn't match.");
                         }
                     }
                     if(msg.length>0){
-                        errormsg.innerHTML=msg.join(", \n");
+                        errormsg.innerHTML=msg.join("\n");
                         errormsgbg.style.width="500px";
                         errormsg.style.padding="8px";
-                        errormsgbg.style.borderRadius="25px";
-                        errormsgbg.style.backgroundColor='red';
-                        errormsg.style.color='#fff';
-                        errormsg.style.fontWeight="bold";
+                        errormsgbg.style.borderRadius="5px";
+                        errormsgbg.style.backgroundColor='#FBD0F5';
+                        errormsg.style.color='red';
+                        errormsgbg.style.marginBottom='10px';
+                        // errormsg.style.fontWeight="bold";
                         return false;
                     }
                     return true;
 
+                }
+                function removeValidator(){
+                    var errormsg=document.getElementById('errormsg');
+                    
+                    var errormsgbg=document.getElementById('errormsgbg');
+                    errormsg.innerHTML = null;
+                    errormsg.style.padding='0px';
+                    errormsgbg.style.marginBottom='0px';
                 }
             </script>
 			
