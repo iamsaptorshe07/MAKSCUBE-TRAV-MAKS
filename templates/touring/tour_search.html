@@ -432,13 +432,16 @@ padding-top:30px;
 			<!--main box-->		
             <div class="col-md-9">
 			<div class="card flex-row flex-wrap" style="border:none;">
-			<h2>heading</h2>
+			<h2>Your Search Result</h2>
 			<div class="pushRight makeFlex hrtlCenter">
 			<span class="dropdown f-right">
               <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">Sort By: <span class="caret"></span></button>
               <div class="dropdown-menu">
-                <a href="#" class="dropdown-item">Top Answers</a>
-              <a href="#" class="dropdown-item">Newest First</a>
+                <a href="#" class="dropdown-item">Popularity</a>
+                <a href="#" class="dropdown-item">Price : Low to High</a>
+                <a href="#" class="dropdown-item">Price : High to Low</a>
+                <a href="#" class="dropdown-item">Tour Duration - Low to High</a>
+                <a href="#" class="dropdown-item">Tour Duration : High to Low</a>
               </div>
           </span>
 		  <!-- Search form -->
@@ -475,7 +478,7 @@ padding-top:30px;
 			<li>Text</li>
 			</ul>
             <h4 class="card-title">{{tour.tourHeading}}</h4>
-            <p class="card-text">{{tour.description}}</p>
+            <p class="card-text">{{tour.description | truncatechars:200 }}</p>
         </div>
 		
 		<div class="card-block" id="prc">

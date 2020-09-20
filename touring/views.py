@@ -15,7 +15,7 @@ def searchTour(request):
     context = {
         'Tours':tours,
     }
-    return render(request,'touring/tour_search.html')
+    return render(request,'touring/tour_search.html',context=context)
 
 def advancedSearching(request):
     pass

@@ -91,45 +91,33 @@
 				</nav>
 				<div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
 					<div class="tab-pane fade show active" id="nav-flight" role="tabpanel" aria-labelledby="nav-flight-tab">
-						<div class="form-content">
+						<form class="form-content" action="/tour/search" method="GET">
                     <div class="row">
                         <div class="col-md-5">
                             <div class="form-group">
-                                <input type="date" class="form-control" placeholder="Starting Date *" value=""/>
+                                <input type="text" class="form-control" placeholder="Starting Location *" name="sLocation"/>
                             </div>
                         </div>
                         <div class="col-md-5">
                             <div class="form-group">
-                                <input type="date" class="form-control" placeholder="Ending Date *" value=""/>
+                                <input type="text" class="form-control" placeholder="Ending Location *" name="eLocation"/>
                             </div>					
                         </div>
 						
 						<div class="col-md-5">
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Starting Location *" value=""/>
+                                <input type="date" class="form-control" placeholder="Starting Date *" name="sDate"/>
                             </div>
                            
 							</div>
 							
 						<div class="col-md-5">
                             <div class="form-group">
-                                            <select name="tour" id="tourtype" class="form-control" required>
-                                                <option class="hidden" id="tourtype" value="" disabled="" selected="">Guest</option>
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-												<option value="3">3</option>
-												<option value="4+">4+</option>
-                                            </select>
-                                        </div>
-                            							
-                        </div>
-						<div class="col-md-5">
-                            <div class="form-group">
-                                <button type="button" class="btn btn-dark">Find Flights</button>
-                            </div>
-                    </div>   
+                                <button type="SUBMIT" class="btn btn-dark">Find Tours</button>
+                            </div>							
+                        </div>   
                 </div>
-					</div>
+            </form>
 					</div>
 					<div class="tab-pane fade" id="nav-hotel" role="tabpanel" aria-labelledby="nav-hotel-tab">
 						<div class="form-content">
