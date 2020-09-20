@@ -446,7 +446,8 @@ padding-top:30px;
 		  </div>
 		  </div>
 		  <br>
-		  <!-- Main card -->
+<!-- Main card -->
+{% for tour in Tours %}
  <div class="card flex-row flex-wrap">
         <div class="card-header border-0" style="background-color:#fff;">
 		
@@ -473,18 +474,21 @@ padding-top:30px;
 			<li>Text</li>
 			<li>Text</li>
 			</ul>
-            <h4 class="card-title">TRAVMAKS</h4>
-            <p class="card-text">Description</p>
+            <h4 class="card-title">{{tour.tourHeading}}</h4>
+            <p class="card-text">{{tour.description}}</p>
         </div>
 		
 		<div class="card-block" id="prc">
-			<h4>Price</h4>
+            <h4>Price</h4>
+            <!--
 			<span class="font12 redText appendRight5">
 			Save
 			₹69<i class="fa fa-tag"></i>
-			</span>
-			<p class="font16 greyText lineThrough appendBottom5">₹69</p>
-			<p class="font26 blackText latoBold appendBottom5">₹696969</p>
+            </span>
+            
+            <p class="font16 greyText lineThrough appendBottom5">₹69</p>
+        -->
+			<p class="font26 blackText latoBold appendBottom5">₹{{tour.price}}/people</p>
 			
 			</div>
 
@@ -495,48 +499,7 @@ padding-top:30px;
     </div>
 	<!-- Main card end-->
     <br>
-	<!-- Main card -->
- <div class="card flex-row flex-wrap">
-        <div class="card-header border-0" style="background-color:#fff;">
-		
-  <img src="{% static 'img/2.jpg' %}" id="expandedImg" height="217" width="280">
-        </div>
-        <div class="card-block px-2">
-			<ul class="tagNames appendBottom6">
-			<li>Text</li>
-			<li>Text</li>
-			</ul>
-            <h4 class="card-title">TRAVMAKS</h4>
-            <p class="card-text">Description</p>
-            
-        </div>
-        <div class="w-100"></div>
-        <div class="card-footer w-100 text-muted">
-           Desciption
-        </div>
-    </div>
-	<!-- Main card end-->
-	<br>
-    <div class="card">
-        <div class="row no-gutters">
-            <div class="col-auto">
-                <img src="{% static 'img/2.jpg' %}" height="162" width="243">
-            </div>
-            <div class="col">
-                <div class="card-block px-2">
-				<ul class="tagNames appendBottom6">
-			<li>Text</li>
-			<li>Text</li>
-			</ul>
-                    <h4 class="card-title">Title</h4>
-                    <p class="card-text">Description</p>
-                    </div>
-            </div>
-        </div>
-        <div class="card-footer w-100 text-muted">
-            Desciption
-        </div>
-    </div>
+    {% endfor %}
                 <!--- \\\\\\\Post-->
                 
             </div>
