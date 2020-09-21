@@ -368,6 +368,14 @@
 			justify-content: center;
 		}
 	}
+
+
+	.setdatebtn{
+		background-color: #1d1d1d;
+		padding: 10px;
+		border-radius: 5px;
+		color: #fff;
+	}
 </style>
 
 {% endblock stylesheets %}
@@ -402,7 +410,10 @@
 			</li>
 		</ul>
 	</div>
-	<form class="content" method="POST" action='/travelagency/myagency/addtour/{{request.user.id}}/{{request.user.userAccess.agentId}}' enctype="multipart/form-data" >
+	<form class="content" method="POST" 
+		action='/travelagency/myagency/addtour/{{request.user.id}}/{{request.user.userAccess.agentId}}' 
+		enctype="multipart/form-data" 
+		onsubmit="return validator();">
 		
 		{% csrf_token %}
 		{% if messages %}
@@ -423,15 +434,19 @@
 			<input type="text" name="ttitle" class="form-control" placeholder="Title *"
 				style="height: 50px;left: 0;width: 100%;" required>
 		</span>
-		<div style="" class="info">
+		<div class="info">
 			<div class="cd">
 				<!-- <div class="block"><img src="{% static 'travelagency_img/calendar.png' %}"></div> -->
 				<label>Enter Date :</label>
 				<li>Startind Date<input id="txtF" name="sdate" class="form-control" style="text-align: center;"
-						placeholder="mm/dd/yyyy" required></li>
+						placeholder="mm/dd/yyyy" required>
+				</li>
 				<br>
 				<li>Ending Date<input id="txtT" name="edate" class="form-control" style="text-align: center;"
-						onchange="fun();" placeholder="mm/dd/yyyy" required></li>
+						 placeholder="mm/dd/yyyy" required>
+				</li>
+				<br>
+				<li style="display:flex;justify-content: center;"><button class="setdatebtn" type="button" onclick="fun();">Confirm Date</button></li>
 			</div>
 			<div class="cd">
 				<label>Enter Location :</label>
@@ -449,13 +464,20 @@
 				</li>
 			</div>
 			<div class="cd">
-				<label>Other Information :</label><br>
+				<label>Enter Price : </label><br>
 				<li class="">
 					Enter Price *
 					<input type="number" class="form-control" name="price" placeholder="Price per People *" value=""
 						min="150" required />
 				</li>
 				<br>
+				<li class="">
+					Enter Number of Seats *
+					<input type="number" class="form-control" name="seat" placeholder="Length of Your Group" min="1" required />
+				</li>
+			</div>
+			<div class="cd">
+				<label>Other Information :</label><br>
 				<li class="">
 					Enter Type of the Tour *
 					<select id="tourtype" class="form-control" required name="ttype">
@@ -467,11 +489,31 @@
 						<option value="Solo Tour">Solo Tour</option>
 					</select>
 				</li>
+				<br><li class="">
+					Upload Your Thumbnail *
+					<input type="file" name="thumbnail" id="upload_img" class="form-control upload" required />
+				</li>
+			</div>
+			<div class="cd">
+				<label>Special Offer :</label><br>
+				<li class="">
+					Do You Have Any Special Offer ? 
+					<select name="spoffer" id="spoffer" class="form-control" required onchange="setsp();">
+						<option class="hidden" id="tourtype" value="" disabled="" selected=""
+							style="text-align: center;">Select Special Offer *</option>
+						<option value="yes">Yes</option>
+						<option value="no">No</option>
+					</select>
+					
+				</li>
+				<br>
+				<li id="spod">
+					Write Your Special Offer *
+					<textarea placeholder="Your Special Offer" name="spofferdetails" id="spofferdetails" class="form-control" ></textarea>
+					
+				</li>
 			</div>
 		</div>
-		<span class="Thumbnail"><label>Thumbnail :</label>
-			<input type="file" name="thumbnail" id="upload_img" class="form-control upload" required />
-		</span>
 		<br>
 		<div class="info2">
 			<!-- <div class="cd1"> -->
@@ -511,6 +553,11 @@
 		<span class="cardslabel">Journey Dairy :</span>
 		<div id="cards">
 		</div>
+		<div id="errormsgbg">
+			<div id="errormsg" 
+				onclick="removeValidator();">
+			</div>
+		</div> 
 		<span class="submitbtn"><button type="sbumit">Submit</button></span>
 
 	</form>
@@ -548,7 +595,7 @@
 	});
 
 	function fun() {
-		let g = 0;
+		let gggg = 0;
 		var sd = document.getElementById('txtF').value;
 		console.log(sd);
 		sd = new Date(sd);
@@ -559,9 +606,9 @@
 		var x = d / (1000 * 3600 * 24) + 1;
 		console.log($('#txf'), $('#txtT'));
 		console.log(sd, ed, d, x);
-		if (g == 0) {
+		if (gggg == 0) {
 			$('#cards').empty();
-			g = 1;
+			gggg = 1;
 		}
 		for (let i = 0; i < x; i++) {
 			// console.log('hi');
@@ -647,6 +694,55 @@
 			dropzone.style.backgroundColor = 'white';
 		}
 	});
+
+	// $(function(){
+	// 	let spo=document.getElementById('spod');
+	// 	spo.style.display='none';
+	// })
+	function setsp(){
+		let spo=document.getElementById('spoffer');
+		let spod=document.getElementById('spod');
+		let spofferdetails=document.getElementById('spofferdetails');
+		if(spo.value!=='yes'){
+			// spod.style.display='none';
+            $('#spofferdetails').removeAttr('required');
+		}
+		else{
+			// spod.style.display='block';
+			$('#spofferdetails').attr('required','required');
+		}
+	}
+
+	function validator(){
+		let msg=[];
+		let ayan=document.querySelectorAll('.card');
+		console.log(ayan,ayan.length);
+		if(ayan.length<1){
+			msg.push('Something Went Wrong, Please Reload and Try Again. \n In Case of Dificulty Contact Us.');
+		}
+		// msg.push('hello');
+		if(msg.length>0){
+            errormsg.innerHTML=msg.join('\n');
+            errormsgbg.style.width="500px";
+            errormsg.style.padding="8px";
+            errormsgbg.style.borderRadius="5px";
+            errormsgbg.style.backgroundColor='#FBD0F5';
+            errormsg.style.color='red';
+            errormsgbg.style.margin='10px';
+            // errormsg.style.fontWeight="bold";
+            return false;
+		}
+		return true;
+	}
+	function removeValidator(){
+		
+        var errormsg=document.getElementById('errormsg');
+        
+        var errormsgbg=document.getElementById('errormsgbg');
+        errormsg.innerHTML = null;
+        errormsg.style.padding='0px';
+        errormsgbg.style.margin='0px';
+	}
 </script>
 
 <!-- JS ends here-->

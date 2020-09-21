@@ -103,8 +103,22 @@ def editTours(request,agentId,tourId):
             if Tour.objects.filter(tourId=tourId,seller=user).exists():
                 tour = Tour.objects.get(tourId=tourId)
                 if request.method == 'POST':
-                    pass
-                    #Samiran complete this function
+                    sdate = tourDate(request.POST.get('sdate'))
+                    print("\n\n",sdate,"\n\n")
+                    edate = tourDate(request.POST.get('edate'))
+                    print("\n\n",edate,"\n\n")
+                    slocation = request.POST.get('slocation')
+                    elocation = request.POST.get('elocation')
+                    price = request.POST.get('price')
+                    ttype = request.POST.get('ttype')
+                    if request.FILES.get('thumbnail') is not None:
+                        thumbnail = request.FILES.get('thumbnail')
+                    ttitle = request.POST.get('ttitle')
+                    inclusive = request.POST.get('inclusive')
+                    exclusive = request.POST.get('exclusive')
+                    highlight = request.POST.get('highlight')
+                    overview = request.POST.get('overview')
+                    duration = tourDuration(request.POST.get('sdate'),request.POST.get('edate'))+2
                 else:
                     #Samiran complete/restructure it 
                     context = {
