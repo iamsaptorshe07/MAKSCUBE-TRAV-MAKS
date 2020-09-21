@@ -495,7 +495,7 @@ padding-top:30px;
 		  <br>
 <!-- Main card -->
 {% for tour in Tours %}
- <a href="#"  target="_blank" style="text-decoration:none; color:#242627; cursor:pointer;"><div class="card flex-row flex-wrap">
+ <div class="card flex-row flex-wrap">
         <div class="card-header border-0" style="background-color:#fff;">
 		
   <img src="{% static 'img/2.jpg' %}" id="expandedImg" height="217" width="280">
@@ -527,7 +527,9 @@ padding-top:30px;
 </p>-->
 			<h4 class="card-title">Heading</h4>
   <p>Lorem ipsum dolor ipsum dolor ipsum dolor sit sit sit sit<br>ipsum doloripsum doloripsum doloripsum doloripsum dolor 
-  <br>ipsum doloripsum doloripsum doloripsum doloripsum dolor<br>ipsum doloripsum doloripsum doloripsum doloripsum dolor<br>ipsum doloripsum doloripsum doloripsum doloripsum dolor<br>ipsum doloripsum doloripsum doloripsum doloripsum dolor
+  <br>ipsum doloripsum doloripsum doloripsum doloripsum dolor<br>ipsum doloripsum doloripsum doloripsum doloripsum dolor<br>ipsum doloripsum doloripsum doloripsum doloripsum dolor
+  <br>ipsum doloripsum doloripsum doloripsum doloripsum dolor
+  <br><a href="/tour/tourdetails/{{tour.tourId}}/{{tour.tourSlug}}"  target="_blank" >More Info</a>
   </p>
         </div>
 		
@@ -544,10 +546,11 @@ padding-top:30px;
 			</div>
 
         <div class="w-100"></div>
-        <div class="card-footer w-100 text-muted">
+        
+    </div>
+	<div class="card-footer w-100 text-muted">
            Desciption
         </div>
-    </div></a>
 	<!-- Main card end-->
     <br>
     {% endfor %}
@@ -612,8 +615,8 @@ $(document).ready(function(){
 		range: true,
 		orientation: "horizontal",
 		min: 0,
-		max: 10000,
-		values: [0, 10000],
+		max: 1000000,
+		values: [0, 1000000],
 		step: 100,
 
 		slide: function (event, ui) {

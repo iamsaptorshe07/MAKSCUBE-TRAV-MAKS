@@ -37,8 +37,8 @@ background: #007b5e;
 }
 .btn-prime {
     color: #ffffff !important;
-    background-color: #3ad419 !important;
-    border-color: #3ad419 !important;
+    background-color: #0ec7de !important;
+    border-color: #0ec7de !important;
     font-size: 25px;
     margin-bottom: 10px;
 }
@@ -52,7 +52,7 @@ background: #007b5e;
 }.popup-btn a{
     top:200px;
     position:fixed;
-    right:-90px;
+    right:-85px;
     z-index: 1000;
     transform: rotate(-90deg);
     background-color: red;
@@ -64,6 +64,9 @@ background: #007b5e;
 .popup-btn a:hover{
     text-decoration: none;
     color:#fff;
+}
+.fa-globe{
+	color:#00bcd4;
 }
 </style>
 {% endblock stylesheets %}
@@ -157,14 +160,17 @@ background: #007b5e;
         <div class="row">
             <!-- Tabs -->
 <div class="col-md-9 gedf-main">
+  <div class="container">
   <h2 class="mainh">heading</h2>
-<section id="tabs">	
+<section id="tabs">
+	
 				<nav>
 					<div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
 <a class="nav-item nav-link active" id="nav-overall-tab" data-toggle="tab" href="#nav-overall" role="tab" aria-controls="nav-overall" aria-selected="true">Overall Description</a>
 <a class="nav-item nav-link" id="nav-inclusive-tab" data-toggle="tab" href="#nav-inclusive" role="tab" aria-controls="nav-inclusive" aria-selected="false">Inclusive & Exclusive</a>
 <a class="nav-item nav-link" id="nav-near-tab" data-toggle="tab" href="#nav-near" role="tab" aria-controls="nav-near" aria-selected="false">Nearest Location to Visit</a>
 <a class="nav-item nav-link" id="nav-highlight-tab" data-toggle="tab" href="#nav-highlight" role="tab" aria-controls="nav-highlight" aria-selected="false">Tour Highlights</a>
+					</div>
 					</div>
 				</nav>
 				<div class="container">
@@ -249,9 +255,9 @@ background: #007b5e;
 			<div class="col-md-3">
 			<div class="container">
 			
-        <button type="button" class="btn btn-prime btn-block"><i class="fa fa-plane"></i>&nbsp;Button</button>
+        <button type="button" class="btn btn-prime btn-block"><i class="fa fa-plane fa-lg"></i>&nbsp;Button</button>
 				<div class="popup-btn" style="display:block">
-				<a href="#">Shop Now</a>
+				<a href="#">Book Now &nbsp;<i class="fa fa-globe"></i></a>
 			</div>
 
 							<div class="col-md-4">
@@ -279,10 +285,10 @@ background: #007b5e;
             </div>
           </div>
 </div>
-			<div class="container-fluid">
-
-            <div class="col-md-10" style="background: #eaf7fd;">
-              <h2 class="mainh ml-3">form</h2>
+			
+              <h2 class="mainh ml-3">Contact Us</h2>
+			<div class="container-fluid"style="background: #eaf7fd; padding-top:20px;">
+            <div class="col-md-10" >
               <div class="row" >
               <div class="col-md-5">
                                         <div class="form-group">
