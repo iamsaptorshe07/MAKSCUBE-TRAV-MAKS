@@ -20,6 +20,13 @@ def searchTour(request):
 def advancedSearching(request):
     pass
 
-def tourDetails(request):
-    return render(request,'touring/tour_details.html')
+def tourDetails(request,tourId,slug):
+    if(Tour.objects.filter(tourSlug=slug).exists()):
+        tour = Tour.objects.get(tourSlug=slug)
+        context = {
+            'Tour':tour
+        }
+        return render(request,'touring/tour_details.html',context=context)
+    else:
+        return HttpResponse("BAD REQUEST")
 

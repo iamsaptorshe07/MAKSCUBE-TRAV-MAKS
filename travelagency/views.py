@@ -74,16 +74,10 @@ def addTour(request,uid,agid):
 
 def agencyTours(request,uid,agid):
     user = request.user
-    print(type(uid))
-    print(type(agid))
-    print(type(user.id))
-    print(type(user.userAccess.agentId))
     if user.id == uid and user.userAccess.agentId == agid:
-        print("okay")
         if request.method == 'POST':
             pass
         else:
-            print("Come here")
             tour = Tour.objects.filter(seller__userAccess__agentId = agid)
             for i in tour:
                 print(i.endLocation)
