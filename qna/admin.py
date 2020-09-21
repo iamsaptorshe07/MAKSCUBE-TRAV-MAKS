@@ -6,7 +6,7 @@ from qna.models import *
 class QnaAdmin(admin.ModelAdmin):
     model = Qna
     list_display = ('title','author','question_body','timestamp_question')
-    search_fields = ['title','question_body']
+    search_fields = ['title','question_body','slug']
 
 class AnswerAdmin(admin.ModelAdmin):
     model = QnaAnswer

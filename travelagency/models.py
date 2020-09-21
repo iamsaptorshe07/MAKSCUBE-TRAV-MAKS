@@ -13,7 +13,7 @@ class Tour(models.Model):
     agency = models.ForeignKey(AgencyDetail,on_delete=models.CASCADE,related_name='tourAgency')
     tourId = models.CharField(max_length=30,unique=True)
     tourHeading = models.CharField(max_length=1000)
-    tourSlug = models.SlugField(unique=True)
+    tourSlug = models.SlugField(unique=True,max_length=255)
     startingLocation = models.CharField(max_length=300)
     endLocation = models.CharField(max_length=300)
     startDate = models.DateField()

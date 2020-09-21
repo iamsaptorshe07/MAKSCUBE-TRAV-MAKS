@@ -275,7 +275,12 @@
 
       <form class="form-content" method="POST" action='/accounts/seller/account/register/agency/{{id}}' enctype="multipart/form-data" onsubmit="return registrationValidator()"  >
         {% csrf_token %}
-        <div class="row">
+          <div class="row">
+            <div class="col-md-12">
+              <div id="errormsgbg">
+                <div id="errormsg" onclick="getElementById('errormsg').innerHTML = null;getElementById('errormsg').style.padding='0px'"></div>
+            </div>
+          </div>
           <div class="col-md-6">
             <div class="form-group">
               <input type="text" class="form-control" placeholder="Agency Name *" name="name" id="fullname" required />
@@ -336,9 +341,7 @@
             </div>
           </div>
         </div>
-        <div id="errormsgbg">
-            <div id="errormsg" onclick="getElementById('errormsg').innerHTML = null;getElementById('errormsg').style.padding='0px'"></div>
-        </div>
+        
         <center><input type="submit" class="btnSubmit" value="Submit" /></center>
       </form>
   </div>
@@ -387,16 +390,25 @@
         }
         console.log(msg,phone,zip,govApproved,takeValued);
         if(msg.length>0){
-            errormsg.innerHTML=msg.join(", \n");
+            errormsg.innerHTML=msg.join(". \n");
             errormsgbg.style.width="500px";
             errormsg.style.padding="8px";
-            errormsgbg.style.borderRadius="25px";
-            errormsgbg.style.backgroundColor='red';
-            errormsg.style.color='#fff';
-            errormsg.style.fontWeight="bold";
+            errormsgbg.style.borderRadius="5px";
+            errormsgbg.style.backgroundColor='#FBD0F5';
+            errormsg.style.color='red';
+            errormsgbg.style.marginBottom='10px';
+            // errormsg.style.fontWeight="bold";
             return false;
         }
         return true;
+    }
+    function removeValidator(){
+        var errormsg=document.getElementById('errormsg');
+        
+        var errormsgbg=document.getElementById('errormsgbg');
+        errormsg.innerHTML = null;
+        errormsg.style.padding='0px';
+        errormsgbg.style.marginBottom='0px';
     }
 </script>
   <footer class="mainfooter mt-2" role="contentinfo">
