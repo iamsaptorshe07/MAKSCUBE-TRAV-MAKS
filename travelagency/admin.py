@@ -4,8 +4,8 @@ from accounts.models import *
 # Register your models here.
 class TourDetailsAdmin(admin.ModelAdmin):
     model = Tour
-    list_display = ('tourId','agency','get_seller_id','get_agency_id','tourHeading','startingLocation','endLocation','startDate','endDate','description','inclusive',
-    'exclusive','highlight','price','tour_type','thumbnail','othersThings','tags',
+    list_display = ('tourId','agency','get_seller_id','get_agency_id','tourHeading','startingLocation','endLocation','startDate','endDate',
+    'highlight','price','tour_type','thumbnail','tags',
     'nearestLocation1','nearestLocation1_distance', 'nlocationconnected1',
     'nearestLocation2','nearestLocation2_distance', 'nlocationconnected2',
     'nearestLocation3','nearestLocation3_distance', 'nlocationconnected3',

@@ -326,27 +326,40 @@
 		<ul>
 			<li class="nav-item">
 				<img src="{% static 'travelagency_img/map.png' %}">
-		        <a target="_blank" class="nav-link " href="#">Location</a>
+		        <a target="_blank" class="nav-link " href="#">Our Agency Tour</a>
 		    </li>
 		    <li class="nav-item">
 				<img src="{% static 'travelagency_img/calendar.png' %}">
-		        <a target="_blank" class="nav-link" href="#">Date & Time</a>
+		        <a target="_blank" class="nav-link" href="#">Booked Tours</a>
 		    </li>
 		    <li class="nav-item">
 				<img src="{% static 'travelagency_img/clipboard.png' %}">
-		        <a target="_blank"class="nav-link" href="#">Highlights</a>
+		        <a target="_blank"class="nav-link" href="#">Agency Earning</a>
 		    </li>
 		    <li class="nav-item">
 				<img src="{% static 'travelagency_img/picture.png' %}">
-		        <a target="_blank" class="nav-link" href="#">Tour Images</a>
+		        <a target="_blank" class="nav-link" href="#">Ongoing Tour</a>
 		    </li>
 		    <li class="nav-item">
 				<img src="{% static 'travelagency_img/job.png' %}">
-		        <a target="_blank" class="nav-link" href="#">Tour Descriptions</a>
+		        <a target="_blank" class="nav-link" href="#">Booking History</a>
 		    </li>
 		</ul>
 	</div>
-	<form class="content">
+	<form class="content"  method="POST" action='/travelagency/myagency/addtour/{{request.user.userAccess.agentId}}/{{request.user.userAgency.agency_Id}}' enctype="multipart/form-data">
+		{% csrf_token %}
+                                            {% if messages %}
+                                            {% for message in messages %}
+                                            <div class="col-md-12">
+                                            <div class="alert alert-{{message.tags}}" role="alert">
+                                            {{message}}  
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                            </button>
+                                            </div>
+                                            </div>
+                                            {% endfor %}
+                                            {% endif %}
 		<span class="Dashboard">DASHBOARD</span>
 		<span class="title">
 			<!-- <label>Title : </label> -->
