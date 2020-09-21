@@ -42,6 +42,7 @@ class Tour(models.Model):
     nearestLocation4 = models.CharField(max_length=500, null=True,blank=True)
     nearestLocation4_distance = models.FloatField(null=True, blank=True)
     nlocationconnected4 = models.TextField(null=True, blank=True)
+    publish_mode = models.BooleanField(default=False)
 
     def __str__(self):
         return self.tourHeading
