@@ -96,7 +96,7 @@ def agencyTours(request,uid,agid):
         return HttpResponse("BAD REQUEST")
 
 
-def editTours(request,agentId,tourId,):
+def editTours(request,agentId,tourId):
     user = request.user
     if user.is_authenticated and request.session['access_type']=='seller':
         if user.userAccess.agentId == agentId:
@@ -117,4 +117,24 @@ def editTours(request,agentId,tourId,):
             return HttpResponse("404 forbidden")
     else:
         return HttpResponse("404 forbidden")
+
+
+
+def deleteteTour(request,agentId,tourId):
+    user = request.user
+    if user.is_authenticated and request.session['access_type']=='seller':
+        if user.userAccess.agentId == agentId:
+            if Tour.objects.filter(tourId=tourId,seller=user).exists():
+                tour = Tour.objects.get(tourId=tourId)
+                tour.delete()
+                messages.success(request,'Tou deleted succesfully')
+                return redirect('/travelagency/agencytours/{}/{}'.format(user.id,user.userAccess.agentId)')
+            else:
+                return HttpResponse('BAD REQUEST')
+        else:
+            return HttpResponse('404 ERROR')
+    return HttpResponse('404 ERROR')
+
+
+
 
