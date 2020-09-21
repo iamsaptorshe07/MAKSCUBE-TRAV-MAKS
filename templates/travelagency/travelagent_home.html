@@ -376,6 +376,12 @@
 		border-radius: 5px;
 		color: #fff;
 	}
+	#errormsgbg{
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
 </style>
 
 {% endblock stylesheets %}
@@ -497,7 +503,7 @@
 			<div class="cd">
 				<label>Special Offer :</label><br>
 				<li class="">
-					Do You Have Any Special Offer ? 
+					Do You Have Any Special Offer ?<br>
 					<select name="spoffer" id="spoffer" class="form-control" required onchange="setsp();">
 						<option class="hidden" id="tourtype" value="" disabled="" selected=""
 							style="text-align: center;">Select Special Offer *</option>
@@ -695,20 +701,20 @@
 		}
 	});
 
-	// $(function(){
-	// 	let spo=document.getElementById('spod');
-	// 	spo.style.display='none';
-	// })
+	$(function(){
+		let spo=document.getElementById('spod');
+		spo.style.visibility='hidden';
+	})
 	function setsp(){
 		let spo=document.getElementById('spoffer');
 		let spod=document.getElementById('spod');
 		let spofferdetails=document.getElementById('spofferdetails');
 		if(spo.value!=='yes'){
-			// spod.style.display='none';
+			spod.style.visibility='hidden';
             $('#spofferdetails').removeAttr('required');
 		}
 		else{
-			// spod.style.display='block';
+			spod.style.visibility='visible';
 			$('#spofferdetails').attr('required','required');
 		}
 	}
@@ -723,7 +729,7 @@
 		// msg.push('hello');
 		if(msg.length>0){
             errormsg.innerHTML=msg.join('\n');
-            errormsgbg.style.width="500px";
+            // errormsgbg.style.width="500px";
             errormsg.style.padding="8px";
             errormsgbg.style.borderRadius="5px";
             errormsgbg.style.backgroundColor='#FBD0F5';
