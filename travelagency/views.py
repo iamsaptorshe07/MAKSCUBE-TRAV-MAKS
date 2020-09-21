@@ -3,6 +3,7 @@ from accounts.models import *
 from .models import *
 from django.http import *
 from .tests import *
+from django.contrib import messages
 # Create your views here.
 def travelagency_home(request,agid):
     return render(request,'travelagency/travelagent_home.html')
@@ -63,8 +64,37 @@ def addTour(request,uid,agid):
                 
             )
             tour.save()
-            return HttpResponse("TOUR IS ADDED")
+            messages.success(request,'Tour Added Successfully')
+            return redirect('/')
         else:
             return render(request,'travelagency/travelagent_home.html')
     else:
         return HttpResponse("BAD REQUEST")
+
+
+def agencyTours(request,uid,agid):
+    user = request.user
+    print(type(uid))
+    print(type(agid))
+    print(type(user.id))
+    print(type(user.userAccess.agentId))
+    if user.id == uid and user.userAccess.agentId == agid:
+        print("okay")
+        if request.method == 'POST':
+            pass
+        else:
+            print("Come here")
+            tour = Tour.objects.filter(seller__userAccess__agentId = agid)
+            for i in tour:
+                print(i.endLocation)
+            print(tour)
+            context = {
+                'Tours':tour,
+            }
+            return render(request,'travelagency/agency_tours.html',context=context)
+    else:
+        return HttpResponse("BAD REQUEST")
+
+
+def editTours(request):
+    return render(request,'travelagency/edit_tours.html')

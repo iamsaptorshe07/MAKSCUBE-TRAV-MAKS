@@ -1,0 +1,52 @@
+{% extends 'basetemplate.html' %}
+{% load static %}
+{% block stylesheets %}
+<!-- Enter your CSS links / inlines CSS here-->
+
+<!-- CSS ends here-->
+{% endblock stylesheets %}
+
+{% block body %}
+<!-- HTML starts here -->
+<div class="container">
+    <table class='table table-bordered'>
+        <tr class="bg-primary" style="color: white;">
+            <th>Tour Heading </th>
+            <th>Price per people</th>
+            <th>Tour ID</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Start Location</th>
+            <th>End Location</th>
+            <th>Tour Type</th>
+            <th>Thumbnail</th>
+            <th>Can Book Upto</th>
+            <th>Action</th>
+        </tr>
+    {% for tour in Tours %}
+    <tr>
+        <td>{{tour.tourHeading}} </td>
+        <td>{{tour.price}}</td>
+        <td>{{tour.tourId}} </td>
+        <td>{{tour.startDate}} </td>
+        <td>{{tour.endDate}} </td>
+        <td>{{tour.startingLocation}} </td>
+        <td>{{tour.endLocation}}</td>
+        <td>{{tour.tour_type}} </td>
+        <td><img src="{{tour.thumbnail.url}}" height="200" width="200"></td>
+        <td>{{tour.canbookUpto}} </td>
+        <td>
+            <button type="button" class="btn btn-primary btn-sm">Edit</button>
+            <button type="button" class="btn btn-danger btn-sm mt-2">Delete</button>
+        </td>
+        
+    </tr>
+    {% endfor %}
+    </table>
+</div>
+<!-- HTML ends here -->
+
+<!-- JS starts here-->
+
+<!-- JS ends here -->
+{% endblock body %}

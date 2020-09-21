@@ -326,7 +326,7 @@
 		<ul>
 			<li class="nav-item">
 				<img src="{% static 'travelagency_img/map.png' %}">
-		        <a target="_blank" class="nav-link " href="#">Our Agency Tour</a>
+		        <a target="_blank" class="nav-link " href="/travelagency/agencytours/{{request.user.id}}/{{request.user.userAccess.agentId}}">Agency Tours</a>
 		    </li>
 		    <li class="nav-item">
 				<img src="{% static 'travelagency_img/calendar.png' %}">
