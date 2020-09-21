@@ -142,7 +142,7 @@ def deleteteTour(request,agentId,tourId):
                 tour = Tour.objects.get(tourId=tourId)
                 tour.delete()
                 messages.success(request,'Tou deleted succesfully')
-                return redirect('/travelagency/agencytours/{}/{}'.format(user.id,user.userAccess.agentId)')
+                return redirect('/travelagency/agencytours/{}/{}'.format(user.id,user.userAccess.agentId))
             else:
                 return HttpResponse('BAD REQUEST')
         else:

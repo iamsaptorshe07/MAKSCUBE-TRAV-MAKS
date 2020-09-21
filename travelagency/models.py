@@ -11,8 +11,8 @@ class Tour(models.Model):
     )
     seller = models.ForeignKey(User,on_delete=models.CASCADE,related_name='agencyOwner')
     agency = models.ForeignKey(AgencyDetail,on_delete=models.CASCADE,related_name='tourAgency')
-    creationDate = models.DateField(auto_now_add=True)
-    maximum_people = models.IntegerField(default=30)
+    #creationDate = models.DateField(auto_now_add=True)
+    #maximum_people = models.IntegerField(default=30)
     tourId = models.CharField(max_length=30,unique=True)
     tourHeading = models.CharField(max_length=1000)
     tourSlug = models.SlugField(unique=True,max_length=255)
@@ -21,7 +21,7 @@ class Tour(models.Model):
     startDate = models.DateField()
     endDate = models.DateField()
     description = models.TextField()
-    overview = models.TextField(null=True,blank=True)
+    #overview = models.TextField(null=True,blank=True)
     inclusive = models.TextField()
     exclusive = models.TextField()
     highlight = models.TextField()
@@ -42,7 +42,7 @@ class Tour(models.Model):
     nearestLocation4 = models.CharField(max_length=500, null=True,blank=True)
     nearestLocation4_distance = models.FloatField(null=True, blank=True)
     nlocationconnected4 = models.TextField(null=True, blank=True)
-    publish_mode = models.BooleanField(default=False)
+    #publish_mode = models.BooleanField(default=False)
 
     def __str__(self):
         return self.tourHeading
