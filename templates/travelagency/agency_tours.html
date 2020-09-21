@@ -36,7 +36,9 @@
         <td><img src="{{tour.thumbnail.url}}" height="200" width="200"></td>
         <td>{{tour.canbookUpto}} </td>
         <td>
+            <a href='/travelagency/agencytours/edit-tour/{{tour.seller.userAccess.agentId}}/{{tour.tourId}}'>
             <button type="button" class="btn btn-primary btn-sm">Edit</button>
+            </a>
             <button type="button" class="btn btn-danger btn-sm mt-2">Delete</button>
         </td>
         
