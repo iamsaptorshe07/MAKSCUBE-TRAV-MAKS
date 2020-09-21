@@ -65,9 +65,10 @@ def addTour(request,uid,agid):
             )
             tour.save()
             messages.success(request,'Tour Added Successfully')
-            return redirect('/')
+            return render(request,'travelagency/agency_tours.html')
         else:
-            return render(request,'travelagency/travelagent_home.html')
+            return HttpResponse("BAD REQUEST")
+            #return render(request,'travelagency/travelagent_home.html')
     else:
         return HttpResponse("BAD REQUEST")
 
