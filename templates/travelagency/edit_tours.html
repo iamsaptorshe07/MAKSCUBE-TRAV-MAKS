@@ -622,18 +622,35 @@
 				$('#txtT').datepicker("option", "minDate", tomorrow);
 			}
 		});
+		
+
+		var mindate={{request.startdate}};
+
+		mindate=new Date(mindate);
+		var tomorrow=(mindate.getTime() + (24 * 60 * 60 * 1000));
 		$('#txtT').datepicker({
 			showAnim: 'drop',
 			numberOfMonths: 1,
 			dateFormat: 'mm/dd/yy',
-
-			// mindate -> comes from backend
-
-			minDate:mindate
+			minDate:tomorrow
 		});
 	});
+	
 	$(function(){
-		let ggg=4;
+
+		var sd={{request.startdate}};
+
+		console.log(sd);
+		sd = new Date(sd);
+
+		var ed={{request.enddate}};
+
+		console.log(ed);
+		ed = new Date(ed);
+		var d = ed.getTime() - sd.getTime();
+		var x = d / (1000 * 3600 * 24) + 1;
+		// let ggg=4;
+		let ggg=x;
 		for (let i = 0; i < ggg; i++) {
 			// console.log('hi');
 			var content = document.createElement("div");
@@ -710,10 +727,10 @@
 		let ayan=document.querySelectorAll('.card');
 		let ayanln=ayan.length;
 
-		// let gggg = 0;
+		// var sd = '09/22/2020';
 
-		// sd is non editable starting date, comes from backend
-		var sd = '09/22/2020';
+		var sd={{request.startdate}};
+
 		console.log(sd);
 		sd = new Date(sd);
 		var ed = document.getElementById('txtT').value;
@@ -721,8 +738,8 @@
 		ed = new Date(ed);
 		var d = ed.getTime() - sd.getTime();
 		var x = d / (1000 * 3600 * 24) + 1;
-		console.log($('#txf'), $('#txtT'));
-		console.log(sd, ed, d, x);
+		// console.log($('#txf'), $('#txtT'));
+		// console.log(sd, ed, d, x);
 		
 		if(x>ayanln){
 			for (let i = 0; i <(x-ayanln); i++) {
