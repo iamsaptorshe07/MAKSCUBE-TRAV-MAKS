@@ -4,6 +4,7 @@ from .models import *
 from django.http import *
 from .tests import *
 from django.contrib import messages
+
 # Create your views here.
 def travelagency_home(request,agid):
     return render(request,'travelagency/travelagent_home.html')
@@ -20,6 +21,7 @@ def addTour(request,uid,agid):
                 slocation = request.POST.get('slocation')
                 elocation = request.POST.get('elocation')
                 price = request.POST.get('price')
+                maximum_people = request.POST.get('seat')
                 ttype = request.POST.get('ttype')
                 thumbnail = request.FILES.get('thumbnail')
                 ttitle = request.POST.get('ttitle')
@@ -79,9 +81,7 @@ def agencyTours(request,uid,agid):
     user = request.user
     if user.is_authenticated and request.session['access_type']=='seller':
         if user.id == uid and user.userAccess.agentId == agid:
-            if request.method == 'POST':
-                pass
-            else:
+            if request.method == 'GET':
                 tour = Tour.objects.filter(seller__userAccess__agentId = agid)
                 for i in tour:
                     print(i.endLocation)
@@ -90,6 +90,8 @@ def agencyTours(request,uid,agid):
                     'Tours':tour,
                 }
                 return render(request,'travelagency/agency_tours.html',context=context)
+            else:
+                return HttpResponse("BAD REQUEST")
         else:
             return HttpResponse("BAD REQUEST")
     else:
@@ -102,29 +104,54 @@ def editTours(request,agentId,tourId):
         if user.userAccess.agentId == agentId:
             if Tour.objects.filter(tourId=tourId,seller=user).exists():
                 tour = Tour.objects.get(tourId=tourId)
-                if request.method == 'POST':
-                    sdate = tourDate(request.POST.get('sdate'))
-                    print("\n\n",sdate,"\n\n")
-                    edate = tourDate(request.POST.get('edate'))
-                    print("\n\n",edate,"\n\n")
-                    slocation = request.POST.get('slocation')
-                    elocation = request.POST.get('elocation')
-                    price = request.POST.get('price')
-                    ttype = request.POST.get('ttype')
-                    if request.FILES.get('thumbnail') is not None:
-                        thumbnail = request.FILES.get('thumbnail')
-                    ttitle = request.POST.get('ttitle')
-                    inclusive = request.POST.get('inclusive')
-                    exclusive = request.POST.get('exclusive')
-                    highlight = request.POST.get('highlight')
-                    overview = request.POST.get('overview')
-                    duration = tourDuration(request.POST.get('sdate'),request.POST.get('edate'))+2
+                if tour.publish_mode:
+                    return redirect('/')
                 else:
-                    #Samiran complete/restructure it 
-                    context = {
-                        'Tour':tour
-                    }
-                    return render(request,'travelagency/edit_tours.html',context=context)
+                    if request.method == 'POST':
+                        sdate = tourDate(request.POST.get('sdate'))
+                        print("\n\n",sdate,"\n\n")
+                        edate = tourDate(request.POST.get('edate'))
+                        print("\n\n",edate,"\n\n")
+                        slocation = request.POST.get('slocation')
+                        elocation = request.POST.get('elocation')
+                        price = request.POST.get('price')
+                        ttype = request.POST.get('ttype')
+                        if request.FILES.get('thumbnail') is not None:
+                            thumbnail = request.FILES.get('thumbnail')
+                        ttitle = request.POST.get('ttitle')
+                        inclusive = request.POST.get('inclusive')
+                        exclusive = request.POST.get('exclusive')
+                        highlight = request.POST.get('highlight')
+                        overview = request.POST.get('overview')
+                        maximum_people = request.POST.get('seat')
+                        description_dct = {}
+                        for i in range(duration):
+                            description_dct['day{}'.format(i+1)]=[request.POST.get('dayTitle{}'.format(i+1)),request.POST.get('dayDescription{}'.format(i+1))]
+                        print(description_dct)
+                        slug = ''
+                        for character in ttitle:
+                            if character.isalnum():
+                                slug+=character
+                        slug+='_tourfrom_{}to{}_startingfrom{}_by{}-{}_tourId-{}_{}'.format(
+                            slocation,elocation,sdate,agid,uid,tourId,ttype
+                        )
+                        print('\n\n',slug,'\n\n')
+                        description = descriptionMaker(description_dct)
+                        
+                    else:
+                        #Samiran complete/restructure it 
+                        desc = descriptionExtractor(tour.description)
+                        print("\n\n",desc)
+                        desc['day0']="Okaye"
+                        desc['Tour'] = tour
+                        print("\n\n",desc)
+                        '''
+                        context = {
+                            'Tour':tour,
+                            'desc': desc1
+                        }
+                        '''
+                        return render(request,'travelagency/edit_tours.html',context=desc)
             else:
                 return HttpResponse("BAD REQUEST")
         else:

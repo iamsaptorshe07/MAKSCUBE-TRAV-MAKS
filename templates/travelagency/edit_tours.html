@@ -392,7 +392,7 @@
 		pointer-events: none;
 	}
 	.editbtn{
-		margin-left: 30px;
+		/* margin-left: 30px; */
 		width: 100%;
 		display: flex;
 		justify-content: center;
@@ -461,17 +461,17 @@
 		<span class="title">
 			<!-- <label>Title : </label> -->
 			<input type="text" name="ttitle" class="form-control" placeholder="Title *"
-				style="height: 50px;left: 0;width: 100%;" readonly>
+				style="height: 50px;left: 0;width: 100%;" value="{{Tour.tourHeading}}" readonly>
 		</span>
 		<div class="info">
 			<div class="cd">
 				<!-- <div class="block"><img src="{% static 'travelagency_img/calendar.png' %}"></div> -->
 				<label>Enter Date :</label>
-				<li>Startind Date<input id="txtF" name="sdate" class="form-control disable-click" style="text-align: center;"
-						placeholder="mm/dd/yyyy" readonly>
+				<li>Startind Date<input id="txtF" name="sdate" value="{{Tour.startDate}}" class="form-control disable-click" style="text-align: center;"
+						placeholder="mm/dd/yyyy" readonly> 
 				</li>
 				<br>
-				<li>Ending Date<input id="txtT" name="edate" class="form-control disable-click" style="text-align: center;"
+				<li>Ending Date<input id="txtT" name="edate" value="{{Tour.endDate}}" class="form-control disable-click" style="text-align: center;"
 						 placeholder="mm/dd/yyyy" readonly>
 				</li>
 				<br>
@@ -481,14 +481,14 @@
 				<label>Enter Location :</label>
 				<li>
 					Starting Point * <br>
-					<input type="text" class="form-control" name="slocation" placeholder="Starting Location *" value=""
+					<input type="text" class="form-control" name="slocation" placeholder="Starting Location *" value="{{Tour.startingLocation}}"
                     readonly />
 				</li>
 				<br>
 				<li>
 					Ending Point *
 					<br>
-					<input type="text" class="form-control" name="elocation" placeholder="Ending Location *" value=""
+					<input type="text" class="form-control" name="elocation" placeholder="Ending Location *" value="{{Tour.endLocation}}"
                     readonly />
 				</li>
 			</div>
@@ -496,13 +496,13 @@
 				<label>Enter Price : </label><br>
 				<li class="">
 					Enter Price *
-					<input type="number" class="form-control" name="price" placeholder="Price per People *" value=""
+					<input type="number" class="form-control" name="price" placeholder="Price per People *" value="{{Tour.price}}"
 						min="150" readonly />
 				</li>
 				<br>
 				<li class="">
 					Enter Number of Seats *
-					<input type="number" class="form-control" name="seat" placeholder="Length of Your Group" min="1" readonly />
+					<input type="number" class="form-control" value="{{Tour.maximum_people}}" name="seat" placeholder="Length of Your Group" min="1" readonly />
 				</li>
 			</div>
 			<div class="cd">
@@ -510,7 +510,7 @@
 				<li class="">
 					Enter Type of the Tour *
 					<select id="tourtype" class="form-control disable-click" readonly name="ttype">
-						<option class="hidden" id="tourtype" value="" disabled="" selected=""
+						<option class="hidden" id="tourtype" value="{{Tour.tour_type}}" disabled="" selected=""
 							style="text-align: center;">Select Tour Type *</option>
 						<option value="Family Special">Family Special</option>
 						<option value="Friends Special">Friends Special</option>
@@ -549,16 +549,16 @@
 			<div class="col-md-6">
 				<label>Tour Inclusive :</label>
 				<div class="form-group">
-					<textarea class="form-control" minlength="20" name="inclusive" placeholder="Enter some Text"
-						rows="5" id="comment" readonly></textarea>
+					<textarea class="form-control" name="inclusive"
+						rows="5" id="comment" readonly>"{{Tour.inclusive}}"</textarea>
 				</div>
 			</div>
 
 			<div class="col-md-6">
 				<label>Tour Exclusive :</label>
 				<div class="form-group">
-					<textarea class="form-control" name="exclusive" minlength="10" placeholder="Enter some Text"
-						rows="5" id="comment" readonly></textarea>
+					<textarea class="form-control" name="exclusive"
+						rows="5" id="comment" readonly>"{{Tour.exclusive}}"</textarea>
 				</div>
 			</div>
 			<!-- </div> -->
@@ -567,14 +567,14 @@
 				<label>Special Highlights :</label>
 				<div class="form-group">
 					<textarea class="form-control" name="highlight" minlength="20" placeholder="Enter Text" rows="5"
-						id="comment" readonly></textarea>
+						id="comment" readonly>"{{Tour.highlight}}"</textarea>
 				</div>
 			</div>
 			<div class="col-md-6">
 				<label>Overview :</label>
 				<div class="form-group">
-					<textarea class="form-control" name="overview" minlength="20" placeholder="Enter Text" rows="5"
-						id="comment" readonly></textarea>
+					<textarea class="form-control" name="overview"  minlength="20" placeholder="Enter Text" rows="5"
+						id="comment" readonly>"{{Tour.overview}}"</textarea>
 				</div>
 			</div>
 			<!-- </div> -->
@@ -607,49 +607,35 @@
 		$('#txtF').removeAttr('required');
 		$('#txtF').attr('readonly','true');
 		$('#txtF').addClass('disable-click');
-		
+		$('textarea').removeAttr('readonly');
     }
 	$(function () {
-		var mindate = new Date();
-		$('#txtF').datepicker({
-			numberOfMonths: 1,
-			showAnim: 'drop',
-			minDate: mindate,
-			dateFormat: 'mm/dd/yy',
-			onClose: function (sd) {
-				var k = new Date(sd);
-				var tomorrow = new Date(k.getTime() + (24 * 60 * 60 * 1000));
-				$('#txtT').datepicker("option", "minDate", tomorrow);
-			}
-		});
-		
-
-		var mindate={{request.startdate}};
-
+		var mindate="{{Tour.startDate}}";
 		mindate=new Date(mindate);
-		var tomorrow=(mindate.getTime() + (24 * 60 * 60 * 1000));
+		var tomorrow = new Date(mindate.getTime() + (24 * 60 * 60 * 1000));
 		$('#txtT').datepicker({
 			showAnim: 'drop',
 			numberOfMonths: 1,
 			dateFormat: 'mm/dd/yy',
+
+			// mindate -> comes from backend
+
 			minDate:tomorrow
 		});
 	});
-	
 	$(function(){
-
-		var sd={{request.startdate}};
+		var sd="{{Tour.startDate}}";
 
 		console.log(sd);
 		sd = new Date(sd);
 
-		var ed={{request.enddate}};
+		var ed="{{Tour.endDate}}";
 
 		console.log(ed);
 		ed = new Date(ed);
 		var d = ed.getTime() - sd.getTime();
 		var x = d / (1000 * 3600 * 24) + 1;
-		// let ggg=4;
+		console.log(sd,ed,x);
 		let ggg=x;
 		for (let i = 0; i < ggg; i++) {
 			// console.log('hi');
@@ -683,8 +669,15 @@
 			cb12i.required = 'required';
 			cb12i.type = 'text';
 			cb12i.classList.add('form-control');
-			cb12i.placeholder = 'Title ' + (i + 1);
+			// cb12i.placeholder = 'Title ' + (i + 1);
+			cb12i.readOnly = "readonly";
 			cb12i.name = 'dayTitle' + (i + 1);
+			
+			var xxx = (i+1) + '}}'
+			var day ='day' + xxx;
+			var de = '{{'+day;	
+			console.log(de);
+			cb12i.value=de;
 
 			cb12.appendChild(cb12i);
 
@@ -709,6 +702,9 @@
 			cbt.id = 'comment';
 			cbt.rows = "4";
 			cbt.name = 'dayDescription' + (i + 1);
+			cbt.readOnly = "readonly";
+			cbt.value='test';
+		
 
 			cb2.appendChild(cbt);
 
@@ -727,10 +723,11 @@
 		let ayan=document.querySelectorAll('.card');
 		let ayanln=ayan.length;
 
+		// let gggg = 0;
+
+		// sd is non editable starting date, comes from backend
 		// var sd = '09/22/2020';
-
-		var sd={{request.startdate}};
-
+		var sd="{{Tour.startDate}}";
 		console.log(sd);
 		sd = new Date(sd);
 		var ed = document.getElementById('txtT').value;
@@ -738,8 +735,8 @@
 		ed = new Date(ed);
 		var d = ed.getTime() - sd.getTime();
 		var x = d / (1000 * 3600 * 24) + 1;
-		// console.log($('#txf'), $('#txtT'));
-		// console.log(sd, ed, d, x);
+		console.log($('#txf'), $('#txtT'));
+		console.log(sd, ed, d, x);
 		
 		if(x>ayanln){
 			for (let i = 0; i <(x-ayanln); i++) {
