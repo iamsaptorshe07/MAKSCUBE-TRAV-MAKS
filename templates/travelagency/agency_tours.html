@@ -3,49 +3,347 @@
 {% block stylesheets %}
 <!-- Enter your CSS links / inlines CSS here-->
 
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+    *{
+		list-style: none;	
+	}
+	body{
+		background: rgb(186,224,245);
+		background: linear-gradient(90deg, rgba(186,224,245,1) 21%, rgba(221,221,237,1) 57%, rgba(143,228,245,1) 100%);
+	}
+	
+	.main{
+		height: auto;
+		padding: 0;
+		margin: 20px;
+		left: 0;
+		display: flex;
+		justify-content: space-between;
+
+	}
+	.sidebar{
+		width: 250px;
+		position: fixed;
+		height: 100%;
+		padding-top: 20px;
+		top: 60px;
+		left: 0;
+		z-index: 1;
+		border-radius: 5px;
+	}
+	.sidebar ul{
+		margin: 10px;
+	}
+	.sidebar ul li{
+		height: 70px;
+		display: flex;
+		align-items: center;
+		font-size: 20px;
+	}
+	.sidebar ul li a{
+		color: black;
+	}
+	.sidebar ul li:hover{
+    background-image: linear-gradient(to top, #00c6fb 0%, #2debc5 50%);
+	}
+	.sidebar ul li img{
+		width: 35px;
+		height: 35px;
+	}
+	.content{
+		width: calc(100% - 260px);
+		margin-left: 260px;
+        max-width: 1700px !important;
+        padding: 0px!important;
+	}
+    .mytable{
+        width: 100%;
+    }
+    .mycell {
+        width: 100%;
+        display: grid;
+        grid-gap: 10px;
+        margin-bottom: 20px;
+        /* background-color: #2196F3; */
+        padding: 10px;
+        border-radius: 5px;
+        overflow-x: scroll;
+    }
+
+    .gi {
+        /* background-color: rgba(255, 255, 255, 0.8); */
+        text-align: center;
+        padding: 8px;
+        font-size: 16px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-flow: column;
+        min-width: 100px;
+    }
+
+    .gi1 {
+        grid-column: 1 / span 2;
+        grid-row: 1;
+    }
+    .gi2 {
+        grid-column: 1;
+        grid-row: 2;
+    }
+    .gi3 {
+        grid-column: 2;
+        grid-row: 2;
+    }
+    .gi4 {
+        grid-column: 3;
+        grid-row: 2;
+    }
+    .gi5 {
+        grid-column: 4;
+        grid-row: 2;
+    }
+    .gi6 {
+        grid-column: 5;
+        grid-row: 2;
+    }
+    .gi7 {
+        grid-column: 6;
+        grid-row: 2;
+    }
+    .gi2x{
+        grid-column: 1;
+        grid-row: 3;
+    }
+    .gi3x{
+        grid-column: 2;
+        grid-row: 3;
+    }
+    .gi4x{
+        grid-column: 3;
+        grid-row: 3;
+    }
+    .gi5x{
+        grid-column: 4;
+        grid-row: 3;
+    }
+    .gi6x{
+        grid-column: 5;
+        grid-row: 3;
+    }
+    .gi7x{
+        grid-column: 6;
+        grid-row: 3;
+    }
+    .gi8 {
+        grid-column: 7 / span 3;
+        grid-row: 2/span 3;
+        display: flex;
+        padding: 2px;
+    }
+    .gi8 img{
+        object-fit: cover;
+
+    }
+    .gi9{
+        grid-column:1 / span 6;
+        grid-row: 4;
+        flex-flow: row;
+        padding: 5px;
+    }
+    .editbtn{
+        width: 70px;
+        background-color: green;
+        border-radius: 5px;
+    }
+    .deletebtn{
+        width: 90px;
+        background-color: red;
+        border-radius: 5px;
+    }
+    .gi2, .gi3, .gi4, .gi5, .gi6, .gi7{
+        /* border: 1px solid ; */
+        border-radius: 5px;
+        height: 50px;
+        background: rgb(0,114,255);
+        background: linear-gradient(90deg, rgba(0,114,255,1) 13%, rgba(7,132,200,1) 49%, rgba(39,193,245,1) 82%, rgba(0,243,255,1) 100%);
+
+    } 
+    .gi6, .gi6x, .gi2, .gi2x, .gi5, .gi5x, .gi8{
+        width: 220px;
+        /* overflow-x: scroll; */
+    }
+    .mycell{
+        border: 1px skyblue solid;
+        margin-bottom: 10px;
+    }
+    .gi8 img{
+        width: 200px;
+        height: auto;
+    }
+    .gi9{
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+    }
+    .gi9 button{
+        margin-right: 20px;
+        /* font-weight: bold; */
+        font-size: 16px;
+    }
+
+    @media screen and (max-width: 850px) {
+		
+		.sidebar{
+			width: 100%;
+			height: 120px;
+            background: rgb(186,224,245);
+            background: linear-gradient(90deg, rgba(186,224,245,1) 21%, rgba(221,221,237,1) 57%, rgba(143,228,245,1) 100%);
+		}
+		.sidebar ul{
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-flow: row;
+		}
+		.sidebar ul li a{
+			font-size: 16px;
+		}
+		.content{
+			width: 100%;
+			/* padding:30px; */
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-flow: column;
+			margin:80px 10px 0px 0px!important;
+			margin-top: 80px;
+		}
+        .gi1{
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
+	}
+
+    @media screen and (max-width: 630px) {
+		.main{
+			width: 100%;
+			margin-left: 0;
+            left: 0;
+		}
+		.content{
+			width: 100%;
+			padding: 10px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-flow: column;
+			margin-left: 0;
+			left: 0;
+			margin-top: 80px;
+            /* overflow-x: scroll; */
+		}
+		.sidebar ul li{
+			border: 1px solid skyblue;
+			margin-left: 5px;
+			/*text-decoration:underline;*/
+			width: 70px;
+			display: flex;
+			flex-flow: row;
+			align-items: center;
+			justify-content: center;
+		}
+		.sidebar ul li a{
+
+			font-size: 12px!important;
+		}
+		.sidebar ul li img{
+			display: none;
+		}
+
+	}
+</style>
 <!-- CSS ends here-->
 {% endblock stylesheets %}
 
 {% block body %}
 <!-- HTML starts here -->
-<div class="container">
-    <table class='table table-bordered'>
-        <tr class="bg-primary" style="color: white;">
-            <th>Tour Heading </th>
-            <th>Price per people</th>
-            <th>Tour ID</th>
-            <th>Start Date</th>
-            <th>End Date</th>
-            <th>Start Location</th>
-            <th>End Location</th>
-            <th>Tour Type</th>
-            <th>Thumbnail</th>
-            <th>Can Book Upto</th>
-            <th>Action</th>
-        </tr>
-    {% for tour in Tours %}
-    <tr>
-        <td>{{tour.tourHeading}} </td>
-        <td>{{tour.price}}</td>
-        <td>{{tour.tourId}} </td>
-        <td>{{tour.startDate}} </td>
-        <td>{{tour.endDate}} </td>
-        <td>{{tour.startingLocation}} </td>
-        <td>{{tour.endLocation}}</td>
-        <td>{{tour.tour_type}} </td>
-        <td><img src="{{tour.thumbnail.url}}" height="200" width="200"></td>
-        <td>{{tour.canbookUpto}} </td>
-        <td>
-            <a href='/travelagency/agencytours/edit-tour/{{tour.seller.userAccess.agentId}}/{{tour.tourId}}'>
-            <button type="button" class="btn btn-primary btn-sm">Edit</button>
-            </a>
-            <button type="button" class="btn btn-danger btn-sm mt-2">Delete</button>
-        </td>
-        
-    </tr>
-    {% endfor %}
-    </table>
+<div class="main">
+	<div class="sidebar">
+		<ul>
+			<li class="nav-item">
+				<img src="{% static 'travelagency_img/map.png' %}">
+		        <a target="_blank" class="nav-link " href="/travelagency/agencytours/{{request.user.id}}/{{request.user.userAccess.agentId}}">Agency Tours</a>
+		    </li>
+		    <li class="nav-item">
+				<img src="{% static 'travelagency_img/calendar.png' %}">
+		        <a target="_blank" class="nav-link" href="#">Booked Tours</a>
+		    </li>
+		    <li class="nav-item">
+				<img src="{% static 'travelagency_img/clipboard.png' %}">
+		        <a target="_blank"class="nav-link" href="#">Agency Earning</a>
+		    </li>
+		    <li class="nav-item">
+				<img src="{% static 'travelagency_img/picture.png' %}">
+		        <a target="_blank" class="nav-link" href="#">Ongoing Tour</a>
+		    </li>
+		    <li class="nav-item">
+				<img src="{% static 'travelagency_img/job.png' %}">
+		        <a target="_blank" class="nav-link" href="#">Booking History</a>
+		    </li>
+		</ul>
+	</div>
+
+    <div class="container content">
+        <div class="mytable">
+            {% for tour in Tours %}
+            <div class="mycell">
+                <div class="gi1 gi"><div style="font-size:30px;font-weight:bold;left: 0;">{{tour.tourHeading}}</div></div>
+                <div class="gi2 gi"><span class="gihead">Tour ID </span></div>
+                <div class="gi2x gi" style="font-weight:bold;">{{tour.tourId}}</div>
+                <div class="gi3 gi"><span class="gihead">Tour Type</span> </div>
+                <div class="gi3x gi">
+                    {{tour.tour_type}}
+                </div>
+                <div class="gi4 gi"><span class="gihead">Price per People</span></div>
+                <div class="gi4x gi">{{tour.price}}</div>
+                <div class="gi5 gi">
+                    <span class="gihead">Date</span>
+                </div>
+                <div class="gi5x gi">
+                    <span style="font-weight:bold;">Starting Date</span>
+                    <span>{{tour.startDate}}</span>
+                    <span style="font-weight:bold;">Ending Date</span>
+                    <span>{{tour.endDate}}</span>
+                </div>
+                <div class="gi6 gi">
+                    <span class="githead">Location</span>
+                </div>
+                <div class="gi6x gi">
+                    <span style="font-weight:bold;">Starting Location</span>
+                    <span>{{tour.startingLocation}} </span>
+                    <span style="font-weight:bold;">Ending Location</span>
+                    <span>{{tour.endLocation}} </span>
+                </div>
+                <div class="gi7 gi"><span class="gihead">Can Book upto</span></div>
+                <div class="gi7x gi">
+                    {{tour.canbookUpto}}
+                </div>
+                <div class="gi8 gi"><img src="{{tour.thumbnail.url}}"><br><span style="font-weight:bold;border-bottom: 1px black solid;">Thumbnail</span></div>
+                <div class="gi9 gi">
+                    <button type="button" class="editbtn" 
+                        onclick="location.href='/travelagency/agencytours/edit-tour/{{tour.seller.userAccess.agentId}}/{{tour.tourId}}'">
+                        Edit
+                    </button>
+                    <button type="button" class="deletebtn">Delete</button>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
 </div>
+
 <!-- HTML ends here -->
 
 <!-- JS starts here-->
