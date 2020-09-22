@@ -29,12 +29,13 @@ def addTour(request,uid,agid):
                 exclusive = request.POST.get('exclusive')
                 highlight = request.POST.get('highlight')
                 overview = request.POST.get('overview')
-                duration = tourDuration(request.POST.get('sdate'),request.POST.get('edate'))+2
+                duration = tourDuration(request.POST.get('sdate'),request.POST.get('edate'))+1
                 tourId = tourIdMaker()
                 print('\n\n',tourId,'\n\n')
                 description_dct = {}
                 for i in range(duration):
-                    description_dct['day{}'.format(i+1)]=[request.POST.get('dayTitle{}'.format(i+1)),request.POST.get('dayDescription{}'.format(i+1))]
+                    description_dct['dayTitle{}'.format(i+1)]=request.POST.get('dayTitle{}'.format(i+1))
+                    description_dct['dayDescription{}'.format(i+1)]=request.POST.get('dayDescription{}'.format(i+1))
                 print(description_dct)
                 slug = ''
                 for character in ttitle:
@@ -64,7 +65,8 @@ def addTour(request,uid,agid):
                     price = price,
                     tour_type = ttype,
                     thumbnail = thumbnail,
-                    
+                    overview = overview,
+                    maximum_people = maximum_people,
                 )
                 tour.save()
                 messages.success(request,'Tour Added Successfully')
@@ -124,10 +126,12 @@ def editTours(request,agentId,tourId):
                         highlight = request.POST.get('highlight')
                         overview = request.POST.get('overview')
                         maximum_people = request.POST.get('seat')
+                        duration = tourDuration(request.POST.get('sdate'),request.POST.get('edate'))+1
                         description_dct = {}
                         for i in range(duration):
-                            description_dct['day{}'.format(i+1)]=[request.POST.get('dayTitle{}'.format(i+1)),request.POST.get('dayDescription{}'.format(i+1))]
-                        print(description_dct)
+                            description_dct['dayTitle{}'.format(i+1)]=request.POST.get('dayTitle{}'.format(i+1))
+                            description_dct['dayDescription{}'.format(i+1)]=request.POST.get('dayDescription{}'.format(i+1))
+                            print(description_dct)
                         slug = ''
                         for character in ttitle:
                             if character.isalnum():
@@ -137,21 +141,18 @@ def editTours(request,agentId,tourId):
                         )
                         print('\n\n',slug,'\n\n')
                         description = descriptionMaker(description_dct)
+                        #not done yet
                         
                     else:
                         #Samiran complete/restructure it 
-                        desc = descriptionExtractor(tour.description)
+                        desc = tour.description.strip('TRAVMAKS')
                         print("\n\n",desc)
-                        desc['day0']="Okaye"
-                        desc['Tour'] = tour
-                        print("\n\n",desc)
-                        '''
                         context = {
                             'Tour':tour,
-                            'desc': desc1
+                            'desc': desc
                         }
-                        '''
-                        return render(request,'travelagency/edit_tours.html',context=desc)
+                        
+                        return render(request,'travelagency/edit_tours.html',context=context)
             else:
                 return HttpResponse("BAD REQUEST")
         else:

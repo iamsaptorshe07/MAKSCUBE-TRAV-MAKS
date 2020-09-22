@@ -519,8 +519,10 @@
 					</select>
 				</li>
 				<br><li class="">
-					Upload Your Thumbnail *
+					Upload Your Thumbnail *<br>
+					<a style="color: rgb(181, 243, 218);" href='{{Tour.thumbnail.url}}'>Previously Uploaed Thumbnail</a>
 					<input type="file" name="thumbnail" id="upload_img" class="form-control upload disable-click"  />
+					
 				</li>
 			</div>
 			<div class="cd">
@@ -637,6 +639,14 @@
 		var x = d / (1000 * 3600 * 24) + 1;
 		console.log(sd,ed,x);
 		let ggg=x;
+
+		var temp = "{{desc}}";
+		console.log("Desc backend :",temp);
+		temp = temp.replace(/&#39;/g,'"');
+		console.log("Desc backend :",temp);
+		var desc = JSON.parse(temp);
+		console.log("Json Parse :",desc);
+
 		for (let i = 0; i < ggg; i++) {
 			// console.log('hi');
 			var content = document.createElement("div");
@@ -673,11 +683,11 @@
 			cb12i.readOnly = "readonly";
 			cb12i.name = 'dayTitle' + (i + 1);
 			
-			var xxx = (i+1) + '}}'
-			var day ='day' + xxx;
-			var de = '{{'+day;	
-			console.log(de);
-			cb12i.value=de;
+
+			
+			var day ='dayTitle' + (i+1);
+			console.log(desc[day]);
+			cb12i.value=desc[day];
 
 			cb12.appendChild(cb12i);
 
@@ -703,7 +713,10 @@
 			cbt.rows = "4";
 			cbt.name = 'dayDescription' + (i + 1);
 			cbt.readOnly = "readonly";
-			cbt.value='test';
+
+			var describ = 'dayDescription' + (i + 1);
+			console.log(desc[describ]);
+			cbt.value=desc[describ];
 		
 
 			cb2.appendChild(cbt);

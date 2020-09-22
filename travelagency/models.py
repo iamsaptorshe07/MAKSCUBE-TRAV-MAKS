@@ -11,7 +11,7 @@ class Tour(models.Model):
     )
     seller = models.ForeignKey(User,on_delete=models.CASCADE,related_name='agencyOwner')
     agency = models.ForeignKey(AgencyDetail,on_delete=models.CASCADE,related_name='tourAgency')
-    creationDate = models.DateField(auto_now_add=True)
+
     maximum_people = models.IntegerField(default=30)
     tourId = models.CharField(max_length=30,unique=True)
     tourHeading = models.CharField(max_length=1000)
@@ -28,6 +28,8 @@ class Tour(models.Model):
     price = models.FloatField()
     tour_type = models.CharField(max_length=500, choices=TOUR_TYPE)
     thumbnail = models.ImageField(upload_to="TourAccountThumbnail")
+
+    creationDate = models.DateField(auto_now_add=True)
     othersThings = models.TextField(blank=True,null=True)
     tags = models.CharField(max_length=300,blank=True,null=True)
     nearestLocation1 = models.CharField(max_length=500, null=True,blank=True)

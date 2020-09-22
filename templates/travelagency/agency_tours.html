@@ -336,7 +336,9 @@
                         onclick="location.href='/travelagency/agencytours/edit-tour/{{tour.seller.userAccess.agentId}}/{{tour.tourId}}'">
                         Edit
                     </button>
-                    <button type="button" class="deletebtn">Delete</button>
+                    <button type="button" class="deletebtn"
+                    onclick="location.href='/travelagency/agencytours/delete-tour/{{tour.seller.userAccess.agentId}}/{{tour.tourId}}'">
+                    Delete</button>
                 </div>
             </div>
             {% endfor %}

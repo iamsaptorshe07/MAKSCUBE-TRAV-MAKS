@@ -6,4 +6,5 @@ urlpatterns = [
     path('myagency/addtour/<int:uid>/<str:agid>',addTour,name='addTour'),
     path('agencytours/<int:uid>/<str:agid>',agencyTours,name='agencyTour'),
     path('agencytours/edit-tour/<agentId>/<tourId>',editTours,name='editTours'),
+    path('agencytours/delete-tour/<agentId>/<tourId>',deleteteTour,name='deleteteTour'),
     ]
