@@ -30,3 +30,6 @@ def tourDetails(request,tourId,slug):
     else:
         return HttpResponse("BAD REQUEST")
 
+
+def bookTour(request):
+    return render(request,'touring/tour_checkout.html')
