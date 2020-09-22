@@ -150,7 +150,3 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'makscub3e@gmail.com'
 EMAIL_HOST_PASSWORD = 'Weareteammaks07!'
 
-
-CRONJOBS = [
-    ('2 2 * * *','travelagency.cronjob.autoPublish')
-]
