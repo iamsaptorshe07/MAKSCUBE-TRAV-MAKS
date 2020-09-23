@@ -439,7 +439,7 @@
 		</ul>
 	</div>
 	<form class="content" method="POST" 
-		action='/travelagency/myagency/addtour/{{request.user.id}}/{{request.user.userAccess.agentId}}' 
+		action='/travelagency/agencytours/edit-tour/{{request.user.userAccess.agentId}}/{{Tour.tourId}}' 
 		enctype="multipart/form-data" 
 		onsubmit="return validator();">
 		
@@ -467,15 +467,15 @@
 			<div class="cd">
 				<!-- <div class="block"><img src="{% static 'travelagency_img/calendar.png' %}"></div> -->
 				<label>Enter Date :</label>
-				<li>Startind Date<input id="txtF" name="sdate" value="{{Tour.startDate}}" class="form-control disable-click" style="text-align: center;"
+				<li>Startind Date<input id="txtF" name="sdate" value="{{Tour.startDate|date:'c'}}" class="form-control disable-click" style="text-align: center;"
 						placeholder="mm/dd/yyyy" readonly> 
 				</li>
 				<br>
-				<li>Ending Date<input id="txtT" name="edate" value="{{Tour.endDate}}" class="form-control disable-click" style="text-align: center;"
-						 placeholder="mm/dd/yyyy" readonly>
+				<li>Ending Date<input id="txtT" name="edate" class="form-control" style="text-align: center;"
+					placeholder="{{Tour.endDate}}" readonly>
 				</li>
 				<br>
-				<li style="display:flex;justify-content: center;"><button class="setdatebtn" type="button" onclick="fun();">Confirm Date</button></li>
+				<li style="display:flex;justify-content: center;"><button class="setdatebtn" class="disable-click" type="button" onclick="fun();">Confirm Date</button></li>
 			</div>
 			<div class="cd">
 				<label>Enter Location :</label>
@@ -511,7 +511,7 @@
 					Enter Type of the Tour *
 					<select id="tourtype" class="form-control disable-click" readonly name="ttype">
 						<option class="hidden" id="tourtype" value="{{Tour.tour_type}}" disabled="" selected=""
-							style="text-align: center;">Select Tour Type *</option>
+							style="text-align: center;">{{Tour.tour_type}}</option>
 						<option value="Family Special">Family Special</option>
 						<option value="Friends Special">Friends Special</option>
 						<option value="Couple Friendly">Couple Friendly</option>
@@ -530,7 +530,7 @@
 				<li class="">
 					Do You Have Any Special Offer ?<br>
 					<select name="spoffer" id="spoffer" class="form-control disable-click" readonly onchange="setsp();">
-						<option class="hidden" id="tourtype" value="" disabled="" selected=""
+						<option class="hidden" id="" value="" disabled="" selected=""
 							style="text-align: center;">Select Special Offer *</option>
 						<option value="yes">Yes</option>
 						<option value="no">No</option>
@@ -589,7 +589,7 @@
 				onclick="removeValidator();">
 			</div>
 		</div> 
-		<span class="submitbtn"><button type="sbumit">Submit</button></span>
+		<span class="submitbtn"><button class="disable-click" type="sbumit">Submit</button></span>
 
 	</form>
 </div>
@@ -610,6 +610,10 @@
 		$('#txtF').attr('readonly','true');
 		$('#txtF').addClass('disable-click');
 		$('textarea').removeAttr('readonly');
+		$('button').removeClass('disable-click');
+		$('select').removeClass('disable-click');
+		$('#upload_img').removeAttr('required');
+		$('#txtT').removeAttr('required');
     }
 	$(function () {
 		var mindate="{{Tour.startDate}}";
@@ -626,26 +630,31 @@
 		});
 	});
 	$(function(){
+		var ttype="{{Tour.tour_type}}";
+		console.log(ttype)
+		var ttype1=document.getElementById('tourtype');
+		ttype1.value=ttype;
+
 		var sd="{{Tour.startDate}}";
 
-		console.log(sd);
+		// console.log(sd);
 		sd = new Date(sd);
 
 		var ed="{{Tour.endDate}}";
 
-		console.log(ed);
+		// console.log(ed);
 		ed = new Date(ed);
 		var d = ed.getTime() - sd.getTime();
 		var x = d / (1000 * 3600 * 24) + 1;
-		console.log(sd,ed,x);
+		// console.log(sd,ed,x);
 		let ggg=x;
 
 		var temp = "{{desc}}";
-		console.log("Desc backend :",temp);
+		// console.log("Desc backend :",temp);
 		temp = temp.replace(/&#39;/g,'"');
-		console.log("Desc backend :",temp);
+		// console.log("Desc backend :",temp);
 		var desc = JSON.parse(temp);
-		console.log("Json Parse :",desc);
+		// console.log("Json Parse :",desc);
 
 		for (let i = 0; i < ggg; i++) {
 			// console.log('hi');
@@ -686,7 +695,7 @@
 
 			
 			var day ='dayTitle' + (i+1);
-			console.log(desc[day]);
+			// console.log(desc[day]);
 			cb12i.value=desc[day];
 
 			cb12.appendChild(cb12i);
@@ -715,7 +724,7 @@
 			cbt.readOnly = "readonly";
 
 			var describ = 'dayDescription' + (i + 1);
-			console.log(desc[describ]);
+			// console.log(desc[describ]);
 			cbt.value=desc[describ];
 		
 
@@ -741,15 +750,15 @@
 		// sd is non editable starting date, comes from backend
 		// var sd = '09/22/2020';
 		var sd="{{Tour.startDate}}";
-		console.log(sd);
+		// console.log(sd);
 		sd = new Date(sd);
 		var ed = document.getElementById('txtT').value;
-		console.log(ed);
+		// console.log(ed);
 		ed = new Date(ed);
 		var d = ed.getTime() - sd.getTime();
 		var x = d / (1000 * 3600 * 24) + 1;
-		console.log($('#txf'), $('#txtT'));
-		console.log(sd, ed, d, x);
+		// console.log($('#txf'), $('#txtT'));
+		// console.log(sd, ed, d, x);
 		
 		if(x>ayanln){
 			for (let i = 0; i <(x-ayanln); i++) {
@@ -828,8 +837,8 @@
 			var deletecards=document.querySelectorAll('.card');
 			var cards=document.getElementById('cards');
 			for(let i=ayanln;i>x;i--){
-				console.log(ayanln,x,deletecards)
-				console.log('hi',deletecards[i]);
+				// console.log(ayanln,x,deletecards)
+				// console.log('hi',deletecards[i]);
 				// deletecards[i].innerHTML='';
 				// cards.removeChild(deletecards[i]);
 				cards.removeChild(cards.lastElementChild);

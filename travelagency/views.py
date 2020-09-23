@@ -110,10 +110,11 @@ def editTours(request,agentId,tourId):
                     return redirect('/')
                 else:
                     if request.method == 'POST':
-                        sdate = tourDate(request.POST.get('sdate'))
-                        print("\n\n",sdate,"\n\n")
-                        edate = tourDate(request.POST.get('edate'))
-                        print("\n\n",edate,"\n\n")
+                        #sdate = tourDate(request.POST.get('sdate'))
+                        if request.POST.get('edate') is not None:
+                            print("\n\n",request.POST.get('edate'),"\n\n")
+                            edate = tourDate(request.POST.get('edate'))
+                            print("\n\n",edate,"\n\n")
                         slocation = request.POST.get('slocation')
                         elocation = request.POST.get('elocation')
                         price = request.POST.get('price')
@@ -126,7 +127,7 @@ def editTours(request,agentId,tourId):
                         highlight = request.POST.get('highlight')
                         overview = request.POST.get('overview')
                         maximum_people = request.POST.get('seat')
-                        duration = tourDuration(request.POST.get('sdate'),request.POST.get('edate'))+1
+                        duration = tourDuration1(request.POST.get('sdate'),request.POST.get('edate'))+1
                         description_dct = {}
                         for i in range(duration):
                             description_dct['dayTitle{}'.format(i+1)]=request.POST.get('dayTitle{}'.format(i+1))

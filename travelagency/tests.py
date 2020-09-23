@@ -34,6 +34,14 @@ def tourDate(sdate):
     return fDate
 
 
+def tourDuration1(sdate,edate):
+    d1=date(tourDate(sdate))
+    d0=date(tourDate(edate))
+
+    duration = d1-d0
+    return duration.days
+
+
 def tourDuration(sdate,edate):
     m,d,y=edate.split('/')
     y=int(y)
