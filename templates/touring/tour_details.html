@@ -295,10 +295,11 @@ background: #007b5e;
            
 			<div class="col-md-3">
 			<div class="container">
-			
-        <button type="button" class="btn btn-prime btn-block"><i class="fa fa-plane fa-lg"></i>&nbsp;Button</button>
-				<div class="popup-btn" style="display:block">
-				<a href="#">Book Now &nbsp;<i class="fa fa-globe"></i></a>
+        <a href="/tour/booktour/{{Tour.tourId}}/{{Tour.seller.userAccess.agentId}}">
+        <button type="button" class="btn btn-prime btn-block"><i class="fa fa-plane fa-lg"></i>&nbsp;BOOK NOW</button>
+        </a>
+        <div class="popup-btn" style="display:block">
+				<a href="/tour/booktour/{{Tour.tourId}}/{{Tour.seller.userAccess.agentId}}">Book Now &nbsp;<i class="fa fa-globe"></i></a>
 			</div>
 
 							<div class="col-md-4">

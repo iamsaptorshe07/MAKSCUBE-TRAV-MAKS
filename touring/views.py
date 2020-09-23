@@ -137,7 +137,7 @@ def recievePayment(request):
                 agent = order.agent,
                 agency=order.agency,
                 tour=order.tour,
-                creation_time = order.creation_time,
+                creation_date = order.creation_date,
                 payment_price = order.payment_price,
                 total_people=order.total_people
             )
