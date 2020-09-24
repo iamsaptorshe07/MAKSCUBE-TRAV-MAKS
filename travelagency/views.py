@@ -44,8 +44,9 @@ def addTour(request,uid,agid):
                 print('\n\n',tourId,'\n\n')
                 description_dct = {}
                 for i in range(duration):
-                    description_dct['dayTitle{}'.format(i+1)]=request.POST.get('dayTitle{}'.format(i+1))
-                    description_dct['dayDescription{}'.format(i+1)]=request.POST.get('dayDescription{}'.format(i+1))
+                    description_dct['dayTitle{}'.format(i+1)]=str(request.POST.get('dayTitle{}'.format(i+1))).strip()
+                    print(request.POST.get('dayDescription{}'.format(i+1)))
+                    description_dct['dayDescription{}'.format(i+1)]=str(request.POST.get('dayDescription{}'.format(i+1))).strip()
                 print(description_dct)
                 slug = ''
                 for character in ttitle:
@@ -62,21 +63,21 @@ def addTour(request,uid,agid):
                     seller = user,
                     agency = user.userAgency,
                     tourId = tourId,
-                    tourSlug = slug,
-                    tourHeading = ttitle,
-                    startingLocation = slocation,
-                    endLocation = elocation,
-                    startDate = sdate,
-                    endDate = edate,
-                    description = description,
-                    inclusive = inclusive,
-                    exclusive = exclusive,
-                    highlight = highlight,
-                    price = price,
-                    tour_type = ttype,
+                    tourSlug = slug.strip(),
+                    tourHeading = ttitle.strip(),
+                    startingLocation = slocation.strip(),
+                    endLocation = elocation.strip(),
+                    startDate = sdate.strip(),
+                    endDate = edate.strip(),
+                    description = description.strip(),
+                    inclusive = inclusive.strip(),
+                    exclusive = exclusive.strip(),
+                    highlight = highlight.strip(),
+                    price = price.strip(),
+                    tour_type = ttype.strip(),
                     thumbnail = thumbnail,
-                    overview = overview,
-                    maximum_people = maximum_people,
+                    overview = overview.strip(),
+                    maximum_people = maximum_people.strip(),
                 )
                 tour.save()
                 messages.success(request,'Tour Added Successfully')
@@ -144,8 +145,8 @@ def editTours(request,agentId,tourId):
 
                         description_dct = {}
                         for i in range(duration):
-                            description_dct['dayTitle{}'.format(i+1)]=request.POST.get('dayTitle{}'.format(i+1))
-                            description_dct['dayDescription{}'.format(i+1)]=request.POST.get('dayDescription{}'.format(i+1))
+                            description_dct['dayTitle{}'.format(i+1)]=request.POST.get('dayTitle{}'.format(i+1)).strip()
+                            description_dct['dayDescription{}'.format(i+1)]=request.POST.get('dayDescription{}'.format(i+1)).strip()
                             print(description_dct)
                         slug = ''
                         for character in ttitle:
@@ -156,20 +157,20 @@ def editTours(request,agentId,tourId):
                         )
                         print('\n\n',slug,'\n\n')
                         description = descriptionMaker(description_dct)
-                        tour.tourHeading = ttitle
-                        tour.tourSlug = slug
-                        tour.startingLocation = slocation
-                        tour.endLocation = elocation
-                        tour.endDate = edate
-                        tour.description = description
-                        tour.inclusive = inclusive
-                        tour.exclusive = exclusive
-                        tour.highlight = highlight
-                        tour.price = price
+                        tour.tourHeading = ttitle.strip()
+                        tour.tourSlug = slug.strip()
+                        tour.startingLocation = slocation.strip()
+                        tour.endLocation = elocation.strip()
+                        tour.endDate = edate.strip()
+                        tour.description = description.strip()
+                        tour.inclusive = inclusive.strip()
+                        tour.exclusive = exclusive.strip()
+                        tour.highlight = highlight.strip()
+                        tour.price = price.strip()
                         tour.tour_type = ttype
                         if request.FILES.get('thumbnail') is not None:
                             tour.thumbnail = request.FILES.get('thumbnail')
-                        tour.overview = overview
+                        tour.overview = overview.strip()
                         tour.maximum_people = maximum_people
 
                         tour.save()
