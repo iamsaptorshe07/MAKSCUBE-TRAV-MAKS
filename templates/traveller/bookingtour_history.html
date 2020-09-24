@@ -30,7 +30,7 @@
                                     <ul style="list-style-type:none;">
                                     
 									
-									<a id="popoverData" class="btn" href="#" 
+									<a id="popoverData{{order.id}}" class="btn" href="#" 
 data-content="<b>Billing Details</b><br>{{order.customer_name}}<br>{{order.customer_email}}<br>{{order.customer_phone}}<br>{{order.customer_address}}<br>"
 data-html="true"
  rel="popover" data-placement="bottom" 
@@ -47,7 +47,7 @@ data-html="true"
                             <div>
                                 
                                 
-									<a id="popoverData2" class="btn" href="#" 
+									<a id="popoverData2{{order.id}}" class="btn" href="#" 
 data-content="Total People : {{order.total_people}}<br>Tour ID : {{order.tour.tourId}}"
 data-html="true"
  rel="popover" data-placement="bottom" 
@@ -88,18 +88,21 @@ data-html="true"
                     </div>
                     
                 </div>
+                <br>
+                <script type="text/javascript">
+	$('#popoverData{{order.id}}').popover();
+$('#popoverOption{{order.id}}').popover({ trigger: "hover" });
+
+$('#popoverData2{{order.id}}').popover();
+$('#popoverOption{{order.id}}').popover({ trigger: "hover" });
+</script>
+
 {% endfor %}
 				<!--Card end-->
 </div>
 <!--HTML Ends-->
 
 <!--JS Starts-->
-<script type="text/javascript">
-	$('#popoverData').popover();
-$('#popoverOption').popover({ trigger: "hover" });
 
-$('#popoverData2').popover();
-$('#popoverOption').popover({ trigger: "hover" });
-</script>
 <!--JS Ends-->
 {% endblock body%}
