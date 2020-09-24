@@ -1,55 +1,175 @@
-{% load static %}
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-    <head>
-        <title>{{orderId}}</title>
-        <style type="text/css">
-            body {
-                font-weight: 200;
-                font-size: 14px;
-            }
-            .header {
-                font-size: 20px;
-                font-weight: 100;
-                text-align: center;
-                color: #007cae;
-            }
-            .title {
-                font-size: 22px;
-                font-weight: 100;
-               /* text-align: right;*/
-               padding: 10px 20px 0px 20px;  
-            }
-            .title span {
-                color: #007cae;
-            }
-            .details {
-                padding: 10px 20px 0px 20px;
-                text-align: left !important;
-                /*margin-left: 40%;*/
-            }
-            .hrItem {
-                border: none;
-                height: 1px;
-                /* Set the hr color */
-                color: #333; /* old IE */
-                background-color: #fff; /* Modern Browsers */
-            }
-        </style>
-    </head>
-    <body>
-        <div class='wrapper'>
-            <div class='header'>
-                <p class='title'>Invoice # </p>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            margin: 0 auto;
+            padding: 0 auto;
+            /* background-color :#cfe9ec; */
+            display: flex;
+            justify-content: center;
+        }
+        h1,p,h3{
+            margin: 0;
+        }
+        .main{
+            width: 900px;
+            margin-top: 30px;
+        }
+        .top, .top2{
+            position: relative;
+            height: auto;
+            display: flex;
+            justify-content: space-between;
+        }
+        .c, .ca{
+            height: auto;
+            width: 300px;
+            display: flex;
+            flex-flow: column;
+            justify-content: center;
+        }
+        .c h1{
+            font-size: 42px;
+            /* color: #00571d; */
+            border-bottom: 2px solid #333;
+        }
+        .ud1, .ud2{
+            width: 50%;
+        }
+        .clogo{
+            text-align: center;
+        }
+        .top2{
+            margin: 10px 0 10px 0;
+            line-height: 1.5;
+        }
+        .bill{
+            position: relative;
+            padding: 0 50px 0 50px;
+            border: 1px #333;
+            border-radius: 5px;
+        }
+        .bill span{
+            display: flex;
+            justify-content: space-between;
+        }
+        .bill h1{
+            margin: 0;
+            font-size: 20px;
+        }
+        .bill p{
+            margin: 0;
+        }
+        .bill1{
+            line-height: 1.5;
+            width: 40%;
+        }
+        .bill1 span{
+            display: flex;
+            
+        }
+        .bill1 span p{
+            width: 50%;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="top" style="border-bottom: 1px solid #333;">
+            <div class="c">
+                <h1>TRAVMAKS</h1><br>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ex, incidunt!</p>
+                <p>travmakx@gmail.com</p><br>
             </div>
-        <div>
-        <div class='details'>
-            Bill to: {{CName}} <br/>
-            Amount: {{price}} <br/>
-            Date: {{date}}
-            <img src="../../static/img/logo.jpeg" height="120" width="120">
-            <hr class='hrItem' />
+            <div class="clogo">
+                <img src="../../static/img/logo.jpeg" alt="logo" width="170px" height="auto">
+            </div>
+        </div><br>
+        <div class="content">
+            <div class="top2">
+                <div class="invoiceto">
+                    <p>Invice To</p>
+                    <h3>Name : {{CName}}</h3>
+                    <p>Customer Id : {{placedBy}}</p>
+                    <p>Address : {{CAddress}}</p>
+                    <p>Phone : {{CPhone}}</p>
+                    <p>Email : {{CMail}}</p>
+                </div>
+                <div class="invoicedate">
+                    <br>
+                    <h1 style="font-size: 40px;">Invoice</h1>
+                    <p>Order Id : {{orderId}}</p>
+                    <p>Date of Invoice : {{orderDate}}</p>
+                </div>
+            </div>
+            <br><br>
+            <div class="bill"><br>
+                <div style="font-size: 35px;font-weight: bold;">Tour Details</div>
+                <div style="border-bottom: #333 1px solid;width: 100%;" ></div><br>
+                <div style="display: flex;justify-content: space-between;">
+                    <div class="bill1">
+                        <span><h3>Agent Id :</h3><p>{{agentId}}</p></span>
+                        <span><h3>Agency Id :</h3><p>{{AgencyId}}</p></span>
+                        <span><h3>Starts On :</h3><p>{{startdate}}</p></span>
+                        <span><h3>Ends On :</h3><p>{{endDate}}</p></span>
+                       
+                    </div>
+                    <div class="bill1">
+                        <span><h3>Total People :</h3><p>{{TotalPeople}}</p></span>
+                        <span><h3>Tour Id :</h3><p>{{tourId}}</p></span>
+                        <span><h3>Start Location :</h3><p>{{startLocation}}</p></span>
+                        <span><h3>Ends Location :</h3><p>{{endLoaction}}</p></span>
+                    </div>
+                </div><br>
+                
+            </div><br>
+            <div class="bill"><br>
+                <div style="font-size: 35px;font-weight: bold;">Transaction Details</div>
+                <div style="border-bottom: #333 1px solid;width: 100%;" ></div><br>
+                <div style="display: flex;justify-content: space-between;">
+                    <div class="bill1" style="width: 70%;">
+                        <span><h3>Transaction Id :</h3><p>{{transactionId}}</p></span>
+                        <span><h3>Bank Transaction Id :</h3><p>{{bankTransactionId}}</p></span>
+                        <span><h3>Transaction Date :</h3><p>{{date}}</p></span>
+                    </div>
+                </div><br>
+                
+            </div><br>
+
+            <div class="bill"><br>
+                <div style="font-size: 35px;font-weight: bold;">Payment Information</div><br>
+                <span>
+                    <h1>Description</h1>
+                    <h1>Amount</h1> 
+                </span><br>
+                <span style="border-bottom: 1px solid black;"></span><br>
+                <span>
+                    <h1>Price/People</h1>
+                    <p>{{ppp}}</p>
+                </span><br>
+                <span>
+                    <h1>Total Fees : </h1>
+                    <p>{{price}}</p>
+                </span><br>
+                <span>
+                    <h1>GST :</h1>
+                    <p>{{price}}</p>
+                </span><br>
+                <span style="border-bottom: 1px solid #333;"></span><br>
+                <span>
+                    <h1>Total Expences :</h1>
+                    <p>{{price}}</p>
+                </span><br>
+            </div>
+            <br><br>
         </div>
     </div>
-    </body>
+</body>
 </html>

@@ -138,6 +138,11 @@ def recievePayment(request):
                 "placedBy" : confirm_order.Order.customer.userAccess.userId,
                 "Quentity" : confirm_order.Order.total_people,
                 "price":confirm_order.Order.payment_price,
+                'orderDate':confirm_order.creation_date,
+                "agentId":confirm_order.Order.agent.userAccess.agentId,
+                "AgencyId":confirm_order.Order.agency.agency_Id,
+                'ppp':confirm_order.Order.tour.price
+
             }
             pdf = render_to_pdf('invoice/bill.html',bill_context)
             if pdf:
