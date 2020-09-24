@@ -46,12 +46,29 @@
     <a class="nav-link" href="/qna/">QNA</a>
 </li>
 <li class="nav-item">
-  <a class="nav-link" href="/travelagency/myagency/{{request.user.userAccess.agentId}}">BLOG(Tour add)</a>
+  <a class="nav-link">BLOG</a>
 </li>
-    {% if user.is_authenticated %}
-    <li class="nav-item">
-      <a class="nav-link" href="/accounts/editprofile/{{request.session.access_type}}/{{user.id}}">{{user.name}}</a>
-    </li>
+    {% if user.is_authenticated %} 
+	
+	<li class="nav-item dropdown">
+        <a class="nav-link " href="#" data-toggle="dropdown">
+    {{user.name}}
+  </a>
+  {% if request.session.access_type == 'traveller' %}
+  <div class="dropdown-menu">
+    <a class="dropdown-item" href="/accounts/editprofile/{{request.session.access_type}}/{{user.id}}">My Profile</a>
+    <a class="dropdown-item" href="#">Booking History</a>
+    <a class="dropdown-item" href="#">On Going Tours</a>
+    <a class="dropdown-item" href="#">Wishlist</a>
+    <a class="dropdown-item" href="#">Upcoming Tour</a>
+  </div>
+  {% elif request.session.access_type == 'seller' %}
+  <div class="dropdown-menu">
+    <a class="dropdown-item" href="/accounts/editprofile/{{request.session.access_type}}/{{user.id}}">My Profile</a>
+    <a class="dropdown-item" href="/travelagency/myagency/{{request.user.userAccess.agentId}}">Dashboard</a>
+  </div>
+  {% endif %}
+</li>
     <li class="nav-item">
       <a class="nav-link" href="/accounts/user/logout">LOGOUT</a>
     </li>
@@ -61,8 +78,7 @@
     ACCOUNTS
   </a>
   <div class="dropdown-menu">
-    <a class="dropdown-item" href="/accounts/seller/account">SELLER ACCOUNT</a>
-    <a class="dropdown-item" href="/accounts/traveller/account">USER ACCOUNT</a>
+    <a class="dropdown-item" href="/accounts/traveller/account">Hello,Sign in</a>
   </div>
 </li> 
     {% endif %}
@@ -96,13 +112,15 @@
         <div class="col-md-3 col-sm-6">
           <!--Column1-->
           <div class="footer-pad">
-            <h4>Heading 1</h4>
+            <h4>Become a seller</h4>
             <ul class="list-unstyled">
-              <li><a href="#"></a></li>
-              <li><a href="#">Payment Center</a></li>
-              <li><a href="#">Contact Directory</a></li>
-              <li><a href="#">Forms</a></li>
-              <li><a href="#">News and Updates</a></li>
+              <li><a href="/accounts/seller/account">Create a Seller Account</a></li>
+              <li><a href="/accounts/seller/account">Login as a Seller Account</a></li>
+              <li><a href="#">Become a TRAVMAKS Specialised Agency</a></li>
+              <li><a href="#">Seller Terms & Conditions</a></li>
+              <li><a href="#">Seller Payment Policy</a></li>
+              <li><a href="#">Seller Privacy Policy</a></li>
+			  
               <li><a href="#">FAQs</a></li>
             </ul>
           </div>
