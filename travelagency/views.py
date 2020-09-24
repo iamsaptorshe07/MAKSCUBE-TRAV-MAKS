@@ -173,6 +173,7 @@ def editTours(request,agentId,tourId):
                         tour.maximum_people = maximum_people
 
                         tour.save()
+                        messages.success(request,'Successfully Updated')
                         return redirect('/travelagency/agencytours/{}/{}'.format(user.id,user.userAccess.agentId))
                         
                     else:
