@@ -7,7 +7,17 @@ from django.contrib import messages
 
 # Create your views here.
 def travelagency_home(request,agid):
-    return render(request,'travelagency/travelagent_home.html')
+    user = request.user
+    if user.is_authenticated and request.session['access_type']=='seller':
+        if user.id == uid and user.userAccess.agentId == agid:
+            if request.method == 'GET':
+                return render(request,'travelagency/travelagent_home.html')
+            else:
+                return HttpResponse("BAD REQUEST")
+        else:
+            return HttpResponse("BAD REQUEST")
+    else:
+        return HttpResponse("BAD REQUEST")
 
 def addTour(request,uid,agid):
     user = request.user
