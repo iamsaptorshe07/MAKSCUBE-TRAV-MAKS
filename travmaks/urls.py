@@ -13,5 +13,6 @@ urlpatterns = [
     path('qna/',include('qna.urls'),name='qnaPage'),
     path('travelagency/',include('travelagency.urls'),name='travelagency'),
     path('tour/',include('touring.urls'),name='tourFlow'),
+    path('traveller/',include('traveller.urls'),name='travellerApp')
 ]
 urlpatterns = urlpatterns + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'travelagency',
     'qna',
     'touring',
+    'traveller',
 ]
 
 MIDDLEWARE = [

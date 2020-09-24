@@ -57,7 +57,7 @@
   {% if request.session.access_type == 'traveller' %}
   <div class="dropdown-menu">
     <a class="dropdown-item" href="/accounts/editprofile/{{request.session.access_type}}/{{user.id}}">My Profile</a>
-    <a class="dropdown-item" href="#">Booking History</a>
+    <a class="dropdown-item" href="/traveller/booking-history/{{request.user.userAccess.userId}}">Booking History</a>
     <a class="dropdown-item" href="#">On Going Tours</a>
     <a class="dropdown-item" href="#">Wishlist</a>
     <a class="dropdown-item" href="#">Upcoming Tour</a>
