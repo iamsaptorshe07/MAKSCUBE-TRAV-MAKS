@@ -472,7 +472,7 @@
 				</li>
 				<br>
 				<li>Ending Date<input id="txtT" name="edate" class="form-control" style="text-align: center;"
-					placeholder="{{Tour.endDate}}" readonly>
+					value="{{Tour.endDate|date:'c'}}" readonly>
 				</li>
 				<br>
 				<li style="display:flex;justify-content: center;"><button class="setdatebtn" class="disable-click" type="button" onclick="fun();">Confirm Date</button></li>
@@ -509,9 +509,9 @@
 				<label>Other Information :</label><br>
 				<li class="">
 					Enter Type of the Tour *
-					<select id="tourtype" class="form-control disable-click" readonly name="ttype">
-						<option class="hidden" id="tourtype" value="{{Tour.tour_type}}" disabled="" selected=""
-							style="text-align: center;">{{Tour.tour_type}}</option>
+					<select id="tourtype" class="form-control disable-click" readonly name="ttype" required>
+						<option class="hidden" id="tourtype" value="" disabled="" selected="" 
+							style="text-align: center;">Select Tour Type</option>
 						<option value="Family Special">Family Special</option>
 						<option value="Friends Special">Friends Special</option>
 						<option value="Couple Friendly">Couple Friendly</option>
@@ -650,11 +650,11 @@
 		let ggg=x;
 
 		var temp = "{{desc}}";
-		// console.log("Desc backend :",temp);
+		console.log("Desc backend :",temp);
 		temp = temp.replace(/&#39;/g,'"');
-		// console.log("Desc backend :",temp);
+		console.log("Desc backend after replace:",temp);
 		var desc = JSON.parse(temp);
-		// console.log("Json Parse :",desc);
+		console.log("Json Parse :",desc);
 
 		for (let i = 0; i < ggg; i++) {
 			// console.log('hi');
@@ -695,7 +695,7 @@
 
 			
 			var day ='dayTitle' + (i+1);
-			// console.log(desc[day]);
+			console.log(desc[day],day,typeof(desc[day]));
 			cb12i.value=desc[day];
 
 			cb12.appendChild(cb12i);

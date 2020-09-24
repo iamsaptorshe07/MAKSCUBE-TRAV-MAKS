@@ -9,7 +9,7 @@ from django.contrib import messages
 def travelagency_home(request,agid):
     user = request.user
     if user.is_authenticated and request.session['access_type']=='seller':
-        if user.id == uid and user.userAccess.agentId == agid:
+        if user.userAccess.agentId == agid:
             if request.method == 'GET':
                 return render(request,'travelagency/travelagent_home.html')
             else:
@@ -61,8 +61,8 @@ def addTour(request,uid,agid):
                     #assign the values
                     seller = user,
                     agency = user.userAgency,
-                    tourSlug = slug,
                     tourId = tourId,
+                    tourSlug = slug,
                     tourHeading = ttitle,
                     startingLocation = slocation,
                     endLocation = elocation,
@@ -120,24 +120,28 @@ def editTours(request,agentId,tourId):
                     return redirect('/')
                 else:
                     if request.method == 'POST':
-                        #sdate = tourDate(request.POST.get('sdate'))
+                        sdate = tourDate(request.POST.get('sdate'))
                         if request.POST.get('edate') is not None:
-                            print("\n\n",request.POST.get('edate'),"\n\n")
-                            edate = tourDate(request.POST.get('edate'))
-                            print("\n\n",edate,"\n\n")
+                            print("\n\nEdate",request.POST.get('edate'),"\n\n")
+                            if tour.endDate != request.POST.get('edate'):
+                                edate = tourDate(request.POST.get('edate'))
+                                print("\n\n",edate,"\n\n")
                         slocation = request.POST.get('slocation')
                         elocation = request.POST.get('elocation')
                         price = request.POST.get('price')
                         ttype = request.POST.get('ttype')
-                        if request.FILES.get('thumbnail') is not None:
-                            thumbnail = request.FILES.get('thumbnail')
+                        
                         ttitle = request.POST.get('ttitle')
                         inclusive = request.POST.get('inclusive')
                         exclusive = request.POST.get('exclusive')
                         highlight = request.POST.get('highlight')
                         overview = request.POST.get('overview')
                         maximum_people = request.POST.get('seat')
-                        duration = tourDuration1(request.POST.get('sdate'),request.POST.get('edate'))+1
+                        if tour.endDate != request.POST.get('edate'):
+                            duration = tourDuration(request.POST.get('sdate'),request.POST.get('edate'))+1
+                        else:
+                            duration = tourDuration(request.POST.get('sdate'),request.POST.get('edate'))+1
+
                         description_dct = {}
                         for i in range(duration):
                             description_dct['dayTitle{}'.format(i+1)]=request.POST.get('dayTitle{}'.format(i+1))
@@ -148,11 +152,28 @@ def editTours(request,agentId,tourId):
                             if character.isalnum():
                                 slug+=character
                         slug+='_tourfrom_{}to{}_startingfrom{}_by{}-{}_tourId-{}_{}'.format(
-                            slocation,elocation,sdate,agid,uid,tourId,ttype
+                            slocation,elocation,sdate,agentId,user.id,tourId,ttype
                         )
                         print('\n\n',slug,'\n\n')
                         description = descriptionMaker(description_dct)
-                        #not done yet
+                        tour.tourHeading = ttitle
+                        tour.tourSlug = slug
+                        tour.startingLocation = slocation
+                        tour.endLocation = elocation
+                        tour.endDate = edate
+                        tour.description = description
+                        tour.inclusive = inclusive
+                        tour.exclusive = exclusive
+                        tour.highlight = highlight
+                        tour.price = price
+                        tour.tour_type = ttype
+                        if request.FILES.get('thumbnail') is not None:
+                            tour.thumbnail = request.FILES.get('thumbnail')
+                        tour.overview = overview
+                        tour.maximum_people = maximum_people
+
+                        tour.save()
+                        return redirect('/travelagency/agencytours/{}/{}'.format(user.id,user.userAccess.agentId))
                         
                     else:
                         #Samiran complete/restructure it 

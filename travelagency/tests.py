@@ -29,9 +29,12 @@ def tourIdMaker():
 
 #2000-12-26
 def tourDate(sdate):
-    m,d,y=sdate.split('/')
-    fDate = y+'-'+m+'-'+d
-    return fDate
+    if sdate[4] != '-':
+        m,d,y=sdate.split('/')
+        fDate = y+'-'+m+'-'+d
+        return fDate
+    else:
+        return sdate
 
 
 def tourDuration1(sdate,edate):
@@ -43,17 +46,35 @@ def tourDuration1(sdate,edate):
 
 
 def tourDuration(sdate,edate):
-    m,d,y=edate.split('/')
-    y=int(y)
-    m=int(m)
-    d=int(d)
-    d1=date(y,m,d)
-    m,d,y=sdate.split('/')
-    y=int(y)
-    m=int(m)
-    d=int(d)
-    d0=date(y,m,d)
-
+    if  edate[4] != '-':
+        m,d,y=edate.split('/')
+        y=int(y)
+        m=int(m)
+        d=int(d)
+        print("\n\nIf Edate : ",y,m,d)
+        d1=date(y,m,d)
+    else:
+        y,m,d=edate.split('-')
+        y=int(y)
+        m=int(m)
+        d=int(d)
+        print("\n\nEdate : ",y,m,d)
+        d1=date(y,m,d)
+    if  sdate[4] != '-':
+        m,d,y=sdate.split('/')
+        y=int(y)
+        m=int(m)
+        d=int(d)
+        print("\n\nIf Sdate : ",y,m,d)
+        d0=date(y,m,d)
+    else:
+        y,m,d=sdate.split('-')
+        y=int(y)
+        m=int(m)
+        d=int(d)
+        print("\n\nSdate : ",y,m,d)
+        d0=date(y,m,d)
+    
     duration = d1-d0
     return duration.days
 
