@@ -10,6 +10,8 @@ from paytm import Checksum
 import requests
 import json
 from django.views.decorators.csrf import csrf_exempt
+from invoice.invoice_generator import render_to_pdf
+from django.template.loader import get_template
 # Create your views here.
 
 def searchTour(request):
@@ -65,11 +67,6 @@ def bookTour(request,tourId,agentId):
                         tour = tour,
                     )
                     order.save()
-                    print(order.payment_price)
-                    print(str(order.payment_price))
-                    print(type(order.order_id))
-                    print(order.customer.userAccess.userId)
-                    print(type(order.customer.userAccess.userId))
                     MID = 'MjGguD53343847273362'
                     MKEY='3KD6MeB%t&QDio!7'
                     paytmParams = {
@@ -124,8 +121,33 @@ def recievePayment(request):
             confirm_order.save()
             order.status = True
             order.save()
-            # Kuntalda start your
-            return HttpResponse("Genearating you bill")
+            bill_context = {
+                "transactionId" : confirm_order.transaction_id,
+                "bankTransactionId" : confirm_order.banktransaction_id,
+                "orderId" : confirm_order.Order.order_id,
+                "date" : response_dict['TXNDATE'] ,
+                "CMail" : confirm_order.Order.customer_email,
+                "CPhone" : confirm_order.Order.customer_phone,
+                "CName" : confirm_order.Order.customer_name,
+                "CAddress" : confirm_order.Order.customer_address,
+                "tourId" : confirm_order.Order.tour.tourId,
+                "startdate" : confirm_order.Order.tour.startDate,
+                "endDate" : confirm_order.Order.tour.endDate,
+                "startLocation" : confirm_order.Order.tour.startingLocation,
+                "endLoaction" : confirm_order.Order.tour.endLocation,
+                "placedBy" : confirm_order.Order.customer.userAccess.userId,
+                "Quentity" : confirm_order.Order.total_people,
+                "price":confirm_order.Order.payment_price,
+            }
+            pdf = render_to_pdf('invoice/bill.html',bill_context)
+            if pdf:
+                response = HttpResponse(pdf, content_type='application/pdf')
+                filename = "{}.pdf".format(confirm_order.Order.order_id)
+                content = "inline; filename={}".format(filename)
+                response['Content-Disposition'] = content
+                return response
+            else:
+                return HttpResponse("Problem Occured")
         else:
             failed_order = Failed_Order(
                 order_id=order.order_id,
