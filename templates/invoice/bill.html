@@ -1,175 +1,167 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        body{
-            margin: 0 auto;
-            padding: 0 auto;
-            /* background-color :#cfe9ec; */
-            display: flex;
-            justify-content: center;
-        }
-        h1,p,h3{
-            margin: 0;
-        }
-        .main{
-            width: 900px;
-            margin-top: 30px;
-        }
-        .top, .top2{
-            position: relative;
-            height: auto;
-            display: flex;
-            justify-content: space-between;
-        }
-        .c, .ca{
-            height: auto;
-            width: 300px;
-            display: flex;
-            flex-flow: column;
-            justify-content: center;
-        }
-        .c h1{
-            font-size: 42px;
-            /* color: #00571d; */
-            border-bottom: 2px solid #333;
-        }
-        .ud1, .ud2{
-            width: 50%;
-        }
-        .clogo{
-            text-align: center;
-        }
-        .top2{
-            margin: 10px 0 10px 0;
+        .table2, .table1, .table3{
+            padding-left: 30px;
+            padding-right: 30px;
             line-height: 1.5;
         }
-        .bill{
-            position: relative;
-            padding: 0 50px 0 50px;
-            border: 1px #333;
-            border-radius: 5px;
-        }
-        .bill span{
-            display: flex;
-            justify-content: space-between;
-        }
-        .bill h1{
-            margin: 0;
-            font-size: 20px;
-        }
-        .bill p{
-            margin: 0;
-        }
-        .bill1{
+        /* .table3{
+            border-bottom-color: black;
+            border-bottom-style: solid;
+            border-bottom-width: 1.5px;
+            border-top-color: black;
+            border-top-style: solid;
+            border-top-width: 1.5px;
+            border-left-color: black;
+            border-left-style: solid;
+            border-left-width: 1.5px;
+            border-right-color: black;
+            border-right-style: solid;
+            border-right-width: 1.5px;
+            margin-left: 45px;
+            margin-right: 45px;
+            width: 90%;
+            padding-left: 45px;
+            padding-right: 45px;
+            padding-bottom: 25px;
+            padding-top: 10px;
             line-height: 1.5;
-            width: 40%;
+        } */
+        .table3{
+            border-bottom-color: black;
+            border-bottom-style: solid;
+            border-bottom-width: 1px;
+            border-top-color: black;
+            border-top-style: solid;
+            border-top-width: 1px;
+            border-left-color: black;
+            border-left-style: solid;
+            border-left-width: 1px;
+            border-right-color: black;
+            border-right-style: solid;
+            border-right-width: 1px;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            padding-left: 30px;
+            padding-right: 30px;
         }
-        .bill1 span{
-            display: flex;
-            
+        p,h3,h2,h1{
+            margin-top: 0;
+            margin-bottom: 0;
         }
-        .bill1 span p{
-            width: 50%;
-            text-align: center;
+        .hi{
+            font-size: 19px;
+            font-weight: bold;
+            margin-left: 32px;
+            margin-bottom: 10px;
         }
-
     </style>
 </head>
 <body>
-    <div class="main">
-        <div class="top" style="border-bottom: 1px solid #333;">
-            <div class="c">
-                <h1>TRAVMAKS</h1><br>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ex, incidunt!</p>
-                <p>travmakx@gmail.com</p><br>
-            </div>
-            <div class="clogo">
-                <img src="../../static/img/logo.jpeg" alt="logo" width="170px" height="auto">
-            </div>
-        </div><br>
-        <div class="content">
-            <div class="top2">
-                <div class="invoiceto">
+    <br/>
+    <table width="100%" class="table1">
+        <tbody>
+            <tr>
+                <td align="left">        
+                    <h1 style="font-size: 40px;">TRAVMAKS</h1>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ex, incidunt!</p>
+                    <p>travmakx@gmail.com</p>
+                </td>
+                
+                <td align="right" >
+                    <img src="../../static/img/logo.jpeg" alt="logo" width="150px" height="auto"/>
+                </td>
+            </tr>
+            <tr>
+                <td><div class="top1"></div></td>
+                <td><div class="top1"></div></td>
+            </tr>
+        </tbody>
+    </table><br/>
+    <table width="100%" class="table2">
+        <tbody>
+            <tr>
+                <td align="left">        
                     <p>Invice To</p>
                     <h3>Name : {{CName}}</h3>
                     <p>Customer Id : {{placedBy}}</p>
                     <p>Address : {{CAddress}}</p>
                     <p>Phone : {{CPhone}}</p>
                     <p>Email : {{CMail}}</p>
-                </div>
-                <div class="invoicedate">
-                    <br>
-                    <h1 style="font-size: 40px;">Invoice</h1>
+                </td>
+                <td align="right">
+                    <h1 style="font-size: 30px;">Invoice</h1>
                     <p>Order Id : {{orderId}}</p>
                     <p>Date of Invoice : {{orderDate}}</p>
-                </div>
-            </div>
-            <br><br>
-            <div class="bill"><br>
-                <div style="font-size: 35px;font-weight: bold;">Tour Details</div>
-                <div style="border-bottom: #333 1px solid;width: 100%;" ></div><br>
-                <div style="display: flex;justify-content: space-between;">
-                    <div class="bill1">
-                        <span><h3>Agent Id :</h3><p>{{agentId}}</p></span>
-                        <span><h3>Agency Id :</h3><p>{{AgencyId}}</p></span>
-                        <span><h3>Starts On :</h3><p>{{startdate}}</p></span>
-                        <span><h3>Ends On :</h3><p>{{endDate}}</p></span>
-                       
-                    </div>
-                    <div class="bill1">
-                        <span><h3>Total People :</h3><p>{{TotalPeople}}</p></span>
-                        <span><h3>Tour Id :</h3><p>{{tourId}}</p></span>
-                        <span><h3>Start Location :</h3><p>{{startLocation}}</p></span>
-                        <span><h3>Ends Location :</h3><p>{{endLoaction}}</p></span>
-                    </div>
-                </div><br>
-                
-            </div><br>
-            <div class="bill"><br>
-                <div style="font-size: 35px;font-weight: bold;">Transaction Details</div>
-                <div style="border-bottom: #333 1px solid;width: 100%;" ></div><br>
-                <div style="display: flex;justify-content: space-between;">
-                    <div class="bill1" style="width: 70%;">
-                        <span><h3>Transaction Id :</h3><p>{{transactionId}}</p></span>
-                        <span><h3>Bank Transaction Id :</h3><p>{{bankTransactionId}}</p></span>
-                        <span><h3>Transaction Date :</h3><p>{{date}}</p></span>
-                    </div>
-                </div><br>
-                
-            </div><br>
-
-            <div class="bill"><br>
-                <div style="font-size: 35px;font-weight: bold;">Payment Information</div><br>
-                <span>
-                    <h1>Description</h1>
-                    <h1>Amount</h1> 
-                </span><br>
-                <span style="border-bottom: 1px solid black;"></span><br>
-                <span>
-                    <h1>Price/People</h1>
-                    <p>{{ppp}}</p>
-                </span><br>
-                <span>
-                    <h1>Total Fees : </h1>
-                    <p>{{price}}</p>
-                </span><br>
-                <span>
-                    <h1>GST :</h1>
-                    <p>{{price}}</p>
-                </span><br>
-                <span style="border-bottom: 1px solid #333;"></span><br>
-                <span>
-                    <h1>Total Expences :</h1>
-                    <p>{{price}}</p>
-                </span><br>
-            </div>
-            <br><br>
-        </div>
-    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table><br/>
+    <h1 class="hi">Tour Details</h1>
+        <table width="90%" class="table3">
+            <tbody>
+                <tr>
+                    <td><span style="margin-right: 60px;font-size: 13px;"> Agent Id : </span>{{agentId}}</td>
+                    <td><span style="margin-right: 70px;font-size: 13px;">Total People :</span> {{Quentity}} </td>
+                </tr>
+                <tr>
+                    <td><span style="margin-right: 50px;font-size: 13px;">Agency Id :</span> {{AgencyId}} </td>
+                    <td><span style="margin-right: 105px;font-size: 13px;">Tour Id :</span> {{tourId}} </td>
+                </tr>
+                <tr>
+                    <td><span style="margin-right: 60px;font-size: 13px;">Starts On :</span> {{startdate}} </td>
+                    
+                    <td><span style="margin-right: 60px;font-size: 13px;">Start Location :</span> {{startLocation}} </td>
+                </tr>
+                <tr>
+                    <td><span style="margin-right: 63px;font-size: 13px;">Ends On :</span> {{endDate}} </td>
+                    <td><span style="margin-right: 60px;font-size: 13px;">Ends Location :</span> {{endLoaction}} </td>
+                </tr>
+            </tbody>
+        </table><br/>
+        <h1 class="hi">Transaction Details</h1>
+        <table width="90%" class="table3">
+            <tbody>
+                <tr>
+                    <td><span style="margin-right: 100px;font-size: 13px;">Transaction Id :</span></td>
+                    <td><p>{{transactionId}}</p></td>
+                </tr>
+                <tr>
+                    <td><span style="margin-right: 50px;font-size: 13px;">Bank Transaction Id :</span> </td>
+                    <td><p>{{bankTransactionId}}</p></td>
+                </tr>
+                <tr>
+                    <td><span style="margin-right: 75px;font-size: 13px;">Transaction Date :</span></td>
+                    <td><p>{{date}}</p></td>
+                </tr>
+            </tbody>
+        </table><br/>
+        <h1 class="hi">Payment Information</h1>
+        <table width="90%" class="table3">
+            <tbody>
+                <tr>
+                    <td><h1>Description</h1></td>
+                    <td><h1>Amount</h1></td>
+                </tr>
+                <tr>
+                    <td><h3>Price/People</h3></td>
+                    <td><p>{{ppp}}</p></td>
+                </tr>
+                <tr>
+                    <td><h3>GST :</h3></td>
+                    <td><p>{{price}}</p></td>
+                </tr>
+                <tr>
+                    <td><h3>Total Expences :</h3></td>
+                    <td><p>{{price}}</p></td>
+                </tr>
+            </tbody>
+        </table><br/>
 </body>
 </html>
