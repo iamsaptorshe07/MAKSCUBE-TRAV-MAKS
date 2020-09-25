@@ -84,8 +84,12 @@
     }
 
     .gi1 {
-        grid-column: 1 / span 2;
+        grid-column: 1/ span 7;
         grid-row: 1;
+    }
+    .gi1 div{
+        width: 100%;
+        text-align: left;
     }
     .gi2 {
         grid-column: 1;
@@ -151,23 +155,15 @@
         flex-flow: row;
         padding: 5px;
     }
-    .editbtn{
-        width: 70px;
-        background-color: green;
-        border-radius: 5px;
-    }
-    .deletebtn{
-        width: 90px;
-        background-color: red;
-        border-radius: 5px;
-    }
     .gi2, .gi3, .gi4, .gi5, .gi6, .gi7{
         /* border: 1px solid ; */
         border-radius: 5px;
         height: 50px;
-        background: rgb(0,114,255);
-        background: linear-gradient(90deg, rgba(0,114,255,1) 13%, rgba(7,132,200,1) 49%, rgba(39,193,245,1) 82%, rgba(0,243,255,1) 100%);
-
+        /* background: rgb(0,114,255);
+        background: linear-gradient(90deg, rgba(0,114,255,1) 13%, rgba(7,132,200,1) 49%, rgba(39,193,245,1) 82%, rgba(0,243,255,1) 100%); */
+        
+        background-color: #007bff;
+        border-color: #007bff;
     } 
     .gi6, .gi6x, .gi2, .gi2x, .gi5, .gi5x, .gi8{
         width: 220px;
@@ -188,12 +184,19 @@
     }
     .gi9 button{
         margin-right: 20px;
-        /* font-weight: bold; */
         font-size: 16px;
+        width: 80px;
+        border-radius: 5px;
     }
 
     @media screen and (max-width: 850px) {
-		
+		.gi1{
+            grid-row: 1;
+            grid-column: 1/ span 2;
+        }
+        .gi1 div{
+            font-size: 19px;
+        }
 		.sidebar{
 			width: 100%;
 			height: 120px;
@@ -332,11 +335,11 @@
                 </div>
                 <div class="gi8 gi"><img src="{{tour.thumbnail.url}}"><br><span style="font-weight:bold;border-bottom: 1px black solid;">Thumbnail</span></div>
                 <div class="gi9 gi">
-                    <button type="button" class="editbtn" 
+                    <button type="button" class="editbtn btn-success" 
                         onclick="location.href='/travelagency/agencytours/edit-tour/{{tour.seller.userAccess.agentId}}/{{tour.tourId}}'">
                         Edit
                     </button>
-                    <button type="button" class="deletebtn"
+                    <button type="button" class="deletebtn btn-danger"
                     onclick="location.href='/travelagency/agencytours/delete-tour/{{tour.seller.userAccess.agentId}}/{{tour.tourId}}'">
                     Delete</button>
                 </div>
