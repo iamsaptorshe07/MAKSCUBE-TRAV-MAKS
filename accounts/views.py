@@ -17,6 +17,7 @@ from .tokens import activation_token
 from django.utils.dateparse import parse_date
 from django.conf import settings
 from django.contrib.auth.hashers import check_password
+#from django.template import RequestContext
 # Importing ends here ---------------------
 
 def messages_sender(request,user):
@@ -41,7 +42,7 @@ def messages_sender(request,user):
         to_email=user.email
         to_list=[to_email]
         from_email=settings.EMAIL_HOST_USER
-        print(from_email)
+        print(from_email,'\n\n',message,'\n\n')
         send_mail(mail_subject,message,from_email,to_list,fail_silently=True)
         return True
     except Exception as e:
@@ -499,6 +500,87 @@ def userProfile(request, account_type, uid):
         else:
             return HttpResponse("BAD REQUEST")
 
+def reset_messages_sender(request,user):
+    try:
+        site = get_current_site(request)
+        mail_subject = 'Site Activation Link'
+        message = render_to_string('resetMail.html', {
+            'user': user,
+            'domain': site,
+            'uid':user.id,
+            'token':activation_token.make_token(user)
+                    })
+        to_email=user.email
+        to_list=[to_email]
+        from_email=settings.EMAIL_HOST_USER
+        print(from_email,'\n\n',message,'\n\n')
+        send_mail(mail_subject,message,from_email,to_list,fail_silently=True)
+        return True
+    except Exception as e:
+        print(e)
+        return False
+
+def userValidation(request, uid, token):
+    if len(User.objects.filter(id=uid))>0:
+        user = User.objects.get(id=uid)
+        if user is not None and activation_token.check_token(user,token):
+            context={'user': user,'token':token}
+            responce = render(request, 'accounts/changePassword.html',context=context)
+            responce.set_cookie('uid',uid,max_age=None)
+            return responce
+        else:
+            return HttpResponse("Link Expired")
+    else:
+        return HttpResponse("ERROR 404")
+    
+
+
+def resetPassword(request,uid,token):
+    uid_check = request.COOKIES.get('uid')
+    if uid_check == uid:
+        if User.objects.filter(id=uid).exists():
+            if request.method == 'POST':
+                user = User.objects.get(id=uid)
+                if user is not None and activation_token.check_token(user,token):
+                    pass1 = request.POST.get('password1')
+                    user.set_password(pass1)
+                    user.save()
+                    responce = redirect('traveler_accounts_signup')
+                    responce.delete_cookie('uid')
+                    messages.success(request,'Successfully Changed your Password, please re-log in')
+                    return responce      
+                else:
+                    return HttpResponse("Link Expired")
+            else:
+                return HttpResponse("BAD REQUEST")
+        else:
+            return HttpResponse("BAD REQUEST")
+    else:
+        return HttpResponse("BAD REQUEST")
+
+
+def passwordReset(request):
+    if request.method == 'GET':
+        return render(request, 'accounts/passwordChange.html')
+    else:
+        mail = request.POST.get('email')
+        if User.objects.filter(email=mail).exists():
+            user = User.objects.get(email=mail)
+            if user.is_active:
+                res = reset_messages_sender(request,user)
+                print(res)
+                if res is True:
+                    messages.success(request,'Check your mail inbox')
+                    return redirect('traveler_accounts_signup')
+                if res is False:
+                    messages.error(request,'Internal Problem Occured')
+                    return redirect('traveler_accounts_signup')
+            else:
+                messages.error(request,'Please varify your mail frist')
+                return redirect('traveler_accounts_signup')
+        else:
+            messages.error(request,'Enter a valid mail-id')
+            return redirect('traveler_accounts_signup')
 
 def changePassword(request):
     if request.method == 'POST':
