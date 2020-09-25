@@ -11,5 +11,10 @@ urlpatterns = [
     path('seller/login',sellerLogin,name='Seller_login'),
     path('user/logout',userLogout,name='userLogout'),
     path('editprofile/<str:account_type>/<int:uid>',userProfile,name='userProfile'),
-    path('change-password',changePassword,name='ChnagePassword')
+
+    path('activate/password-reset/<uid>/<token>',userValidation, name='userValidation'),
+    path('password-reset',passwordReset,name='passwordReset'),
+    path('reset-password/<uid>/<token>',resetPassword,name='resetPassword'),
+
+    path('change-password',changePassword,name='ChnagePassword'),
     ] 

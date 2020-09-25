@@ -1,0 +1,5 @@
+{% autoescape off %}
+Hi {{user.name}} 
+Thanks for your registration, Click on the link to setup your profile and activate your account
+Link: http://{{domain}}{% url 'userValidation' uid=uid token=token %}
+{% endautoescape %}
