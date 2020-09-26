@@ -11,16 +11,60 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    {% block stylesheets %}
+    <style>
+	.fa-home{
+	 color: #ea1b1b;
+	}
+	.fa-align-left{
+	color:#ef1961;
+	}
+	.fa-phone-square{
+		color: #1ac916;
+	}
+	.fa-question-circle{
+		color: #d63737;
+	}
+	.fa-book{
+		color: #ffc107;
+	}
+	.fa-sign-out{
+		color: gold;
+	}
+	.fa-user-circle{
+		color: #5f27cd;
+	}
+	#myBtn {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  background-color: #212529;
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 4px;
+}
+
+#myBtn:hover {
+  background-color: #555;
+}
+	</style>
+	{% block stylesheets %}
     {% endblock stylesheets %}
 </head>
 <body>
+<button onclick="topFunction()" id="myBtn" title="Go to top"><i class="fa fa-chevron-up"></i></button>
+    
     <!--Navbar Starts here-->
     <div class="super_container">
       <nav class="navbar navbar-expand-sm navbar-light bg-light fixed-top">
@@ -34,25 +78,25 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav ml-auto">
       <li class="nav-item">
-        <a class="nav-link" href="/">HOME</a>
+        <a class="nav-link" href="/"><i class="fa fa-home fa-lg"></i>HOME</a>
       </li>
   <li class="nav-item">
-        <a class="nav-link" href="#">ABOUT US</a>
+        <a class="nav-link" href="#"><i class="fa fa-align-left fa-lg"></i>ABOUT US</a>
       </li>
   <li class="nav-item">
-        <a class="nav-link" href="#">CONTACT US</a>
+        <a class="nav-link" href="#"><i class="fa fa-phone-square fa-lg"></i>CONTACT US</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="/qna/">QNA</a>
+    <a class="nav-link" href="/qna/"><i class="fa fa-question-circle fa-lg"></i>QNA</a>
 </li>
 <li class="nav-item">
-  <a class="nav-link">BLOG</a>
+  <a class="nav-link"><i class="fa fa-book fa-lg"></i>BLOG</a>
 </li>
     {% if user.is_authenticated %} 
 	
 	<li class="nav-item dropdown">
         <a class="nav-link " href="#" data-toggle="dropdown">
-    {{user.name}}
+    <i class="fa fa-user-circle fa-lg"></i> {{user.name}}
   </a>
   {% if request.session.access_type == 'traveller' %}
   <div class="dropdown-menu">
@@ -70,12 +114,12 @@
   {% endif %}
 </li>
     <li class="nav-item">
-      <a class="nav-link" href="/accounts/user/logout">LOGOUT</a>
+      <a class="nav-link" href="/accounts/user/logout"><i class="fa fa-sign-out fa-lg" ></i> LOGOUT</a>
     </li>
       {% else %}
       <li class="nav-item dropdown">
         <a class="nav-link " href="#" data-toggle="dropdown">
-    ACCOUNTS
+  <i class="fa fa-user-circle fa-lg"></i>  ACCOUNTS
   </a>
   <div class="dropdown-menu">
     <a class="dropdown-item" href="/accounts/traveller/account">Hello,Sign in</a>
@@ -102,7 +146,7 @@
     <!--Main body-->
     {% block body %}
     {% endblock body%}
-    <!--Main body ends here-->
+	<!--Main body ends here-->
     </div>
     <!--Footer-->
 	<footer class="mainfooter" role="contentinfo">
@@ -237,6 +281,22 @@ $( window ).scroll( function () {
   }
 });
 });
+
+var mybutton = document.getElementById("myBtn");
+
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 200) {
+    mybutton.style.display = "block";
+  } else {
+    mybutton.style.display = "none";
+  }
+}
+function topFunction() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}
   </script>
     <!--Javascript for continious ad ends here-->
 </body>

@@ -2,7 +2,31 @@
 {% load static %}
 {% block stylesheets %}
     <!--CSS Starts here -->
-
+<style>
+body {
+ /*background-image: url("{% static 'img/trav.gif' %}");
+ background-size: cover;*/
+ background: linear-gradient(to right, #8f94fb, #4e54c8);     
+}
+.col-md-8 {
+	background-color: #fff;
+	padding-top:20px;
+	padding-bottom:20px;
+	border-radius:15px;
+}
+#mover{
+-webkit-animation: mover 2s infinite  alternate;
+    animation: mover 1s infinite  alternate;
+}
+@-webkit-keyframes mover {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-20px); }
+}
+@keyframes mover {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-20px); }
+}
+</style>
     <!--CSS Ends here -->
 {% endblock stylesheets %}
 {% block body %}
@@ -10,16 +34,16 @@
     <!--check out-->
 <div class="container">
     <div class="py-5 text-center">
-        <img class="d-block mx-auto mb-4" src="https://getbootstrap.com/docs/4.3/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
-        <h2>Checkout form</h2>
-        <p class="lead">Below is an example form built entirely with Bootstrap’s form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</p>
+        <img class="d-block mx-auto mb-4" id="mover" src="{% static 'img/logo.jpeg' %}" alt="" width="72" height="72">
+        <h2 class="text-white">Checkout form</h2>
+        <p class="lead text-white">Below is an example form built entirely with Bootstrap’s form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</p>
     </div>
     <form action='/tour/booktour/{{Tour.tourId}}/{{Tour.seller.userAccess.agentId}}' method="POST">
     {% csrf_token %}
     <div class="row">
         <div class="col-md-4 order-md-2 mb-4">
             <h4 class="d-flex justify-content-between align-items-center mb-3">
-                <span class="text-muted">Your cart</span>
+                <span class="text-white">Your cart</span>
                    </h4>
             <ul class="list-group mb-3 sticky-top">
                 <li class="list-group-item d-flex justify-content-between lh-condensed">
@@ -79,41 +103,34 @@
         </div>
         <div class="col-md-8 order-md-1">
             <h4 class="mb-3">Booking details</h4>
-            <form class="needs-validation" novalidate="">
-       
-                <div class="mb-3">
-                    <label for="username">Fullname</label>
-                    <div class="input-group">
-                        
-                        <input type="text" class="form-control" id="username" placeholder="Username" required value="{{request.user.name}}" name="name">
-                        <div class="invalid-feedback" style="width: 100%;"> Your username is required. </div>
-                    </div>
-                </div>
-                <div class="mb-3">
-                    <label for="email">Email <span class="text-muted">*</span></label>
-                    <input type="email" class="form-control" id="email"  required value="{{request.user.email}}" name="email">
-                    <div class="invalid-feedback"> Please enter a valid email address for shipping updates. </div>
-                </div>
-                <div class="mb-3">
-                    <label for="address">Address</label>
-                    <input type="text" class="form-control" id="address" placeholder="1234 Main St" required value="{{request.user.address}}" name='address'>
-                    <div class="invalid-feedback"> Please enter your shipping address. </div>
-                </div>
-                <div class="mb-3">
-                    <label for="phone">Address 2 <span class="text-muted">*</span></label>
-                    <input type="text" class="form-control" id="phone" name='phone' required value="{{request.user.phNo}}" >
-                </div>
-                
-                <hr class="mb-4">
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="save-info" required>
-                    <label class="custom-control-label" for="save-info">Agree With Terms & Conditions </label>
-                </div>
-                
-                
-                <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
-            </form>
-        </div>
+            <form>
+			<div class="form-group">
+    <label><i class="fa fa-user-circle fa-lg"=></i>&nbsp;Full Name </label>
+    <input type="text" class="form-control" id="username"  placeholder="Username" required value="{{request.user.name}}" name="name">
+	<div class="invalid-feedback" style="width: 100%;"> Your username is required. </div>
+    </div>
+  <div class="form-group">
+    <label><i class="fa fa-envelope  fa-lg"></i>&nbsp; Email address<span class="text-muted">(Optional)</span></label>
+    <input type="email" class="form-control" id="email"  placeholder="you@example.com" required value="{{request.user.email}}" name="email">
+	<div class="invalid-feedback"> Please enter a valid email address. </div>
+    </div>
+  <div class="form-group">
+    <label><i class="fa fa-address-card  fa-lg"></i> &nbsp;Address </label>
+    <input type="text" class="form-control" id="address"  placeholder="1234 Main St" required value="{{request.user.address}}" name='address'>
+	<div class="invalid-feedback"> Please enter your address. </div>
+    </div>
+<div class="form-group">
+    <label><i class="fa fa-address-card  fa-lg" ></i> &nbsp;Phone No. <span class="text-muted">(Optional)</span> </label>
+    <input type="text" class="form-control" id="phone"  placeholder="Apartment or suite" name='phone' required value="{{request.user.phNo}}">
+    </div>	
+	
+  <div class="form-group form-check">
+    <input type="checkbox" class="form-check-input" id="save-info">
+    <label class="form-check-label" for="exampleCheck1">Accept our Terms & Conditions</label>
+  </div>
+  <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
+</form>
+    </div>
     </div>
 </form>
 </div>
