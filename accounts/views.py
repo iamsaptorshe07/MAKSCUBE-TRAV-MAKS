@@ -179,7 +179,6 @@ def travellerLogin(request):
                             auth.login(request,user)
                             request.session['access_type']='traveller'
                             messages.success(request,'Successfully Loggedin')
-                           
                             return redirect('/')
                         else:
                             messages.error(request,'Invalid Credential')
@@ -500,79 +499,10 @@ def userProfile(request, account_type, uid):
         else:
             return HttpResponse("BAD REQUEST")
 
-def reset_messages_sender(request,user):
-    try:
-        site = get_current_site(request)
-        mail_subject = 'Reset Password Link'
-        message = render_to_string('resetMail.html', {
-            'user': user,
-            'domain': site,
-            'uid':user.id,
-            'token':activation_token.make_token(user)
-                    })
-        to_email=user.email
-        to_list=[to_email]
-        from_email=settings.EMAIL_HOST_USER
-        print(from_email,'\n\n',message,'\n\n')
-        send_mail(mail_subject,message,from_email,to_list,fail_silently=True)
-        return True
-    except Exception as e:
-        print(e)
-        return False
-
-def userValidation(request, uid, token):
-    if len(User.objects.filter(id=uid))>0:
-        user = User.objects.get(id=uid)
-        if user is not None and activation_token.check_token(user,token):
-            if request.method == 'GET':
-                responce = render(request, 'accounts/changePassword.html')
-                responce.set_cookie('uid',uid,max_age=None)
-                return responce
-            else:
-                uid_check = request.COOKIES.get('uid')
-                if uid_check == uid:
-                    pass1 = request.POST.get('password1')
-                    user.set_password(pass1)
-                    user.save()
-                    x=activation_token.make_token(user)
-                    print("\n\n")
-                    print(x)
-                    responce = redirect('traveler_accounts_signup')
-                    responce.delete_cookie('uid')
-                    messages.success(request,'Successfully Changed your Password, please re-log in')
-                    return responce    
-                else:
-                    return HttpResponse("BAD REQUEST")
-        else:
-            return HttpResponse("Link Expired")
-    else:
-        return HttpResponse("ERROR 404")
-    
-
-
-def passwordReset(request):
-    if request.method == 'GET':
-        return render(request, 'accounts/passwordChange.html')
-    else:
-        mail = request.POST.get('email')
-        if User.objects.filter(email=mail).exists():
-            user = User.objects.get(email=mail)
-            if user.is_active:
-                res = reset_messages_sender(request,user)
-                print(res)
-                if res is True:
-                    messages.success(request,'Check your mail inbox')
-                    return redirect('traveler_accounts_signup')
-                if res is False:
-                    messages.error(request,'Internal Problem Occured')
-                    return redirect('traveler_accounts_signup')
-            else:
-                messages.error(request,'Please varify your mail frist')
-                return redirect('traveler_accounts_signup')
-        else:
-            messages.error(request,'Enter a valid mail-id')
-            return redirect('traveler_accounts_signup')
-
+''' 
+Author : Saptorshe
+Purpose : Handling Password Change 
+'''
 def changePassword(request):
     if request.method == 'POST':
         oldpass = request.POST.get('oldpassword')
@@ -588,3 +518,27 @@ def changePassword(request):
              return redirect(request.META.get('HTTP_REFERER'))        
     else:
         return HttpResponse("BAD REQUEST")
+''' Password Chnage Function Ends Here '''
+
+''' Password Reset Mail Sender '''
+def password_reset_mail(request,user):
+    try:
+        site = get_current_site(request)
+        mail_subject = 'Password Reset Link'
+        message = render_to_string('passwordresettakepassword.html',{
+            'user':user,
+            'domain':site,
+            'uid':user.id,
+            'token': activation_token.make_token(user)
+        })
+        to_email = user.email
+        to_list = [to_email]
+        from_email = settings.EMAIL_HOST_USER
+        send_mail(mail_subject, message, from_email, to_list, fail_silently=True)
+        return True
+    except Exception as problem:
+        print(problem)
+        return False
+''' Password Reset Mail Sender Ends here '''
+
+
