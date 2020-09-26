@@ -87,7 +87,7 @@ body {
                     <span class="text-muted">&#8377;{{Tour.price}}/people</span>
                 </li>
                 <li class="list-group-item d-flex justify-content-between lh-condensed">
-                        <input type="number" id="quantityField" class="form-control" max="30" min="0" placeholder="Total no. of People" style="width:100%;" required name="total_people">            
+                        <input type="number" id="quantityField" class="form-control" min="1" placeholder="Total no. of People" style="width:100%;" required name="total_people">            
                     </li>
                 <li class="list-group-item d-flex justify-content-between bg-light">
                     
@@ -105,7 +105,7 @@ body {
             <h4 class="mb-3">Booking details</h4>
             <form>
 			<div class="form-group">
-    <label><i class="fa fa-user-circle fa-lg"=></i>&nbsp;Full Name </label>
+    <label><i class="fa fa-user-circle fa-lg"></i>&nbsp;Full Name </label>
     <input type="text" class="form-control" id="username"  placeholder="Username" required value="{{request.user.name}}" name="name">
 	<div class="invalid-feedback" style="width: 100%;"> Your username is required. </div>
     </div>
@@ -125,7 +125,7 @@ body {
     </div>	
 	
   <div class="form-group form-check">
-    <input type="checkbox" class="form-check-input" id="save-info">
+    <input type="checkbox" class="form-check-input" id="save-info" required>
     <label class="form-check-label" for="exampleCheck1">Accept our Terms & Conditions</label>
   </div>
   <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
@@ -135,16 +135,15 @@ body {
 </form>
 </div>
 <!--check out end-->
- <script type="text/javascript">
-  var pricePerItem = {{Tour.price}};
+<script type="text/javascript">
+    var pricePerItem = {{Tour.price}};
     $('#quantityField').on('input',function(event){
-
-    var quantity = $(this).val();
-    
-    var total = pricePerItem * quantity;
-    
-    $('#totalField').text(total);
-    
-  });
- </script>
+        var quantity = $(this).val();
+        var total = pricePerItem * quantity;
+        $('#totalField').text(total);
+    });
+    var quantityField=document.getElementById('quantityField');
+    var bb=10;
+    quantityField.setAttribute('max',bb);
+</script>
 {% endblock body %}
