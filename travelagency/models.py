@@ -46,6 +46,16 @@ class Tour(models.Model):
     nlocationconnected4 = models.TextField(null=True, blank=True)
     publish_mode = models.BooleanField(default=False)
 
+    #### resize image
+    def save(self):
+        super().save()
+
+        img = Image.open(self.thumbnail.path)
+
+        if img.height > 468 or img.width >312 :
+            output_size = (468 , 312)
+            img.thumbnail(output_size)
+            img.save(self.thumbnail.path)
     def __str__(self):
         return self.tourHeading
 
