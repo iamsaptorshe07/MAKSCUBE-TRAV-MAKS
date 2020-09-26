@@ -601,15 +601,15 @@ background: linear-gradient(90deg, rgba(56,46,136,1) 13%, rgba(51,34,153,1) 49%,
 	function fun() {
 		let gggg = 0;
 		var sd = document.getElementById('txtF').value;
-		console.log(sd);
+		//console.log(sd);
 		sd = new Date(sd);
 		var ed = document.getElementById('txtT').value;
-		console.log(ed);
+		//console.log(ed);
 		ed = new Date(ed);
 		var d = ed.getTime() - sd.getTime();
 		var x = d / (1000 * 3600 * 24) + 1;
-		console.log($('#txf'), $('#txtT'));
-		console.log(sd, ed, d, x);
+		//console.log($('#txf'), $('#txtT'));
+		//console.log(sd, ed, d, x);
 		if (gggg == 0) {
 			$('#cards').empty();
 			gggg = 1;
@@ -720,7 +720,7 @@ background: linear-gradient(90deg, rgba(56,46,136,1) 13%, rgba(51,34,153,1) 49%,
 	function validator(){
 		let msg=[];
 		let ayan=document.querySelectorAll('.card');
-		console.log(ayan,ayan.length);
+		//console.log(ayan,ayan.length);
 		if(ayan.length<1){
 			msg.push('Please Confrim Date. \n In Case of Dificulty Contact Us.');
 		}
