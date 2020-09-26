@@ -1,6 +1,6 @@
 from django.db import models
 from accounts.models import *
-
+from PIL import Image
     
 class Tour(models.Model):
     TOUR_TYPE = (
@@ -50,12 +50,16 @@ class Tour(models.Model):
     def save(self):
         super().save()
 
+        
         img = Image.open(self.thumbnail.path)
-
+        output_size = (468 , 312)
+        img.resize(output_size)
         if img.height > 468 or img.width >312 :
             output_size = (468 , 312)
-            img.thumbnail(output_size)
+            img.resize(output_size)
+            #img.thumbnail(output_size)
             img.save(self.thumbnail.path)
+        
     def __str__(self):
         return self.tourHeading
 

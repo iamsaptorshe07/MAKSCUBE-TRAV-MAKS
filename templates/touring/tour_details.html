@@ -91,6 +91,15 @@
     margin-left: 20px;
     margin-bottom: 10px;
   }
+  .dayp{
+    height: auto;
+    padding: 10px;
+  }
+  .dayp span{
+    height: auto;
+    padding: 5px;
+    text-overflow: ellipsis;
+  }
 </style>
 {% endblock stylesheets %}
 
@@ -269,33 +278,9 @@
       <div class="container">
         <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
           <div class="tab-pane fade show active" id="nav-overall" role="tabpanel" aria-labelledby="nav-overall-tab">
-            <h5>
-              <span class="bl">Day 01 :</span>Lorem ipsum dolor</h5>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-              dolore Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-              et dolore Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-              labore et dolore </p>
+            
 
-            <h5>
-              <span class="bl">Day 01 :</span>Lorem ipsum dolor</h5>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-              dolore Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-              et dolore Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-              labore et dolore </p>
 
-            <h5>
-              <span class="bl">Day 01 :</span>Lorem ipsum dolor</h5>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-              dolore Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-              et dolore Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-              labore et dolore </p>
-
-            <h5>
-              <span class="bl">Day 01 :</span>Lorem ipsum dolor</h5>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-              dolore Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-              et dolore Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-              labore et dolore </p>
           </div>
           <div class="tab-pane fade" id="nav-inclusive" role="tabpanel" aria-labelledby="nav-inclusive-tab">
             <h5>
@@ -369,22 +354,22 @@
 
         <div class="col-md-4">
           <a href="/tour/booktour/{{Tour.tourId}}/{{Tour.seller.userAccess.agentId}}">
-            <img src="https://source.unsplash.com/aJeH0KcFkuc/400x300" alt="" style="height: 200px;width: 250px;">
+            <img src="{{Tour.thumbnail.url}}" alt="" style="height: 200px;width: 250px;">
           </a>
         </div>
         <div class="col-md-4 mt-2">
           <a href="/tour/booktour/{{Tour.tourId}}/{{Tour.seller.userAccess.agentId}}">
-            <img src="https://source.unsplash.com/aJeH0KcFkuc/400x300" alt="" style="height: 200px;width: 250px;">
+            <img src="{{Tour.thumbnail.url}}" alt="" style="height: 200px;width: 250px;">
           </a>
         </div>
         <div class="col-md-4 mt-2">
           <a href="/tour/booktour/{{Tour.tourId}}/{{Tour.seller.userAccess.agentId}}">
-            <img src="https://source.unsplash.com/aJeH0KcFkuc/400x300" alt="" style="height: 200px;width: 250px;">
+            <img src="{{Tour.thumbnail.url}}" alt="" style="height: 200px;width: 250px;">
           </a>
         </div>
         <div class="col-md-4 mt-2">
           <a href="/tour/booktour/{{Tour.tourId}}/{{Tour.seller.userAccess.agentId}}">
-            <img src="https://source.unsplash.com/aJeH0KcFkuc/400x300" alt="" style="height: 200px;width: 250px;">
+            <img src="{{Tour.thumbnail.url}}" alt="" style="height: 200px;width: 250px;">
           </a>
         </div>
 
@@ -426,6 +411,68 @@
     </div>
   </div>
 </div>
+
+<script>
+ 
+
+		var sd="{{Tour.startDate}}";
+
+		// console.log(sd);
+		sd = new Date(sd);
+
+		var ed="{{Tour.endDate}}";
+
+		// console.log(ed);
+		ed = new Date(ed);
+		var d = ed.getTime() - sd.getTime();
+		var x = d / (1000 * 3600 * 24) + 1;
+		console.log(sd,ed,x);
+		let ggg=x;
+  //var x=3;
+  var temp = "{{desc}}";
+  console.log(temp);
+  //console.log("Desc backend :",temp);
+  temp = temp.replace(/&#39;/g,'"');
+  //console.log("Desc backend after replace:",temp);
+  //console.log("In string ",JSON.stringify(temp));
+  console.log(temp);
+  var desc = JSON.parse(temp);
+  console.log(temp);
+  for(let i=0;i<x;i++){
+      var content = document.createElement("div");
+      var y = 'Day' + (i + 1);
+      content.classList.add(y);
+      content.classList.add('dayp');
+      var h5 = document.createElement('h5');
+      var span = document.createElement('sapn');
+      span.classList.add('b1');
+      var node1 = document.createTextNode('Day ' + (i + 1)+' : ');
+      span.appendChild(node1);
+      h5.appendChild(span);
+      var day ='dayTitle' + (i+1);
+			//console.log(desc[day],day,typeof(desc[day]));
+			var node=desc[day];
+      // var node='hi';
+      var node2 = document.createTextNode(node);
+      h5.appendChild(node2);
+      var p = document.createElement('p');
+      var pp= document.createElement('sapn');
+			var describ = 'dayDescription' + (i + 1);
+			// console.log(desc[describ]);
+			var node=desc[describ];
+      // var node='hello';
+      var node3 = document.createTextNode(node);
+
+      p.appendChild(node3);
+      
+      pp.appendChild(p);
+      content.appendChild(h5);
+      content.appendChild(pp);
+
+      var cards = document.getElementById('nav-overall');
+      cards.appendChild(content);
+  }
+</script>
 <script type="text/javascript">
 
   $('.owl-carousel').owlCarousel({
