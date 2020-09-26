@@ -12,6 +12,7 @@ import json
 from django.views.decorators.csrf import csrf_exempt
 from invoice.invoice_generator import render_to_pdf
 from django.template.loader import get_template
+from django.contrib.sites.shortcuts import get_current_site
 # Create your views here.
 
 def searchTour(request):
@@ -79,7 +80,7 @@ def bookTour(request,tourId,agentId):
                         "MOBILE_NO" : order.customer_phone,
                         "EMAIL" : order.customer_email,
                         "TXN_AMOUNT" : str(order.payment_price),
-                        "CALLBACK_URL" : "http://127.0.0.1:8000/tour/paytm-payment-recieve",
+                        "CALLBACK_URL" : "http://{}/tour/paytm-payment-recieve".format(get_current_site(request)),
                     }
                     checksum = Checksum.generateSignature(paytmParams, MKEY)
                     paytmParams['CHECKSUMHASH']= checksum
