@@ -183,7 +183,7 @@ def editTours(request,agentId,tourId):
                         print("\n\n",desc)
                         context = {
                             'Tour':tour,
-                            'desc': desc
+                            'desc': desc,
                         }
                         
                         return render(request,'travelagency/edit_tours.html',context=context)

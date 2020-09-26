@@ -32,7 +32,8 @@ def tourDetails(request,tourId,slug):
     if(Tour.objects.filter(tourSlug=slug).exists()):
         tour = Tour.objects.get(tourSlug=slug)
         context = {
-            'Tour':tour
+            'Tour':tour,
+            'desc': tour.description.strip('TRAVMAKS')
         }
         return render(request,'touring/tour_details.html',context=context)
     else:
