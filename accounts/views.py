@@ -503,7 +503,7 @@ def userProfile(request, account_type, uid):
 def reset_messages_sender(request,user):
     try:
         site = get_current_site(request)
-        mail_subject = 'Site Activation Link'
+        mail_subject = 'Reset Password Link'
         message = render_to_string('resetMail.html', {
             'user': user,
             'domain': site,
@@ -525,8 +525,7 @@ def userValidation(request, uid, token):
         user = User.objects.get(id=uid)
         if user is not None and activation_token.check_token(user,token):
             if request.method == 'GET':
-                context={'user': user,'token':token}
-                responce = render(request, 'accounts/changePassword.html',context=context)
+                responce = render(request, 'accounts/changePassword.html')
                 responce.set_cookie('uid',uid,max_age=None)
                 return responce
             else:
