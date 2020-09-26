@@ -26,7 +26,7 @@ SECRET_KEY = '^tl()34n(74#+)7m76z-n9#0isg)li+bbhu1edum*8&wfoq543'
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-# Overriding message tag
+# Overriding message tag 
 from django.contrib.messages import constants as messages
 MESSAGE_TAGS = {
     messages.ERROR : 'danger',
@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crispy_forms',
     'homeApp',
     'accounts',
     'travelagency',
@@ -49,7 +50,7 @@ INSTALLED_APPS = [
     'touring',
     'traveller',
 ]
-
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -65,7 +66,7 @@ ROOT_URLCONF = 'travmaks.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': ['templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -88,10 +89,11 @@ WSGI_APPLICATION = 'travmaks.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'travmaks$travmaks',
-        'USER':'travmaks',
-        'PASSWORD':'fuckyouall',
-        'HOST':'travmaks.mysql.pythonanywhere-services.com',
+        'NAME': 'uefdpW7x1L',
+        'USER':'uefdpW7x1L',
+        'PASSWORD':'nPIcBEMMzC',
+        'HOST':'remotemysql.com',
+        'PORT':'3306',
     }
 }
 

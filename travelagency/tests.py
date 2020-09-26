@@ -82,7 +82,7 @@ def tourDuration(sdate,edate):
 def descriptionMaker(description_dct):
     description = 'TRAVMAKS'
     description = description + str(description_dct)
-    description = description.replace(' ','')
+    description = description.replace(' ','--')
     return description+'TRAVMAKS'
 
 def descriptionExtractor(description_str):

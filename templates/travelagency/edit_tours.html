@@ -648,12 +648,13 @@
 		let ggg=x;
 
 		var temp = "{{desc}}";
-		//console.log("Desc backend :",temp);
+		console.log("Desc backend :",temp);
 		temp = temp.replace(/&#39;/g,'"');
-		//console.log("Desc backend after replace:",temp);
-		//console.log("In string ",JSON.stringify(temp));
+		temp = temp.replace(/--/g,' ');
+		console.log("Desc backend after replace:",temp);
+		console.log("In string ",JSON.stringify(temp));
 		var desc = JSON.parse(temp);
-		//console.log("Json Parse :",desc);
+		console.log("Json Parse :",desc);
 
 		for (let i = 0; i < ggg; i++) {
 			// console.log('hi');
@@ -739,6 +740,7 @@
 			cards.appendChild(content);
 		}
 	});
+
 	function fun() {
 		//console.log('start');
 		let ayan=document.querySelectorAll('.card');

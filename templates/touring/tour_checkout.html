@@ -91,8 +91,8 @@ body {
                     </li>
                 <li class="list-group-item d-flex justify-content-between bg-light">
                     
-                        <h6 class="my-0">Total seats left</h6>
-                    <span >-$5</span>
+                        <h6 class="my-0">Total seats Left</h6>
+                    <span >{{Tour.maximum_people}}</span>
                 </li>
                 <li class="list-group-item d-flex justify-content-between">
                     <span >Total (INR)</span>
@@ -143,7 +143,7 @@ body {
         $('#totalField').text(total);
     });
     var quantityField=document.getElementById('quantityField');
-    var bb=10;
+    var bb={{Tour.maximum_people}};
     quantityField.setAttribute('max',bb);
 </script>
 {% endblock body %}
