@@ -524,39 +524,31 @@ def userValidation(request, uid, token):
     if len(User.objects.filter(id=uid))>0:
         user = User.objects.get(id=uid)
         if user is not None and activation_token.check_token(user,token):
-            context={'user': user,'token':token}
-            responce = render(request, 'accounts/changePassword.html',context=context)
-            responce.set_cookie('uid',uid,max_age=None)
-            return responce
+            if request.method == 'GET':
+                context={'user': user,'token':token}
+                responce = render(request, 'accounts/changePassword.html',context=context)
+                responce.set_cookie('uid',uid,max_age=None)
+                return responce
+            else:
+                uid_check = request.COOKIES.get('uid')
+                if uid_check == uid:
+                    pass1 = request.POST.get('password1')
+                    user.set_password(pass1)
+                    user.save()
+                    x=activation_token.make_token(user)
+                    print("\n\n")
+                    print(x)
+                    responce = redirect('traveler_accounts_signup')
+                    responce.delete_cookie('uid')
+                    messages.success(request,'Successfully Changed your Password, please re-log in')
+                    return responce    
+                else:
+                    return HttpResponse("BAD REQUEST")
         else:
             return HttpResponse("Link Expired")
     else:
         return HttpResponse("ERROR 404")
     
-
-
-def resetPassword(request,uid,token):
-    uid_check = request.COOKIES.get('uid')
-    if uid_check == uid:
-        if User.objects.filter(id=uid).exists():
-            if request.method == 'POST':
-                user = User.objects.get(id=uid)
-                if user is not None and activation_token.check_token(user,token):
-                    pass1 = request.POST.get('password1')
-                    user.set_password(pass1)
-                    user.save()
-                    responce = redirect('traveler_accounts_signup')
-                    responce.delete_cookie('uid')
-                    messages.success(request,'Successfully Changed your Password, please re-log in')
-                    return responce      
-                else:
-                    return HttpResponse("Link Expired")
-            else:
-                return HttpResponse("BAD REQUEST")
-        else:
-            return HttpResponse("BAD REQUEST")
-    else:
-        return HttpResponse("BAD REQUEST")
 
 
 def passwordReset(request):
