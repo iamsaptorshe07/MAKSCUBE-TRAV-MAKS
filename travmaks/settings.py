@@ -26,7 +26,7 @@ SECRET_KEY = '^tl()34n(74#+)7m76z-n9#0isg)li+bbhu1edum*8&wfoq543'
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-# Overriding message tag 
+# Overriding message tag
 from django.contrib.messages import constants as messages
 MESSAGE_TAGS = {
     messages.ERROR : 'danger',
@@ -65,7 +65,7 @@ ROOT_URLCONF = 'travmaks.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates'],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -88,11 +88,10 @@ WSGI_APPLICATION = 'travmaks.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'uefdpW7x1L',
-        'USER':'uefdpW7x1L',
-        'PASSWORD':'nPIcBEMMzC',
-        'HOST':'remotemysql.com',
-        'PORT':'3306',
+        'NAME': 'travmaks$travmaks',
+        'USER':'travmaks',
+        'PASSWORD':'fuckyouall',
+        'HOST':'travmaks.mysql.pythonanywhere-services.com',
     }
 }
 
@@ -141,11 +140,11 @@ STATIC_ROOT = os.path.join(BASE_DIR,'designs')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend' 
-MAILER_EMAIL_BACKEND = EMAIL_BACKEND 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+MAILER_EMAIL_BACKEND = EMAIL_BACKEND
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT=587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'makscub3e@gmail.com'
-EMAIL_HOST_PASSWORD = 'Weareteammaks07!'
+EMAIL_HOST_USER = 'travmakscub3@gmail.com'
+EMAIL_HOST_PASSWORD = 'Weareteamtravmaks07!'
 
