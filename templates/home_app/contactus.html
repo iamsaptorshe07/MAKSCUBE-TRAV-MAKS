@@ -3,8 +3,250 @@
 
 {% block stylesheets %}
 
+<link rel="stylesheet" 
+href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" 
+integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" 
+crossorigin="anonymous">
+<style>
+    main{
+        width: 100%;
+        margin-top: 150px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        flex-flow: column;
+        align-items: flex-start;
+    }
+    .doings{
+        display: flex;
+        flex-flow: column;
+    }
+    .doings div h1{
+        text-decoration: underline;
+    }
+    .doings div h2{
+        background-color: yellow;
+        border-radius: 50px;
+        width: 90px;
+        height: 40px;
+    }
+    #contact{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        flex-flow: column;
+    }
+    .office ul{
+        list-style: none;
+        padding-inline-start: 0px; 
+    }
+    #contact-left p {
+        margin: 25px 0 20px 0;
+    }
+    .social-list{
+        display: flex;
+        list-style: none;
+        margin-left: 0;
+        padding-inline-start: 0px; 
+    }
+    .social-list li{
+        border: 1px solid black;
+        border-radius: 50%;
+        width: 45px;
+        height: 45px;
+        margin-left: 15px;
+        font-size: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    #contact-right {
+        padding: 25px 30px;
+        width: 100%;
+        -webkit-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+        border-radius: 4px;
+    }
+
+    #contact-right h4 {
+        font-size: 24px;
+    }
+
+    #contact-right p {
+        margin-bottom: 25px;
+    }
+
+    #contact-right form .form-control {
+        font-family: "Open Sans", sans-serif;
+        padding: 10px 15px;
+        font-size: 12px;
+        line-height: 24px;
+    }
+    .mapbg{
+        display: flex;
+        justify-content: center;
+    }
+    .map{
+        width: 100%;
+        height: 400px;
+        background-color: gray;
+    }
+    
+    .parentc{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+    }
+    .col-md-6{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    }
+    #parent img{
+    width: 200px;
+    }
+    .parentc div{
+    display: flex;
+    text-align: center;
+    flex-flow: column;
+    }
+    .pc{
+    width: 100%;
+    font-size: 50px;
+    text-align: center;
+    }
+    .service{
+    display: flex;
+    flex-flow: row!important;
+    }
+    .servicec{
+    /* margin-left: 60px; */
+    }
+    .service i{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: #ccc;
+    font-size: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    }
+    .service span{
+    margin-left: 20px;
+    text-align: center;
+    width: 250px;
+    }
+    .servicec h1{
+    text-decoration: underline;
+    }
+    #offices .row{
+    width: 100%;
+    margin-left: 0px;
+    /* right: 0; */
+    }
+    .office ul li{
+    width: 300px;
+    display: flex;
+    justify-content:left;
+    align-items: center;
+    }
+    .office ul li i{
+    font-size: 20px;
+    }
+    .office ul li span{
+        margin-left: 30px;
+    }
+</style>
 {% endblock stylesheets %}
 
+
 {% block body %}
+    <main>
+        <section id="contact">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div id="contact-left">
+                            <h1>Get<br>In <strong>Touch</strong></h1>
+                            <p>Lorem ipsum dolor sit amet, 
+                                consectetur adipisicing elit. Alias modi est itaque aliquam sit, 
+                                minima esse nihil mollitia no.
+                            </p>
+                            <div id="offices">
+                                <div class="row">
+                                    <div class="office">
+                                        <h4>Trav Maks</h4>
+                                        <ul class="office-details">
+                                            <li><i class="fa fa-mobile"></i><span>+91 72786 60111</span></li>
+                                            <li><i class="fa fa-envelope"></i><span>http://travmaks.pythonanywhere.com</span></li>
+                                            <li><i class="fa fa-map-marker"></i><span>DumDum<br>Kolkata, India.</span></li>
+                                        </ul>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <ul class="social-list">
+                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                            </ul>
+
+                        </div>
+
+                    </div>
+                    <div class="col-md-6">
+                        <div id="contact-right">
+                            <div class="mapbg">
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d58912.12536689048!2d88.39023458392364!3d22.65349647735482!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f89e5c0362082b%3A0x70ee0465893e25d6!2sNorth%20Dumdum%2C%20West%20Bengal!5e0!3m2!1sen!2sin!4v1601234990808!5m2!1sen!2sin" 
+                                width="100%" height="400px" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <br><br>
+        <section class="container" id="parent">
+            <h1 class="pc">Visit Our Parent Company</h1><br>
+            <div class="parentc row">
+                <div class="col-md-6 parentcimg">
+                    <img src="{% static 'img/logo.jpeg' %}" alt=""><br>
+                    <h4>Maks Cub3</h4><br>
+                    <a href="http://makscube.pythonanywhere.com/" target="_blank">http://makscube.pythonanywhere.com/</a>
+                </div>
+                <div class="servicec col-md-6">
+                    <h1>Our Services</h1><br>
+                    <div class="service">
+                        <i class="fa fa-paint-brush" aria-hidden="true"></i>
+                        <span>
+                            <h4>Web Design</h4>
+                            <p>We Develop Website</p>
+                        </span>
+                    </div><br>
+                    <div class="service">
+                        <i class="fa fa-paint-brush" aria-hidden="true"></i>
+                        <span>
+                            <h4>Trav Maks</h4>
+                            <p>We Provide Various Travel Facilities</p>
+                        </span>
+                    </div><br>
+                    <div class="service">
+                        <i class="fa fa-paint-brush" aria-hidden="true"></i>
+                        <span>
+                            <h4>Trav Maks</h4>
+                            <p>We Provide Various Travel Facilities</p>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <br><br>
+    </main>
 
 {% endblock body %}
+
