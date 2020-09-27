@@ -520,25 +520,6 @@ def changePassword(request):
         return HttpResponse("BAD REQUEST")
 ''' Password Chnage Function Ends Here '''
 
-''' Password Reset Mail Sender '''
-def password_reset_mail(request,user):
-    try:
-        site = get_current_site(request)
-        mail_subject = 'Password Reset Link'
-        message = render_to_string('passwordresettakepassword.html',{
-            'user':user,
-            'domain':site,
-            'uid':user.id,
-            'token': activation_token.make_token(user)
-        })
-        to_email = user.email
-        to_list = [to_email]
-        from_email = settings.EMAIL_HOST_USER
-        send_mail(mail_subject, message, from_email, to_list, fail_silently=True)
-        return True
-    except Exception as problem:
-        print(problem)
-        return False
-''' Password Reset Mail Sender Ends here '''
+
 
 
