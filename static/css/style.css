@@ -33,7 +33,7 @@ div
 .navbar .nav-item .nav-link{
     color:#000000 !important;
 		font-family: Helvatica;
-		font-size: 18px;
+		font-size: 16px;
 		
     }
 .navbar .nav-item .nav-link:hover{
@@ -50,6 +50,7 @@ div
 
 background-color: #fff;
 }
+
 
 .dropdown-toggle::after {
    transition: transform 0.15s linear; 
@@ -433,9 +434,11 @@ background-color: #fff;
   outline: none;
 }
 .travel_variation_area {
+	top:-100px;
   padding-top: 150px;
   padding-bottom: 114px;
 	background-image: linear-gradient(to top, #00c6fb 0%, #2debc5 100%);
+	
 
 }
 
@@ -834,85 +837,181 @@ ul{
 
 
 
-.carousel-item{
-	height: 60vh;
-	min-height: 300px;
-	background: no-repeat center center scroll;
-	-webkit-background-size: cover;
-	background-size: cover;
-}
-.carousel-caption{
-	bottom: 30px;
-}
-.carousel-caption h5{
-	font-size: 45px;
-	text-transform: uppercase;
-	letter-spacing: 2px;
-	margin-top: 25px;
-	font-family: merienda;
-}
-.carousel-caption p{
-	width: 60%;
-	margin: auto;
-	font-size: 18px;
-	line-height: 1.9;
-	font-family: poppins;
-}
-.carousel-caption a{
-	text-transform: uppercase;
-	background: #0f1c30;
-	padding: 10px 30px;
-	display: inline-block;
-	color: #fff;
-	margin-top: 15px;
-}
-@media only screen and (min width: 768px)and (max width: 991px){
-	.carousel-caption{
-		padding-bottom: 350px;
-	} 
-	
-	.carousel-caption h5{
-		font-size: 50px;
-	}
-}
-@media only screen and (max width: 767px){
-	.carousel-caption{
-		padding-top: 120px;
-	}
-	
-	.carousel-caption h5{
-		font-size: 25px;
-	}
-	.carousel-caption p{
-		font-size: 18px;
-	}
-	.carousel-caption a{
-		padding: 10px 25px;
-	}
+.carousel-item {
+margin-top:2px;
+  height: 60vh;
+  min-height: 350px;
+  background: no-repeat center center scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 /*search tab*/
-#tabs{
-	background-image: linear-gradient(to top, #00c6fb 0%, #2debc5 100%);
-
-	color: #000000;
+div.card {
+    margin-bottom: 30px;
+    margin-top: 30px;
+    border-radius: 6px;
+    color: rgba(0,0,0,.87);
+    background: #fff;
+    width: 100%;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
 }
-#tabs h6.section-title{
-    color: #000000;
+
+div.card .card-header {
+    border-radius: 3px;
+    padding: 1rem 15px;
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-top: -30px;
+    border: 0;
+    
+}
+.div.card .card-body{
+    padding: 15px 30px;
 }
 
-#tabs .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
-    color: #000000;
+div.card .card-header-primary {
+    background-image: linear-gradient(to bottom,#02aab0 ,#00cdac);
+    box-shadow: 0 5px 20px 0 rgba(0,0,0,.2), 0 13px 24px -11px rgba(156,39,176,.6);
+}
+
+
+
+
+.card-nav-tabs .card-header {
+    margin-top: -30px!important;
+}
+
+.card .card-header .nav-tabs {
+    padding: 0;
+}
+
+.nav-tabs {
+    border: 0;
+    border-radius: 3px;
+    padding: 0 15px;
+}
+
+.nav {
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+}
+
+.nav-tabs .nav-item {
+    margin-bottom: -1px;
+}
+
+.nav-tabs .nav-item .nav-link.active {
+    background-color: hsla(0,0%,100%,.2);
+    transition: background-color .3s .2s;
+}
+
+.nav-tabs .nav-item .nav-link{
+    border: 0!important;
+    color: #000!important;
+    font-weight: 500;
+    font-size: 18px;
+}
+
+.nav-tabs .nav-item .nav-link {
+    color: #fff;
+    border: 0;
+    margin: 0;
+    border-radius: 3px;
+    line-height: 24px;
+    text-transform: uppercase;
+    font-size: 12px;
+    padding: 10px 15px;
     background-color: transparent;
-    border-color: transparent transparent #f3f3f3;
-    border-bottom: 4px solid !important;
-    font-size: 20px;
-    font-weight: bold;
+    transition: background-color .3s 0s;
 }
-#tabs .nav-tabs .nav-link {
-    border: 1px solid transparent;
-    border-top-left-radius: .25rem;
-    border-top-right-radius: .25rem;
-    color: #9c27b0;
-    font-size: 20px;
+
+.nav-link{
+    display: block;
+}
+
+.nav-tabs .nav-item .material-icons {
+    margin: -1px 5px 0 0;
+    vertical-align: middle;
+}
+
+.nav .nav-item {
+    position: relative;
+}
+.bg{
+background-image: linear-gradient(to bottom,#051322,#15457c);
+padding-bottom:30vh;
+}
+
+.popup-btn a{
+    top:180px;
+    position:fixed;
+    right:-90px;
+    z-index: 1000;
+    transform: rotate(-90deg);
+    background-color: red;
+    padding:10px 20px 35px;
+    height: 0px;
+    background-color: #000;
+    color:#fff;
+}
+.popup-btn a:hover{
+    text-decoration: none;
+    color:#fff;
+}
+
+.popup-btn2 a{
+    top:380px;
+    position:fixed;
+    right:-60px;
+    z-index: 1000;
+    transform: rotate(-90deg);
+    background-color: red;
+    padding:10px 20px 35px;
+    height: 0px;
+    background-color: #6c757d;
+    color:#fff;
+}
+.popup-btn2 a:hover{
+    text-decoration: none;
+    color:#fff;
+}
+/*Floating Card */
+.flt-card-5{
+    margin-top:20px;
+	
+}
+.flt-card-5 .btn{
+    border-radius:2px;
+    text-transform:uppercase;
+    font-size:12px;
+    padding:7px 20px;
+}
+.flt-card-5 .card-img-block {
+    width: 91%;
+    margin: 0 auto;
+    position: relative;
+    top: -50px;
+    
+}
+.flt-card-5 .card-img-block img{
+    border-radius:5px;
+    box-shadow:0 0 10px rgba(0,0,0,0.63);
+}
+.flt-card-5 h5{
+    color:#4E5E30;
+    font-weight:600;
+}
+.flt-card-5 p{
+    font-size:14px;
+    font-weight:100;
+}
+.flt-card-5 .btn-primary{
+    background-color:#4E5E30;
+    border-color:#4E5E30;
 }

@@ -18,27 +18,24 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <style>
-	.fa-home{
-	 color: #ea1b1b;
-	}
-	.fa-align-left{
-	color:#ef1961;
-	}
-	.fa-phone-square{
-		color: #1ac916;
-	}
-	.fa-question-circle{
-		color: #d63737;
-	}
-	.fa-book{
-		color: #ffc107;
-	}
 	.fa-sign-out{
 		color: gold;
 	}
 	.fa-user-circle{
 		color: #5f27cd;
 	}
+	.fa-building-o{
+font-size: 20px;
+ color: #2d67b2;
+}
+.fa-plane{
+font-size: 22px;
+ color: #FF9800;
+}
+.fa-car{
+font-size: 20px;
+ color: #2d67b2;
+}
 	#myBtn {
   display: none;
   position: fixed;
@@ -67,71 +64,53 @@
     
     <!--Navbar Starts here-->
     <div class="super_container">
-      <nav class="navbar navbar-expand-sm navbar-light bg-light fixed-top">
-<div class="container">
-  <a class="navbar-brand" href="/">
-    <img class="logo horizontal-logo" src="{% static 'img/logo.jpeg' %}" style="width:40px;">
-    </a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" >
+      <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+   <a class="navbar-brand" href="#">
+    <img src="../static/img/logo.jpeg" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
+    TRAVMAKS	
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
+
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav ml-auto">
+    <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" href="/"><i class="fa fa-home fa-lg"></i>HOME</a>
+        <a class="nav-link" href="#"><i class="fa fa-plane" ></i><span class="icn">Flights </span></a>
       </li>
-  <li class="nav-item">
-        <a class="nav-link" href="#"><i class="fa fa-align-left fa-lg"></i>ABOUT US</a>
+	  <li class="nav-item">
+        <a class="nav-link" href="#"><i class="fa fa-building-o"></i><span class="icn">Hotels </span></a>
       </li>
-  <li class="nav-item">
-        <a class="nav-link" href="#"><i class="fa fa-phone-square fa-lg"></i>CONTACT US</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="/qna/"><i class="fa fa-question-circle fa-lg"></i>QNA</a>
-</li>
-<li class="nav-item">
-  <a class="nav-link"><i class="fa fa-book fa-lg"></i>BLOG</a>
-</li>
-    {% if user.is_authenticated %} 
+	  <li class="nav-item">
+        <a class="nav-link" href="#"><i class="fa fa-car"></i><span class="icn">Cars </span></a>
+      </li>
+         <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Dropdown
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+    </ul>
+	<ul class="navbar-nav ml-auto">
 	
+	  
 	<li class="nav-item dropdown">
-        <a class="nav-link " href="#" data-toggle="dropdown">
-    <i class="fa fa-user-circle fa-lg"></i> {{user.name}}
-  </a>
-  {% if request.session.access_type == 'traveller' %}
-  <div class="dropdown-menu">
-    <a class="dropdown-item" href="/accounts/editprofile/{{request.session.access_type}}/{{user.id}}">My Profile</a>
-    <a class="dropdown-item" href="/traveller/booking-history/{{request.user.userAccess.userId}}">Booking History</a>
-    <a class="dropdown-item" href="#">On Going Tours</a>
-    <a class="dropdown-item" href="#">Wishlist</a>
-    <a class="dropdown-item" href="#">Upcoming Tour</a>
+                            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i> Profile </a>
+                            <div class="dropdown-menu dropdown-menu-right dropdown-cyan" aria-labelledby="navbarDropdownMenuLink-4">
+                                <a class="dropdown-item" href="#">My account</a>
+                                <a class="dropdown-item" href="#">Log out</a>
+                            </div>
+                        </li>
+	</ul>
+    
   </div>
-  {% elif request.session.access_type == 'seller' %}
-  <div class="dropdown-menu">
-    <a class="dropdown-item" href="/accounts/editprofile/{{request.session.access_type}}/{{user.id}}">My Profile</a>
-    <a class="dropdown-item" href="/travelagency/myagency/{{request.user.userAccess.agentId}}">Dashboard</a>
-  </div>
-  {% endif %}
-</li>
-    <li class="nav-item">
-      <a class="nav-link" href="/accounts/user/logout"><i class="fa fa-sign-out fa-lg" ></i> LOGOUT</a>
-    </li>
-      {% else %}
-      <li class="nav-item dropdown">
-        <a class="nav-link " href="#" data-toggle="dropdown">
-  <i class="fa fa-user-circle fa-lg"></i>  ACCOUNTS
-  </a>
-  <div class="dropdown-menu">
-    <a class="dropdown-item" href="/accounts/traveller/account">Hello,Sign in</a>
-  </div>
-</li> 
-    {% endif %}
-  </ul>
-  </div>
-</div>
 </nav>
     <!--Navbar Ends Here-->
-<br><br><hr>
 {% if messages %}
   {% for message in messages %}
 <div class="alert alert-{{message.tags}}" role="alert">
@@ -142,7 +121,6 @@
 </div>
   {% endfor %}
 {% endif %}
-<hr>
     <!--Main body-->
     {% block body %}
     {% endblock body%}
@@ -162,8 +140,9 @@
               <li><a href="/accounts/seller/account">Login as a Seller Account</a></li>
               <li><a href="#">Become a TRAVMAKS Specialised Agency</a></li>
               <li><a href="#">Seller Terms & Conditions</a></li>
-              <li><a href="#">Seller Payment Policy</a></li>
-              <li><a href="#">Seller Privacy Policy</a></li>
+              <li><a href="#"> Payment Policy</a></li>
+              <li><a href="#"> Privacy Policy</a></li>
+              <li><a href="#"> Benefits of joining us</a></li>
 			  
               <li><a href="#">FAQs</a></li>
             </ul>
@@ -172,14 +151,16 @@
         <div class="col-md-3 col-sm-6">
           <!--Column1-->
           <div class="footer-pad">
-            <h4>Heading 2</h4>
+            <h4>About TRAVMAKS</h4>
             <ul class="list-unstyled">
               <li><a href="#">Website Tutorial</a></li>
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">Contact Us</a></li>
               <li><a href="#">Accessibility</a></li>
               <li><a href="#">Disclaimer</a></li>
               <li><a href="#">Privacy Policy</a></li>
               <li><a href="#">FAQs</a></li>
-              <li><a href="#">Webmaster</a></li>
+              <li><a href="#">Report a Bug</a></li>
             </ul>
           </div>
         </div>
@@ -203,8 +184,8 @@
           <h4>Follow Us</h4>
               <ul class="social-network social-circle">
                <li><a href="#" class="icoFacebook" title="Facebook"><i class="fa fa-facebook"></i></a></li>
-               <li><a href="#" class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
-         <li><a href="#" class="icoLinkedin" title="Linkedin"><i class="fa fa-github"></i></a></li>
+               <li><a href="#" class="icoLinkedin" title="Linkedin"><i class="fa fa-google-plus"></i></a></li>
+         <li><a href="#" class="icoLinkedin" title="Linkedin"><i class="fa fa-pinterest"></i></a></li>
          <li><a href="#" class="icoLinkedin" title="Linkedin"><i class="fa fa-twitter"></i></a></li>
               </ul>				
       </div>
