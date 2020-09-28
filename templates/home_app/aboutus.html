@@ -73,7 +73,7 @@ href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         color:#fdf88d;
     }
     .vidtxt p{
-        font-size: 25px;
+        font-size: 35px;
     }
 
     #contact1{
@@ -209,6 +209,7 @@ href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         margin-bottom: 10px;
     }
     .boxbg{
+        margin-top: 20px;
         margin-left: 100px;
         display: flex;
         justify-content: flex-start;
@@ -230,12 +231,13 @@ href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     }
     .doingsc .dohead{
         margin-left: 60px;
-        width: 90%;
+        width: 98%;
         height: auto;
         padding: 15px;
-        border: 2px solid black;
-        border-radius: 20px;
-        background-color: #ccc;
+        /* border: 2px solid black; */
+        /* border-radius: 20px; */
+        /* background-color: #ccc; */
+        color: white;
     }
     #contact1, #team{
         transform: translateY(-80px);
@@ -244,29 +246,32 @@ href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     .dohead{
         padding-bottom: 50px;
     }
+    .vidtxt2{
+        font-size: 16px;
+    }
     @media screen and (max-width: 900px) {
         .vidtxt{
-            margin-left: 20px!important;
-            margin-bottom: 30px!important;
+            margin-left: 20px;
+            margin-bottom: 30px;
         }
         .abt{
-            font-size: 35px!important;
+            font-size: 35px;
         }
         .vidtxt p{
-            font-size: 12px!important;
+            font-size: 12px;
         }
         #contact1 .container{
             flex-flow: column;
         }
         
         #heading{
-            transform: translateY(-40px)!important;
+            transform: translateY(-40px);
         }
         #doings{
-            transform: translateY(-30px)!important;
+            transform: translateY(-30px);
         }
         #doings h1{
-            transform: translateX(-50px) translateY(50px) rotate(270deg);
+            transform: translateX(-100px) translateY(100px) rotate(270deg);
         }
         .boxbg{
             margin-left: 20px;
@@ -275,6 +280,49 @@ href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
             width: 150px;
         }
     }
+    
+    @media screen and (min-width: 1245px) {
+        #doings h1{
+            transform: translateX(100px) translateY(100px) rotate(270deg);
+        }
+    }
+    @media screen and (max-width: 400px) {
+        #doings h1{
+            transform: translateX(-60px) translateY(90px) rotate(270deg);
+            font-size: 25px;
+        }
+        #heading p{
+            font-size: 12px;
+            margin: 0;
+            color: white;
+        }
+        .vidtxt1{
+            font-weight: bold;
+            font-size: 15px!important;
+            color: #fdf88d!important;
+        }
+        .box{
+            z-index: 10;
+            height: 200px;
+        }
+        #contact1, #team{
+            z-index: 9;
+            transform: translateY(20px);
+        }
+        body{
+            width: 112%;
+        }
+        .super_container{
+            width: 100%;
+        }
+        .vidtxt{
+            transform: translateY(90px);
+        }
+        #doings{
+            transform: translateY(60px) translateX(-30px);
+        }
+    }
+
 </style>
 
 {% endblock stylesheets %}
@@ -290,15 +338,11 @@ href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         <div class="vidtxt">
                 <h1 class="abt">About Us...</h1>
                 <br>
-                <p>Best Travel Guidance</p>
-                <p style="font-size: 16px;"><i class="fa fa-quote-left" aria-hidden="true"></i>
-                    TRAVMAKS information technology company with head office 
-                    located in Kolkata. We provide a portfolio of Information 
-                    Technology services, Software, and Networking that solves critical 
-                    problems for clients. We specialize in helping clients secure their 
-                    operations, increase the efficiency and utilization of their data centers, 
-                    enhance support to their end users and constituents, 
-                    and modernize their enterprise applications.
+                <p class="vidtxt1">Best Travel Guidance</p>
+                <p class="vidtxt2"><i class="fa fa-quote-left" aria-hidden="true"></i>
+                    TRAVMAKS is an online travel organization in India, established in the year 2020 
+                    under MAKS CUBE Group. MAKS CUBE Group Of Industries PVT LTD is an Indian company 
+                    established in the year 2020 head office located at Kolkata, partnered with IEM-UEM Group.
                     <i class="fa fa-quote-right" aria-hidden="true"></i>
                 </p>
         </div>
@@ -307,23 +351,46 @@ href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         <h1>What We Do</h1>
         <div class="container doingsc">
             <div class="dohead">
-                <h2>TRAVMAKS</h2>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptate pariatur
-                     illo assumenda quaerat tenetur omnis autem adipisci architecto aliquid et
-                     in saepe quas dicta nobis eaque, alias voluptatibus sint ratione?
-                </p> 
+                <h2>About More :</h2>
+                <p> “Tours & Travels” is the main thing which you purchase from us through 
+                    our website www.travmaks.in    and our mobile application. We are partnered 
+                    with more than 20,000 travel agencies all over the India.  If you are a travel 
+                    lover then TRAVMAKS is the place which you can trust undoubtedly. If you are a 
+                    solo traveller or someone who likes to do travel without any travel –agency but 
+                    you need anyone as your travel GUIDE at your travel place, we are here to provide 
+                    you that also.</p>
+                <p>Since 2020, the establishment of TRAVMAKS it has been focused on bringing the 
+                    customers the best in esteem and quality travel plans. Through our exceptionally 
+                    curated occasion bundles, we need to take you on an adventure where you personally 
+                    enjoy with the stunning magnificence of all over the world. We need you to observe 
+                    sensational scenes that are a long ways past your creative ability. We’re a worker 
+                    claimed online travel organization portal secured by our qualities, trustworthiness 
+                    and commitment to client benefit.</p>
+                <h2>Our Vision :</h2>
+                <p>Our vision is to be the most trusted and respected Travel Organization Portal recognized 
+                    by our clients for delivering excellence, to be a leading provider of Travel Solution across 
+                    all over the world within next 3 years</p>
+                <p>This is our small contribution in making India Digital.  Our vision is to increase the
+                     employment and creating a new kind of job sector for travel lovers having knowledge about
+                      a particular place, and also helping the small – medium size travel agencies to create 
+                      their online presence. </p>
+                <h3>How :</h3>
+                <p>We are here to provide a platform to travel agencies. It is a platform through which travel 
+                    agencies can generate lead from all over the world, and create an online presence without
+                     any single investment . This is also a platform for anyone passionate about travelling 
+                     and want to with generate income with it can sign-up on our platform as a “GUIDE”.</p>
             </div>
             <div class="boxbg">
                 <span class="box">
-                    <i class="fa fa-envelope" aria-hidden="true"></i>
+                    <i class="fa fa-clock-o" aria-hidden="true"></i>
                     <p>We are Available 24x7 Hours</p>
                 </span>
                 <span class="box">
-                    <i class="fa fa-envelope" aria-hidden="true"></i>
+                    <i class="fa fa-handshake-o" aria-hidden="true"></i>
                     <p>We Treat Our Customer with High Values and Dedication</p>
                 </span>
                 <span class="box">
-                    <i class="fa fa-envelope" aria-hidden="true"></i>
+                    <i class="fa fa-users" aria-hidden="true"></i>
                     <p>+20 Projects</p>
                     <p>+100 Happy Customers</p>
                 </span>
@@ -333,7 +400,7 @@ href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <section id="contact1">
         <div class="container">
             <div>
-                <div class="cicon"><i class="fa fa-envelope" aria-hidden="true"></i></div>
+                <div class="cicon"><i class="fa fa-tint" aria-hidden="true"></i></div>
                 <h1>FOCUS</h1>
                 <p>We have a 100% 
                     commitment to making all our sites the best they can possibly be, 
@@ -341,21 +408,21 @@ href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
                 </p>
             </div>
             <div>
-                <div class="cicon"><i class="fa fa-map-marker" aria-hidden="true"></i></div>
+                <div class="cicon"><i class="fa fa-free-code-camp" aria-hidden="true"></i></div>
                 <h1>PASSION</h1>
                 <p>Our desire to produce good work runs deep – 
                     that’s what lets us handle every project with fresh energy and enthusiasm.
                 </p>
             </div>
             <div>
-                <div class="cicon"><i class="fa fa-phone" aria-hidden="true"></i></div>
+                <div class="cicon"><i class="fa fa-thumbs-up" aria-hidden="true"></i></i></div>
                 <h1>EMPATHY</h1>
                 <p>While we share our knowledge and experience, 
                     we listen hard to understand your business and your needs.
                 </p>
             </div>
             <div>
-                <div class="cicon"><i class="fa fa-phone" aria-hidden="true"></i></div>
+                <div class="cicon"><i class="fa fa-users" aria-hidden="true"></i></div>
                 <h1>TEAMWORK</h1>
                 <p>We are united with you in the drive to get the best from your 
                     project – think of us as extra members of your team with all the skills you need.
