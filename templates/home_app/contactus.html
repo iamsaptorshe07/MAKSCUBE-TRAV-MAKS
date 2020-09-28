@@ -10,7 +10,6 @@ crossorigin="anonymous">
 <style>
     main{
         width: 100%;
-        margin-top: 150px;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -18,28 +17,12 @@ crossorigin="anonymous">
         flex-flow: column;
         align-items: flex-start;
     }
-    .doings{
-        display: flex;
-        flex-flow: column;
-    }
-    .doings div h1{
-        text-decoration: underline;
-    }
-    .doings div h2{
-        background-color: yellow;
-        border-radius: 50px;
-        width: 90px;
-        height: 40px;
-    }
+    
     #contact{
         width: 100%;
         display: flex;
         justify-content: center;
         flex-flow: column;
-    }
-    .office ul{
-        list-style: none;
-        padding-inline-start: 0px; 
     }
     #contact-left p {
         margin: 25px 0 20px 0;
@@ -48,10 +31,11 @@ crossorigin="anonymous">
         display: flex;
         list-style: none;
         margin-left: 0;
+        margin-top: 20px;
         padding-inline-start: 0px; 
     }
     .social-list li{
-        border: 1px solid black;
+        border: 1px solid #003164;
         border-radius: 50%;
         width: 45px;
         height: 45px;
@@ -93,46 +77,27 @@ crossorigin="anonymous">
         background-color: gray;
     }
     
-    .parentc{
-    display: flex;
-    width: 100%;
-    justify-content: space-around;
-    align-items: center;
-    }
-    .col-md-6{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    }
-    #parent img{
-    width: 200px;
-    }
-    .parentc div{
-    display: flex;
-    text-align: center;
-    flex-flow: column;
-    }
-    .pc{
-    width: 100%;
-    font-size: 50px;
-    text-align: center;
-    }
+    
     .service{
     display: flex;
     flex-flow: row!important;
+    
     }
-    .servicec{
-    /* margin-left: 60px; */
+    .servicec h1, .service h4{
+        color: #34363e;
     }
     .service i{
     width: 80px;
     height: 80px;
     border-radius: 50%;
-    background-color: #ccc;
+    background-color: rgba(255,255,255,0.5);
     font-size: 45px;
     display: flex;
     justify-content: center;
     align-items: center;
+    }
+    .service i:hover{
+        background-color: rgba(215,223,35,1);
     }
     .service span{
     margin-left: 20px;
@@ -142,22 +107,107 @@ crossorigin="anonymous">
     .servicec h1{
     text-decoration: underline;
     }
-    #offices .row{
-    width: 100%;
-    margin-left: 0px;
-    /* right: 0; */
+    #contact1{
+        width: 100%;
+        /* background-color: #005051; */
+        
+        background-image: linear-gradient(to bottom,#051322,#15457c);
     }
-    .office ul li{
-    width: 300px;
-    display: flex;
-    justify-content:left;
-    align-items: center;
+    #contact1 .container{
+        color: white;
+        display: flex;
+        justify-content: space-around;
     }
-    .office ul li i{
-    font-size: 20px;
+    #contact1 .container div{
+        padding-top: 15px;
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+        justify-content: flex-start;
     }
-    .office ul li span{
-        margin-left: 30px;
+    .cicon{
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, 0.5);
+        display: flex;
+        align-items: center;
+        font-size: 30px;
+        justify-content:center;
+    }
+    .cicon:hover{
+        background-color: rgba(215,223,35,1);
+    }
+    .fa-map-marker, .fa-phone{
+        font-size: 35px;
+    }
+    #contact-left h1{
+        color: #003164;
+        font-size: 50px;
+        margin-bottom: 30px;
+    }
+    #contact-left p{
+        color: #000;
+    }
+    #contact-left p{
+        margin: 0;
+    }
+    /*
+        .parentc{
+        display: flex;
+        width: 100%;
+        justify-content: space-around;
+        align-items: center;
+        }
+        .col-md-6{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        }
+        #parent img{
+        width: 200px;
+        }
+        .parentc div{
+        display: flex;
+        text-align: center;
+        flex-flow: column;
+        }
+        .pc{
+        width: 100%;
+        font-size: 50px;
+        text-align: center;
+        }
+        #parent{
+            width: 100%;
+        }
+        .parentc{
+            
+            background-color: #34363e;
+            width: 100%;
+            margin: 0;
+        }
+        .servicec{
+            background-color: #159eee;
+            color: white;
+            margin: 0;
+        }
+        .pc{
+            background-color: #fff;
+            padding-bottom: 15px;
+        }
+        .parentc .col-md-6{
+            height: 500px;
+            display: flex;
+            align-items: center;
+        } 
+    */
+    .mainfooter{
+        margin-top: 0;
+    }
+    @media screen and (max-width: 800px) {
+        #contact1 .container{
+            flex-flow: column;
+        }
     }
 </style>
 {% endblock stylesheets %}
@@ -171,24 +221,11 @@ crossorigin="anonymous">
                     <div class="col-md-6">
                         <div id="contact-left">
                             <h1>Get<br>In <strong>Touch</strong></h1>
-                            <p>Lorem ipsum dolor sit amet, 
-                                consectetur adipisicing elit. Alias modi est itaque aliquam sit, 
-                                minima esse nihil mollitia no.
+                            <p>
+                                The best thing of our company is that we are always there for a customer.
                             </p>
-                            <div id="offices">
-                                <div class="row">
-                                    <div class="office">
-                                        <h4>Trav Maks</h4>
-                                        <ul class="office-details">
-                                            <li><i class="fa fa-mobile"></i><span>+91 72786 60111</span></li>
-                                            <li><i class="fa fa-envelope"></i><span>http://travmaks.pythonanywhere.com</span></li>
-                                            <li><i class="fa fa-map-marker"></i><span>DumDum<br>Kolkata, India.</span></li>
-                                        </ul>
-                                    </div>
-
-                                </div>
-
-                            </div>
+                            <p>We are available 24*7 hours.</p>
+                            <p>Feel free to leave a message.</p>
 
                             <ul class="social-list">
                                 <li><a href="#"><i class="fa fa-facebook"></i></a></li>
@@ -210,42 +247,29 @@ crossorigin="anonymous">
                 </div>
             </div>
         </section>
-        <br><br>
-        <section class="container" id="parent">
-            <h1 class="pc">Visit Our Parent Company</h1><br>
-            <div class="parentc row">
-                <div class="col-md-6 parentcimg">
-                    <img src="{% static 'img/logo.jpeg' %}" alt=""><br>
-                    <h4>Maks Cub3</h4><br>
-                    <a href="http://makscube.pythonanywhere.com/" target="_blank">http://makscube.pythonanywhere.com/</a>
+        <section id="contact1">
+            <div class="container">
+                <div>
+                    <div class="cicon"><i class="fa fa-envelope" aria-hidden="true"></i></div>
+                    <h1>Email Address</h1>
+                    <p>abc@gmail.com</p>
+                    <p>abc@gmail.com</p>
                 </div>
-                <div class="servicec col-md-6">
-                    <h1>Our Services</h1><br>
-                    <div class="service">
-                        <i class="fa fa-paint-brush" aria-hidden="true"></i>
-                        <span>
-                            <h4>Web Design</h4>
-                            <p>We Develop Website</p>
-                        </span>
-                    </div><br>
-                    <div class="service">
-                        <i class="fa fa-paint-brush" aria-hidden="true"></i>
-                        <span>
-                            <h4>Trav Maks</h4>
-                            <p>We Provide Various Travel Facilities</p>
-                        </span>
-                    </div><br>
-                    <div class="service">
-                        <i class="fa fa-paint-brush" aria-hidden="true"></i>
-                        <span>
-                            <h4>Trav Maks</h4>
-                            <p>We Provide Various Travel Facilities</p>
-                        </span>
-                    </div>
+                <div>
+                    <div class="cicon"><i class="fa fa-map-marker" aria-hidden="true"></i></div>
+                    <h1>Address</h1>
+                    <p>DumDum</p>
+                    <p>Kolkata, India</p>
+                    <p>700160</p>
+                </div>
+                <div>
+                    <div class="cicon"><i class="fa fa-phone" aria-hidden="true"></i></div>
+                    <h1>Phone Number</h1>
+                    <p>+91 72786 60111</p>
+                    <p>+91 72786 60111</p>
                 </div>
             </div>
         </section>
-        <br><br>
     </main>
 
 {% endblock body %}

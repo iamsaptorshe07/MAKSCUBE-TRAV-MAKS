@@ -11,26 +11,11 @@ href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
-    #heading{
-        display: flex;
-    }
-    #heading img{
-        width: 200px;
-    }
-    .abt{
-        color: #225DA3;
-        font-size: 100px;
-        font-weight: bold;
-    }
     .col-md-9{
         display: flex;
         align-items: center;
         justify-content: center;
     }
-    #heading div{
-        text-align: center;
-    }
-
     .swiper-container {
         width: 100%;
         height: 400px;
@@ -44,9 +29,10 @@ href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         align-items: center;
         flex-flow: column;
         text-align: center;
+        color: #000;
     }
     #team{
-        margin-top: 50px;
+        padding-top: 50px;
     }
     .swiper-slide div img{
         width: 150px;
@@ -57,65 +43,237 @@ href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         margin: 0;
     }
 
+    #heading{
+        position: relative;
+        height: 60vw;
+    }
+    #heading video{
+        width: 100%;
+    }
+    #heading video source{
+        width: 100vw;
+        height: auto;
+    }
+    .vidcon{
+        position: absolute;
+    }
+    .vidtxt{
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        margin-bottom: 80px;
+        width: 50%;
+        color: white;
+        text-align: left;
+        margin-left: 80px;
+    }
+    .abt{
+        font-weight: bolder;
+        font-size: 72px;
+        color:#fdf88d;
+    }
+    .vidtxt p{
+        font-size: 25px;
+    }
 
-    .parentc{
-        display: flex;
+    #contact1{
         width: 100%;
+        background-color: #005051;
+    }
+    #contact1 .container{
+        color: white;
+        display: flex;
         justify-content: space-around;
-        align-items: center;
     }
-    .col-md-6{
+    #contact1 .container div{
+        padding-top: 15px;
         display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    #parent img{
-        width: 200px;
-    }
-    .parentc div{
-        display: flex;
-        text-align: center;
         flex-flow: column;
+        align-items: center;
+        justify-content: flex-start;
+        margin: 15px;
     }
-    .pc{
-        width: 100%;
-        font-size: 50px;
-        text-align: center;
-    }
-    .service{
+    .cicon{
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, 0.5);
         display: flex;
-        flex-flow: row!important;
+        align-items: center;
+        font-size: 30px;
+        justify-content:center;
+    }
+    .cicon:hover{
+        background-color: rgba(215,223,35,1);
+    }
+    .fa-map-marker, .fa-phone{
+        font-size: 35px;
+    }
+    #contact-left h1{
+        color: #003164;
+        font-size: 50px;
+        margin-bottom: 30px;
+    }
+    #contact-left p{
+        color: #000;
+    }
+    #contact1 .container div{
+        padding: 20px;
+    }
+    #heading{
+        transform: translateY(-220px);
+    }
+    #team{
+        /* transform: translateY(-50px); */
+        text-align: center;
+        color: white;
+        background-image: linear-gradient(to bottom,#051322,#15457c);
+    }
+
+    
+    #parent{
+        background-color: #fff;
+    }
+    #contact-left p{
+        margin: 0;
+    }
+    #parent{
+        padding-top: 50px;
+        width: 100%;
+        background-color: #0d141c;
+        color: white;
+        text-align: center;
     }
     .servicec{
-        /* margin-left: 60px; */
+        background-color: #159eee;
+        color: white;
+        margin: 0;
     }
-    .service i{
-        width: 80px;
-        height: 80px;
-        border-radius: 50%;
-        background-color: #ccc;
-        font-size: 45px;
+    .pc{
+        background-color: #fff;
+        padding-bottom: 15px;
+    }
+    .mainfooter{
+        margin-top: 0;
+    }
+    .parentcimg, .parentcq{
         display: flex;
-        justify-content: center;
+        flex-flow: column;
+        padding: 30px;
         align-items: center;
+        justify-content: center;
     }
-    .service span{
-        margin-left: 20px;
-        text-align: center;
+    #parent span{
+        display: flex;
+        flex-flow: row;
+    }
+    #parent span i{
+        margin-left: 15px;
+        border-radius: 50%;
+        width: 70px;
+        height: 70px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: royalblue;
+        font-size: 30px;
+        background-color: rgba(255, 255, 255, 0.5);
+    }
+    #parent span i:hover{
+        background-color:rgba(215,223,35,1);
+    }
+    
+    #doings{
+        transform: translateY(-150px);
+        width: 100%;
+    }
+    .box{
+        width: 150px;
+        height: 150px;
+        display: flex;
+        flex-flow: column;
+        background-image: linear-gradient(to bottom,#051322,#15457c);
+        color: white;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 15px;
+        /* left: 60px; */
+        margin-left: 30px;
+        border-radius: 6px;
+    }
+    .box p{
+        width: 100%;
+    }
+    .box i{
+        font-size: 25px;
+        margin-bottom: 10px;
+    }
+    .boxbg{
+        margin-left: 100px;
+        display: flex;
+        justify-content: flex-start;
+        transform: translateY(-30px);
+    }
+    .doingsc{
+        display: flex;
+        flex-flow: column;
+        transform: translateY(-50px);
+    }
+    #doings h1{
         width: 250px;
+        left: 0;
+        transform: rotate(270deg) translateX(-50px);
+        color: #fdf88d;
     }
-    .servicec h1{
-        text-decoration: underline;
+    body{
+        background-color: #0d141c;
     }
-
-    @media screen and (max-width: 780px) {
-        .abt{
-            width: 100%;
-            font-size: 40px!important;
-            text-align: center;
-            margin-top: 20px;
+    .doingsc .dohead{
+        margin-left: 60px;
+        width: 90%;
+        height: auto;
+        padding: 15px;
+        border: 2px solid black;
+        border-radius: 20px;
+        background-color: #ccc;
+    }
+    #contact1, #team{
+        transform: translateY(-80px);
+        /* padding: 40px 0 40px 0; */
+    }
+    .dohead{
+        padding-bottom: 50px;
+    }
+    @media screen and (max-width: 900px) {
+        .vidtxt{
+            margin-left: 20px!important;
+            margin-bottom: 30px!important;
         }
-
+        .abt{
+            font-size: 35px!important;
+        }
+        .vidtxt p{
+            font-size: 12px!important;
+        }
+        #contact1 .container{
+            flex-flow: column;
+        }
+        
+        #heading{
+            transform: translateY(-40px)!important;
+        }
+        #doings{
+            transform: translateY(-30px)!important;
+        }
+        #doings h1{
+            transform: translateX(-50px) translateY(50px) rotate(270deg);
+        }
+        .boxbg{
+            margin-left: 20px;
+        }
+        .box{
+            width: 150px;
+        }
     }
 </style>
 
@@ -123,95 +281,196 @@ href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
 {% block body %}
 <body>
-    <br>
-    <section class="container" id="heading">
-        <div class="row" style="width: 100%;">
-            <div class="col-md-3">
-                <img src="{% static 'img/logo.jpeg' %}" alt="">
-                <h4>TRAVMAKS</h4>
-            </div>
-            <div class="col-md-9">
-                <h1 class="abt">About Us...</h1></div>
+    <section id="heading">
+        <div class="vidcon">
+            <video autoplay muted loop width="100vw" height="auto">
+                <source type="video/mp4" src="{% static 'about_img/video.mp4' %}">
+            </video>
+        </div>
+        <div class="vidtxt">
+                <h1 class="abt">About Us...</h1>
+                <br>
+                <p>Best Travel Guidance</p>
+                <p style="font-size: 16px;"><i class="fa fa-quote-left" aria-hidden="true"></i>
+                    TRAVMAKS information technology company with head office 
+                    located in Kolkata. We provide a portfolio of Information 
+                    Technology services, Software, and Networking that solves critical 
+                    problems for clients. We specialize in helping clients secure their 
+                    operations, increase the efficiency and utilization of their data centers, 
+                    enhance support to their end users and constituents, 
+                    and modernize their enterprise applications.
+                    <i class="fa fa-quote-right" aria-hidden="true"></i>
+                </p>
         </div>
     </section>
-    <br><br><br>
-    <section class="container" id="doings">
-        <h1>What We Do</h1><br>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam enim provident
-            quae voluptates sed? Voluptates deleniti sint autem in assumenda placeat corporis 
-            aliquid. Cumque numquam nihil quasi vero? Soluta, explicabo.
-        </p>
-    </section>
-
-    <section class="container" id="team">
-        <h1>Meet Our Team</h1><br>
-        <div class="swiper-container">
-            <!-- Additional required wrapper -->
-            <div class="swiper-wrapper">
-                <!-- Slides -->
-                <div class="swiper-slide">
-                    <div><img src="{% static 'img/logo.jpeg' %}" alt=""></div><br>
-                    <div>
-                        <h2>Ayan Koley</h2>
-                        <h5>"Web Developer"</h5>
-                        <p>Ayan is with us since 2021</p>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div><img src="{% static 'about_img/sap.jpeg' %}" alt=""></div><br>
-                    <div>
-                        <h2>Ayan Koley</h2>
-                        <h5>"Web Developer"</h5>
-                        <p>Ayan is with us since 2021</p>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div><img src="{% static 'about_img/som.jpeg' %}" alt=""></div><br>
-                    <div>
-                        <h2>Ayan Koley</h2>
-                        <h5>"Web Developer"</h5>
-                        <p>Ayan is with us since 2021</p>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div><img src="{% static 'about_img/kun.jpeg' %}" alt=""></div><br>
-                    <div>
-                        <h2>Ayan Koley</h2>
-                        <h5>"Web Developer"</h5>
-                        <p>Ayan is with us since 2021</p>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div><img src="{% static 'about_img/ak.jpg' %}" alt=""></div><br>
-                    <div>
-                        <h2>Ayan Koley</h2>
-                        <h5>"Web Developer"</h5>
-                        <p>Ayan is with us since 2021</p>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div><img src="{% static 'img/logo.jpeg' %}" alt=""></div><br>
-                    <div>
-                        <h2>Ayan Koley</h2>
-                        <h5>"Web Developer"</h5>
-                        <p>Ayan is with us since 2021</p>
-                    </div>
-                </div>
-                
-                <!-- ... -->
+    <section id="doings">
+        <h1>What We Do</h1>
+        <div class="container doingsc">
+            <div class="dohead">
+                <h2>TRAVMAKS</h2>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptate pariatur
+                     illo assumenda quaerat tenetur omnis autem adipisci architecto aliquid et
+                     in saepe quas dicta nobis eaque, alias voluptatibus sint ratione?
+                </p> 
             </div>
-            <!-- If we need pagination -->
-            <div class="swiper-pagination"></div>
-        
-            <!-- If we need navigation buttons -->
-            <div class="swiper-button-prev"></div>
-            <div class="swiper-button-next"></div>
-        
-            <!-- If we need scrollbar -->
-            <div class="swiper-scrollbar"></div>
+            <div class="boxbg">
+                <span class="box">
+                    <i class="fa fa-envelope" aria-hidden="true"></i>
+                    <p>We are Available 24x7 Hours</p>
+                </span>
+                <span class="box">
+                    <i class="fa fa-envelope" aria-hidden="true"></i>
+                    <p>We Treat Our Customer with High Values and Dedication</p>
+                </span>
+                <span class="box">
+                    <i class="fa fa-envelope" aria-hidden="true"></i>
+                    <p>+20 Projects</p>
+                    <p>+100 Happy Customers</p>
+                </span>
+            </div>
         </div>
     </section>
-    <br><br>
+    <section id="contact1">
+        <div class="container">
+            <div>
+                <div class="cicon"><i class="fa fa-envelope" aria-hidden="true"></i></div>
+                <h1>FOCUS</h1>
+                <p>We have a 100% 
+                    commitment to making all our sites the best they can possibly be, 
+                    no matter what it takes to get there.
+                </p>
+            </div>
+            <div>
+                <div class="cicon"><i class="fa fa-map-marker" aria-hidden="true"></i></div>
+                <h1>PASSION</h1>
+                <p>Our desire to produce good work runs deep – 
+                    that’s what lets us handle every project with fresh energy and enthusiasm.
+                </p>
+            </div>
+            <div>
+                <div class="cicon"><i class="fa fa-phone" aria-hidden="true"></i></div>
+                <h1>EMPATHY</h1>
+                <p>While we share our knowledge and experience, 
+                    we listen hard to understand your business and your needs.
+                </p>
+            </div>
+            <div>
+                <div class="cicon"><i class="fa fa-phone" aria-hidden="true"></i></div>
+                <h1>TEAMWORK</h1>
+                <p>We are united with you in the drive to get the best from your 
+                    project – think of us as extra members of your team with all the skills you need.
+                </p>
+            </div>
+        </div>
+    </section>
+    <section id="team">
+        <div class="container">
+            <h1>Meet Our Team</h1><br>
+            <div class="swiper-container">
+                <!-- Additional required wrapper -->
+                <div class="swiper-wrapper">
+                    <!-- Slides -->
+                    <div class="swiper-slide">
+                        <div><img src="{% static 'about_img/gov.jpeg' %}" alt=""></div><br>
+                        <div>
+                            <h2>Ayan Koley</h2>
+                            <h5>"Web Developer"</h5>
+                            <p>Ayan is with us since 2021</p>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div><i class="fa fa-question-circle" aria-hidden="true" style="font-size: 72px;"></i></div><br>
+                        <div>
+                            <h2>You?</h2>
+                            <h5>Apply to Travmaks!</h5>
+                            <p>Contact Us for more details</p>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div><img src="{% static 'about_img/sap.jpeg' %}" alt=""></div><br>
+                        <div>
+                            <h2>Ayan Koley</h2>
+                            <h5>"Web Developer"</h5>
+                            <p>Ayan is with us since 2021</p>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div><img src="{% static 'about_img/som.jpeg' %}" alt=""></div><br>
+                        <div>
+                            <h2>Ayan Koley</h2>
+                            <h5>"Web Developer"</h5>
+                            <p>Ayan is with us since 2021</p>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div><img src="{% static 'about_img/kun.jpeg' %}" alt=""></div><br>
+                        <div>
+                            <h2>Ayan Koley</h2>
+                            <h5>"Web Developer"</h5>
+                            <p>Ayan is with us since 2021</p>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div><img src="{% static 'about_img/ak.jpg' %}" alt=""></div><br>
+                        <div>
+                            <h2>Ayan Koley</h2>
+                            <h5>"Web Developer"</h5>
+                            <p>Ayan is with us since 2021</p>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div><img src="{% static 'img/logo.jpeg' %}" alt=""></div><br>
+                        <div>
+                            <h2>Ayan Koley</h2>
+                            <h5>"Web Developer"</h5>
+                            <p>Ayan is with us since 2021</p>
+                        </div>
+                    </div>
+                    
+                    <!-- ... -->
+                </div>
+                <!-- If we need pagination -->
+                <div class="swiper-pagination"></div>
+            
+                <!-- If we need navigation buttons -->
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+            
+                <!-- If we need scrollbar -->
+                <div class="swiper-scrollbar"></div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="parent">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>Visit Our Parent Company</h1>
+                </div>
+                <div class="parentcq col-md-6">
+                    <p>MAKS CUB3E information technology company with head office located in Kolkata. 
+                        We provide a portfolio of Information Technology services, Software, and Networking 
+                        that solves critical problems for clients. We specialize in helping clients secure their 
+                        operations, increase the efficiency and utilization of their data centers,
+                         enhance support to their end users and constituents, and modernize their enterprise applications.
+                    </p>
+                    <span>
+                        <i class="fa fa-facebook" aria-hidden="true"></i>
+                        <i class="fa fa-twitter" aria-hidden="true"></i>
+                        <i class="fa fa-instagram" aria-hidden="true"></i>
+                        <i class="fa fa-linkedin" aria-hidden="true"></i>
+                    </span>
+                </div>
+                <div class="parentcimg col-md-6">
+                    <img src="{% static 'about_img/plogo2.jpeg' %}" alt="" width="200px" height="auto"><br>
+                    <h2>Maks Cub3</h2>
+                    <a href="http://makscube.pythonanywhere.com/" target="_blank">http://makscube.pythonanywhere.com/</a>
+                    <p>Contact : makscub3e@gmail.com</p>
+                </div>
+            </div>
+        </div>
+    </section>
     
 </body>
 <script src="https://code.jquery.com/jquery-3.5.1.js" 
