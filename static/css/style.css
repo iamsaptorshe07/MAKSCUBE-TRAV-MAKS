@@ -9,6 +9,7 @@
 }
 body {
 
+  background:#f7fafd;
 }
 div
 {
@@ -27,17 +28,17 @@ div
   height: auto;
 } 
 .navbar{
-    background-image: linear-gradient(to top, #00c6fb 0%, #2debc5 50%);
+    background-image: linear-gradient(to top, #ffffff 0%, #fcfffd 50%);
 
 }
 .navbar .nav-item .nav-link{
     color:#000000 !important;
 		font-family: Helvatica;
-		font-size: 16px;
+		font-size: 20px;
 		
     }
 .navbar .nav-item .nav-link:hover{
-    background-color: #fff;
+    background-color: #ddd;
   color: black;
   border-radius: 5px;
   
@@ -68,7 +69,6 @@ background-color: #fff;
 .popular_places_area {
   padding-top: 142px;
   padding-bottom: 150px;
-  background: #F7FAFD;
 }
 
 @media (max-width: 767px) {
@@ -434,7 +434,7 @@ background-color: #fff;
   outline: none;
 }
 .travel_variation_area {
-	top:-100px;
+	top:-60px;
   padding-top: 150px;
   padding-bottom: 114px;
 	background-image: linear-gradient(to top, #00c6fb 0%, #2debc5 100%);
@@ -560,7 +560,7 @@ background-color: #fff;
 
 /* line 34, ../../Arafath/CL/December/231. Travel-02/HTML/scss/_popular_place.scss */
 .popular_destination_area {
-  padding-top: 140px;
+  padding-top: 0px;
   padding-bottom: 120px;
 }
 
@@ -839,7 +839,7 @@ ul{
 
 .carousel-item {
 margin-top:2px;
-  height: 60vh;
+  height: 80vh;
   min-height: 350px;
   background: no-repeat center center scroll;
   -webkit-background-size: cover;
