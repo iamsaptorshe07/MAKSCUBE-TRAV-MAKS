@@ -4,9 +4,9 @@
 {% block stylesheets %}
 
 <link rel="stylesheet" 
-href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" 
-integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" 
-crossorigin="anonymous">
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" 
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" 
+    crossorigin="anonymous">
 <style>
     main{
         width: 100%;
@@ -37,13 +37,20 @@ crossorigin="anonymous">
     .social-list li{
         border: 1px solid #003164;
         border-radius: 50%;
-        width: 45px;
-        height: 45px;
+        width: 70px;
+        height: 70px;
         margin-left: 15px;
-        font-size: 20px;
+        font-size: 30px;
+        background-color:rgba(255,255,255,0.5);
         display: flex;
         justify-content: center;
         align-items: center;
+    }
+    .social-list li:hover{
+        background-color:#003164;
+    }
+    .social-list li:hover a i{
+        color: white;
     }
     #contact-right {
         padding: 25px 30px;
@@ -76,8 +83,11 @@ crossorigin="anonymous">
         height: 400px;
         background-color: gray;
     }
-    
-    
+    .col-md-6{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }   
     .service{
     display: flex;
     flex-flow: row!important;
@@ -97,7 +107,7 @@ crossorigin="anonymous">
     align-items: center;
     }
     .service i:hover{
-        background-color: rgba(215,223,35,1);
+        background-color: #003164;
     }
     .service span{
     margin-left: 20px;
@@ -109,9 +119,11 @@ crossorigin="anonymous">
     }
     #contact1{
         width: 100%;
-        /* background-color: #005051; */
-        
+        padding: 30px;
         background-image: linear-gradient(to bottom,#051322,#15457c);
+    }
+    p{
+        margin-bottom: 0;
     }
     #contact1 .container{
         color: white;
@@ -209,6 +221,78 @@ crossorigin="anonymous">
             flex-flow: column;
         }
     }
+    #map {
+        height: 600px;
+    }
+        
+    #contact-right {
+        padding: 25px 30px;
+        -webkit-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+        border-radius: 4px;
+    }
+
+    #contact-right h4 {
+        font-size: 24px;
+    }
+
+    #contact-right p {
+        margin-bottom: 25px;
+    }
+
+    #contact-right form .form-control {
+        font-family: "Open Sans", sans-serif;
+        padding: 10px 15px;
+        font-size: 12px;
+        line-height: 24px;
+    }
+
+    #contact-right form textarea.form-control {
+        min-height: 164px;
+    }
+    #contact .container{
+        position: relative;
+        top: 0;
+        left: 0;
+        margin-top: 100px;
+    }
+    #google-map{
+        position: relative;
+        left: 0;
+        top: 0;
+        /* transform: translateX(300px); */
+        width: 100%;
+        height: 420px;
+    }
+    body{
+        background-color: rgba(255,255,255,0.5);;
+    }
+    #submit-btn{
+        width: auto;
+        padding: 10px 20px 10px 20px;
+        border-radius: 10px;
+        background-color: sandybrown;
+        text-align: center;
+    }
+    .form-group{
+        width: 100%;
+        height: 100%;
+    }
+    .cicon{
+        padding-top: 0!important;
+        justify-content: center!important;
+    }
+    #subbtn{
+        background-color: transparent;
+        border: none;
+    }
+    #subbtn:focus{
+        border: none;
+    }
+    #subbtn:target{
+        border: none;
+    }
+
 </style>
 {% endblock stylesheets %}
 
@@ -228,21 +312,79 @@ crossorigin="anonymous">
                             <p>Feel free to leave a message.</p>
 
                             <ul class="social-list">
-                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                <li><a href="#">
+                                    <i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                <li><a href="#">
+                                    <i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                <li><a href="#">
+                                    <i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                                <li>
+                                    <a href="#"><i class="fa fa-google-plus"></i></a></li>
                             </ul>
 
                         </div>
 
                     </div>
                     <div class="col-md-6">
+                        
                         <div id="contact-right">
-                            <div class="mapbg">
-                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d58912.12536689048!2d88.39023458392364!3d22.65349647735482!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f89e5c0362082b%3A0x70ee0465893e25d6!2sNorth%20Dumdum%2C%20West%20Bengal!5e0!3m2!1sen!2sin!4v1601234990808!5m2!1sen!2sin" 
-                                width="100%" height="400px" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
-                            </div>
+
+                            <form onsubmit="return validator()">
+                                <h1>Send Message</h1>
+                                <p>We are available 24x7 hours, Please leave a message for any kind of doubt or interest.</p>
+
+                                <div class="row">
+
+                                    <div class="col-md-6 col-sm-6">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="name" minlength="5" required placeholder="Your Name">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6">
+                                        <div class="form-group">
+                                            <input type="email" class="form-control" id="email" required placeholder="Email Address">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" required id="phone" placeholder="Phone No.">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" minlength="5" required id="subject" placeholder="Subject">
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="form-group">
+                                    <textarea class="form-control" id="message" minlength="20" placeholder="Message" required></textarea>
+                                </div>
+                                <div id="errormsgbg">
+                                    <div id="errormsg" 
+                                        onclick="removeValidator();">
+                                    </div>
+                                </div>
+
+                                <div id="submit-btn">
+                                    <input type="submit" value="Submit" id="subbtn">
+                                </div>
+
+                            </form>
+
                         </div>
+                    </div>
+                </div>
+            </div>
+        </section><br><br>
+        <section id="google-map">
+            <div class="container">
+                <div class="row">
+                    <div id="map" class="col-md-12">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d58912.12536689048!2d88.39023458392364!3d22.65349647735482!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f89e5c0362082b%3A0x70ee0465893e25d6!2sNorth%20Dumdum%2C%20West%20Bengal!5e0!3m2!1sen!2sin!4v1601234990808!5m2!1sen!2sin" 
+                            width="100%" height="400px" frameborder="0" style="border:0;" 
+                            allowfullscreen="" aria-hidden="false" tabindex="0">
+                        </iframe>
                     </div>
                 </div>
             </div>
@@ -271,6 +413,49 @@ crossorigin="anonymous">
             </div>
         </section>
     </main>
+    <script>
+        function validator()
+        {
+            var name = document.getElementById('name').value;
+            var mail = document.getElementById('email').value;
+            const errormsgbg=document.getElementById('errormsgbg');
+            const errormsg=document.getElementById('errormsg');
+            var phone=document.getElementById('phone').value;
+            var subject=document.getElementById('subject').value;
+            var message=document.getElementById('message').value;
+            var msg=new Array();
+            var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+            res = reg.test(mail);
+            if(res==false)
+            {
+                msg.push("Enter Proper Email.");
+            }
+            if(phone!=Number(phone)){
+                msg.push("Your phone must be number.");
+            }
+            if(phone.length!=10){
+                msg.push("Please Enter a valid Phone number.");
+            }
+            if(msg.length>0){
+                errormsg.innerHTML=msg.join("\n");
+                errormsgbg.style.width="100%";
+                errormsg.style.padding="8px";
+                errormsgbg.style.borderRadius="5px";
+                errormsgbg.style.backgroundColor='#FBD0F5';
+                errormsg.style.color='red';
+                errormsgbg.style.marginBottom='10px';
+                // errormsg.style.fontWeight="bold";
+                return false;
+            }
+            return true;
+        }
+        function removeValidator(){
+            var errormsg=document.getElementById('errormsg');
 
+            var errormsgbg=document.getElementById('errormsgbg');
+            errormsg.innerHTML = null;
+            errormsg.style.padding='0px';
+        }
+    </script>
 {% endblock body %}
 
