@@ -13,6 +13,7 @@ from django.views.decorators.csrf import csrf_exempt
 from invoice.invoice_generator import render_to_pdf
 from django.template.loader import get_template
 from django.contrib.sites.shortcuts import get_current_site
+from travelagency.tests import descriptionExtractor
 # Create your views here.
 
 def searchTour(request):
@@ -31,9 +32,12 @@ def advancedSearching(request):
 def tourDetails(request,tourId,slug):
     if(Tour.objects.filter(tourSlug=slug).exists()):
         tour = Tour.objects.get(tourSlug=slug)
+        description = descriptionExtractor(tour.description)
+        print(description)
         context = {
             'Tour':tour,
-            'desc': tour.description.strip('TRAVMAKS')
+            'desc': tour.description.strip('TRAVMAKS'),
+            'description':description
         }
         return render(request,'touring/tour_details.html',context=context)
     else:
