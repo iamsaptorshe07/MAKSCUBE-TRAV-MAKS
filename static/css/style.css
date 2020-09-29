@@ -28,18 +28,18 @@ div
   height: auto;
 } 
 .navbar{
-    background-image: linear-gradient(to top, #ffffff 0%, #fcfffd 50%);
+    background-color: #0d141c !important;
 
 }
 .navbar .nav-item .nav-link{
-    color:#000000 !important;
+    color:#fff !important;
 		font-family: Helvatica;
 		font-size: 20px;
 		
     }
 .navbar .nav-item .nav-link:hover{
     background-color: #ddd;
-  color: black;
+  color: black !important;
   border-radius: 5px;
   
 }
@@ -676,13 +676,13 @@ background-color: #fff;
   color: #fff;
 }
 footer {
-  background-image: linear-gradient(to top, #00c6fb 0%, #2debc5 50%);
- color: #000000;
+  background-color: #0d141c;
+ color:#fff;
   margin-top:100px;
 }
 
 footer a {
-  color: #000000;
+  color: #fff;
   font-size: 14px;
   transition-duration: 0.2s;
 }
@@ -696,11 +696,12 @@ footer a:hover {
   font-size: 12px;
   padding: 10px;
   border-top: 1px solid #FFFFFF;
+  
 }
 
 .footer-middle {
   padding-top: 2em;
-  color: #000000;
+  color: #fff;
 }
 
 
@@ -1014,4 +1015,13 @@ padding-bottom:30vh;
 .flt-card-5 .btn-primary{
     background-color:#4E5E30;
     border-color:#4E5E30;
+}
+.afoot{
+	text-decoration:none; 
+	color:red; 
+	font-size:20px;;
+}
+.afoot:hover{
+    text-decoration:underline;
+  
 }
