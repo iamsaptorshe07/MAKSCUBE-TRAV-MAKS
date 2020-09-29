@@ -30,6 +30,7 @@ href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         flex-flow: column;
         text-align: center;
         color: #000;
+        padding: 15px;
     }
     #team{
         padding-top: 50px;
@@ -72,13 +73,18 @@ href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         font-size: 72px;
         color:#fdf88d;
     }
-    .vidtxt p{
-        font-size: 35px;
-    }
+    .vidtxt{
+        font-size: 17px;
 
+    }
+    .vidtxt1{
+        font-weight: bold;
+    }
     #contact1{
         width: 100%;
-        background-color: #005051;
+        /* background-color: #005051; */
+        background: rgb(53,53,73);
+background: linear-gradient(0deg, rgba(53,53,73,1) 0%, rgba(33,47,112,1) 100%);
     }
     #contact1 .container{
         color: white;
@@ -86,7 +92,7 @@ href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         justify-content: space-around;
     }
     #contact1 .container div{
-        padding-top: 15px;
+        padding-bottom: 7px;
         display: flex;
         flex-flow: column;
         align-items: center;
@@ -101,10 +107,11 @@ href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         display: flex;
         align-items: center;
         font-size: 30px;
-        justify-content:center;
+        padding-top: 0!important;
+        justify-content:center!important;
     }
     .cicon:hover{
-        background-color: rgba(215,223,35,1);
+        background-color:#003164;
     }
     .fa-map-marker, .fa-phone{
         font-size: 35px;
@@ -118,7 +125,8 @@ href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         color: #000;
     }
     #contact1 .container div{
-        padding: 20px;
+        /* padding: 20px; */
+        margin: 30px;
     }
     #heading{
         transform: translateY(-220px);
@@ -130,10 +138,6 @@ href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         background-image: linear-gradient(to bottom,#051322,#15457c);
     }
 
-    
-    #parent{
-        background-color: #fff;
-    }
     #contact-left p{
         margin: 0;
     }
@@ -175,12 +179,12 @@ href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         display: flex;
         align-items: center;
         justify-content: center;
-        color: royalblue;
+        color: white;
         font-size: 30px;
         background-color: rgba(255, 255, 255, 0.5);
     }
     #parent span i:hover{
-        background-color:rgba(215,223,35,1);
+        background-color:#003164;
     }
     
     #doings{
@@ -188,15 +192,16 @@ href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         width: 100%;
     }
     .box{
-        width: 150px;
-        height: 150px;
+        width: 200px;
+        height: 230px;
+        font-size: 20px;
         display: flex;
         flex-flow: column;
         background-image: linear-gradient(to bottom,#051322,#15457c);
         color: white;
         align-items: center;
         justify-content: flex-start;
-        padding: 15px;
+        padding: 30px 15px 15px 15px;
         /* left: 60px; */
         margin-left: 30px;
         border-radius: 6px;
@@ -210,9 +215,9 @@ href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     }
     .boxbg{
         margin-top: 20px;
-        margin-left: 100px;
+        margin-left: 60px;
         display: flex;
-        justify-content: flex-start;
+        justify-content: space-around;
         transform: translateY(-30px);
     }
     .doingsc{
@@ -223,7 +228,7 @@ href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     #doings h1{
         width: 250px;
         left: 0;
-        transform: rotate(270deg) translateX(-50px);
+        transform: rotate(270deg) translateX(-100px);
         color: #fdf88d;
     }
     body{
@@ -231,7 +236,7 @@ href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     }
     .doingsc .dohead{
         margin-left: 60px;
-        width: 98%;
+        /* width: 98%; */
         height: auto;
         padding: 15px;
         /* border: 2px solid black; */
@@ -249,7 +254,30 @@ href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     .vidtxt2{
         font-size: 16px;
     }
+    @media screen and (max-width: 1324px){
+        #doings h1{
+            transform: translateX(-60px) translateY(100px) rotate(270deg);
+        }
+        #heading{
+            transform: translateY(0px);
+        }
+        #team, #contact1{
+            transform: translateY(-15px);
+        }
+        .boxbg{
+            transform: translateY(10px);
+        }
+        #doings{
+            transform: translateY(10px);
+        }
+    }
     @media screen and (max-width: 900px) {
+        #contact1{
+            z-index: -1;
+        }
+        #contact1, #team{
+            transform: translateY(10px);
+        }
         .vidtxt{
             margin-left: 20px;
             margin-bottom: 30px;
@@ -265,13 +293,10 @@ href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         }
         
         #heading{
-            transform: translateY(-40px);
-        }
-        #doings{
-            transform: translateY(-30px);
+            transform: translateY(40px);
         }
         #doings h1{
-            transform: translateX(-100px) translateY(100px) rotate(270deg);
+            transform: translateX(-80px) translateY(100px) rotate(270deg);
         }
         .boxbg{
             margin-left: 20px;
@@ -281,9 +306,25 @@ href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         }
     }
     
-    @media screen and (min-width: 1245px) {
+    @media screen and (min-width: 1500px) {
         #doings h1{
-            transform: translateX(100px) translateY(100px) rotate(270deg);
+            width: 350px;
+            transform: translateY(200px) rotate(270deg);
+            font-size: 60px;
+        }
+        .boxbg{
+            transform: translateY(30px);
+        }
+        #heading{
+            transform: translateY(-30px);
+        }
+        #parent{
+            padding-top: 0;
+        }
+    }
+    @media screen and (min-width: 1600px) {
+        #doings h1{
+            transform: translateX(100px) translateY(200px) rotate(270deg);
         }
     }
     @media screen and (max-width: 400px) {
@@ -304,10 +345,18 @@ href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         .box{
             z-index: 10;
             height: 200px;
+            font-size: 16px;
+            padding-top: 15px;
+        }
+        #doings{
+            z-index: 10;
         }
         #contact1, #team{
-            z-index: 9;
-            transform: translateY(20px);
+            /* z-index: -1; */
+            transform: translateY(35px);
+        }
+        #contact1, #contact1 .container, #contact1 .container div{
+            z-index: -1;
         }
         body{
             width: 112%;
@@ -319,8 +368,11 @@ href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
             transform: translateY(90px);
         }
         #doings{
-            transform: translateY(60px) translateX(-30px);
+            transform: translateY(110px) translateX(-30px);
         }
+    }
+    h3,h6,p{
+        margin-bottom: 0;
     }
 
 </style>
@@ -441,8 +493,8 @@ href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
                     <div class="swiper-slide">
                         <div><img src="{% static 'about_img/sap.jpeg' %}" alt=""></div><br>
                         <div>
-                            <h2>Saptorshe Das</h2>
-                            <h5>"Co-Founder, CEO &amp; Chairman"</h5>
+                            <h3>Saptorshe Das</h3>
+                            <h6>"Co-Founder, CEO &amp; Chairman"</h6>
                             <p>With TRAVMAKS since 2020</p>
                         </div>
                     </div>
@@ -450,8 +502,8 @@ href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
                       <div class="swiper-slide">
                         <div><img src="{% static 'about_img/som.jpeg' %}" alt=""></div><br>
                         <div>
-                            <h2>Someron Bakuli</h2>
-                            <h5>"Co-Founder, President &amp; Director"</h5>
+                            <h3>Someron Bakuli</h3>
+                            <h6>"Co-Founder, President &amp; Director"</h6>
                             <p>With TRAVMAKS since 2020</p>
                         </div>
                     </div>
@@ -460,8 +512,8 @@ href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
                     <div class="swiper-slide">
                         <div><img src="{% static 'about_img/gov.jpeg' %}" alt=""></div><br>
                         <div>
-                            <h2>Gobinda Ghosh</h2>
-                            <h5>"Founding Member &amp; Lead Front End Designer"</h5>
+                            <h3>Gobinda Ghosh</h3>
+                            <h6>"Founding Member &amp; Lead Front End Designer"</h6>
                             <p>With TRAVMAKS since 2020</p>
                         </div>
                     </div>
@@ -472,8 +524,8 @@ href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
                     <div class="swiper-slide">
                         <div><img src="{% static 'about_img/ak.jpg' %}" alt=""></div><br>
                         <div>
-                            <h2>Ayan Koley</h2>
-                            <h5>"Founding Member &amp; Lead Front End Developer"</h5>
+                            <h3>Ayan Koley</h3>
+                            <h6>"Founding Member &amp; Lead Front End Developer"</h6>
                             <p>With TRAVMAKS since 2020</p>
                         </div>
                     </div>
@@ -481,8 +533,8 @@ href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
                     <div class="swiper-slide">
                         <div><img src="{% static 'about_img/kun.jpeg' %}" alt=""></div><br>
                         <div>
-                            <h2>Kuntal Dinda</h2>
-                            <h5>"Founding Member, COO &amp; Director"</h5>
+                            <h3>Kuntal Dinda</h3>
+                            <h6>"Founding Member, COO &amp; Director"</h6>
                             <p>With TRAVMAKS since 2020</p>
                         </div>
                     </div>
@@ -514,6 +566,7 @@ href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
                         operations, increase the efficiency and utilization of their data centers,
                          enhance support to their end users and constituents, and modernize their enterprise applications.
                     </p>
+                    <br>
                     <span>
                         <i class="fa fa-facebook" aria-hidden="true"></i>
                         <i class="fa fa-twitter" aria-hidden="true"></i>
