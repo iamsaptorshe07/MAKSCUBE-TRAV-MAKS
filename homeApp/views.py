@@ -13,3 +13,13 @@ def aboutUs(request):
 
 def contactUs(request):
     return render(request,'home_app/contactus.html')
+
+def userPrivacyPolicy(request):
+    return render(request,'home_app/userprivacypolicy.html')
+
+def userFAQ(request):
+    return render(request,'home_app/userFAQ.html')
+
+def termsAndCondition(request):
+    return render(request,'home_app/termsandcondition.html')
+

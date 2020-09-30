@@ -71,7 +71,7 @@ def activateTraveller(request, uid, token):
     else:
         return HttpResponse("ERROR 404")
     
-# Traveller account creation and login page handler and also signup of traveller handler function ----
+# Traveller account creation and login page handler and also signup of traveller handler function ---- Old one
 '''
 This function is responsible for sending the account(Traveller / common user) creation and login page to the front - end and also 
 responsible for handling the signup request of the user
@@ -165,6 +165,101 @@ def travelerAccounts(request):
 # Traveller signup and account page handler ends here -------------------------------------------
 
 # Traveller Login handler Starts here ----------------------------------------
+# Traveller Signup Main Page
+def travelerAccountsSignup(request):
+    if request.method == 'POST':
+        try:
+            email = request.POST.get('email')
+            phNo = request.POST.get('phone')
+            print(email, phNo)
+            if User.objects.filter(phNo=phNo, email=email).exists():
+                user = User.objects.get(email=email)
+                if user.is_active:
+                    if user.userAccess.user_access is True:
+                        messages.warning(request, 'Your account is already exsits! Please login!')
+                        return redirect('traveler_accounts_signup')
+                    else:
+                        res = messages_sender(request, user)
+                        print(res)
+                        if res is True:
+                            messages.success(request,
+                                             'As your seller account already exists we will use your old data just Check your email to activate the user account')
+                            return redirect('traveler_accounts_signup')
+                        if res is False:
+                            messages.error(request, 'Internal Problem Occured')
+                            return redirect('traveler_accounts_signup')
+                else:
+                    messages.warning(request, 'Account already exsits! Please verify your email! sent on {}'.format(
+                        user.creationTime))
+                    return redirect('traveler_accounts_signup')
+            elif User.objects.filter(email=email).exists():
+                user = User.objects.get(email=email)
+                if user.is_active:
+                    if user.userAccess.user_access is True:
+                        messages.warning(request, 'Your account is already exsits! Please login!')
+                        return redirect('traveler_accounts_signup')
+                    else:
+                        res = messages_sender(request, user)
+                        print(res)
+                        if res is True:
+                            messages.success(request,
+                                             'As your seller account already exists we will use your old data just Check your email to activate the user account')
+                            return redirect('traveler_accounts_signup')
+                        if res is False:
+                            messages.error(request, 'Internal Problem Occured')
+                            return redirect('traveler_accounts_signup')
+                        return redirect('travelAgency_accounts_signup')
+                else:
+                    messages.warning(request, 'Account already exsits! Please verify your email! sent on {}'.format(
+                        user.creationTime))
+                    return redirect('traveler_accounts_signup')
+            elif User.objects.filter(phNo=phNo).exists():
+                user = User.objects.get(phNo=phNo)
+                if user.is_active:
+                    if user.userAccess.user_access is True:
+                        messages.warning(request, 'Your account is already exsits! Please login!')
+                        return redirect('traveler_accounts_signup')
+                    else:
+                        messages.warning(request,
+                                         'Agency account already exsits! Check your email to activate the user account!')
+
+                        return redirect('travelAgency_accounts_signup')
+                else:
+                    messages.warning(request, 'Account already exsits! Please verify your email!')
+                    return redirect('traveler_accounts_signup')
+            else:
+                user = User(
+                    name=request.POST.get('name'),
+                    email=email,
+                    gender=request.POST.get('gender'),
+                    DOB=request.POST.get('bdate'),
+                    phNo=request.POST.get('phone'),
+                    country=request.POST.get('country'),
+                    state=request.POST.get('state'),
+                    city=request.POST.get('city'),
+                    address=request.POST.get('address'),
+                    zipCode=request.POST.get('zip')
+                )
+                user.set_password(request.POST.get('password1'))
+                user.is_active = False
+                user.save()
+                res = messages_sender(request, user)
+                print(res)
+                if res is True:
+                    messages.success(request, ' email to activatCheck youre the account')
+                    return redirect('traveler_accounts_signup')
+                if res is False:
+                    messages.error(request, 'Internal Problem Occured')
+                    return redirect('traveler_accounts_signup')
+        except Exception as e:
+            print(e)
+            return redirect('/')
+    else:
+        return render(request, 'accounts/traveller_signup.html')
+
+# Traveller Signup Ends here
+#--------------------------------------------------------------------------------------------------
+# Traveller log in starts here
 def travellerLogin(request):
     if request.method=='POST':
         try:        
@@ -196,7 +291,7 @@ def travellerLogin(request):
             messages.warning(request, problem)
             return redirect('traveler_accounts_signup')
     else:
-        return HttpResponse("404 BAD REQUEST")
+        return render(request,'accounts/traveller_login.html')
 # Traveller Login handler Ends here-------------------------------------------------------------
 # Agency Login handler Starts here ----------------------------------------
 def sellerLogin(request):
@@ -230,7 +325,7 @@ def sellerLogin(request):
             messages.warning(request, problem)
             return redirect('travelAgency_accounts_signup')
     else:
-        return HttpResponse("404 BAD REQUEST")
+        return render(request,'accounts/seller_login.html')
 # Agency Login handler Ends here-------------------------------------------------------------
 
 # Any User Logout strts here --------------
@@ -380,7 +475,127 @@ def sellerAgencyAccount(request):
     else:
         return render(request,'selleraccount.html')
 
-# Traveller signup and account page handler ends here -------------------------------------------
+def sellerAgencyAccountSignup(request):
+    if request.method == 'POST':
+        try:
+            email = request.POST.get('email')
+            phNo = request.POST.get('phone')
+            print(request.POST.get('govIdName'))
+            print(email,phNo)
+            if User.objects.filter(phNo=phNo,email=email).exists():
+            #if User.objects.filter(email=email).exists():
+                user = User.objects.get(email=email)
+                if user.is_active:
+                    if user.userAccess.agency_access is True:
+                        messages.warning(request,'Your agency account is already exsits! Please login!')
+                        return redirect('travelAgency_accounts_signup')
+                    else:
+
+                        if GovId.objects.filter(user=user).exists():
+                            messages.warning(request,'Agency account verification mail has been send! Please verify your self!')
+                            return redirect('travelAgency_accounts_signup')
+                        else:
+                            print('okay works1233')
+                            #print(request.POST.get('govIdName'))
+                            govData = GovId(
+                            user=user,
+                            govIdType=request.POST.get('govIdName'),
+                            govIdNo = request.POST.get('govIdNo'),
+                            govIdImage = request.FILES.get('govIdImage')
+                            )
+                            govData.save()
+                            print('okay works')
+                            res = messages_sender(request,user)
+                            print(res)
+                            if res is True:
+                                messages.success(request,'Your user account is already exsits! Check your email to activate the agency account!')
+                                return redirect('traveler_accounts_signup')
+                            if res is False:
+                                messages.error(request,'Internal Problem Occured')
+                                return redirect('traveler_accounts_signup')
+                else:
+                    messages.warning(request,'Account already exsits! Check your email to activate the user account!')
+                    return redirect('travelAgency_accounts_signup')
+            elif User.objects.filter(email=email).exists():
+                user = User.objects.get(email=email)
+                if user.is_active:
+                    if user.userAccess.agency_access is True:
+                        messages.warning(request,'Your agency account is already exsits! Please login!')
+                        return redirect('travelAgency_accounts_signup')
+                    else:
+                        govData = GovId(
+                        user=user,
+                        govIdType=request.POST.get('govIdName'),
+                        govIdNo = request.POST.get('govIdNo'),
+                        govIdImage = request.FILES.get('govIdImage')
+                        )
+                        govData.save()
+                        res = messages_sender(request,user)
+                        print(res)
+                        if res is True:
+                            messages.success(request,'Your account is already exsits! Check your email to activate the agency account!')
+                            return redirect('traveler_accounts_signup')
+                        if res is False:
+                            messages.error(request,'Internal Problem Occured')
+                            return redirect('traveler_accounts_signup')
+                        return redirect('traveler_accounts_signup')
+                else:
+                    messages.warning(request,'Account already exsits! Check your email to activate the user account!')
+                    return redirect('travelAgency_accounts_signup')
+            elif User.objects.filter(phNo=phNo).exists():
+                #print("gotcha1")
+                user = User.objects.get(phNo=phNo)
+                #print('gotcha2')
+                if user.is_active:
+                    if user.userAccess.agency_access is True:
+                        messages.warning(request,'Your agency account is already exsits! Please login!')
+                        return redirect('travelAgency_accounts_signup')
+                    else:
+                        messages.warning(request,'Your account is already exsits! Please login!')
+                        return redirect('traveler_accounts_signup')
+                else:
+                    messages.warning(request,'Account already exsits! Check your email to activate the user account!')
+                    return redirect('travelAgency_accounts_signup')
+            else:
+                user = User(
+                    name = request.POST.get('name'),
+                    email=email,
+                    phNo = phNo,
+                    gender = request.POST.get('gender'),
+                    DOB = request.POST.get('bdate'),
+                    country = request.POST.get('country'),
+                    state = request.POST.get('state'),
+                    city = request.POST.get('city'),
+                    address=request.POST.get('address'),
+                    zipCode = request.POST.get('zip')
+                )
+                user.set_password(request.POST.get('password1'))
+                user.is_active = False
+                user.save()
+                print("\n\n",request.POST.get('govIdName'),"\n")
+                govData = GovId(
+                    user=user,
+                    govIdType=request.POST.get('govIdName'),
+                    govIdNo = request.POST.get('govIdNo'),
+                    govIdImage = request.FILES.get('govIdImage')
+                )
+                govData.save()
+
+                res = messages_sender(request,user)
+                print(res)
+                if res is True:
+                    messages.success(request,'Check your email to activate the account')
+                    return redirect('travelAgency_accounts_signup')
+                if res is False:
+                    messages.error(request,'Internal Problem Occured')
+                    return redirect('travelAgency_accounts_signup')
+        except Exception as e:
+            print("\n\n",e,"\n\n")
+            messages.error(request,'Internal Problem Occured Exception')
+            return redirect('travelAgency_accounts_signup')
+    else:
+        return render(request,'accounts/seller_signup.html')
+
 
 # Handles a signup request of a guide --------
 def sellerGuideSignup(request):
