@@ -434,10 +434,12 @@ background-color: #fff;
   outline: none;
 }
 .travel_variation_area {
-	top:-60px;
-  padding-top: 150px;
+	top:-80px;
+	z-index:-1;
+  padding-top: 100px;
   padding-bottom: 114px;
-	background-image: linear-gradient(to top, #00c6fb 0%, #2debc5 100%);
+	/*background-image: linear-gradient(to top, #00c6fb 0%, #2debc5 100%);*/
+	background-color:#0d141c;
 	
 
 }
@@ -459,7 +461,7 @@ background-color: #fff;
 .travel_variation_area .single_travel h3 {
   font-size: 22px;
   font-weight: 400;
-  color: #040E27;
+  color: #fff;
   margin-bottom: 10px;
   margin-top: 41px;
 }
@@ -475,7 +477,7 @@ background-color: #fff;
 .travel_variation_area .single_travel p {
   font-size: 16px;
   font-weight: 400;
-  color: #6E6E6E;
+  color: #fff;
 }
 
 
@@ -850,9 +852,10 @@ margin-top:2px;
 }
 
 /*search tab*/
-div.card {
-    margin-bottom: 30px;
-    margin-top: 30px;
+.card {
+    
+	margin-bottom: 30px;
+    margin-top: -80px;
     border-radius: 6px;
     color: rgba(0,0,0,.87);
     background: #fff;
@@ -860,7 +863,7 @@ div.card {
     box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
 }
 
-div.card .card-header {
+.card .card-header {
     border-radius: 3px;
     padding: 1rem 15px;
     margin-left: 15px;
@@ -869,12 +872,13 @@ div.card .card-header {
     border: 0;
     
 }
-.div.card .card-body{
+.card .card-body{
     padding: 15px 30px;
 }
 
-div.card .card-header-primary {
-    background-image: linear-gradient(to bottom,#02aab0 ,#00cdac);
+.card .card-header-primary {
+    /*background-image: linear-gradient(to bottom,#02aab0 ,#00cdac);*/
+	background-color:#0d141c;
     box-shadow: 0 5px 20px 0 rgba(0,0,0,.2), 0 13px 24px -11px rgba(156,39,176,.6);
 }
 
@@ -914,9 +918,9 @@ div.card .card-header-primary {
 
 .nav-tabs .nav-item .nav-link{
     border: 0!important;
-    color: #000!important;
+    color: #fff!important;
     font-weight: 500;
-    font-size: 18px;
+    font-size: 20px;
 }
 
 .nav-tabs .nav-item .nav-link {
@@ -944,30 +948,10 @@ div.card .card-header-primary {
 .nav .nav-item {
     position: relative;
 }
-.bg{
-background-image: linear-gradient(to bottom,#051322,#15457c);
-padding-bottom:30vh;
-}
 
-.popup-btn a{
-    top:180px;
-    position:fixed;
-    right:-90px;
-    z-index: 1000;
-    transform: rotate(-90deg);
-    background-color: red;
-    padding:10px 20px 35px;
-    height: 0px;
-    background-color: #000;
-    color:#fff;
-}
-.popup-btn a:hover{
-    text-decoration: none;
-    color:#fff;
-}
 
 .popup-btn2 a{
-    top:380px;
+    top:50%;
     position:fixed;
     right:-60px;
     z-index: 1000;
@@ -983,39 +967,39 @@ padding-bottom:30vh;
     color:#fff;
 }
 /*Floating Card */
-.flt-card-5{
+.flt{
     margin-top:20px;
-	
 }
-.flt-card-5 .btn{
+.flt .btn{
     border-radius:2px;
     text-transform:uppercase;
     font-size:12px;
     padding:7px 20px;
 }
-.flt-card-5 .card-img-block {
+.flt .card-img-block {
     width: 91%;
     margin: 0 auto;
     position: relative;
-    top: -50px;
+    top: -20px;
     
 }
-.flt-card-5 .card-img-block img{
+.flt .card-img-block img{
     border-radius:5px;
     box-shadow:0 0 10px rgba(0,0,0,0.63);
 }
-.flt-card-5 h5{
+.flt h5{
     color:#4E5E30;
     font-weight:600;
 }
-.flt-card-5 p{
+.flt p{
     font-size:14px;
-    font-weight:100;
+    font-weight:300;
 }
-.flt-card-5 .btn-primary{
+.flt .btn-primary{
     background-color:#4E5E30;
     border-color:#4E5E30;
 }
+
 .afoot{
 	text-decoration:none; 
 	color:red; 
@@ -1024,4 +1008,44 @@ padding-bottom:30vh;
 .afoot:hover{
     text-decoration:underline;
   
+}
+.btn-unique {
+    background-color: #00bcd4;
+}
+
+
+.icon-bar a {
+  display: block;
+  text-align: center;
+  padding: 16px;
+  transition: all 0.3s ease;
+  color: white;
+  font-size: 20px;
+  
+}
+.icon-bar {
+  position: fixed;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  z-index:1000;
+}
+.icon-bar a:hover {
+    background-color: #000;
+	text-decoration:none;
+}
+
+.dwn1 {
+  background: #3B5998;
+  color: white;
+}
+
+.dwn2 {
+  background: #55ACEE;
+  color: white;
+}
+.fa-life-ring{
+	color:#43ffdb;
+	font-size:20px;
 }
