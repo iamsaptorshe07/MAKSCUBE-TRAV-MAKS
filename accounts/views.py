@@ -598,14 +598,155 @@ def sellerAgencyAccountSignup(request):
 
 
 # Handles a signup request of a guide --------
+def activateGuide(request, uid, token):
+    if len(User.objects.filter(id=uid))>0:
+        user = User.objects.get(id=uid)
+        if user is not None and activation_token.check_token(user,token):
+            if user.is_active:
+                userAccess = AccountType.objects.get(user=user)
+                userAccess.guide_access = True
+                userAccess.userId=guideId()
+                user.save()
+                userAccess.save()
+            else:
+                user.is_active= True
+                access = AccountType(user=user,guide_access=True,userId=guideId())
+                user.save()
+                access.save()
+            messages.success(request,'Account activated please login')
+            return redirect('guide_accounts_signup')
+        else:
+            return HttpResponse("Link Expired")
+    else:
+        return HttpResponse("ERROR 404")
+    
+# Guide account creation and login page handler and also signup of Guide handler function ----
+'''
+This function is responsible for sending the account(Guide) creation and login page to the front - end and also 
+responsible for handling the signup request of the guide
+'''
 def sellerGuideSignup(request):
-    pass 
-# Signup request of guide ends here
+    if request.method == 'POST':
+        try:
+            email = request.POST.get('email')
+            phNo = request.POST.get('phone')
+            print(email,phNo)
+            if User.objects.filter(phNo=phNo,email=email).exists():
+                user = User.objects.get(email=email)
+                if user.is_active:
+                    if user.userAccess.guide_access is True:
+                        messages.warning(request,'Your account is already exsits! Please login!')
+                        return redirect('guide_accounts_signup')
+                    else:
+                        res = messages_sender(request,user)
+                        print(res)
+                        if res is True:
+                            messages.success(request,'As your account already exists we will use your old data just Check your email to activate the guide account')
+                            return redirect('guide_accounts_signup')
+                        if res is False:
+                            messages.error(request,'Internal Problem Occured')
+                            return redirect('guide_accounts_signup')
+                else:
+                    messages.warning(request,'Account already exsits! Please verify your email! sent on {}'.format(user.creationTime))
+                    return redirect('guide_accounts_signup')
+            elif User.objects.filter(email=email).exists():
+                user = User.objects.get(email=email)
+                if user.is_active:
+                    if user.userAccess.guide_access is True:
+                        messages.warning(request,'Your account is already exsits! Please login!')
+                        return redirect('guide_accounts_signup')
+                    else:
+                        res = messages_sender(request,user)
+                        print(res)
+                        if res is True:
+                            messages.success(request,'As your account already exists we will use your old data just Check your email to activate the guide account')
+                            return redirect('guide_accounts_signup')
+                        if res is False:
+                            messages.error(request,'Internal Problem Occured')
+                            return redirect('guide_accounts_signup')
+                        return redirect('guide_accounts_signup')
+                else:
+                    messages.warning(request,'Account already exsits! Please verify your email! sent on {}'.format(user.creationTime))
+                    return redirect('guide_accounts_signup')
+            elif User.objects.filter(phNo=phNo).exists():
+                user = User.objects.get(phNo=phNo)
+                if user.is_active:
+                    if user.userAccess.guide_access is True:
+                        messages.warning(request,'Your account is already exsits! Please login!')
+                        return redirect('guide_accounts_signup')
+                    else:
+                        messages.warning(request,'Guide account already exsits! Check your email to activate the user account!')
+                        
+                        return redirect('travelAgency_accounts_signup')
+                else:
+                    messages.warning(request,'Account already exsits! Please verify your email!')
+                    return redirect('guide_accounts_signup')
+            else:
+                user = User(
+                    name = request.POST.get('name'),
+                    email=email,
+                    gender = request.POST.get('gender'),
+                    DOB = request.POST.get('bdate'),
+                    phNo = request.POST.get('phone'),
+                    country = request.POST.get('country'),
+                    state = request.POST.get('state'),
+                    city = request.POST.get('city'),
+                    address=request.POST.get('address'),
+                    zipCode = request.POST.get('zip')
+                )
+                user.set_password(request.POST.get('password1'))
+                user.is_active = False
+                user.save()
+                res = messages_sender(request,user)
+                print(res)
+                if res is True:
+                    messages.success(request,'Check your email to activate the account')
+                    return redirect('guide_accounts_signup')
+                if res is False:
+                    messages.error(request,'Internal Problem Occured')
+                    return redirect('guide_accounts_signup')
+        except Exception as e:
+            print(e)
+            return redirect('/')
+    else:
+        return render(request,'guideaccounts.html')
 
+# Guide signup and account page handler ends here -------------------------------------------
 
-# Handle login request ofa guide ----
-def sellerGuideLogin(request):
-    pass
+# Guide Login handler Starts here ----------------------------------------
+def guideLogin(request):
+    if request.method=='POST':
+        try:        
+            email=request.POST['email']
+            password = request.POST['password']
+            if User.objects.filter(email=email).exists():
+                user = User.objects.get(email=email)
+                if user.is_active:
+                    if user.userAccess.guide_access is True:
+                        user = auth.authenticate(email=email, password=password)
+                        if user is not None:
+                            auth.login(request,user)
+                            request.session['access_type']='guide'
+                            messages.success(request,'Successfully Loggedin')
+                            return redirect('/')
+                        else:
+                            messages.error(request,'Invalid Credential')
+                            return redirect('guide_accounts_signup')
+                    else:
+                        messages.warning(request,"You don't have any guide account, Please register yourself as an guide")
+                        return redirect('guide_accounts_signup')
+                else:
+                    messages.warning(request,'Check your mail sent on {}'.format(user.creationTime))
+                    return redirect('/')
+            else:
+                messages.error(request,"Please Signup before Login")
+                return redirect('guide_accounts_signup')
+        except Exception as problem:
+            messages.warning(request, problem)
+            return redirect('guide_accounts_signup')
+    else:
+        return HttpResponse("404 BAD REQUEST")
+
 # Guide login request handler ends here ---
 
 

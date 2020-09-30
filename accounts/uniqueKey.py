@@ -52,9 +52,9 @@ def sellerId():
 # Genereting unique Id for seller agency end here -------------
 
 # Genereting unique Id for guide -------------
-def guidId():
+def guideId():
     charList='0123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM'
-    uniqueId="z"
+    uniqueId="f"
     for r in range(5):
         uniqueId = uniqueId + charList[math.floor(random.random()*len(charList))]
     
