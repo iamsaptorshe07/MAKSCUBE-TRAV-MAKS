@@ -11,6 +11,14 @@ href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
+    @keyframes comingfromleft {
+        0% {
+            transform: translateX(-100%);
+        }
+        100% {
+            transform: translateX(0);
+        }
+    }
     .col-md-9{
         display: flex;
         align-items: center;
@@ -67,6 +75,7 @@ href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         color: white;
         text-align: left;
         margin-left: 80px;
+        transition: 1s;
     }
     .abt{
         font-weight: bolder;
@@ -82,9 +91,6 @@ href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     }
     #contact1{
         width: 100%;
-        /* background-color: #005051; */
-        background: rgb(53,53,73);
-background: linear-gradient(0deg, rgba(53,53,73,1) 0%, rgba(33,47,112,1) 100%);
     }
     #contact1 .container{
         color: white;
@@ -135,7 +141,7 @@ background: linear-gradient(0deg, rgba(53,53,73,1) 0%, rgba(33,47,112,1) 100%);
         /* transform: translateY(-50px); */
         text-align: center;
         color: white;
-        background-image: linear-gradient(to bottom,#051322,#15457c);
+        /* background-image: linear-gradient(to bottom,#051322,#15457c); */
     }
 
     #contact-left p{
@@ -144,7 +150,7 @@ background: linear-gradient(0deg, rgba(53,53,73,1) 0%, rgba(33,47,112,1) 100%);
     #parent{
         padding-top: 50px;
         width: 100%;
-        background-color: #0d141c;
+        /* background-color: #0d141c; */
         color: white;
         text-align: center;
     }
@@ -188,7 +194,7 @@ background: linear-gradient(0deg, rgba(53,53,73,1) 0%, rgba(33,47,112,1) 100%);
     }
     
     #doings{
-        transform: translateY(-150px);
+        /* transform: translateY(-150px); */
         width: 100%;
     }
     .box{
@@ -197,14 +203,15 @@ background: linear-gradient(0deg, rgba(53,53,73,1) 0%, rgba(33,47,112,1) 100%);
         font-size: 20px;
         display: flex;
         flex-flow: column;
-        background-image: linear-gradient(to bottom,#051322,#15457c);
-        color: white;
+        /* background-image: linear-gradient(to bottom,#051322,#15457c); */
+        color: yellowgreen;
         align-items: center;
         justify-content: flex-start;
         padding: 30px 15px 15px 15px;
         /* left: 60px; */
         margin-left: 30px;
         border-radius: 6px;
+        text-align: center;
     }
     .box p{
         width: 100%;
@@ -231,29 +238,25 @@ background: linear-gradient(0deg, rgba(53,53,73,1) 0%, rgba(33,47,112,1) 100%);
         transform: rotate(270deg) translateX(-100px);
         color: #fdf88d;
     }
-    body{
-        background-color: #0d141c;
-    }
     .doingsc .dohead{
         margin-left: 60px;
-        /* width: 98%; */
         height: auto;
         padding: 15px;
-        /* border: 2px solid black; */
-        /* border-radius: 20px; */
-        /* background-color: #ccc; */
         color: white;
-    }
-    #contact1, #team{
-        transform: translateY(-80px);
-        /* padding: 40px 0 40px 0; */
     }
     .dohead{
         padding-bottom: 50px;
     }
-    .vidtxt2{
-        font-size: 16px;
+    .vidtxt2, .vidtxt1{
+        font-size: 22px;
     }
+    
+    @media screen and (max-width: 1500px){
+        #doings{
+            transform: translateY(-150px);
+        }
+    }
+    
     @media screen and (max-width: 1324px){
         #doings h1{
             transform: translateX(-60px) translateY(100px) rotate(270deg);
@@ -261,23 +264,14 @@ background: linear-gradient(0deg, rgba(53,53,73,1) 0%, rgba(33,47,112,1) 100%);
         #heading{
             transform: translateY(0px);
         }
-        #team, #contact1{
-            transform: translateY(-15px);
-        }
         .boxbg{
             transform: translateY(10px);
         }
         #doings{
-            transform: translateY(10px);
+            transform: translateY(0px);
         }
     }
     @media screen and (max-width: 900px) {
-        #contact1{
-            z-index: -1;
-        }
-        #contact1, #team{
-            transform: translateY(10px);
-        }
         .vidtxt{
             margin-left: 20px;
             margin-bottom: 30px;
@@ -321,6 +315,9 @@ background: linear-gradient(0deg, rgba(53,53,73,1) 0%, rgba(33,47,112,1) 100%);
         #parent{
             padding-top: 0;
         }
+        #doings{
+            transform: translateY(-75px);
+        }
     }
     @media screen and (min-width: 1600px) {
         #doings h1{
@@ -342,21 +339,13 @@ background: linear-gradient(0deg, rgba(53,53,73,1) 0%, rgba(33,47,112,1) 100%);
             font-size: 15px!important;
             color: #fdf88d!important;
         }
+        .boxbg{
+            transform: translateY(-30px);
+        }
         .box{
-            z-index: 10;
             height: 200px;
             font-size: 16px;
             padding-top: 15px;
-        }
-        #doings{
-            z-index: 10;
-        }
-        #contact1, #team{
-            /* z-index: -1; */
-            transform: translateY(35px);
-        }
-        #contact1, #contact1 .container, #contact1 .container div{
-            z-index: -1;
         }
         body{
             width: 112%;
@@ -374,7 +363,25 @@ background: linear-gradient(0deg, rgba(53,53,73,1) 0%, rgba(33,47,112,1) 100%);
     h3,h6,p{
         margin-bottom: 0;
     }
+    .bg-light{
+        background-color: #0d141c !important;
+    }
+    body{
+        background: rgb(38,61,105);
+        background: linear-gradient(0deg, rgba(38,61,105,1) 0%, rgba(6,10,41,1) 100%);
+        margin: 0 auto;
+        padding: 0 auto;
+    }
+    #hello{
+        background-image: linear-gradient(to bottom,#051322,#15457c);
+    }
 
+    
+    @media screen and (min-width: 400px) {
+        .vidtxt{        
+            animation: 2s ease-out 0s 1 comingfromleft;
+        }
+    }
 </style>
 
 {% endblock stylesheets %}
@@ -449,6 +456,8 @@ background: linear-gradient(0deg, rgba(53,53,73,1) 0%, rgba(33,47,112,1) 100%);
             </div>
         </div>
     </section>
+    
+    <div id="hello">
     <section id="contact1">
         <div class="container">
             <div>
@@ -546,9 +555,6 @@ background: linear-gradient(0deg, rgba(53,53,73,1) 0%, rgba(33,47,112,1) 100%);
                 <!-- If we need navigation buttons -->
                 <div class="swiper-button-prev"></div>
                 <div class="swiper-button-next"></div>
-            
-                <!-- If we need scrollbar -->
-                <div class="swiper-scrollbar"></div>
             </div>
         </div>
     </section>
@@ -559,7 +565,10 @@ background: linear-gradient(0deg, rgba(53,53,73,1) 0%, rgba(33,47,112,1) 100%);
                 <div class="col-md-12">
                     <h1>Visit Our Parent Company</h1>
                 </div>
-                <div class="parentcq col-md-6">
+                <div class="parentcq col-md-12">
+                    
+                    <a href="http://makscube.pythonanywhere.com/" target="_blank">http://makscube.pythonanywhere.com/</a>
+                    <p>Contact : makscub3e@gmail.com</p><br>
                     <p>MAKS CUB3E information technology company with head office located in Kolkata. 
                         We provide a portfolio of Information Technology services, Software, and Networking 
                         that solves critical problems for clients. We specialize in helping clients secure their 
@@ -574,15 +583,10 @@ background: linear-gradient(0deg, rgba(53,53,73,1) 0%, rgba(33,47,112,1) 100%);
                         <i class="fa fa-linkedin" aria-hidden="true"></i>
                     </span>
                 </div>
-                <div class="parentcimg col-md-6">
-                    <img src="{% static 'about_img/plogo2.jpeg' %}" alt="" width="200px" height="auto"><br>
-                    <a href="http://makscube.pythonanywhere.com/" target="_blank">http://makscube.pythonanywhere.com/</a>
-                    <p>Contact : makscub3e@gmail.com</p>
-                </div>
             </div>
         </div>
     </section>
-    
+    </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.5.1.js" 
     integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" 
@@ -614,5 +618,12 @@ background: linear-gradient(0deg, rgba(53,53,73,1) 0%, rgba(33,47,112,1) 100%);
     //         el: '.swiper-scrollbar',
     //     }
     });
+    // $(function(){
+    //     $(window).scroll(function(){
+    //         var vidtxt2=document.querySelector('.vidtxt2');
+    //         var x=$('.vidtxt2').scrollTop();
+    //         console.log(x);
+    //     })
+    // });
 </script>
 {% endblock body %}
