@@ -1,0 +1,226 @@
+#heading{
+    display: flex;
+    height: 80vh;
+    width: 100%;
+    background: linear-gradient(90deg, rgba(0,48,126,1) 49%, rgba(0,48,126,1) 50%, rgba(80,125,255,1) 51%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: -1;
+}
+
+main{
+    transform: translateY(-10px);
+
+}
+#heading img{
+    position: absolute;
+    object-fit: contain;
+    height: 80vh;
+    z-index: 0;
+}
+.hidetxt{
+    width: 38%;
+    height: 80vh;
+    right: 0;
+    background-color: rgba(80,125,255,1);
+    position: absolute;
+}
+@media screen and (max-width: 1300px) {
+    #heading{
+        height: 70vh;
+    }
+    .hidetxt{
+        height: 70vh;
+        width: 34%;
+    }
+    #heading img{
+        height: 70vh;
+        /* left: 0; */
+    }
+}
+.con{
+    height: 100%;
+    display: flex;
+    /* align-items: center; */
+    justify-content: center;
+    padding: 30px;
+    flex-flow: column;
+    z-index: 10;
+    color: #102C45;
+}
+.con p{
+    font-size: 20px;
+}
+.con h1{
+    font-size: 45px;
+    font-weight: bold;
+}
+#heading h2{
+    top: 30px;
+    left: 30px;
+    position: absolute;
+    color: #fdf88d;
+}
+@keyframes comingfromleft {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+.tab-bg{
+    overflow-y: scroll;
+}
+
+#services-02 {
+    background: #f4f4f4;
+}
+
+#services-tabs ul {
+    padding: 30px;
+}
+
+#services-tabs ul li {
+    padding: 5px 30px;
+}
+
+#services-tabs ul li a {
+    font-family: "Raleway", sans-serif;
+    font-size: 16px;
+    color: #212226;
+    text-transform: uppercase;
+    font-weight: 400;
+    padding: 0;
+    text-decoration: none;
+}
+
+
+/* Tab active state */
+
+#services-tabs ul li.r-tabs-state-active a {
+    color: #f4c613;
+    font-weight: 700;
+    border-bottom: 3px solid #f4c613;
+    padding-bottom: 5px;
+    -webkit-transition: border-color 300ms linear;
+    transition: border-color 300ms linear;
+}
+
+.service-tab .col-md-6 {
+    padding: 0;
+}
+
+.service-tab img {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.service-tab .tab-bg {
+    background: #fff;
+    padding: 59px 30px;
+    height: 500px;
+}
+
+.service-tab h2 {
+    font-size: 48px;
+    color: #bbb;
+    margin-bottom: 20px;
+    font-weight: 100;
+}
+
+.service-tab h3 {
+    font-size: 32px;
+    margin-bottom: 30px;
+}
+
+.service-tab p {
+    line-height: 24px;
+    margin-bottom: 30px;
+}
+@media screen and (max-width: 800px) {
+    main{
+        transform: translateY(-15px);
+    }
+    #services-02{
+        padding: 20px 0 20px 0;
+    }
+    .r-tabs-accordion-title {
+        text-align: center;
+        margin-bottom: 10px;
+    }
+    .r-tabs-accordion-title a {
+        font-family: "Raleway", sans-serif;
+        font-size: 13px;
+        color: #212226;
+        text-transform: uppercase;
+        font-weight: 400;
+        padding: 0;
+        text-decoration: none;
+    }
+    .r-tabs-accordion-title.r-tabs-state-active a {
+        color: #f4c613;
+        font-weight: 700;
+        border-bottom: 3px solid #f4c613;
+        padding-bottom: 5px;
+        -webkit-transition: border-color 300ms linear;
+        transition: border-color 300ms linear;
+    }
+    #services-tabs .tab-bg {
+        text-align: center;
+        padding: 40px 30px;
+    }
+    #services-tabs h2 {
+        font-size: 40px;
+    }
+    #services-tabs h3 {
+        font-size: 28px;
+    }
+
+    #heading{
+        background: rgba(0,48,126,1);
+    }
+    #heading img{
+        height: 36vh;
+        left: 30px;
+    }
+    .hidetxt{
+        height: 320px;
+        width: 272px;
+        left: 50%;
+    }
+    .con h1{
+        font-size: 25px;
+    }
+    .con p{
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    #heading img{
+        display: none;
+        text-align: center;
+    }
+    .hidetxt{
+        
+        text-align: center;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    #heading h2{
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center;
+    }
+    .col-md-6{
+        margin: 15px 0 15px 0;
+    }
+}
+.bg-light{
+    background-color: #0d141c !important;
+}
+#heading h2{
+    top: 60px;
+}

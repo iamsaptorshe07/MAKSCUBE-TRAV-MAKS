@@ -380,6 +380,10 @@ background: linear-gradient(90deg, rgba(56,46,136,1) 13%, rgba(51,34,153,1) 49%,
 		justify-content: center;
 		align-items: center;
 	}
+	
+	#cards .card, #cards .card-header{
+		margin-top: 0!important;
+	}
 </style>
 
 {% endblock stylesheets %}
@@ -451,6 +455,15 @@ background: linear-gradient(90deg, rgba(56,46,136,1) 13%, rgba(51,34,153,1) 49%,
 				</li>
 				<br>
 				<li style="display:flex;justify-content: center;"><button class="setdatebtn" type="button" onclick="fun();">Confirm Date</button></li>
+			</div>
+			<div class="cd">
+				<label>Date Limitation :</label>
+				<li>The Tour has to be booked before : <input type="text" name="bookinglimit" 
+					id="bookinglimit" class="form-control" readonly>
+				</li><br>
+				<li>The Tour can be cancelled within : <input type="text" name="cancelllimit" 
+					id="cancelllimit" class="form-control" readonly>
+				</li>
 			</div>
 			<div class="cd">
 				<label>Enter Location :</label>

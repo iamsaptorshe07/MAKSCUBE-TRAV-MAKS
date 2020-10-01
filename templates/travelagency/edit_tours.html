@@ -401,7 +401,9 @@
 		border-radius: 5px;
 		color: #fff;
 	}
-
+	#cards .card, #cards .card-header{
+		margin-top: 0!important;
+	}
 </style>
 
 {% endblock stylesheets %}
@@ -474,6 +476,15 @@
 				</li>
 				<br>
 				<li style="display:flex;justify-content: center;"><button class="setdatebtn" class="disable-click" type="button" onclick="fun();">Confirm Date</button></li>
+			</div>
+			<div class="cd">
+				<label>Date Limitation :</label>
+				<li>The Tour has to be booked before : <input type="text" name="bookinglimit" 
+					id="bookinglimit" class="form-control" readonly>
+				</li><br>
+				<li>The Tour can be cancelled within : <input type="text" name="cancelllimit" 
+					id="cancelllimit" class="form-control" readonly>
+				</li>
 			</div>
 			<div class="cd">
 				<label>Enter Location :</label>
@@ -612,6 +623,8 @@
 		$('select').removeClass('disable-click');
 		$('#upload_img').removeAttr('required');
 		$('#txtT').removeAttr('required');
+		$('#bookinglimit').attr('readonly','true');
+		$('#cancelllimit').attr('readonly','true');
     }
 	$(function () {
 		var mindate="{{Tour.startDate}}";
