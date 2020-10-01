@@ -100,6 +100,9 @@ font-size: 20px;
     </ul>
 	<ul class="navbar-nav ml-auto">
 	
+	<li class="nav-item">
+                        <a class="nav-link" href="/tour-and-travel-news"><i class="fa fa-download"></i>Download App</a>
+                    </li>
 	 {% if user.is_authenticated %}
 	<li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i>
@@ -127,8 +130,10 @@ font-size: 20px;
                                 Account
                             </a>
                             <div class="dropdown-menu dropdown-menu-right dropdown-cyan" aria-labelledby="navbarDropdownMenuLink-4">
-                                <a class="dropdown-item" href="/accounts/traveller/account/signup">Signup</a>
-                                <a class="dropdown-item" href="/accounts/traveller/login">login</a>
+                                <a class="dropdown-item" href="/accounts/traveller/account/signup"><i class="fa fa-user-plus"></i>&nbsp;&nbsp;Signup</a>
+								<div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="/accounts/traveller/login"><i class="fa fa-sign-in"></i>&nbsp;&nbsp;Login</a>
+                                
                             </div>
 
         {% endif %}

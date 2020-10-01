@@ -2,15 +2,142 @@
 {% load static %}
 <!-- CSS Starts here -->
 {% block stylesheets %}
+<style>
+body{
+background-image:url("{% static 'img/gif.gif' %}");
+/*background: linear-gradient(rgb(49, 71, 85), rgb(38, 160, 218));/*
+background-size: cover;
+background-repeat: no-repeat;
+height: 100%;
+font-family: 'Numans', sans-serif;
+}
 
+.bg-warning{
+background: linear-gradient(rgb(123, 67, 151), rgb(220, 36, 48));
+}
+.movement{
+		-webkit-animation: mover 2s infinite  alternate;
+    animation: mover 1s infinite  alternate;
+}
+@-webkit-keyframes mover {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-20px); }
+}
+@keyframes mover {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-20px); }
+}
+
+/*.btn-orange-styl {
+	float: right;
+    margin-top: 10%;
+    background: #fc4a1a;  
+    background: -webkit-linear-gradient(to right, #f7b733, #fc4a1a);  
+    background: linear-gradient(to right, #f7b733, #fc4a1a);
+    color: #fff;
+    border-radius: 35px;
+}*/
+</style>
 {% endblock stylesheets %}
 <!-- CSS Ends here -->
 
 {% block body %}
 <!-- HTML Starts here -->
-Signup Traveller
-<!-- HTML Ends here -->
+<section class="testimonial py-5">
+    <div class="container">
+        <div class="row ">
+   <div class="col-md-4 py-5text-white text-center" style="background: linear-gradient(rgb(123, 67, 151), rgb(220, 36, 48));">
+                <div class=" ">
+                    <div class="card-body ">
+                        <img class="movement" src="s3.jpg" style="width:100%; height:auto;">
+                        <h2 class="py-3 text-white">Registration</h2>
+                        <p class="text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui of.
+
+</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8 py-5 border" style="background-color: rgb(0 0 0 / 53%) !important;">
+                <h4 class="pb-4 text-center text-white">Please fill with your details</h4>
+                <div class="row register-form">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="Full Name *" name="name" id='fullname' required />
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="maxl">
+                                                <label class="radio inline text-white"> 
+                                                    <span style="display:inline-block">Gender</span> &nbsp;
+                                                    <input type="radio" name="gender" value="Male" checked>
+                                                    <span> Male </span> 
+                                                </label>
+                                                <label class="radio inline text-white"> 
+                                                    <input type="radio" name="gender" value="Female">
+                                                    <span>Female </span> 
+                                                </label>
+												<label class="radio inline text-white"> 
+                                                    <input type="radio" name="gender" value="Other">
+                                                    <span>Others</span> 
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" placeholder="Birthdate" name="bdate" class="form-control" onfocus="(this.type='date')" id="bdate" required/>
+                                        </div>
+                                        <!-- External JS taking the Country , State, City-->
+                                        <div class="form-group">
+                                            <select class="form-control countries" name="country" id="countryId" required>
+                                                <option value="">Select Country</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <select class="form-control states" name="state" id="stateId" required>
+                                                <option value="">Select State</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <select class="form-control cities" name="city" id="cityId" required>
+                                                <option value="">Select City</option>
+                                            </select>
+                                        </div>
+                                        <!-- External JS portion ends here-->
+                                        
+                                        
+                                    </div>
+                                     <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input type="email" class="form-control" placeholder="Your Email *" name="email" id="mail" required/>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" minlength="10" maxlength="10" class="form-control" placeholder="Your Phone *" name="phone" id="phone" required/>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <input type="number" class="form-control" placeholder="Enter ZIP Code *" name="zip" id="zip" required />
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="Enter Full Address *" name="address" id="address" required/>
+                                        </div>
+										<div class="form-group">
+                                            <input type="password" class="form-control" placeholder="Password *" name="password1" id="password1" required/>
+                                        </div>
+										<div class="form-group">
+                                            <input type="password" class="form-control" placeholder="Confirm Password *" name="password1" id="password1" required/>
+                                        </div>
+                 <button type="button" class="btn btn-dark" style="background: linear-gradient(to right, #f7b733, #fc4a1a);">
+				 Register</button>
+                                    </form>
+                                
+                                </div>
+            </div>
+        </div>
+    </div>
+</section>
 <!-- JS Starts here -->
 
+<!-- Geo data Solutions API-->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> 
+    <script src="//geodata.solutions/includes/countrystatecity.js"></script>
+    <!--Geo data solutions API ends here-->
 <!-- JS Ends here -->
 {% endblock body %}

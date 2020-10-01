@@ -966,6 +966,23 @@ margin-top:2px;
     text-decoration: none;
     color:#fff;
 }
+
+.popup-btn1 a{
+    top:50%;
+    position:fixed;
+    left:-60px;
+    z-index: 1000;
+    transform: rotate(-90deg);
+    background-color: red;
+    padding:10px 20px 35px;
+    height: 0px;
+    background-color: #6c757d;
+    color:#fff;
+}
+.popup-btn1 a:hover{
+    text-decoration: none;
+    color:#fff;
+}
 /*Floating Card */
 .flt{
     margin-top:20px;

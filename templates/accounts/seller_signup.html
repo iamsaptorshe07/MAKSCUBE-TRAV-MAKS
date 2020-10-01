@@ -2,13 +2,371 @@
 {% load static %}
 <!-- CSS Starts here -->
 {% block stylesheets %}
+<style>
+.testimonial{
+background-image:url("{% static 'img/gif.gif' %}");
 
+}
+.movement{
+		-webkit-animation: mover 2s infinite  alternate;
+    animation: mover 1s infinite  alternate;
+}
+@-webkit-keyframes mover {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-20px); }
+}
+@keyframes mover {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-20px); }
+}
+.btn-orange-styl {
+	float: right;
+    margin-top: 10%;
+    background: #fc4a1a;  
+    background: -webkit-linear-gradient(to right, #f7b733, #fc4a1a);  
+    background: linear-gradient(to right, #f7b733, #fc4a1a);
+    color: #fff;
+    border-radius: 35px;
+}
+
+/*Service*/
+.pt-100 {
+	padding-top: 100px;
+}
+.pb-100 {
+	padding-bottom: 100px;
+}
+
+.section-title {
+  margin-bottom: 60px;
+}
+.section-title p {
+	color: #777;
+	font-size: 16px;
+}
+.section-title h4 {
+	text-transform: capitalize;
+	font-size: 40px;
+	position: relative;
+	padding-bottom: 20px;
+	margin-bottom: 20px;
+	font-weight: 600;
+}
+.single-service {
+	border: 1px solid #eee;
+	padding: 30px 10px;
+	position: relative;
+	text-align: center;
+	margin-bottom: 30px;
+	 box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+ 
+}
+.single-service:hover{
+background-color:blue;
+color:#fff;
+cursor:pointer;
+}
+.single-service i.fa {
+  width: 60px;
+  height: 60px;
+  background-color: #ff3636;
+  font-size: 25px;
+  color: #fff;
+  line-height: 60px;
+  text-align:center;
+  margin-bottom:20px;
+}
+.single-service i.fa {
+	-webkit-transition: .4s;
+	transition: .4s;
+}
+.single-service:hover i.fa {
+	border-radius: 50%;
+}
+.single-service h4 {
+	text-transform: capitalize;
+	font-size: 22px;
+	margin-bottom: 10px;
+	font-weight: 500;
+}
+</style>
 {% endblock stylesheets %}
 <!-- CSS Ends here -->
 
 {% block body %}
 <!-- HTML Starts here -->
-Seller Signup
+<section class="testimonial py-5">
+    <div class="container">
+        <div class="row ">
+   <div class="col-md-4 py-5text-white text-center" style="background: linear-gradient(rgb(123, 67, 151), rgb(220, 36, 48));">
+                <div class=" ">
+                    <div class="card-body ">
+                        <img class="movement" src="{% static 'img/s3.jpg' %}" style="width:100%; height:auto;">
+                        <h2 class="py-3 text-white">Registration</h2>
+                        <p class="text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui of.
+
+</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8 py-5 border" style="background-color: rgb(0 0 0 / 53%) !important;">
+                <h4 class="pb-4 text-center text-white">Please fill with your details</h4>
+                <div class="row register-form">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="Full Name *" name="name" id='fullname' required />
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="maxl">
+                                                <label class="radio inline text-white"> 
+                                                    <span style="display:inline-block">Gender</span> &nbsp;
+                                                    <input type="radio" name="gender" value="Male" checked>
+                                                    <span> Male </span> 
+                                                </label>
+                                                <label class="radio inline text-white"> 
+                                                    <input type="radio" name="gender" value="Female">
+                                                    <span>Female </span> 
+                                                </label>
+												<label class="radio inline text-white"> 
+                                                    <input type="radio" name="gender" value="Other">
+                                                    <span>Others</span> 
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" placeholder="Birthdate" name="bdate" class="form-control" onfocus="(this.type='date')" id="bdate" required/>
+                                        </div>
+                                        <!-- External JS taking the Country , State, City-->
+                                        <div class="form-group">
+                                            <select class="form-control countries" name="country" id="countryId" required>
+                                                <option value="">Select Country</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <select class="form-control states" name="state" id="stateId" required>
+                                                <option value="">Select State</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <select class="form-control cities" name="city" id="cityId" required>
+                                                <option value="">Select City</option>
+                                            </select>
+                                        </div>
+                                        <!-- External JS portion ends here-->
+                                        
+                                        
+                                    </div>
+                                     <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input type="email" class="form-control" placeholder="Your Email *" name="email" id="mail" required/>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" minlength="10" maxlength="10" class="form-control" placeholder="Your Phone *" name="phone" id="phone" required/>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <input type="number" class="form-control" placeholder="Enter ZIP Code *" name="zip" id="zip" required />
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="Enter Full Address *" name="address" id="address" required/>
+                                        </div>
+										<div class="form-group">
+                                            <input type="password" class="form-control" placeholder="Password *" name="password1" id="password1" required/>
+                                        </div>
+										<div class="form-group">
+                                            <input type="password" class="form-control" placeholder="Confirm Password *" name="password1" id="password1" required/>
+                                        </div>
+                                    </form>
+                                </div>
+                                </div>
+								<div class="col-md-8 text-white">
+								<div class="row">
+<p><a href="#" class="text-warning" data-toggle="modal" data-target="#exampleModalLong" >Click here!</a> for accept our terms and conditions.</p>
+
+
+										<button class=" btn btn-orange-styl float-right">Register</button>
+                                        </div>
+                                        </div>
+										
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Modal -->
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="head">
+                    <div id="tc1">
+                        <h3 style="width: 100%;display: flex;"><p class="a">Applicability Of Terms and Conditions</p><p class="b"></p></h3>
+                        <p>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong style="font-size: 35px;">T</strong>erms and Condition is applicable for any individual who enquires / requests about or buys any travelling package through TRAVMAKS official website, mobile application, Facebook page, Facebook Group, Instagram account, or any sales person, or any other sales channel.
+                        </p>
+                    </div><br>
+                    <div id="tc2">
+                        <h3>Introduction :</h3>
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong style="font-size: 35px;">T</strong>he Website is intended to be used by bonafide User(s) for a legitimate use. User shall not distribute exchange, modify, sell or transmit anything from the Website, including but not limited to any text, images, audio and video, for any business, commercial or public purpose.  
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Access to certain features of the Website may only be available to registered User(s). The process of registration required the User to answer certain questions or provide certain information that may or may not be personal in nature. Some such fields may be mandatory or optional. User represents and warrants that all information supplied to TRAVMAKS is true and accurate. TRAVMAKS reserves the right, in its sole discretion, to terminate the access to the Website and the services offered on the same or any portion thereof at any time, without notice, for general maintenance or any other reason whatsoever. 
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TRAVMAKS reserves the right to periodically make improvements or changes in its Website at any time without any prior notice to the User. User(s) are requested to report any content on the Website which is deemed to be unlawful, objectionable, libelous, defamatory, obscene, harassing, invasive to privacy, abusive, fraudulent, against any religious beliefs, spam, or is violative of any applicable law to complain@travmaks.in On receiving such report, TRAVMAKS reserves the right to investigate and/or take such action as the Company may deem appropriate.
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The User Agreement grants a limited, non-exclusive, non-transferable right to use this Website as expressly permitted in this User Agreement. The User agrees not to interrupt or attempt to interrupt the operation of the Website in any manner whatsoever.
+                        </p>
+                    </div><br>
+                    <div id="tc3">
+                        <h3>Limited Liability Of TRAVMAKS :</h3>
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong style="font-size: 35px;">T</strong>RAVMAKS only acts as a connector between Service provider (Travel agencies and Guides) and users. TRAVMAKS’s liability is limited to providing the user affirmed tour/travel booking as selected by the user.
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Any issue or concern faced by the user at the time of arrival or during the tour operation will be sole responsibility of the service provider. 
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TRAVMAKS will not be responsible for the demonstrations, exclusions, mistakes, portrayals, guarantees, breaks or carelessness on part of any Service Provider, unless it is explicitly committed by TRAVMAKS .
+                            <br>&nbsp;•	TRAVMAKS is not responsible for the standard of services as provided by the respective Service Providers.
+                            <br>&nbsp;•	TRAVMAKS provides no guarantee with regard to their quality or fitness as represented by provider.
+                            
+                            <br>&nbsp;** TRAVMAKS is only an online platform which connects the travel lovers (users) with the travel agencies and individual guides all over the India, Through our application we connect the user with different service providers to make their travelling easy. TRAVMAKS is not a Travel agency itself. **
+                        </p>
+                    </div><br>
+                    <div id="tc4">
+                        <h3>Eligibility To Use:</h3>
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong style="font-size: 35px;">T</strong>he User must be atleast 18 years of age and must have the legitimate position to go into an agreement. so as become a User and use the services of TRAVMAKS. 
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;If you are a minor or are below the age of 18 years, you shall not register as a User of the Website and shall not transact on or use the Website.
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;As a minor if you wish to use or transact on the Website, such use or transaction shall only be made by a person of legal contracting age (legal guardian or parents). We reserve the right to terminate your membership and access to the Website if it is discovered that you are a minor or incompetent to contract according to the law or any information pertaining to your age entered at the time of creation of account is false. 
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Prior to utilizing the Website, moving toward any Sales Channels or buying the travel packages of TRAVMAKS, the Users will necessarily peruse and comprehend this User Agreement/Terms & Conditions and shall be deemed to have accepted this User Agreement as a binding document that governs User's dealings and transactions with TRAVMAKS. In the event that the User disagrees with any aspect of this Agreement, at that point the User must not buy any package and must not access or approach the Sales Channels of TRAVMAKS.
+                        </p>
+                    </div><br>
+                    <div id="tc5">
+                        <h3>Intellectual Property  </h3>
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong style="font-size: 35px;">A</strong>ll content provided through various Sales Channels, including but not limited to audio, images, software, text, icons and such similar content ("Content"), are registered by TRAVMAK and protected under applicable intellectual property laws. User cannot use this Content for any other purpose. TRAVMAKS does not grant the User a license, right or authority to use such proprietary logos, service marks, or trademarks in any manner. Any unauthorized use of the Content, will be in violation of the applicable law.
+                            <br>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TRAVMAKS respects the intellectual property rights of others. If you notice any act of infringement on the Website, you are requested to send us a written notice/ intimation which must include the following information;
+                                
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; •  	Clear identification of such copyrighted work that you claim has been infringed;
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; •	Location of the material on the Website, including but not limited to the link of the infringing material;
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; •	The proof that the alleged copyrighted work is owned by you;
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; •	Contact information;
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Any complain notices can be sent to MMT by email at complain@travmaks.in
+                        </p>
+                    </div><br>
+                    <div id="tc6">
+                        <h3>User Responsibility </h3>
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong style="font-size: 35px;">U</strong>sers are advised to check the description of the tour package carefully before making a booking. 
+                            <br>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;If a User intends to make a booking on behalf of another person, it shall be the responsibility of the User to inform such person about the terms of this Agreement, including all rules and restrictions applicable thereto. 
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;User also authorizes TRAVMAKS's representative to contact such user over phone, message and email. This consent shall supersede any preferences set by such User through national customer preference register (NCPR) or any other similar preferences
+                        </p>
+                    </div><br>
+                    <div id="tc7">
+                        <h3>SECURITY AND ACCOUNT RELATED INFORMATION</h3>
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong style="font-size: 35px;">W</strong>hile registering on TRAVMAKS website user needs to enter some information which may or may not be personal in nature.
+                            <br>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;We try our best to make sure that user entered data are totally safe and secured at our end. But User must understands that any information that is provided to this Website may be read or intercepted by others due to any breach of security at the User's end.
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;User shall be solely responsible for maintaining the confidentiality of both the password and the account as well as for all activities on the account. It is the duty of the User to notify TRAVMAKS immediately in writing of any unauthorized use of their password or account or any other breach of security. TRAVMAKS will not be liable for any loss that may be incurred by the User as a result of unauthorized use of the password or account, either with or without the User's knowledge. The User shall not use anyone else's account at any time.
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;We don’t store user’s bank account details, credit / debit card or net banking details except the transaction id, bank transaction ID, bank name generated at the time of payment.  
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TRAVMAKS will always make its best to ensure that the content on its websites or other sales channels are free of any virus or such other malwares. However, any data or information downloaded or otherwise obtained through the use of the Website or any other Sales Channel is done entirely at the User's own discretion and risk and they will be solely responsible for any damage to their computer systems or loss of data that may result from the download of such data or information.
+                        </p>
+                    </div><br>
+                    <div id="tc8">
+                        <h3>FEES AND PAYMENT </h3>
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong style="font-size: 35px;">I</strong>n addition to the cost of booking as charged by the Service Providers, TRAVMAKS reserves the right to charge certain fees in the nature of convenience fees or service fees. 
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;In the rare circumstance of a booking not getting confirmed or cancelled at last moment for any reason whatsoever, TRAVMAKS will process the whole refund of the booking amount paid by the User and intimate the User about the same. TRAVMAKS is not under any obligation to provide an alternate booking in lieu of or to compensate or replace the unconfirmed booking. All subsequent bookings will be treated as new transactions. Any applicable refund will be processed as per the defined policies of the service provider and TRAVMAKS as the case may be.
+                            <br>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The User shall be completely responsible for all charges, fees, duties, taxes, and assessments arising out of the use of the service, as per the applicable laws.
+                            
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The User agrees and understands that all payments shall only be made to bank accounts of TRAVMAKS. TRAVMAKS or its representatives or employees shall never ask a customer to transfer money to any private account or to an account not held in the name of TRAVMAKS. The User agrees that if that user transfers any amount against any booking or transaction to any bank account that is not legitimately held by TRAVMAKS or to any personal account of any person, TRAVMAKS shall not be held liable for the same. User shall not hold any right to recover from TRAVMAKS any amount which is transferred by the User to any third party. In any case the booking gets cancelled as we don’t store user’s bank account information, our representative will call customer to take minimal details (Account Holder Name, Branch Name, IFSC Code )  to transfer money in the customer’s bank account directly.
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The User will not share his personal sensitive information like credit/debit card number, CVV, OTP, card expiry date, user IDs, passwords etc. with any person including the travel agents, employees or representatives of TRAVMAKS. The User shall immediately inform TRAVMAKS if such details are demanded by any of its agents' employees or representatives. TRAVMAKS shall not be liable for any loss that the User incurs for sharing the aforesaid details.
+                            <br>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;For more details visit our  Payment Policy Page : Link – <strong style="color: blue;text-decoration: underline;"><a target="_blank" href="https://www.travmaks.in/user/payment-policy">https:www.travmaks.in/user/payment-policy</a></strong> 
+                        </p>
+                    </div><br>
+                    <div id="tc9">
+                        <h3>ADVERTISEMENT ON TRAVMAKS</h3>
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong style="font-size: 35px;">T</strong>he Website may contain links to third party websites. TRAVMAKS does not control such websites and is not responsible for its contents. If a User accesses any third-party website, the same shall be done entirely at the User's risk and TRAVMAKS shall assume no liability for the same.
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TRAVMAKS is not responsible for any errors, omissions or representations on any of its pages, links or any linked website pages to the extent such information is updated or provided directly by the Service Providers or the advertisers.
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TRAVMAKS does not endorse any advertisers on its Website, or any linked sites in any manner. The Users are requested to verify the accuracy of all information provided on the third-party web pages.
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The linked sites are not under the control of TRAVMAKS and hence TRAVMAKS is not responsible for the contents of any linked site(s) or any further links on such site(s), or any changes or updates to such sites. TRAVMAKS is providing these links to the Users only as a convenience.
+                        </p>
+                    </div><br>
+                    <div id="tc10">
+                        <h3>FAKE CALL AND OTHER FRADULENTS</h3>
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong style="font-size: 35px;">T</strong>RAVMAKS's employees or authorized representatives will never contact a User asking for his/ her credit or debit card number, expiry date, CVV, net banking login, passwords, OTP etc. nor will they ever request for a fund transfer to a personal or an individual bank account. Further, they will also not ask a User to install any third-party applications that enable them to view a User's mobile or computer screen.
+
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Acting on any of these requests may make you a victim of fraud, and may potentially lead to loss of your valuable money or information.
+                            
+                            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; If you are ever asked for any of the aforesaid information, please report it immediately on <strong style="color: blue;text-decoration: underline;"><a target="_blank" href="http://www.complain@travmaks.in">complain@travmaks.in</a></strong>.
+                        </p>
+                    </div><br>
+                    <div id="tc11">
+                        <h3>**  Disclaimer : **</h3>
+                        <p style="font-weight: 700;">Terms and Condition may changes on time to time without any prior notice to the user / service provider, it is user’s responsibility to go through the Terms and Condition Page each time before using the website. 
+            
+                        </p>
+                    </div>
+                </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+<section class="services-area pt-100 pb-70" id="services">
+		<div class="container">
+			<div class="row">
+				<div class="col-xl-8 mx-auto text-center">
+					<div class="section-title">
+						<h4>Benfits of joining us</h4>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-4 col-md-6">
+					<div class="single-service">
+						<i class="fa fa-globe"></i>
+						<h4>design</h4>
+						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui quaerat fugit quas veniam perferendis repudiandae sequi. </p>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6">
+					<div class="single-service">
+						<i class="fa fa-code"></i>
+						<h4>development</h4>
+						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui quaerat fugit quas veniam perferendis repudiandae sequi. </p>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6">
+					<div class="single-service">
+						<i class="fa fa-clone"></i>
+						<h4>branding</h4>
+						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui quaerat fugit quas veniam perferendis repudiandae sequi. </p>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6">
+					<div class="single-service">
+						<i class="fa fa-rocket"></i>
+						<h4>database</h4>
+						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui quaerat fugit quas veniam perferendis repudiandae sequi. </p>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6">
+					<div class="single-service">
+						<i class="fa fa-camera"></i>
+						<h4>app</h4>
+						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui quaerat fugit quas veniam perferendis repudiandae sequi. </p>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6">
+					<div class="single-service">
+						<i class="fa fa-clock-o"></i>
+						<h4>support</h4>
+						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui quaerat fugit quas veniam perferendis repudiandae sequi. </p>
+					</div>
+				</div>
+			</div>
+		</div>
+	  </section>
+<!-- Geo data Solutions API-->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> 
+    <script src="//geodata.solutions/includes/countrystatecity.js"></script>	  
 <!-- HTML Ends here -->
 <!-- JS Starts here -->
 
