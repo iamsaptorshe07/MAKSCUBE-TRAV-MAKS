@@ -8,4 +8,7 @@ urlpatterns = [
     path('user-privacy-policy',userPrivacyPolicy,name='privacyPolicy'),
     path('user-FAQ',userFAQ,name='userFAQ'),
     path('terms-and-condition',termsAndCondition,name='termsAndCondition'),
+    path('partner/benifits-of-joing-travmaks',partnerBenifits,name='partnerBenifits'),
+    path('partnerportal-faq',partnerFAQ,name='partnerFAQ'),
+    path('user-payment-policy',userPaymentPolicy,name='userPaymentPolicy')
     ]

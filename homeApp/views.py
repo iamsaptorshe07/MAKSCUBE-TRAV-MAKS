@@ -23,3 +23,11 @@ def userFAQ(request):
 def termsAndCondition(request):
     return render(request,'home_app/termsandcondition.html')
 
+def partnerBenifits(request):
+    return render(request,'home_app/partnerbenifits.html')
+
+def partnerFAQ(request):
+    return render(request,'home_app/partnerfaq.html')
+
+def userPaymentPolicy(request):
+    return render(request,'home_app/userpaymentpolicy.html')
