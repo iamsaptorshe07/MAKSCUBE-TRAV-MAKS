@@ -4,7 +4,9 @@
 {% block stylesheets %}
 <style>
 .testimonial1{
-background-image:url("{% static 'img/gif.gif' %}");
+background-image:url("{% static 'img/s5.jpg' %}");
+background-repeat: no-repeat;
+    background-size: cover;
 
 }
 .movement{
@@ -146,6 +148,27 @@ cursor:pointer;
 }
 }
 /*-- End Testimonial Section CSS --*/
+.backups:hover {
+    box-shadow: 0 0 25px 0 rgba(20, 27, 201, .05);
+    cursor: pointer;
+    background-image: linear-gradient(-45deg, #fc6a0e 0%, #fdb642 100%)
+}
+.highlight {
+    width: 20rem;
+    height: 5rem;
+    margin: 0px auto;
+    background-color: rgb(255, 223, 128);
+    text-align: center;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    font-size: 19px;
+    border-radius: 15px;
+    font-weight: bold;
+    color: rgb(56, 73, 107);
+}
 
 </style>
 {% endblock stylesheets %}
@@ -156,16 +179,16 @@ cursor:pointer;
 <section class="testimonial1 py-5">
     <div class="container">
         <div class="row ">
-   <div class="col-md-4 py-5text-white text-center" style="background: linear-gradient(rgb(123, 67, 151), rgb(220, 36, 48));">
-                <div class=" ">
-                    <div class="card-body ">
-                        <img class="movement" src="{% static 'img/s3.jpg' %}" style="width:100%; height:auto;">
-                        <h2 class="py-3 text-white">Registration</h2>
-                        <p class="text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui of.
-
-</p>
+   <div class=" col-md-4 py-5text-white text-center" style="background: linear-gradient(#4ca1af,  #c4e0e5);">
+                <div class="col-md-4 pt-2 ">
+                    <div class="box text-center">
+                        <iframe width="330" height="330" src="https://www.youtube.com/embed/nMBmLLpo9CA" frameborder="0" allowfullscreen></iframe>
                     </div>
                 </div>
+				<div class="highlight">Get 100% OFF on the Sign Up Fee</div><br>
+				<div class="highlight">Get 100% OFF on the Sign Up Fee</div>
+				
+				
             </div>
             <div class="col-md-8 py-5 border" style="background-color: rgb(0 0 0 / 53%) !important;">
                 <h4 class="pb-4 text-center text-white">Please fill with your details</h4>
