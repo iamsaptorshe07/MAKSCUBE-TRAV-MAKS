@@ -1,10 +1,478 @@
 {% extends 'basetemplate.html' %}
 {% load static %}
+<!-- CSS Starts here -->
 {% block stylesheets %}
-    <style>
+<!-- <link rel="stylesheet" 
+href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css">
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+    main{
+        transform: translateY(-9px);
+    }
+    .swiper-container {
+        /* width: 430px; */
+        height: 300px;
+        width: 100%;
+    }
+    .swiper-slide{
+        height: 330px;
+        width: 92%;
+        background-color: #ccc;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-flow: column;
+        text-align: center;
+        color: #000;
+        padding: 15px;
+        background-position: center;
+        background-size: cover;
+        border-radius: 5px;
+    }
+    #content, #content .container{
+        max-width: 100%;
+        padding: 30px;
+    }
+    .bg-light{
+        background-color: #0d141c !important;
+    }
+    .swiper-button-prev, .swiper-button-next{
+        transform: translateY(130px);
+    }
+    .top{
+        text-align: center;
+    }
+    #heading{
+        width: 100%;
+        height: 40vh;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        background-image: url("{% static 'homeapp_css/batman.jpeg' %}");
+        object-fit: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+    }
+    .searchbar{
+        width: 70%;
+        height: 130px;
+        transform: translateY(50%);
+        background: linear-gradient(to bottom,#051322,#15457c);
+        padding: 30px;
+        border-radius: 6px;
+    }
+    .searchbar span{
+        display: flex;
+        color: white;
+        display: flex;
+        align-items: center;
+        padding-bottom: 10px;
+    }
+    .searchbar span input{
+        width: 95%;
+    }
+    .searchbar span i{
+        width: 5%;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+    }
+    h2,p{
+        margin: 0;
+    }
+    #content{
+        transform: translateY(70px);
+    }
+    #left{
+        margin-top: 30px;
+    }
+    body{
+        background-color: #3c4053;
+    }
+    .accordion {
+        background-color: #283042;
+        color: blanchedalmond;
+        cursor: pointer;
+        padding: 18px;
+        width: 100%;
+        border: none;
+        text-align: left;
+        outline: none;
+        font-size: 15px;
+        transition: 0.4s;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+    }
+    .accordion h6{
+        margin-left: 15px;
+    }
+    .accordion:focus{
+        border: none;
+        outline: none;
+    }
+    .active, .accordion:hover {
+        background: linear-gradient(to bottom,#051322,#15457c);
+        border: none;
+        outline: none;
+    }
+    .accordion i{
+        transition: 0.3s ease;
+        transform: rotate(0deg);
+    }
+    .active i{
+        transition: 0.3s ease;
+        transform: rotate(90deg);
+    }
+    .panel {
+        border-radius: 5px;
+        background-color: #212838;
+        color: blanchedalmond;
+        max-height: 0;
+        overflow: hidden;
+        transition: 0.3s ease;
+        margin-bottom: 15px;
+        padding: 0 15px;
+    }
 
-    </style>
+    #right{
+        position: sticky;
+        top: 30px;
+        height: 100%;
+    }
+    #right h2, #right span, h6{
+        color: blanchedalmond;
+    }
+    .addq{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-flow: column;
+    }
+    .addq button{
+        width: 80px;
+        border-radius: 5px;
+        margin-top: 6px;
+    }
+    .cbtn{
+        width: 200px;
+        border-radius: 5px;
+    }
+    .contact{
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+    }
+    .cbtn a{
+        text-decoration: none;
+        color: black;
+    }
+    .swiper-slide h6{
+        color: black;
+    }
+    .sbbtn{
+        display: none!important;
+    }
+    @media screen and (min-width: 1400px){
+        #heading{
+            background-size: cover;
+            background-position:top;
+            background-position-y: -70px;
+        }
+    }
+    @media screen and (max-width: 900px){
+        #header{
+            margin-bottom: 35px;
+        }
+        .searchbar{
+            height: 180px;
+            transform: translateY(80%);
+        }
+        .swiper-slide, .swiper-container{
+            height: 400px;
+        }
+    }
+    @media screen and (max-width:750px ){
+        #content{
+            transform: translateY(140px);
+            padding-top: 0;
+        }
+        .sbbtn{
+            display: flex!important;
+            justify-content: center;
+            transform: translateY(-7px);
+        }
+        .sbbtn a{
+            color: blanchedalmond;
+            text-decoration: underline;
+        }
+    }
+    @media screen and (max-width:400px ){
+        #heading{
+            background-position-x: -400px;
+        }
+        .searchbar input{
+            transform: translateX(-5px);
+        }
+        .searchbar i{
+            transform: translateX(5px);
+        }
+    }
+</style>
 {% endblock stylesheets %}
+<!-- CSS Ends here -->
+
 {% block body %}
-    Partner FAQ
+<!-- HTML Starts here -->
+<!-- User FAQ -->
+<main>
+    <section id="heading">
+        <div class="searchbar">
+            <span>
+                <h4>Need Help?</h4>&nbsp;&nbsp;
+                <p>Batman ain't here, but we are! Search your query below</p>
+            </span>
+            <span>
+                <input type="text" class="form-control" id="search" onkeyup="search();" placeholder="Type your query">
+                <i class="fa fa-search" aria-hidden="true"></i>
+            </span>
+            <span class="sbbtn"><a href="#right">Top FAQ</a></span>
+        </div>
+    </section>
+    <section id="content">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8" id="left">
+                </div>
+                <div class="col-md-4" id="right">
+                    <div class="top">
+                        <h2>Top FAQs</h2><br>
+                        <div>
+                            <div class="swiper-container">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide">
+                                        <h6>What Travel Documents Do I Need ?</h6>
+                                        <p>
+                                            One must possess a passport which is valid for minimum 6 months 
+                                            from the date of entry into India. Many countries have been included 
+                                            in the list of countries whose citizens are provided E-Visa facility 
+                                            provided they apply 72 hours in advance. Other nationals need to obtain 
+                                            Indian visa in advance to enter India.
+                                        </p>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <h6>Is food provided?</h6>
+                                        <p>
+                                            If the tour bridges a mealtime, ask if food is included in the price
+                                             of the tour. If not, will there be time and opportunity to purchase
+                                             something, or should you bring your own snacks? If food is available,
+                                              what options are there? You’ll want to make sure the offerings suit
+                                               your taste and dietary limitations.
+
+                                        </p>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <h6>If I Come Across Any Problem During My Trip, How Would You Help Me ?</h6>
+                                        <p>
+                                            We provide truly 24 X 7 assistance. Our office is open 24 hours a 
+                                            day which means that you will always have someone to assist you even 
+                                            at any point of time. We shall also give you mobile nos. of executives 
+                                            who you may call in case of any need .
+                                        </p>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <h6>What’s the cancellation policy?</h6>
+                                        <p>
+                                            You’ll often have to schedule and pay for your tour ahead of time. 
+                                            Before putting any money down, find out what happens if you need to 
+                                            cancel or reschedule.
+                                        </p>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <h6>What Travel Documents Do I Need ?</h6>
+                                        <p>
+                                            One must possess a passport which is valid for minimum 6 months 
+                                            from the date of entry into India. Many countries have been included 
+                                            in the list of countries whose citizens are provided E-Visa facility 
+                                            provided they apply 72 hours in advance. Other nationals need to obtain 
+                                            Indian visa in advance to enter India.
+                                        </p>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <h6>Is the tour kid-friendly/handicap-accessible/etc.?</h6>
+                                        <p>
+                                            If you or anyone in your group has any special needs, even if they 
+                                            are as simple and common as being a young and restless kid, ask 
+                                            ahead of time if the tour will work well for that person.
+                                        </p>
+                                    </div>
+                                </div>
+                            
+                                <!-- Add Pagination -->
+                                <div class="swiper-pagination"></div>
+                            
+                            </div>
+                        </div><br>
+                        <span>*some inportant things you need to know before traveling*</span>
+                    </div><br>
+                    <div class="addq">
+                        <h6>Could not find your suitable information? add a question -></h6>
+                        <input type="text" id="ask" placeholder="Make your question with proper structure" 
+                        class="form-control">
+                        <button>Add</button>
+                    </div><br>
+                    <div class="contact">
+                        <h6>Still have doubts? Contact us</h6>
+                        <button class="cbtn"><a href="/contact-us">click here to contact</a></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+<!-- HTML Ends here -->
+<!-- JS Starts here -->
+<script src="https://code.jquery.com/jquery-3.5.1.js" 
+    integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" 
+    crossorigin="anonymous">
+</script>
+<script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script>
+    var swiper = new Swiper('.swiper-container', {
+        direction: 'vertical',
+        slidesPerView: 1,
+        spaceBetween: 0,
+        autoplay: {
+            delay: 6000,
+            disableOnInteraction: false,
+        },
+        loop:true,
+        mousewheel: true,
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+    });
+
+    var cards=document.getElementById('left');
+    var arr=[["What Travel Documents Do I Need ?","One must possess a passport which is valid for minimum 6 months from the date of entry into India. Many countries have been included in the list of countries whose citizens are provided E-Visa facility provided they apply 72 hours in advance. Other nationals need to obtain Indian visa in advance to enter India."],
+["Do I Need an International Certificate of Vaccination ?","There is no need of any vaccination except for travellers coming from Africa, South America need yellow fever vaccinations."],
+["What Is the Best Time to Visit India ?","It depends on which part of India if you wish to visit. In case you are interested in visiting Ladakh or other parts of Himalaya then summer season is the best time. If you want to visit Rajasthan, other parts of North India or Souht India then winter season ( October till March ) is ideal period. Even travelling during monsoon months (July – September) is also not a bad idea to visit Rajasthan and other places it presents a good tourism opportunity during this time as one can stay at Luxury or Palace hotels without spending a fortune during those months."],
+["How Should I Travel Around in India ?","The best way to travel within India is to travel by road as this offers you an opportunity to have a glimpse of real INDIA as you can visit en-route villages and small forts at your own pace which is not possible by air or by train. But, if you are travelling to long distance, then taking a flight or trains can be more convenient and to save time."],
+["Do I Need Medical/travel Insurance ?","Yes. It is advisable that you buy a comprehensive medical / travel insurance in advance from your country before travelling to India."],
+["If at All, I Have to Use a Travel Agent / Tour Operator, Why State Express ?","State Express, born in 1980, is one of the leading and most reputed travel agencies specializing in inbound tours. We are approved by department of Tourism, (Government of India). We are member of prestigious Association IATO (INDIAN ASSOCIATION OF TOUR OPERATORS) and TAAI (TRAVEL AGENTS ASSOCIATION OF INDIA) PATA. We are IATA (14 3 52542) approved travel agency and have our own fleet of cars and coaches with experience drivers. We have multi lingual executives to ensure that our guests do not have any language problem."],
+["What Services Do We Offer ?","W are a one stop travel shop and provide every kind of travel related services for any occasion – business or pleasure or both. We organize all arrangements for conferences, trade fairs, exhibitions and events. We specialise in incentive tours, weddings and honeymoons, health tourism, pilgrimage tours, adventure tours or any special interest tours anywhere in India and also to neighbouring countries. You can read in detail about our services by Clicking Here"],
+["Do You Provide Only All Inclusive Package Tours ?","We offer all inclusive package tours. but on request, we can also provide particular services only viz. hotel reservation, car / coach hire with driver, flight / train tickets, etc for those who do not want to buy entire services from us for any reason."],
+["How Do I Plan My Tour ?","It is simple with us. You may get details of well designed tour packages in our digital brochure. if want a particular tailor made tour, let us know your requirements and we can help you designing your trip keeping in mind your specifications and budget."],
+["How Can I Book My Tour with You ?","If you are interested in booking any of our brochure tours, you may, You may simply send us an email giving us your details."],
+["What Is Included in Your Tour Cost ?","Our tour cost usually includes hotel accommodations with breakfast, all transfers, city tours and excursions by private air-conditioned car / van / coach depending on number of persons with as per itinerary, train fare if applicable, local English speaking or other foreign language speaking guides if available for city tours, entrances fee to monuments, our assistance on arrival and during the tour, Our cost may also include some special attractions viz elephant ride, camel safari, boat ride and all taxes. We can also include lunches & dinner, domestic flights and other services on request. at supplement cost."],
+["What about Payment Terms ?","We normally need an advance amount once we are able to confirm you arrangements for the tour. The amoutn depends on the services you may require for the tour. This can be paid through bank transfer (before arrival) credit card, traveller’s cheques or cash. We need balance payment before arrival. The exact terms will be given at the time of reservation."],
+["What If I Have to Make Any Changes in the Tour for Any Reason ?","We shall do our best to make changes as per your request and shall not charge you anything unless there is penalty charged by principal suppliers for making these changes."],
+["What Kind of Cars Do You Provide on Your All Inclusive Tours ?","We normally provide air-conditioned Swift D’Zire in case of 2-3 persons, Toyota Innova in case of 4 persons, Tempo Traveler for 5 – 8 persons, Mini Coach for 9 – 15 persons and Large coaches for larger groups. In case if you need a more luxurious vehicle, we can provide you the same but there may be extra cost applicable in such case. To get details of all the vehicles available in our fleet, you may Click Here"],
+["What Star Rating Are Your Hotels ?","We provide minimum Standard category hotels which mean 3 star hotels, superior or First class of hotels are 4 star or equivalent and deluxe hotels which are 5 star or 5 star deluxe hotels. At few places, deluxe or first class hotels are not there and in such case, we shall provide best available hotels which may not confirm to deluxe or first class category. We also include heritage / palace and charming boutique hotels in our packages and can send you special cost for tours with hotels as per your choice."],
+["Will I Know Which Hotels I Will Be Staying in Before I Go ?","Yes, we will send you a detailed list of hotels at the time of confirmation of our services and before asking you for advance payment."],
+["Do You Have Experienced Guides in Different Cities of India ?","We have English speaking guides all over INDIA. At many places , we also have french , German , Spanish ,Italian and Japenese and other language speaking guides. We can also provide accompanying foreign language speaking tourist guides for individuals and groups. The availability of foreign language speaking guides can be confirmed at the time of reservation."],
+["Who Will I Meet on My Arrival in India ?","You will be greeted by our representative at airport on your arrival. He shall be holding a placard of your name for identification. We shall also provide you list of emergency 24 hours contact numbers for any emergency."],
+["If I Come Across Any Problem During My Trip, How Would You Help Me ?","We provide truly 24 X 7 assistance. Our office is open 24 hours a day which means that you will always have someone to assist you even at any point of time. We shall also give you mobile nos. of executives who you may call in case of any need ."],
+[" Is the tour tailored to beginners or experts?","If you are going on a specialty tour (history, art, cooking) and you already know a lot about the subject, you might be bored silly by information that a non-expert would find fascinating. The reverse also applies; dense art historical information may not appeal to a lay person, for example."],
+[" Does the tour guide speak throughout, or is it an audio tour with headphones or other media?","Will you be learning from an individual or listening to a taped expert played over headphones? Each has its pros and cons; the former is ideal if you like to ask lots of questions and interact with an expert, while an audio guide allows you to customize the volume and go at your own pace."],
+[" Who is your guide?","Are the guides locals? Trained historians? Degreed naturalists? Whoever the company could find who needed a job? The personality and knowledge of your tour guide can make all the difference."],
+[" In what language(s) will the tour be given?","Clearly you will want the tour to be given in a language with which you have a degree of fluency so you won’t miss any important points. If the tour will be given in more than one language, you may want to ask if one language will be considered the main one for the tour. For some tours, translating to several languages can reduce the amount of time and detail the tour guide can give you, and often the information in one language is more cursory than another."],
+["RELATED:9 Things to Do When No One Speaks English","Is it all-inclusive, or will you have to pay additional admission fees?"],
+["If you will be visiting attractions during the tour, the price of the tour may be completely separate from the admission to those attractions. Be sure you budget for such additions so you don’t miss out on part of the tour.","Another way to ask this: What is not included?"],
+[" Is food provided?","If the tour bridges a mealtime, ask if food is included in the price of the tour. If not, will there be time and opportunity to purchase something, or should you bring your own snacks? If food is available, what options are there? You’ll want to make sure the offerings suit your taste and dietary limitations."],
+[" What weather can you expect?","If your tour requires you to go up a gondola to a mountaintop covered with mist, or to get on a windy ferry to an island, or to walk for two hours in the summer heat, you’ll want to know ahead of time so you can dress appropriately."],
+[" How much physical exertion is required?","Unless it is a bus or boat tour, most guided tours require you to walk a bit. Find out how far, whether hills or stairs are involved and what shoes would be most appropriate."],
+[" Is the tour kid-friendly/handicap-accessible/etc.?","If you or anyone in your group has any special needs, even if they are as simple and common as being a young and restless kid, ask ahead of time if the tour will work well for that person."],
+[" Where does the tour pick up and drop off?","This seems like an uncomplicated issue, but that’s not always the case. Many tours operate without official offices, so they might meet at street corners, near a famous statue, on the steps of a museum … you get the idea. Take the time to map out how to get there from your lodging, as this is often the most difficult part of taking a tour (go figure)."],
+[" How long is the tour?","You know your own threshold for being led around and told stuff; some may want hours and hours of information, while others want concise overviews before going on their own again."],
+[" How much time is spent in each place?","Sometimes folks on tours complain of having been rushed through a place they really wanted to see and absorb, while others report having had to linger over something in which they had little interest. If there are specific stops on the tour that are (or are not) important to you, a little research will help make sure you see what you want to see, and not more or less."],
+[" Are there other tours along the route?","Travelers who prefer to avoid the built-in crowds that tours bring with them can feel even more hemmed in when there are multiple tours all visiting and talking about the same thing at the same time. You can sometimes avoid this by taking your tour at off hours; first thing in the morning often works well."],
+[" What size is the group?","A tour that’s too big will make you feel like you’re walking around town in a giant swarm of tacky tourists; one that’s too small can feel awkward. (On a visit to Berlin some time ago, I spotted an American couple being led around by a tour guide who was nearly yelling in hopes of attracting the attention of potential additional subscribers. The couple was clearly uncomfortable.) Even if you like the idea of a small tour, find out whether there’s a minimum required number to keep the tour from being canceled."],
+[" Will you get to break off on your own?","Even on closely guided tours, it’s nice to be able to break off on your own a little bit, whether to linger in front of a painting, dwell on a beautiful view or read a historical placard. Many tours will give you a bunch of information followed by a little bit of time to poke around yourself."],
+[" Is it safe?","Having lived in New York in the early 80s, I find edgy urban environments fairly comfortable. But when I was considering a favela tour in Rio de Janeiro last year with a 9-year-old in tow, I asked specifically about safety on the tour. The guide’s answer suited me very well, and we enjoyed the tour with no problems."],
+[" Does pricing change by the week or day?","Many tour companies and guides offer peak and off-peak pricing, depending on when you come; you can save money by looking into your options."],
+[" What’s the inclement weather policy?","If your tour is outdoors, will you get a refund in foul weather, will you be rescheduled or will you simply be expected to show up and get wet/cold/etc.?"],
+[" What’s the cancellation policy?","You’ll often have to schedule and pay for your tour ahead of time. Before putting any money down, find out what happens if you need to cancel or reschedule."],
+[" Is the tour well reviewed?","TripAdvisor, Yelp and other similar sites often have reviews of tours and even specific tour guides. Knowing as much as you can about other folks’ experience on a tour can be extremely helpful (and can give you answers to many of the questions posed above)."],
+["1. Travel is more complicated than ever.","With 24 new cruise ships coming online — never mind the new resorts and new airline fare categories — keeping with the options is a full-time job. And the growing trend toward groups of families and friends traveling together makes each trip a much more important purchase. Having a professional help with the planning and logistics can have a big impact on how much you spend on — and how much you enjoy — your vacation."],
+["2. Travel advisors are on top of what’s new and exciting. ","The world is full of once-in-a-lifetime experiences in 2019. If you’d like to see The Passion Play at Oberammergau, the Tokyo Summer Olympics, the 2020 World Expo in Dubai, the cricket World Cup in Australia or the inaugural sailing of Virgin Cruise, travel professionals have access to the best tour packages and exclusive events, and they understand how to navigate the logistics, said Ashley Metesh-McCoy."],
+["3. They save you so much time and stress.","Sure, reading about places to go is fun — but planning a trip is hard work, and you never know what to believe. Travel agents travel the world, looking at everything, from the size of the rooms in hotels and cruise ships to the dining options on-site and nearby. If they haven't personally been where you want to go, they know someone who has. They can answer your questions quickly and correctly."],
+["4. Travel advisors have your back when you need an advocate.","Blame global warming, acts of God or just the luck of the draw, but 2018 was a year of volcanoes erupting, earthquakes shaking and airlines failing, not to mention just plain bad weather, and 2019 promises to be the same. Whether the problem is getting there, getting in or getting out, your travel agent will get you where you want to go."],
+["5. There is no do-over for a vacation gone wrong.","Life is busier and more demanding than ever, and vacation time is more valuable. Travel agents can save you hours, not just in doing research to find you the perfect vacation, but also just sitting on hold with short-staffed airlines and resorts to make your vacation perfect."],
+["6. Travel advisors add a human element — and an element of trust.","Travel advisors are invested in their clients' happiness and satisfaction and want to make sure each and every trip is packed full of positive lifelong memories. They listen, suggest, adjust, understand and become a friend ... not just a search engine or an anonymous voice. They are with you before, during and after your trip."],
+["7. The world is constantly changing, and travel agents are on the ground experiencing it.","Has the Caribbean recovered from Hurricane Maria? Is it safe to travel to the Middle East? Travel advisors don't just sell a destination. They discover, research and experience the places they offer, over and over."],
+["8. They often save you money — and if not, they deliver more value. ","Even if your travel agent charges a fee, the value you receive will be bigger than what you paid. Cruise lines and many resorts get the majority of their customers through travel agents — and they reward the best ones with perks to share with you."],
+["9. Travel agents offer unique services for discerning clients.","It all comes down to who you know. And odds are, they know that guy or gal."],
+["10. Like any professional advisors, they really do know more than you do. ","You can cut your own hair and do your own taxes and perk your own coffee, but a professional can do it better. You can plan your own vacation, too. Good luck with that."]]
+    let gggg = arr.length;
+    for (let j = 0; j < gggg; j++) {
+        // console.log('hi');
+        var button = document.createElement("button");
+        button.classList.add('accordion');
+        var i = document.createElement('i');
+        i.classList.add('fa');
+        i.classList.add('fa-chevron-right');
+        var cht = document.createElement('h6');
+        var nodeh = document.createTextNode(arr[j][0]);
+        cht.appendChild(nodeh);
+        button.appendChild(i);
+        button.appendChild(cht);
+        var ans=document.createElement('div');
+        ans.classList.add('panel');
+        var p=document.createElement('p');
+        var node=document.createTextNode(arr[j][1]);
+        p.appendChild(node);
+        ans.appendChild(p);
+        cards.appendChild(button);
+        cards.appendChild(ans);
+    }
+
+    $('.fa-chevron-right').attr('aria-hidden','true');
+    var acc = document.getElementsByClassName("accordion");
+    var i;
+
+    for (i = 0; i < acc.length; i++) {
+        acc[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var panel = this.nextElementSibling;
+            if (panel.style.maxHeight) {
+                    panel.style.maxHeight = null;
+                    panel.style.padding='0 15px';
+
+            } else {
+                panel.style.maxHeight = panel.scrollHeight + 40 + "px";
+                panel.style.padding='15px';
+            }
+        });
+    }
+</script>
+<script>
+    function search(){
+        var input,filter,left,b,h,p;
+        input=document.getElementById('search');
+        filter=input.value.toLowerCase();
+        left=document.getElementById('left');
+        b=left.getElementsByTagName('button');
+        p=left.getElementsByClassName('panel');
+        for(let i=0;i<b.length;i++){
+            h=b[i].getElementsByTagName('h6')[0];
+            if(h.innerHTML.toLowerCase().indexOf(filter)>-1){
+                b[i].style.display="";
+                p[i].style.display="";
+            }
+            else{
+                p[i].style.display='none';
+                b[i].style.display='none';
+            }
+        }
+    }
+</script>
+<!-- JS Ends here -->
 {% endblock body %}

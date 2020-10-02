@@ -1,10 +1,111 @@
 {% extends 'basetemplate.html' %}
 {% load static %}
 {% block stylesheets %}
-    <style>
-
-    </style>
+<style>
+    #customers {
+      font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+    
+    #customers td, #customers th {
+      border: 1px solid #ddd;
+      padding: 8px;
+    }
+    
+    #customers tr:nth-child(even){background-color: #f2f2f2;}
+    
+    #customers tr:hover {background-color: #ddd;}
+    
+    #customers th {
+      padding-top: 12px;
+      padding-bottom: 12px;
+      text-align: left;
+      background-color: #4CAF50;
+      color: white;
+    }
+    h1,h3{
+        font-weight: bolder;
+        color: #0d2366;
+        
+    }
+    h3::after{
+        content: '-';
+        width: 50px;
+        height: 7px;
+        border-radius: 3px;
+        background-color: green;
+        display: block;
+    }
+</style>
 {% endblock stylesheets %}
 {% block body %}
-   User Payment Policy
+   <!-- User Payment Policy -->
+<main>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Payment Policy Security For Travmaks</h1>
+                <h6><p>Your security is our responsibility, TRAVMAKS ensures that every transaction you conduct online is in a safe and secure environment. To achieve this, TRAVMAKS is protected by Secured Socket Layer (SSL), the leaders in encryption technology. The process of encryption takes your transaction details and converts it into bits of code that are securely transmitted over the Internet. This scrambled data cannot be read as the information travels over the Internet. Your transaction details may be shared with our service providers or vendors to the extent deemed to be necessary. Paytm’s triple handshaking technique ensure the total security in every transaction. For more security related information you can visit paytm policy page.</p>
+                    </h6>
+                <p>If you have any additional queries or concerns please email us and we will reply within 24 hours. </p>
+            </div><br>
+            <div class="col-md-12">
+                <h3>CANCELLATION CHARGES</h3>
+                <p>
+                    If the Outbound Tour is cancelled for any reason what-so-ever, including cases of visa rejection or voluntary cancellation by the User the cancellation charges as mentioned in the brochure or the itinerary will apply. In the absence of any such information, the following cancellation charges will apply:
+                </p><br>
+                <table class="charges" id="customers">
+                    <tr>
+                      <th>Time period in which the cancellation is made</th>
+                      <th>Charges</th>
+                    </tr>
+                    <tr>
+                      <td>45 days or more, prior to departure</td>
+                      <td>Booking fees</td>
+                    </tr>
+                    <tr>
+                        <td>Between 44 and 31 days of departure</td>
+                        <td>25% of Tour Cost</td>
+                    </tr>
+                    <tr>
+                        <td>Between 30 and 15 days of departure</td>
+                        <td>50% of Tour Cost</td>
+                    </tr>
+                    <tr>
+                        <td>Between 14 and 8 days of departure</td>
+                        <td>75% of Tour Cost</td>
+                    </tr>
+                    <tr>
+                        <td>Within 7days prior to date of departure, or no-show for any reason what-so-ever</td>
+                        <td>100% of Tour Cost</td>
+                    </tr>
+                </table>
+
+            </div><br><br>
+            <div class="col-md-12">
+                <br><br>
+                <h3>PAYMENT OF THE TOUR COST</h3>
+                <p>
+                        Payment shall be made as per the payment schedule provided on the brochure, Email or any other documented information as informed at the time of booking.
+                    <br>    Payment can be made either online or by way of DD/cheque as specified to the User.
+                    <br>Payment can be made either in INR or any other foreign exchange/currency (as TRAVMAKS depends on various out bound service providers/ Independent contractors for the purpose of planning the OBT) as specified in the brochure or any other documented information provided at the time of booking.
+
+                    <br>If any cheque towards the payment is dishonored, TRAVMAKS, without notice to the User, shall be entitled to cancel the entire booking without any liability and take recourse to appropriate legal remedy.
+                    <br>Final documents and airline tickets will be shared with the User only after the balance payment is made to TRAVMAKS by the User. PAN Card copy will be required when payments amounting to Rs.25,000/- or above are made by cash
+                    <br>For purpose of computing the cost of tour or refund, the foreign exchange components of the outbound tour will be calculated at the prevailing day's rate of exchange. And any increase or decrease in the rate of exchange may cause the cost of tour/ refund amount to change and the User shall be bound to bear any such changes.
+                    <br>TRAVMAKS is not obligated in any circumstance to provide break–up of the invoice for each of the service included in the package.
+                </p><br>
+                <h3>REFUNDS</h3>
+                <p>
+                    TRAVMAKS is only a facilitator and any refund for any service(s) which are not delivered by the service provider /Independent Contractors or for any reason for which the User is entitled for a refund is subject to TRAVMAKS receiving the amount from the said service provider. User acknowledges that TRAVMAKS shall not be held liable for any delay in refund or non-refund of the amount from the respective service provider or Independent Contractors of TRAVMAKS. In such events the User shall directly approach the service provider for any claims.
+                    <br> In case the User makes any changes in their accommodation while on the Outbound Tour, TRAVMAKS shall not refund or pay compensation in any manner whatsoever. The User would also be liable to pay any additional sum that is required to be paid consequent to the aforesaid changes made in the accommodation.
+                    <br> In the event of any delay in the refund beyond the period specified herein, the entire liability of TRAVMAKS shall be refund of the said amount with interest calculated at the applicable bank rate till the date the refund is made.
+
+                </p>
+            </div>
+
+        </div>
+    </div>
+</main>
 {% endblock body %}

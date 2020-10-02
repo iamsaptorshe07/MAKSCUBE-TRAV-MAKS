@@ -23,7 +23,6 @@ main{
     width: 38%;
     height: 80vh;
     right: 0;
-    background-color: rgba(80,125,255,1);
     position: absolute;
 }
 @media screen and (max-width: 1300px) {
@@ -57,7 +56,7 @@ main{
     font-weight: bold;
 }
 #heading h2{
-    top: 30px;
+    top: 20px;
     left: 30px;
     position: absolute;
     color: #fdf88d;
@@ -143,6 +142,10 @@ main{
     main{
         transform: translateY(-15px);
     }
+    .hidetxt{
+        
+    background-color: rgba(80,125,255,1);
+    }
     #services-02{
         padding: 20px 0 20px 0;
     }
@@ -182,7 +185,7 @@ main{
         background: rgba(0,48,126,1);
     }
     #heading img{
-        height: 36vh;
+        height: 40vh;
         left: 30px;
     }
     .hidetxt{
@@ -198,7 +201,7 @@ main{
     }
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 500px) {
     #heading img{
         display: none;
         text-align: center;
@@ -222,5 +225,8 @@ main{
     background-color: #0d141c !important;
 }
 #heading h2{
-    top: 60px;
+    top: 40px;
 }
+/* .navbar-toggler {
+    background-color: #fff;
+} */
