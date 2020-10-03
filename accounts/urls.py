@@ -17,8 +17,13 @@ urlpatterns = [
     path('guide/login',guideLogin,name='Guide_Login'),
     path('traveller/login',travellerLogin,name='Traveller_Login'),
     path('seller/login',sellerLogin,name='Seller_login'),    
+
     path('user/logout',userLogout,name='userLogout'),
+
     path('editprofile/<str:account_type>/<int:uid>',userProfile,name='userProfile'),
+
+    path('change-password',changePassword,name='ChnagePassword'),
+
     path('password-reset/',auth_views.PasswordResetView.as_view(template_name='accounts/changePassword.html'),name='password_reset'),
     path('password-reset/email-sent',auth_views.PasswordResetDoneView.as_view(template_name='accounts/password_reset_done.html'),name='password_reset_done'),
     path('password-reset-confirm/<uidb64>/<token>',auth_views.PasswordResetConfirmView.as_view(template_name='accounts/password-reset-form.html'),name='password_reset_confirm'),
