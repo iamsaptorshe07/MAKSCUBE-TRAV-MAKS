@@ -2,12 +2,17 @@
 {% load static %}
 {% block stylesheets %}
 <style>
-.testimonial1{
-background-image:url("{% static 'img/s5.jpg' %}");
+
+body{
+background: rgb(204, 239, 255);
+margin-top: 30px;
+}
+/*.testimonial1{
+background-image:url("{% static 'img/bg.jpg' %}");
 background-repeat: no-repeat;
     background-size: cover;
 
-}
+}*/
 .movement{
 		-webkit-animation: mover 2s infinite  alternate;
     animation: mover 1s infinite  alternate;
@@ -54,6 +59,7 @@ background-repeat: no-repeat;
 	font-weight: 600;
 }
 .single-service {
+background-color:rgb(0, 0, 102);
 	border: 1px solid #eee;
 	padding: 30px 10px;
 	position: relative;
@@ -89,6 +95,11 @@ cursor:pointer;
 	font-size: 22px;
 	margin-bottom: 10px;
 	font-weight: 500;
+	color:#fff;
+	
+}
+.single-service p{
+color:#fff;
 }
 /*-- testimonial Section CSS --*/
 
@@ -168,26 +179,58 @@ cursor:pointer;
     font-weight: bold;
     color: rgb(56, 73, 107);
 }
+.highlight:hover{
+background:blue;
+color:#fff;
+cursor:pointer;
+}
+#frm{
+ background-color: rgb(0, 85, 128) !important; 
+ left:90px; 
+ border-radius:10px;
+}
+@media screen and (max-width: 400px) {
+#frm{
+left:0px;
+margin-top:10px;
+}
+}
+@media screen and (max-width: 600px) {
+#frm{
+left:0px;
+margin-top:10px;
+}
+}
+
+@media screen and (max-width: 900px) {
+#frm{
+left:0px;
+margin-top:10px;
+}
+}
 
 </style>
 {% endblock stylesheets %}
 {% block body %}
-    <section class="testimonial1 py-5">
+    <!-- HTML Starts here -->
+<section class="testimonial1 py-5">
     <div class="container">
         <div class="row ">
-   <div class=" col-md-4 py-5text-white text-center" style="background: linear-gradient(#4ca1af,  #c4e0e5);">
+   <div class=" col-md-4 text-center">
                 <div class="col-md-4 pt-2 ">
                     <div class="box text-center">
-                        <iframe width="330" height="330" src="https://www.youtube.com/embed/nMBmLLpo9CA" frameborder="0" allowfullscreen></iframe>
+                        <iframe width="330" height="330" src="https://www.youtube.com/embed/nMBmLLpo9CA" frameborder="0" allow="fullscreen" style="border-radius:20px;"></iframe>
                     </div>
                 </div>
-				<div class="highlight">Get 100% OFF on the Sign Up Fee</div><br>
-				<div class="highlight">Get 100% OFF on the Sign Up Fee</div>
+				<h3 class="pb-4 pt-2 text-center ">Our Software Features</h3>
+				<div class="highlight">Dashboard to visualize and keep track your monthly sales</div><br>
+				<div class="highlight">Transaction Record Book</div><br>
+				<div class="highlight">Transaction Record Book</div>
 				
 				
             </div>
-            <div class="col-md-8 py-5 border" style="background-color: rgb(0 0 0 / 53%) !important;">
-                <h4 class="pb-4 text-center text-white">Please fill with your details</h4>
+            <div class="col-md-8 border " id="frm">
+                <h4 class="pb-4 text-center text-white">Get Your Online Presence</h4>
                 <div class="row register-form">
                                     <div class="col-md-6">
                                         <div class="form-group">
@@ -230,6 +273,9 @@ cursor:pointer;
                                             </select>
                                         </div>
                                         <!-- External JS portion ends here-->
+										<div class="form-group">
+                                            <input type="text" class="form-control" placeholder="Enter Full Address *" name="address" id="address" required/>
+                                        </div>
                                         <div class="form-group">
                                             <input type="number" class="form-control" placeholder="Enter ZIP Code *" name="zip" id="zip" required />
                                         </div>
@@ -241,11 +287,6 @@ cursor:pointer;
                                         </div>
                                         <div class="form-group">
                                             <input type="text" minlength="10" maxlength="10" class="form-control" placeholder="Your Phone *" name="phone" id="phone" required/>
-                                        </div>
-                                        
-                                        
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="Enter Full Address *" name="address" id="address" required/>
                                         </div>
 										<div class="form-group">
                                             <select name="govIdName" id="proofType" class="form-control" required>
@@ -265,7 +306,7 @@ cursor:pointer;
                                             <input type="password" class="form-control" placeholder="Password *" name="password1" id="password1" required/>
                                         </div>
 										<div class="form-group">
-                                            <input type="password" class="form-control" placeholder="Confirm Password *" name="password1" id="password1" required/>
+                                            <input type="password" class="form-control" placeholder="Confirm Password *" name="password2" id="password2" required/>
                                         </div>
                                     </form>
                                 </div>
@@ -275,7 +316,7 @@ cursor:pointer;
 <p><a href="#" class="text-warning" data-toggle="modal" data-target="#exampleModalLong" >Click here!</a> for accept our terms and conditions.</p>
 
 
-										<button class=" btn btn-orange-styl float-right">Register</button>
+										<button class=" btn btn-lg btn-orange-styl float-right" type="submit">Register</button>
                                         </div>
                                         </div>
 										
@@ -511,4 +552,8 @@ cursor:pointer;
             </div>
         </div>
     </section>
+    <!-- End testimonials Section -->
+	<!-- Geo data Solutions API-->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> 
+    <script src="//geodata.solutions/includes/countrystatecity.js"></script>
 {% endblock body %}
