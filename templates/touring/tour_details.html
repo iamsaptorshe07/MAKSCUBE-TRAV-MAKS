@@ -18,7 +18,7 @@
     }
 
     #nav-tab {
-        background: #007b5e;
+        background: #000000;
         padding: 10px 0;
     }
 
@@ -26,10 +26,10 @@
     .nav-tabs .nav-link.active {
         background-color: transparent;
         border-color: transparent transparent #f3f3f3;
-        border-bottom: 4px solid !important;
+        
         font-size: 20px;
         font-weight: bold;
-        background: #007b5e;
+        background: #ee0b0b;
 
     }
 
@@ -91,12 +91,38 @@
         margin-left: 20px;
         margin-bottom: 10px;
     }
+    .navbar{
+    background-color: #0d141c !important;
+
+}
+.navbar .nav-item .nav-link{
+    color:#fff !important;
+		font-family: Helvatica;
+		font-size: 20px;
+		
+    }
+.navbar .nav-item .nav-link:hover{
+    background-color: #ddd;
+  color: black !important;
+  border-radius: 5px;
+  
+}
+.navbar-nav a {
+           
+            transition: 0.3s linear;
+        }
+.navbar-toggler{
+
+background-color: #fff;
+}
 </style>
 {% endblock stylesheets %}
 
 {% block body %}
+
 <div class="breadcrumb">
     <div class="owl-carousel owl-theme">
+        
         <div class="card flt">
             <div class="card-img-block">
                 <img class="card-img-top" src="{% static 'img/c1.jpg' %}" alt="">
@@ -325,6 +351,8 @@
                     <button type="button" class="btn btn-prime btn-block"><i class="fa fa-plane fa-lg"></i>&nbsp;BOOK
                         NOW</button>
                 </a>
+
+                
                 <div class="popup-btn" style="display:block">
                     <a href="/tour/booktour/{{Tour.tourId}}/{{Tour.seller.userAccess.agentId}}">Book Now &nbsp;<i
                             class="fa fa-globe"></i></a>
@@ -360,40 +388,7 @@
     </div>
 </div>
 
-<h2 class="mainh ml-3">Contact Us</h2>
-<div class="container-fluid" style="background: #eaf7fd; padding-top:20px;">
-    <div class="col-md-10">
-        <div class="row">
-            <div class="col-md-5">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="First Name *" value="" />
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Email *" value="" />
-                </div>
-                <div class="form-group">
-                    <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="Message *"
-                        rows="3"></textarea>
-                </div>
 
-            </div>
-            <div class="col-md-5">
-                <div class="form-group">
-                    <input type="email" class="form-control" placeholder="Last Name *" value="" />
-                </div>
-                <div class="form-group">
-                    <input type="text" minlength="10" maxlength="10" name="txtEmpPhone" class="form-control"
-                        placeholder="Your Phone *" value="" />
-                </div>
-
-                <div class="form-group">
-                    <input type="date" class="form-control" placeholder="Travel Date *" value="" />
-                </div>
-                <button type="button" class="btn btn-success">Button</button>
-            </div>
-        </div>
-    </div>
-</div>
 <script type="text/javascript">
 
     $('.owl-carousel').owlCarousel({
