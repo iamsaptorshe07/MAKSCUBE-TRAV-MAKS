@@ -1,4 +1,16 @@
     {% extends 'basetemplate.html' %}
+    
+{% load static %}
+{% block stylesheets %}
+<style>
+    .card, .card-header{
+        margin-top: 0!important;
+    }
+    .container{
+        max-width: 100%;
+    }
+</style>
+{% endblock stylesheets %}
     {% block body %}
     <div class="container" style="width:100%;">
       <div class="card-header">
