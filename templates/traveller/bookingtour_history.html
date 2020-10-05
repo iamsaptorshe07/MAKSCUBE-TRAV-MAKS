@@ -7,10 +7,10 @@
 {% block body %}
 <!--HTML Starts-->
 <div class="container">
-<!--Card start-->
+
 {% for order in Bookings %}
+
  <div class="card gedf-card">
-					
                     <div class="card-header">
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="d-flex justify-content-between align-items-center">
@@ -25,12 +25,16 @@
                                     <li style="font-size:13px;"><div class="h8 text-muted">₹{{order.payment_price}}</div></li>
 									</ul>
                                 </div>
-								
+								<br>
+								<br>
+								<br>
+								<br>
+								<br>
 								<div class="ml-4">
                                     <ul style="list-style-type:none;">
                                     
 									
-									<a id="popoverData{{order.id}}" class="btn" href="#" 
+									<a id="popoverData{{order.id}}"  href="#" 
 data-content="<b>Billing Details</b><br>{{order.customer_name}}<br>{{order.customer_email}}<br>{{order.customer_phone}}<br>{{order.customer_address}}<br>"
 data-html="true"
  rel="popover" data-placement="bottom" 
@@ -79,7 +83,7 @@ data-html="true"
 
 						</div>
 						<div class="col-md-3">
-						<button type="button" class="btn btn-block btn-dark">Write a Review </button>
+						<button type="button" class="btn btn-block btn-dark">Write a Review </button><br>
                             <a href="/traveller/generate-invoice/order={{order.order_id}}">
 						        <button type="button" class="btn btn-block btn-dark">Invoice</button>
                             </a>
@@ -102,6 +106,8 @@ $('#popoverOption{{order.id}}').popover({ trigger: "hover" });
 {% endfor %}
 				<!--Card end-->
 </div>
+
+
 <!--HTML Ends-->
 
 <!--JS Starts-->
