@@ -14,18 +14,6 @@ background-repeat: no-repeat;
     background-size: cover;
 
 }*/
-.movement{
-		-webkit-animation: mover 2s infinite  alternate;
-    animation: mover 1s infinite  alternate;
-}
-@-webkit-keyframes mover {
-    0% { transform: translateY(0); }
-    100% { transform: translateY(-20px); }
-}
-@keyframes mover {
-    0% { transform: translateY(0); }
-    100% { transform: translateY(-20px); }
-}
 .btn-orange-styl {
 	float: right;
     margin-top: 10%;
@@ -37,71 +25,101 @@ background-repeat: no-repeat;
 }
 
 /*Service*/
-.pt-100 {
-	padding-top: 100px;
-}
-.pb-100 {
-	padding-bottom: 100px;
+#service .card {
+    border: none;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+   
 }
 
-.section-title {
-  margin-bottom: 60px;
+.service-flip:hover .backside,
+.service-flip.hover .backside {
+    -webkit-transform: rotateY(0deg);
+    -moz-transform: rotateY(0deg);
+    -o-transform: rotateY(0deg);
+    -ms-transform: rotateY(0deg);
+    transform: rotateY(0deg);
+    border-radius: .25rem;
 }
-.section-title p {
-	color: #777;
-	font-size: 16px;
+
+.service-flip:hover .frontside,
+.service-flip.hover .frontside {
+    -webkit-transform: rotateY(180deg);
+    -moz-transform: rotateY(180deg);
+    -o-transform: rotateY(180deg);
+    transform: rotateY(180deg);
 }
-.section-title h4 {
-	text-transform: capitalize;
-	font-size: 40px;
-	position: relative;
-	padding-bottom: 20px;
-	margin-bottom: 20px;
-	font-weight: 600;
+
+.mainflip {
+    -webkit-transition: 1s;
+    -webkit-transform-style: preserve-3d;
+    -ms-transition: 1s;
+    -moz-transition: 1s;
+    -moz-transform: perspective(1000px);
+    -moz-transform-style: preserve-3d;
+    -ms-transform-style: preserve-3d;
+    transition: 1s;
+    transform-style: preserve-3d;
+    position: relative;
 }
-.single-service {
-background-color:rgb(0, 0, 102);
-	border: 1px solid #eee;
-	padding: 30px 10px;
-	position: relative;
-	text-align: center;
-	margin-bottom: 30px;
-	 box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
- 
+
+.frontside {
+    position: relative;
+    -webkit-transform: rotateY(0deg);
+    -ms-transform: rotateY(0deg);
+    z-index: 2;
+    margin-bottom: 30px;
 }
-.single-service:hover{
-background-color:blue;
-color:#fff;
-cursor:pointer;
+
+.backside {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: white;
+    -webkit-transform: rotateY(-180deg);
+    -moz-transform: rotateY(-180deg);
+    -o-transform: rotateY(-180deg);
+    -ms-transform: rotateY(-180deg);
+    transform: rotateY(-180deg);
+    -webkit-box-shadow: 5px 7px 9px -4px rgb(158, 158, 158);
+    -moz-box-shadow: 5px 7px 9px -4px rgb(158, 158, 158);
+    box-shadow: 5px 7px 9px -4px rgb(158, 158, 158);
 }
-.single-service i.fa {
-  width: 60px;
-  height: 60px;
-  background-color: #ff3636;
-  font-size: 25px;
-  color: #fff;
-  line-height: 60px;
+
+.frontside,
+.backside {
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-transition: 1s;
+    -webkit-transform-style: preserve-3d;
+    -moz-transition: 1s;
+    -moz-transform-style: preserve-3d;
+    -o-transition: 1s;
+    -o-transform-style: preserve-3d;
+    -ms-transition: 1s;
+    -ms-transform-style: preserve-3d;
+    transition: 1s;
+    transform-style: preserve-3d;
+}
+
+.frontside .card,
+.backside .card {
+    min-height: 212px;
+}
+.backside .card .card-title {
+    color: #0d141c !important;
+}
+
+
+.frontside i.fa {
+  
+  font-size: 35px;
+  color: #159eee;
   text-align:center;
-  margin-bottom:20px;
+  line-height:70px;
 }
-.single-service i.fa {
-	-webkit-transition: .4s;
-	transition: .4s;
-}
-.single-service:hover i.fa {
-	border-radius: 50%;
-}
-.single-service h4 {
-	text-transform: capitalize;
-	font-size: 22px;
-	margin-bottom: 10px;
-	font-weight: 500;
-	color:#fff;
-	
-}
-.single-service p{
-color:#fff;
-}
+
 /*-- testimonial Section CSS --*/
 
 #testimonial h2 {
@@ -195,11 +213,19 @@ cursor:pointer;
 left:0px;
 margin-top:10px;
 }
+.btn-orange-styl{
+width:100%;
+margin-bottom:10px;
+}
 }
 @media screen and (max-width: 600px) {
 #frm{
 left:0px;
 margin-top:10px;
+}
+.btn-orange-styl{
+width:100%;
+margin-bottom:10px;
 }
 }
 
@@ -208,14 +234,16 @@ margin-top:10px;
 left:0px;
 margin-top:10px;
 }
+.btn-orange-styl{
+width:100%;
+margin-bottom:10px;
+}
 }
 
 </style>
 {% endblock stylesheets %}
-<!-- CSS Ends here -->
-
 {% block body %}
-<!-- HTML Starts here -->
+    <!-- HTML Starts here -->
 <section class="testimonial1 py-5">
     <div class="container">
         <div class="row ">
@@ -228,7 +256,6 @@ margin-top:10px;
 				<h3 class="pb-4 pt-2 text-center ">Our Software Features</h3>
 				<div class="highlight">Dashboard to visualize and keep track your monthly sales</div><br>
 				<div class="highlight">Transaction Record Book</div><br>
-				<div class="highlight">Transaction Record Book</div>
 				
 				
             </div>
@@ -316,7 +343,9 @@ margin-top:10px;
                                 </div>
 								<div class="col-md-8 text-white">
 								<div class="row">
-<p><a href="#" class="text-warning" data-toggle="modal" data-target="#exampleModalLong" >Click here!</a> for accept our terms and conditions.</p>
+								<p class="checkbox-inline"><input type="checkbox" value=""></p>&nbsp;
+
+<p> I accept the&nbsp;<a href="#" class="text-warning" data-toggle="modal" data-target="#exampleModalLong" >Terms & Conditions</a></p>
 
 
 										<button class=" btn btn-lg btn-orange-styl float-right" type="submit">Register</button>
@@ -331,8 +360,7 @@ margin-top:10px;
 <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+      <div class="modal-header" style="border-bottom:none;">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -436,69 +464,181 @@ margin-top:10px;
                     </div>
                 </div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
     </div>
   </div>
 </div>
-<section class="services-area pt-100 pb-70" id="services">
-		<div class="container">
-			<div class="row">
-				<div class="col-xl-8 mx-auto text-center">
-					<div class="section-title">
-						<h4>Benfits of joining us</h4>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-lg-4 col-md-6">
-					<div class="single-service">
-						<i class="fa fa-globe"></i>
-						<h4>design</h4>
-						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui quaerat fugit quas veniam perferendis repudiandae sequi. </p>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6">
-					<div class="single-service">
-						<i class="fa fa-code"></i>
-						<h4>development</h4>
-						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui quaerat fugit quas veniam perferendis repudiandae sequi. </p>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6">
-					<div class="single-service">
-						<i class="fa fa-clone"></i>
-						<h4>branding</h4>
-						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui quaerat fugit quas veniam perferendis repudiandae sequi. </p>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6">
-					<div class="single-service">
-						<i class="fa fa-rocket"></i>
-						<h4>database</h4>
-						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui quaerat fugit quas veniam perferendis repudiandae sequi. </p>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6">
-					<div class="single-service">
-						<i class="fa fa-camera"></i>
-						<h4>app</h4>
-						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui quaerat fugit quas veniam perferendis repudiandae sequi. </p>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6">
-					<div class="single-service">
-						<i class="fa fa-clock-o"></i>
-						<h4>support</h4>
-						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui quaerat fugit quas veniam perferendis repudiandae sequi. </p>
-					</div>
-				</div>
-			</div>
-		</div>
-	  </section>
+<!--Service-->
+<section id="service" class="pb-5">
+    <div class="container">
+        <h5 class="section-title h1 text-center pb-4">Our Benefits</h5>
+        <div class="row">
+            <!-- Service 1 -->
+            <div class="col-xs-12 col-sm-6 col-md-4">
+                <div class="service-flip" >
+                    <div class="mainflip flip-0">
+                        <div class="frontside">
+                            <div class="card">
+                                <div class="card-body text-center">
+                    <i class="fa fa-globe"></i>
+                                    <h4 class="card-title">Minimize your maintenance cost</h4>
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="backside">
+                            <div class="card">
+                                <div class="card-body text-center mt-4">
+                                    <h4 class="card-title">Minimize your maintenance cost</h4>
+                                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+									consectetur adipiscing elit,consectetur adipiscing elit,
+									consectetur adipiscing elit,consectetur adipiscing elit,
+									</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--Service 1 -->
+            <!-- Service 2 -->
+            <div class="col-xs-12 col-sm-6 col-md-4">
+                <div class="service-flip" ontouchstart="this.classList.toggle('hover');">
+                    <div class="mainflip">
+                        <div class="frontside">
+                            <div class="card">
+                                <div class="card-body text-center">
+                                    <i class="fa fa-globe"></i><h4 class="card-title">24*7 interactions with customers</h4>
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="backside">
+                            <div class="card">
+                                <div class="card-body text-center mt-4">
+                                    <h4 class="card-title">24*7 interactions with customers</h4>
+                                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+									consectetur adipiscing elit,consectetur adipiscing elit,
+									consectetur adipiscing elit,consectetur adipiscing elit,
+									</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--  Service 2 -->
+			
+            <!--  Service 3 -->
+			<div class="col-xs-12 col-sm-6 col-md-4">
+                <div class="service-flip" ontouchstart="this.classList.toggle('hover');">
+                    <div class="mainflip">
+                        <div class="frontside">
+                            <div class="card">
+                                <div class="card-body text-center">
+                                    <i class="fa fa-globe"></i><h4 class="card-title">Minimized order processing costs</h4>
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="backside">
+                            <div class="card">
+                                <div class="card-body text-center mt-4">
+                                    <h4 class="card-title">Minimized order processing costs</h4>
+                                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+									consectetur adipiscing elit,consectetur adipiscing elit,
+									consectetur adipiscing elit,consectetur adipiscing elit,
+									</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--  Service 3 -->
+			
+			<!--  Service 3 -->
+			<div class="col-xs-12 col-sm-6 col-md-4">
+                <div class="service-flip" ontouchstart="this.classList.toggle('hover');">
+                    <div class="mainflip">
+                        <div class="frontside">
+                            <div class="card">
+                                <div class="card-body text-center">
+                                    <i class="fa fa-globe"></i><h4 class="card-title"> Get an online presence for your businesss</h4>
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="backside">
+                            <div class="card">
+                                <div class="card-body text-center mt-4">
+                                    <h4 class="card-title">Get an online presence for your businesss</h4>
+                                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+									consectetur adipiscing elit,consectetur adipiscing elit,
+									consectetur adipiscing elit,consectetur adipiscing elit,
+									</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--  Service 3 -->
+			
+			<!--  Service 3 -->
+			<div class="col-xs-12 col-sm-6 col-md-4">
+                <div class="service-flip" ontouchstart="this.classList.toggle('hover');">
+                    <div class="mainflip">
+                        <div class="frontside">
+                            <div class="card">
+                                <div class="card-body text-center">
+                                    <i class="fa fa-globe"></i><h4 class="card-title"> Get global rechebility</h4>
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="backside">
+                            <div class="card">
+                                <div class="card-body text-center mt-4">
+                                    <h4 class="card-title">Get global rechebility</h4>
+                                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+									consectetur adipiscing elit,consectetur adipiscing elit,
+									consectetur adipiscing elit,consectetur adipiscing elit,
+									</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--  Service 3 -->
+			
+			<!--  Service 3 -->
+			<div class="col-xs-12 col-sm-6 col-md-4">
+                <div class="service-flip" ontouchstart="this.classList.toggle('hover');">
+                    <div class="mainflip">
+                        <div class="frontside">
+                            <div class="card">
+                                <div class="card-body text-center">
+                                    <i class="fa fa-globe"></i><h4 class="card-title"> Free stuff training</h4>
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="backside">
+                            <div class="card">
+                                <div class="card-body text-center mt-4">
+                                    <h4 class="card-title">Free stuff training</h4>
+                                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+									consectetur adipiscing elit,consectetur adipiscing elit,
+									consectetur adipiscing elit,consectetur adipiscing elit,
+									</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--  Service 3 -->
+			
+			
+        </div>
+    </div>
+</section>
+<!-- Service -->
 	  
 	  <!-- Testimonials Section -->
     <section id="testimonial">
@@ -556,11 +696,7 @@ margin-top:10px;
         </div>
     </section>
     <!-- End testimonials Section -->
-<!-- Geo data Solutions API-->
+	<!-- Geo data Solutions API-->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> 
-    <script src="//geodata.solutions/includes/countrystatecity.js"></script>	  
-<!-- HTML Ends here -->
-<!-- JS Starts here -->
-
-<!-- JS Ends here -->
+    <script src="//geodata.solutions/includes/countrystatecity.js"></script>
 {% endblock body %}
