@@ -800,6 +800,37 @@ ul{
   padding:0;
   list-style:none;
 }
+
+@media screen and (max-width: 400px) {
+  .footer-middle{
+    text-align:center;
+  }
+  .carousel-caption a{
+	padding: 5px 20px;
+	
+}
+}
+
+@media screen and (max-width: 600px)  {
+  .footer-middle{
+    text-align:center;
+  }
+  .carousel-caption a{
+	padding: 5px 20px;
+	}
+}
+
+@media screen and (max-width: 900px)  {
+  .footer-middle{
+    text-align:center;
+  }
+  .carousel-caption a{
+	padding: 5px 20px;
+	
+}
+}
+
+
 .heading.heading-icon {
     display: block;
 }
@@ -854,7 +885,7 @@ ul{
 }
 
 .carousel-caption{
-	bottom: 180px;
+	bottom: 150px;
 }
 .carousel-caption h3{
 	font-size: 50px;
@@ -946,4 +977,10 @@ ul{
 .fa-life-ring{
 	color:#43ffdb;
 	font-size:20px;
+}
+
+@media screen and (max-height: 300px) {
+.carousel-caption{
+    bottom:60px;
+}
 }
