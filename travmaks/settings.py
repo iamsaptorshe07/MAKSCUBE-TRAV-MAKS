@@ -89,9 +89,9 @@ WSGI_APPLICATION = 'travmaks.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'uefdpW7x1L',
-        'USER':'uefdpW7x1L',
-        'PASSWORD':'nPIcBEMMzC',
+        'NAME': 'TThwzWTH61',
+        'USER':'TThwzWTH61',
+        'PASSWORD':'W6gG8vPfvo',
         'HOST':'remotemysql.com',
         'PORT':'3306',
     }
