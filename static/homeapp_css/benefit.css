@@ -68,9 +68,9 @@ textarea{
     justify-content: space-around;
 }
 .signup, .whyus{
-    background: transparent;
     border-radius: 5px;
-    border: 1px black solid;
+    /* border: 1px black solid; */
+    border: none;
     text-decoration: none;
     color: black;
     width: 40%;

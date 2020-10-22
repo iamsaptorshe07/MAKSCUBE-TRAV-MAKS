@@ -17,7 +17,8 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <form action="">
+                <form  method="POST" action='/accounts/seller/account/signup' enctype="multipart/form-data" 
+                    onsubmit="return registrationValidator();">
                     <h1>Travmaks</h1>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident quia.</p>
                     <div class="fc">
@@ -49,7 +50,8 @@
                             </div>
                         </span>
                         <div class="form-group">
-                            <input type="text" minlength="10" maxlength="10" class="form-control" placeholder="Your Phone *" name="phone" id="phone" required/>
+                            <input type="text" minlength="10" maxlength="10" class="form-control" 
+                                placeholder="Your Phone *" name="phone" id="phone" required/>
                         </div>
                     </div>
                     <div class="fc">
@@ -129,8 +131,12 @@
                     </div>
                     <div class="fc">
                         <div class="form-group btns">
-                            <button class="signup" type="submit">Sign Up</button>
-                            <a class="whyus" href="#testihead">Why Us</a>
+                            <button class="signup btn-primary" type="submit">Sign Up</button>
+                            <a class="whyus btn-primary" href="#testihead">Why Us</a>
+                        </div>
+                        
+                        <div id="errormsgbg">
+                            <div id="errormsg" onclick="removeValidator();"></div>
                         </div>
                     </div>
                 </form>
@@ -640,5 +646,81 @@ $(function(){
         }
     })
     
+</script>
+<script>
+    function registrationValidator()
+    {
+        var name = document.getElementById('fullname').value;
+        var bdate = document.getElementById('bdate').value;
+        var country = document.getElementById('countryId').value;
+        var state = document.getElementById('stateId').value;
+        var district = document.getElementById('cityId').value;
+        var zip = document.getElementById('zip').value;
+        var address = document.getElementById('address').value;
+        var mail = document.getElementById('mail').value;
+        var password1 = document.getElementById('password1').value;
+        var password2 = document.getElementById('password2').value;
+        var gender = document.getElementsByName('gender');
+        const errormsgbg=document.getElementById('errormsgbg');
+        const errormsg=document.getElementById('errormsg');
+        var phone=document.getElementById('phone').value;
+        var msg=new Array();
+        dy=parseInt(bdate);
+        cd=new Date();
+        cy=cd.getFullYear();
+        var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+        res = reg.test(mail);
+
+        if((cy-dy)<14){
+            msg.push("You must be 14 years old to Register.");
+        }
+        if(res==false)
+        {
+            msg.push("Enter Proper Email.");
+        }
+        if(phone!=Number(phone)){
+            msg.push("Your phone must be number.");
+        }
+        if(phone.length!=10){
+            msg.push("Please Enter a valid Phone number.");
+        }
+        if(zip.length!=6){
+            msg.push("Please Enter a valid Zip Code.");  
+        }
+        if(password1.length<8)
+        {
+            msg.push("Your Password must contain atleast 8 characters.");
+        }
+        else{
+            for(let i=0;i<password1.length;i++){
+                if(password1[i]==='<'||password1[i]==='>'){
+                    msg.push("< / > not allowed");
+                }
+            }
+            if(password1!==password2){
+                msg.push("Password didn't match.");
+            }
+        }
+        if(msg.length>0){
+            errormsg.innerHTML=msg.join("\n");
+            errormsgbg.style.width="500px";
+            errormsg.style.padding="8px";
+            errormsgbg.style.borderRadius="5px";
+            errormsgbg.style.backgroundColor='#FBD0F5';
+            errormsg.style.color='red';
+            errormsgbg.style.marginBottom='10px';
+            errormsg.style.transform='translateY(-10px)';
+            return false;
+        }
+        return false;
+        console.log('he');
+    }
+    function removeValidator(){
+        var errormsg=document.getElementById('errormsg');
+        var errormsgbg=document.getElementById('errormsgbg');
+        errormsg.innerHTML = null;
+        errormsg.style.padding='0px';
+        errormsgbg.style.marginBottom='0px';
+    }
 </script>
 {% endblock body %}
