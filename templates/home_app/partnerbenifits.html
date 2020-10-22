@@ -132,7 +132,7 @@
                     <div class="fc">
                         <div class="form-group btns">
                             <button class="signup btn-primary" type="submit">Sign Up</button>
-                            <a class="whyus btn-primary" href="#testihead">Why Us</a>
+                            <a class="whyus btn-primary js-scroll-trigger" href="#testihead">Why Us</a>
                         </div>
                         
                         <div id="errormsgbg">
@@ -279,9 +279,42 @@
     </div>
 </section>
 <br>
-<h1 id="testihead">Reason to chose us...</h1>
+<h1 id="testihead">Reason to chose us...</h1><br>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h2>1. Our <strong>Special</strong> Features</h2>
+            <div class="feature">
+                <div class="imgbg"><img src="{% static 'homeapp_css/dashboard.svg'%}" alt=""></div>
+                <p>You will get a dashboard to visualize and keep track everything</p>
+            </div>
+            <div class="feature">
+                <div class="imgbg"><img src="{% static 'homeapp_css/transaction.svg'%}" alt=""></div>
+                <p>You will get a transaction record book</p>
+            </div>
+        </div>
+        <div class="col-md-6 clockbg">
+            <div class="imgbg">
+                <div class="clock">
+                    <div class="outer-clock-face">
+                      <div class="marking marking-one"></div>
+                      <div class="marking marking-two"></div>
+                      <div class="marking marking-three"></div>
+                      <div class="marking marking-four"></div>
+                      <div class="inner-clock-face">
+                        <div class="hand hour-hand"></div>
+                        <div class="hand min-hand"></div>
+                        <div class="hand second-hand"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <h2>2. We are <strong>Available</strong> 24 x 7 hours</h2>
+        </div>
+    </div>
+</div>
 <div class="col-md-12 testihead">
-    <h2>1. Our <strong>Customers</strong> Love Us</h2>
+    <h2>3. Our <strong>Customers</strong> Love Us</h2>
 </div><br>
 <section id="testimonials">
     
@@ -418,7 +451,7 @@
                 <div class="col-md-12 wow slideInLeft">
 
                     <div class="vertical-heading">
-                        <h2><br>2. Getting best services <br>at <strong>Minimal </strong>cost! <br>ain't it great?</h2>
+                        <h2><br>4. Getting best services <br>at <strong>Minimal </strong>cost! <br>ain't it great?</h2>
                     </div>
 
                 </div>
@@ -477,7 +510,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h2>3. Great Way to Put Your Bussiness Online</h2><br>
+                <h2>5. Great Way to Put Your Bussiness Online</h2><br>
             </div>
             <div class="col-md-6 onlinel">
                 <div class="row">
@@ -722,5 +755,30 @@ $(function(){
         errormsg.style.padding='0px';
         errormsgbg.style.marginBottom='0px';
     }
+</script>
+<script>
+    const secondHand = document.querySelector('.second-hand');
+    const minsHand = document.querySelector('.min-hand');
+    const hourHand = document.querySelector('.hour-hand');
+
+    function setDate() {
+        const now = new Date();
+
+        const seconds = now.getSeconds();
+        const secondsDegrees = ((seconds / 60) * 360) + 90;
+        secondHand.style.transform = `rotate(${secondsDegrees}deg)`;
+
+        const mins = now.getMinutes();
+        const minsDegrees = ((mins / 60) * 360) + ((seconds/60)*6) + 90;
+        minsHand.style.transform = `rotate(${minsDegrees}deg)`;
+
+        const hour = now.getHours();
+        const hourDegrees = ((hour / 12) * 360) + ((mins/60)*30) + 90;
+        hourHand.style.transform = `rotate(${hourDegrees}deg)`;
+    }
+
+    setInterval(setDate, 1000);
+
+    setDate();
 </script>
 {% endblock body %}
