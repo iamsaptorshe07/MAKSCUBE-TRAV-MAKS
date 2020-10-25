@@ -177,48 +177,48 @@ def travelerAccountsSignup(request):
                 if user.is_active:
                     if user.userAccess.user_access is True:
                         messages.warning(request, 'Your account is already exsits! Please login!')
-                        return redirect('traveler_accounts_signup')
+                        return redirect('travelerAccountsSignup')
                     else:
                         res = messages_sender(request, user)
                         print(res)
                         if res is True:
                             messages.success(request,
                                              'As your seller account already exists we will use your old data just Check your email to activate the user account')
-                            return redirect('traveler_accounts_signup')
+                            return redirect('travelerAccountsSignup')
                         if res is False:
                             messages.error(request, 'Internal Problem Occured')
-                            return redirect('traveler_accounts_signup')
+                            return redirect('travelerAccountsSignup')
                 else:
                     messages.warning(request, 'Account already exsits! Please verify your email! sent on {}'.format(
                         user.creationTime))
-                    return redirect('traveler_accounts_signup')
+                    return redirect('travelerAccountsSignup')
             elif User.objects.filter(email=email).exists():
                 user = User.objects.get(email=email)
                 if user.is_active:
                     if user.userAccess.user_access is True:
                         messages.warning(request, 'Your account is already exsits! Please login!')
-                        return redirect('traveler_accounts_signup')
+                        return redirect('travelerAccountsSignup')
                     else:
                         res = messages_sender(request, user)
                         print(res)
                         if res is True:
                             messages.success(request,
                                              'As your seller account already exists we will use your old data just Check your email to activate the user account')
-                            return redirect('traveler_accounts_signup')
+                            return redirect('travelerAccountsSignup')
                         if res is False:
                             messages.error(request, 'Internal Problem Occured')
-                            return redirect('traveler_accounts_signup')
+                            return redirect('travelerAccountsSignup')
                         return redirect('travelAgency_accounts_signup')
                 else:
                     messages.warning(request, 'Account already exsits! Please verify your email! sent on {}'.format(
                         user.creationTime))
-                    return redirect('traveler_accounts_signup')
+                    return redirect('travelerAccountsSignup')
             elif User.objects.filter(phNo=phNo).exists():
                 user = User.objects.get(phNo=phNo)
                 if user.is_active:
                     if user.userAccess.user_access is True:
                         messages.warning(request, 'Your account is already exsits! Please login!')
-                        return redirect('traveler_accounts_signup')
+                        return redirect('travelerAccountsSignup')
                     else:
                         messages.warning(request,
                                          'Agency account already exsits! Check your email to activate the user account!')
@@ -226,7 +226,7 @@ def travelerAccountsSignup(request):
                         return redirect('travelAgency_accounts_signup')
                 else:
                     messages.warning(request, 'Account already exsits! Please verify your email!')
-                    return redirect('traveler_accounts_signup')
+                    return redirect('travelerAccountsSignup')
             else:
                 user = User(
                     name=request.POST.get('name'),
@@ -247,10 +247,10 @@ def travelerAccountsSignup(request):
                 print(res)
                 if res is True:
                     messages.success(request, ' email to activatCheck youre the account')
-                    return redirect('traveler_accounts_signup')
+                    return redirect('travelerAccountsSignup')
                 if res is False:
                     messages.error(request, 'Internal Problem Occured')
-                    return redirect('traveler_accounts_signup')
+                    return redirect('travelerAccountsSignup')
         except Exception as e:
             print(e)
             return redirect('/')
@@ -277,19 +277,19 @@ def travellerLogin(request):
                             return redirect('/')
                         else:
                             messages.error(request,'Invalid Credential')
-                            return redirect('traveler_accounts_signup')
+                            return redirect('travelerAccountsSignup')
                     else:
                         messages.warning(request,"You don't have any user account, Please register yourself as an user")
-                        return redirect('traveler_accounts_signup')
+                        return redirect('travelerAccountsSignup')
                 else:
                     messages.warning(request,'Check your mail sent on {}'.format(user.creationTime))
                     return redirect('/')
             else:
                 messages.error(request,"Please Signup before Login")
-                return redirect('traveler_accounts_signup')
+                return redirect('travelerAccountsSignup')
         except Exception as problem:
             messages.warning(request, problem)
-            return redirect('traveler_accounts_signup')
+            return redirect('travelerAccountsSignup')
     else:
         return render(request,'accounts/traveller_login.html')
 # Traveller Login handler Ends here-------------------------------------------------------------
