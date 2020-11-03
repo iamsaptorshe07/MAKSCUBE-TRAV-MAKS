@@ -332,6 +332,13 @@ margin-bottom:10px;
                                         <div class="form-group">
                                             <input type="number" class="form-control" placeholder="Enter ZIP Code *" name="zip" id="zip" required/>
                                         </div>
+										<div class="form-group">
+                                            <select name="govIdName" id="proofType" class="form-control" required>
+                                                <option class="hidden" id="proofType" value="" disabled="" selected="">Select ID Proof type</option>
+                                                <option value="ADHAR">ADHAR</option>
+                                                <option value="PAN">PAN</option>
+                                            </select>
+                                        </div>
                                         <div class="form-group">
                                             <input type="password" class="form-control" placeholder="Password *" name="password1" id="password1" required />
                                         </div>
@@ -342,7 +349,7 @@ margin-bottom:10px;
                                         
                                     <div class="col-md-12 text-white">
 								<div class="row">
-								<p class="checkbox-inline"><input type="checkbox" value=""></p>&nbsp;
+								<p class="checkbox-inline"><input type="checkbox" value="" required></p>&nbsp;
 
 <p> I accept the&nbsp;<a href="#" class="text-warning" data-toggle="modal" data-target="#exampleModalLong" >Terms & Conditions</a></p>
 

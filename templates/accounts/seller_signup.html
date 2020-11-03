@@ -331,7 +331,10 @@ margin-bottom:10px;
                                         <div class="form-group">
                                             <input type="text" class="form-control" placeholder="Enter Full Address *" name='address' id="address" required/>
                                         </div>
-                                
+										<div class="form-group">
+                                            <input type="file" name="govIdImage" id="img" class="form-control" required/>
+                                            <label for="img" class="text-white">Click me to upload ID Proof</label>
+                                        </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
@@ -347,6 +350,16 @@ margin-bottom:10px;
                                         <div class="form-group">
                                             <input type="number" class="form-control" placeholder="Enter ZIP Code *" name="zip" id="zip" required/>
                                         </div>
+										<div class="form-group">
+                                            <select name="govIdName" id="proofType" class="form-control" required>
+                                                <option class="hidden" id="proofType" value="" disabled="" selected="">Select ID Proof type</option>
+                                                <option value="ADHAR">ADHAR</option>
+                                                <option value="PAN">PAN</option>
+                                            </select>
+                                        </div>
+											<div class="form-group">
+                                            <input type="text" class="form-control" placeholder="Enter Your Proof ID *" name="govIdNo" id="govIdNo" required/>
+                                        </div>
                                         <div class="form-group">
                                             <input type="password" class="form-control" placeholder="Password *" name="password1" id="password1" required />
                                         </div>
@@ -355,14 +368,13 @@ margin-bottom:10px;
                                         </div>
                                     <div class="col-md-12 text-white">
 								<div class="row">
-								<p class="checkbox-inline"><input type="checkbox" value=""></p>&nbsp;
+								<p class="checkbox-inline"><input type="checkbox" value="" required></p>&nbsp;
 
 <p> I accept the&nbsp;<a href="#" class="text-warning" data-toggle="modal" data-target="#exampleModalLong" >Terms & Conditions</a></p>
 
 			<input type="submit" class="btnRegister"  value="Register"/>
                                         </div>
                                         </div>
-<<<<<<< HEAD
 									</form>
 									<script>
                 function registrationValidator()
@@ -375,6 +387,7 @@ margin-bottom:10px;
                     var zip = document.getElementById('zip').value;
                     var address = document.getElementById('address').value;
                     var mail = document.getElementById('mail').value;
+					var proofType = document.getElementById('proofType').value;
                     var password1 = document.getElementById('password1').value;
                     var password2 = document.getElementById('password2').value;
                     var gender = document.getElementsByName('gender');
@@ -442,9 +455,7 @@ margin-bottom:10px;
                     errormsgbg.style.marginBottom='0px';
                 }
             </script>
-=======
                                     </form>
->>>>>>> 938a989d65133573f240ef7a6876d0d4833d9c8b
 										
             </div>
             

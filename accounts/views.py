@@ -23,6 +23,7 @@ from django.contrib.auth.hashers import check_password
 def messages_sender(request,user):
     try:
         check_access_target = str(request.get_full_path()).split('/')
+        print(check_access_target)
         if check_access_target[2]=='traveller':
             email_temp = 'travellerMail'
         elif check_access_target[2]=='guide':
@@ -481,7 +482,7 @@ def sellerAgencyAccountSignup(request):
             email = request.POST.get('email')
             phNo = request.POST.get('phone')
             print(request.POST.get('govIdName'))
-            print(email,phNo)
+            print("Worked")
             if User.objects.filter(phNo=phNo,email=email).exists():
             #if User.objects.filter(email=email).exists():
                 user = User.objects.get(email=email)
