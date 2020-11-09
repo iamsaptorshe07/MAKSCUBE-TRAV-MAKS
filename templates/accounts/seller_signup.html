@@ -347,7 +347,7 @@ background-repeat: no-repeat;
                         <!-- External JS portion ends here-->
 
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Enter Full Address *" name='address'
+                            <input type="text" class="form-control" placeholder="Enter Full Address *" name='address' minlength="10" maxlength="100"
                                 id="address" required />
                         </div>
                         <div class="form-group">
@@ -382,7 +382,7 @@ background-repeat: no-repeat;
                             </select>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Enter Your Proof ID *"
+                            <input type="text" class="form-control" placeholder="Enter Your Proof ID *" maxlength="12" minlength="10"
                                 style="display: none;" name="govIdNo" id="govIdnumber" />
                         </div>
                         <script>

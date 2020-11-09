@@ -118,7 +118,7 @@ def travelerAccountsSignup(request):
                         if res is False:
                             messages.error(request, 'Internal Problem Occured')
                             return redirect('travelerAccountsSignup')
-                        return redirect('travelAgency_accounts_signup')
+                        return redirect('sellerAgencyAccountSignup')
                 else:
                     messages.warning(request, 'Account already exsits! Please verify your email! sent on {}'.format(
                         user.creationTime))
@@ -132,7 +132,7 @@ def travelerAccountsSignup(request):
                     else:
                         messages.warning(request,'Agency account already exsits! Check your email to activate the user account!')
 
-                        return redirect('travelAgency_accounts_signup')
+                        return redirect('sellerAgencyAccountSignup')
                 else:
                     messages.warning(request, 'Account already exsits! Please verify your email!')
                     return redirect('travelerAccountsSignup')
@@ -223,19 +223,19 @@ def sellerLogin(request):
                             return redirect('/')
                         else:
                             messages.error(request,'Invalid Credential')
-                            return redirect('travelAgency_accounts_signup')
+                            return redirect('sellerAgencyAccountSignup')
                     else:
                         messages.warning(request,"You don't have any agency account, Please register yourself as an user")
-                        return redirect('travelAgency_accounts_signup')
+                        return redirect('sellerAgencyAccountSignup')
                 else:
                     messages.warning(request,'Check your mail sent on {} to activate the account'.format(user.creationTime))
                     return redirect('/')
             else:
                 messages.error(request,"Please Signup before Login")
-                return redirect('travelAgency_accounts_signup')
+                return redirect('sellerAgencyAccountSignup')
         except Exception as problem:
             messages.warning(request, problem)
-            return redirect('travelAgency_accounts_signup')
+            return redirect('sellerAgencyAccountSignup')
     else:
         return render(request,'accounts/seller_login.html')
 # Agency Login handler Ends here-------------------------------------------------------------
@@ -312,7 +312,7 @@ def sellerAgencyAccountSignup(request):
                 if user.is_active:
                     if user.userAccess.agency_access is True:
                         messages.warning(request,'Your agency account is already exsits! Please login!')
-                        return redirect('travelAgency_accounts_signup')
+                        return redirect('sellerAgencyAccountSignup')
                     else:
                         govData = GovId(
                         user=user,
@@ -332,7 +332,7 @@ def sellerAgencyAccountSignup(request):
                         return redirect('traveler_accounts_signup')
                 else:
                     messages.warning(request,'Account already exsits! Check your email to activate the user account!')
-                    return redirect('travelAgency_accounts_signup')
+                    return redirect('sellerAgencyAccountSignup')
             elif User.objects.filter(phNo=phNo).exists():
                 #print("gotcha1")
                 user = User.objects.get(phNo=phNo)
@@ -340,13 +340,13 @@ def sellerAgencyAccountSignup(request):
                 if user.is_active:
                     if user.userAccess.agency_access is True:
                         messages.warning(request,'Your agency account is already exsits! Please login!')
-                        return redirect('travelAgency_accounts_signup')
+                        return redirect('sellerAgencyAccountSignup')
                     else:
                         messages.warning(request,'Your account is already exsits! Please login!')
                         return redirect('traveler_accounts_signup')
                 else:
                     messages.warning(request,'Account already exsits! Check your email to activate the user account!')
-                    return redirect('travelAgency_accounts_signup')
+                    return redirect('sellerAgencyAccountSignup')
             else:
                 user = User(
                     name = request.POST.get('name'),
@@ -376,14 +376,14 @@ def sellerAgencyAccountSignup(request):
                 print(res)
                 if res is True:
                     messages.success(request,'Check your email to activate the account')
-                    return redirect('travelAgency_accounts_signup')
+                    return redirect('sellerAgencyAccountSignup')
                 if res is False:
                     messages.error(request,'Internal Problem Occured')
-                    return redirect('travelAgency_accounts_signup')
+                    return redirect('sellerAgencyAccountSignup')
         except Exception as e:
             print("\n\n",e,"\n\n")
             messages.error(request,'Internal Problem Occured Exception')
-            return redirect('travelAgency_accounts_signup')
+            return redirect('sellerAgencyAccountSignup')
     else:
         return render(request,'accounts/seller_signup.html')
 
@@ -562,7 +562,7 @@ def guideSignup(request):
                         messages.warning(request,
                                          'Guide account already exsits! Check your email to activate the user account!')
 
-                        return redirect('travelAgency_accounts_signup')
+                        return redirect('sellerAgencyAccountSignup')
                 else:
                     messages.warning(request, 'Account already exsits! Please verify your email!')
                     return redirect('guideSignup')
