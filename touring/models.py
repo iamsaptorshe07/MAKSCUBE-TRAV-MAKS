@@ -5,14 +5,14 @@ from datetime import datetime
 # Create your models here.
 class Order(models.Model):
     order_id = models.CharField(max_length=255,unique=True)
-    tour = models.ForeignKey(Tour,on_delete = models.PROTECT,related_name='Tour')
-    customer = models.ForeignKey(User,on_delete = models.PROTECT,related_name='customer')
+    tour = models.ForeignKey(Tour,on_delete = models.CASCADE,related_name='Tour')
+    customer = models.ForeignKey(User,on_delete = models.CASCADE,related_name='customer')
     customer_name = models.CharField(max_length=500)
     customer_email = models.EmailField()
     customer_phone = models.CharField(max_length=15)
     customer_address = models.CharField(max_length=600)
-    agent = models.ForeignKey(User,on_delete=models.PROTECT,related_name='Agent')
-    agency = models.ForeignKey(AgencyDetail,on_delete=models.PROTECT,related_name='Agency')
+    agent = models.ForeignKey(User,on_delete=models.CASCADE,related_name='Agent')
+    agency = models.ForeignKey(AgencyDetail,on_delete=models.CASCADE,related_name='Agency')
     total_people = models.IntegerField()
     payment_price = models.FloatField()
     creation_date = models.DateTimeField(auto_now_add=True,)
@@ -22,7 +22,7 @@ class Order(models.Model):
         return self.order_id
 
 class Payment(models.Model):
-    Order = models.OneToOneField(Order,on_delete=models.PROTECT, related_name='Order')
+    Order = models.OneToOneField(Order,on_delete=models.CASCADE, related_name='Order')
     transaction_id = models.CharField(max_length=255,unique=True,default='test')
     banktransaction_id = models.CharField(max_length=255,unique=True,default='test')
     txn_date = models.DateTimeField(auto_now_add=True,null=True)
@@ -36,14 +36,14 @@ class Payment(models.Model):
 
 class Failed_Order(models.Model):
     order_id = models.CharField(max_length=255,unique=True)
-    tour = models.ForeignKey(Tour,on_delete = models.PROTECT,related_name='FTour')
-    customer = models.ForeignKey(User,on_delete = models.PROTECT,related_name='Fcustomer')
+    tour = models.ForeignKey(Tour,on_delete = models.CASCADE,related_name='FTour')
+    customer = models.ForeignKey(User,on_delete = models.CASCADE,related_name='Fcustomer')
     customer_name = models.CharField(max_length=500)
     customer_email = models.EmailField()
     customer_phone = models.CharField(max_length=15)
     customer_address = models.CharField(max_length=600)
-    agent = models.ForeignKey(User,on_delete=models.PROTECT,related_name='FAgent')
-    agency = models.ForeignKey(AgencyDetail,on_delete=models.PROTECT,related_name='FAgency')
+    agent = models.ForeignKey(User,on_delete=models.CASCADE,related_name='FAgent')
+    agency = models.ForeignKey(AgencyDetail,on_delete=models.CASCADE,related_name='FAgency')
     total_people = models.IntegerField()
     payment_price = models.FloatField()
     creation_date = models.DateTimeField(auto_now_add=True,null=True)

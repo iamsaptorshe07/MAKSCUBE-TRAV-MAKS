@@ -8,6 +8,7 @@ class Tour(models.Model):
         ('Friends Special','Friends Special'),
         ('Couple Friendly','Couple Friendly'),
         ('Solo Tour','Solo Tour'),
+        ('All','All')
     )
     seller = models.ForeignKey(User,on_delete=models.CASCADE,related_name='agencyOwner')
     agency = models.ForeignKey(AgencyDetail,on_delete=models.CASCADE,related_name='tourAgency')
@@ -28,6 +29,8 @@ class Tour(models.Model):
     price = models.FloatField()
     tour_type = models.CharField(max_length=500, choices=TOUR_TYPE)
     thumbnail = models.ImageField(upload_to="TourAccountThumbnail")
+    last_booking_date = models.DateField()
+    last_cancel_date = models.DateField()
 
     creationDate = models.DateField(auto_now_add=True)
     othersThings = models.TextField(blank=True,null=True)
@@ -44,7 +47,7 @@ class Tour(models.Model):
     nearestLocation4 = models.CharField(max_length=500, null=True,blank=True)
     nearestLocation4_distance = models.FloatField(null=True, blank=True)
     nlocationconnected4 = models.TextField(null=True, blank=True)
-    publish_mode = models.BooleanField(default=False)
+    publish_mode = models.BooleanField(default=True)
 
     #### resize image
     def save(self):

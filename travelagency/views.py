@@ -78,6 +78,8 @@ def addTour(request,uid,agid):
                     thumbnail = thumbnail,
                     overview = overview.strip(),
                     maximum_people = maximum_people.strip(),
+                    last_booking_date = request.POST.get('bookinglimit'),
+                    last_cancel_date = request.POST.get('cancelllimit')
                 )
                 tour.save()
                 messages.success(request,'Tour Added Successfully')
