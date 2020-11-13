@@ -652,13 +652,17 @@
 		$('select').removeClass('disable-click');
 		$('#upload_img').removeAttr('required');
 		$('#txtT').removeAttr('required');
-		$('#bookinglimit').attr('readonly','true');
-		$('#cancelllimit').attr('readonly','true');
+		$('#txtT').removeClass('cursor-none');
+		$('#cancelllimit').removeClass('cursor-none');
+		$('#bookinglimit').removeClass('cursor-none');
     }
 	$(function () {
 		var mindate="{{Tour.startDate}}";
 		mindate=new Date(mindate);
+		var today=new Date();
+		var tomorrowReal = new Date(today.getTime() + (24 * 60 * 60 * 1000));
 		var tomorrow = new Date(mindate.getTime() + (24 * 60 * 60 * 1000));
+		var yesterday = new Date(mindate.getTime() - (24 * 60 * 60 * 1000));
 		$('#txtT').datepicker({
 			showAnim: 'drop',
 			numberOfMonths: 1,
@@ -668,6 +672,20 @@
 
 			minDate:tomorrow
 		});
+		$('#bookinglimit').datepicker({
+			minDate:tomorrowReal,
+			maxDate:yesterday,
+			showAnim: 'drop',
+			numberOfMonths: 1,
+			dateFormat: 'mm/dd/yy'
+		});
+		$('#cancelllimit').datepicker({
+			minDate:tomorrowReal,
+			maxDate: yesterday,
+			showAnim: 'drop',
+			numberOfMonths: 1,
+			dateFormat: 'mm/dd/yy'
+		});		
 	});
 	$(function (){
 		var ttype="{{Tour.tour_type}}";
@@ -677,20 +695,17 @@
 
 		var sd="{{Tour.startDate|date:'c'}}";
 
-		 console.log(sd);
 		sd = new Date(sd);
 
 		var ed="{{Tour.endDate|date:'c'}}";
 
 		ed = new Date(ed);
-		 console.log(ed);
 		var d = ed.getTime() - sd.getTime();
 		var x = d / (1000 * 3600 * 24) + 1;
 		// console.log(sd,ed,x);
 		let ggg=x;
 
 		var temp = "{{desc}}";
-		console.log("Desc backend :",temp);
 		
 		var d2 = temp.split('@@@@')
 		var ui=[]
@@ -703,16 +718,16 @@
         
 
 		temp=temp.split(', ');
-		console.log(typeof(temp),temp)
-		for (let i = 0; i < ggg*2; i=i+2) {
-			 console.log('hi');
+		let ii=0;
+		for (let i = 0; i < ggg*2; i=i+2,ii=ii+1) {
+			console.log(ii);
 			var content = document.createElement("div");
 			content.classList.add('card');
 			var ch = document.createElement('div');
 			ch.classList.add('card-header');
 			var cht = document.createElement('h3');
-			var nodeh = document.createTextNode('Day ' + (i + 1));
-			var y = 'Day' + (i + 1);
+			var nodeh = document.createTextNode('Day ' + (ii + 1));
+			var y = 'Day' + (ii + 1);
 			content.classList.add(y);
 			cht.appendChild(nodeh);
 			ch.appendChild(cht);

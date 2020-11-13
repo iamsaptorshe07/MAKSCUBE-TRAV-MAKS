@@ -390,6 +390,70 @@
 	.footer-middle{
 		z-index: 5;
 	}
+	.spimg{
+		position: absolute;
+		top: 0;
+		left: 0;
+		opacity: 0;
+		width: 160px;
+		height: 160px;
+		display: none;
+	}
+	.spimgs{
+		position: relative;
+		width: 160px;
+		height: 160px;
+		display: flex;
+		align-items: center;
+		flex-flow: column;
+		justify-content: space-around;
+	}
+	.cdimages{
+		display: flex;
+		justify-content: space-around;
+	}
+	.cdimages button{
+		background-color: #1d1d1d;
+		border-radius: 4px;
+		width: auto;
+		padding: 0 10px;
+		outline: none!important;
+		height: 35px;
+		font-size: 14px;
+		border: none;
+		color: #fff;
+		display: none;
+		align-items: center;
+		justify-content: center;
+	}
+	.upload_img1_L{
+		width: 160px;
+		height: 160px;
+		padding: 30px;
+		text-align: center;
+		display: none;
+		align-items: center;
+		justify-content: center;
+		border: 5px dashed black;
+	}
+	.spimgnum{
+		width: 100px;
+		height: 100px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-flow: column;
+		font-size: 35px;
+		font-weight: bolder;
+		border-radius: 50%;
+		background: linear-gradient(90deg, rgba(56,46,136,1) 13%, rgba(51,34,153,1) 49%, 
+			rgba(88,80,188,1) 82%, rgba(95,112,206,1) 100%);
+		box-shadow: 2px 2px black;
+	}
+	.spimgnum p{
+		font-size: 20px;
+		font-weight: normal;
+	}
 </style>
 
 {% endblock stylesheets %}
@@ -516,7 +580,8 @@
 				</li>
 				<br><li class="">
 					Upload Your Thumbnail *
-					<input type="file" name="thumbnail" id="upload_img" class="form-control upload" required />
+					<input type="file" accept='image/*' name="thumbnail" id="upload_img" class="form-control upload" 
+					required />
 				</li>
 			</div>
 			<div class="cd">
@@ -537,6 +602,44 @@
 					<textarea placeholder="Your Special Offer" name="spofferdetails" id="spofferdetails" class="form-control" ></textarea>
 					
 				</li>
+			</div>
+			<div class="cd cdimages">
+				<div class="spimgs">
+					<label for="upload_img1" class="upload_img1_L upload_img1_L1" id="label_img1">
+						Drag a image/ Click
+					</label>
+					<input type="file" accept='image/*' name="spimg" id="upload_img1" class="form-control spimg" 
+					required />
+
+					<label for="upload_img2" class="upload_img1_L upload_img2_L2" id="label_img2">
+						Drag a image/ Click
+					</label>
+					<input type="file" accept='image/*' name="spimg" id="upload_img2" class="form-control spimg"/>
+					
+					<label for="upload_img3" class="upload_img1_L upload_img3_L3" id="label_img3">
+						Drag a image/ Click
+					</label>
+					<input type="file" accept='image/*' name="spimg" id="upload_img3" class="form-control spimg"/>
+
+					<label for="upload_img4" class="upload_img1_L upload_img4_L4" id="label_img4">
+						Drag a image/ Click
+					</label>
+					<input type="file" accept='image/*' name="spimg" id="upload_img4" class="form-control spimg"/>
+					
+					<label for="upload_img5" class="upload_img1_L upload_img5_L5" id="label_img5">
+						Drag a image/ Click
+					</label>
+					<input type="file" accept='image/*' name="spimg" id="upload_img5" class="form-control spimg"/>
+					
+					<label for="upload_img6" class="upload_img1_L upload_img6_L6" id="label_img6">
+						Drag a image/ Click
+					</label>
+					<input type="file" accept='image/*' name="spimg" id="upload_img6" class="form-control spimg"/>
+				</div>
+				<div class="spimgs">
+					<span class="spimgnum">0</span>
+					<button type="button" onclick="anotherSpimg();">Add Another Image</button>
+				</div>
 			</div>
 		</div>
 		<br>
@@ -597,14 +700,16 @@
 
 <script type="text/javascript">
 	$(function () {
-		var mindate = new Date();
+		var mindate= new Date();
+		var tomorrowReal = new Date(mindate.getTime() + (24 * 60 * 60 * 1000));
 		$('#txtF').datepicker({
 			numberOfMonths: 1,
 			showAnim: 'drop',
-			minDate: mindate,
+			minDate: tomorrowReal,
 			dateFormat: 'mm/dd/yy',
 			onClose: function (sd) {
 				var k = new Date(sd);
+				console.log(k,k.getTime());
 				var tomorrow = new Date(k.getTime() + (24 * 60 * 60 * 1000));
 				var yesterday = new Date(k.getTime() - (24 * 60 * 60 * 1000));
 				$('#txtT').datepicker("option", "minDate", tomorrow);
@@ -626,6 +731,8 @@
 			numberOfMonths: 1,
 			dateFormat: 'mm/dd/yy',
 			onClose: function (selectdate) {
+				selectdate=new Date(selectdate);
+				selectdate=new Date(selectdate.getTime() - (24 * 60 * 60 * 1000));
 				$('#txtF').datepicker("option", "maxDate", selectdate);
 			}
 		});
@@ -742,7 +849,109 @@
 		dropzone.ondragleave = function () {
 			dropzone.style.backgroundColor = 'white';
 		}
+
+		var dropzoneImg1=document.querySelector('.upload_img1_L1');
+		var spbtn=document.querySelector('.spimgs button');
+		$('#upload_img1').on({
+			'dragover':function(){
+				dropzoneImg1.style.borderColor='red';
+			},
+			'change':function(){
+				dropzoneImg1.style.borderColor='green';
+				document.querySelector('.spimgnum').innerHTML = '1';
+				spbtn.style.display='flex';
+			}
+		})
+		.on('dragleave dragexit', function() {
+			dropzoneImg1.style.borderColor='black';
+		});
+		var dropzoneImg2=document.querySelector('.upload_img2_L2');
+		$('#upload_img2').on({
+			'dragover':function(){
+				dropzoneImg2.style.borderColor='red';
+			},
+			'change':function(){
+				dropzoneImg2.style.borderColor='green';
+  				document.querySelector('.spimgnum').innerHTML = '2';
+			}
+		})
+		.on('dragleave dragexit', function() {
+			dropzoneImg2.style.borderColor='black';
+		});
+		var dropzoneImg3=document.querySelector('.upload_img3_L3');
+		$('#upload_img3').on({
+			'dragover':function(){
+				dropzoneImg3.style.borderColor='red';
+			},
+			'change':function(){
+				dropzoneImg3.style.borderColor='green';
+  				document.querySelector('.spimgnum').innerHTML = '3';
+			}
+		})
+		.on('dragleave dragexit', function() {
+			dropzoneImg3.style.borderColor='black';
+		});
+		var dropzoneImg4=document.querySelector('.upload_img4_L4');
+		$('#upload_img4').on({
+			'dragover':function(){
+				dropzoneImg4.style.borderColor='red';
+			},
+			'change':function(){
+				dropzoneImg4.style.borderColor='green';
+  				document.querySelector('.spimgnum').innerHTML = '4';
+			}
+		})
+		.on('dragleave dragexit', function() {
+			dropzoneImg4.style.borderColor='black';
+		});
+		var dropzoneImg5=document.querySelector('.upload_img5_L5');
+		$('#upload_img5').on({
+			'dragover':function(){
+				dropzoneImg5.style.borderColor='red';
+			},
+			'change':function(){
+				dropzoneImg5.style.borderColor='green';
+  				document.querySelector('.spimgnum').innerHTML = '5';
+			}
+		})
+		.on('dragleave dragexit', function() {
+			dropzoneImg5.style.borderColor='black';
+		});
+		var dropzoneImg6=document.querySelector('.upload_img6_L6');
+		$('#upload_img6').on({
+			'dragover':function(){
+				dropzoneImg6.style.borderColor='red';
+			},
+			'change':function(){
+				dropzoneImg6.style.borderColor='green';
+  				document.querySelector('.spimgnum').innerHTML = '6<p>(MAX)</p>';
+				spbtn.style.display='none';
+			}
+		})
+		.on('dragleave dragexit', function() {
+			dropzoneImg6.style.borderColor='black';
+		});
+		var upload_img1=document.querySelector('#upload_img1');
+		upload_img1.style.display='block';
+		dropzoneImg1.style.display='block';
 	});
+	function anotherSpimg(){
+		var num=document.querySelector('.spimgnum').innerHTML;
+		var num1=parseInt(num)+1;
+		var label='label_img'+num;
+		var nextlabel='label_img'+num1;
+		var imgfile='upload_img'+num;
+		var nextimgfile='upload_img'+num1;
+		var x=document.getElementById(imgfile);
+		var y=document.getElementById(nextimgfile);
+		var a=document.getElementById(label);
+		var b=document.getElementById(nextlabel);
+		x.style.display='none';
+		y.style.display='flex';
+		y.value=null;
+		a.style.display='none';
+		b.style.display='flex';		
+	}
 
 	$(function(){
 		let spo=document.getElementById('spod');
