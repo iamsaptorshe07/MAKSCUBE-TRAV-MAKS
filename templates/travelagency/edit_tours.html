@@ -404,6 +404,12 @@
 	#cards .card, #cards .card-header{
 		margin-top: 0!important;
 	}
+	.cursor-none{
+		pointer-events: none;
+	}
+	.footer-middle{
+		z-index: 5;
+	}
 </style>
 
 {% endblock stylesheets %}
@@ -415,26 +421,28 @@
 	<div class="sidebar">
 		<ul>
 			<li class="nav-item">
+				<img src="{% static 'travelagency_img/calendar.png' %}">
+				<a class="nav-link" href="/travelagency/myagency/{{request.user.userAccess.agentId}}">
+					Dashboard
+				</a>
+			</li>
+			<li class="nav-item">
 				<img src="{% static 'travelagency_img/map.png' %}">
-				<a target="_blank" class="nav-link "
+				<a class="nav-link "
 					href="/travelagency/agencytours/{{request.user.id}}/{{request.user.userAccess.agentId}}">Agency
 					Tours</a>
 			</li>
 			<li class="nav-item">
-				<img src="{% static 'travelagency_img/calendar.png' %}">
-				<a target="_blank" class="nav-link" href="#">Booked Tours</a>
-			</li>
-			<li class="nav-item">
 				<img src="{% static 'travelagency_img/clipboard.png' %}">
-				<a target="_blank" class="nav-link" href="#">Agency Earning</a>
+				<a class="nav-link" href="#">Agency Earning</a>
 			</li>
 			<li class="nav-item">
 				<img src="{% static 'travelagency_img/picture.png' %}">
-				<a target="_blank" class="nav-link" href="#">Ongoing Tour</a>
+				<a class="nav-link" href="#">Ongoing Tour</a>
 			</li>
 			<li class="nav-item">
 				<img src="{% static 'travelagency_img/job.png' %}">
-				<a target="_blank" class="nav-link" href="#">Booking History</a>
+				<a class="nav-link" href="#">Booking History</a>
 			</li>
 		</ul>
 	</div>
@@ -467,6 +475,27 @@
 			<div class="cd">
 				<!-- <div class="block"><img src="{% static 'travelagency_img/calendar.png' %}"></div> -->
 				<label>Enter Date :</label>
+				<li>Startind Date<input id="txtF" name="sdate" class="form-control text-center"
+						placeholder="mm/dd/yyyy" onchange="fun();"
+						value="{{Tour.startDate|date:'c'}}" readonly>
+				</li>
+				<br>
+				<li>Ending Date<input id="txtT" name="edate" class="form-control text-center cursor-none"
+					placeholder="(Please Select Start Date First)" onchange="fun();" 
+					value="{{Tour.endDate|date:'c'}}" readonly>
+				</li>
+			</div>
+			<div class="cd">
+				<label>Date Limitation :</label>
+				<li>The Tour has to be booked before : <input name="bookinglimit" id="bookinglimit" readonly
+					class="form-control text-center cursor-none" placeholder="(Confirm The Tour Start Date First)">
+				</li><br>
+				<li>The Tour can be cancelled within : <input name="cancelllimit" id="cancelllimit" readonly
+					class="form-control text-center cursor-none" placeholder="(Confirm The Tour Start Date First)">
+				</li>
+			</div>
+			<!-- <div class="cd">
+				<label>Enter Date :</label>
 				<li>Startind Date<input id="txtF" name="sdate" value="{{Tour.startDate|date:'c'}}" class="form-control disable-click" style="text-align: center;"
 						placeholder="mm/dd/yyyy" readonly> 
 				</li>
@@ -485,7 +514,7 @@
 				<li>The Tour can be cancelled within : <input type="text" name="cancelllimit" 
 					id="cancelllimit" class="form-control" readonly>
 				</li>
-			</div>
+			</div> -->
 			<div class="cd">
 				<label>Enter Location :</label>
 				<li>
