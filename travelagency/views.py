@@ -42,11 +42,14 @@ def addTour(request,uid,agid):
                 duration = tourDuration(request.POST.get('sdate'),request.POST.get('edate'))+1
                 tourId = tourIdMaker()
                 print('\n\n',tourId,'\n\n')
-                description_dct = {}
+                description_dct = ""
                 for i in range(duration):
-                    description_dct['dayTitle{}'.format(i+1)]=str(request.POST.get('dayTitle{}'.format(i+1))).strip()
-                    print(request.POST.get('dayDescription{}'.format(i+1)))
-                    description_dct['dayDescription{}'.format(i+1)]=str(request.POST.get('dayDescription{}'.format(i+1))).strip()
+                    for i in range(duration):
+                        description_dct=description_dct+str(request.POST.get('dayTitle{}'.format(i+1))).strip()+"$$$$"+str(request.POST.get('dayDescription{}'.format(i+1))).strip()+"@@@@"
+ 
+                    #description_dct['dayTitle{}'.format(i+1)]=str(request.POST.get('dayTitle{}'.format(i+1))).strip()
+                    #print(request.POST.get('dayDescription{}'.format(i+1)))
+                    #description_dct['dayDescription{}'.format(i+1)]=str(request.POST.get('dayDescription{}'.format(i+1))).strip()
                 print(description_dct)
                 slug = ''
                 for character in ttitle:
@@ -56,7 +59,7 @@ def addTour(request,uid,agid):
                     slocation,elocation,sdate,agid,uid,tourId,ttype
                 )
                 print('\n\n',slug,'\n\n')
-                description = descriptionMaker(description_dct)
+                description = description_dct.strip('@@@@')
                 
                 tour = Tour(
                     #assign the values
@@ -67,8 +70,8 @@ def addTour(request,uid,agid):
                     tourHeading = ttitle.strip(),
                     startingLocation = slocation.strip(),
                     endLocation = elocation.strip(),
-                    startDate = sdate.strip(),
-                    endDate = edate.strip(),
+                    startDate = sdate,
+                    endDate = edate,
                     description = description.strip(),
                     inclusive = inclusive.strip(),
                     exclusive = exclusive.strip(),
@@ -145,11 +148,14 @@ def editTours(request,agentId,tourId):
                         else:
                             duration = tourDuration(request.POST.get('sdate'),request.POST.get('edate'))+1
 
-                        description_dct = {}
+                        description_dct = ""
                         for i in range(duration):
-                            description_dct['dayTitle{}'.format(i+1)]=request.POST.get('dayTitle{}'.format(i+1)).strip()
-                            description_dct['dayDescription{}'.format(i+1)]=request.POST.get('dayDescription{}'.format(i+1)).strip()
-                            print(description_dct)
+                            description_dct=description_dct+str(request.POST.get('dayTitle{}'.format(i+1))).strip()+"$$$$"+str(request.POST.get('dayDescription{}'.format(i+1))).strip()+"@@@@"
+ 
+                        #for i in range(duration):
+                            #description_dct['dayTitle{}'.format(i+1)]=request.POST.get('dayTitle{}'.format(i+1)).strip()
+                            #description_dct['dayDescription{}'.format(i+1)]=request.POST.get('dayDescription{}'.format(i+1)).strip()
+                        print(description_dct)
                         slug = ''
                         for character in ttitle:
                             if character.isalnum():
@@ -158,7 +164,7 @@ def editTours(request,agentId,tourId):
                             slocation,elocation,sdate,agentId,user.id,tourId,ttype
                         )
                         print('\n\n',slug,'\n\n')
-                        description = descriptionMaker(description_dct)
+                        description = description_dct.strip('@@@@')
                         tour.tourHeading = ttitle.strip()
                         tour.tourSlug = slug.strip()
                         tour.startingLocation = slocation.strip()
@@ -180,8 +186,14 @@ def editTours(request,agentId,tourId):
                         return redirect('/travelagency/agencytours/{}/{}'.format(user.id,user.userAccess.agentId))
                         
                     else:
-                        #Samiran complete/restructure it 
-                        desc = tour.description.strip('TRAVMAKS')
+                        
+                        d = tour.description.split('@@@@')
+                        desc=[]
+                        for i in d:
+                            de=list(i.split('$$$$'))
+                            desc.append(de)
+
+
                         print("\n\n",desc)
                         context = {
                             'Tour':tour,
