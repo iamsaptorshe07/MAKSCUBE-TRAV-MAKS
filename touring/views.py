@@ -103,7 +103,7 @@ def bookTour(request,tourId,agentId):
             return HttpResponse("BAD REQUEST")
     else:
         messages.warning(request,'Please Log in to book the tour')
-        return redirect('traveler_accounts_signup')
+        return redirect('Traveller_Login')
 
 @csrf_exempt
 def recievePayment(request):
