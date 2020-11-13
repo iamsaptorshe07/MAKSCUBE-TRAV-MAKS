@@ -4,6 +4,7 @@ from .models import *
 from django.http import *
 from .tests import *
 from django.contrib import messages
+from touring.models import *
 
 # Create your views here.
 def travelagency_home(request,agid):
@@ -226,6 +227,27 @@ def deleteteTour(request,agentId,tourId):
     return HttpResponse('404 ERROR')
 
 
+
+def booking_history(request,agentId):
+    user = request.user
+    if user.is_authenticated and request.session['access_type']=='seller':
+        if user.userAccess.agentId == agentId:
+            tours = Order.objects.filter(agent=user)
+            context = {
+                'Tours':tours
+            }
+            return render(request,'travelagency/booking_history.html',context=context)
+        else:
+            return HttpResponse("BAD Request")
+    else:
+        return HttpResponse("Not have the permission")
+
+
+def upcoming_tours(request,agentId):
+      return render(request,'travelagency/upcoming_tours.html')
+
+def ongoing_tours(request,agentId):
+      return render(request,'travelagency/ongoing_tours.html')
 
 
 

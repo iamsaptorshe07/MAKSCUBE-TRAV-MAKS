@@ -396,13 +396,13 @@ background: linear-gradient(90deg, rgba(56,46,136,1) 13%, rgba(51,34,153,1) 49%,
 		<ul>
 			<li class="nav-item">
 				<img src="{% static 'travelagency_img/map.png' %}">
-				<a target="_blank" class="nav-link "
-					href="/travelagency/agencytours/{{request.user.id}}/{{request.user.userAccess.agentId}}">Agency
-					Tours</a>
+				<a class="nav-link" href="/travelagency/agencytours/{{request.user.id}}/{{request.user.userAccess.agentId}}">
+					Agency Tours
+				</a>
 			</li>
 			<li class="nav-item">
 				<img src="{% static 'travelagency_img/calendar.png' %}">
-				<a target="_blank" class="nav-link" href="#">Booked Tours</a>
+				<a class="nav-link" href="/travelagency/booking-history/{{request.user.userAccess.agentId}}">Booking History</a>
 			</li>
 			<li class="nav-item">
 				<img src="{% static 'travelagency_img/clipboard.png' %}">
@@ -410,11 +410,11 @@ background: linear-gradient(90deg, rgba(56,46,136,1) 13%, rgba(51,34,153,1) 49%,
 			</li>
 			<li class="nav-item">
 				<img src="{% static 'travelagency_img/picture.png' %}">
-				<a target="_blank" class="nav-link" href="#">Ongoing Tour</a>
+				<a class="nav-link" href="/travelagency/ongoing-tours/{{request.user.userAccess.agentId}}">Ongoing Tour</a>
 			</li>
 			<li class="nav-item">
 				<img src="{% static 'travelagency_img/job.png' %}">
-				<a target="_blank" class="nav-link" href="#">Booking History</a>
+				<a class="nav-link" href="/travelagency/upcoming-tours/{{request.user.userAccess.agentId}}">Upcoming Tours</a>
 			</li>
 		</ul>
 	</div>
