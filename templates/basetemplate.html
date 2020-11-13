@@ -18,28 +18,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <style>
-	.fa-sign-out{
-		color: gold;
-	}
-	.fa-user{
-		color: #5f27cd;
-	}
-	.fa-align-left{
-		color:#ef1961;
-	}
-	.fa-phone-square{
-		color:#3ce825;
-	}
-	.fa-question-circle{
-		color: #d63737;
-	}
-	.fa-book{
-		color:#e8259a;
-	}
-.fa-car{
-font-size: 20px;
- color: #2d67b2;
-}
+	
 	#myBtn {
   display: none;
   position: fixed;
@@ -82,16 +61,16 @@ font-size: 20px;
 
 
 	  <li class="nav-item">
-                        <a class="nav-link" href="/qna"><i class="fa fa-question-circle"></i>QNA</a>
+                        <a class="nav-link" href="/qna"><i class="fa fa-question-circle"></i>&nbsp; QNA</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#-"><i class="fa fa-book"></i>Blog</a>
+                        <a class="nav-link" href="#-"><i class="fa fa-book"></i>&nbsp; Blog</a>
                     </li>
                   </li><li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fa fa-book"></i>Design Your Tour</a>
+                    <a class="nav-link" href="#"><i class="fa fa-pencil-square-o"></i>&nbsp; Design Your Tour</a>
                 </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="#"><i class="fa fa-book"></i>News</a>
+                      <a class="nav-link" href="#"><i class="fa fa-newspaper-o"></i>&nbsp; News</a>
                   
 				
     </li>
@@ -99,7 +78,7 @@ font-size: 20px;
 	<ul class="navbar-nav ml-auto">
 	
 	<li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fa fa-download"></i>Download App</a>
+                        <a class="nav-link" href="#"><i class="fa fa-download"></i>&nbsp; Download App</a>
                     </li>
 	 {% if user.is_authenticated %}
 	<li class="nav-item dropdown">
@@ -183,8 +162,8 @@ font-size: 20px;
               <li><a href="/accounts/seller/account/signup">Agent Signup</a></li>
               <li><a href="/accounts/seller/login">Agent Login</a></li>
               <li><a href="#">TRAVMAKS Specialised Agency portal</a></li>
-                <li><a href="/accounts/guide/account/signup">Travel Guide Signup</a></li>
-                <li><a href="/accounts/guide/login">Travel Guide Login</a></li>
+                <!--<li><a href="/accounts/guide/account/signup">Travel Guide Signup</a></li>
+                <li><a href="/accounts/guide/login">Travel Guide Login</a></li>-->
               <li><a href="/partner/benifits-of-joing-travmaks"> Benefits of joining us</a></li>
               <li><a href="/partnerportal-faq">FAQs</a></li>
             </ul>
