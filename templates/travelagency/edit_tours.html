@@ -487,10 +487,10 @@
 			</div>
 			<div class="cd">
 				<label>Date Limitation :</label>
-				<li>The Tour has to be booked before : <input name="bookinglimit" id="bookinglimit" readonly
+				<li>The Tour has to be booked before : <input name="bookinglimit" id="bookinglimit" readonly value="{{Tour.last_booking_date|date:'c'}}"
 					class="form-control text-center cursor-none" placeholder="(Confirm The Tour Start Date First)">
 				</li><br>
-				<li>The Tour can be cancelled within : <input name="cancelllimit" id="cancelllimit" readonly
+				<li>The Tour can be cancelled within : <input name="cancelllimit" id="cancelllimit" readonly  value="{{Tour.last_cancel_date|date:'c'}}"
 					class="form-control text-center cursor-none" placeholder="(Confirm The Tour Start Date First)">
 				</li>
 			</div>
@@ -669,21 +669,21 @@
 			minDate:tomorrow
 		});
 	});
-	$(function(){
+	$(function (){
 		var ttype="{{Tour.tour_type}}";
 		//console.log(ttype)
 		var ttype1=document.getElementById('tourtype');
 		ttype1.value=ttype;
 
-		var sd="{{Tour.startDate}}";
+		var sd="{{Tour.startDate|date:'c'}}";
 
-		// console.log(sd);
+		 console.log(sd);
 		sd = new Date(sd);
 
-		var ed="{{Tour.endDate}}";
+		var ed="{{Tour.endDate|date:'c'}}";
 
-		// console.log(ed);
 		ed = new Date(ed);
+		 console.log(ed);
 		var d = ed.getTime() - sd.getTime();
 		var x = d / (1000 * 3600 * 24) + 1;
 		// console.log(sd,ed,x);
@@ -691,9 +691,21 @@
 
 		var temp = "{{desc}}";
 		console.log("Desc backend :",temp);
+		
+		var d2 = temp.split('@@@@')
+		var ui=[]
+        for(let j=0;j<ggg;j++){
+			
+			x= d2[j].split('$$$$');
+			ui.push(x[0]);
+			ui.push(x[1]);
+		}
+        
 
-		for (let i = 0; i < ggg; i++) {
-			// console.log('hi');
+		temp=temp.split(', ');
+		console.log(typeof(temp),temp)
+		for (let i = 0; i < ggg*2; i=i+2) {
+			 console.log('hi');
 			var content = document.createElement("div");
 			content.classList.add('card');
 			var ch = document.createElement('div');
@@ -732,7 +744,7 @@
 			
 			var day ='dayTitle' + (i+1);
 			//console.log(desc[day],day,typeof(desc[day]));
-			cb12i.value=desc[i][0];
+			cb12i.value=ui[i];
 
 			cb12.appendChild(cb12i);
 
@@ -761,7 +773,7 @@
 
 			var describ = 'dayDescription' + (i + 1);
 			// console.log(desc[describ]);
-			cbt.value=desc[i][1];
+			cbt.value=ui[i+1];
 		
 
 			cb2.appendChild(cbt);

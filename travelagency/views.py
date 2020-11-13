@@ -61,6 +61,9 @@ def addTour(request,uid,agid):
                 )
                 print('\n\n',slug,'\n\n')
                 description = description_dct.strip('@@@@')
+                last_booking_date = tourDate(request.POST.get('bookinglimit'))
+                last_cancel_date = tourDate(request.POST.get('cancelllimit'))
+                print(last_booking_date,"\n\n",last_cancel_date,"\n\n")
                 
                 tour = Tour(
                     #assign the values
@@ -82,8 +85,8 @@ def addTour(request,uid,agid):
                     thumbnail = thumbnail,
                     overview = overview.strip(),
                     maximum_people = maximum_people.strip(),
-                    last_booking_date = request.POST.get('bookinglimit'),
-                    last_cancel_date = request.POST.get('cancelllimit')
+                    last_booking_date = last_booking_date,
+                    last_cancel_date = last_cancel_date
                 )
                 tour.save()
                 messages.success(request,'Tour Added Successfully')
@@ -188,11 +191,7 @@ def editTours(request,agentId,tourId):
                         
                     else:
                         
-                        d = tour.description.split('@@@@')
-                        desc=[]
-                        for i in d:
-                            de=list(i.split('$$$$'))
-                            desc.append(de)
+                        desc = tour.description
 
 
                         print("\n\n",desc)
@@ -217,9 +216,13 @@ def deleteteTour(request,agentId,tourId):
         if user.userAccess.agentId == agentId:
             if Tour.objects.filter(tourId=tourId,seller=user).exists():
                 tour = Tour.objects.get(tourId=tourId)
-                tour.delete()
-                messages.success(request,'Tou deleted succesfully')
-                return redirect('/travelagency/agencytours/{}/{}'.format(user.id,user.userAccess.agentId))
+                if tour.publish_mode:
+                    messages.success(request,"Tour is already published you can't deleted tour! Please contact us!")
+                    return redirect('/travelagency/agencytours/{}/{}'.format(user.id,user.userAccess.agentId))
+                else:
+                    tour.delete()
+                    messages.success(request,'Tour deleted succesfully')
+                    return redirect('/travelagency/agencytours/{}/{}'.format(user.id,user.userAccess.agentId))
             else:
                 return HttpResponse('BAD REQUEST')
         else:
