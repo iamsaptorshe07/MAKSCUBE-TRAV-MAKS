@@ -662,12 +662,6 @@
 
 		var temp = "{{desc}}";
 		console.log("Desc backend :",temp);
-		temp = temp.replace(/&#39;/g,'"');
-		temp = temp.replace(/--/g,' ');
-		console.log("Desc backend after replace:",temp);
-		console.log("In string ",JSON.stringify(temp));
-		var desc = JSON.parse(temp);
-		console.log("Json Parse :",desc);
 
 		for (let i = 0; i < ggg; i++) {
 			// console.log('hi');
@@ -709,7 +703,7 @@
 			
 			var day ='dayTitle' + (i+1);
 			//console.log(desc[day],day,typeof(desc[day]));
-			cb12i.value=desc[day];
+			cb12i.value=desc[i][0];
 
 			cb12.appendChild(cb12i);
 
@@ -738,7 +732,7 @@
 
 			var describ = 'dayDescription' + (i + 1);
 			// console.log(desc[describ]);
-			cbt.value=desc[describ];
+			cbt.value=desc[i][1];
 		
 
 			cb2.appendChild(cbt);

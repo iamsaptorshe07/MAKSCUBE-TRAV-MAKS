@@ -8,12 +8,11 @@ from django.contrib import messages
 from .tests import *
 from paytm import Checksum
 import requests
-import json
+#import json
 from django.views.decorators.csrf import csrf_exempt
 from invoice.invoice_generator import render_to_pdf
 from django.template.loader import get_template
 from django.contrib.sites.shortcuts import get_current_site
-from travelagency.tests import descriptionExtractor
 # Create your views here.
 
 def searchTour(request):
@@ -32,12 +31,17 @@ def advancedSearching(request):
 def tourDetails(request,tourId,slug):
     if(Tour.objects.filter(tourSlug=slug).exists()):
         tour = Tour.objects.get(tourSlug=slug)
-        description = descriptionExtractor(tour.description)
-        print(description)
+        d=tour.description.split('@@@@')
+        description=[]
+        for i in d:
+            temp=list(i.split('$$$$'))
+            temp.append('Day'+str(d.index(i)+1))
+            description.append(temp)
+        
+        print("\n",description[0],"\n",description,"\n",type(description))
         context = {
             'Tour':tour,
-            'desc': tour.description.strip('TRAVMAKS'),
-            'description':description
+            'description': description,
         }
         return render(request,'touring/tour_details.html',context=context)
     else:
