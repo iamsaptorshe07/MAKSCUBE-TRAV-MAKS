@@ -507,29 +507,6 @@ font-size: 20px;
   color: #fff;
 }
 
-
-
-.boxed-btn4 {
-    background: #FF4A52;
-    color: #fff;
-    display: inline-block;
-    padding: 13px 39px;
-    font-family: "Rubik", sans-serif;
-    font-size: 16px;
-    font-weight: 500;
-    border: 0;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-    text-align: center;
-    text-transform: capitalize;
-    -webkit-transition: 0.3s;
-    -moz-transition: 0.3s;
-    -o-transition: 0.3s;
-    transition: 0.3s;
-    cursor: pointer;
-}
-
 .popular_places_area {
   padding-top: 142px;
   padding-bottom: 150px;
@@ -987,9 +964,11 @@ ul{
     top: -20px;
     
 }
+
 .flt .card-img-block img{
     border-radius:5px;
     box-shadow:0 0 10px rgba(0,0,0,0.63);
+	
 }
 .flt h5{
     color:#4E5E30;

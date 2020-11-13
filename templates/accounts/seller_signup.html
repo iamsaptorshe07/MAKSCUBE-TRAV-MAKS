@@ -1011,14 +1011,5 @@ background-repeat: no-repeat;
         errormsg.style.padding = '0px';
         errormsgbg.style.marginBottom = '0px';
     }
-    function EnableDisableTextBox(ddlModels) {
-        var selectedValue = ddlModels.options[ddlModels.selectedIndex].value;
-        var txtOther = document.getElementById("txtOther");
-        txtOther.disabled = (selectedValue == 1 || 2 ? false : true);
-        if (!txtOther.disabled) {
-            txtOther.focus();
-        }
-    }
-
 </script>
 {% endblock body %}
