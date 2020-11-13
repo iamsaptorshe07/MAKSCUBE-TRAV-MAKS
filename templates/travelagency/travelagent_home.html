@@ -142,7 +142,7 @@
 
 	.col-md-6 {
 		background: rgb(56,46,136);
-background: linear-gradient(90deg, rgba(56,46,136,1) 13%, rgba(51,34,153,1) 49%, rgba(88,80,188,1) 82%, rgba(95,112,206,1) 100%);
+		background: linear-gradient(90deg, rgba(56,46,136,1) 13%, rgba(51,34,153,1) 49%, rgba(88,80,188,1) 82%, rgba(95,112,206,1) 100%);
 		/* background: rgb(68, 62, 116);
 		background: linear-gradient(90deg, rgba(68, 62, 116, 1) 13%, rgba(108, 117, 205, 1) 49%, rgba(121, 160, 240, 1) 82%, rgba(121, 162, 245, 1) 100%); */
 		color: white;
@@ -384,6 +384,12 @@ background: linear-gradient(90deg, rgba(56,46,136,1) 13%, rgba(51,34,153,1) 49%,
 	#cards .card, #cards .card-header{
 		margin-top: 0!important;
 	}
+	.cursor-none{
+		pointer-events: none;
+	}
+	.footer-middle{
+		z-index: 5;
+	}
 </style>
 
 {% endblock stylesheets %}
@@ -395,26 +401,26 @@ background: linear-gradient(90deg, rgba(56,46,136,1) 13%, rgba(51,34,153,1) 49%,
 	<div class="sidebar">
 		<ul>
 			<li class="nav-item">
-				<img src="{% static 'travelagency_img/map.png' %}">
-				<a class="nav-link" href="/travelagency/agencytours/{{request.user.id}}/{{request.user.userAccess.agentId}}">
-					Agency Tours
-				</a>
+				<img src="{% static 'travelagency_img/calendar.png' %}">
+				<a class="nav-link" href="/travelagency/myagency/{{request.user.userAccess.agentId}}">Dashboard</a>
 			</li>
 			<li class="nav-item">
-				<img src="{% static 'travelagency_img/calendar.png' %}">
-				<a class="nav-link" href="/travelagency/booking-history/{{request.user.userAccess.agentId}}">Booking History</a>
+				<img src="{% static 'travelagency_img/map.png' %}">
+				<a class="nav-link "
+					href="/travelagency/agencytours/{{request.user.id}}/{{request.user.userAccess.agentId}}">Agency
+					Tours</a>
 			</li>
 			<li class="nav-item">
 				<img src="{% static 'travelagency_img/clipboard.png' %}">
-				<a target="_blank" class="nav-link" href="#">Agency Earning</a>
+				<a class="nav-link" href="#">Agency Earning</a>
 			</li>
 			<li class="nav-item">
 				<img src="{% static 'travelagency_img/picture.png' %}">
-				<a class="nav-link" href="/travelagency/ongoing-tours/{{request.user.userAccess.agentId}}">Ongoing Tour</a>
+				<a class="nav-link" href="#">Ongoing Tour</a>
 			</li>
 			<li class="nav-item">
 				<img src="{% static 'travelagency_img/job.png' %}">
-				<a class="nav-link" href="/travelagency/upcoming-tours/{{request.user.userAccess.agentId}}">Upcoming Tours</a>
+				<a class="nav-link" href="#">Booking History</a>
 			</li>
 		</ul>
 	</div>
@@ -446,23 +452,25 @@ background: linear-gradient(90deg, rgba(56,46,136,1) 13%, rgba(51,34,153,1) 49%,
 			<div class="cd">
 				<!-- <div class="block"><img src="{% static 'travelagency_img/calendar.png' %}"></div> -->
 				<label>Enter Date :</label>
-				<li>Startind Date<input id="txtF" name="sdate" class="form-control" style="text-align: center;"
-						placeholder="mm/dd/yyyy" required>
+				<li>Startind Date<input id="txtF" name="sdate" class="form-control text-center"
+						placeholder="mm/dd/yyyy" required onchange="fun();">
 				</li>
 				<br>
-				<li>Ending Date<input id="txtT" name="edate" class="form-control" style="text-align: center;"
-						 placeholder="mm/dd/yyyy" required>
+				<li>Ending Date<input id="txtT" name="edate" class="form-control text-center cursor-none"
+					placeholder="(Please Select Start Date First)" onchange="fun();">
 				</li>
-				<br>
-				<li style="display:flex;justify-content: center;"><button class="setdatebtn" type="button" onclick="fun();">Confirm Date</button></li>
+				<!-- <br>
+				<li style="display:flex;justify-content: center;"><button class="setdatebtn" type="button" 
+					onclick="fun();">Confirm Date</button>
+				</li> -->
 			</div>
 			<div class="cd">
 				<label>Date Limitation :</label>
-				<li>The Tour has to be booked before : <input type="date" name="bookinglimit" 
-					id="bookinglimit" class="form-control" >
+				<li>The Tour has to be booked before : <input name="bookinglimit" id="bookinglimit" 
+					class="form-control text-center cursor-none" placeholder="(Confirm The Tour Start Date First)">
 				</li><br>
-				<li>The Tour can be cancelled within : <input type="date" name="cancelllimit" 
-					id="cancelllimit" class="form-control" >
+				<li>The Tour can be cancelled within : <input name="cancelllimit" id="cancelllimit" 
+					class="form-control text-center cursor-none" placeholder="(Confirm The Tour Start Date First)">
 				</li>
 			</div>
 			<div class="cd">
@@ -598,7 +606,19 @@ background: linear-gradient(90deg, rgba(56,46,136,1) 13%, rgba(51,34,153,1) 49%,
 			onClose: function (sd) {
 				var k = new Date(sd);
 				var tomorrow = new Date(k.getTime() + (24 * 60 * 60 * 1000));
+				var yesterday = new Date(k.getTime() - (24 * 60 * 60 * 1000));
 				$('#txtT').datepicker("option", "minDate", tomorrow);
+				$('#txtT').attr('required','required');
+				$('#txtT').attr('placeholder','mm/dd/yyyy');
+				$('#txtT').removeClass('cursor-none');
+				$('#bookinglimit').datepicker("option", "maxDate", yesterday);
+				$('#cancelllimit').datepicker("option", "maxDate", yesterday);
+				$('#bookinglimit').removeClass('cursor-none');
+				$('#bookinglimit').attr('placeholder','mm/dd/yyyy');
+				$('#bookinglimit').attr('required','required');
+				$('#cancelllimit').removeClass('cursor-none');
+				$('#cancelllimit').attr('placeholder','mm/dd/yyyy');
+				$('#cancelllimit').attr('required','required');
 			}
 		});
 		$('#txtT').datepicker({
@@ -609,6 +629,18 @@ background: linear-gradient(90deg, rgba(56,46,136,1) 13%, rgba(51,34,153,1) 49%,
 				$('#txtF').datepicker("option", "maxDate", selectdate);
 			}
 		});
+		$('#bookinglimit').datepicker({
+			minDate: mindate,
+			showAnim: 'drop',
+			numberOfMonths: 1,
+			dateFormat: 'mm/dd/yy'
+		});
+		$('#cancelllimit').datepicker({
+			minDate: mindate,
+			showAnim: 'drop',
+			numberOfMonths: 1,
+			dateFormat: 'mm/dd/yy'
+		});		
 	});
 
 	function fun() {
@@ -722,7 +754,7 @@ background: linear-gradient(90deg, rgba(56,46,136,1) 13%, rgba(51,34,153,1) 49%,
 		let spofferdetails=document.getElementById('spofferdetails');
 		if(spo.value!=='yes'){
 			spod.style.visibility='hidden';
-            $('#spofferdetails').removeAttr('required');
+			$('#spofferdetails').removeAttr('required');
 		}
 		else{
 			spod.style.visibility='visible';
@@ -739,26 +771,26 @@ background: linear-gradient(90deg, rgba(56,46,136,1) 13%, rgba(51,34,153,1) 49%,
 		}
 		// msg.push('hello');
 		if(msg.length>0){
-            errormsg.innerHTML=msg.join('\n');
-            // errormsgbg.style.width="500px";
-            errormsg.style.padding="8px";
-            errormsgbg.style.borderRadius="5px";
-            errormsgbg.style.backgroundColor='#FBD0F5';
-            errormsg.style.color='red';
-            errormsgbg.style.margin='10px';
-            // errormsg.style.fontWeight="bold";
-            return false;
+			errormsg.innerHTML=msg.join('\n');
+			// errormsgbg.style.width="500px";
+			errormsg.style.padding="8px";
+			errormsgbg.style.borderRadius="5px";
+			errormsgbg.style.backgroundColor='#FBD0F5';
+			errormsg.style.color='red';
+			errormsgbg.style.margin='10px';
+			// errormsg.style.fontWeight="bold";
+			return false;
 		}
 		return true;
 	}
 	function removeValidator(){
 		
-        var errormsg=document.getElementById('errormsg');
-        
-        var errormsgbg=document.getElementById('errormsgbg');
-        errormsg.innerHTML = null;
-        errormsg.style.padding='0px';
-        errormsgbg.style.margin='0px';
+		var errormsg=document.getElementById('errormsg');
+		
+		var errormsgbg=document.getElementById('errormsgbg');
+		errormsg.innerHTML = null;
+		errormsg.style.padding='0px';
+		errormsgbg.style.margin='0px';
 	}
 </script>
 

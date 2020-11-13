@@ -266,6 +266,12 @@
 		}
 
 	}
+	.cursor-none{
+		pointer-events: none;
+	}
+	.footer-middle{
+		z-index: 5;
+	}
 </style>
 <!-- CSS ends here-->
 {% endblock stylesheets %}
@@ -276,12 +282,14 @@
 	<div class="sidebar">
 		<ul>
 			<li class="nav-item">
+				<img src="{% static 'travelagency_img/calendar.png' %}">
+				<a class="nav-link" href="/travelagency/myagency/{{request.user.userAccess.agentId}}">
+					Dashboard
+				</a>
+			</li>
+			<li class="nav-item">
 				<img src="{% static 'travelagency_img/map.png' %}">
 		        <a target="_blank" class="nav-link " href="/travelagency/agencytours/{{request.user.id}}/{{request.user.userAccess.agentId}}">Agency Tours</a>
-		    </li>
-		    <li class="nav-item">
-				<img src="{% static 'travelagency_img/calendar.png' %}">
-		        <a target="_blank" class="nav-link" href="#">Booked Tours</a>
 		    </li>
 		    <li class="nav-item">
 				<img src="{% static 'travelagency_img/clipboard.png' %}">
