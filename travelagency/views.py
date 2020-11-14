@@ -215,12 +215,14 @@ def editTours(request,agentId,tourId):
                     else:
                         
                         desc = tour.description
+                        tourImage=TourImage.objects.get(tour=tour)
 
 
                         print("\n\n",desc)
                         context = {
                             'Tour':tour,
                             'desc': desc,
+                            'tourImage':tourImage,
                         }
                         
                         return render(request,'travelagency/edit_tours.html',context=context)

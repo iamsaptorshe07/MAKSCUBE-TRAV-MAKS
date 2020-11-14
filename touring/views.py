@@ -37,11 +37,12 @@ def tourDetails(request,tourId,slug):
             temp=list(i.split('$$$$'))
             temp.append('Day'+str(d.index(i)+1))
             description.append(temp)
-        
-        print("\n",description[0],"\n",description,"\n",type(description))
+        tourImage = TourImage.objects.get(tour=tour)
+        print("\n",tourImage.image1.path,"\n")
         context = {
             'Tour':tour,
             'description': description,
+            'tourImage' : tourImage,
         }
         return render(request,'touring/tour_details.html',context=context)
     else:
