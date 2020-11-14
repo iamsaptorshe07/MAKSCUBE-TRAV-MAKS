@@ -20,7 +20,10 @@ class TourDetailsAdmin(admin.ModelAdmin):
     def get_agency_id(self, obj):
         return obj.agency.agency_Id
     get_agency_id.short_description = 'Agency ID'
-    
-
-
-admin.site.register(Tour,TourDetailsAdmin)
+'''    
+class TourImageAdmin(admin.ModelAdmin):
+    model=TourImage
+    list_display = ('tour','image1','image2','image3','image4','image5','image6','image7',)
+    search_fields = ['tour']
+'''
+admin.site.register(Tour,TourDetailsAdmin)#,TourImageAdmin)
