@@ -395,14 +395,14 @@
 		top: 0;
 		left: 0;
 		opacity: 0;
-		width: 160px;
-		height: 160px;
+		width: 140px;
+		height: 140px;
 		display: none;
 	}
 	.spimgs{
 		position: relative;
-		width: 160px;
-		height: 160px;
+		width: 140px;
+		height: 140px;
 		display: flex;
 		align-items: center;
 		flex-flow: column;
@@ -427,8 +427,8 @@
 		justify-content: center;
 	}
 	.upload_img1_L{
-		width: 160px;
-		height: 160px;
+		width: 140px;
+		height: 140px;
 		padding: 30px;
 		text-align: center;
 		display: none;
@@ -603,42 +603,45 @@
 					
 				</li>
 			</div>
-			<div class="cd cdimages">
-				<div class="spimgs">
-					<label for="upload_img1" class="upload_img1_L upload_img1_L1" id="label_img1">
-						Drag a image/ Click
-					</label>
-					<input type="file" accept='image/*' name="image1" id="upload_img1" class="form-control spimg" 
-					required />
+			<div class="cd">
+				<label>Upload Tour Images :</label><br>
+				<div class="cdimages pt-3">
+					<div class="spimgs">
+						<label for="upload_img1" class="upload_img1_L upload_img1_L1" id="label_img1">
+							Drag a image/ Click
+						</label>
+						<input type="file" accept='image/*' name="image1" id="upload_img1" class="form-control spimg" 
+						required />
 
-					<label for="upload_img2" class="upload_img1_L upload_img2_L2" id="label_img2">
-						Drag a image/ Click
-					</label>
-					<input type="file" accept='image/*' name="image2" id="upload_img2" class="form-control spimg"/>
-					
-					<label for="upload_img3" class="upload_img1_L upload_img3_L3" id="label_img3">
-						Drag a image/ Click
-					</label>
-					<input type="file" accept='image/*' name="image3" id="upload_img3" class="form-control spimg"/>
+						<label for="upload_img2" class="upload_img1_L upload_img2_L2" id="label_img2">
+							Drag a image/ Click
+						</label>
+						<input type="file" accept='image/*' name="image2" id="upload_img2" class="form-control spimg"/>
+						
+						<label for="upload_img3" class="upload_img1_L upload_img3_L3" id="label_img3">
+							Drag a image/ Click
+						</label>
+						<input type="file" accept='image/*' name="image3" id="upload_img3" class="form-control spimg"/>
 
-					<label for="upload_img4" class="upload_img1_L upload_img4_L4" id="label_img4">
-						Drag a image/ Click
-					</label>
-					<input type="file" accept='image/*' name="image4" id="upload_img4" class="form-control spimg"/>
-					
-					<label for="upload_img5" class="upload_img1_L upload_img5_L5" id="label_img5">
-						Drag a image/ Click
-					</label>
-					<input type="file" accept='image/*' name="image5" id="upload_img5" class="form-control spimg"/>
-					
-					<label for="upload_img6" class="upload_img1_L upload_img6_L6" id="label_img6">
-						Drag a image/ Click
-					</label>
-					<input type="file" accept='image/*' name="image6" id="upload_img6" class="form-control spimg"/>
-				</div>
-				<div class="spimgs">
-					<span class="spimgnum">0</span>
-					<button type="button" onclick="anotherSpimg();">Add Another Image</button>
+						<label for="upload_img4" class="upload_img1_L upload_img4_L4" id="label_img4">
+							Drag a image/ Click
+						</label>
+						<input type="file" accept='image/*' name="image4" id="upload_img4" class="form-control spimg"/>
+						
+						<label for="upload_img5" class="upload_img1_L upload_img5_L5" id="label_img5">
+							Drag a image/ Click
+						</label>
+						<input type="file" accept='image/*' name="image5" id="upload_img5" class="form-control spimg"/>
+						
+						<label for="upload_img6" class="upload_img1_L upload_img6_L6" id="label_img6">
+							Drag a image/ Click
+						</label>
+						<input type="file" accept='image/*' name="image6" id="upload_img6" class="form-control spimg"/>
+					</div>
+					<div class="spimgs">
+						<span class="spimgnum">0</span>
+						<button type="button" onclick="anotherSpimg();">Add Another Image</button>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -950,7 +953,7 @@
 		y.style.display='flex';
 		y.value=null;
 		a.style.display='none';
-		b.style.display='flex';		
+		b.style.display='flex';	
 	}
 
 	$(function(){
