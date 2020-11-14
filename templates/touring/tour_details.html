@@ -405,19 +405,15 @@ display:none;
                             class="fa fa-globe"></i></a>
                 </div>
 				<div class="container">
+                    {% for i in images %}
                 <div class="col-md-4">
                     <a href="#">
-                        <img src="{{tourImage.image1.url}}" alt=""
+                        <img src="{{i}}" alt=""
                             style="height: 200px;width: 250px;">
                     </a>
                 </div>
-                <div class="col-md-4 mt-2">
-                    <a href="#">
-                        <img src="{{tourImage.image2.url}}" alt=""
-                            style="height: 200px;width: 250px;">
-                    </a>
-                </div>
-               
+                <br>
+               {% endfor %}
 
             </div>
         </div>

@@ -39,10 +39,20 @@ def tourDetails(request,tourId,slug):
             description.append(temp)
         tourImage = TourImage.objects.get(tour=tour)
         print("\n",tourImage.image1.path,"\n")
+        images=[]
+        try:
+            images.append(tourImage.image1.url)
+            images.append(tourImage.image2.url)
+            images.append(tourImage.image3.url)
+            images.append(tourImage.image4.url)
+            images.append(tourImage.image5.url)
+            images.append(tourImage.image6.url)
+        except:
+            pass
         context = {
             'Tour':tour,
             'description': description,
-            'tourImage' : tourImage,
+            'images' : images,
         }
         return render(request,'touring/tour_details.html',context=context)
     else:
