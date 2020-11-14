@@ -474,20 +474,26 @@ display:none;
         var tourdesc=document.querySelector('.tourdesc');
         let ii=0;
         for(let i=0;i<ggg*2;i+=2,ii+=1){
+            var h6=document.createElement('h3');
             var h5=document.createElement('h5');
             var span=document.createElement('span');
             span.classList.add('bl');
-            var days='Day '+(ii+1);
-            var node1=document.createTextNode(days);
-            span.appendChild(node1);
-            h5.appendChild(span);
+            var days='Day '+(ii+1)+' :';
+            var node1=document.createTextNode(ui[i]);
+            var node3=document.createTextNode(days);
+            h6.appendChild(node3);
+            span.appendChild(h5);
             h5.appendChild(node1);
+            h6.appendChild(node3);
+            var br=document.createElement('br');
+            h6.appendChild(br);
+            h6.appendChild(span);
 
             var p=document.createElement('p');
             var node2=document.createTextNode(ui[i+1]);
             p.appendChild(node2);
 
-            tourdesc.appendChild(h5);
+            tourdesc.appendChild(h6);
             tourdesc.appendChild(p);
         }
     })
