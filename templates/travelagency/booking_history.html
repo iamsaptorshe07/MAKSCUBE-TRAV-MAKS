@@ -1,5 +1,7 @@
-{% extends 'basetemplate.html' %}
-{% block stylesheets %}
+{% extends 'travelagency/travelagency_basetemplate.html' %}
+{% load static %}
+
+{% block travelagency_stylesheets %}
 <style>
     /* body{
    background: linear-gradient(to right, #000428, #004e92);  
@@ -19,7 +21,7 @@
        background: #fff;
        border: 1px solid #f4f4f4;
        padding: 20px;
-       margin: 10px 25px;
+       margin: 10px 10px;
    }
    .page-header {
        margin: 10px 0 20px 0;
@@ -38,97 +40,92 @@
 }
 
      </style>
-{% endblock stylesheets %}
+{% endblock travelagency_stylesheets %}
+{% block travelagency_body %}
+<div class='container mr-5'>
+<section class="content content_content" style="width: 90%; margin: auto;   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+    <section class="invoice">
+        <!-- title row -->
+        <div class="row">
+            <div class="col-xs-12">
+                   <h4 class="text-center ml-2"> <i class="fa fa-building"></i> TRAVMAKS - A MAKS CUBE Product </h3>
+                   <h5 class='ml-2'><i class="fa fa-building"></i> &nbsp; Your Company Name </h3> 
+            </div><!-- /.col -->
+            <div class="col-md-6 text-right ml-auto">
+            <p class="font-weight-bold mb-1">Your Booking History</p>
+            <button class="btn btn-cool-blues btn-rounded"><i class="fa fa-tachometer"></i>&nbsp;Analytical Dashboard</button>   
+        </div>
+        </div>
+        <!-- info row -->
+        <div class="row invoice-info">
+            
+        </div><!-- /.row -->
 
-{% block body %}
-
-   
-           
-           <section class="content content_content" style="width: 90%; margin: auto;   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
-                       <section class="invoice">
-                           <!-- title row -->
-                           <div class="row">
-                               <div class="col-xs-12">
-                                   
-                                      <h4 class="text-center ml-2"> <i class="fa fa-building"></i> TRAVMAKS Co.</h3>
-                                       
-                                   
-                               </div><!-- /.col -->
-                               <div class="col-md-6 text-right ml-auto">
-                               <p class="font-weight-bold mb-1">Your Booking History</p>
-                               <p class="text-muted">Date: 4 Dec, 2019</p>
-                               <button class="btn btn-cool-blues btn-rounded"><i class="fa fa-tachometer"></i>&nbsp;Analytical Dashboard</button>   
-                           </div>
-                           </div>
-                           <!-- info row -->
-                           <div class="row invoice-info">
-                               
-                           </div><!-- /.row -->
-   
-                           <!-- Table row -->
-                           <div class="row">
-                               <div class="col-xs-12 table-responsive">
-                                   <table class="table">
-                                       <thead>
-                                           <tr>
-                                               <th>Tour Id</th>
-                                               <th>Tour Name</th>
-                                               <th>Starting Location</th>
-                                               <th>Ending Location</th>
-                                                <th>Start Date</th>
-                                                <th>End Date</th>
-                                               <th>Total Members</th>
-                                               <th>Profit On Tour</th>
-                                           </tr>
-                                       </thead>
-                                       <tbody>
-                                           
-                                           
-                                           <tr>
-                                               <td>2</td>
-                                               <td>18</td>
-                                               <td>12500</td>
-                                               <td>25000</td>
-                                               <td>25000</td>
-                                               <td>25000</td>
-                                               <td>25000</td>
-                                               <td>25000</td>
-                                           </tr>
-                                           
-                                           <tr>
-                                               <td>2</td>
-                                               <td>18</td>
-                                               <td>12500</td>
-                                               <td>25000</td>
-                                               <td>25000</td>
-                                               <td>25000</td>
-                                               <td>25000</td>
-                                               <td>25000</td>
-                                           </tr>
-                                           
-                                           <tr>
-                                               <td>2</td>
-                                               <td>18</td>
-                                               <td>12500</td>
-                                               <td>25000</td>
-                                               <td>25000</td>
-                                               <td>25000</td>
-                                               <td>25000</td>
-                                               <td>25000</td>
-                                           </tr>
-                                           
-                                                                               </tbody>
-                                   </table>
-                                       
-                               </div>
-                               <div class="col-md-12 text-white text-center" style="background-color: #4b6cb7;">
-                                   <h5 style="font-size:25px; ">Profit</h5>
-                                   <b style="font-size:20px;">₹2000</b>
-                               </div>
-                           </div>
-                           
-                           
-                           </div>
-                       </section>
-                   </section>
-{% endblock body %}
+        <!-- Table row -->
+        <div class="row">
+            <div class="col-xs-12 table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Tour Id</th>
+                            <th>Tour Name</th>
+                            <th>Starting Location</th>
+                            <th>Ending Location</th>
+                             <th>Start Date</th>
+                             <th>End Date</th>
+                            <th>Total Members</th>
+                            <th>Profit On Tour</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                        
+                        <tr>
+                            <td>2</td>
+                            <td>18</td>
+                            <td>12500</td>
+                            <td>25000</td>
+                            <td>25000</td>
+                            <td>25000</td>
+                            <td>25000</td>
+                            <td>25000</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>2</td>
+                            <td>18</td>
+                            <td>12500</td>
+                            <td>25000</td>
+                            <td>25000</td>
+                            <td>25000</td>
+                            <td>25000</td>
+                            <td>25000</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>2</td>
+                            <td>18</td>
+                            <td>12500</td>
+                            <td>25000</td>
+                            <td>25000</td>
+                            <td>25000</td>
+                            <td>25000</td>
+                            <td>25000</td>
+                        </tr>
+                        
+                                                            </tbody>
+                </table>
+                    
+            </div>
+            <div class="col-md-12 text-white text-center" style="background-color: #4b6cb7;">
+                <h5 style="font-size:25px; ">Profit</h5>
+                <b style="font-size:20px;">₹2000</b>
+            </div>
+        </div>
+        
+        
+        </div>
+    </section>
+</section>
+</div>
+{% endblock travelagency_body %}

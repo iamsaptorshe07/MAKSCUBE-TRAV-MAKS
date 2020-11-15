@@ -1,6 +1,7 @@
-{% extends 'basetemplate.html' %}
+{% extends 'travelagency/travelagency_basetemplate.html' %}
 {% load static %}
-{% block stylesheets %}
+
+{% block travelagency_stylesheets %}
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Ubuntu:wght@400;500;700&display=swap');
     
@@ -28,10 +29,11 @@
       font-size: 22px;
   }
     </style>
-{% endblock stylesheets %}
+{% endblock travelagency_stylesheets %}
 
-{% block body %}
-<section class="content content_content" style="width: 90%; margin: auto;   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+{% block travelagency_body %}
+<div class='container mr-5'>
+<section class="content content_content mt-5" style="width: 90%; margin: auto;   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
     <section class="invoice">
         <!-- title row -->
         <div class="row">
@@ -103,4 +105,5 @@
         </div>
     </section>
 </section>
-{% endblock body %}
+</div>
+{% endblock travelagency_body %}

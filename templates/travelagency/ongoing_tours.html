@@ -1,6 +1,7 @@
-{% extends 'basetemplate.html' %}
+{% extends 'travelagency/travelagency_basetemplate.html' %}
 {% load static %}
-{% block stylesheets %}
+
+{% block travelagency_stylesheets %}
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Ubuntu:wght@400;500;700&display=swap');
     
@@ -28,79 +29,81 @@
       font-size: 22px;
   }
   </style>
-{% endblock stylesheets %}
+{% endblock travelagency_stylesheets %}
 
-{% block body %}
-<section class="content content_content" style="width: 90%; margin: auto;   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
-                    <section class="invoice">
-                        <!-- title row -->
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <div class="page-header">
-                                   <h3 style="font-family:'Ubuntu', sans-serif;"> <i class="fa fa-plane"></i> Ongoing Tour</h3>
-                                    </div>
-								
-                            </div>
-                            </div>
-						
-                        <!-- Table row -->
-                        <div class="row">
-                            <div class="col-xs-12 table-responsive">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th>Tour Id</th>
-                                            <th>Tour Name</th>
-                                            <th>Starting Location</th>
-                                            <th>Ending Location</th>
-                                             <th>Start Date</th>
-                                             <th>End Date</th>
-                                             <th>Total Members</th>
-                                             <th>Booked By</th>
-                                            
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        
-                                        
-                                        <tr>
-                                            <td>2</td>
-                                            <td>18</td>
-                                            <td>12500</td>
-                                            <td>25000</td>
-                                            <td>25000</td>
-                                            <td>25000</td>
-                                            <td>25000</td>
-                                            <td>25000</td>
-                                            </tr>
-										
-										<tr>
-                                            <td>2</td>
-                                            <td>18</td>
-                                            <td>12500</td>
-                                            <td>25000</td>
-                                            <td>25000</td>
-                                            <td>25000</td>
-                                            <td>25000</td>
-                                            <td>25000</td>
-                                            </tr>
-										
-										<tr>
-                                            <td>2</td>
-                                            <td>18</td>
-                                            <td>12500</td>
-                                            <td>25000</td>
-                                            <td>25000</td>
-                                            <td>25000</td>
-                                            <td>25000</td>
-                                            <td>25000</td>
-                                            </tr>
-										
-                                        </tbody>
-                                </table>
-                            </div>
-                        </div>
-                        </div>
-                    </section>
-                </section>
-{% endblock body %}
+{% block travelagency_body %}
+<div class='container mr-5'>
+<section class="content content_content mt-5" style="width: 90%; margin: auto;   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+    <section class="invoice">
+        <!-- title row -->
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="page-header">
+                   <h3 style="font-family:'Ubuntu', sans-serif;"> <i class="fa fa-plane"></i> Ongoing Tour</h3>
+                    </div>
+                
+            </div>
+            </div>
+        
+        <!-- Table row -->
+        <div class="row">
+            <div class="col-xs-12 table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Tour Id</th>
+                            <th>Tour Name</th>
+                            <th>Starting Location</th>
+                            <th>Ending Location</th>
+                             <th>Start Date</th>
+                             <th>End Date</th>
+                             <th>Total Members</th>
+                             <th>Booked By</th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                        
+                        <tr>
+                            <td>2</td>
+                            <td>18</td>
+                            <td>12500</td>
+                            <td>25000</td>
+                            <td>25000</td>
+                            <td>25000</td>
+                            <td>25000</td>
+                            <td>25000</td>
+                            </tr>
+                        
+                        <tr>
+                            <td>2</td>
+                            <td>18</td>
+                            <td>12500</td>
+                            <td>25000</td>
+                            <td>25000</td>
+                            <td>25000</td>
+                            <td>25000</td>
+                            <td>25000</td>
+                            </tr>
+                        
+                        <tr>
+                            <td>2</td>
+                            <td>18</td>
+                            <td>12500</td>
+                            <td>25000</td>
+                            <td>25000</td>
+                            <td>25000</td>
+                            <td>25000</td>
+                            <td>25000</td>
+                            </tr>
+                        
+                        </tbody>
+                </table>
+            </div>
+        </div>
+        </div>
+    </section>
+</section>
+</div>
+{% endblock travelagency_body %}

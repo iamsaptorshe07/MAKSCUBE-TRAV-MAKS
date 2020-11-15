@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'homeApp',
     'accounts',
+    'api',
     'travelagency',
     'qna',
     'touring',
