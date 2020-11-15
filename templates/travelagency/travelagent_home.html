@@ -480,11 +480,15 @@
 			</li>
 			<li class="nav-item">
 				<img src="{% static 'travelagency_img/picture.png' %}">
-				<a class="nav-link" href="#">Ongoing Tour</a>
+				<a class="nav-link" href="/travelagency/ongoing-tours/{{request.user.userAccess.agentId}}">Ongoing Tour</a>
 			</li>
 			<li class="nav-item">
 				<img src="{% static 'travelagency_img/job.png' %}">
-				<a class="nav-link" href="#">Booking History</a>
+				<a class="nav-link" href="/travelagency/booking-history/{{request.user.userAccess.agentId}}">Booking History</a>
+			</li>
+			<li class="nav-item">
+				<img src="{% static 'travelagency_img/upcoming.png' %}">
+				<a class="nav-link" href="/travelagency/upcoming-tours/{{request.user.userAccess.agentId}}">Upcoming Tours</a>
 			</li>
 		</ul>
 	</div>

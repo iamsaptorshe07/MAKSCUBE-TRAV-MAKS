@@ -297,12 +297,16 @@
 		    </li>
 		    <li class="nav-item">
 				<img src="{% static 'travelagency_img/picture.png' %}">
-		        <a target="_blank" class="nav-link" href="#">Ongoing Tour</a>
-		    </li>
-		    <li class="nav-item">
+				<a class="nav-link" href="/travelagency/ongoing-tours/{{request.user.userAccess.agentId}}">Ongoing Tour</a>
+			</li>
+			<li class="nav-item">
 				<img src="{% static 'travelagency_img/job.png' %}">
-		        <a target="_blank" class="nav-link" href="#">Booking History</a>
-		    </li>
+				<a class="nav-link" href="/travelagency/booking-history/{{request.user.userAccess.agentId}}">Booking History</a>
+			</li>
+			<li class="nav-item">
+				<img src="{% static 'travelagency_img/upcoming.png' %}">
+				<a class="nav-link" href="/travelagency/upcoming-tours/{{request.user.userAccess.agentId}}">Upcoming Tours</a>
+			</li>
 		</ul>
 	</div>
 
