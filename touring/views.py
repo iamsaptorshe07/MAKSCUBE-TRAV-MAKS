@@ -37,10 +37,25 @@ def tourDetails(request,tourId,slug):
         images=[]
         try:
             images.append(tourImage.image1.url)
+        except:
+            pass
+        try:
             images.append(tourImage.image2.url)
+        except:
+            pass
+        try:
             images.append(tourImage.image3.url)
+        except:
+            pass
+        try:
             images.append(tourImage.image4.url)
+        except:
+            pass
+        try:
             images.append(tourImage.image5.url)
+        except:
+            pass
+        try:
             images.append(tourImage.image6.url)
         except:
             pass

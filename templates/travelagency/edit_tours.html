@@ -802,7 +802,7 @@
 		}
         
 
-		temp=temp.split(', ');
+		//temp=temp.split(', ');
 		let ii=0;
 		for (let i = 0; i < ggg*2; i=i+2,ii=ii+1) {
 			console.log(ii);
@@ -838,7 +838,7 @@
 			cb12i.classList.add('form-control');
 			// cb12i.placeholder = 'Title ' + (i + 1);
 			cb12i.readOnly = "readonly";
-			cb12i.name = 'dayTitle' + (i + 1);
+			cb12i.name = 'dayTitle' + (ii + 1);
 			
 
 			
@@ -868,7 +868,7 @@
 			cbt.placeholder = 'Describe Your Day ' + (i + 1);
 			cbt.id = 'comment';
 			cbt.rows = "4";
-			cbt.name = 'dayDescription' + (i + 1);
+			cbt.name = 'dayDescription' + (ii + 1);
 			cbt.readOnly = "readonly";
 
 			var describ = 'dayDescription' + (i + 1);

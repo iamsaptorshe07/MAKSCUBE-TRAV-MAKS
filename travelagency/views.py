@@ -209,6 +209,27 @@ def editTours(request,agentId,tourId):
                         tour.maximum_people = maximum_people
 
                         tour.save()
+                        image1 = request.FILES.get('image1')
+                        image2 = request.FILES.get('image2')
+                        image3 = request.FILES.get('image3')
+                        image4 = request.FILES.get('image4')
+                        image5 = request.FILES.get('image5')
+                        image6 = request.FILES.get('image6')
+
+                        tourImage = TourImage.objects.get(tour=tour)
+                        if image1 is not None:
+                            tourImage.image1 = image1
+                        if image2 is not None:
+                            tourImage.image2 = image2
+                        if image3 is not None:
+                            tourImage.image3 = image3
+                        if image4 is not None:
+                            tourImage.image4 = image4
+                        if image5 is not None:
+                            tourImage.image5 = image5
+                        if image6 is not None:
+                            tourImage.image6 = image6
+                        tourImage.save()
                         messages.success(request,'Successfully Updated')
                         return redirect('/travelagency/agencytours/{}/{}'.format(user.id,user.userAccess.agentId))
                         

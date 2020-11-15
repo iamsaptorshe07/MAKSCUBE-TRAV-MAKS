@@ -49,7 +49,6 @@ INSTALLED_APPS = [
     'qna',
     'touring',
     'traveller',
-    'django_extensions',
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 MIDDLEWARE = [
