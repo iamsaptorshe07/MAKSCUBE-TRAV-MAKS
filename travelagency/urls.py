@@ -1,6 +1,6 @@
 from django.urls import path
 from .views import *
-
+from .tests import *
 urlpatterns = [
     path('myagency/<agid>',travelagency_home,name='travelAgencyHome'),
     path('myagency/addtour/<int:uid>/<str:agid>',addTour,name='addTour'),
@@ -9,5 +9,6 @@ urlpatterns = [
     path('agencytours/delete-tour/<agentId>/<tourId>',deleteteTour,name='deleteteTour'),
     path('booking-history/<agentId>',booking_history,name='bookingHistory'),
     path('upcoming-tours/<agentId>',upcoming_tours,name='upcomingTours'),
-    path('ongoing-tours/<agentId>',ongoing_tours,name='ongoingTours')
+    path('ongoing-tours/<agentId>',ongoing_tours,name='ongoingTours'),
+    path('test-url',testURL,name='testURL'),
 ]

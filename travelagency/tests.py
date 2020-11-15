@@ -98,3 +98,8 @@ def testDec(dictionarywww):
     print("\n\nString to Dic :\n",type(y),"\n",y)
 
 
+
+''' Testing URL Handlere '''
+from django.shortcuts import render,redirect
+def testURL(request):
+    return render(request,'travelagency/travelagency_basetemplate.html')
