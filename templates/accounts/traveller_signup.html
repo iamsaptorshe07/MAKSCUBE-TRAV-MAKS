@@ -167,17 +167,17 @@ transform:translateX(-17px) !important;
                                             <input type="email" class="form-control" placeholder="Your Email *" name="email" id="mail" required/>
                                         </div>
                                         <div class="form-group">
-                                            <input type="number" minlength="10" maxlength="10" name="phone" class="form-control" placeholder="Your Phone *" id="phone" value="" required/>
+                                            <input type="text" pattern="\d*" minlength="10" maxlength="10" name="phone" class="form-control" placeholder="Your Phone *" id="phone" value="" required/>
 											<span id="mobileno" class="text-danger font-weight-bold"></span>
                                         </div>
                                         <div class="form-group">
-                                            <input type="number" class="form-control" placeholder="Enter ZIP Code *" name="zip" id="zip" required/>
+                                            <input type="text" pattern="\d*" minlength="6" maxlength="6" class="form-control" placeholder="Enter ZIP Code *" name="zip" id="zip" required/>
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" class="form-control" placeholder="Password *" name="password1" id="password1" required />
+                                            <input type="password" class="form-control" placeholder="Password *" name="password1" id="password1" minlength="8" maxlength="30" required />
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" class="form-control"  placeholder="Confirm Password *" name='password2' id="password2"  required />
+                                            <input type="password" class="form-control"  placeholder="Confirm Password *" name='password2' id="password2" minlength="8" maxlength="30" required />
                                         </div>
                                              
                                         <input type="submit" class="btnRegister"  value="Register"/>

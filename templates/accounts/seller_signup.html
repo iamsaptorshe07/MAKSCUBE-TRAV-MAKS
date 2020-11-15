@@ -351,7 +351,7 @@ background-repeat: no-repeat;
                                 id="address" required />
                         </div>
                         <div class="form-group">
-                            <input type="file" name="govIdImage" id="img" class="form-control" required />
+                            <input type="file" name="govIdImage" accept='image/*' id="img" class="form-control" required />
                             <label for="img" class="text-white">Click me to upload ID Proof</label>
                         </div>
                     </div>
@@ -365,12 +365,12 @@ background-repeat: no-repeat;
                                 required />
                         </div>
                         <div class="form-group">
-                            <input type="number" minlength="10" maxlength="10" name="phone" class="form-control"
+                            <input type="text" pattern="\d*" minlength="10" maxlength="10" name="phone" class="form-control"
                                 placeholder="Your Phone *" id="phone" value="" required />
                             <span id="mobileno" class="text-danger font-weight-bold"></span>
                         </div>
                         <div class="form-group">
-                            <input type="number" class="form-control" placeholder="Enter ZIP Code *" name="zip" id="zip"
+                            <input type="text" class="form-control" placeholder="Enter ZIP Code *" pattern="\d*" name="zip" id="zip" minlength="6" maxlength="6"
                                 required />
                         </div>
                         <div class="form-group">
@@ -382,7 +382,7 @@ background-repeat: no-repeat;
                             </select>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Enter Your Proof ID *" maxlength="12" minlength="10"
+                            <input type="text" class="form-control" placeholder="Enter Your Proof ID *" pattern="\d*" minlength="10" maxlength="12"
                                 style="display: none;" name="govIdNo" id="govIdnumber" />
                         </div>
                         <script>
@@ -403,11 +403,11 @@ background-repeat: no-repeat;
                         </script>
                         <div class="form-group">
                             <input type="password" class="form-control" placeholder="Password *" name="password1"
-                                id="password1" required />
+                                id="password1" minlength="8" maxlength="30"  required />
                         </div>
                         <div class="form-group">
                             <input type="password" class="form-control" placeholder="Confirm Password *"
-                                name='password2' id="password2" required />
+                                name='password2' id="password2" minlength="8" maxlength="30"  required />
                         </div>
                     </div>
 
@@ -966,7 +966,7 @@ background-repeat: no-repeat;
         if (phone.length != 10) {
             msg.push("Please Enter a valid Phone number.");
         }
-        if ((agree.checked == false)
+        if (agree.checked == false)
          {
             msg.push("please select our terms & conditions");
             document.getElementbyId("confirm").focus();
@@ -976,16 +976,12 @@ background-repeat: no-repeat;
         if (zip.length != 6) {
             msg.push("Please Enter a valid Zip Code.");
         }
+
         if (password1.length < 8) {
             msg.push("Your Password must contain atleast 8 characters.");
         }
         else {
-            for (let i = 0; i < password1.length; i++) {
-                if (password1[i] === '<' || password1[i] === '>') {
-                    msg.push("< / > not allowed.");
-                }
-            }
-            if (password1 !== password2) {
+            if (password1 != password2) {
                 msg.push("Password didn't match.");
             }
         }
