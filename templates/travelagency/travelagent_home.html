@@ -409,18 +409,38 @@
 		top: 0;
 		left: 0;
 		opacity: 0;
-		width: 140px;
-		height: 140px;
+		width: 120px;
+		height: 120px;
 		display: none;
 	}
 	.spimgs{
 		position: relative;
-		width: 140px;
-		height: 140px;
+		width: 125px;
 		display: flex;
 		align-items: center;
 		flex-flow: column;
 		justify-content: space-around;
+	}
+	.sp1img{
+		top: 0;
+		left: 0;
+		width: 120px;
+		height: 120px;
+		display: none;
+	}
+	.sp1img img{
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 120px;
+		height: 120px;
+		border-radius: 4px;
+	}
+	.spimgs p{
+		margin: 0 0 0 0;
+	}
+	.spimgs .spimgnum p{
+		margin: 0;
 	}
 	.cdimages{
 		display: flex;
@@ -441,32 +461,14 @@
 		justify-content: center;
 	}
 	.upload_img1_L{
-		width: 140px;
-		height: 140px;
-		padding: 30px;
+		width: 120px;
+		height: 120px;
+		padding: 5px;
 		text-align: center;
 		display: none;
 		align-items: center;
 		justify-content: center;
 		border: 5px dashed black;
-	}
-	.spimgnum{
-		width: 90px;
-		height: 90px;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		flex-flow: column;
-		font-size: 35px;
-		font-weight: bolder;
-		border-radius: 50%;
-		background: linear-gradient(90deg, rgba(56,46,136,1) 13%, rgba(51,34,153,1) 49%, 
-			rgba(88,80,188,1) 82%, rgba(95,112,206,1) 100%);
-		box-shadow: 2px 2px black;
-	}
-	.spimgnum p{
-		font-size: 20px;
-		font-weight: normal;
 	}
 </style>
 
@@ -622,7 +624,7 @@
 				</li>
 			</div>
 			<div class="cd">
-				<label>Upload Tour Images :</label><br>
+				<label>Upload Tour Images (one by one):</label><br>
 				<div class="cdimages pt-3">
 					<div class="spimgs">
 						<label for="upload_img1" class="upload_img1_L upload_img1_L1" id="label_img1">
@@ -655,10 +657,16 @@
 							Drag a image/ Click
 						</label>
 						<input type="file" accept='image/*' name="image6" id="upload_img6" class="form-control spimg"/>
+						
+						<button type="button" onclick="anotherSpimg();">Add Another Image</button>
 					</div>
 					<div class="spimgs">
-						<span class="spimgnum">0</span>
-						<button type="button" onclick="anotherSpimg();">Add Another Image</button>
+						<div class="sp1img">
+							<img src="#" alt="Tour Images" id="blah" />
+						</div>
+						<p>
+							<span class="spimgnum">0 image has been uploaded</span>
+						</p>
 					</div>
 				</div>
 			</div>
@@ -881,7 +889,7 @@
 			},
 			'change':function(){
 				dropzoneImg1.style.borderColor='green';
-				document.querySelector('.spimgnum').innerHTML = '1';
+				document.querySelector('.spimgnum').innerHTML = '1 image has been uploaded';
 				spbtn.style.display='flex';
 			}
 		})
@@ -895,7 +903,7 @@
 			},
 			'change':function(){
 				dropzoneImg2.style.borderColor='green';
-  				document.querySelector('.spimgnum').innerHTML = '2';
+  				document.querySelector('.spimgnum').innerHTML = '2 images have been uploaded';
 			}
 		})
 		.on('dragleave dragexit', function() {
@@ -908,7 +916,7 @@
 			},
 			'change':function(){
 				dropzoneImg3.style.borderColor='green';
-  				document.querySelector('.spimgnum').innerHTML = '3';
+  				document.querySelector('.spimgnum').innerHTML = '3 images have been uploaded';
 			}
 		})
 		.on('dragleave dragexit', function() {
@@ -921,7 +929,7 @@
 			},
 			'change':function(){
 				dropzoneImg4.style.borderColor='green';
-  				document.querySelector('.spimgnum').innerHTML = '4';
+  				document.querySelector('.spimgnum').innerHTML = '4 images have been uploaded';
 			}
 		})
 		.on('dragleave dragexit', function() {
@@ -934,7 +942,7 @@
 			},
 			'change':function(){
 				dropzoneImg5.style.borderColor='green';
-  				document.querySelector('.spimgnum').innerHTML = '5';
+  				document.querySelector('.spimgnum').innerHTML = '5 images have been uploaded';
 			}
 		})
 		.on('dragleave dragexit', function() {
@@ -947,7 +955,7 @@
 			},
 			'change':function(){
 				dropzoneImg6.style.borderColor='green';
-  				document.querySelector('.spimgnum').innerHTML = '6<p>(MAX)</p>';
+  				document.querySelector('.spimgnum').innerHTML = '6 (MAX) images have been uploaded';
 				spbtn.style.display='none';
 			}
 		})
@@ -958,8 +966,27 @@
 		upload_img1.style.display='block';
 		dropzoneImg1.style.display='block';
 	});
+	
+	document.querySelectorAll('.spimg').forEach(function(el){
+		el.addEventListener('change',function(){
+			readURL(this);
+		});
+	})
+	function readURL(input) {
+		if (input.files && input.files[0]) {
+			var reader = new FileReader();
+			reader.onload = function(e) {
+				$('#blah').attr('src', e.target.result);
+				$('.sp1img').addClass('d-flex');
+			}
+			reader.readAsDataURL(input.files[0]);
+		}
+	}
+	
 	function anotherSpimg(){
 		var num=document.querySelector('.spimgnum').innerHTML;
+		// console.log(num,num[0]);
+		num=num[0];
 		var num1=parseInt(num)+1;
 		var label='label_img'+num;
 		var nextlabel='label_img'+num1;
