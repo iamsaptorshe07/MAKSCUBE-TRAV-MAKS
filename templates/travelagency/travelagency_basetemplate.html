@@ -1,9 +1,133 @@
 {% extends 'basetemplate.html' %}
 {% load static %}
 {% block stylesheets %}
+<style>
+    
+	.sidebar {
+		min-width: 250px;
+        max-width: 250px;
+		position: sticky;
+		height: 100%;
+		padding-top: 20px;
+		top: 60px;
+		left: 0;
+		z-index: 1;
+		border-radius: 5px;
+	}
+    .content{
+        margin-left: 0;
+    }
+	.sidebar ul {
+		margin: 10px;
+	}
 
+	.sidebar ul li {
+		height: 70px;
+		display: flex;
+		align-items: center;
+		font-size: 20px;
+        border-radius: 4px;
+        padding-left: 15px;
+	}
+
+	.sidebar ul li a {
+		color: black;
+	}
+
+	.sidebar ul li:hover {
+		background-image: linear-gradient(to top, #00c6fb 0%, #2debc5 50%);
+	}
+
+	.sidebar ul li img {
+		width: 35px;
+		height: 35px;
+	}
+
+	@media screen and (max-width: 850px) {
+        .sidebar {
+            padding-top: 0;
+            position: fixed;
+			width: 100%;
+            max-width: 100%;
+			height: 120px;
+			background: rgb(186, 224, 245);
+			background: linear-gradient(90deg, rgba(186, 224, 245, 1) 21%, rgba(221, 221, 237, 1) 57%, rgba(143, 228, 245, 1) 100%);
+		}
+        .nav-link{
+            padding: .5rem 0.5rem;
+        }
+		.sidebar ul {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-flow: row;
+            margin: 10px 0;
+		}
+        .sidebar ul li{
+            padding-left: 0;
+        }
+		.sidebar ul li a {
+			font-size: 16px;
+		}
+    }
+	@media screen and (max-width: 630px) {
+        .sidebar ul li {
+			border: 1px solid skyblue;
+			margin-left: 5px;
+			width: 70px;
+			display: flex;
+			flex-flow: row;
+			align-items: center;
+			justify-content: center;
+		}
+		.sidebar{
+			height: auto;
+		}
+        .sidebar ul{
+			flex-wrap: wrap;
+        }
+		.sidebar ul li a {
+
+			font-size: 12px !important;
+		}
+
+		.sidebar ul li img {
+			display: none;
+		}
+    }
+</style>
 {% endblock stylesheets %}
 
 {% block body%}
 
+<div class="sidebar">
+    <ul>
+        <li class="nav-item">
+            <img src="{% static 'travelagency_img/calendar.png' %}">
+            <a class="nav-link" href="/travelagency/myagency/{{request.user.userAccess.agentId}}">Dashboard</a>
+        </li>
+        <li class="nav-item">
+            <img src="{% static 'travelagency_img/map.png' %}">
+            <a class="nav-link "
+                href="/travelagency/agencytours/{{request.user.id}}/{{request.user.userAccess.agentId}}">Agency
+                Tours</a>
+        </li>
+        <li class="nav-item">
+            <img src="{% static 'travelagency_img/clipboard.png' %}">
+            <a class="nav-link" href="#">Agency Earning</a>
+        </li>
+        <li class="nav-item">
+            <img src="{% static 'travelagency_img/picture.png' %}">
+            <a class="nav-link" href="/travelagency/ongoing-tours/{{request.user.userAccess.agentId}}">Ongoing Tour</a>
+        </li>
+        <li class="nav-item">
+            <img src="{% static 'travelagency_img/job.png' %}">
+            <a class="nav-link" href="/travelagency/booking-history/{{request.user.userAccess.agentId}}">Booking History</a>
+        </li>
+        <li class="nav-item">
+            <img src="{% static 'travelagency_img/upcoming.png' %}">
+            <a class="nav-link" href="/travelagency/upcoming-tours/{{request.user.userAccess.agentId}}">Upcoming Tours</a>
+        </li>
+    </ul>
+</div>
 {% endblock body %}
