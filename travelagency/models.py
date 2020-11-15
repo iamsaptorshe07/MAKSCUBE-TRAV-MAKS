@@ -67,3 +67,15 @@ class Tour(models.Model):
         return self.tourHeading
 
 
+class TourImage(models.Model):
+    tour=models.ForeignKey(Tour,on_delete=models.CASCADE)
+    image1 = models.ImageField(upload_to="TourPreview")
+    image2 = models.ImageField(upload_to="TourPreview",null=True,blank=True)
+    image3 = models.ImageField(upload_to="TourPreview",null=True,blank=True)
+    image4 = models.ImageField(upload_to="TourPreview",null=True,blank=True)
+    image5 = models.ImageField(upload_to="TourPreview",null=True,blank=True)
+    image6 = models.ImageField(upload_to="TourPreview",null=True,blank=True)
+    image7 = models.ImageField(upload_to="TourPreview",null=True,blank=True)
+
+
+

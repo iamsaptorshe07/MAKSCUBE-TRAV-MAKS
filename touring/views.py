@@ -31,17 +31,23 @@ def advancedSearching(request):
 def tourDetails(request,tourId,slug):
     if(Tour.objects.filter(tourSlug=slug).exists()):
         tour = Tour.objects.get(tourSlug=slug)
-        d=tour.description.split('@@@@')
-        description=[]
-        for i in d:
-            temp=list(i.split('$$$$'))
-            temp.append('Day'+str(d.index(i)+1))
-            description.append(temp)
+        d=tour.description
         
-        print("\n",description[0],"\n",description,"\n",type(description))
+        tourImage = TourImage.objects.get(tour=tour)
+        images=[]
+        try:
+            images.append(tourImage.image1.url)
+            images.append(tourImage.image2.url)
+            images.append(tourImage.image3.url)
+            images.append(tourImage.image4.url)
+            images.append(tourImage.image5.url)
+            images.append(tourImage.image6.url)
+        except:
+            pass
         context = {
             'Tour':tour,
-            'description': description,
+            'description': d,
+            'images' : images,
         }
         return render(request,'touring/tour_details.html',context=context)
     else:

@@ -65,6 +65,7 @@ def addTour(request,uid,agid):
                 last_cancel_date = tourDate(request.POST.get('cancelllimit'))
                 print(last_booking_date,"\n\n",last_cancel_date,"\n\n")
                 
+                
                 tour = Tour(
                     #assign the values
                     seller = user,
@@ -89,6 +90,28 @@ def addTour(request,uid,agid):
                     last_cancel_date = last_cancel_date
                 )
                 tour.save()
+
+                image1 = request.FILES.get('image1')
+                image2 = request.FILES.get('image2')
+                image3 = request.FILES.get('image3')
+                image4 = request.FILES.get('image4')
+                image5 = request.FILES.get('image5')
+                image6 = request.FILES.get('image6')
+
+                tourImage = TourImage(
+                        tour = tour,
+                        image1 = image1,
+                        image2 = image2,
+                        image3 = image3,
+                        image4 = image4,
+                        image5 = image5,
+                        image6 = image6
+
+                )
+
+                tourImage.save()
+
+
                 messages.success(request,'Tour Added Successfully')
                 return redirect('/travelagency/agencytours/{}/{}'.format(user.id,user.userAccess.agentId))
             else:
@@ -192,12 +215,14 @@ def editTours(request,agentId,tourId):
                     else:
                         
                         desc = tour.description
+                        tourImage=TourImage.objects.get(tour=tour)
 
 
                         print("\n\n",desc)
                         context = {
                             'Tour':tour,
                             'desc': desc,
+                            'tourImage':tourImage,
                         }
                         
                         return render(request,'travelagency/edit_tours.html',context=context)

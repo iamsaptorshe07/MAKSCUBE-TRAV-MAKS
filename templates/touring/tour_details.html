@@ -327,12 +327,9 @@ display:none;
                 <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
                     <div class="tab-pane fade show active" id="nav-overall" role="tabpanel"
                         aria-labelledby="nav-overall-tab">
-                        {% for i,j,k in description %}
-                        <br>
-                        <h5>
-                            <span class="bl">{{ k }}:</span>{{ i }}</h5>
-                        <p>{{ j }}</p> <br> <br>
-                        {% endfor %}
+                        <div class="tourdesc">
+
+                        </div>
                     </div>
                     <div class="tab-pane fade" id="nav-inclusive" role="tabpanel" aria-labelledby="nav-inclusive-tab">
                         <h5>
@@ -405,30 +402,15 @@ display:none;
                             class="fa fa-globe"></i></a>
                 </div>
 				<div class="container">
+                    {% for i in images %}
                 <div class="col-md-4">
                     <a href="#">
-                        <img src="https://source.unsplash.com/aJeH0KcFkuc/400x300" alt=""
+                        <img src="{{i}}" alt=""
                             style="height: 200px;width: 250px;">
                     </a>
                 </div>
-                <div class="col-md-4 mt-2">
-                    <a href="#">
-                        <img src="https://source.unsplash.com/aJeH0KcFkuc/400x300" alt=""
-                            style="height: 200px;width: 250px;">
-                    </a>
-                </div>
-                <div class="col-md-4 mt-2">
-                    <a href="#">
-                        <img src="https://source.unsplash.com/aJeH0KcFkuc/400x300" alt=""
-                            style="height: 200px;width: 250px;">
-                    </a>
-                </div>
-                <div class="col-md-4 mt-2">
-                    <a href="#">
-                        <img src="https://source.unsplash.com/aJeH0KcFkuc/400x300" alt=""
-                            style="height: 200px;width: 250px;">
-                    </a>
-                </div>
+                <br>
+               {% endfor %}
 
             </div>
         </div>
@@ -470,7 +452,51 @@ display:none;
     </div>
 </div>
 <script type="text/javascript">
+    $(function(){
+        var sd="{{Tour.startDate|date:'c'}}";
+		sd = new Date(sd);
+		var ed="{{Tour.endDate|date:'c'}}";
+		ed = new Date(ed);
+		var d = ed.getTime() - sd.getTime();
+        var x = d / (1000 * 3600 * 24) + 1;
+        var ggg=x;
+        
+        var temp = "{{description}}";
+    	
+		var d2 = temp.split('@@@@')
+		var ui=[]
+        for(let j=0;j<ggg;j++){
+			x= d2[j].split('$$$$');
+			ui.push(x[0]);
+			ui.push(x[1]);
+		}
+		temp=temp.split(', ');
+        var tourdesc=document.querySelector('.tourdesc');
+        let ii=0;
+        for(let i=0;i<ggg*2;i+=2,ii+=1){
+            var h6=document.createElement('h3');
+            var h5=document.createElement('h5');
+            var span=document.createElement('span');
+            span.classList.add('bl');
+            var days='Day '+(ii+1)+' :';
+            var node1=document.createTextNode(ui[i]);
+            var node3=document.createTextNode(days);
+            h6.appendChild(node3);
+            span.appendChild(h5);
+            h5.appendChild(node1);
+            h6.appendChild(node3);
+            var br=document.createElement('br');
+            h6.appendChild(br);
+            h6.appendChild(span);
 
+            var p=document.createElement('p');
+            var node2=document.createTextNode(ui[i+1]);
+            p.appendChild(node2);
+
+            tourdesc.appendChild(h6);
+            tourdesc.appendChild(p);
+        }
+    })
     $('.owl-carousel').owlCarousel({
         loop: true,
         margin: 10,
