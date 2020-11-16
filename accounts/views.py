@@ -71,7 +71,29 @@ def activateTraveller(request, uid, token):
             return HttpResponse("Link Expired")
     else:
         return HttpResponse("ERROR 404")
-    
+'''
+This function is responsible for sending the account(Seller - Agency and guide) creation and login page to the front - end and also 
+responsible for handling the signup request of the sellers (Travel agency not guide)
+'''
+def activateSeller(request, uid, token):
+    user = User.objects.get(id=uid)
+    if user is not None and activation_token.check_token(user,token):
+        if user.is_active:
+            userAccess = AccountType.objects.get(user=user)
+            userAccess.agency_access = True
+            userAccess.agentId=sellerId()
+            user.save()
+            userAccess.save()
+        else:
+            user.is_active = True
+            access =AccountType(user=user,agency_access=True,agentId=sellerId())
+            user.save()
+            access.save()
+        messages.success(request,'Account Activated, Please Login to register your agency')
+        return redirect('Seller_login')
+    else:
+        return HttpResponse("Link Expired")
+
 # Traveller account creation and login page handler and also signup of traveller handler function ---- Old one
 
 # Traveller Login handler Starts here ----------------------------------------
@@ -219,8 +241,12 @@ def sellerLogin(request):
                         if user is not None:
                             auth.login(request,user)
                             request.session['access_type']='seller'
-                            messages.success(request,'Successfully Loggedin')
-                            return redirect('/')
+                            print('worked')
+                            if AgencyDetail.objects.filter(user=user).exists():
+                                messages.success(request,'Successfully Loggedin')
+                                return redirect('/')
+                            else:
+                                return redirect('RegisterAgency')
                         else:
                             messages.error(request,'Invalid Credential')
                             return redirect('sellerAgencyAccountSignup')
@@ -253,17 +279,6 @@ def userLogout(request):
 # User logout ends here --------------
 
 # Seller (Agency and Guide) account creation and login page handler and also signup of seller handler function ----
-'''
-This function is responsible for sending the account(Seller - Agency and guide) creation and login page to the front - end and also 
-responsible for handling the signup request of the sellers (Travel agency not guide)
-'''
-def activateSeller(request, uid, token):
-    user = User.objects.get(id=uid)
-    if user is not None and activation_token.check_token(user,token):
-        messages.success(request,'Please complete your profile!')
-        return render(request,'registeragency.html',{'id':uid})
-    else:
-        return HttpResponse("Forbidden")
     
 
 def sellerAgencyAccountSignup(request):
@@ -412,97 +427,6 @@ def activateGuide(request, uid, token):
         return HttpResponse("ERROR 404")
     
 # Guide account creation and login page handler and also signup of Guide handler function ----
-'''
-This function is responsible for sending the account(Guide) creation and login page to the front - end and also 
-responsible for handling the signup request of the guide
-'''
-'''
-def sellerGuideSignup(request):
-    if request.method == 'POST':
-        try:
-            email = request.POST.get('email')
-            phNo = request.POST.get('phone')
-            print(email,phNo)
-            if User.objects.filter(phNo=phNo,email=email).exists():
-                user = User.objects.get(email=email)
-                if user.is_active:
-                    if user.userAccess.guide_access is True:
-                        messages.warning(request,'Your account is already exsits! Please login!')
-                        return redirect('guide_accounts_signup')
-                    else:
-                        res = messages_sender(request,user)
-                        print(res)
-                        if res is True:
-                            messages.success(request,'As your account already exists we will use your old data just Check your email to activate the guide account')
-                            return redirect('guide_accounts_signup')
-                        if res is False:
-                            messages.error(request,'Internal Problem Occured')
-                            return redirect('guide_accounts_signup')
-                else:
-                    messages.warning(request,'Account already exsits! Please verify your email! sent on {}'.format(user.creationTime))
-                    return redirect('guide_accounts_signup')
-            elif User.objects.filter(email=email).exists():
-                user = User.objects.get(email=email)
-                if user.is_active:
-                    if user.userAccess.guide_access is True:
-                        messages.warning(request,'Your account is already exsits! Please login!')
-                        return redirect('guide_accounts_signup')
-                    else:
-                        res = messages_sender(request,user)
-                        print(res)
-                        if res is True:
-                            messages.success(request,'As your account already exists we will use your old data just Check your email to activate the guide account')
-                            return redirect('guide_accounts_signup')
-                        if res is False:
-                            messages.error(request,'Internal Problem Occured')
-                            return redirect('guide_accounts_signup')
-                        return redirect('guide_accounts_signup')
-                else:
-                    messages.warning(request,'Account already exsits! Please verify your email! sent on {}'.format(user.creationTime))
-                    return redirect('guide_accounts_signup')
-            elif User.objects.filter(phNo=phNo).exists():
-                user = User.objects.get(phNo=phNo)
-                if user.is_active:
-                    if user.userAccess.guide_access is True:
-                        messages.warning(request,'Your account is already exsits! Please login!')
-                        return redirect('guide_accounts_signup')
-                    else:
-                        messages.warning(request,'Guide account already exsits! Check your email to activate the user account!')
-                        
-                        return redirect('travelAgency_accounts_signup')
-                else:
-                    messages.warning(request,'Account already exsits! Please verify your email!')
-                    return redirect('guide_accounts_signup')
-            else:
-                user = User(
-                    name = request.POST.get('name'),
-                    email=email,
-                    gender = request.POST.get('gender'),
-                    DOB = request.POST.get('bdate'),
-                    phNo = request.POST.get('phone'),
-                    country = request.POST.get('country'),
-                    state = request.POST.get('state'),
-                    city = request.POST.get('city'),
-                    address=request.POST.get('address'),
-                    zipCode = request.POST.get('zip')
-                )
-                user.set_password(request.POST.get('password1'))
-                user.is_active = False
-                user.save()
-                res = messages_sender(request,user)
-                print(res)
-                if res is True:
-                    messages.success(request,'Check your email to activate the account')
-                    return redirect('guide_accounts_signup')
-                if res is False:
-                    messages.error(request,'Internal Problem Occured')
-                    return redirect('guide_accounts_signup')
-        except Exception as e:
-            print(e)
-            return redirect('/')
-    else:
-        return render(request,'guideaccounts.html')
-'''
 
 # Guide signup and account page handler ends here -------------------------------------------
 def guideSignup(request):
@@ -638,27 +562,15 @@ def guideLogin(request):
 
 
 
-def agencyRegister(request,id):
-    if request.method == 'POST':
-        try:
-            if User.objects.filter(id=id).exists():
-                user = User.objects.get(id=id)
-                if user.is_active:
-                    access = AccountType.objects.get(user=user)
-                    access.agency_access=True
-                    access.agentId=sellerId()
-                elif len(str(request.POST.get('agencyAddress')))>100:
-                    messages.warning(request, 'Address is too big!')
-                    return redirect('sellerAgencyAccountSignup')
-                else:
-                    access =AccountType(user=user,agency_access=True,agentId=sellerId())
-                    user.is_active = True
-                access.save()
-                access_user = AccountType.objects.get(user=user)
+def agencyRegister(request):
+    user = request.user
+    if user.is_authenticated and request.session['access_type']=='seller':
+        if user.userAccess.agency_access is True:
+            if request.method == 'POST':
                 agency = AgencyDetail(
                     user=user,
                     agencyName=request.POST.get('name'),
-                    agency_Id = 'AGEN'+str(access_user.agentId[4:]),
+                    agency_Id = 'AGEN'+str(user.userAccess.agentId[4:]),
                     agencyPhNo=request.POST.get('phone'),
                     agencyCountry=request.POST.get('country'),
                     agencyCity=request.POST.get('city'),
@@ -668,17 +580,19 @@ def agencyRegister(request,id):
                     govApprovedId=request.POST.get('govApprovedId'),
                     agencyAddress=request.POST.get('agencyAddress')
                 )
-                agency.save()   
-                user.save()
-                messages.success(request,'Successfully registered')
-                return redirect('sellerAgencyAccountSignup')
-        except Exception as e:
-            print(e)
-            messages.error(request,e)
-            return redirect('sellerAgencyAccountSignup')
+                agency.save()
+                messages.success(request,'Agency Registered, You can now add tours')
+                return redirect('/')         
+            else:
+                return render(request,'registeragency.html')
+        else:
+            return redirect('Seller_login')
     else:
-        return render(request,'registeragency.html')
+        messages.warning(request,'Please Login')
+        return redirect('Seller_login')
 
+        
+   
 
 def userProfile(request, account_type, uid):
     if request.method == 'POST':

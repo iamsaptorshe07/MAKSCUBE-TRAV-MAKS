@@ -6,7 +6,7 @@ urlpatterns = [
     path('guide/account/signup',guideSignup,name='guideSignup'),
     path('traveller/account/signup',travelerAccountsSignup,name='travelerAccountsSignup'),
     path('seller/account/signup', sellerAgencyAccountSignup, name='sellerAgencyAccountSignup'),
-    path('seller/account/register/agency/<int:id>',agencyRegister,name='RegisterAgency'),
+    path('seller/account/register-agency',agencyRegister,name='RegisterAgency'),
     
     path('activate/guide/<uid>/<token>',activateGuide, name='activateGuide'),
     path('activate/seller/<uid>/<token>',activateSeller, name='activateSeller'),
