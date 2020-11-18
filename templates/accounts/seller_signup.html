@@ -131,20 +131,13 @@ background-repeat: no-repeat;
     }
 
     /*-- testimonial Section CSS --*/
-    #testimonial h2 {
-        margin-top: 30px;
-        font-style: italic;
-        color: black;
-        font-size: 26px;
-        text-align: center;
-    }
-
+    
     #testimonial .client-img {
-        width: 100px;
-        height: 100px;
+        width: 80px;
+        height: 80px;
         overflow: hidden;
         border: 3px solid #fff;
-        margin: 0px auto;
+        margin: 100px auto;
         border-radius: 100%;
         position: absolute;
         left: 0px;
@@ -164,9 +157,15 @@ background-repeat: no-repeat;
         font-style: italic;
         text-align: right;
     }
+    #testimonial h2{
+        font-size: 40px;
+        margin-top: auto;
+    }
 
     #testimonial p {
         font-size: 15px;
+        margin: 100px auto;
+       
     }
 
     #testimonial .client-img img {
@@ -229,7 +228,7 @@ background-repeat: no-repeat;
         width: 30rem;
         height: 10rem;
         margin: 0px auto;
-        background-color: rgb(121, 245, 173);
+        background: linear-gradient(to top, #4b6cb7, #182848);
         text-align: center;
         display: flex;
         -webkit-box-pack: center;
@@ -239,7 +238,7 @@ background-repeat: no-repeat;
         font-size: 25px;
         border-radius: 15px;
         font-weight: bold;
-        color: rgb(56, 73, 107);
+        color: rgb(244, 246, 252);
         transition: all .2s ease-in-out;
     }
     .highl:hover{
@@ -284,6 +283,7 @@ background-repeat: no-repeat;
         height: 10rem;
         font-size: 20px;
     }
+    
     }
 
     @media screen and (max-width: 900px) {
@@ -309,6 +309,7 @@ background-repeat: no-repeat;
 	text-align: center;
 	margin-bottom: 30px;
 }
+
 </style>
 {% endblock stylesheets %}
 {% block body %}
@@ -928,15 +929,15 @@ background-repeat: no-repeat;
 <!-- Service -->
 
 <!-- Testimonial Section start -->
-<section id="testimonial">
+<section id="testimonial" style="transform: translate(0px,100px);">
     <div class="container">
         <div class="row">
             <div class="col-12">
                 <div class="section-title">
-                    <h2>Client Testimonials</h2>
+                    <h2 class="text-center">Our Testimonials</h2>
                 </div>
             </div>
-            <div class="col-12">
+            <div class="col-12" id="dwn" style="transform: translate(0px,-100px);">
                 <div id="testimonialCarousel" class="carousel slide" data-ride="carousel">
                     <!-- Slide Indicators -->
                     <ol class="carousel-indicators">
