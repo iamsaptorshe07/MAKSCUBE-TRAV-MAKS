@@ -43,13 +43,18 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'crispy_forms',
+    'rest_framework',
+
+    # WebApp Apps
     'homeApp',
     'accounts',
-    'api',
     'travelagency',
     'qna',
     'touring',
     'traveller',
+
+    # API Apps
+    'api.accountsAPI',
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 MIDDLEWARE = [

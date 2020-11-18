@@ -175,7 +175,6 @@ def travelerAccountsSignup(request):
                     zipCode=request.POST.get('zip')
                 )
                 user.set_password(request.POST.get('password1'))
-                user.is_active = False
                 user.save()
                 res = messages_sender(request, user)
                 print(res)
@@ -285,18 +284,14 @@ def sellerAgencyAccountSignup(request):
     if request.method == 'POST':
         try:
             email = request.POST.get('email')
-            phNo = request.POST.get('phone')
-            print(request.POST.get('govIdName'))
-            print("Worked")
+            phNo = request.POST.get('phone') 
             if User.objects.filter(phNo=phNo,email=email).exists():
-            #if User.objects.filter(email=email).exists():
                 user = User.objects.get(email=email)
                 if user.is_active:
                     if user.userAccess.agency_access is True:
                         messages.warning(request,'Your agency account is already exsits! Please login!')
                         return redirect('sellerAgencyAccountSignup')
                     else:
-
                         if GovId.objects.filter(user=user).exists():
                             messages.warning(request,'Agency account verification mail has been send! Please verify your self!')
                             return redirect('sellerAgencyAccountSignup')
@@ -376,7 +371,6 @@ def sellerAgencyAccountSignup(request):
                     zipCode = request.POST.get('zip')
                 )
                 user.set_password(request.POST.get('password1'))
-                user.is_active = False
                 user.save()
                 print("\n\n",request.POST.get('govIdName'),"\n")
                 govData = GovId(
