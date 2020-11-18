@@ -47,105 +47,114 @@ def messages_sender(request,user):
         print(e)
         return False
 
-class TravelAgentSignup(generics.GenericAPIView):
+
+class TravelAgentSignup(APIView):
     def post(self, request, *args, **kwargs):
-        if request.method == 'POST':
-            account_field = ['email','name','DOB','phNo','gender','country','state','city','zipCode','address','password']
-            goverment_proof = ['govIdType','govIdNo']
-            if User.objects.filter(email=request.POST['email']).exists():
-                email = request.POST.get('email')
-                user = User.objects.get(email=email)
-                if user.is_active:
-                    if user.userAccess.agency_access is True:
+        account_field = ['email','name','DOB','phNo','gender','country','state','city','zipCode','address','password']
+        goverment_proof = ['govIdType','govIdNo']
+        if User.objects.filter(email=request.POST['email']).exists():
+            email = request.POST.get('email')
+            user = User.objects.get(email=email)
+            if user.is_active:
+                if user.userAccess.agency_access is True:
+                    data = {
+                        'status':406,
+                        'message':'User Already Exists'
+                    }
+                    return Response(data)
+                else:
+                    my_data = request.POST
+                    [account_data, gov_data] = map(lambda keys: {x: my_data[x] for x in keys}, [account_field, goverment_proof])
+                    if GovId.objects.filter(user=user).exists():
+                        print('exist')
                         data = {
                             'status':406,
-                            'message':'User Already Exists'
+                            'message':'Agency account verification mail has been send! Please verify your self!'
                         }
                         return Response(data)
                     else:
-                        my_data = request.POST
-                        [account_data, gov_data] = map(lambda keys: {x: my_data[x] for x in keys}, [account_field, goverment_proof])
-                        if GovId.objects.filter(user=user).exists():
-                            print('exist')
-                            data = {
-                                'status':406,
-                                'message':'Agency account verification mail has been send! Please verify your self!'
-                            }
-                            return Response(data)
-                        else:
-                            print("Come")
-                            gov_data['user']=user
-                            gov_data['govIdImage']=request.FILES.get('govIdImage')
-                            gov_serializer = GovermentProofSerializer(data=gov_data)
-                            if gov_serializer.is_valid():
-                                user_data = gov_serializer.save()
-                                res = messages_sender(request,user)
-                                if res is True:
-                                    data = {
-                                        'status':200,
-                                        'message':'Successfully Registered'
-                                    }
-                                       
-                                else:
-                                    data = {
-                                        'status':500,
-                                        'message':'SMTP Server Error'
-                                    }
-                                return Response(data)
+                        print("Come")
+                        gov_data['user']=user
+                        gov_data['govIdImage']=request.FILES.get('govIdImage')
+                        gov_serializer = GovermentProofSerializer(data=gov_data)
+                        if gov_serializer.is_valid():
+                            user_data = gov_serializer.save()
+                            res = messages_sender(request,user)
+                            if res is True:
+                                data = {
+                                    'status':200,
+                                    'message':'Successfully Registered'
+                                }
+                                    
                             else:
                                 data = {
                                     'status':500,
-                                    'message':gov_serializer.errors
+                                    'message':'SMTP Server Error'
                                 }
-                                return Response(data)
-                else:
-                    data = {
-                        'status':'406',
-                        'message':'Account already exsits! Check your email to activate the user account sent on {}'.format(user.creationTime)
-                        }
-                    return Response(data)
-            else:
-                my_data = request.POST
-                img = request.FILES['govIdImage']
-                print("\n",img,"\n")
-                print("printed")
-                [account_data, gov_data] = map(lambda keys: {x: my_data[x] for x in keys}, [account_field, goverment_proof])
-                agent_serializer = AgentRegisterSerializer(data=account_data)
-                print("Worked till here")
-                gov_data['govIdImage']=img
-                if agent_serializer.is_valid():
-                    agent = agent_serializer.save()
-                    gov_data['user']=agent.id
-                    gov_serializer = GovermentProofSerializer(data=gov_data)
-                    if gov_serializer.is_valid():
-                        gov_serializer.save()
-                        res = messages_sender(request,agent)
-                        if res is True:
-                            data = {
-                                'status':200,
-                                'message':"Please check your mail to activate your account"
-                            }
                             return Response(data)
                         else:
-                            data ={
-                                'status':406,
-                                'message':'SMTP Server occured'
+                            data = {
+                                'status':500,
+                                'message':gov_serializer.errors
                             }
                             return Response(data)
-                    else:
+            else:
+                data = {
+                    'status':'406',
+                    'message':'Account already exsits! Check your email to activate the user account sent on {}'.format(user.creationTime)
+                    }
+                return Response(data)
+        else:
+            my_data = request.POST
+            img = request.FILES['govIdImage']
+            print("\n",img,"\n")
+            print("printed")
+            [account_data, gov_data] = map(lambda keys: {x: my_data[x] for x in keys}, [account_field, goverment_proof])
+            agent_serializer = AgentRegisterSerializer(data=account_data)
+            print("Worked till here")
+            gov_data['govIdImage']=img
+            if agent_serializer.is_valid():
+                agent = agent_serializer.save()
+                gov_data['user']=agent.id
+                gov_serializer = GovermentProofSerializer(data=gov_data)
+                if gov_serializer.is_valid():
+                    gov_serializer.save()
+                    res = messages_sender(request,agent)
+                    if res is True:
                         data = {
+                            'status':200,
+                            'message':"Please check your mail to activate your account"
+                        }
+                        return Response(data)
+                    else:
+                        data ={
                             'status':406,
-                            'message':gov_serializer.errors
+                            'message':'SMTP Server occured'
                         }
                         return Response(data)
                 else:
                     data = {
                         'status':406,
-                        'message':agent_serializer.errors
+                        'message':gov_serializer.errors
                     }
                     return Response(data)
+            else:
+                data = {
+                    'status':406,
+                    'message':agent_serializer.errors
+                }
+                return Response(data)
 
-                        
+
+    def get(self,request,*args,**kwargs):
+        print('\n\ncame\n\n')
+        data = {
+            'status':404,
+            'message':'Only Accepts POST Request'
+        }
+        return Response(
+            data
+        )                        
 
 
 
