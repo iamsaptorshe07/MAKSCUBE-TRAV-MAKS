@@ -4,7 +4,7 @@
 {% block stylesheets %}
 <style>
     body {
-        background: rgb(204, 239, 255);
+        background: rgba(204, 239, 255, 0);
     }
 
     span {
@@ -30,6 +30,10 @@ background-repeat: no-repeat;
 
 
     /*Service*/
+    .section-title {
+  margin-bottom: 60px;
+}
+
     #service .card {
         border: none;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -202,7 +206,7 @@ background-repeat: no-repeat;
         width: 20rem;
         height: 5rem;
         margin: 0px auto;
-        background-color: rgb(255, 223, 128);
+        background-color: rgb(255, 225, 128);
         text-align: center;
         display: flex;
         -webkit-box-pack: center;
@@ -221,6 +225,26 @@ background-repeat: no-repeat;
         cursor: pointer;
     }
 
+   .highl{
+        width: 30rem;
+        height: 10rem;
+        margin: 0px auto;
+        background-color: rgb(121, 245, 173);
+        text-align: center;
+        display: flex;
+        -webkit-box-pack: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        align-items: center;
+        font-size: 25px;
+        border-radius: 15px;
+        font-weight: bold;
+        color: rgb(56, 73, 107);
+        transition: all .2s ease-in-out;
+    }
+    .highl:hover{
+	transform: scale(1.1);
+}
     #frm {
         background-color: rgb(0, 85, 128) !important;
         left: 90px;
@@ -237,6 +261,12 @@ background-repeat: no-repeat;
             width: 100%;
             margin-bottom: 10px;
         }
+
+        .highl{
+        width: 22rem;
+        height: 10rem;
+        font-size: 20px;
+    }
     }
 
     @media screen and (max-width: 600px) {
@@ -249,6 +279,11 @@ background-repeat: no-repeat;
             width: 100%;
             margin-bottom: 10px;
         }
+        .highl{
+        width: 22rem;
+        height: 10rem;
+        font-size: 20px;
+    }
     }
 
     @media screen and (max-width: 900px) {
@@ -261,7 +296,19 @@ background-repeat: no-repeat;
             width: 100%;
             margin-bottom: 10px;
         }
+        .highl{
+        width: 22rem;
+        height: 10rem;
+        font-size: 20px;
     }
+    }
+
+    .single-featur {
+	padding: 30px 10px;
+	position: relative;
+	text-align: center;
+	margin-bottom: 30px;
+}
 </style>
 {% endblock stylesheets %}
 {% block body %}
@@ -275,13 +322,9 @@ background-repeat: no-repeat;
                         <iframe width="330" height="330" src="https://www.youtube.com/embed/nMBmLLpo9CA" frameborder="0"
                             allow="fullscreen" style="border-radius:20px;"></iframe>
                     </div>
-                </div>
-                <h3 class="pb-4 pt-2 text-center ">Our Software Features</h3>
-                <div class="highlight">Dashboard to visualize and keep track your monthly sales</div><br>
-                <div class="highlight">Transaction Record Book</div><br>
-
-
-            </div>
+                </div><br>
+             <div class="highlight">100% Free signup</div><br>
+               </div>
             <div class="col-md-8 border " id="frm">
                 <h2 class="pb-4 pt-4 text-center text-white">Get Your Online Presence</h2>
                 <form class="row register-form" method="POST" action='/accounts/seller/account/signup' name="myform2"
@@ -680,6 +723,32 @@ background-repeat: no-repeat;
         </div>
     </div>
 </div>
+
+<section class="features-area pt-100 pb-70" id="features">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-8 mx-auto text-center">
+                <div class="section-title">
+                    <h5 class="section-title h1 text-center pb-4">Our Software Features</h5>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-6">
+                <div class="single-featur">
+                    <div class="highl">Dashboard to visualize and keep track your monthly sales</div>
+                
+                   
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6">
+                <div class="single-featur">
+                    <div class="highl">Transaction Record Book</div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </section>
 <!--Service-->
 <section id="service" class="pb-5">
     <div class="container">
@@ -719,7 +788,7 @@ background-repeat: no-repeat;
                         <div class="frontside">
                             <div class="card">
                                 <div class="card-body text-center">
-                                    <i class="fa fa-globe"></i>
+                                    <i class="fa fa-phone-square"></i>
                                     <h4 class="card-title">24*7 interactions with customers</h4>
                                 </div>
                             </div>
@@ -831,7 +900,7 @@ background-repeat: no-repeat;
                         <div class="frontside">
                             <div class="card">
                                 <div class="card-body text-center">
-                                    <i class="fa fa-globe"></i>
+                                    <i class="fa fa-graduation-cap"></i>
                                     <h4 class="card-title"> Free stuff training</h4>
                                 </div>
                             </div>
