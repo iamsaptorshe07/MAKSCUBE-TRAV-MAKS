@@ -110,8 +110,8 @@
 	.cd {
 		color: white;
 		width: 400px;
-		background: rgb(56,46,136);
-		background: linear-gradient(90deg, rgba(56,46,136,1) 13%, rgba(51,34,153,1) 49%, rgba(88,80,188,1) 82%, rgba(95,112,206,1) 100%);
+		background: rgb(56, 46, 136);
+		background: linear-gradient(90deg, rgba(56, 46, 136, 1) 13%, rgba(51, 34, 153, 1) 49%, rgba(88, 80, 188, 1) 82%, rgba(95, 112, 206, 1) 100%);
 		height: auto;
 		margin: 30px 30px 30px 30px;
 		padding: 30px;
@@ -142,8 +142,8 @@
 	}
 
 	.col-md-6 {
-		background: rgb(56,46,136);
-		background: linear-gradient(90deg, rgba(56,46,136,1) 13%, rgba(51,34,153,1) 49%, rgba(88,80,188,1) 82%, rgba(95,112,206,1) 100%);
+		background: rgb(56, 46, 136);
+		background: linear-gradient(90deg, rgba(56, 46, 136, 1) 13%, rgba(51, 34, 153, 1) 49%, rgba(88, 80, 188, 1) 82%, rgba(95, 112, 206, 1) 100%);
 		color: white;
 		border-radius: 5px;
 		padding: 30px;
@@ -171,13 +171,14 @@
 		/*padding-top: 20px;*/
 		margin: 10px 10px 10px 0px;
 		color: white;
-		background-color: rgb(56,46,136);;
+		background-color: rgb(56, 46, 136);
+		;
 	}
 
 	.card-body {
 		/*background-color: #52525f;*/
-		background: rgb(56,46,136);
-		background: linear-gradient(90deg, rgba(56,46,136,1) 13%, rgba(51,34,153,1) 49%, rgba(88,80,188,1) 82%, rgba(95,112,206,1) 100%);
+		background: rgb(56, 46, 136);
+		background: linear-gradient(90deg, rgba(56, 46, 136, 1) 13%, rgba(51, 34, 153, 1) 49%, rgba(88, 80, 188, 1) 82%, rgba(95, 112, 206, 1) 100%);
 	}
 
 	.card-body .title {
@@ -279,11 +280,13 @@
 			margin-left: 0;
 			margin-top: 80px;
 		}
-		.editbtn{
-			margin-left: 0px!important;
+
+		.editbtn {
+			margin-left: 0px !important;
 		}
-		.editbtn button{
-			margin: 0px 0px 15px 0px!important;
+
+		.editbtn button {
+			margin: 0px 0px 15px 0px !important;
 		}
 	}
 
@@ -374,43 +377,52 @@
 	}
 
 
-	.setdatebtn{
+	.setdatebtn {
 		background-color: #1d1d1d;
 		padding: 10px;
 		border-radius: 5px;
 		color: #fff;
 	}
-	#errormsgbg{
+
+	#errormsgbg {
 		width: 100%;
 		display: flex;
 		justify-content: center;
 		align-items: center;
 	}
+
 	.disable-click {
 		pointer-events: none;
 	}
-	.editbtn{
+
+	.editbtn {
 		/* margin-left: 30px; */
 		width: 100%;
 		display: flex;
 		justify-content: center;
 	}
-	.editbtn button{
+
+	.editbtn button {
 		padding: 10px;
 		background-color: #1d1d1d;
 		border-radius: 5px;
 		color: #fff;
 	}
-	#cards .card, #cards .card-header{
-		margin-top: 0!important;
+
+	#cards .card,
+	#cards .card-header {
+		margin-top: 0 !important;
 	}
-	.cursor-none{
+
+	.cursor-none {
 		pointer-events: none;
 	}
-	.footer-middle{
+
+	.footer-middle {
 		z-index: 5;
 	}
-	.spimg{
+
+	.spimg {
 		position: absolute;
 		top: 0;
 		left: 0;
@@ -421,7 +433,8 @@
 		max-height: 110px;
 		display: none;
 	}
-	.spimgs{
+
+	.spimgs {
 		position: relative;
 		display: flex;
 		align-items: center;
@@ -429,11 +442,13 @@
 		width: 140px;
 		height: 140px;
 	}
-	.cdimages{
+
+	.cdimages {
 		display: flex;
 		justify-content: space-around;
 	}
-	.upload_img1_L{
+
+	.upload_img1_L {
 		min-width: 110px;
 		min-height: 110px;
 		max-width: 110px;
@@ -446,27 +461,32 @@
 		justify-content: center;
 		border: 5px dashed black;
 	}
-	.timgUpdate{
+
+	.timgUpdate {
 		color: #fe6d6d;
 		font-size: 15px;
 	}
-	.arrowonimg{
+
+	.arrowonimg {
 		display: none;
 		margin-top: 10px;
 		font-size: 16px;
 		line-height: 1.2;
 	}
-	.arrowonimg i{
+
+	.arrowonimg i {
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		font-size: 20px;
 		font-weight: bold;
 	}
-	.form-control[readonly]{
-		background-color: #fe6d6d;
+
+	.form-control[readonly] {
+		background-color: #d5dbd4;
 	}
-	.form-control{
+
+	.form-control {
 		background-color: #fff;
 	}
 </style>
@@ -497,23 +517,25 @@
 			</li>
 			<li class="nav-item">
 				<img src="{% static 'travelagency_img/picture.png' %}">
-				<a class="nav-link" href="/travelagency/ongoing-tours/{{request.user.userAccess.agentId}}">Ongoing Tour</a>
+				<a class="nav-link" href="/travelagency/ongoing-tours/{{request.user.userAccess.agentId}}">Ongoing
+					Tour</a>
 			</li>
 			<li class="nav-item">
 				<img src="{% static 'travelagency_img/job.png' %}">
-				<a class="nav-link" href="/travelagency/booking-history/{{request.user.userAccess.agentId}}">Booking History</a>
+				<a class="nav-link" href="/travelagency/booking-history/{{request.user.userAccess.agentId}}">Booking
+					History</a>
 			</li>
 			<li class="nav-item">
 				<img src="{% static 'travelagency_img/upcoming.png' %}">
-				<a class="nav-link" href="/travelagency/upcoming-tours/{{request.user.userAccess.agentId}}">Upcoming Tours</a>
+				<a class="nav-link" href="/travelagency/upcoming-tours/{{request.user.userAccess.agentId}}">Upcoming
+					Tours</a>
 			</li>
 		</ul>
 	</div>
-	<form class="content" method="POST" 
-		action='/travelagency/agencytours/edit-tour/{{request.user.userAccess.agentId}}/{{Tour.tourId}}' 
-		enctype="multipart/form-data" 
-		onsubmit="return validator();">
-		
+	<form class="content" method="POST"
+		action='/travelagency/agencytours/edit-tour/{{request.user.userAccess.agentId}}/{{Tour.tourId}}'
+		enctype="multipart/form-data" onsubmit="return validator();">
+
 		{% csrf_token %}
 		{% if messages %}
 		{% for message in messages %}
@@ -527,8 +549,8 @@
 		</div>
 		{% endfor %}
 		{% endif %}
-        <span class="Dashboard">DASHBOARD</span>
-        <div class="editbtn"><button type="button" onclick="enableediting();">Click Here To Edit</button></div>
+		<span class="Dashboard">DASHBOARD</span>
+		<div class="editbtn"><button type="button" onclick="enableediting();">Click Here To Edit</button></div>
 		<span class="title">
 			<!-- <label>Title : </label> -->
 			<input type="text" name="ttitle" class="form-control" placeholder="Title *"
@@ -538,51 +560,74 @@
 			<div class="cd">
 				<!-- <div class="block"><img src="{% static 'travelagency_img/calendar.png' %}"></div> -->
 				<label>Enter Date :</label>
-				<li>Startind Date<input id="txtF" name="sdate" class="form-control text-center"
-						placeholder="mm/dd/yyyy" onchange="fun();"
-						value="{{Tour.startDate|date:'c'}}" readonly>
+				<li>Startind Date<input id="txtF" name="sdate" class="form-control text-center" placeholder="mm/dd/yyyy"
+						onchange="fun();" value="{{Tour.startDate|date:'c'}}" readonly>
 				</li>
 				<br>
 				<li>Ending Date<input id="txtT" name="edate" class="form-control text-center cursor-none"
-					placeholder="(Please Select Start Date First)" onchange="fun();" 
-					value="{{Tour.endDate|date:'c'}}" readonly>
+						placeholder="(Please Select Start Date First)" onchange="fun();"
+						value="{{Tour.endDate|date:'c'}}" readonly>
 				</li>
 			</div>
 			<div class="cd">
 				<label>Date Limitation :</label>
-				<li>The Tour has to be booked before : <input name="bookinglimit" id="bookinglimit" readonly value="{{Tour.last_booking_date|date:'c'}}"
-					class="form-control text-center cursor-none" placeholder="(Confirm The Tour Start Date First)">
+				<li>The Tour has to be booked before : <input name="bookinglimit" id="bookinglimit" readonly
+						value="{{Tour.last_booking_date|date:'c'}}" class="form-control text-center cursor-none"
+						placeholder="(Confirm The Tour Start Date First)">
 				</li><br>
-				<li>The Tour can be cancelled within : <input name="cancelllimit" id="cancelllimit" readonly  value="{{Tour.last_cancel_date|date:'c'}}"
-					class="form-control text-center cursor-none" placeholder="(Confirm The Tour Start Date First)">
+				<li>The Tour can be cancelled within : <input name="cancelllimit" id="cancelllimit" readonly
+						value="{{Tour.last_cancel_date|date:'c'}}" class="form-control text-center cursor-none"
+						placeholder="(Confirm The Tour Start Date First)">
 				</li>
 			</div>
+			<!-- <div class="cd">
+				<label>Enter Date :</label>
+				<li>Startind Date<input id="txtF" name="sdate" value="{{Tour.startDate|date:'c'}}" class="form-control disable-click" style="text-align: center;"
+						placeholder="mm/dd/yyyy" readonly> 
+				</li>
+				<br>
+				<li>Ending Date<input id="txtT" name="edate" class="form-control" style="text-align: center;"
+					value="{{Tour.endDate|date:'c'}}" readonly>
+				</li>
+				<br>
+				<li style="display:flex;justify-content: center;"><button class="setdatebtn" class="disable-click" type="button" onclick="fun();">Confirm Date</button></li>
+			</div>
+			<div class="cd">
+				<label>Date Limitation :</label>
+				<li>The Tour has to be booked before : <input type="text" name="bookinglimit" 
+					id="bookinglimit" class="form-control" readonly>
+				</li><br>
+				<li>The Tour can be cancelled within : <input type="text" name="cancelllimit" 
+					id="cancelllimit" class="form-control" readonly>
+				</li>
+			</div> -->
 			<div class="cd">
 				<label>Enter Location :</label>
 				<li>
 					Starting Point * <br>
-					<input type="text" class="form-control" name="slocation" placeholder="Starting Location *" value="{{Tour.startingLocation}}"
-                    readonly />
+					<input type="text" class="form-control" name="slocation" placeholder="Starting Location *"
+						value="{{Tour.startingLocation}}" readonly />
 				</li>
 				<br>
 				<li>
 					Ending Point *
 					<br>
-					<input type="text" class="form-control" name="elocation" placeholder="Ending Location *" value="{{Tour.endLocation}}"
-                    readonly />
+					<input type="text" class="form-control" name="elocation" placeholder="Ending Location *"
+						value="{{Tour.endLocation}}" readonly />
 				</li>
 			</div>
 			<div class="cd">
 				<label>Enter Price : </label><br>
 				<li class="">
 					Enter Price *
-					<input type="number" class="form-control" name="price" placeholder="Price per People *" value="{{Tour.price}}"
-						min="150" readonly />
+					<input type="number" class="form-control" name="price" placeholder="Price per People *"
+						value="{{Tour.price}}" min="150" readonly />
 				</li>
 				<br>
 				<li class="">
 					Enter Number of Seats *
-					<input type="number" class="form-control" value="{{Tour.maximum_people}}" name="seat" placeholder="Length of Your Group" min="1" readonly />
+					<input type="number" class="form-control" value="{{Tour.maximum_people}}" name="seat"
+						placeholder="Length of Your Group" min="1" readonly />
 				</li>
 			</div>
 			<div class="cd">
@@ -590,7 +635,7 @@
 				<li class="">
 					Enter Type of the Tour *
 					<select id="tourtype" class="form-control disable-click" readonly name="ttype" required>
-						<option class="hidden" id="tourtype" value="" disabled="" selected="" 
+						<option class="hidden" id="tourtype" value="" disabled="" selected=""
 							style="text-align: center;">Select Tour Type</option>
 						<option value="Family Special">Family Special</option>
 						<option value="Friends Special">Friends Special</option>
@@ -598,40 +643,42 @@
 						<option value="Solo Tour">Solo Tour</option>
 					</select>
 				</li>
-				<br><li class="">
+				<br>
+				<li class="">
 					Upload Your Thumbnail *<br>
 					<a style="color: rgb(181, 243, 218);" href='{{Tour.thumbnail.url}}'>Previously Uploaed Thumbnail</a>
-					<input type="file" name="thumbnail" id="upload_img" class="form-control upload disable-click" 
-					readonly accept="image/*" />
-					
+					<input type="file" name="thumbnail" id="upload_img" class="form-control upload disable-click"
+						accept='image/*' />
+
 				</li>
 			</div>
 			<div class="cd">
 				<label>Special Offer :</label><br>
 				<li class="">
 					Do You Have Any Special Offer ?<br>
-					<select name="spoffer" id="spoffer" class="form-control disable-click" readonly 
-					onchange="setsp();">
-						<option class="hidden" id="" value="" disabled="" selected=""
-							style="text-align: center;">Select Special Offer *</option>
+					<select name="spoffer" id="spoffer" class="form-control disable-click" readonly onchange="setsp();">
+						<option class="hidden" id="" value="" disabled="" selected="" style="text-align: center;">Select
+							Special Offer *</option>
 						<option value="yes">Yes</option>
 						<option value="no">No</option>
 					</select>
-					
+
 				</li>
 				<br>
 				<li id="spod">
 					Write Your Special Offer *
-					<textarea placeholder="Your Special Offer" name="spofferdetails" id="spofferdetails" class="form-control" readonly></textarea>
-					
+					<textarea placeholder="Your Special Offer" name="spofferdetails" id="spofferdetails"
+						class="form-control" readonly></textarea>
+
 				</li>
 			</div>
+
 			<div class="cd">
 				<label>Edit Tour Images (One by One):</label><br>
 				<div class="cdimages pt-3">
 					<div class="spimgs">
 						<select id="timgnum" name="timgnum" class="form-control text-center disable-click"
-						onchange="timgChange(this);" readonly>
+							onchange="timgChange(this);" readonly>
 							<option value="Select">Images</option>
 						</select>
 						<p class="arrowonimg">
@@ -640,30 +687,56 @@
 						</p>
 					</div>
 					<div class="spimgs">
-						<img src="{% static 'travelagency_img/calendar.png' %}" class="upload_img1_L upload_img1_L1"
-						id="label_img1" />
-						<input type="file" accept='image/*' name="image1" id="upload_img1" class="form-control spimg"/>
 
-						<img src="{% static 'travelagency_img/calendar.png' %}" class="upload_img1_L upload_img2_L2"
-						id="label_img2"/>
-						<input type="file" accept='image/*' name="image2" id="upload_img2" class="form-control spimg"/>
 						
-						<img src="{% static 'travelagency_img/calendar.png' %}" class="upload_img1_L upload_img3_L3"
+						<img src="{{ tourImage.image1.url }}" class="upload_img1_L upload_img1_L1" id="label_img1" />
+						<input type="file" accept='image/*' name="image1" id="upload_img1" class="form-control spimg" />
+
+						{% if imglist1 == '0' %}
+						<img src="" class="upload_img1_L upload_img2_L2"
+							id="label_img2" />
+						{% else %}
+						<img src="{{ tourImage.image2.url }}" class="upload_img1_L upload_img2_L2"
+						id="label_img2"  />
+						{% endif %}
+						<input type="file" accept='image/*' name="image2" id="upload_img2" class="form-control spimg" />
+
+						{% if imglist2 == '0' %}
+						<img src="" class="upload_img1_L upload_img3_L3"
+							id="label_img3" />
+						{%else%}
+						<img src="{{ tourImage.image3.url }}" class="upload_img1_L upload_img3_L3"
 						id="label_img3" />
-						<input type="file" accept='image/*' name="image3" id="upload_img3" class="form-control spimg"/>
+						{%endif%}
+						<input type="file" accept='image/*' name="image3" id="upload_img3" class="form-control spimg" />
 
-						<img src="{% static 'travelagency_img/calendar.png' %}" class="upload_img1_L upload_img4_L4"
+						{% if imglist3 == '0' %}
+						<img src="" class="upload_img1_L upload_img4_L4"
+							id="label_img4" />
+						{%else%}
+						<img src="{{ tourImage.image4.url }}" class="upload_img1_L upload_img4_L4"
 						id="label_img4" />
-						<input type="file" accept='image/*' name="image4" id="upload_img4" class="form-control spimg"/>
-						
-						<img src="{% static 'travelagency_img/calendar.png' %}" class="upload_img1_L upload_img5_L5"
+						{%endif%}
+						<input type="file" accept='image/*' name="image4" id="upload_img4" class="form-control spimg" />
+
+						{% if imglist4 == '0' %}
+						<img src="" class="upload_img1_L upload_img5_L5"
+							id="label_img5" />
+						{%else%}
+						<img src="{{ tourImage.image5.url }}" class="upload_img1_L upload_img5_L5"
 						id="label_img5" />
-						<input type="file" accept='image/*' name="image5" id="upload_img5" class="form-control spimg"/>
-						
-						<img src="{% static 'travelagency_img/calendar.png' %}" class="upload_img1_L upload_img6_L6"
+						{%endif%}
+						<input type="file" accept='image/*' name="image5" id="upload_img5" class="form-control spimg" />
+
+						{% if imglist5 == '0' %}
+						<img src="" class="upload_img1_L upload_img6_L6"
+							id="label_img6" />
+						{%else%}
+						<img src="{{ tourImage.image6.url }}" class="upload_img1_L upload_img6_L6"
 						id="label_img6" />
-						<input type="file" accept='image/*' name="image6" id="upload_img6" class="form-control spimg"/>
-					
+						{%endif%}
+						<input type="file" accept='image/*' name="image6" id="upload_img6" class="form-control spimg" />
+
 						<p class="timgUpdate"></p>
 					</div>
 				</div>
@@ -675,16 +748,16 @@
 			<div class="col-md-6">
 				<label>Tour Inclusive :</label>
 				<div class="form-group">
-					<textarea class="form-control" name="inclusive"
-						rows="5" id="comment" readonly>"{{Tour.inclusive}}"</textarea>
+					<textarea class="form-control" name="inclusive" rows="5" id="comment"
+						readonly>Enter the Text</textarea>
 				</div>
 			</div>
 
 			<div class="col-md-6">
 				<label>Tour Exclusive :</label>
 				<div class="form-group">
-					<textarea class="form-control" name="exclusive"
-						rows="5" id="comment" readonly>"{{Tour.exclusive}}"</textarea>
+					<textarea class="form-control" name="exclusive" rows="5" id="comment"
+						readonly>Enter the Text</textarea>
 				</div>
 			</div>
 			<!-- </div> -->
@@ -693,14 +766,14 @@
 				<label>Special Highlights :</label>
 				<div class="form-group">
 					<textarea class="form-control" name="highlight" minlength="20" placeholder="Enter Text" rows="5"
-						id="comment" readonly>"{{Tour.highlight}}"</textarea>
+						id="comment" readonly>Enter the Text</textarea>
 				</div>
 			</div>
 			<div class="col-md-6">
 				<label>Overview :</label>
 				<div class="form-group">
-					<textarea class="form-control" name="overview"  minlength="20" placeholder="Enter Text" rows="5"
-						id="comment" readonly>"{{Tour.overview}}"</textarea>
+					<textarea class="form-control" name="overview" minlength="20" placeholder="Enter Text" rows="5"
+						id="comment" readonly>Enter the Text</textarea>
 				</div>
 			</div>
 			<!-- </div> -->
@@ -709,10 +782,9 @@
 		<div id="cards">
 		</div>
 		<div id="errormsgbg">
-			<div id="errormsg" 
-				onclick="removeValidator();">
+			<div id="errormsg" onclick="removeValidator();">
 			</div>
-		</div> 
+		</div>
 		<span class="submitbtn"><button class="disable-click" type="sbumit">Submit</button></span>
 
 	</form>
@@ -726,12 +798,12 @@
 	integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
 
 <script type="text/javascript">
-    function enableediting(){
-        $('input').removeAttr('readonly');
-		$('input').attr('required','required');
+	function enableediting() {
+		$('input').removeAttr('readonly');
+		$('input').attr('required', 'required');
 		$('input').removeClass('disable-click');
 		$('#txtF').removeAttr('required');
-		$('#txtF').attr('readonly','true');
+		$('#txtF').attr('readonly', 'true');
 		$('#txtF').addClass('disable-click');
 		$('textarea').removeAttr('readonly');
 		$('button').removeClass('disable-click');
@@ -741,76 +813,101 @@
 		$('#txtT').removeClass('cursor-none');
 		$('#cancelllimit').removeClass('cursor-none');
 		$('#bookinglimit').removeClass('cursor-none');
-		$('.spimg').attr('required',false);
-		$('#spoffer').attr('readonly',false);
-		$('#upload_img').attr('readonly',false);
-		$('#tourtype').attr('readonly',false);
-		$('#timgnum').attr('readonly',false);
-    }
+		$('.spimg').attr('required', false);
+		$('#spoffer').attr('readonly', false);
+		$('#upload_img').attr('readonly', false);
+		$('#tourtype').attr('readonly', false);
+		$('#timgnum').attr('readonly', false);
+	}
+	document.querySelectorAll('.spimg').forEach(function (el) {
+		el.addEventListener('change', function () {
+			readURL(this);
+		});
+	})
+	function readURL(input) {
+		if (input.files && input.files[0]) {
+			var reader = new FileReader();
+			reader.onload = function (e) {
+				// console.log(input,input.id);
+				var imgid = '#label_img' + input.id[10];
+				$(imgid).attr('src', e.target.result);
+			}
+			reader.readAsDataURL(input.files[0]);
+		}
+	}
 	$(function () {
-		var mindate="{{Tour.startDate}}";
-		mindate=new Date(mindate);
-		var today=new Date();
+		var mindate = "{{Tour.startDate}}";
+		mindate = new Date(mindate);
+		var today = new Date();
 		var tomorrowReal = new Date(today.getTime() + (24 * 60 * 60 * 1000));
 		var tomorrow = new Date(mindate.getTime() + (24 * 60 * 60 * 1000));
 		var yesterday = new Date(mindate.getTime() - (24 * 60 * 60 * 1000));
+
+		$('#txtF').datepicker({
+			dateFormat: 'dd/mm/yy'
+		});
 		$('#txtT').datepicker({
 			showAnim: 'drop',
 			numberOfMonths: 1,
-			dateFormat: 'mm/dd/yy',
+			dateFormat: 'dd/mm/yy',
 
 			// mindate -> comes from backend
 
-			minDate:tomorrow
+			minDate: tomorrow
 		});
 		$('#bookinglimit').datepicker({
-			minDate:tomorrowReal,
-			maxDate:yesterday,
-			showAnim: 'drop',
-			numberOfMonths: 1,
-			dateFormat: 'mm/dd/yy'
-		});
-		$('#cancelllimit').datepicker({
-			minDate:tomorrowReal,
+			minDate: tomorrowReal,
 			maxDate: yesterday,
 			showAnim: 'drop',
 			numberOfMonths: 1,
-			dateFormat: 'mm/dd/yy'
-		});		
+			dateFormat: 'dd/mm/yy'
+		});
+		$('#cancelllimit').datepicker({
+			minDate: tomorrowReal,
+			maxDate: yesterday,
+			showAnim: 'drop',
+			numberOfMonths: 1,
+			dateFormat: 'dd/mm/yy'
+		});
 	});
-	$(function (){
-		var ttype="{{Tour.tour_type}}";
+	$(function () {
+		var ttype = "{{Tour.tour_type}}";
 		//console.log(ttype)
-		var ttype1=document.getElementById('tourtype');
-		ttype1.value=ttype;
+		var ttype1 = document.getElementById('tourtype');
+		ttype1.value = ttype;
 
-		var sd="{{Tour.startDate|date:'c'}}";
+		var sd = "{{Tour.startDate|date:'c'}}";
+		console.log(sd);
+
 
 		sd = new Date(sd);
 
-		var ed="{{Tour.endDate|date:'c'}}";
+		var ed = "{{Tour.endDate|date:'c'}}";
 
 		ed = new Date(ed);
 		var d = ed.getTime() - sd.getTime();
 		var x = d / (1000 * 3600 * 24) + 1;
 		// console.log(sd,ed,x);
-		let ggg=x;
+		let ggg = x;
 
-		var temp = "{{desc}}";
-		
-		var d2 = temp.split('@@@@')
-		var ui=[]
-        for(let j=0;j<ggg;j++){
-			
-			x= d2[j].split('$$$$');
+		var temp = "{{desc | linebreaksbr}}";
+		console.log(temp);
+		var t = temp.replace(/<br\s*\/?>/gi, '')
+		//var t=temp.replace('<br>',' ');
+		console.log(t);
+		var d2 = t.split('@@@@');
+		var ui = [];
+		for (let j = 0; j < ggg; j++) {
+
+			x = d2[j].split('$$$$');
 			ui.push(x[0]);
 			ui.push(x[1]);
 		}
-        
+
 
 		//temp=temp.split(', ');
-		let ii=0;
-		for (let i = 0; i < ggg*2; i=i+2,ii=ii+1) {
+		let ii = 0;
+		for (let i = 0; i < ggg * 2; i = i + 2, ii = ii + 1) {
 			console.log(ii);
 			var content = document.createElement("div");
 			content.classList.add('card');
@@ -845,12 +942,12 @@
 			// cb12i.placeholder = 'Title ' + (i + 1);
 			cb12i.readOnly = "readonly";
 			cb12i.name = 'dayTitle' + (ii + 1);
-			
 
-			
-			var day ='dayTitle' + (i+1);
+
+
+			var day = 'dayTitle' + (i + 1);
 			//console.log(desc[day],day,typeof(desc[day]));
-			cb12i.value=ui[i];
+			cb12i.value = ui[i];
 
 			cb12.appendChild(cb12i);
 
@@ -879,8 +976,8 @@
 
 			var describ = 'dayDescription' + (i + 1);
 			// console.log(desc[describ]);
-			cbt.value=ui[i+1];
-		
+			cbt.value = ui[i + 1];
+
 
 			cb2.appendChild(cbt);
 
@@ -897,14 +994,14 @@
 
 	function fun() {
 		//console.log('start');
-		let ayan=document.querySelectorAll('.card');
-		let ayanln=ayan.length;
+		let ayan = document.querySelectorAll('.card');
+		let ayanln = ayan.length;
 
 		// let gggg = 0;
 
 		// sd is non editable starting date, comes from backend
 		// var sd = '09/22/2020';
-		var sd="{{Tour.startDate}}";
+		var sd = "{{Tour.startDate}}";
 		// console.log(sd);
 		sd = new Date(sd);
 		var ed = document.getElementById('txtT').value;
@@ -912,11 +1009,8 @@
 		ed = new Date(ed);
 		var d = ed.getTime() - sd.getTime();
 		var x = d / (1000 * 3600 * 24) + 1;
-		// console.log($('#txf'), $('#txtT'));
-		// console.log(sd, ed, d, x);
-		
-		if(x>ayanln){
-			for (let i = 0; i <(x-ayanln); i++) {
+		if (x > ayanln) {
+			for (let i = 0; i < (x - ayanln); i++) {
 				// console.log('hi');
 				var content = document.createElement("div");
 				content.classList.add('card');
@@ -987,11 +1081,11 @@
 				cards.appendChild(content);
 			}
 		}
-		
-		else if(x<ayanln){
-			var deletecards=document.querySelectorAll('.card');
-			var cards=document.getElementById('cards');
-			for(let i=ayanln;i>x;i--){
+
+		else if (x < ayanln) {
+			var deletecards = document.querySelectorAll('.card');
+			var cards = document.getElementById('cards');
+			for (let i = ayanln; i > x; i--) {
 				// console.log(ayanln,x,deletecards)
 				// console.log('hi',deletecards[i]);
 				// deletecards[i].innerHTML='';
@@ -1013,178 +1107,194 @@
 			dropzone.style.backgroundColor = 'white';
 		}
 
-		var tourimgnum=6;
+		var tourimgnum = 6;
 		var optionsAsString = "";
-		for(var i = 0; i < tourimgnum; i++) {
-			optionsAsString += "<option value='"+(i+1)+"'>Image " + (i+1) + "</option>";
+		for (var i = 0; i < tourimgnum; i++) {
+			optionsAsString += "<option value='" + (i + 1) + "'>Image " + (i + 1) + "</option>";
 		}
 		$("select[name='timgnum']").append($(optionsAsString));
 
-		var timgUpdate=document.querySelector('.timgUpdate');
-		var dropzoneImg1=document.querySelector('.upload_img1_L1');
+		var timgUpdate = document.querySelector('.timgUpdate');
+		var dropzoneImg1 = document.querySelector('.upload_img1_L1');
 		$('#upload_img1').on({
-			'dragover':function(){
-				dropzoneImg1.style.borderColor='red';
+			'dragover': function () {
+				dropzoneImg1.style.borderColor = 'red';
 			},
-			'change':function(){
-				dropzoneImg1.style.borderColor='green';
-				timgUpdate.innerHTML='*Image 1 has been updated';
+			'change': function () {
+				dropzoneImg1.style.borderColor = 'green';
+				timgUpdate.innerHTML = '*Image 1 has been updated';
 			}
 		})
-		.on('dragleave dragexit', function() {
-			dropzoneImg1.style.borderColor='black';
-		});
-		var dropzoneImg2=document.querySelector('.upload_img2_L2');
+			.on('dragleave dragexit', function () {
+				dropzoneImg1.style.borderColor = 'black';
+			});
+		var dropzoneImg2 = document.querySelector('.upload_img2_L2');
 		$('#upload_img2').on({
-			'dragover':function(){
-				dropzoneImg2.style.borderColor='red';
+			'dragover': function () {
+				dropzoneImg2.style.borderColor = 'red';
 			},
-			'change':function(){
-				dropzoneImg2.style.borderColor='green';
-				timgUpdate.innerHTML='*Image 2 has been updated';
+			'change': function () {
+				dropzoneImg2.style.borderColor = 'green';
+				timgUpdate.innerHTML = '*Image 2 has been updated';
 			}
 		})
-		.on('dragleave dragexit', function() {
-			dropzoneImg2.style.borderColor='black';
-		});
-		var dropzoneImg3=document.querySelector('.upload_img3_L3');
+			.on('dragleave dragexit', function () {
+				dropzoneImg2.style.borderColor = 'black';
+			});
+		var dropzoneImg3 = document.querySelector('.upload_img3_L3');
 		$('#upload_img3').on({
-			'dragover':function(){
-				dropzoneImg3.style.borderColor='red';
+			'dragover': function () {
+				dropzoneImg3.style.borderColor = 'red';
 			},
-			'change':function(){
-				dropzoneImg3.style.borderColor='green';
-				timgUpdate.innerHTML='*Image 3 has been updated';
+			'change': function () {
+				dropzoneImg3.style.borderColor = 'green';
+				timgUpdate.innerHTML = '*Image 3 has been updated';
 			}
 		})
-		.on('dragleave dragexit', function() {
-			dropzoneImg3.style.borderColor='black';
-		});
-		var dropzoneImg4=document.querySelector('.upload_img4_L4');
+			.on('dragleave dragexit', function () {
+				dropzoneImg3.style.borderColor = 'black';
+			});
+		var dropzoneImg4 = document.querySelector('.upload_img4_L4');
 		$('#upload_img4').on({
-			'dragover':function(){
-				dropzoneImg4.style.borderColor='red';
+			'dragover': function () {
+				dropzoneImg4.style.borderColor = 'red';
 			},
-			'change':function(){
-				dropzoneImg4.style.borderColor='green';
-				timgUpdate.innerHTML='*Image 4 has been updated';
+			'change': function () {
+				dropzoneImg4.style.borderColor = 'green';
+				timgUpdate.innerHTML = '*Image 4 has been updated';
 			}
 		})
-		.on('dragleave dragexit', function() {
-			dropzoneImg4.style.borderColor='black';
-		});
-		var dropzoneImg5=document.querySelector('.upload_img5_L5');
+			.on('dragleave dragexit', function () {
+				dropzoneImg4.style.borderColor = 'black';
+			});
+		var dropzoneImg5 = document.querySelector('.upload_img5_L5');
 		$('#upload_img5').on({
-			'dragover':function(){
-				dropzoneImg5.style.borderColor='red';
+			'dragover': function () {
+				dropzoneImg5.style.borderColor = 'red';
 			},
-			'change':function(){
-				dropzoneImg5.style.borderColor='green';
-				timgUpdate.innerHTML='*Image 5 has been updated';
+			'change': function () {
+				dropzoneImg5.style.borderColor = 'green';
+				timgUpdate.innerHTML = '*Image 5 has been updated';
 			}
 		})
-		.on('dragleave dragexit', function() {
-			dropzoneImg5.style.borderColor='black';
-		});
-		var dropzoneImg6=document.querySelector('.upload_img6_L6');
+			.on('dragleave dragexit', function () {
+				dropzoneImg5.style.borderColor = 'black';
+			});
+		var dropzoneImg6 = document.querySelector('.upload_img6_L6');
 		$('#upload_img6').on({
-			'dragover':function(){
-				dropzoneImg6.style.borderColor='red';
+			'dragover': function () {
+				dropzoneImg6.style.borderColor = 'red';
 			},
-			'change':function(){
-				dropzoneImg6.style.borderColor='green';
-				timgUpdate.innerHTML='*Image 6 has been updated';
+			'change': function () {
+				dropzoneImg6.style.borderColor = 'green';
+				timgUpdate.innerHTML = '*Image 6 has been updated';
 			}
 		})
-		.on('dragleave dragexit', function() {
-			dropzoneImg6.style.borderColor='black';
-		});
+			.on('dragleave dragexit', function () {
+				dropzoneImg6.style.borderColor = 'black';
+			});
+		var overview ="{{Tour.overview | linebreaksbr}}".replace('"','');
+		console.log(overview)
+			$('textarea[name=overview]').val(overview);
+		var highlights ="{{Tour.highlight | linebreaksbr}}".replace('"','');
+			$('textarea[name=highlight]').val(highlights);
+		var exclusive ="{{Tour.exclusive | linebreaksbr}}".replace('"','');
+			$('textarea[name=exclusive]').val(exclusive);
+		var inclusive ="{{Tour.inclusive | linebreaksbr}}".replace('"','');
+			$('textarea[name=inclusive]').val(inclusive);
+
 	});
-
-	document.querySelectorAll('.spimg').forEach(function(el){
-		el.addEventListener('change',function(){
-			readURL(this);
-		});
-	})
-	function readURL(input) {
-		if (input.files && input.files[0]) {
-			var reader = new FileReader();
-			reader.onload = function(e) {
-				// console.log(input,input.id);
-				var imgid='#label_img'+input.id[10];
-				$(imgid).attr('src', e.target.result);
-			}
-			reader.readAsDataURL(input.files[0]);
-		}
-	}
-
-	function timgChange(obj){
-		var arrowonimg=document.querySelector('.arrowonimg');
+	function timgChange(obj) {
+		var arrowonimg = document.querySelector('.arrowonimg');
 		arrowonimg.classList.add('d-flex');
-		var num=parseInt(obj.value);
-		var upload_img1_L=document.querySelectorAll('.upload_img1_L');
-		var spimg=document.querySelectorAll('.spimg');
-		upload_img1_L.forEach(function(el){
+		var num = parseInt(obj.value);
+		var upload_img1_L = document.querySelectorAll('.upload_img1_L');
+		var spimg = document.querySelectorAll('.spimg');
+		upload_img1_L.forEach(function (el) {
 			el.classList.remove('d-flex');
 		});
-		spimg.forEach(function(el){
+		spimg.forEach(function (el) {
 			el.classList.remove('d-flex');
 		})
-		var label='label_img'+num;
-		var imgfile='upload_img'+num;
-		var x=document.getElementById(imgfile);
-		var y=document.getElementById(label);
+		var label = 'label_img' + num;
+		var imgfile = 'upload_img' + num;
+		var x = document.getElementById(imgfile);
+		var y = document.getElementById(label);
 		x.classList.add('d-flex');
 		y.classList.add('d-flex');
 	}
 
-	$(function(){
-		let spo=document.getElementById('spod');
-		spo.style.visibility='hidden';
+	$(function () {
+		let spo = document.getElementById('spod');
+		spo.style.visibility = 'hidden';
 	})
-	function setsp(){
-		let spo=document.getElementById('spoffer');
-		let spod=document.getElementById('spod');
-		let spofferdetails=document.getElementById('spofferdetails');
-		if(spo.value!=='yes'){
-			spod.style.visibility='hidden';
-            $('#spofferdetails').removeAttr('required');
+	function setsp() {
+		let spo = document.getElementById('spoffer');
+		let spod = document.getElementById('spod');
+		let spofferdetails = document.getElementById('spofferdetails');
+		if (spo.value !== 'yes') {
+			spod.style.visibility = 'hidden';
+			$('#spofferdetails').removeAttr('required');
 		}
-		else{
-			spod.style.visibility='visible';
-			$('#spofferdetails').attr('required','required');
+		else {
+			spod.style.visibility = 'visible';
+			$('#spofferdetails').attr('required', 'required');
 		}
 	}
 
-	function validator(){
-		let msg=[];
-		let ayan=document.querySelectorAll('.card');
+	function validator() {
+		let msg = [];
+		let ayan = document.querySelectorAll('.card');
 		//console.log(ayan,ayan.length);
-		if(ayan.length<1){
+		if (ayan.length < 1) {
 			msg.push('Something Went Wrong, Please Reload and Try Again. \n In Case of Dificulty Contact Us.');
 		}
 		// msg.push('hello');
-		if(msg.length>0){
-            errormsg.innerHTML=msg.join('\n');
-            // errormsgbg.style.width="500px";
-            errormsg.style.padding="8px";
-            errormsgbg.style.borderRadius="5px";
-            errormsgbg.style.backgroundColor='#FBD0F5';
-            errormsg.style.color='red';
-            errormsgbg.style.margin='10px';
-            // errormsg.style.fontWeight="bold";
-            return false;
+		if (msg.length > 0) {
+			errormsg.innerHTML = msg.join('\n');
+			// errormsgbg.style.width="500px";
+			errormsg.style.padding = "8px";
+			errormsgbg.style.borderRadius = "5px";
+			errormsgbg.style.backgroundColor = '#FBD0F5';
+			errormsg.style.color = 'red';
+			errormsgbg.style.margin = '10px';
+			// errormsg.style.fontWeight="bold";
+			return false;
+		}
+		var inclusive=$('textarea[name=inclusive]').val();
+		inclusive=inclusive.replace(/(\r\n|\n|\r)/gm, "");
+		$('textarea[name=inclusive]').val(inclusive);
+
+		var exclusive=$('textarea[name=exclusive]').val();
+		exclusive=exclusive.replace(/(\r\n|\n|\r)/gm, "");
+		$('textarea[name=exclusive]').val(exclusive);
+
+		var highlight=$('textarea[name=highlight]').val();
+		highlight=highlight.replace(/(\r\n|\n|\r)/gm, "");
+		$('textarea[name=highlight]').val(highlight);
+
+		var overview=$('textarea[name=overview]').val();
+		overview=overview.replace(/(\r\n|\n|\r)/gm, "");
+		$('textarea[name=overview]').val(overview);
+		for(let i=1;i<ayan.length+1;i++){
+			var name='dayDescription'+i;
+			var XXX='textarea[name='+name+']';
+			var m=$(XXX).val();
+			// console.log(m);
+			m=m.replace(/(\r\n|\n|\r)/gm, "");
+			$(XXX).val(m);
+			console.log($(XXX).val());
 		}
 		return true;
 	}
-	function removeValidator(){
-		
-        var errormsg=document.getElementById('errormsg');
-        
-        var errormsgbg=document.getElementById('errormsgbg');
-        errormsg.innerHTML = null;
-        errormsg.style.padding='0px';
-        errormsgbg.style.margin='0px';
+	function removeValidator() {
+
+		var errormsg = document.getElementById('errormsg');
+
+		var errormsgbg = document.getElementById('errormsgbg');
+		errormsg.innerHTML = null;
+		errormsg.style.padding = '0px';
+		errormsgbg.style.margin = '0px';
 	}
 </script>
 

@@ -159,8 +159,8 @@ def editTours(request,agentId,tourId):
                     if request.method == 'POST':
                         sdate = tourDate(request.POST.get('sdate'))
                         if request.POST.get('edate') is not None:
-                            print("\n\nEdate",request.POST.get('edate'),"\n\n")
-                            if tour.endDate != request.POST.get('edate'):
+                            print("\n\nEdate",tourDate(request.POST.get('edate')),"\n\n")
+                            if tour.endDate != tourDate(request.POST.get('edate')):
                                 edate = tourDate(request.POST.get('edate'))
                                 print("\n\n",edate,"\n\n")
                         slocation = request.POST.get('slocation')
@@ -178,7 +178,9 @@ def editTours(request,agentId,tourId):
                             duration = tourDuration(request.POST.get('sdate'),request.POST.get('edate'))+1
                         else:
                             duration = tourDuration(request.POST.get('sdate'),request.POST.get('edate'))+1
-
+                        
+                        last_booking_date = tourDate(request.POST.get('bookinglimit'))
+                        last_cancel_date = tourDate(request.POST.get('cancelllimit'))
                         description_dct = ""
                         for i in range(duration):
                             description_dct=description_dct+str(request.POST.get('dayTitle{}'.format(i+1))).strip()+"$$$$"+str(request.POST.get('dayDescription{}'.format(i+1))).strip()+"@@@@"
@@ -240,14 +242,40 @@ def editTours(request,agentId,tourId):
                     else:
                         
                         desc = tour.description
+                        print(desc)
                         tourImage=TourImage.objects.get(tour=tour)
-
+                        immglist=[]
+                        try:
+                            immglist.append(tourImage.image1.url)
+                        except:
+                            immglist.append('0')
+                        try:
+                            immglist.append(tourImage.image2.url)
+                        except:
+                            immglist.append('0')
+                        try:
+                            immglist.append(tourImage.image3.url)
+                        except:
+                            immglist.append('0')
+                        try:
+                            immglist.append(tourImage.image4.url)
+                        except:
+                            immglist.append('0')
+                        try:
+                            immglist.append(tourImage.image5.url)
+                        except:
+                            immglist.append('0')
+                        try:
+                            immglist.append(tourImage.image6.url)
+                        except:
+                            immglist.append('0')
 
                         print("\n\n",desc)
                         context = {
                             'Tour':tour,
                             'desc': desc,
                             'tourImage':tourImage,
+                            'imglist0':immglist[0],'imglist1':immglist[1],'imglist2':immglist[2],'imglist3':immglist[3],'imglist4':immglist[4],'imglist5':immglist[5],
                         }
                         
                         return render(request,'travelagency/edit_tours.html',context=context)
