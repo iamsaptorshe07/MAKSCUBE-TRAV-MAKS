@@ -529,7 +529,7 @@
 		<span class="Dashboard">DASHBOARD</span>
 		<span class="title">
 			<!-- <label>Title : </label> -->
-			<input type="text" name="ttitle" class="form-control" placeholder="Title *"
+			<input type="text" name="ttitle" class="form-control" placeholder="Title *" minlength="10" maxlength="300"
 				style="height: 50px;left: 0;width: 100%;" required>
 		</span>
 		<div class="info">
@@ -537,7 +537,7 @@
 				<!-- <div class="block"><img src="{% static 'travelagency_img/calendar.png' %}"></div> -->
 				<label>Enter Date :</label>
 				<li>Startind Date<input id="txtF" name="sdate" class="form-control text-center"
-						placeholder="mm/dd/yyyy" required onchange="fun();">
+						placeholder="dd/mm/yyyy" required onchange="fun();">
 				</li>
 				<br>
 				<li>Ending Date<input id="txtT" name="edate" class="form-control text-center cursor-none"
@@ -735,23 +735,28 @@
 			numberOfMonths: 1,
 			showAnim: 'drop',
 			minDate: tomorrowReal,
-			dateFormat: 'mm/dd/yy',
+			dateFormat: 'dd/mm/yy',
 			onSelect: function (sd) {
+				var d1=sd.substr(0,2);
+				var d2=sd.substr(3,2);
+				var d3=sd.substr(6,4);
+				sd=d2+'/'+d1+'/'+d3;
 				var k = new Date(sd);
+
 				console.log(k,k.getTime());
 				var tomorrow = new Date(k.getTime() + (24 * 60 * 60 * 1000));
 				var yesterday = new Date(k.getTime() - (24 * 60 * 60 * 1000));
 				$('#txtT').datepicker("option", "minDate", tomorrow);
 				$('#txtT').attr('required','required');
-				$('#txtT').attr('placeholder','mm/dd/yyyy');
+				$('#txtT').attr('placeholder','dd/mm/yyyy');
 				$('#txtT').removeClass('cursor-none');
 				$('#bookinglimit').datepicker("option", "maxDate", yesterday);
 				$('#cancelllimit').datepicker("option", "maxDate", yesterday);
 				$('#bookinglimit').removeClass('cursor-none');
-				$('#bookinglimit').attr('placeholder','mm/dd/yyyy');
+				$('#bookinglimit').attr('placeholder','dd/mm/yyyy');
 				$('#bookinglimit').attr('required','required');
 				$('#cancelllimit').removeClass('cursor-none');
-				$('#cancelllimit').attr('placeholder','mm/dd/yyyy');
+				$('#cancelllimit').attr('placeholder','dd/mm/yyyy');
 				$('#cancelllimit').attr('required','required');
 				fun();
 			}
@@ -759,8 +764,13 @@
 		$('#txtT').datepicker({
 			showAnim: 'drop',
 			numberOfMonths: 1,
-			dateFormat: 'mm/dd/yy',
-			onSelect: function (selectdate) {
+			dateFormat: 'dd/mm/yy',
+			onSelect: function (sd) {
+				var d1=sd.substr(0,2);
+				var d2=sd.substr(3,2);
+				var d3=sd.substr(6,4);
+				var selectdate=d2+'/'+d1+'/'+d3;
+				console.log(selectdate);
 				selectdate=new Date(selectdate);
 				selectdate=new Date(selectdate.getTime() - (24 * 60 * 60 * 1000));
 				$('#txtF').datepicker("option", "maxDate", selectdate);
@@ -771,22 +781,32 @@
 			minDate: mindate,
 			showAnim: 'drop',
 			numberOfMonths: 1,
-			dateFormat: 'mm/dd/yy'
+			dateFormat: 'dd/mm/yy'
 		});
 		$('#cancelllimit').datepicker({
 			minDate: mindate,
 			showAnim: 'drop',
 			numberOfMonths: 1,
-			dateFormat: 'mm/dd/yy'
+			dateFormat: 'dd/mm/yy'
 		});		
 	});
 
 	function fun() {
 		let gggg = 0;
 		var sd = document.getElementById('txtF').value;
+		
+		var d1=sd.substr(0,2);
+		var d2=sd.substr(3,2);
+		var d3=sd.substr(6,4);
+		sd=d2+'/'+d1+'/'+d3;
 		//console.log(sd);
 		sd = new Date(sd);
 		var ed = document.getElementById('txtT').value;
+		
+		var d1=ed.substr(0,2);
+		var d2=ed.substr(3,2);
+		var d3=ed.substr(6,4);
+		ed=d2+'/'+d1+'/'+d3;
 		//console.log(ed);
 		ed = new Date(ed);
 		var d = ed.getTime() - sd.getTime();
@@ -831,6 +851,7 @@
 			cb12i.classList.add('form-control');
 			cb12i.placeholder = 'Title ' + (i + 1);
 			cb12i.name = 'dayTitle' + (i + 1);
+			cb12i.maxLength='100';
 
 			cb12.appendChild(cb12i);
 
@@ -1039,6 +1060,31 @@
 			errormsgbg.style.margin='10px';
 			// errormsg.style.fontWeight="bold";
 			return false;
+		}
+		 
+		var inclusive=$('textarea[name=inclusive]').val();
+		inclusive=inclusive.replace(/(\r\n|\n|\r)/gm, "");
+		$('textarea[name=inclusive]').val(inclusive);
+
+		var exclusive=$('textarea[name=exclusive]').val();
+		exclusive=exclusive.replace(/(\r\n|\n|\r)/gm, "");
+		$('textarea[name=exclusive]').val(exclusive);
+
+		var highlight=$('textarea[name=highlight]').val();
+		highlight=highlight.replace(/(\r\n|\n|\r)/gm, "");
+		$('textarea[name=highlight]').val(highlight);
+
+		var overview=$('textarea[name=overview]').val();
+		overview=overview.replace(/(\r\n|\n|\r)/gm, "");
+		$('textarea[name=overview]').val(overview);
+		for(let i=1;i<ayan.length+1;i++){
+			var name='dayDescription'+i;
+			var XXX='textarea[name='+name+']';
+			var m=$(XXX).val();
+			// console.log(m);
+			m=m.replace(/(\r\n|\n|\r)/gm, "");
+			$(XXX).val(m);
+			console.log($(XXX).val());
 		}
 		return true;
 	}

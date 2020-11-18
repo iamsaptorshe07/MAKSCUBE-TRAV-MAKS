@@ -336,13 +336,13 @@ display:none;
                             <span class="bl">Tour Inclusive</span>
                         </h5>
                         <p>
-                            {{Tour.inclusive}}
+                            {{Tour.inclusive | linebreaksbr}}
                         </p>
                         <h5>
                             <span class="bl">Tour Exclusive</span>
                         </h5>
                         <p>
-                            {{Tour.exclusive}}
+                            {{Tour.exclusive | linebreaksbr}}
                         </p>
                     </div>
                     <div class="tab-pane fade" id="nav-near" role="tabpanel" aria-labelledby="nav-near-tab">
@@ -378,7 +378,7 @@ display:none;
                     </div>
                     <div class="tab-pane fade" id="nav-highlight" role="tabpanel" aria-labelledby="nav-highlight-tab">
                         <p>
-                            {{Tour.highlight}}
+                            {{Tour.highlight | linebreaksbr}}
                         </p>
                     </div>
                 </div>
@@ -454,15 +454,29 @@ display:none;
 <script type="text/javascript">
     $(function(){
         var sd="{{Tour.startDate|date:'c'}}";
+        console.log(sd)
+        var d1=sd.substr(0,4);
+				var d2=sd.substr(5,2);
+				var d3=sd.substr(8,2);
+				sd=d1+'/'+d2+'/'+d3;
 		sd = new Date(sd);
+        console.log(d1,d2,d3,sd)
 		var ed="{{Tour.endDate|date:'c'}}";
+        console.log(ed)
+        var d11=ed.substr(0,4);
+				var d12=ed.substr(5,2);
+				var d13=ed.substr(8,2);
+				ed=d11+'/'+d12+'/'+d13;
 		ed = new Date(ed);
+        console.log(ed)
 		var d = ed.getTime() - sd.getTime();
         var x = d / (1000 * 3600 * 24) + 1;
         var ggg=x;
         
-        var temp = "{{description}}";
-    	
+        var temp = "{{description | linebreaksbr}}";
+    	console.log(temp)
+        var tem=temp.replace(/<br\s*\/?>/gi,'')
+        var tem=temp.replace('<br>','');
 		var d2 = temp.split('@@@@')
 		var ui=[]
         for(let j=0;j<ggg;j++){
@@ -475,15 +489,19 @@ display:none;
         let ii=0;
         for(let i=0;i<ggg*2;i+=2,ii+=1){
             var h6=document.createElement('h5');
+            var h5=document.createElement('h5');
+            var span=document.createElement('span');
             h6.classList.add('bl');
             var days='Day '+(ii+1)+' : '+ui[i];
             var node3=document.createTextNode(days);
             h6.appendChild(node3);
+            span.appendChild(h5);
+            h6.appendChild(node3);
             var br=document.createElement('br');
             h6.appendChild(br);
+            h6.appendChild(span);
 
             var p=document.createElement('p');
-            p.style.wordBreak='break-word';
             var node2=document.createTextNode(ui[i+1]);
             p.appendChild(node2);
 
