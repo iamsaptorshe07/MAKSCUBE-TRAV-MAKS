@@ -45,6 +45,14 @@
         font-size: 25px;
         margin-bottom: 10px;
     }
+	
+	.btn-cont {
+        color: #ffffff !important;
+        background: linear-gradient(to bottom, #11998e, #38ef7d);
+        border-color: #0ec7de !important;
+        font-size: 25px;
+        margin-bottom: 20px;
+    }
 
     .bl {
         color: #009dd7 !important;
@@ -100,6 +108,14 @@
     margin: 0 0 0 -20%;
 	transform:translateX(80px);
   }
+	.btn-cont{
+	position:fixed!important;
+    z-index:1;
+   bottom: 0;
+  right:80px;
+    margin: 0 0 0 -20%;
+	transform:translateX(60px);
+	}
 }
 
 @media screen and (max-width: 900px)  {
@@ -113,6 +129,14 @@
     right:80px;
     margin: 0 0 0 -20%;
 	transform:translateX(80px);
+  }
+  .btn-cont{
+  position:fixed !important;
+   z-index:1;
+   bottom: 54px;
+    right:60px;
+    margin: 0 0 0 -20%;
+	transform:translateX(60px);
   }
 }
     .fa-globe {
@@ -381,9 +405,6 @@ display:none;
                             {{Tour.highlight | linebreaksbr}}
                         </p>
                     </div>
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal1">
-                        Have Any Query?
-                    </button>
                 </div>
 
             </div>
@@ -400,6 +421,61 @@ display:none;
                     <button type="button" class="btn btn-prime btn-block"><i class="fa fa-plane fa-lg"></i>&nbsp;BOOK
                         NOW</button>
                 </a>
+				
+				<a href="#" data-toggle="modal" data-target="#contactModalCenter">
+                    <button type="button" class="btn btn-cont btn-block"><i class="fa fa-phone fa-lg"></i>&nbsp;Contact Us</button>
+                </a>
+				
+		<!-- Modal -->
+                    <div class="modal fade" id="contactModalCenter" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header" style="border-bottom:none;">
+                                    
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <h2 class="mainh ml-3">Contact Us</h2>
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="First Name *" value="" />
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Email *" value="" />
+                </div>
+                <div class="form-group">
+                    <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="Message *"
+                        rows="3"></textarea>
+                </div>
+
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <input type="email" class="form-control" placeholder="Last Name *" value="" />
+                </div>
+                <div class="form-group">
+                    <input type="text" minlength="10" maxlength="10" name="txtEmpPhone" class="form-control"
+                        placeholder="Your Phone *" value="" />
+                </div>
+
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Travel Id *" value="" />
+                </div>
+                <button type="button" class="btn btn-success">Button</button>
+            </div>
+        </div>
+    </div>
+                                </div>
+                             
+                            </div>
+                        </div>
+                    </div>		
+				
                 <div class="popup-btn" style="display:block">
                     <a href="/tour/booktour/{{Tour.tourId}}/{{Tour.seller.userAccess.agentId}}">Book Now &nbsp;<i
                             class="fa fa-globe"></i></a>
@@ -415,63 +491,6 @@ display:none;
                 <br>
                {% endfor %}
 
-            </div>
-        </div>
-    </div>
-</div>
-<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <form class="modal-content">
-            <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel1">Have any query or doubt?</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-            </div>
-            <div class="modal-body">
-                <p>Type your query here and ask, or directly contact us filling the below form. 
-                    We will contact you with in 24 hours.
-                </p>
-                <input type="text" name="queryAsk" id="queryAsk" placeholder="What's on your mind"
-                 class="form-control" />
-            </div>
-            <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary">Ask</button>
-            </div>
-        </form>
-    </div>
-</div>
-<h2 class="mainh ml-3">Contact Us</h2>
-<div class="container-fluid" style="background: #eaf7fd; padding-top:20px;">
-    <div class="col-md-10">
-        <div class="row">
-            <div class="col-md-5">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="First Name *" value="" />
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Email *" value="" />
-                </div>
-                <div class="form-group">
-                    <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="Message *"
-                        rows="3"></textarea>
-                </div>
-
-            </div>
-            <div class="col-md-5">
-                <div class="form-group">
-                    <input type="email" class="form-control" placeholder="Last Name *" value="" />
-                </div>
-                <div class="form-group">
-                    <input type="text" minlength="10" maxlength="10" name="txtEmpPhone" class="form-control"
-                        placeholder="Your Phone *" value="" />
-                </div>
-
-                <div class="form-group">
-                    <input type="date" class="form-control" placeholder="Travel Date *" value="" />
-                </div>
-                <button type="button" class="btn btn-success">Button</button>
             </div>
         </div>
     </div>
