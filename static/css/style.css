@@ -947,41 +947,7 @@ ul{
     text-decoration: none;
     color:#fff;
 }
-/*Floating Card */
-.flt{
-    margin-top:20px;
-}
-.flt .btn{
-    border-radius:2px;
-    text-transform:uppercase;
-    font-size:12px;
-    padding:7px 20px;
-}
-.flt .card-img-block {
-    width: 91%;
-    margin: 0 auto;
-    position: relative;
-    top: -20px;
-    
-}
 
-.flt .card-img-block img{
-    border-radius:5px;
-    box-shadow:0 0 10px rgba(0,0,0,0.63);
-	
-}
-.flt h5{
-    color:#4E5E30;
-    font-weight:600;
-}
-.flt p{
-    font-size:14px;
-    font-weight:300;
-}
-.flt .btn-primary{
-    background-color:#4E5E30;
-    border-color:#4E5E30;
-}
 
 .afoot{
 	text-decoration:none; 
