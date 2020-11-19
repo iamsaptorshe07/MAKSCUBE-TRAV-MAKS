@@ -49,7 +49,7 @@ INSTALLED_APPS = [
 
     # REST API libraries
     'rest_framework',
-    'knox',
+    #'knox',
 
     # WebApp Apps
     'homeApp',
