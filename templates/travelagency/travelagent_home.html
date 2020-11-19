@@ -792,101 +792,102 @@
 	});
 
 	function fun() {
-		let gggg = 0;
+		let allCard=document.querySelectorAll('.card');
 		var sd = document.getElementById('txtF').value;
-		
 		var d1=sd.substr(0,2);
 		var d2=sd.substr(3,2);
 		var d3=sd.substr(6,4);
 		sd=d2+'/'+d1+'/'+d3;
-		//console.log(sd);
 		sd = new Date(sd);
 		var ed = document.getElementById('txtT').value;
-		
 		var d1=ed.substr(0,2);
 		var d2=ed.substr(3,2);
 		var d3=ed.substr(6,4);
 		ed=d2+'/'+d1+'/'+d3;
-		//console.log(ed);
 		ed = new Date(ed);
 		var d = ed.getTime() - sd.getTime();
 		var x = d / (1000 * 3600 * 24) + 1;
-		//console.log($('#txf'), $('#txtT'));
-		//console.log(sd, ed, d, x);
-		if (gggg == 0) {
-			$('#cards').empty();
-			gggg = 1;
+		allCardLn=allCard.length;
+		if(x>allCardLn){
+			addCard(allCardLn,x);
 		}
-		for (let i = 0; i < x; i++) {
-			// console.log('hi');
+		else if(x<allCardLn){
+			removeCard(allCardLn,x);
+		}
+	}
+	function addCard(a,b){
+		for (let i = a; i < b; i++) {
 			var content = document.createElement("div");
 			content.classList.add('card');
-			var ch = document.createElement('div');
-			ch.classList.add('card-header');
-			var cht = document.createElement('h3');
-			var nodeh = document.createTextNode('Day ' + (i + 1));
+			var cardHead = document.createElement('div');
+			cardHead.classList.add('card-header');
+			var h3 = document.createElement('h3');
+			var nodeHead = document.createTextNode('Day ' + (i + 1));
 			var y = 'Day' + (i + 1);
 			content.classList.add(y);
-			cht.appendChild(nodeh);
-			ch.appendChild(cht);
+			h3.appendChild(nodeHead);
+			cardHead.appendChild(h3);
 
-			var cb = document.createElement('div');
-			cb.classList.add('card-body');
+			var cardBody = document.createElement('div');
+			cardBody.classList.add('card-body');
 
-			var cb1 = document.createElement('div');
-			cb1.classList.add('col-md-12');
-			cb1.classList.add('title');
-			// var cb1l=document.createElement('label');
-			// var cb1ln=document.createTextNode('Title :');
+			var cardBody1 = document.createElement('div');
+			cardBody1.classList.add('col-md-12');
+			cardBody1.classList.add('title');
 
-			// cb1l.appendChild(cb1ln);
+			var cardBody1Content = document.createElement('div');
+			cardBody1Content.classList.add('form-group');
 
-			var cb12 = document.createElement('div');
-			cb12.classList.add('form-group');
+			var cardBody1ContentInput = document.createElement('input');
+			// cardBody1ContentInput.prop("required", true);
+			cardBody1ContentInput.required = 'required';
+			cardBody1ContentInput.type = 'text';
+			cardBody1ContentInput.classList.add('form-control');
+			cardBody1ContentInput.placeholder = 'Title ' + (i + 1);
+			cardBody1ContentInput.name = 'dayTitle' + (i + 1);
+			cardBody1ContentInput.maxLength='100';
 
-			var cb12i = document.createElement('input');
-			// cb12i.prop("required", true);
-			cb12i.required = 'required';
-			cb12i.type = 'text';
-			cb12i.classList.add('form-control');
-			cb12i.placeholder = 'Title ' + (i + 1);
-			cb12i.name = 'dayTitle' + (i + 1);
-			cb12i.maxLength='100';
+			cardBody1Content.appendChild(cardBody1ContentInput);
 
-			cb12.appendChild(cb12i);
+			// cardBody1.appendChild(cardBody1l);
+			cardBody1.appendChild(cardBody1Content);
 
-			// cb1.appendChild(cb1l);
-			cb1.appendChild(cb12);
+			var cardBodyl = document.createElement('label');
+			var cardBodyln = document.createTextNode('Descriptions :');
 
-			var cbl = document.createElement('label');
-			var cbln = document.createTextNode('Descriptions :');
-
-			cbl.appendChild(cbln);
+			cardBodyl.appendChild(cardBodyln);
 
 
-			var cb2 = document.createElement('div');
-			cb2.classList.add('form-group');
+			var cardBody2 = document.createElement('div');
+			cardBody2.classList.add('form-group');
 
-			var cbt = document.createElement('textarea');
-			// cbt.prop("required", true);
-			cbt.required = 'required';
-			cbt.minLength = "20";
-			cbt.classList.add('form-control');
-			cbt.placeholder = 'Describe Your Day ' + (i + 1);
-			cbt.id = 'comment';
-			cbt.rows = "4";
-			cbt.name = 'dayDescription' + (i + 1);
+			var cardBodyTextarea = document.createElement('textarea');
+			// cardBodyTextarea.prop("required", true);
+			cardBodyTextarea.required = 'required';
+			cardBodyTextarea.minLength = "20";
+			cardBodyTextarea.classList.add('form-control');
+			cardBodyTextarea.placeholder = 'Describe Your Day ' + (i + 1);
+			cardBodyTextarea.id = 'comment';
+			cardBodyTextarea.rows = "4";
+			cardBodyTextarea.name = 'dayDescription' + (i + 1);
 
-			cb2.appendChild(cbt);
+			cardBody2.appendChild(cardBodyTextarea);
 
-			cb.appendChild(cb1);
-			cb.appendChild(cb2);
+			cardBody.appendChild(cardBody1);
+			cardBody.appendChild(cardBody2);
 
-			content.appendChild(ch);
-			content.appendChild(cb);
+			content.appendChild(cardHead);
+			content.appendChild(cardBody);
 
 			var cards = document.getElementById('cards');
 			cards.appendChild(content);
+		}
+	
+	}
+	function removeCard(allCardLn,x){
+		let allCard=document.querySelectorAll('.card');
+		for(let i=allCardLn-1;i>=x;i--){
+			allCard[i].remove();
 		}
 	}
 
@@ -1045,7 +1046,6 @@
 	function validator(){
 		let msg=[];
 		let ayan=document.querySelectorAll('.card');
-		//console.log(ayan,ayan.length);
 		if(ayan.length<1){
 			msg.push('Please Confrim Date. \n In Case of Dificulty Contact Us.');
 		}
