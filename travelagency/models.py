@@ -16,7 +16,7 @@ class Tour(models.Model):
     maximum_people = models.IntegerField(default=30)
     tourId = models.CharField(max_length=30,unique=True)
     tourHeading = models.CharField(max_length=1000)
-    tourSlug = models.SlugField(unique=True,max_length=255)
+    tourSlug = models.CharField(unique=True,max_length=255)
     startingLocation = models.CharField(max_length=300)
     endLocation = models.CharField(max_length=300)
     startDate = models.DateField()
