@@ -3,11 +3,102 @@
 
 <!-- Stylesheets starts-->
 {% block stylesheets %}
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Ubuntu:wght@400;500;700&display=swap');
+    body{
+	 background: linear-gradient(to bottom, #136a8a, #267871);
+	}
+    th {
+    background-color: #4b6cb7;
+    color: white;
+  }
+  
+  tr:hover {
+      background-color: #4d4dff;
+      color:#fff;
+  }
+  .fa-plane{
+      color:#4B79A1;
+  }
+  .invoice {
+      position: relative;
+      background: #fff;
+      border: 1px solid #f4f4f4;
+      padding: 20px;
+      margin: 10px 25px;
+  }
+  .page-header {
+      margin: 10px 0 20px 0;
+      font-size: 22px;
+  }
+  .tble{
+transform: translate(0px,50px);
+}
 
+  </style>
 {% endblock %}
 <!--Stylesheets Ends -->
 <!-- Main content starts -->
 {% block body %}
-
+<div class='container mr-5'>
+<section class="tble" style="width: 90%;  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+    <section class="invoice">
+        <!-- title row -->
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="page-header">
+                   <h3 style="font-family:'Ubuntu', sans-serif;"> <i class="fa fa-plane"></i> Ongoing Tour</h3>
+                    </div>
+                
+            </div>
+            </div>
+        
+        <!-- Table row -->
+        <div class="row">
+            <div class="col-xs-12 table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Agency Id</th>
+                            <th>Agency Name</th>
+                            <th>Tour Id</th>
+                            <th>Total People</th>
+                             <th>Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                        
+                        <tr>
+                            <td>2</td>
+                            <td>18</td>
+                            <td>12500</td>
+                            <td>25000</td>
+                            <td>25000</td>
+                            </tr>
+                        
+                        <tr>
+                            <td>2</td>
+                            <td>18</td>
+                            <td>12500</td>
+                            <td>25000</td>
+                            <td>25000</td>
+                            </tr>
+                        
+                        <tr>
+                            <td>2</td>
+                            <td>18</td>
+                            <td>12500</td>
+                            <td>25000</td>
+                            <td>25000</td>
+                            </tr>
+                        
+                        </tbody>
+                </table>
+            </div>
+        </div>
+        </div>
+    </section>
+</section>
 {% endblock body %}
 <!--Main content Ends-->

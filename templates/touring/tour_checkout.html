@@ -6,7 +6,7 @@
 body {
  /*background-image: url("{% static 'img/trav.gif' %}");
  background-size: cover;*/
- background: linear-gradient(to right, #8f94fb, #4e54c8);     
+ background: linear-gradient(to right, #000428, #004e92);     
 }
 .col-md-8 {
 	background-color: #fff;
@@ -34,9 +34,10 @@ body {
     <!--check out-->
 <div class="container">
     <div class="py-5 text-center">
-        <img class="d-block mx-auto mb-4" id="mover" src="{% static 'img/logo.jpeg' %}" alt="" width="72" height="72">
+        <img class="d-block mx-auto mb-4" id="mover" src="{% static 'img/logo2.jpg' %}" alt="" width="80" height="75">
         <h2 class="text-white">Checkout form</h2>
-        <p class="lead text-white">Below is an example form built entirely with Bootstrap’s form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</p>
+        <!--<p class="lead text-white">Below is an example form built entirely with Bootstrap’s form controls. 
+		Each required form group has a validation state that can .</p>-->
     </div>
     <form action='/tour/booktour/{{Tour.tourId}}/{{Tour.seller.userAccess.agentId}}' method="POST">
     {% csrf_token %}
