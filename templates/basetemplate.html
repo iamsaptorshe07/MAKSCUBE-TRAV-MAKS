@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title> TRAVMAKS </title>
-	  <link rel="icon" href="../static/img/logo2.jpg" type="image/gif" sizes="50x50">
+	  <link rel="icon" href="{% static 'img/logo2.jpg' %}" type="image/gif" sizes="50x50">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
@@ -131,17 +131,7 @@
     
   </div>
 </nav>
-    <!--Navbar Ends Here-->
-{% if messages %}
-  {% for message in messages %}
-<div class="alert alert-{{message.tags}}" role="alert">
-    {{message}}  
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
-</div>
-  {% endfor %}
-{% endif %}
+<!--Navbar Ends Here-->
 <br><br>
     <!--Main body-->
     {% block body %}

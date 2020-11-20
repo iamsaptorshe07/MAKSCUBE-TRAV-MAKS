@@ -27,6 +27,9 @@ def searchTour(request):
 def advancedSearching(request):
     pass
 
+def allTours(request):
+    return render(request,'touring/all_tours.html')
+
 def tourDetails(request,tourId,slug):
     if(Tour.objects.filter(tourSlug=slug).exists()):
         tour = Tour.objects.get(tourSlug=slug)

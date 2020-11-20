@@ -68,7 +68,7 @@ def invoiceGenerator(request,orderID):
 
     else:
         return HttpResponse('BAD Request')
-
+'''
 def upcomingTour(request,userId):
     user = request.user
     if request.method=='GET':
@@ -120,6 +120,9 @@ def ongoingTour(request,userId):
     else:
         return HttpResponse("BAD REQUEST")
     
+'''
+def ongoingTour(request):
+    return render(request,'traveller/ongoing_tour.html')
 
-def ongoingTourAgent(request,agentId):
-    pass    
+def upcomingTour(request):
+    return render(request,'traveller/upcoming_tour.html')
