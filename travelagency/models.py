@@ -12,7 +12,6 @@ class Tour(models.Model):
     )
     seller = models.ForeignKey(User,on_delete=models.CASCADE,related_name='agencyOwner')
     agency = models.ForeignKey(AgencyDetail,on_delete=models.CASCADE,related_name='tourAgency')
-
     maximum_people = models.IntegerField(default=30)
     tourId = models.CharField(max_length=30,unique=True)
     tourHeading = models.CharField(max_length=1000)

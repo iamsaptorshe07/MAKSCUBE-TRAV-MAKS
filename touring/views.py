@@ -18,8 +18,7 @@ from django.contrib.sites.shortcuts import get_current_site
 def searchTour(request):
     slocation = request.GET.get('sLocation')
     elocation = request.GET.get('eLocation')
-    sDate = request.GET.get('sDate')
-    tours = Tour.objects.filter(startingLocation__icontains=slocation,endLocation__icontains=elocation,startDate=sDate)
+    tours = Tour.objects.filter(startingLocation__icontains=slocation,endLocation__icontains=elocation)
     context = {
         'Tours':tours,
     }

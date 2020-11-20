@@ -237,7 +237,7 @@ a:hover {
                 <div class="card-body ">
                     <div class="tab-content text-center">
                         <div class="tab-pane active" id="tour">
-                            <form class="form-content">
+                            <form class="form-content" action="/tour/search" method="GET">
                                 <div class="row">
                                     <div class="col-md-5">
                                         <div class="form-group">
@@ -251,18 +251,8 @@ a:hover {
                                                 name="eLocation" required/>
                                         </div>
                                     </div>
-
-                                    <div class="col-md-5">
-                                        <div class="form-group">
-                                            <input type="date" class="form-control" placeholder="Starting Date *"
-                                                name="sDate" required />
-                                        </div>
-                                    </div>
-
                                     <div class="col-md-10">
-
-                                        <button type="button" class="btn btn-dark">Find Tours</button>
-
+                                        <button type="submit" class="btn btn-dark">Find Tours</button>
                                     </div>
                                 </div>
                             </form>
