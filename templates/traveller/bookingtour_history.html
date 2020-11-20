@@ -1,7 +1,11 @@
 {% extends 'basetemplate.html' %}
 {% load static %}
 {% block stylesheets %}
-
+<style>
+body{
+padding-top:60px;
+}
+</style>
 {% endblock stylesheets %}
 
 {% block body %}
@@ -86,8 +90,11 @@ data-html="true"
 						<button type="button" class="btn btn-block btn-dark">Write a Review </button><br>
                             <a href="/traveller/generate-invoice/order={{order.order_id}}">
 						        <button type="button" class="btn btn-block btn-dark">Invoice</button>
-                            </a>
+                            </a><br>
 						
+						<a href="#">
+						        <button type="button" class="btn btn-block btn-dark">Ticket</button>
+                            </a>
 						</div>
                     </div>
                     </div>
