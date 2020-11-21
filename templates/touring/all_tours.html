@@ -3,6 +3,8 @@
 
 <!-- Stylesheets starts-->
 {% block stylesheets %}
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <style>
     p{
         margin: 0;
@@ -53,7 +55,7 @@
         right: 0;
     }
     #tours .selectbg select{
-        background-color: #f7fafd;
+        background-color: #e6edf3;
         outline: none!important;
         border: none;
     }
@@ -183,7 +185,13 @@
         position: absolute;
         display: none;
     }
-
+    .searchbtn{
+        width: 150px;
+        padding: 2px 0;
+        border-radius: 4px;
+        background-color: #EC5B24;
+        color: white;
+    }
 </style>
 {% endblock %}
 <!--Stylesheets Ends -->
@@ -192,35 +200,45 @@
 <main class="pt-5">
     <div class="container">
         <div class="row">
-            <div class="col-lg-12">
+            <form class="col-lg-12" id="searchTour" action="" method="GET" onsubmit="return check1();">
                 <div class="row">
                     <div class="col-md-6">
                         <p>Starting From :</p>
                         <input type="text" class="form-control" name="startLocSearch" id="startLocSearch"
-                        placeholder="Enter Stating Point" />
+                        placeholder="Enter Stating Point" required />
                     </div>
                     <div class="col-md-6">
                         <p>Visiting To :</p>
                         <input type="text" class="form-control" name="endLocSearch" id="endLocSearch"
-                        placeholder="Enter Visiting Point" />
+                        placeholder="Enter Visiting Point" required />
                     </div>
-                </div>
+                </div><br>
                 <div class="row">
                     <div class="col-md-4">
-                        <p>Starting Date :</p>
-                        <input type="date" class="form-control" name="startDateSearch" id="startDateSearch"
-                        placeholder="Enter Stating Date" />
+                        <p>Departure after :</p>
+                        <input type="text" class="form-control" name="startDateSearch" id="startDateSearch"
+                        placeholder="Enter Stating Date" required />
+                        <p>Returning within :</p>
+                        <input type="text" class="form-control" name="endDateSearch" id="endDateSearch"
+                        placeholder="Enter Ending Date" required />
                     </div>
-                    <div class="col-md-4">
-                        <p>Visiting To :</p>
-                        <input type="date" class="form-control" name="endDateSearch" id="endDateSearch"
-                        placeholder="Enter Visiting Date" />
+                    <div class="col-md-4 d-flex justify-content-center flex-column">
+                        <p>
+                            <label for="amount">Price range:</label><br>
+                            <input type="text" id="amount" readonly 
+                            style="border:0; color:rgb(255 43 61 / 68%); font-weight:bold;">
+                        </p>
+                        <div id="slider-range"></div>
                     </div>
-                    <div class="col-md-4">
-                        
+                    <div class="col-md-4 d-flex justify-content-around flex-column align-items-center">
+                        <div class="w-100">
+                            <label>Select Tour Duration (Date)</label>
+                            <input type="number" class="form-control" placeholder="Tour Duration" min="2">
+                        </div>
+                        <button type="submit" class="searchbtn mt-3">Search</button>
                     </div>
                 </div>
-            </div>
+            </form>
             <div class="col-lg-12 tourTypeSearch">
                 <span class="list active" data-filter="all">All Tour</span>
                 <span class="list" data-filter="solo">Solo Tour</span>
@@ -229,14 +247,16 @@
                 <span class="list" data-filter="couple">Couple Tour</span>
             </div>
             <div class="col-lg-12" id="tours">
-                <span class="selectbg">
-                    <select id="tourDetailsSelect" class="form-control">
-                        <option value="popular">Popular</option>
-                        <option value="PriceLH">Price (Low to High)</option>
-                        <option value="PriceHL">Price (High to Low)</option>
-                        <option value="tdLH">Tour Duration (Low to High)</option>
-                        <option value="tdHL">Price (High to Low)</option>
-                    </select>
+                <span class="selectbg mb-5">
+                    <form action="" method="GET" id="sortTour">
+                        <select id="tourDetailsSelect" class="form-control" onchange="this.form.submit()">
+                            <option value="popular">Popular</option>
+                            <option value="PriceLH">Price (Low to High)</option>
+                            <option value="PriceHL">Price (High to Low)</option>
+                            <option value="tdLH">Tour Duration (Low to High)</option>
+                            <option value="tdHL">Price (High to Low)</option>
+                        </select>
+                    </form>
                 </span>
                 <div class="tours">
                     <div class="noMatchFound">No Match Found</div>
@@ -457,7 +477,7 @@
     integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" 
     crossorigin="anonymous">
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.0/nouislider.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
     $('.tour').hover(function(){
         $('.stars ul li i').removeClass('fa-star');
@@ -550,6 +570,63 @@
         });
         // console.log(prices,rattings);
     });
+
+    $( function() {
+        $( "#slider-range" ).slider({
+            range: true,
+            min: 0,
+            max: 500,
+            values: [ 75, 300 ],
+            slide: function( event, ui ) {
+                $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+            }
+        });
+        $( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
+            " - $" + $( "#slider-range" ).slider( "values", 1 ) );
+    });
+
+    $(function(){
+        var mindate= new Date();
+		var tomorrowReal = new Date(mindate.getTime() + (24 * 60 * 60 * 1000));
+		$('#startDateSearch').datepicker({
+			numberOfMonths: 1,
+			showAnim: 'drop',
+			minDate: mindate,
+			dateFormat: 'dd/mm/yy',
+			onSelect: function (sd) {
+				var d1=sd.substr(0,2);
+				var d2=sd.substr(3,2);
+				var d3=sd.substr(6,4);
+				sd=d2+'/'+d1+'/'+d3;
+				var k = new Date(sd);
+
+				console.log(k,k.getTime());
+				var tomorrow = new Date(k.getTime() + (24 * 60 * 60 * 1000));
+				$('#endDateSearch').datepicker("option", "minDate", tomorrow);
+			}
+		});
+		$('#endDateSearch').datepicker({
+			numberOfMonths: 1,
+			showAnim: 'drop',
+			minDate: mindate,
+			dateFormat: 'dd/mm/yy',
+			onSelect: function (sd) {
+				var d1=sd.substr(0,2);
+				var d2=sd.substr(3,2);
+				var d3=sd.substr(6,4);
+				sd=d2+'/'+d1+'/'+d3;
+				var k = new Date(sd);
+
+				console.log(k,k.getTime());
+				var yesterday = new Date(k.getTime() - (24 * 60 * 60 * 1000));
+				$('#startDateSearch').datepicker("option", "maxDate", yesterday);
+			}
+		});
+    });
+
+    function check1() {
+        return true;
+    }
 </script>
 {% endblock body %}
 <!--Main content Ends-->
