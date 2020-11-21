@@ -179,6 +179,11 @@
     .tour:hover .stars ul li:nth-child(5) i{
         transform: translate(0px,-80px);
     }
+    .noMatchFound{
+        position: absolute;
+        display: none;
+    }
+
 </style>
 {% endblock %}
 <!--Stylesheets Ends -->
@@ -200,6 +205,21 @@
                         placeholder="Enter Visiting Point" />
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <p>Starting Date :</p>
+                        <input type="date" class="form-control" name="startDateSearch" id="startDateSearch"
+                        placeholder="Enter Stating Date" />
+                    </div>
+                    <div class="col-md-4">
+                        <p>Visiting To :</p>
+                        <input type="date" class="form-control" name="endDateSearch" id="endDateSearch"
+                        placeholder="Enter Visiting Date" />
+                    </div>
+                    <div class="col-md-4">
+                        
+                    </div>
+                </div>
             </div>
             <div class="col-lg-12 tourTypeSearch">
                 <span class="list active" data-filter="all">All Tour</span>
@@ -212,10 +232,14 @@
                 <span class="selectbg">
                     <select id="tourDetailsSelect" class="form-control">
                         <option value="popular">Popular</option>
-                        <option value="Price">Price</option>
+                        <option value="PriceLH">Price (Low to High)</option>
+                        <option value="PriceHL">Price (High to Low)</option>
+                        <option value="tdLH">Tour Duration (Low to High)</option>
+                        <option value="tdHL">Price (High to Low)</option>
                     </select>
                 </span>
                 <div class="tours">
+                    <div class="noMatchFound">No Match Found</div>
                     <div class="tour solo" data-ratting="4.5">
                         <div class="stars">
                             <ul>
@@ -433,6 +457,7 @@
     integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" 
     crossorigin="anonymous">
 </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.0/nouislider.js"></script>
 <script>
     $('.tour').hover(function(){
         $('.stars ul li i').removeClass('fa-star');
