@@ -99,6 +99,10 @@ body {
                     <span >Total (INR)</span>
                     <strong id="totalField"></strong>
                 </li>
+                <li class="list-group-item d-flex justify-content-between">
+                    <span >Pay Only : </span>
+                    <strong id="payField"></strong>
+                </li>
             </ul>
             
         </div>
@@ -142,6 +146,7 @@ body {
         var quantity = $(this).val();
         var total = pricePerItem * quantity;
         $('#totalField').text(total);
+        $('#payField').text(total*(10/100));
     });
     var quantityField=document.getElementById('quantityField');
     var bb={{Tour.maximum_people}};

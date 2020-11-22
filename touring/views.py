@@ -29,7 +29,7 @@ def advancedSearching(request):
 
 class AllToursView(ListView):
     model = Tour
-    paginate_by = 1
+    paginate_by = 50
     template_name = 'touring/all_tours.html'
     ordering = ['-id']
     context_object_name = 'Tour'
@@ -91,6 +91,7 @@ def bookTour(request,tourId,agentId):
                     address = request.POST.get('address')
                     total_people = int(request.POST.get('total_people'))
                     payment = tour.price * total_people
+                    payment = payment*(10/100)
                     order_id = OrderIdGenerator()
                     order = Order(
                         order_id = order_id,
@@ -140,6 +141,10 @@ def recievePayment(request):
     MKEY='3KD6MeB%t&QDio!7'
     if request.method == 'POST':
         form = request.POST
+        print("\n\n\n")
+        for i in form.keys():
+            print("{} ----- {}".format(i,form[i]))
+        print("\n\n\n")
         response_dict = {}
         for i in form.keys():
             response_dict[i] = form[i]
@@ -147,7 +152,7 @@ def recievePayment(request):
                 checksum = form[i]
         isVerifySignature = Checksum.verifySignature(response_dict, MKEY, checksum)
         order = Order.objects.get(order_id = response_dict['ORDERID'])
-        if isVerifySignature == True and order.payment_price == float(response_dict['TXNAMOUNT']):
+        if isVerifySignature == True and order.payment_price == float(response_dict['TXNAMOUNT']) and response_dict['STATUS']=='TXN_SUCCESS':
             confirm_order = Payment(
                 Order = order,
                 transaction_id=response_dict['TXNID'],
@@ -209,6 +214,7 @@ def recievePayment(request):
             )
             failed_order.save()
             order.delete()
-            return HttpResponse("Some Problem Occured, if you have lost your money contact us")
+            messages.error(request,response_dict['RESPMSG'])
+            return redirect('/')
     else:
         return render(request,'forbidden.html')
