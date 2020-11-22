@@ -4,10 +4,10 @@ from PIL import Image
     
 class Tour(models.Model):
     TOUR_TYPE = (
-        ('Family Special','Family Special'), 
-        ('Friends Special','Friends Special'),
-        ('Couple Friendly','Couple Friendly'),
-        ('Solo Tour','Solo Tour'),
+        ('Family-Special','Family-Special'), 
+        ('Friends-Special','Friends-Special'),
+        ('Couple-Friendly','Couple-Friendly'),
+        ('Solo-Tour','Solo-Tour'),
         ('All','All')
     )
     seller = models.ForeignKey(User,on_delete=models.CASCADE,related_name='agencyOwner')
