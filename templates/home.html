@@ -5,6 +5,8 @@
 
 <!--Continious Advertisements sections ends -->
 <style>
+    
+
     /*search tab*/
     .card {
 
@@ -156,9 +158,39 @@ a:hover {
   text-decoration: underline;
 } 
 
+.animation {
+  width: 10px;
+  height: 10px;
+  background-color: red;
+  animation: example 2s infinite;
+}
+
+@keyframes example {
+  0%,
+  100% {
+    left: 0;
+  }
+
+  50% {
+    left: 200px;
+  }
+}
+
 </style>
 <!--Slider strats here-->
-<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+{% if messages %}
+    {% for message in messages %}
+                    <div class="col-md-12 mt-3">
+                        <div class="alert alert-{{message.tags}}" role="alert">
+                            {{message}}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    </div>
+                    {% endfor %}
+{% endif %}
+<div id="carouselExampleIndicators" class="carousel slide mt-3" data-ride="carousel">
     <ol class="carousel-indicators">
         <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
         <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -167,30 +199,12 @@ a:hover {
     <div class="carousel-inner" role="listbox">
         <!-- Slide One - Set the background image for this slide in the line below -->
         <div class="carousel-item active" style="background-image: url('../static/img/s3.jpg')">
-            <div class="carousel-caption ">
-                <h3 class="animated bounceInRight" style="animation-delay: 1s">Caption</h3>
-                <p class="animated bounceInLeft" style="animation-delay: 2s">Lorem ipsum dolor sit amet, consectetur
-                    adipiscing elit et dolore magna aliqua.</p>
-                <p class="animated bounceInRight" style="animation-delay: 1s"><a href="#">More info</a></p>
-            </div>
         </div>
         <!-- Slide Two - Set the background image for this slide in the line below -->
         <div class="carousel-item" style="background-image: url('../static/img/c2.jpg')">
-            <div class="carousel-caption  ">
-                <h3 class="animated slideInDown" style="animation-delay: 1s">Caption</h3>
-                <p class="animated fadeInUp" style="animation-delay: 2s">Lorem ipsum dolor sit amet, consectetur
-                    adipiscing elit et dolore magna aliqua.</p>
-                <p class="animated zoomIn" style="animation-delay: 3s"><a href="#">More info</a></p>
-            </div>
         </div>
         <!-- Slide Three - Set the background image for this slide in the line below -->
         <div class="carousel-item" style="background-image: url('../static/img/c3.jpg')">
-            <div class="carousel-caption">
-                <h3 class="animated zoomIn" style="animation-delay: 1s">Caption</h3>
-                <p class="animated fadeInLeft" style="animation-delay: 2s">Lorem ipsum dolor sit amet, consectetur
-                    adipiscing elit et dolore magna aliqua.</p>
-                <p class="animated zoomIn" style="animation-delay: 3s"><a href="#">More info</a></p>
-            </div>
         </div>
     </div>
     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -219,16 +233,26 @@ a:hover {
                             <ul class="nav nav-tabs" data-tabs="tabs">
                                 <li class="nav-item">
                                     <a class="nav-link active" href="#tour" data-toggle="tab">
-                                        <i class="fa fa-car"></i>
-                                        Tour
+                                        <i class="fa fa-search"></i>
+                                        Find Tour Packages
+                                    </a>
+                                </li> 
+                                &nbsp;
+                                <li class="nav-item animation">
+                                    <a class="nav-link">
+                                        <h6 style="text-align:center">
+                                        TRAVMAKS Connects You With The Best In Class Travel Agencies Accross The Globe
+                                        </h6>
                                     </a>
                                 </li>
+                                <!--
                                 <li class="nav-item justify-content-center">
                                     <a class="nav-link" href="#guide" data-toggle="tab">
                                         <i class="fa fa-id-badge"></i>
                                         Guide
                                     </a>
                                 </li>
+                            -->
 
                             </ul>
                         </div>
@@ -257,6 +281,7 @@ a:hover {
                                 </div>
                             </form>
                         </div>
+                    <!--
                         <div class="tab-pane" id="guide">
                             <div class="form-content">
                                 <div class="row">
@@ -302,7 +327,7 @@ a:hover {
                                 </div>
                             </div>
                         </div>
-
+                    -->
                     </div>
                 </div>
 
@@ -418,20 +443,23 @@ a:hover {
                     <div class="thumb">
                         <img src="{{tour.thumbnail.url}}" alt="">
                         <div class="content">
-                            <p class="d-flex align-items-center"><a href="#">3 <i class="fa fa-star" ></i></a> </p>
-
+                            <p class="d-flex align-items-center">Special Offer</p>
                         </div>
                     </div>
 
                 </div>
                 <div class="place_info">
-                    <a href="/tour/tourdetails/{{tour.tourId}}/{{tour.tourSlug}}">
-                        <h5>{{tour.tourHeading}}</h5>
+                    
+                        <h5>
+                        3<i class="fa fa-star" ></i> &nbsp; 
+                        <a href="/tour/tourdetails/{{tour.tourId}}/{{tour.tourSlug}}">
+                        {{tour.tourHeading}}
+                        </h5>
                     </a>
+                    <p>{{tour.startingLocation}} -> {{tour.endLocation}}</p>
                     <p>Price: {{tour.price}}&#8377</p>
-					
-					<p>25 Dec 2020 to 4 Jan 2021</p>
-					<p>Book before 20 Dec 2020</p>
+					<p>{{tour.startDate}} to {{tour.endDate}}</p>
+					<p>(Book before {{tour.last_booking_date}})</p>
                     <a href="/tour/tourdetails/{{tour.tourId}}/{{tour.tourSlug}}">
                         <p>view more</p>
                     </a>
@@ -455,6 +483,7 @@ a:hover {
 <!--Latest added destination ends here-->
 
 <!--Data Sciene tours-->
+<!--
 <div class="popular_places_area">
     <div class="container">
         <div class="row justify-content-center">
@@ -584,6 +613,7 @@ a:hover {
         </div>
     </div>
 </div>
+-->
 <!--Data Science tours-->
 
 

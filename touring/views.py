@@ -121,9 +121,9 @@ def bookTour(request,tourId,agentId):
                 else:
                     return render(request,'touring/tour_checkout.html',context={'Tour':tour})
             else:
-                return HttpResponse("NO SUCH TOUR")
+                return render(request,'404.html')
         else:
-            return HttpResponse("BAD REQUEST")
+            return render(request,'forbidden.html')
     else:
         messages.warning(request,'Please Log in to book the tour')
         return redirect('Traveller_Login')
@@ -205,4 +205,4 @@ def recievePayment(request):
             order.delete()
             return HttpResponse("Some Problem Occured, if you have lost your money contact us")
     else:
-        return HttpResponse("not allowed")
+        return render(request,'forbidden.html')

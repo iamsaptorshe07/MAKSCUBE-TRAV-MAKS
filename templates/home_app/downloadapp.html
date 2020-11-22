@@ -1,0 +1,97 @@
+{% extends 'basetemplate.html' %}
+{% load static %}
+
+{% block stylesheets %}
+<style>
+     
+
+    * {
+           margin: 0;
+           padding: 0;
+           text-decoration: none;
+           font-family: "Open Sans", sans-serif;
+       }
+body {
+ background:radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 72%, rgba(0,212,255,1) 100%); ;
+}
+ /*background-size: cover;*/
+
+.phone-thumb {
+ max-height: 550px;
+ margin-top:40px;
+}
+@media (max-width: 480px) {
+ .banner .image-block {
+   margin-top: 30px;
+   text-align: center;
+ }
+}
+@media (max-width: 480px) {
+ .banner .content-block {
+   text-align: center;
+ }
+}
+
+.phone-thumb-md {
+ max-height: 600px;
+}
+
+ 
+   </style>
+{% endblock stylesheets %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+    <div class="col-md-4">
+            <!-- App Image -->
+            <div class="image-block">
+                <img class="img-fluid phone-thumb" src="{% static 'img/iphone-banner.png' %}" alt="">
+            </div>
+        </div>
+        <div class="col-md-8 align-self-center">
+            <!-- Contents -->
+            <div class="content-block">
+                <h1 class="text-white pt-2">Download TRAVMAKS Mobile Application Now</h1>
+                <!-- App Badge -->
+                <div class="app-badge">
+                    <ul class="list-inline">
+                        <li class="list-inline-item">
+                            <a href="#" class="btn btn-download" style="text-decoration:none;"><img src="{% static 'img/google-play.png' %}"> 
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="#" class="btn btn-download" style="text-decoration:none;"><img src="{% static 'img/app-store.png' %} ">
+                                
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-md-4">
+        <div class="app-badge mt-3">
+            <h3 class="text-white pt-2">Are you an agent? Get Your business management app right now</h3>
+            <ul class="list-inline">
+                <li class="list-inline-item">
+                    <a href="#" class="btn btn-download" style="text-decoration:none;"><img src="{% static 'img/google-play.png' %}"> 
+                    </a>
+                </li>
+                <li class="list-inline-item">
+                    <a href="#" class="btn btn-download" style="text-decoration:none;"><img src="{% static 'img/app-store.png' %} ">
+                    </a>
+                </li>
+            </ul>
+        </div>
+        </div>
+        <div class="col-md-8 align-self-center">
+            <!-- App Image -->
+            <div class="image-block">
+                <img class="img-fluid phone-thumb" src="{% static 'img/agent_app.png' %}" alt="">
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock body %}

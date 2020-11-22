@@ -68,9 +68,9 @@ def activateTraveller(request, uid, token):
             messages.success(request,'Account activated please login')
             return redirect('travelerAccountsSignup')
         else:
-            return HttpResponse("Link Expired")
+            return render(request,'404.html')
     else:
-        return HttpResponse("ERROR 404")
+        return render(request,'404.html')
 '''
 This function is responsible for sending the account(Seller - Agency and guide) creation and login page to the front - end and also 
 responsible for handling the signup request of the sellers (Travel agency not guide)
@@ -92,7 +92,7 @@ def activateSeller(request, uid, token):
         messages.success(request,'Account Activated, Please Login to register your agency')
         return redirect('Seller_login')
     else:
-        return HttpResponse("Link Expired")
+        return render(request,'404.html')
 
 # Traveller account creation and login page handler and also signup of traveller handler function ---- Old one
 
@@ -416,9 +416,9 @@ def activateGuide(request, uid, token):
             messages.success(request,'Account activated please login')
             return redirect('guideSignup')
         else:
-            return HttpResponse("Link Expired")
+            return render(request,'404.html')
     else:
-        return HttpResponse("ERROR 404")
+        return render(request,'404.html')
     
 # Guide account creation and login page handler and also signup of Guide handler function ----
 
@@ -630,13 +630,13 @@ def userProfile(request, account_type, uid):
                         messages.success(request, 'Successfully updated')
                         return redirect(request.META.get('HTTP_REFERER'))
                     else:
-                        return HttpResponse("BAD REQUEST")
+                        return render(request,'forbidden.html')
                 else:
-                    return HttpResponse("BAD REQUEST")
+                    return render(request,'forbidden.html')
             else:
-                return HttpResponse("BAD REQUEST")
+                return render(request,'forbidden.html')
         else:
-            return HttpResponse("BAD REQUEST")
+            return render(request,'forbidden.html')
 
     else:
         if (len(User.objects.filter(id=uid)) > 0):
@@ -647,11 +647,11 @@ def userProfile(request, account_type, uid):
                 elif account_type == 'seller':
                     return render(request, 'accounts/selleraccountedit.html')
                 else:
-                    return HttpResponse("BAD REQUEST")
+                    return render(request,'forbidden.html')
             else:
-                return HttpResponse("BAD REQUEST")
+                return render(request,'forbidden.html')
         else:
-            return HttpResponse("BAD REQUEST")
+            return render(request,'forbidden.html')
 
 ''' 
 Author : Saptorshe
@@ -671,7 +671,7 @@ def changePassword(request):
              messages.error(request,'Enter your currect old password')
              return redirect(request.META.get('HTTP_REFERER'))        
     else:
-        return HttpResponse("BAD REQUEST")
+        return render(request,'forbidden.html')
 ''' Password Chnage Function Ends Here '''
 
 

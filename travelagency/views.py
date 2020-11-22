@@ -15,14 +15,14 @@ def travelagency_home(request,agid):
                 if request.method == 'GET':
                     return render(request,'travelagency/travelagent_home.html')
                 else:
-                    return HttpResponse("BAD REQUEST")
+                    return render(request,'forbidden.html')
             else:
-                return HttpResponse("BAD REQUEST")
+                return render(request,'forbidden.html')
         else:
             messages.warning(request,'In order to add your tour, register your agency')
             return redirect('RegisterAgency')
     else:
-        return HttpResponse("BAD REQUEST")
+        return render(request,'forbidden.html')
 
 def addTour(request,uid,agid):
     user = request.user
@@ -94,7 +94,6 @@ def addTour(request,uid,agid):
                     last_cancel_date = last_cancel_date
                 )
                 tour.save()
-
                 image1 = request.FILES.get('image1')
                 image2 = request.FILES.get('image2')
                 image3 = request.FILES.get('image3')
@@ -119,11 +118,11 @@ def addTour(request,uid,agid):
                 messages.success(request,'Tour Added Successfully')
                 return redirect('/travelagency/agencytours/{}/{}'.format(user.id,user.userAccess.agentId))
             else:
-                return HttpResponse("BAD REQUEST")
+                return render(request,'forbidden.html')
         else:
-            return HttpResponse("BAD REQUEST")
+            return render(request,'forbidden.html')
     else:
-        return HttpResponse("BAD REQUEST")
+        return render(request,'forbidden.html')
 
 
 def agencyTours(request,uid,agid):
@@ -140,11 +139,11 @@ def agencyTours(request,uid,agid):
                 }
                 return render(request,'travelagency/agency_tours.html',context=context)
             else:
-                return HttpResponse("BAD REQUEST")
+                return render(request,'forbidden.html')
         else:
-            return HttpResponse("BAD REQUEST")
+            return render(request,'forbidden.html')
     else:
-        return HttpResponse("BAD REQUEST")
+        return render(request,'forbidden.html')
 
 
 def editTours(request,agentId,tourId):
@@ -280,11 +279,11 @@ def editTours(request,agentId,tourId):
                         
                         return render(request,'travelagency/edit_tours.html',context=context)
             else:
-                return HttpResponse("BAD REQUEST")
+                return render(request,'forbidden.html')
         else:
-            return HttpResponse("404 forbidden")
+            return render(request,'forbidden.html')
     else:
-        return HttpResponse("404 forbidden")
+        return render(request,'forbidden.html')
 
 
 
@@ -302,10 +301,10 @@ def deleteteTour(request,agentId,tourId):
                     messages.success(request,'Tour deleted succesfully')
                     return redirect('/travelagency/agencytours/{}/{}'.format(user.id,user.userAccess.agentId))
             else:
-                return HttpResponse('BAD REQUEST')
+                return render(request,'forbidden.html')
         else:
-            return HttpResponse('404 ERROR')
-    return HttpResponse('404 ERROR')
+            return render(request,'404.html')
+    return render(request,'forbidden.html')
 
 
 
@@ -319,9 +318,9 @@ def booking_history(request,agentId):
             }
             return render(request,'travelagency/booking_history.html',context=context)
         else:
-            return HttpResponse("BAD Request")
+            return render(request,'forbidden.html')
     else:
-        return HttpResponse("Not have the permission")
+        return render(request,'forbidden.html')
 
 
 def upcoming_tours(request,agentId):

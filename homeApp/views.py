@@ -32,3 +32,6 @@ def partnerFAQ(request):
 
 def userPaymentPolicy(request):
     return render(request,'home_app/userpaymentpolicy.html')
+
+def downloadApp(request):
+    return render(request,'home_app/downloadapp.html')

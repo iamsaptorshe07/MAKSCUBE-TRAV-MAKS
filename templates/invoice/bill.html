@@ -1,9 +1,10 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>TRAVMAKS Tour Purchase INVOICE </title>
     <style>
         .table2, .table1, .table3{
             padding-left: 30px;
@@ -63,19 +64,24 @@
     </style>
 </head>
 <body>
-    <br/>
+    <br>
     <table width="100%" class="table1">
         <tbody>
             <tr>
-                <td align="left">        
-                    <h1 style="font-size: 40px;">TRAVMAKS</h1>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ex, incidunt!</p>
-                    <p>travmakx@gmail.com</p>
+                    
+                <td align="left" >
+                    <h1 style="font-size: 30px;">MAKS CUBE</h1>
+                    <p> <b>Address : </b> 
+                        University Area, Plot, Street Number 03, Action Area III, B/5, 
+                        Newtown, Kolkata, West Bengal 700160</p>
+                  
                 </td>
-                
-                <td align="right" >
-                    <img src="../../static/img/logo.jpeg" alt="logo" width="150px" height="auto"/>
+                <td align="left">        
+                    <h1 style="font-size: 30px;">TRAVMAKS</h1>
+                    <p> <b> Email : </b> 
+                        contact@travmaks.in</p>
+                    <p> <b>
+                        Contact No :</b> +91 6290088603 / +91 82405 68636</p>
                 </td>
             </tr>
             <tr>
@@ -83,13 +89,15 @@
                 <td><div class="top1"></div></td>
             </tr>
         </tbody>
-    </table><br/>
+    </table><br>
+    <hr>
+    <br>
     <table width="100%" class="table2">
         <tbody>
             <tr>
                 <td align="left">        
-                    <p>Invice To</p>
-                    <h3>Name : {{CName}}</h3>
+                    <strong>Invoice To</strong>
+                    <p>Name : {{CName}}</p>
                     <p>Customer Id : {{placedBy}}</p>
                     <p>Address : {{CAddress}}</p>
                     <p>Phone : {{CPhone}}</p>
@@ -102,7 +110,7 @@
                 </td>
             </tr>
         </tbody>
-    </table><br/>
+    </table><br>
     <h1 class="hi">Tour Details</h1>
         <table width="83%" class="table3" align="center">
             <tbody>

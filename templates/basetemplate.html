@@ -63,7 +63,11 @@
       <nav class="navbar navbar-expand-lg fixed-top">
    <a class="navbar-brand text-white" href="/">
     <img src="{% static 'img/logo2.jpg' %}" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
-    <b>TRAVMAKS &nbsp; <small>We Make Your Travel Easy</small></b>
+    <b>TRAVMAKS &nbsp; <small>
+      <b>
+      We Make Your Travel Easy
+      </b>
+    </small></b>
   </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -91,7 +95,7 @@
 	<ul class="navbar-nav ml-auto">
 	
 	<li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fa fa-download"></i>&nbsp; Download App</a>
+                        <a class="nav-link" href="/download-app"><i class="fa fa-download"></i>&nbsp; Download App</a>
                     </li>
 	 {% if user.is_authenticated %}
 	<li class="nav-item dropdown">
@@ -104,7 +108,7 @@
                                     <a class="dropdown-item" href="/accounts/editprofile/{{request.session.access_type}}/{{user.id}}">My Profile</a>
                                     <div class="dropdown-divider"></div>
                                     
-									<a class="dropdown-item" href="/traveller/booking-history/{{request.user.userAccess.userId}}">Booking History</a>
+									<a class="dropdown-item" href="/traveller/booking-history">Booking History</a>
                                     <div class="dropdown-divider"></div>
                                     
 									<a class="dropdown-item" href="#">On Going Tours</a>
