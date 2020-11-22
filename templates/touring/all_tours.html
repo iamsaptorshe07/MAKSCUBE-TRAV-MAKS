@@ -258,6 +258,7 @@
                 </span>
                 <div class="tours">
                     <div class="noMatchFound">No Match Found</div>
+                    {% for tour in Tour %}
                     <div class="tour solo" data-ratting="4.5">
                         <div class="stars">
                             <ul>
@@ -269,206 +270,59 @@
                             </ul>
                         </div>
                         <div class="imgbg">
-                            <img src="{% static 'img/solo.jpg' %}" alt="">
-                            <span><a href="#">Know More</a></span>
+                            <img src="{{tour.thumbnail.url}}" alt="">
+                            <span><a href="/tour/tourdetails/{{tour.tourId}}/{{tour.tourSlug}}">Know More</a></span>
                         </div>
                         <div class="content">
-                            <div class="con1">Exploring Darjeeling</div>
+                            <div class="con1"> {{tour.tourHeading}}</div>
                             <div class="con2">
                                 <p>
-                                    Kolkata -> Darjeeling
+                                    {{tour.startingLocation}} -> {{tour.endLocation}}
                                 </p>
-                                <p>340$</p>
+                                <p>{{tour.price}}&#8377</p>
                             </div>
-                            <div class="con3">25 Dec 2020  ->  4 Jan 2021</div>
-                            <div class="con4">(Book before 20 Dec 2020)</div>
+                            <div class="con3">{{tour.startDate}} to {{tour.endDate}}</div>
+                            <div class="con4">(Book before {{tour.last_booking_date}})</div>
                         </div>
                     </div>
-                    <div class="tour couple" data-ratting="4">
-                        <div class="stars">
-                            <ul>
-                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                            </ul>
-                        </div>
-                        <div class="imgbg">
-                            <img src="{% static 'img/solo.jpg' %}" alt="">
-                            <span><a href="#">Know More</a></span>
-                        </div>
-                        <div class="content">
-                            <div class="con1">Exploring Darjeeling</div>
-                            <div class="con2">
-                                <p>
-                                    Kolkata -> Darjeeling
-                                </p>
-                                <p>320$</p>
-                            </div>
-                            <div class="con3">25 Dec 2020  ->  4 Jan 2021</div>
-                            <div class="con4">(Book before 20 Dec 2020)</div>
-                        </div>
-                    </div>
-                    <div class="tour family" data-ratting="3.9">
-                        <div class="stars">
-                            <ul>
-                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                            </ul>
-                        </div>
-                        <div class="imgbg">
-                            <img src="{% static 'img/solo.jpg' %}" alt="">
-                            <span><a href="#">Know More</a></span>
-                        </div>
-                        <div class="content">
-                            <div class="con1">Exploring Darjeeling</div>
-                            <div class="con2">
-                                <p>
-                                    Kolkata -> Darjeeling
-                                </p>
-                                <p>286$</p>
-                            </div>
-                            <div class="con3">25 Dec 2020  ->  4 Jan 2021</div>
-                            <div class="con4">(Book before 20 Dec 2020)</div>
-                        </div>
-                    </div>
-                    <div class="tour friendly" data-ratting="3">
-                        <div class="stars">
-                            <ul>
-                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                            </ul>
-                        </div>
-                        <div class="imgbg">
-                            <img src="{% static 'img/solo.jpg' %}" alt="">
-                            <span><a href="#">Know More</a></span>
-                        </div>
-                        <div class="content">
-                            <div class="con1">Exploring Darjeeling</div>
-                            <div class="con2">
-                                <p>
-                                    Kolkata -> Darjeeling
-                                </p>
-                                <p>230$</p>
-                            </div>
-                            <div class="con3">25 Dec 2020  ->  4 Jan 2021</div>
-                            <div class="con4">(Book before 20 Dec 2020)</div>
-                        </div>
-                    </div>
-                    <div class="tour friendly" data-ratting="2.1">
-                        <div class="stars">
-                            <ul>
-                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                            </ul>
-                        </div>
-                        <div class="imgbg">
-                            <img src="{% static 'img/solo.jpg' %}" alt="">
-                            <span><a href="#">Know More</a></span>
-                        </div>
-                        <div class="content">
-                            <div class="con1">Exploring Darjeeling</div>
-                            <div class="con2">
-                                <p>
-                                    Kolkata -> Darjeeling
-                                </p>
-                                <p>200$</p>
-                            </div>
-                            <div class="con3">25 Dec 2020  ->  4 Jan 2021</div>
-                            <div class="con4">(Book before 20 Dec 2020)</div>
-                        </div>
-                    </div>
-                    <div class="tour solo" data-ratting="2">
-                        <div class="stars">
-                            <ul>
-                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                            </ul>
-                        </div>
-                        <div class="imgbg">
-                            <img src="{% static 'img/solo.jpg' %}" alt="">
-                            <span><a href="#">Know More</a></span>
-                        </div>
-                        <div class="content">
-                            <div class="con1">Exploring Darjeeling</div>
-                            <div class="con2">
-                                <p>
-                                    Kolkata -> Darjeeling
-                                </p>
-                                <p>150$</p>
-                            </div>
-                            <div class="con3">25 Dec 2020  ->  4 Jan 2021</div>
-                            <div class="con4">(Book before 20 Dec 2020)</div>
-                        </div>
-                    </div>
-                    <div class="tour couple" data-ratting="1.7">
-                        <div class="stars">
-                            <ul>
-                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                            </ul>
-                        </div>
-                        <div class="imgbg">
-                            <img src="{% static 'img/solo.jpg' %}" alt="">
-                            <span><a href="#">Know More</a></span>
-                        </div>
-                        <div class="content">
-                            <div class="con1">Exploring Darjeeling</div>
-                            <div class="con2">
-                                <p>
-                                    Kolkata -> Darjeeling
-                                </p>
-                                <p>120$</p>
-                            </div>
-                            <div class="con3">25 Dec 2020  ->  4 Jan 2021</div>
-                            <div class="con4">(Book before 20 Dec 2020)</div>
-                        </div>
-                    </div>
-                    <div class="tour family" data-ratting="1">
-                        <div class="stars">
-                            <ul>
-                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                            </ul>
-                        </div>
-                        <div class="imgbg">
-                            <img src="{% static 'img/solo.jpg' %}" alt="">
-                            <span><a href="#">Know More</a></span>
-                        </div>
-                        <div class="content">
-                            <div class="con1">Exploring Darjeeling</div>
-                            <div class="con2">
-                                <p>
-                                    Kolkata -> Darjeeling
-                                </p>
-                                <p>100$</p>
-                            </div>
-                            <div class="con3">25 Dec 2020  ->  4 Jan 2021</div>
-                            <div class="con4">(Book before 20 Dec 2020)</div>
-                        </div>
-                    </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>
+
+        <!--Pagination -->
+        <center>
+        <div class="container">
+            <span class="step-links">
+                {% if page_obj.has_previous %}
+                    <a href="?page=1">« first</a>
+                    &nbsp;
+                    ||
+                    &nbsp;
+                    <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                {% endif %}
+        
+                <span class="current">
+                    &nbsp;
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+                    &nbsp;
+                </span>
+        
+                {% if page_obj.has_next %}
+                    
+                    <a href="?page={{ page_obj.next_page_number }}">next</a> 
+                    
+                    &nbsp;
+                    ||
+                    &nbsp;
+                    
+                    <a href="?page={{ page_obj.paginator.num_pages }}">last »</a>
+                    
+                {% endif %}
+            </span>
+        </div>
+    </center>
+        <!--Pagination-->
     </div>
 </main>
 <script src="https://code.jquery.com/jquery-3.5.1.js" 

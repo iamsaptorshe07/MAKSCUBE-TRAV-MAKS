@@ -5,7 +5,7 @@ import datetime
 from django.db.models import Q
 # Homepage Function
 def index(request):
-    tour = Tour.objects.filter(publish_mode=True,last_booking_date__gte=str(datetime.date.today()))
+    tour = Tour.objects.filter(publish_mode=True,last_booking_date__gte=str(datetime.date.today())).order_by('-id')[:50]
     context = {'Tour' : tour}
     return render(request,'home.html', context=context)
 

@@ -8,7 +8,7 @@ from django.contrib import messages
 from .tests import *
 from paytm import Checksum
 import requests
-#import json
+from django.views.generic.list import ListView
 from django.views.decorators.csrf import csrf_exempt
 from invoice.invoice_generator import render_to_pdf
 from django.template.loader import get_template
@@ -27,8 +27,14 @@ def searchTour(request):
 def advancedSearching(request):
     pass
 
-def allTours(request):
-    return render(request,'touring/all_tours.html')
+class AllToursView(ListView):
+    model = Tour
+    paginate_by = 1
+    template_name = 'touring/all_tours.html'
+    ordering = ['-id']
+    context_object_name = 'Tour'
+    
+
 
 def tourDetails(request,tourId,slug):
     if(Tour.objects.filter(tourSlug=slug).exists()):
