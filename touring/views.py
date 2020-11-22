@@ -29,7 +29,7 @@ def advancedSearching(request):
 
 class AllToursView(ListView):
     model = Tour
-    paginate_by = 1
+    paginate_by = 50
     template_name = 'touring/all_tours.html'
     ordering = ['-id']
     context_object_name = 'Tour'
