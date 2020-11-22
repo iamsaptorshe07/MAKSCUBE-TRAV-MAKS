@@ -159,6 +159,38 @@ a:hover {
 } 
 
 
+.spl{
+position: absolute;
+    background: #1EC6B6;
+    padding: 7px 18px 4px 18px;
+    display: inline-block;
+    top: 4px;
+    left: 20px;
+    -webkit-border-radius: 18px;
+    -moz-border-radius: 18px;
+    border-radius: 18px;
+    color: #fff;
+    font-size: 16px;
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
+}
+.anim{
+    transition: .5s;
+    animation: anim 3s linear infinite;
+}
+@keyframes anim{
+    0%{
+        transform: translateY(10px);
+    }
+    50%{
+        transform: translateY(-10px);
+    }
+    100%{
+        transform: translateY(10px);
+    }
+}
 </style>
 <!--Slider strats here-->
 {% if messages %}
@@ -223,7 +255,7 @@ a:hover {
                                 &nbsp;
                                 <li class="nav-item ">
                                     <a class="nav-link">
-                                        <h6 style="text-align:center">
+                                        <h6 class="anim" style="text-align:center">
                                         TRAVMAKS Connects You With The Best In Class Travel Agencies Accross The Globe
                                         </h6>
                                     </a>
@@ -426,7 +458,7 @@ a:hover {
                     <div class="thumb">
                         <img src="{{tour.thumbnail.url}}" alt="">
                         <div class="content">
-                            <p class="d-flex align-items-center">Special Offer</p>
+                            <p class="spl d-flex align-items-center">Special Offer</p>
                         </div>
                     </div>
 

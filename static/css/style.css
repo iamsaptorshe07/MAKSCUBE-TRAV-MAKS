@@ -653,7 +653,7 @@ font-size: 20px;
 /* line 40, ../../Arafath/CL/December/231. Travel-02/HTML/scss/_destination.scss */
 .popular_destination_area .single_destination .content p {
   margin-bottom: 10;
-  font-size: 22px;
+  font-size: 15px !important;
   color: #fff;
   font-weight: 400;
   font-family: "Rubik", sans-serif;
