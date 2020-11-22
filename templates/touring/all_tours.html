@@ -18,7 +18,7 @@
         border-bottom: 1px solid rgba(0,0,0,.64);
     }
     .tourTypeSearch span{
-        margin: 0 15px;
+        margin: 10px 15px;
         width: auto;
         height: auto;
         border-radius: 25px;
@@ -69,7 +69,7 @@
     .tour{
         margin: 15px 0 55px 0;
         width: 280px;
-        height: 375px;
+        min-height: 375px;
         background-color: #ffffff;
         border-radius: 4px;
         border-top-left-radius: 50%;
@@ -112,7 +112,7 @@
     }
     .tour .content{
         width: 280px;
-        height: 115px;
+        min-height: 115px;
         position: relative;
         top: 0;
         left: 0;
@@ -136,6 +136,7 @@
         justify-content: space-between;
     }
     .tour .content .con1{
+        word-break: break-word;
         font-size: 20px;
         font-weight: bold;
         color: rgb(255 43 61 / 68%);
@@ -182,6 +183,8 @@
     .noMatchFound{
         position: absolute;
         display: none;
+        font-size: 30px;
+        font-weight: bold;
     }
     .searchbtn{
         width: 150px;
@@ -189,6 +192,67 @@
         border-radius: 4px;
         background-color: #EC5B24;
         color: white;
+    }
+    .plagination{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        padding: 20px 0;
+        border-top: 1px solid rgba(0,0,0,.64);
+        border-bottom: 1px solid rgba(0,0,0,.64);
+    }
+    .right-arrow-img, .left-arrow-img{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 30px;
+    }
+    .right-arrow-img img, .left-arrow-img img{
+        height: 25px;
+    }
+    .fa-circle{
+        color: rgb(75 73 73);
+        margin: 0 3px;
+    }
+    .p-circles{
+        height: 30px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+    .p-last-page{
+        color: black;
+        font-size: 20px;
+        font-weight: bold;
+    }
+    .plagination .fa-2x{
+        font-size: 20px;
+    }
+    .plagination .fa-3x{
+        font-size: 25px;
+    }
+    .step-links{
+        width: 320px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .current{
+        min-width: 30px;
+        max-width: 30px;
+        min-height: 30px;
+        max-height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background-color: black;
+    }
+    .current p{        
+        color: #ffffff;
+        font-weight: bolder;
+        font-size: 17px;
     }
 </style>
 {% endblock %}
@@ -239,10 +303,10 @@
             </form>
             <div class="col-lg-12 tourTypeSearch">
                 <span class="list active" data-filter="all">All Tour</span>
-                <span class="list" data-filter="solo">Solo Tour</span>
-                <span class="list" data-filter="friendly">Friendly Tour</span>
-                <span class="list" data-filter="family">Family Tour</span>
-                <span class="list" data-filter="couple">Couple Tour</span>
+                <span class="list" data-filter="Solo-Special">Solo Tour</span>
+                <span class="list" data-filter="Friends-Special">Friendly Tour</span>
+                <span class="list" data-filter="Family-Special">Family Tour</span>
+                <span class="list" data-filter="Couple-Special">Couple Tour</span>
             </div>
             <div class="col-lg-12" id="tours">
                 <span class="selectbg mb-5">
@@ -259,7 +323,7 @@
                 <div class="tours">
                     <div class="noMatchFound">No Match Found</div>
                     {% for tour in Tour %}
-                    <div class="{{tour.tour_type}}" data-ratting="4.5">
+                    <div class="{{tour.tour_type}} tour" data-ratting="4.5">
                         <div class="stars">
                             <ul>
                                 <li><i class="fa fa-star" aria-hidden="true"></i></li>
@@ -270,7 +334,7 @@
                             </ul>
                         </div>
                         <div class="imgbg">
-                            <img src="{{tour.thumbnail.url}}" alt="">
+                            <img src="{{tour.thumbnail.url}}" alt="Tour Thumbnail">
                             <span><a href="/tour/tourdetails/{{tour.tourId}}/{{tour.tourSlug}}">Know More</a></span>
                         </div>
                         <div class="content">
@@ -281,7 +345,7 @@
                                 </p>
                                 <p>{{tour.price}}&#8377</p>
                             </div>
-                            <div class="con3">{{tour.startDate}} to {{tour.endDate}}</div>
+                            <div class="con3">{{tour.startDate}} -> {{tour.endDate}}</div>
                             <div class="con4">(Book before {{tour.last_booking_date}})</div>
                         </div>
                     </div>
@@ -292,31 +356,44 @@
 
         <!--Pagination -->
         <center>
-        <div class="container">
+        <div class="container plagination mt-5">
             <span class="step-links">
                 {% if page_obj.has_previous %}
-                    <a href="?page=1">« first</a>
+                    <a href="?page=1" class="p-last-page">First</a>
                     &nbsp;
-                    ||
+                    <span class="p-circles">
+                        <i class="fa fa-circle" aria-hidden="true"></i>
+                        <i class="fa fa-circle fa-2x" aria-hidden="true"></i>
+                        <i class="fa fa-circle fa-3x" aria-hidden="true"></i>
+                    </span>
                     &nbsp;
-                    <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                    <a href="?page={{ page_obj.previous_page_number }}" class="left-arrow-img">
+                        <img src="{%static 'img/left-arrow.svg'%}">
+                    </a>
                 {% endif %}
         
                 <span class="current">
-                    &nbsp;
-                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+                    &nbsp;<p>
+                        {{ page_obj.number }}
+                    </p>
                     &nbsp;
                 </span>
         
                 {% if page_obj.has_next %}
                     
-                    <a href="?page={{ page_obj.next_page_number }}">next</a> 
+                    <a href="?page={{ page_obj.next_page_number }}" class="right-arrow-img">
+                        <img src="{%static 'img/arrow-point-to-right.svg'%}">
+                    </a> 
                     
                     &nbsp;
-                    ||
+                    <span class="p-circles">
+                        <i class="fa fa-circle fa-3x" aria-hidden="true"></i>
+                        <i class="fa fa-circle fa-2x" aria-hidden="true"></i>
+                        <i class="fa fa-circle" aria-hidden="true"></i>
+                    </span>
                     &nbsp;
                     
-                    <a href="?page={{ page_obj.paginator.num_pages }}">last »</a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}" class="p-last-page">Last</a>
                     
                 {% endif %}
             </span>
@@ -391,6 +468,16 @@
     });
     
     $(function(){
+        var x=document.querySelectorAll('.tour').length;
+        if(x==0){
+            $('.noMatchFound').addClass('d-flex');
+        }
+        else{
+            $('.noMatchFound').removeClass('d-flex');
+        }
+    });
+
+    $(function(){
         $('.list').click(function(){
             const value=$(this).attr('data-filter');
             if(value == 'all'){
@@ -399,6 +486,20 @@
             else{
                 $('.tour').not('.'+value).hide('100');
                 $('.tour').filter('.'+value).show('100');
+                setTimeout(function(){
+                    let c=0;
+                    document.querySelectorAll('.tour').forEach(function(tour){
+                        if(tour.style.display !== 'none'){
+                            c+=1;
+                        }
+                        if(c==0){
+                            $('.noMatchFound').addClass('d-flex');
+                        }
+                        else{
+                            $('.noMatchFound').removeClass('d-flex');
+                        }
+                    });
+                },500);
             }
         })
         $('.list').click(function(){
