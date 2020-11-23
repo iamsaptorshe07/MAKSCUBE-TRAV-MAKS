@@ -2,6 +2,8 @@
 {% load static %}
 <!-- CSS Starts here -->
 {% block stylesheets %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <style>
     body {
         background: rgba(204, 239, 255, 0);
@@ -216,19 +218,19 @@ background-repeat: no-repeat;
         border-radius: 15px;
         font-weight: bold;
         color: rgb(56, 73, 107);
+		transition: all .2s ease-in-out;
     }
 
     .highlight:hover {
-        background: blue;
-        color: #fff;
-        cursor: pointer;
+       
+        transform: scale(1.1);
     }
 
    .highl{
         width: 30rem;
         height: 10rem;
         margin: 0px auto;
-        background: linear-gradient(to top, #4b6cb7, #182848);
+         background: linear-gradient(to right, #093028, #237a57);
         text-align: center;
         display: flex;
         -webkit-box-pack: center;
@@ -350,6 +352,7 @@ background-repeat: no-repeat;
     height: 80px;
     
 }
+}
 .my-card
 {
     position:absolute;
@@ -357,10 +360,44 @@ background-repeat: no-repeat;
     top:-40px;
     border-radius:50%;
 }
+
+.icon-bar {
+	background: #007bb5;
+  position: fixed;
+  top: 50%;
+  transform: translate(-35px,0px) rotate(-90deg);
+  
+}
+
+.icon-bar a {
+  display: block;
+  text-align: center;
+  padding: 16px;
+  transition: all 0.3s ease;
+  color: white;
+  font-size: 20px;
+  
+}
+
+.icon-bar a:hover {
+  background-color: #000;
+  text-decoration: none;
+}
+
+.fa-phone-square {
+  background: #3B5998 !important;
+  color: white;
+}
 </style>
 {% endblock stylesheets %}
 {% block body %}
 <!-- HTML Starts here -->
+<div class="icon-bar">
+  <a href="#" class="facebook">Call us &nbsp;<i class="fa fa-phone-square fa-lg"></i></a> 
+</div>
+
+
+
 <section class="testimonial1 py-5">
     <div class="container">
         <div class="row ">
@@ -835,13 +872,15 @@ background-repeat: no-repeat;
     </div>
 </div>
 
-
+<br>
+<br>
 <div class="container">
         <div class="row">
         <div class="col-md-4">
             <div class="mx-sm-1 p-3">
                 <div class="text-info p-3 my-card" >
-				<span class="fnt"><i class="fa fa-map-marker fa-3x"></i></span>
+				<!--<span class="fnt"><i class="fa fa-map-marker fa-3x"></i></span>-->
+				<img src="{% static 'img/map.png' %}" style="height:60px; width:40px;">
 				</div>
                 <div class="text-info text-center mt-3"><h4>No of Countries</h4></div>
                 <div class="text-info text-center mt-2"><h1>69</h1></div>
@@ -850,7 +889,8 @@ background-repeat: no-repeat;
         <div class="col-md-4">
             <div class=" mx-sm-1 p-3">
                 <div class="text-info  p-3 my-card">
-				<span class="fnt"><i class="fa fa-user-o fa-3x"></i></span>
+				<!--<span class="fnt"><i class="fa fa-user-o fa-3x"></i></span>-->
+				<img src="{% static 'img/user.png' %}" style="height:60px; width:50px;">
 				</div>
                 <div class="text-info text-center mt-3"><h4>No of Agents Connected</h4></div>
                 <div class="text-info text-center mt-2"><h1>69</h1></div>
@@ -859,7 +899,8 @@ background-repeat: no-repeat;
         <div class="col-md-4">
             <div class=" mx-sm-1 p-3">
                 <div class="text-info p-3 my-card" >
-				<span class="fnt"><i class="fa fa fa-pencil fa-3x"></i></span>
+				<!--<span class="fnt"><i class="fa fa fa-pencil fa-3x"></i></span>-->
+				<img src="{% static 'img/globe.jpg' %}" style="height:60px; width:60px;">
 				</div>
                 <div class="text-info text-center mt-3"><h4>No of Tour Books</h4></div>
                 <div class="text-info text-center mt-2"><h1>69</h1></div>
@@ -867,7 +908,7 @@ background-repeat: no-repeat;
         </div>
      
 		</div>
-		</div>
+		</div><br><br>
 
 <section class="features-area pt-100 pb-70" id="features">
     <div class="container">
@@ -942,7 +983,10 @@ background-repeat: no-repeat;
         
     </div>
   </section>
-
+<br>
+<br>
+<br>
+<br>
 <section id="service" class="pb-5">
     <div class="container">
         <h5 class="section-title h1 text-center pb-4">Our Benefits</h5>
