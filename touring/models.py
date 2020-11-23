@@ -18,7 +18,7 @@ class Order(models.Model):
     total_price = models.FloatField()
     creation_date = models.DateTimeField(auto_now_add=True,)
     status = models.BooleanField(default=False)
-    agent_approval = models.BooleanField(default=True)
+    agent_approval = models.BooleanField(default=False)
     user_cancel =models.BooleanField(default=False)
 
     def __str__(self):
