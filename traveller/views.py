@@ -26,7 +26,7 @@ def bookingHistory(request):
 def invoiceGenerator(request,orderID):
     user = request.user
     if user.is_authenticated and request.session['access_type']=='traveller':
-        if Payment.objects.filter(Order__order_id=orderID).exists():
+        if Payment.objects.filter(Order__order_id=orderID,Order__customer=user).exists():
             invoice = Payment.objects.get(Order__order_id=orderID,Order__customer=user)
             bill_context = {
                 "transactionId": invoice.transaction_id,
@@ -44,11 +44,14 @@ def invoiceGenerator(request,orderID):
                 "endLoaction": invoice.Order.tour.endLocation,
                 "placedBy": invoice.Order.customer.userAccess.userId,
                 "Quentity": invoice.Order.total_people,
-                "price": invoice.Order.payment_price,
+                "price":invoice.Order.paid_by_user,
+                "total_price":invoice.Order.total_price,
+                "To_be_paid":invoice.Order.total_price - invoice.Order.paid_by_user,
                 'orderDate': invoice.creation_date,
                 "agentId": invoice.Order.agent.userAccess.agentId,
                 "AgencyId": invoice.Order.agency.agency_Id,
-                'ppp': invoice.Order.tour.price
+                'ppp': invoice.Order.tour.price,
+                'total_people':invoice.Order.total_people
 
             }
             pdf = render_to_pdf('invoice/bill.html', bill_context)

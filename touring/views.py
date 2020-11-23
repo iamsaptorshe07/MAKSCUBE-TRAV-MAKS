@@ -80,7 +80,7 @@ def tourDetails(request,tourId,slug):
 def bookTour(request,tourId,agentId):
     user = request.user
     if user.is_authenticated and request.session['access_type']=='traveller':
-        if Tour.objects.filter(tourId=tourId).exists() and AccountType.objects.filter(agentId=agentId).exists():
+        if Tour.objects.filter(tourId=tourId,maximum_people__gte=1).exists() and AccountType.objects.filter(agentId=agentId).exists():
             seller_account = AccountType.objects.get(agentId=agentId)
             if Tour.objects.filter(tourId=tourId,seller=seller_account.user).exists():
                 tour = Tour.objects.get(tourId=tourId,seller=seller_account.user)
@@ -90,8 +90,8 @@ def bookTour(request,tourId,agentId):
                     phone = request.POST.get('phone')
                     address = request.POST.get('address')
                     total_people = int(request.POST.get('total_people'))
-                    payment = tour.price * total_people
-                    payment = payment*(10/100)
+                    total_payment = tour.price * total_people
+                    payment = total_payment*(10/100)
                     order_id = OrderIdGenerator()
                     order = Order(
                         order_id = order_id,
@@ -103,7 +103,8 @@ def bookTour(request,tourId,agentId):
                         customer_name = name,
                         agent = tour.seller,
                         agency = tour.seller.userAgency,
-                        payment_price = payment,
+                        total_price = total_payment,
+                        paid_by_user = payment,
                         tour = tour,
                     )
                     order.save()
@@ -118,7 +119,7 @@ def bookTour(request,tourId,agentId):
                         "CUST_ID" : order.customer.userAccess.userId,
                         "MOBILE_NO" : order.customer_phone,
                         "EMAIL" : order.customer_email,
-                        "TXN_AMOUNT" : str(order.payment_price),
+                        "TXN_AMOUNT" : str(order.paid_by_user),
                         "CALLBACK_URL" : "http://{}/tour/paytm-payment-recieve".format(get_current_site(request)),
                     }
                     checksum = Checksum.generateSignature(paytmParams, MKEY)
@@ -152,7 +153,7 @@ def recievePayment(request):
                 checksum = form[i]
         isVerifySignature = Checksum.verifySignature(response_dict, MKEY, checksum)
         order = Order.objects.get(order_id = response_dict['ORDERID'])
-        if isVerifySignature == True and order.payment_price == float(response_dict['TXNAMOUNT']) and response_dict['STATUS']=='TXN_SUCCESS':
+        if isVerifySignature == True and order.paid_by_user == float(response_dict['TXNAMOUNT']) and response_dict['STATUS']=='TXN_SUCCESS':
             confirm_order = Payment(
                 Order = order,
                 transaction_id=response_dict['TXNID'],
@@ -165,6 +166,10 @@ def recievePayment(request):
             confirm_order.save()
             order.status = True
             order.save()
+            tour = order.tour
+            sit_left = tour.maximum_people - order.total_people
+            tour.maximum_people = sit_left if sit_left>0 else 0
+            tour.save()
             bill_context = {
                 "transactionId" : confirm_order.transaction_id,
                 "bankTransactionId" : confirm_order.banktransaction_id,
@@ -181,13 +186,17 @@ def recievePayment(request):
                 "endLoaction" : confirm_order.Order.tour.endLocation,
                 "placedBy" : confirm_order.Order.customer.userAccess.userId,
                 "Quentity" : confirm_order.Order.total_people,
-                "price":confirm_order.Order.payment_price,
+                "price":confirm_order.Order.paid_by_user,
+                "total_price":confirm_order.Order.total_price,
+                "To_be_paid":confirm_order.Order.total_price - confirm_order.Order.paid_by_user,
                 'orderDate':confirm_order.creation_date,
                 "agentId":confirm_order.Order.agent.userAccess.agentId,
                 "AgencyId":confirm_order.Order.agency.agency_Id,
-                'ppp':confirm_order.Order.tour.price
+                'ppp':confirm_order.Order.tour.price,
+                'total_people':confirm_order.Order.total_people
 
             }
+            print(bill_context['total_people'])
             pdf = render_to_pdf('invoice/bill.html',bill_context)
             if pdf:
                 response = HttpResponse(pdf, content_type='application/pdf')
@@ -209,7 +218,8 @@ def recievePayment(request):
                 agency=order.agency,
                 tour=order.tour,
                 creation_date = order.creation_date,
-                payment_price = order.payment_price,
+                paid_by_user = order.paid_by_user,
+                total_price = order.total_price,
                 total_people=order.total_people
             )
             failed_order.save()

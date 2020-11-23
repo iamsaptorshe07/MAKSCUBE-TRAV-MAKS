@@ -14,9 +14,12 @@ class Order(models.Model):
     agent = models.ForeignKey(User,on_delete=models.CASCADE,related_name='Agent')
     agency = models.ForeignKey(AgencyDetail,on_delete=models.CASCADE,related_name='Agency')
     total_people = models.IntegerField()
-    payment_price = models.FloatField()
+    paid_by_user = models.FloatField()
+    total_price = models.FloatField()
     creation_date = models.DateTimeField(auto_now_add=True,)
     status = models.BooleanField(default=False)
+    agent_approval = models.BooleanField(default=True)
+    user_cancel =models.BooleanField(default=False)
 
     def __str__(self):
         return self.order_id
@@ -45,7 +48,8 @@ class Failed_Order(models.Model):
     agent = models.ForeignKey(User,on_delete=models.CASCADE,related_name='FAgent')
     agency = models.ForeignKey(AgencyDetail,on_delete=models.CASCADE,related_name='FAgency')
     total_people = models.IntegerField()
-    payment_price = models.FloatField()
+    paid_by_user = models.FloatField()
+    total_price = models.FloatField()
     creation_date = models.DateTimeField(auto_now_add=True,null=True)
 
     def __str__(self):

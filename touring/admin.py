@@ -5,7 +5,7 @@ class OrderAdmin(admin.ModelAdmin):
     list_display = [
         'order_id','get_tour','tour_id','get_customer_email','customer_name','customer_email',
         'customer_phone','customer_address','get_agent_email','agency_name','agency_id','total_people',
-        'per_people_price','payment_price','creation_date','status'
+        'per_people_price','total_price','paid_by_user','creation_date','status','agent_approval','user_cancel'
     ]
     def get_customer_email(self,obj):
         return obj.customer.email
