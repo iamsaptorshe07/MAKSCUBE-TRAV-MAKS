@@ -3,503 +3,677 @@
 {% block stylesheets %}
 <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">-->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
-<link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
 
 
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 <style>
-    /* Tabs*/
-    body{
-	padding-top:15px;
-	}
-	#tabs {
-        background: none;
+    h1,h2,h3,h4,h5,h6,p{
+        margin: 0;
     }
-
-    #nav-tab {
-    background: #0f1012;
-    padding: 10px 0;
-  }
-
-    #tabs .nav-tabs .nav-item.show .nav-link,
-  .nav-tabs .nav-link.active {
-    background-color: transparent;
-    font-weight: bold;
-    background: #fa0505;
-
-  }
-
-    #tabs .nav-tabs .nav-link {
-    border: 1px solid transparent;
-    border-top-left-radius: .25rem;
-    border-top-right-radius: .25rem;
-    color: #eee;
-    
-  }
-
-    .btn-prime {
-        color: #ffffff !important;
-        background-color: #0ec7de !important;
-        border-color: #0ec7de !important;
-        font-size: 25px;
-        margin-bottom: 10px;
+    .row1:after {
+        content: "";
+        display: table;
+        clear: both;
     }
-	
-	.btn-cont {
-        color: #ffffff !important;
-        background: linear-gradient(to bottom, #11998e, #38ef7d);
-        border-color: #0ec7de !important;
-        font-size: 25px;
-        margin-bottom: 20px;
+    .column {
+        float: left;
+        width: 25%;
     }
-
-    .bl {
-        color: #009dd7 !important;
-        font-weight: bold !important;
-    }
-
-    .mainh {
-        font-weight: bold !important;
-        margin-bottom: 20px;
-		transform: translate(30px,0px);
-    }
-
-    .popup-btn a {
-        top: 200px;
+    .modal {
+        display: none;
         position: fixed;
-        right: -85px;
-        z-index: 1000;
-        transform: rotate(-90deg);
-        background-color: red;
-        padding: 10px 20px 130px;
-        height: 0px;
-        background-color: #000;
-        color: #fff;
+        z-index: 1;
+        padding: 30px;
+        margin-top: 70px;
+        left: 0;
+        top: 0;
+        width: 100%;
+        max-height: calc(100% - 70px);
+        overflow: auto;
+        background-color: black;
     }
-
-    .popup-btn a:hover {
+    .modal-content {
+        position: relative;
+        background-color: #fefefe;
+        margin: auto;
+        padding: 0;
+        width: 90%;
+        height: 100%;
+        max-width: 1200px;
+    }
+    .close {
+        color: white;
+        position: absolute;
+        top: 10px;
+        right: 25px;
+        font-size: 35px;
+        font-weight: bold;
+    }
+    .close:hover,
+    .close:focus {
+        color: #999;
         text-decoration: none;
+        cursor: pointer;
+    }
+    .mySlides {
+        position: relative;
+        display: none;
+        width: 100%;
+        max-height: 80%;
+    }
+    .prev,
+    .next {
+        cursor: pointer;
+        position: absolute;
+        top: 50%;
+        width: auto;
+        padding: 16px;
+        transform: translateY(-50%);
+        color: white;
+        font-weight: bold;
+        font-size: 20px;
+        transition: 0.6s ease;
+        border-radius: 0 3px 3px 0;
+        user-select: none;
+        -webkit-user-select: none;
+    }
+    .next {
+        right: 0;
+        border-radius: 3px 0 0 3px;
+    }
+    .prev:hover,
+    .next:hover {
+        background-color: rgba(0, 0, 0, 0.8);
+    }
+    .numbertext {
+        color: #f2f2f2;
+        font-size: 12px;
+        padding: 8px 12px;
+        position: absolute;
+        top: 0;
+    }
+    .caption-container {
+        text-align: center;
+        background-color: black;
+        padding: 2px 16px;
+        color: white;
+    }
+    img.demo {
+        opacity: 0.6;
+    }
+    .active,
+    .demo:hover {
+        opacity: 1;
+    }
+    img.hover-shadow {
+        transition: 0.3s;
+    }
+    .hover-shadow:hover {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+    .container{
+        max-width: 100%;
+        width: 100%;
+        padding: 0 30px;
+        position: relative;
+    }
+    .row{
+        position: relative;
+    }
+    .row1{
+        top: 0;
+        position: relative;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .row1 .column{
+        width: 250px;
+        height: 200px!important;
+        height: auto;
+        margin: 10px;
+        position: relative;
+    }
+    .row1 .column img{
+        border-radius: 4px;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+    }
+    .row1 p{
+        position: relative;
+        text-align: center;
+        width: 100%;
+        font-weight: bolder;
+        font-size: 30px;
+        margin-bottom: 5px;
+    }
+    .modalColumn{
+        position: relative;
+        max-height: 20%;
+        width: 100%;
+        display: flex;
+        padding: 0 25px;
+    }
+    .tourDetails{
+        width: 100%;
+        top: 90px;
+        position: sticky;
+        height: 685px;
+    }
+    .tdnavs{
+        width: 100%;
+        height: 100px;
+        display: flex;
+        justify-content: center;
+        padding: 10px;
+    }
+    .tdnav{
+        margin: 0 15px;
+        position: relative;
+        width: 45%;
+        height: 85px;
+        border-radius: 5px;
+        background-color: #060b25;
+        padding: 15px;
+        cursor: pointer;
+    }
+    .tdnav p{
+        font-size: 20px;
+        cursor: pointer;
+        line-height: 1.3;
+        color: #fff;
+        text-align: center;
+        font-weight: bolder;
+        margin: 0;
+    }
+    .tdnav.active{
+        background-color: darkslategray;
+    }
+    .tdcon{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        padding: 15px;
+        display: none;
+    }
+    .tdcon.active{
+        display: flex;
+        flex-flow: column;
+    }
+    .tourDetails .btns{
+        width: 100%;
+        height: 100px;
+        display: flex;
+    }
+    .tourDetails .btns a{
+        position: relative;
+        width: 50%;
+        height: 80px;
+        font-size: 19px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        outline: none!important;
+    }
+    .tourDetails .btns a:nth-child(1){
+        background-color: cornflowerblue;
+        color: black;
+        border-top-left-radius: 4px;
+        border-bottom-left-radius: 4px;
+    }
+    .tourDetails .btns a:nth-child(2){
+        background-color: darkslategray;
+        color: #fff;
+        border-top-right-radius: 4px;
+        border-bottom-right-radius: 4px;
+    }
+    .tdcons{
+        width: 100%;
+        height: 495px;
+        overflow-y: scroll;
+    }
+    .accordion {
+        background-color: #ccc;
+        color: #444;
+        cursor: pointer;
+        padding: 18px;
+        width: 100%;
+        border: none;
+        text-align: left;
+        outline: none;
+        font-size: 15px;
+        transition: 0.4s;
+        margin: 10px 0 0 0;
+        border-radius: 4px;
+        outline: none!important;
+    }
+
+    .accordion.active, .accordion:hover {
+        background-color: #444;
+        color: #ffffff;
+        font-weight: bold;
+    }
+
+    .accordion:after {
+        content: '\002B';
+        color: #777;
+        font-weight: bold;
+        float: right;
+        margin-left: 5px;
+    }
+
+    .accordion.active:after {
+        content: "\2212";
+    }
+
+    .panel {
+        border-radius: 4px;
+        padding: 0 18px;
+        background-color: #f7fafd;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.2s ease-out;
+        border-bottom-right-radius: 4px;
+        border-bottom-left-radius: 4px;
+    }
+    .btns2{
+        width: 100%;
+        position: sticky;
+        bottom: 0;
+        left: 0;
+        display: none;
+    }
+    .btns2 a{
+        position: relative;
+        width: 50%;
+        height: 80px;
+        font-size: 19px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        outline: none!important;
+    }
+    .btns2 a:nth-child(1){
+        background-color: cornflowerblue;
+        color: black;
+        border-top-left-radius: 4px;
+        border-bottom-left-radius: 4px;
+    }
+    .btns2 a:nth-child(2){
+        border-top-right-radius: 4px;
+        border-bottom-right-radius: 4px;
+        background-color: darkslategray;
         color: #fff;
     }
-
-	@media screen and (max-width: 400px) {
-  .popup-btn{
-    display:none !important;
-  }
-  .btn-prime{
-  position:fixed !important;
-   
-   bottom: 0;
-    right:80px;
-    margin: 0 0 0 -20%;
-	transform:translateX(80px);
-  }
-}
-
-@media screen and (max-width: 600px)  {
-  .popup-btn{
-    display:none !important;
-  }
-  .btn-prime{
-  position:fixed!important;
-    z-index:1;
-   bottom: 0;
-  right:80px;
-    margin: 0 0 0 -20%;
-	transform:translateX(80px);
-  }
-	.btn-cont{
-	position:fixed!important;
-    z-index:1;
-   bottom: 0;
-  right:80px;
-    margin: 0 0 0 -20%;
-	transform:translateX(60px);
-	}
-}
-
-@media screen and (max-width: 900px)  {
-  .popup-btn{
-    display:none !important;
-  }
-  .btn-prime{
-  position:fixed !important;
-   z-index:1;
-   bottom: 0;
-    right:80px;
-    margin: 0 0 0 -20%;
-	transform:translateX(80px);
-  }
-  .btn-cont{
-  position:fixed !important;
-   z-index:1;
-   bottom: 54px;
-    right:60px;
-    margin: 0 0 0 -20%;
-	transform:translateX(60px);
-  }
-}
-    .fa-globe {
-        color: #00bcd4;
+    .tdcon2 p{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 8px 0;
+        font-size: 18px;
+        word-break: break-word;
+        padding: 0 10px;
     }
-	fa-star{
-	display:inline-block;
-	}
-
-    .btn-orange-styl {
-        background: #fc4a1a;
-        background: -webkit-linear-gradient(to right, #f7b733, #fc4a1a);
-        background: linear-gradient(to right, #f7b733, #fc4a1a);
-        color: #fff;
-        border: 3px solid #eee;
-        border-radius: 35px;
-        margin-left: 20px;
-        margin-bottom: 10px;
-		transform: translate(30px,0px);
+    .tdcon1 p{
+        margin: 8px 0;
     }
-	a:hover {
-  text-decoration: none;
-}
-@media screen and (max-width: 400px) {
-	
-	.nav-tabs > li {
-        width:23.5%;
-	   }
-	   .hide{
-	   display:none;
-	   }
-}
-
-@media screen and (max-width: 600px) {
-	.nav-tabs > li {
-        width:23.5%; 
+    .tdcon1 p h5{
+        font-weight: bold;
+        font-size: 21px;
     }
-	.hide{
-	   display:none;
-	   }
-	
-}
-@media screen and (max-width: 900px) {
-	.nav-tabs > li {
-        width:23.5%;
+    .tdcon1 p span{
+        font-size: 18px;
     }
-	.hide{
-	   display:none;
-	   }
-
-}
-#myBtn{
-display:none;
-}
+    .heading{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .thumbneil{
+        margin-right: 15px;
+        position: relative;
+        width: 350px;
+        height: 310px;
+        border: 1px solid black;
+    }
+    .thumbneil img{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+    }
+    .headingCon{
+        position: relative;
+        padding: 0 15px;
+    }
+    .headingCon h1{
+        font-size: 35px;
+        font-weight: bolder;
+    }
+    .headingCon a{
+        color: #726868;
+        font-weight: bold;
+        font-size: 20px;
+    }
+    .price, .specialOffer, .dates, .review, .location, .tourType{
+        margin-top: 10px;
+    }
+    .price h4{
+        color: rgb(56, 148, 56);
+        font-weight: bold;
+        font-size: 17px;
+    }
+    .price p{
+        display: flex;
+        align-items: center;
+    }
+    .price p span:nth-child(1){
+        font-size: 30px;
+        font-weight: bold;
+    }
+    .price p span:nth-child(2){
+        text-decoration: line-through;
+        margin: 0 10px;
+    }
+    .price p span:nth-child(3){
+        color: rgb(56, 148, 56);
+        margin-right: 10px;
+    }
+    .price p span:nth-child(4){
+        color: red;
+    }
+    .review span{
+        padding: 3px 7px;
+        font-size: 20px;
+        color: white;
+        font-weight: bold;
+        background-color: rgb(56, 148, 56);
+        border-radius: 20px;
+    }
+    .specialOffer h5{
+        color: rgb(56, 148, 56);
+        font-weight: bold;
+        font-size: 17px;
+    }
+    .dates{
+        display: flex;
+    }
+    .dates span{
+        font-size: 18px;
+        margin-right: 15px;
+    }
+    .location span{
+        padding: 5px 12px;
+        border-radius: 18px;
+        background-color: #e5ebfe;
+        color: black;
+        font-size: 20px;
+        font-weight: bold;
+    }
+    .tourType h4{
+        font-size: 17px;
+        font-weight: bold;
+    }
+    .location{
+        margin: 15px 0;
+    }
+    .tourType h4:nth-child(1){
+        color: rgb(56, 148, 56);
+        margin-bottom: 5px;
+    }
+    #reviews{
+        padding: 15px 30px;
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .reviewHead{
+        font-weight: 700;
+        margin: 40px 0 0 30px;
+    }
+    .TourReview{
+        padding: 10px 15px;
+        width: 310px;
+        border-top: 1px solid black;
+        border-bottom: 1px solid black;
+        display: flex;
+        flex-flow: column;
+    }
+    .stars ul{
+        display: flex;
+        margin: 0;
+        padding: 0;
+    }
+    .stars ul li{
+        margin: 0 5px!important;
+        margin: 0;
+        padding: 0;
+    }
+    .stars ul li i{
+        color: #436e38;
+        font-size: 19px;
+    }
+    .container.pt-5{
+        padding: 0 50px;
+    }
+    .reviewCon{
+        font-size: 18px;
+        font-weight: bold;
+    }
+    .reviewFrom{
+        font-size: 14px;
+        color: rgba(0, 0, 0, 0.84);
+    }
+    @media screen and (max-width:990px){
+        .tourDetails{
+            position: relative;
+        }
+        .modal-content{
+            height: auto;
+        }
+        .tourDetails .btns{
+            display: none;
+        }
+        .btns2{
+            display: flex;
+        }
+    }
+    @media screen and (max-width:480px){
+        .tdnavs{
+            padding: 10px 0;
+        }
+        .tdnav{
+            width: 50%;
+            margin: 0;
+            border-radius: 0px;
+        }
+        .dates span {
+            font-size: 16px;
+        }
+        .tdnav1{
+            border-top-left-radius: 4px;
+            border-bottom-left-radius: 4px;
+        }
+        .tdnav2{
+            border-top-right-radius: 4px;
+            border-bottom-right-radius: 4px;
+        }
+        .container.pt-5{
+            padding: 0;
+        }
+        .heading{
+            justify-content: center;
+        }
+        .thumbneil{
+            margin: 0;
+            width: 320px;
+            height: 260px;
+            margin-bottom: 20px;
+        }
+        .location span{
+            font-size: 17px;
+        }
+        .price p span:nth-child(3) {
+            margin-right: 5px;
+        }
+        .price p span:nth-child(1) {
+            font-size: 20px;
+        }
+        .headingCon h1 {
+            word-break: break-word;
+            margin-bottom: 15px;
+        }
+    }
 </style>
 {% endblock stylesheets %}
 
 {% block body %}
-<div class="breadcrumb">
-    <div class="owl-carousel owl-theme">
-        <div class="card flt">
-            <div class="card-img-block">
-                <img class="card-img-top" src="{% static 'img/c1.jpg' %}" alt="">
-            </div>
-            <div class="card-body pt-0">
-                <h5 class="card-title">Heading</h5>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
+
+<div class="container pt-5">
+    <div class="heading">
+        <div class="thumbneil">
+            <img src="#" alt="thumbneil">
         </div>
-        <div class="card flt">
-            <div class="card-img-block">
-                <img class="card-img-top" src="{% static 'img/c1.jpg' %}" alt="">
+        <div class="headingCon">
+            <a href="#">{{Agency. Name</a>
+            <h1>{{Tour.ttitle </h1>
+            <div class="tourType">
+                <h4>({{tour.tour_type)</h4>
+                <h4>{{Tour.startDate|date:'c'}} to {{Tour.endDate|date:'c'}}</h4>
             </div>
-            <div class="card-body pt-0">
-                <h5 class="card-title">Heading</h5>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
+            <div class="location">
+                <span>{{Tour.slocation</span> -> 
+                <span>{{Tour.elocation</span>
             </div>
-        </div>
-        <div class="card flt">
-            <div class="card-img-block">
-                <img class="card-img-top" src="{% static 'img/c1.jpg' %}" alt="">
+            <div class="price">
+                <h4>Serial Price</h4>
+                <p>
+                    <span>$400</span>
+                    <span>$650</span>
+                    <span>32% off</span>
+                    <span>Hurry only few seats left</span>
+                </p>
             </div>
-            <div class="card-body pt-0">
-                <h5 class="card-title">Heading</h5>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
+            <div class="review">
+                <span>4.5 <i class="fa fa-star" aria-hidden="true"></i></span>
+                <a href="#reviews">click here for reviews</a>
             </div>
-        </div>
-        <div class="card flt">
-            <div class="card-img-block">
-                <img class="card-img-top" src="{% static 'img/c1.jpg' %}" alt="">
+            <div class="specialOffer">
+                <h5>Special Offer</h5>
+                <p>Not Available</p>
             </div>
-            <div class="card-body pt-0">
-                <h5 class="card-title">Heading</h5>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-        </div>
-        <div class="card flt">
-            <div class="card-img-block">
-                <img class="card-img-top" src="{% static 'img/c1.jpg' %}" alt="">
-            </div>
-            <div class="card-body pt-0">
-                <h5 class="card-title">Heading</h5>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-        </div>
-        <div class="card flt">
-            <div class="card-img-block">
-                <img class="card-img-top" src="{% static 'img/c1.jpg' %}" alt="">
-            </div>
-            <div class="card-body pt-0">
-                <h5 class="card-title">Heading</h5>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-        </div>
-        <div class="card flt">
-            <div class="card-img-block">
-                <img class="card-img-top" src="{% static 'img/c1.jpg' %}" alt="">
-            </div>
-            <div class="card-body pt-0">
-                <h5 class="card-title">Heading</h5>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-        </div>
-        <div class="card flt">
-            <div class="card-img-block">
-                <img class="card-img-top" src="{% static 'img/c1.jpg' %}" alt="">
-            </div>
-            <div class="card-body pt-0">
-                <h5 class="card-title">Heading</h5>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-        </div>
-        <div class="card flt">
-            <div class="card-img-block">
-                <img class="card-img-top" src="{% static 'img/c1.jpg' %}" alt="">
-            </div>
-            <div class="card-body pt-0">
-                <h5 class="card-title">Heading</h5>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-        </div>
-        <div class="card flt">
-            <div class="card-img-block">
-                <img class="card-img-top" src="{% static 'img/c1.jpg' %}" alt="">
-            </div>
-            <div class="card-body pt-0">
-                <h5 class="card-title">Heading</h5>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
+            <div class="dates">
+                <span class="text-danger">Last Booking Date : 20/12/2020</span>
+                <span>||</span>
+                <span class="text-success">You Can Cancel Within : 22/12/2020</span>
             </div>
         </div>
     </div>
-</div>
-<div class="container-fluid">
+</div><br><br>
+<div class="container">
     <div class="row">
-        <!-- Tabs -->
-        <div class="col-md-9 gedf-main">
-            <div class="container">
-                <div class="row">
-                    <h2 class="mainh">Heading</h2>
-                    <button class=" btn btn-orange-styl" data-toggle="modal" data-target="#exampleModalCenter">
-                        Special Offer <i class="fa fa-tags"></i></button>
-
-                    <!-- Button trigger modal -->
-
-
-                    <!-- Modal -->
-                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
-                        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h3 class="modal-title" id="exampleModalLongTitle"><img
-                                            src="{% static 'img/offer.png' %}" style="height:60px; width:auto;"> Special
-                                        Offer</h3>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud\
-                                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                                    irure dolor in reprehenderit in voluptate velit esse
-                                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                                    proident, sunt in culpa qui officia deserunt mollit anim
-                                    id est laborum.
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary">Save changes</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+        <div class="col-lg-6 tourDetails">
+            <div class="tdnavs">
+                <div class="tdnav active tdnav1" onclick="changeTD(1);">
+                    <p>Description</p>
+                    <p>[Day/Day]</p>
                 </div>
-                <section id="tabs">
-					<div class="container">
-                    <nav>
-                        <ul class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
-						<li><a class="nav-item nav-link active" id="nav-overall-tab" data-toggle="tab" href="#nav-overall" role="tab" aria-controls="nav-overall" aria-selected="true">
-						<i class="fa fa-envelope-o"></i><br><span class="hide">Overall Description</span></a></li>
-						<li><a class="nav-item nav-link" id="nav-inclusive-tab" data-toggle="tab" href="#nav-inclusive" role="tab" aria-controls="nav-inclusive" aria-selected="false">
-						<i class="fa fa-bandcamp"></i><br><span class="hide">Inclusive and Exclusive</span></a></li>
-						<li><a class="nav-item nav-link" id="nav-near-tab" data-toggle="tab" href="#nav-near" role="tab" aria-controls="nav-near" aria-selected="false">
-						<i class="fa fa-map"></i><br><span class="hide">Nearest Location to Visit</span></a></li>
-						<li><a class="nav-item nav-link" id="nav-highlight-tab" data-toggle="tab" href="#nav-highlight" role="tab" aria-controls="nav-highlight" aria-selected="false">
-						<i class="fa fa-star"></i><br><span class="hide">Tour Highlights</span></a></li>
-					</ul>
-						</div>
+                <div class="tdnav tdnav2" onclick="changeTD(2);">
+                    <p>Other</p>
+                    <p>Details</p>
+                </div>
             </div>
-            </nav>
-            <div class="container">
-                <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
-                    <div class="tab-pane fade show active" id="nav-overall" role="tabpanel"
-                        aria-labelledby="nav-overall-tab">
-                        <div class="tourdesc">
-
-                        </div>
+            <div class="tdcons">
+                <div class="tdcon active tdcon1">
+                </div>
+                <div class="tdcon tdcon2">
+                    <button class="accordion">Tour Inclusive</button>
+                    <div class="panel">
+                        <p>{{Tour.inclusive | linebreaksbr}}</p>
                     </div>
-                    <div class="tab-pane fade" id="nav-inclusive" role="tabpanel" aria-labelledby="nav-inclusive-tab">
-                        <h5>
-                            <span class="bl">Tour Inclusive</span>
-                        </h5>
-                        <p>
-                            {{Tour.inclusive | linebreaksbr}}
-                        </p>
-                        <h5>
-                            <span class="bl">Tour Exclusive</span>
-                        </h5>
-                        <p>
-                            {{Tour.exclusive | linebreaksbr}}
-                        </p>
+                    <button class="accordion">Tour Exclusive</button>
+                    <div class="panel">
+                        <p>{{Tour.exclusive | linebreaksbr}}</p>
                     </div>
-                    <div class="tab-pane fade" id="nav-near" role="tabpanel" aria-labelledby="nav-near-tab">
-                        <h5>
-                            <span class="bl">{{Tour.nearestLocation1}}</span>
-                        </h5>
-                        <p>
-                        <h3>Distance : {{Tour.nearestLocation1_distance}}</h3>
-                        {{Tour.nlocationconnected1}}
-                        </p>
-                        <h5>
-                            <span class="bl">{{Tour.nearestLocation2}}</span>
-                        </h5>
-                        <p>
-                        <h3>Distance : {{Tour.nearestLocation2_distance}}</h3>
-                        {{Tour.nlocationconnected2}}
-                        </p>
-                        <h5>
-                            <span class="bl">{{Tour.nearestLocation3}}</span>
-                        </h5>
-                        <p>
-                        <h3>Distance : {{Tour.nearestLocation3_distance}}</h3>
-                        {{Tour.nlocationconnected3}}
-                        </p>
-                        <h5>
-                            <span class="bl">{{Tour.nearestLocation4}}</span>
-                        </h5>
-                        <p>
-                        <h3>Distance : {{Tour.nearestLocation4_distance}}</h3>
-                        {{Tour.nlocationconnected4}}
-                        </p>
-
+                    <button class="accordion">Tour Overview</button>
+                    <div class="panel">
+                        <p>{{Tour.overview | linebreaksbr}}</p>
                     </div>
-                    <div class="tab-pane fade" id="nav-highlight" role="tabpanel" aria-labelledby="nav-highlight-tab">
-                        <p>
-                            {{Tour.highlight | linebreaksbr}}
-                        </p>
+                    <button class="accordion">Tour Highlight</button>
+                    <div class="panel">
+                        <p>{{Tour.highlight | linebreaksbr}}</p>
                     </div>
                 </div>
-
+            </div>
+            <div class="btns">
+                <a href="/tour/booktour/TRAVMAKSTOURxViEma/AGENT12045">Book Now</a>
+                <a href="/contact-us">Send Query</a>
             </div>
         </div>
-
-        </section>
-        <!-- ./Tabs -->
-        <!--- \\\\\\\Post-->
-
-
-        <div class="col-md-3">
-            
-                <a href="/tour/booktour/{{Tour.tourId}}/{{Tour.seller.userAccess.agentId}}">
-                    <button type="button" class="btn btn-prime btn-block"><i class="fa fa-plane fa-lg"></i>&nbsp;BOOK
-                        NOW</button>
-                </a>
-				
-				<a href="#" data-toggle="modal" data-target="#contactModalCenter">
-                    <button type="button" class="btn btn-cont btn-block"><i class="fa fa-phone fa-lg"></i>&nbsp;Contact Us</button>
-                </a>
-				
-		<!-- Modal -->
-                    <div class="modal fade" id="contactModalCenter" tabindex="-1" role="dialog"
-                        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header" style="border-bottom:none;">
-                                    
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <h2 class="mainh ml-3">Contact Us</h2>
-    <div class="col-md-12">
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="First Name *" value="" />
+        <div class="col-lg-6 tourImages">
+            <div class="row1">
+                <p>Tour Images</p>
+                {% for i in images %}
+                <div class="column">
+                    <img src="{{i}}" data-index="{{forloop.counter}}" class="hover-shadow" />
                 </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Email *" value="" />
-                </div>
-                <div class="form-group">
-                    <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="Message *"
-                        rows="3"></textarea>
-                </div>
-
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <input type="email" class="form-control" placeholder="Last Name *" value="" />
-                </div>
-                <div class="form-group">
-                    <input type="text" minlength="10" maxlength="10" name="txtEmpPhone" class="form-control"
-                        placeholder="Your Phone *" value="" />
-                </div>
-
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Travel Id *" value="" />
-                </div>
-                <button type="button" class="btn btn-success">Button</button>
-            </div>
-        </div>
-    </div>
-                                </div>
-                             
-                            </div>
-                        </div>
-                    </div>		
-				
-                <div class="popup-btn" style="display:block">
-                    <a href="/tour/booktour/{{Tour.tourId}}/{{Tour.seller.userAccess.agentId}}">Book Now &nbsp;<i
-                            class="fa fa-globe"></i></a>
-                </div>
-				<div class="container">
-                    {% for i in images %}
-                <div class="col-md-4">
-                    <a href="#">
-                        <img src="{{i}}" alt=""
-                            style="height: 200px;width: 250px;">
-                    </a>
-                </div>
-                <br>
                {% endfor %}
 
             </div>
+            <div id="myModal" class="modal">
+                <span class="close cursor" onclick="closeModal()">&times;</span>
+                <div class="modal-content">
+                    {% for i in images %}
+                    <div class="mySlides">
+                        <div class="numbertext">{{ forloop.counter }} / {{ images|length }}</div>
+                        <img src="{{i}}" style="width:100%;height: 100%;">
+                    </div>
+                    {% endfor %}
+                    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+                    <div class="modalColumn">
+                        {% for i in images %}
+                        <div class="column">
+                            <img class="demo" src="{{i}}" data-index="{{forloop.counter0}}" alt="Nature" 
+                             style="width:100%;height: 100%;padding: 5px;">
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <h1 class="reviewHead">Ratting & Reviews</h1>
+            <div id="reviews">
+                <div class="TourReview">
+                    <div class="stars">
+                        <ul>
+                            <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                            <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                            <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                            <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                            <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                        </ul>
+                    </div>
+                    <div class="reviewCon">
+                        Good Good Good Good Good Good Good Good 
+                    </div>
+                    <div class="reviewFrom">
+                        *posted by Ayan Koley
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="btns2">
+            <a href="/tour/booktour/TRAVMAKSTOURxViEma/AGENT12045">Book Now</a>
+            <a href="/contact-us">Send Query</a>
         </div>
     </div>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.js" 
+    integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous">
+</script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
 <script type="text/javascript">
     $(function(){
         var sd="{{Tour.startDate|date:'c'}}";
@@ -523,7 +697,6 @@ display:none;
         var ggg=x;
         
         var temp = "{{description | linebreaksbr}}";
-    	console.log(temp)
         var tem=temp.replace(/<br\s*\/?>/gi,'')
         var tem=temp.replace('<br>','');
 		var d2 = temp.split('@@@@')
@@ -537,39 +710,111 @@ display:none;
         var tourdesc=document.querySelector('.tourdesc');
         let ii=0;
         for(let i=0;i<ggg*2;i+=2,ii+=1){
-            var h6=document.createElement('h5');
-            h6.classList.add('bl');
-            var days='Day '+(ii+1)+' : '+ui[i];
-            var node3=document.createTextNode(days);
-            h6.appendChild(node3);
-            var br=document.createElement('br');
-            h6.appendChild(br);
-
-            var p=document.createElement('p');
-            p.style.wordBreak='break-word';
-            var node2=document.createTextNode(ui[i+1]);
-            p.appendChild(node2);
-
-            tourdesc.appendChild(h6);
-            tourdesc.appendChild(p);
+            var accordion=document.createElement('button');
+            accordion.type='button';
+            accordion.classList.add('accordion')
+            var day='Day '+(ii+1);
+            day=document.createTextNode(day);
+            accordion.appendChild(day);
+            var h5=document.createElement('h5');
+            var h5node=document.createTextNode(ui[i]);
+            h5.appendChild(h5node);
+            var span=document.createElement('span');
+            span.style.wordBreak='break-word';
+            var pnode=document.createTextNode(ui[i+1]);
+            span.appendChild(pnode);
+            var panel=document.createElement('div');
+            var panelp=document.createElement('p');
+            panelp.appendChild(h5);
+            panelp.appendChild(span);
+            panel.appendChild(panelp);
+            panel.classList.add('panel');
+            var tdcon1=document.querySelector('.tdcon1');
+            tdcon1.appendChild(accordion);
+            tdcon1.appendChild(panel);
         }
     })
-    $('.owl-carousel').owlCarousel({
-        loop: true,
-        margin: 10,
-        nav: true,
-        autoplay: true,
-        responsive: {
-            0: {
-                items: 2
-            },
-            600: {
-                items: 4
-            },
-            1000: {
-                items: 6
+    
+    $(function(){
+        var acc = document.getElementsByClassName("accordion");
+        var i;
+        for (i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var panel = this.nextElementSibling;
+                if (panel.style.maxHeight) {
+                    panel.style.maxHeight = null;
+                    panel.style.overflow='hidden';
+                    panel.style.border='none';
+                } else {
+                    panel.style.maxHeight = panel.scrollHeight + "px";
+                    panel.style.overflow='visible';
+                    panel.style.border='1px solid #444';
+                } 
+            });
+        }
+    });
+
+    $(function(){
+        $('.row1 .column img').click(function(){
+            var index=$(this).data("index");
+            openModal();
+            currentSlide(index);
+        });
+        $('img.demo').click(function(){
+            var index=$(this).data("index");
+            currentSlide(index);
+        });
+    });
+
+    function changeTD(x){
+        if(x==2){
+            $('.tdnav1').removeClass('active');
+            $('.tdnav2').addClass('active');
+            $('.tdcon1').removeClass('active');
+            $('.tdcon2').addClass('active');
+        }
+        else if(x==1){
+            $('.tdnav2').removeClass('active');
+            $('.tdnav1').addClass('active');
+            $('.tdcon2').removeClass('active');
+            $('.tdcon1').addClass('active');
+        }
+    }
+
+    $(function(){
+        function openModal() {
+            document.getElementById("myModal").style.display = "block";
+        }
+        function closeModal() {
+            document.getElementById("myModal").style.display = "none";
+        }
+        var slideIndex = 1;
+        showSlides(slideIndex);
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+        }
+        function showSlides(n) {
+            var i;
+            var slides = document.getElementsByClassName("mySlides");
+            var dots = document.getElementsByClassName("demo");
+            if (n > slides.length) {slideIndex = 1}
+            if (n < 1) {slideIndex = slides.length}
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
             }
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            slides[slideIndex-1].style.display = "block";
+            dots[slideIndex-1].className += " active";
         }
-    })
+    });
+
+
+
 </script>
 {% endblock body %}
