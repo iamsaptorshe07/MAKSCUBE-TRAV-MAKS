@@ -335,8 +335,10 @@
     .heading{
         display: flex;
         flex-wrap: wrap;
+        margin-bottom: 30px;
     }
     .thumbneil{
+        border-radius: 4px;
         margin-right: 15px;
         position: relative;
         width: 350px;
@@ -344,6 +346,7 @@
         border: 1px solid black;
     }
     .thumbneil img{
+        border-radius: 4px;
         position: absolute;
         width: 100%;
         height: 100%;
@@ -415,12 +418,16 @@
         color: black;
         font-size: 20px;
         font-weight: bold;
+        margin-top: 4px;
     }
     .tourType h4{
         font-size: 17px;
         font-weight: bold;
     }
     .location{
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
         margin: 15px 0;
     }
     .tourType h4:nth-child(1){
@@ -492,6 +499,53 @@
     .modal-body input{
         margin: 4px 0;
     }
+    .suggestedTour{
+        display: flex;
+        justify-content: center;
+        flex-flow: column;
+    }
+    .suggestedTour h3{
+        font-size: 25px;
+        text-align: center;
+        font-weight: bold;
+        margin-bottom: 15px;
+    }
+    .st{
+        margin-bottom: 15px;
+        align-items: center;
+        justify-content: space-around;
+        position: relative;
+        display: flex;
+        flex-flow: column;
+        width: 130px;
+    }
+    .st .imgbg{
+        width: 105px;
+        position: relative;
+        height: 90px;
+        margin-bottom: 5px;
+        border: 1px solid black;
+        border-radius: 4px;
+    }
+    .st .imgbg img{
+        border-radius: 4px;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+    }
+    .st a{
+        text-align: center;
+        color: #726868;
+        font-size: 18px;
+    }
+    .allst{
+        position: relative;
+        width: 100%;
+        align-items: center;
+        justify-content: space-around;
+        display: flex;
+        flex-wrap: wrap;
+    }
     @media screen and (max-width:990px){
         .tourDetails{
             position: relative;
@@ -558,49 +612,83 @@
 {% block body %}
 
 <div class="container pt-5">
-    <div class="heading">
-        <div class="thumbneil">
-            <img src="{{Tour.thumbnail.url}}" alt="thumbnail">
-        </div>
-        <div class="headingCon">
-            <a href="#">{{Tour.seller.userAgency.agency_Id}}</a>
-            <h1>{{Tour.tourHeading}}</h1>
-            <div class="tourType">
-                <h4>({{Tour.tour_type}})</h4>
-                <h4>{{Tour.startDate|date:'c'}} to {{Tour.endDate|date:'c'}}</h4>
+    <div class="row">
+        <div class="heading col-lg-9">
+            <div class="thumbneil">
+                <img src="{{Tour.thumbnail.url}}" alt="thumbnail">
             </div>
-            <div class="location">
-                <span>{{Tour.startingLocation}}</span> -> 
-                <span>{{Tour.endLocation}}</span>
-            </div>
-            <div class="price">
-                <h4>Serial Price</h4>
-                <p>
-                    <span>{{Tour.price}}&#8377/people </span>
-                    <!--
-                    <span>$650</span>
-                    <span>32% off</span>
-                    -->
-                    <span>Hurry only {{Tour.maximum_people}} seats left</span>
-                </p>
-            </div>
-            <div class="review">
-                <span>4.5 <i class="fa fa-star" aria-hidden="true"></i></span>
-                <a href="#reviews">click here for reviews</a>
-            </div>
-            <!--Special Offer -->
-            <!--
-            <div class="specialOffer">
-                <h5>Special Offer</h5>
-                <p>Not Available</p>
-            </div>
-            -->
-            <!--Special Offer ends -->
-            <div class="dates">
-                <span class="text-danger">Last Booking Date : {{Tour.last_booking_date}}</span>
+            <div class="headingCon">
+                <a href="#">Agency Id : {{Tour.seller.userAgency.agency_Id}}</a>
+                <h1>{{Tour.tourHeading}}</h1>
+                <div class="tourType">
+                    <h4>({{Tour.tour_type}})</h4>
+                    <h4>The Code is on line number 1036</h4>
+                </div>
+                <div class="location">
+                    <span>{{Tour.startingLocation}}</span>
+                    <p style="margin: 0 4px;">to</p>
+                    <span>{{Tour.endLocation}}</span>
+                </div>
+                <div class="price">
+                    <h4>Serial Price</h4>
+                    <p>
+                        <span>{{Tour.price}}&#8377/people </span>
+                        <!--
+                        <span>$650</span>
+                        <span>32% off</span>
+                        -->
+                        <span>Hurry only {{Tour.maximum_people}} seats left</span>
+                    </p>
+                </div>
+                <div class="review">
+                    <span>4.5 <i class="fa fa-star" aria-hidden="true"></i></span>
+                    <!-- <a href="#reviews">click here for reviews</a> -->
+                </div>
+                <!--Special Offer -->
                 <!--
-                <span class="text-success">You Can Cancel Within : 22/12/2020</span>
+                <div class="specialOffer">
+                    <h5>Special Offer</h5>
+                    <p>Not Available</p>
+                </div>
                 -->
+                <!--Special Offer ends -->
+                <div class="dates">
+                    <span class="text-danger">Last Booking Date : {{Tour.last_booking_date}}</span>
+                    <!--
+                    <span class="text-success">You Can Cancel Within : 22/12/2020</span>
+                    -->
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="suggestedTour">
+                <h3>Suggested Similar Tours</h3>
+                <div class="allst">
+                    <div class="st">
+                        <div class="imgbg">
+                            <img src="#" alt="suggestedTour">
+                        </div>
+                        <a href="#">Kolkata To Dajeeling</a>
+                    </div>
+                    <div class="st">
+                        <div class="imgbg">
+                            <img src="#" alt="suggestedTour">
+                        </div>
+                        <a href="#">Mumbai To Dajeeling</a>
+                    </div>
+                    <div class="st">
+                        <div class="imgbg">
+                            <img src="#" alt="suggestedTour">
+                        </div>
+                        <a href="#">Mumbai To Dajeeling</a>
+                    </div>
+                    <div class="st">
+                        <div class="imgbg">
+                            <img src="#" alt="suggestedTour">
+                        </div>
+                        <a href="#">Mumbai To Dajeeling</a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -936,6 +1024,21 @@
     }
     $('.errorMsg').click(function(){
         document.querySelector('.errorMsg').innerHTML=null;
+    });
+
+    $(function(){
+        var sd="{{Tour.startDate|date:'c'}}";
+		var d1=sd.substr(0,4);
+		var d2=sd.substr(5,2);
+		var d3=sd.substr(8,2);
+        sd=d2+'/'+d3+'/'+d1;
+        var ed="{{Tour.endDate|date:'c'}}";
+		var d1=ed.substr(0,4);
+		var d2=ed.substr(5,2);
+		var d3=ed.substr(8,2);
+        ed=d2+'/'+d3+'/'+d1;
+        var date='Starting Date : '+sd+' || Ending Date : '+ed;
+        document.querySelector('.tourType h4:nth-child(2)').innerHTML=date;
     });
 </script>
 {% endblock body %}
