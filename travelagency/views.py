@@ -52,10 +52,6 @@ def addTour(request,uid,agid):
                 for i in range(duration):
                     for i in range(duration):
                         description_dct=description_dct+str(request.POST.get('dayTitle{}'.format(i+1))).strip()+"$$$$"+str(request.POST.get('dayDescription{}'.format(i+1))).strip()+"@@@@"
- 
-                    #description_dct['dayTitle{}'.format(i+1)]=str(request.POST.get('dayTitle{}'.format(i+1))).strip()
-                    #print(request.POST.get('dayDescription{}'.format(i+1)))
-                    #description_dct['dayDescription{}'.format(i+1)]=str(request.POST.get('dayDescription{}'.format(i+1))).strip()
                 print(description_dct)
                 slug = ''
                 for character in ttitle:
