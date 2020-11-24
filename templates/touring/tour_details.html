@@ -378,8 +378,8 @@
         font-weight: bold;
     }
     .price p span:nth-child(2){
-        text-decoration: line-through;
         margin: 0 10px;
+        color: red;
     }
     .price p span:nth-child(3){
         color: rgb(56, 148, 56);
@@ -560,40 +560,47 @@
 <div class="container pt-5">
     <div class="heading">
         <div class="thumbneil">
-            <img src="#" alt="thumbneil">
+            <img src="{{Tour.thumbnail.url}}" alt="thumbnail">
         </div>
         <div class="headingCon">
-            <a href="#">{{Agency. Name</a>
-            <h1>{{Tour.ttitle </h1>
+            <a href="#">{{Tour.seller.userAgency.agency_Id}}</a>
+            <h1>{{Tour.tourHeading}}</h1>
             <div class="tourType">
-                <h4>({{tour.tour_type)</h4>
+                <h4>({{Tour.tour_type}})</h4>
                 <h4>{{Tour.startDate|date:'c'}} to {{Tour.endDate|date:'c'}}</h4>
             </div>
             <div class="location">
-                <span>{{Tour.slocation</span> -> 
-                <span>{{Tour.elocation</span>
+                <span>{{Tour.startingLocation}}</span> -> 
+                <span>{{Tour.endLocation}}</span>
             </div>
             <div class="price">
                 <h4>Serial Price</h4>
                 <p>
-                    <span>$400</span>
+                    <span>{{Tour.price}}&#8377/people </span>
+                    <!--
                     <span>$650</span>
                     <span>32% off</span>
-                    <span>Hurry only few seats left</span>
+                    -->
+                    <span>Hurry only {{Tour.maximum_people}} seats left</span>
                 </p>
             </div>
             <div class="review">
                 <span>4.5 <i class="fa fa-star" aria-hidden="true"></i></span>
                 <a href="#reviews">click here for reviews</a>
             </div>
+            <!--Special Offer -->
+            <!--
             <div class="specialOffer">
                 <h5>Special Offer</h5>
                 <p>Not Available</p>
             </div>
+            -->
+            <!--Special Offer ends -->
             <div class="dates">
-                <span class="text-danger">Last Booking Date : 20/12/2020</span>
-                <span>||</span>
+                <span class="text-danger">Last Booking Date : {{Tour.last_booking_date}}</span>
+                <!--
                 <span class="text-success">You Can Cancel Within : 22/12/2020</span>
+                -->
             </div>
         </div>
     </div>
@@ -634,10 +641,10 @@
                 </div>
             </div>
             <div class="btns">
-                <a href="/tour/booktour/TRAVMAKSTOURxViEma/AGENT12045">Book Now</a>
+                <a href="/tour/booktour/{{Tour.tourId}}/{{Tour.seller.userAccess.agentId}}">Book Now</a>
                 <a>
                     <button type="button" class="btn" data-toggle="modal" data-target="#exampleModalCenter">
-                        Launch demo modal
+                        Send Your Query
                     </button>
                 </a>
             </div>
@@ -673,6 +680,8 @@
                     </div>
                 </div>
             </div>
+            <!--REview Section-->
+            <!--
             <h1 class="reviewHead">Ratting & Reviews</h1>
             <div id="reviews">
                 <div class="TourReview">
@@ -693,12 +702,14 @@
                     </div>
                 </div>
             </div>
+        -->
+            <!--Review Ends here -->
         </div>
         <div class="btns2">
-            <a href="/tour/booktour/TRAVMAKSTOURxViEma/AGENT12045">Book Now</a>
+            <a href="/tour/booktour/{{Tour.tourId}}/{{Tour.seller.userAccess.agentId}}">Book Now</a>
             <a>
                 <button type="button" class="btn" data-toggle="modal" data-target="#exampleModalCenter">
-                    Launch demo modal
+                    Send Your Query
                 </button>
             </a>
         </div>
