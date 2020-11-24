@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # For using django forms
     'crispy_forms',
+    # Django template Math FIlter
+    'mathfilters',
 
     # REST API libraries
     'rest_framework',

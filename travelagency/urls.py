@@ -11,5 +11,7 @@ urlpatterns = [
     path('upcoming-tours/<agentId>',upcoming_tours,name='upcomingTours'),
     path('ongoing-tours/<agentId>',ongoing_tours,name='ongoingTours'),
     path('notifications',bookingNotification,name='bookingNotification'),
+    path('accept-package-booking-order/<orderId>',acceptOrder,name='acceptOrder'),
+    path('decline-package-booking-order/<orderId>',declineOrder,name='declineOrder'),
     path('test-url',testURL,name='testURL'),
 ]

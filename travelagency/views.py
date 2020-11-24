@@ -5,6 +5,7 @@ from django.http import *
 from .tests import *
 from django.contrib import messages
 from touring.models import *
+import datetime
 
 # Create your views here.
 def travelagency_home(request,agid):
@@ -332,6 +333,62 @@ def ongoing_tours(request,agentId):
 def bookingNotification(request):
     user = request.user
     if user.is_authenticated and request.session['access_type']=='seller':
-        return render(request,'travelagency/notification.html')
+        order = Order.objects.filter(agent=user,status=True,agent_approval=False)
+        context = {
+            'Order':order,
+        }
+        return render(request,'travelagency/notification.html',context=context)
     else:
         return render(request,'forbidden.html')
+
+def acceptOrder(request,orderId):
+    user = request.user
+    if user.is_authenticated and request.session['access_type']=='seller':
+        if Order.objects.filter(order_id=orderId,agent=user).exists():
+            order = Order.objects.get(order_id=orderId)
+            order.agent_approval = True
+            order.save()
+            messages.success(request,"Congratualations! We atre glad that you get booking through us")
+            return redirect('bookingNotification')
+        else:
+            return render(request,"forbidden.html")
+    else:
+        return render(request,'404.html')
+
+def declineOrder(request,orderId):
+    user = request.user
+    if user.is_authenticated and request.session['access_type']=='seller':
+        if Order.objects.filter(order_id=orderId,agent=user).exists():
+            order = Order.objects.get(order_id=orderId)
+            cancelled_order = Cancelled_Order(
+                order_id = order.order_id,
+                tour = order.tour,
+                customer = order.customer,
+                customer_name = order.customer_name,
+                customer_email = order.customer_email,
+                customer_phone = order.customer_phone,
+                customer_address = order.customer_address,
+                agent = order.agent,
+                agency = order.agency,
+                total_people = order.total_people,
+                paid_by_user = order.paid_by_user,
+                total_price = order.total_price,
+                creation_date = order.creation_date,
+                cancelled_by = "AGENT",
+            )
+            cancelled_order.save()
+            tour = order.tour
+            tour.maximum_people+=order.total_people
+            tour.save()
+            order.delete()
+            messages.error(request,'Our Executives will call you please provide us a valid reason for not accepting the offer')
+            return redirect('/travelagency/booking-history/{}'.format(user.userAccess.agentId))
+        else:
+            return render(request,'forbidden.html')
+    else:
+        return render(request,'404.html') 
+
+        
+
+
+

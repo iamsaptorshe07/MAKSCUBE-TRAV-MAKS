@@ -45,3 +45,4 @@ class PaymentAdmin(admin.ModelAdmin):
 admin.site.register(Order,OrderAdmin)
 admin.site.register(Failed_Order)
 admin.site.register(Payment,PaymentAdmin)
+admin.site.register(Cancelled_Order)

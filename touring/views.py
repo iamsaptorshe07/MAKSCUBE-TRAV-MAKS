@@ -81,6 +81,7 @@ def bookTour(request,tourId,agentId):
     user = request.user
     if user.is_authenticated and request.session['access_type']=='traveller':
         if Tour.objects.filter(tourId=tourId,maximum_people__gte=1).exists() and AccountType.objects.filter(agentId=agentId).exists():
+            print("Comes here")
             seller_account = AccountType.objects.get(agentId=agentId)
             if Tour.objects.filter(tourId=tourId,seller=seller_account.user).exists():
                 tour = Tour.objects.get(tourId=tourId,seller=seller_account.user)
