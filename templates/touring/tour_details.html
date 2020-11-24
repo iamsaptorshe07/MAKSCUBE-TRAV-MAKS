@@ -187,7 +187,13 @@
         margin: 0;
     }
     .tdnav.active{
-        background-color: darkslategray;
+        background: linear-gradient(to right, #f7b733, #fc4a1a);
+        /* background-color: #fe9797; */
+        cursor: default;
+    }
+    .tdnav.active p{
+        color: black;
+        cursor: default;
     }
     .tdcon{
         position: absolute;
@@ -463,6 +469,29 @@
         font-size: 14px;
         color: rgba(0, 0, 0, 0.84);
     }
+    .tdcon .panel:last-child{
+        margin-bottom: 15px;
+    }
+    .btns2 a:nth-child(2) button, .btns a:nth-child(2) button{
+        position: relative;
+        width: 100%;
+        height: 100%;
+        border-top-right-radius: 4px;
+        border-bottom-right-radius: 4px;
+        background-color: darkslategray;
+        color: #fff;
+        font-size: 19px;
+    }
+    .modal-backdrop.show{
+        z-index: -1;
+    }
+    .modal-body input:nth-child(1){
+        border: none;
+        outline: none;
+    }
+    .modal-body input{
+        margin: 4px 0;
+    }
     @media screen and (max-width:990px){
         .tourDetails{
             position: relative;
@@ -570,7 +599,7 @@
     </div>
 </div><br><br>
 <div class="container">
-    <div class="row">
+    <div class="row mainContent">
         <div class="col-lg-6 tourDetails">
             <div class="tdnavs">
                 <div class="tdnav active tdnav1" onclick="changeTD(1);">
@@ -605,8 +634,12 @@
                 </div>
             </div>
             <div class="btns">
-                <a href="/tour/booktour/{{Tour.tourId}}/{{Tour.seller.userAccess.agentId}}">Book Now</a>
-                <a href="/contact-us">Send Query</a>
+                <a href="/tour/booktour/TRAVMAKSTOURxViEma/AGENT12045">Book Now</a>
+                <a>
+                    <button type="button" class="btn" data-toggle="modal" data-target="#exampleModalCenter">
+                        Launch demo modal
+                    </button>
+                </a>
             </div>
         </div>
         <div class="col-lg-6 tourImages">
@@ -633,7 +666,7 @@
                     <div class="modalColumn">
                         {% for i in images %}
                         <div class="column">
-                            <img class="demo" src="{{i}}" data-index="{{forloop.counter0}}" alt="Nature" 
+                            <img class="demo" src="{{i}}" data-index="{{forloop.counter}}" alt="Nature" 
                              style="width:100%;height: 100%;padding: 5px;">
                         </div>
                         {% endfor %}
@@ -663,7 +696,36 @@
         </div>
         <div class="btns2">
             <a href="/tour/booktour/TRAVMAKSTOURxViEma/AGENT12045">Book Now</a>
-            <a href="/contact-us">Send Query</a>
+            <a>
+                <button type="button" class="btn" data-toggle="modal" data-target="#exampleModalCenter">
+                    Launch demo modal
+                </button>
+            </a>
+        </div>
+    </div>
+    
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <form class="modal-content" onsubmit="return checkQuery();">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Have any query? Ask us...</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <input type="text" readonly value="{{Tour.id">
+                    <input type="text" id="checkQueryName" class="form-control" required placeholder="Your Name">
+                    <input type="text" id="checkQueryEmail" class="form-control" required placeholder="Your Email Address">
+                    <input type="text" id="checkQueryNum" class="form-control" required placeholder="Your Contact No.">
+                    <textarea class="form-control mb-1" id="checkQueryMsg" minlength="10" maxlength="400" required style="resize: none;" placeholder="Your Query/Doubt"></textarea>
+                    <span class="errorMsg text-danger"></span>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
@@ -782,39 +844,87 @@
         }
     }
 
-    $(function(){
-        function openModal() {
-            document.getElementById("myModal").style.display = "block";
+    function openModal() {
+        document.getElementById("myModal").style.display = "block";
+    }
+    function closeModal() {
+        document.getElementById("myModal").style.display = "none";
+    }
+    var slideIndex = 1;
+    showSlides(slideIndex);
+    function plusSlides(n) {
+        showSlides(slideIndex += n);
+    }
+    function currentSlide(n) {
+        showSlides(slideIndex = n);
+    }
+    function showSlides(n) {
+        var i;
+        var slides = document.getElementsByClassName("mySlides");
+        var dots = document.getElementsByClassName("demo");
+        if (n > slides.length) {slideIndex = 1}
+        if (n < 1) {slideIndex = slides.length}
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
         }
-        function closeModal() {
-            document.getElementById("myModal").style.display = "none";
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
         }
-        var slideIndex = 1;
-        showSlides(slideIndex);
-        function plusSlides(n) {
-            showSlides(slideIndex += n);
+        slides[slideIndex-1].style.display = "block";
+        dots[slideIndex-1].className += " active";
+    }
+
+    function myFunction(x) {
+        if (x.matches) { 
+            hello();
         }
-        function currentSlide(n) {
-            showSlides(slideIndex = n);
+        else{
+            notHello();
         }
-        function showSlides(n) {
-            var i;
-            var slides = document.getElementsByClassName("mySlides");
-            var dots = document.getElementsByClassName("demo");
-            if (n > slides.length) {slideIndex = 1}
-            if (n < 1) {slideIndex = slides.length}
-            for (i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";
-            }
-            for (i = 0; i < dots.length; i++) {
-                dots[i].className = dots[i].className.replace(" active", "");
-            }
-            slides[slideIndex-1].style.display = "block";
-            dots[slideIndex-1].className += " active";
+    }
+    var xxxx = window.matchMedia("(max-width: 700px)");
+    myFunction(xxxx);
+    xxxx.addListener(myFunction);
+    
+    function hello(){
+        var tourImages=document.querySelector('.tourImages');
+        var mainContent=document.querySelector('.mainContent');
+        mainContent.insertBefore(tourImages, mainContent.childNodes[0]);
+    }
+    
+    function notHello(){
+        var mainContent=document.querySelector('.mainContent');
+        var tourDetails=document.querySelector('.tourDetails');
+        mainContent.insertBefore(tourDetails, mainContent.childNodes[0]);
+    }
+
+    function checkQuery(){
+        var checkQueryName=document.getElementById('checkQueryName').value;
+        var checkQueryEmail=document.getElementById('checkQueryEmail').value;
+        var checkQueryMsg=document.getElementById('checkQueryMsg').value;
+        var checkQueryNum=document.getElementById('checkQueryNum').value;
+        var errormsg=document.querySelector('.errorMsg');
+        var msg=[];
+        var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+        res = reg.test(checkQueryEmail);
+        if(res==false){
+            msg.push("Enter Proper Email ");
         }
+        if(checkQueryNum!=Number(checkQueryNum)){
+            msg.push("Your phone must be number ");
+        }
+        if(checkQueryNum.length!=10){
+            msg.push("Please Enter a Proper Number ");
+        }
+        if(msg.length>0){
+            errormsg.innerHTML=msg.join(", \n");
+            errormsg.style.lineHeight='1.2';
+            return false;
+        }
+        return true;
+    }
+    $('.errorMsg').click(function(){
+        document.querySelector('.errorMsg').innerHTML=null;
     });
-
-
-
 </script>
 {% endblock body %}
