@@ -329,5 +329,9 @@ def upcoming_tours(request,agentId):
 def ongoing_tours(request,agentId):
       return render(request,'travelagency/ongoing_tours.html')
 
-
-
+def bookingNotification(request):
+    user = request.user
+    if user.is_authenticated and request.session['access_type']=='seller':
+        return render(request,'travelagency/notification.html')
+    else:
+        return render(request,'forbidden.html')

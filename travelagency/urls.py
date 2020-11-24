@@ -10,5 +10,6 @@ urlpatterns = [
     path('booking-history/<agentId>',booking_history,name='bookingHistory'),
     path('upcoming-tours/<agentId>',upcoming_tours,name='upcomingTours'),
     path('ongoing-tours/<agentId>',ongoing_tours,name='ongoingTours'),
+    path('notifications',bookingNotification,name='bookingNotification'),
     path('test-url',testURL,name='testURL'),
 ]
