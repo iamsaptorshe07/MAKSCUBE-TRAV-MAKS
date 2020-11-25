@@ -11,10 +11,14 @@ import datetime
 def travelagency_home(request,agid):
     user = request.user
     if user.is_authenticated and request.session['access_type']=='seller':
-        if AgencyDetail.objects.filter(user=user,verified=True).exists():
-            if user.userAccess.agentId == agid:
-                if request.method == 'GET':
-                    return render(request,'travelagency/travelagent_home.html')
+        if AgencyDetail.objects.filter(user=user).exists():
+            agency = AgencyDetail.objects.get(user=user)
+            if agency.verified is True:
+                if user.userAccess.agentId == agid:
+                    if request.method == 'GET':
+                        return render(request,'travelagency/travelagent_home.html')
+                    else:
+                        return render(request,'forbidden.html')
                 else:
                     return render(request,'forbidden.html')
             else:
