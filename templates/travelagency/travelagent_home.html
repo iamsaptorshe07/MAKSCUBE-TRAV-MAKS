@@ -498,6 +498,13 @@
 
 {% block body %}
 
+<!--
+	{{tour.noOfManPerRoom}}		NO of MEN IN ROOM
+	{{tour.specialOffer}}		OFFER True and False
+	{{tour.specialOfferDescription}}	Description Of Offer
+-->
+
+
 <!--Put normal html here -->
 <div class="main">
 	<div class="sidebar">
@@ -562,7 +569,7 @@
 			<div class="cd">
 				<!-- <div class="block"><img src="{% static 'travelagency_img/calendar.png' %}"></div> -->
 				<label>Enter Date :</label>
-				<li>Startind Date(It can't be changed later)<input id="txtF" name="sdate" class="form-control text-center"
+				<li>Startind Date<input id="txtF" name="sdate" class="form-control text-center"
 						placeholder="dd/mm/yyyy" required onchange="fun();">
 				</li>
 				<br>
@@ -638,8 +645,8 @@
 					<select name="spoffer" id="spoffer" class="form-control" required onchange="setsp();">
 						<option class="hidden" id="tourtype" value="" disabled="" selected=""
 							style="text-align: center;">Select Special Offer *</option>
-						<option value="yes">Yes</option>
-						<option value="no">No</option>
+						<option value="True">Yes</option>
+						<option value="False">No</option>
 					</select>
 					
 				</li>
@@ -800,7 +807,7 @@
 
 				console.log(k,k.getTime());
 				var tomorrow = new Date(k.getTime() + (24 * 60 * 60 * 1000));
-				var yesterday = new Date(k.getTime() - (24 * 60 * 60 * 1000));
+				var yesterday = new Date(k.getTime() - (3*24 * 60 * 60 * 1000));
 				$('#txtT').datepicker("option", "minDate", tomorrow);
 				$('#txtT').attr('required','required');
 				$('#txtT').attr('placeholder','dd/mm/yyyy');
@@ -1101,7 +1108,7 @@
 		let spo=document.getElementById('spoffer');
 		let spod=document.getElementById('spod');
 		let spofferdetails=document.getElementById('spofferdetails');
-		if(spo.value!=='yes'){
+		if(spo.value!=='True'){
 			spod.style.visibility='hidden';
 			$('#spofferdetails').removeAttr('required');
 		}

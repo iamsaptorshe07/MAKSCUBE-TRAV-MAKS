@@ -34,6 +34,15 @@ def addTour(request,uid,agid):
                 print("\n\n",sdate,"\n\n")
                 edate = tourDate(request.POST.get('edate'))
                 print("\n\n",edate,"\n\n")
+
+                noOfManPerRoom=request.POST.get('numOfMen')
+                print("\n\nnoOfManPerRoom--->>> ",noOfManPerRoom,"\n\n")
+                specialOffer = request.POST.get('spoffer')
+                print("\n\nspecialOffer--->>> ",specialOffer,"\n\n")
+                if specialOffer:
+                    specialOfferDescription = str(request.POST.get('spofferdetails')).strip()
+                    print("\n\nspecialOfferDescription--->>> ",specialOfferDescription,"\n\n")
+
                 slocation = request.POST.get('slocation')
                 elocation = request.POST.get('elocation')
                 price = request.POST.get('price')
@@ -63,8 +72,6 @@ def addTour(request,uid,agid):
                 print('\n\n',slug,'\n\n')
                 description = description_dct.strip('@@@@')
                 last_booking_date = tourDate(request.POST.get('bookinglimit'))
-                last_cancel_date = tourDate(request.POST.get('cancelllimit'))
-                print(last_booking_date,"\n\n",last_cancel_date,"\n\n")
                 
                 
                 tour = Tour(
@@ -88,7 +95,9 @@ def addTour(request,uid,agid):
                     overview = overview.strip(),
                     maximum_people = maximum_people.strip(),
                     last_booking_date = last_booking_date,
-                    last_cancel_date = last_cancel_date
+                    noOfManPerRoom =noOfManPerRoom,
+                    specialOffer = specialOffer,
+                    specialOfferDescription = specialOfferDescription,
                 )
                 tour.save()
                 image1 = request.FILES.get('image1')
@@ -149,132 +158,137 @@ def editTours(request,agentId,tourId):
         if user.userAccess.agentId == agentId:
             if Tour.objects.filter(tourId=tourId,seller=user).exists():
                 tour = Tour.objects.get(tourId=tourId)
-                if tour.publish_mode:
-                    return redirect('/')
-                else:
-                    if request.method == 'POST':
-                        sdate = tourDate(request.POST.get('sdate'))
-                        if request.POST.get('edate') is not None:
-                            print("\n\nEdate",tourDate(request.POST.get('edate')),"\n\n")
-                            if tour.endDate != tourDate(request.POST.get('edate')):
-                                edate = tourDate(request.POST.get('edate'))
-                                print("\n\n",edate,"\n\n")
-                        slocation = request.POST.get('slocation')
-                        elocation = request.POST.get('elocation')
-                        price = request.POST.get('price')
-                        ttype = request.POST.get('ttype')
-                        
-                        ttitle = request.POST.get('ttitle')
-                        inclusive = request.POST.get('inclusive')
-                        exclusive = request.POST.get('exclusive')
-                        highlight = request.POST.get('highlight')
-                        overview = request.POST.get('overview')
-                        maximum_people = request.POST.get('seat')
-                        if tour.endDate != request.POST.get('edate'):
-                            duration = tourDuration(request.POST.get('sdate'),request.POST.get('edate'))+1
-                        else:
-                            duration = tourDuration(request.POST.get('sdate'),request.POST.get('edate'))+1
-                        
-                        last_booking_date = tourDate(request.POST.get('bookinglimit'))
-                        last_cancel_date = tourDate(request.POST.get('cancelllimit'))
-                        description_dct = ""
-                        for i in range(duration):
-                            description_dct=description_dct+str(request.POST.get('dayTitle{}'.format(i+1))).strip()+"$$$$"+str(request.POST.get('dayDescription{}'.format(i+1))).strip()+"@@@@"
- 
-                        #for i in range(duration):
-                            #description_dct['dayTitle{}'.format(i+1)]=request.POST.get('dayTitle{}'.format(i+1)).strip()
-                            #description_dct['dayDescription{}'.format(i+1)]=request.POST.get('dayDescription{}'.format(i+1)).strip()
-                        print(description_dct)
-                        slug = ''
-                        for character in ttitle:
-                            if character.isalnum():
-                                slug+=character
-                        slug+='_tourfrom_{}to{}_startingfrom{}_by{}-{}_tourId-{}_{}'.format(
-                            slocation,elocation,sdate,agentId,user.id,tourId,ttype
-                        )
-                        print('\n\n',slug,'\n\n')
-                        description = description_dct.strip('@@@@')
-                        tour.tourHeading = ttitle.strip()
-                        tour.tourSlug = slug.strip()
-                        tour.startingLocation = slocation.strip()
-                        tour.endLocation = elocation.strip()
-                        tour.endDate = edate.strip()
-                        tour.description = description.strip()
-                        tour.inclusive = inclusive.strip()
-                        tour.exclusive = exclusive.strip()
-                        tour.highlight = highlight.strip()
-                        tour.price = price.strip()
-                        tour.tour_type = ttype
-                        if request.FILES.get('thumbnail') is not None:
-                            tour.thumbnail = request.FILES.get('thumbnail')
-                        tour.overview = overview.strip()
-                        tour.maximum_people = maximum_people
-
-                        tour.save()
-                        image1 = request.FILES.get('image1')
-                        image2 = request.FILES.get('image2')
-                        image3 = request.FILES.get('image3')
-                        image4 = request.FILES.get('image4')
-                        image5 = request.FILES.get('image5')
-                        image6 = request.FILES.get('image6')
-
-                        tourImage = TourImage.objects.get(tour=tour)
-                        if image1 is not None:
-                            tourImage.image1 = image1
-                        if image2 is not None:
-                            tourImage.image2 = image2
-                        if image3 is not None:
-                            tourImage.image3 = image3
-                        if image4 is not None:
-                            tourImage.image4 = image4
-                        if image5 is not None:
-                            tourImage.image5 = image5
-                        if image6 is not None:
-                            tourImage.image6 = image6
-                        tourImage.save()
-                        messages.success(request,'Successfully Updated')
-                        return redirect('/travelagency/agencytours/{}/{}'.format(user.id,user.userAccess.agentId))
-                        
+                
+                if request.method == 'POST':
+                    sdate = tourDate(request.POST.get('sdate'))
+                    edate = tourDate(request.POST.get('edate'))
+                    print("\n\n",edate,"\n\n")
+                    slocation = request.POST.get('slocation')
+                    elocation = request.POST.get('elocation')
+                    price = request.POST.get('price')
+                    ttype = request.POST.get('ttype')
+                    
+                    noOfManPerRoom=request.POST.get('numOfMen')
+                    print("\n\nnoOfManPerRoom--->>> ",noOfManPerRoom,"\n\n")
+                    specialOffer = request.POST.get('spoffer')
+                    print("\n\nspecialOffer--->>> ",specialOffer,"\n\n")
+                    if specialOffer:
+                        specialOfferDescription = str(request.POST.get('spofferdetails')).strip()
+                        print("\n\nspecialOfferDescription--->>> ",specialOfferDescription,"\n\n")
+                      
+                    ttitle = request.POST.get('ttitle')
+                    inclusive = request.POST.get('inclusive')
+                    exclusive = request.POST.get('exclusive')
+                    highlight = request.POST.get('highlight')
+                    overview = request.POST.get('overview')
+                    maximum_people = request.POST.get('seat')
+                    if tour.endDate != request.POST.get('edate'):
+                        duration = tourDuration(request.POST.get('sdate'),request.POST.get('edate'))+1
                     else:
-                        
-                        desc = tour.description
-                        print(desc)
-                        tourImage=TourImage.objects.get(tour=tour)
-                        immglist=[]
-                        try:
-                            immglist.append(tourImage.image1.url)
-                        except:
-                            immglist.append('0')
-                        try:
-                            immglist.append(tourImage.image2.url)
-                        except:
-                            immglist.append('0')
-                        try:
-                            immglist.append(tourImage.image3.url)
-                        except:
-                            immglist.append('0')
-                        try:
-                            immglist.append(tourImage.image4.url)
-                        except:
-                            immglist.append('0')
-                        try:
-                            immglist.append(tourImage.image5.url)
-                        except:
-                            immglist.append('0')
-                        try:
-                            immglist.append(tourImage.image6.url)
-                        except:
-                            immglist.append('0')
+                        duration = tourDuration(request.POST.get('sdate'),request.POST.get('edate'))+1
+                    
+                    last_booking_date = tourDate(request.POST.get('bookinglimit'))
+                    last_cancel_date = tourDate(request.POST.get('cancelllimit'))
+                    description_dct = ""
+                    for i in range(duration):
+                        description_dct=description_dct+str(request.POST.get('dayTitle{}'.format(i+1))).strip()+"$$$$"+str(request.POST.get('dayDescription{}'.format(i+1))).strip()+"@@@@"
 
-                        print("\n\n",desc)
-                        context = {
-                            'Tour':tour,
-                            'desc': desc,
-                            'tourImage':tourImage,
-                            'imglist0':immglist[0],'imglist1':immglist[1],'imglist2':immglist[2],'imglist3':immglist[3],'imglist4':immglist[4],'imglist5':immglist[5],
-                        }
-                        
-                        return render(request,'travelagency/edit_tours.html',context=context)
+                    #for i in range(duration):
+                        #description_dct['dayTitle{}'.format(i+1)]=request.POST.get('dayTitle{}'.format(i+1)).strip()
+                        #description_dct['dayDescription{}'.format(i+1)]=request.POST.get('dayDescription{}'.format(i+1)).strip()
+                    print(description_dct)
+                    slug = ''
+                    for character in ttitle:
+                        if character.isalnum():
+                            slug+=character
+                    slug+='_tourfrom_{}to{}_startingfrom{}_by{}-{}_tourId-{}_{}'.format(
+                        slocation,elocation,sdate,agentId,user.id,tourId,ttype
+                    )
+                    print('\n\n',slug,'\n\n')
+                    description = description_dct.strip('@@@@')
+                    tour.tourHeading = ttitle.strip()
+                    tour.tourSlug = slug.strip()
+                    tour.startingLocation = slocation.strip()
+                    tour.endLocation = elocation.strip()
+                    tour.endDate = edate.strip()
+                    tour.description = description.strip()
+                    tour.inclusive = inclusive.strip()
+                    tour.exclusive = exclusive.strip()
+                    tour.highlight = highlight.strip()
+                    tour.price = price.strip()
+                    tour.tour_type = ttype
+                    if request.FILES.get('thumbnail') is not None:
+                        tour.thumbnail = request.FILES.get('thumbnail')
+                    tour.overview = overview.strip()
+                    tour.maximum_people = maximum_people
+
+                    tour.save()
+                    image1 = request.FILES.get('image1')
+                    image2 = request.FILES.get('image2')
+                    image3 = request.FILES.get('image3')
+                    image4 = request.FILES.get('image4')
+                    image5 = request.FILES.get('image5')
+                    image6 = request.FILES.get('image6')
+
+                    tourImage = TourImage.objects.get(tour=tour)
+                    if image1 is not None:
+                        tourImage.image1 = image1
+                    if image2 is not None:
+                        tourImage.image2 = image2
+                    if image3 is not None:
+                        tourImage.image3 = image3
+                    if image4 is not None:
+                        tourImage.image4 = image4
+                    if image5 is not None:
+                        tourImage.image5 = image5
+                    if image6 is not None:
+                        tourImage.image6 = image6
+                    tourImage.save()
+                    messages.success(request,'Successfully Updated')
+                    return redirect('/travelagency/agencytours/{}/{}'.format(user.id,user.userAccess.agentId))
+                    
+                else:
+                    
+                    desc = tour.description
+                    print(desc)
+                    tourImage=TourImage.objects.get(tour=tour)
+                    immglist=[]
+                    try:
+                        immglist.append(tourImage.image1.url)
+                    except:
+                        immglist.append('0')
+                    try:
+                        immglist.append(tourImage.image2.url)
+                    except:
+                        immglist.append('0')
+                    try:
+                        immglist.append(tourImage.image3.url)
+                    except:
+                        immglist.append('0')
+                    try:
+                        immglist.append(tourImage.image4.url)
+                    except:
+                        immglist.append('0')
+                    try:
+                        immglist.append(tourImage.image5.url)
+                    except:
+                        immglist.append('0')
+                    try:
+                        immglist.append(tourImage.image6.url)
+                    except:
+                        immglist.append('0')
+
+                    print("\n\n",desc)
+                    context = {
+                        'Tour':tour,
+                        'desc': desc,
+                        'publish':tour.publish_mode,
+                        'tourImage':tourImage,
+                        'imglist0':immglist[0],'imglist1':immglist[1],'imglist2':immglist[2],'imglist3':immglist[3],'imglist4':immglist[4],'imglist5':immglist[5],
+                    }
+                    
+                    return render(request,'travelagency/edit_tours.html',context=context)
+        
             else:
                 return render(request,'forbidden.html')
         else:
