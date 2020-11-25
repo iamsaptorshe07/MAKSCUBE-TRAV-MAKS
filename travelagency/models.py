@@ -29,7 +29,9 @@ class Tour(models.Model):
     tour_type = models.CharField(max_length=500, choices=TOUR_TYPE)
     thumbnail = models.ImageField(upload_to="TourAccountThumbnail")
     last_booking_date = models.DateField()
-    last_cancel_date = models.DateField()
+    noOfManPerRoom = models.IntegerField(default=2)
+    specialOffer = models.BooleanField(default=False)
+    specialOfferDescription = models.TextField(blank=True,null=True)
 
     creationDate = models.DateField(auto_now_add=True)
     othersThings = models.TextField(blank=True,null=True)
