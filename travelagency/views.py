@@ -175,7 +175,7 @@ def editTours(request,agentId,tourId):
                     if specialOffer:
                         specialOfferDescription = str(request.POST.get('spofferdetails')).strip()
                         print("\n\nspecialOfferDescription--->>> ",specialOfferDescription,"\n\n")
-                      
+                    
                     ttitle = request.POST.get('ttitle')
                     inclusive = request.POST.get('inclusive')
                     exclusive = request.POST.get('exclusive')
@@ -188,7 +188,6 @@ def editTours(request,agentId,tourId):
                         duration = tourDuration(request.POST.get('sdate'),request.POST.get('edate'))+1
                     
                     last_booking_date = tourDate(request.POST.get('bookinglimit'))
-                    last_cancel_date = tourDate(request.POST.get('cancelllimit'))
                     description_dct = ""
                     for i in range(duration):
                         description_dct=description_dct+str(request.POST.get('dayTitle{}'.format(i+1))).strip()+"$$$$"+str(request.POST.get('dayDescription{}'.format(i+1))).strip()+"@@@@"
@@ -221,7 +220,12 @@ def editTours(request,agentId,tourId):
                         tour.thumbnail = request.FILES.get('thumbnail')
                     tour.overview = overview.strip()
                     tour.maximum_people = maximum_people
-
+                    tour.nonoOfManPerRoom = noOfManPerRoom
+                    tour.specialOffer = specialOffer
+                    if specialOffer:
+                        tour.specialOfferDescription = specialOfferDescription
+                    else:
+                        tour.specialOfferDescription = None
                     tour.save()
                     image1 = request.FILES.get('image1')
                     image2 = request.FILES.get('image2')

@@ -594,7 +594,7 @@
 			placeholder="(Confirm The Tour Start Date First)">
 		</li><br>
 		<li>Number of People in a Room<input type="number" min="1" name="numOfMen" id="numOfMen" 
-		  class="form-control text-center" value="{{tour.noOfManPerRoom}}" readonly placeholder="Number of People">
+		  class="form-control" value="{{Tour.noOfManPerRoom}}" readonly >
 		</li>
 	  </div>
 	  <div class="cd">
@@ -630,7 +630,7 @@
 		<label>Other Information :</label><br>
 		<li class="">
 		  Enter Type of the Tour *
-		  <select id="tourtype" class="form-control disable-click" readonly name="ttype" required>
+		  <select class="form-control disable-click" readonly name="ttype" required>
 			<option class="hidden" id="tourtype" value="" disabled="" selected=""
 			  style="text-align: center;">Select Tour Type</option>
 			<option value="Family Special">Family Special</option>
@@ -851,7 +851,6 @@
 	  $('input').removeClass('disable-click');
 	  $('#txtF').removeAttr('required');
 	  $('#txtF').attr('readonly', 'true');
-	  $('#txtF').addClass('disable-click');
 	  $('textarea').removeAttr('readonly');
 	  $('button').removeClass('disable-click');
 	  $('select').removeClass('disable-click');
@@ -891,13 +890,13 @@
 	}
   }
   $(function () {
-	var spo="{{tour.specialOffer}}";
+	var spo="{{Tour.specialOffer}}";
 	console.log('spo ->  ',spo,'  <- spo');
 	var specialOffer='#spoffer option[value="'+spo+'"]';
 	console.log(specialOffer);
 	$(specialOffer).attr("selected", "selected");
 	if(document.getElementById('spoffer').value=='True'){
-	  $('#spofferdetails').val("{{tour.specialOfferDescription}}");
+	  $('#spofferdetails').val("{{Tour.specialOfferDescription}}");
 	}
 	else{
 	  console.log('false')
