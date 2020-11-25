@@ -579,8 +579,8 @@
 				<li>The Tour has to be booked before : <input name="bookinglimit" id="bookinglimit" 
 					class="form-control text-center cursor-none" placeholder="(Confirm The Tour Start Date First)">
 				</li><br>
-				<li>The Tour can be cancelled within : <input name="cancelllimit" id="cancelllimit" 
-					class="form-control text-center cursor-none" placeholder="(Confirm The Tour Start Date First)">
+				<li>Number of People in a Room<input type="number" min="1" name="numOfMen" id="numOfMen" 
+					class="form-control text-center" placeholder="Number of People">
 				</li>
 			</div>
 			<div class="cd">
@@ -785,7 +785,7 @@
 	var globalVar1=1;
 	$(function () {
 		var mindate= new Date();
-		var tomorrowReal = new Date(mindate.getTime() + (24 * 60 * 60 * 1000));
+		var tomorrowReal = new Date(mindate.getTime() + (7 * 24 * 60 * 60 * 1000));
 		$('#txtF').datepicker({
 			numberOfMonths: 1,
 			showAnim: 'drop',
@@ -806,13 +806,9 @@
 				$('#txtT').attr('placeholder','dd/mm/yyyy');
 				$('#txtT').removeClass('cursor-none');
 				$('#bookinglimit').datepicker("option", "maxDate", yesterday);
-				$('#cancelllimit').datepicker("option", "maxDate", yesterday);
 				$('#bookinglimit').removeClass('cursor-none');
 				$('#bookinglimit').attr('placeholder','dd/mm/yyyy');
 				$('#bookinglimit').attr('required','required');
-				$('#cancelllimit').removeClass('cursor-none');
-				$('#cancelllimit').attr('placeholder','dd/mm/yyyy');
-				$('#cancelllimit').attr('required','required');
 				fun();
 			}
 		});
@@ -837,13 +833,7 @@
 			showAnim: 'drop',
 			numberOfMonths: 1,
 			dateFormat: 'dd/mm/yy'
-		});
-		$('#cancelllimit').datepicker({
-			minDate: mindate,
-			showAnim: 'drop',
-			numberOfMonths: 1,
-			dateFormat: 'dd/mm/yy'
-		});		
+		});	
 	});
 
 	function fun() {
