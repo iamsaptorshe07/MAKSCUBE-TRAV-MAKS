@@ -239,13 +239,19 @@ def sellerLogin(request):
                     if user.userAccess.agency_access is True:
                         user = auth.authenticate(email=email, password=password)
                         if user is not None:
-                            auth.login(request,user)
-                            request.session['access_type']='seller'
-                            print('worked')
                             if AgencyDetail.objects.filter(user=user).exists():
-                                messages.success(request,'Successfully Loggedin')
-                                return redirect('/')
+                                agency = AgencyDetail.objects.get(user=user)
+                                if agency.verified is True:
+                                    auth.login(request,user)
+                                    request.session['access_type']='seller'
+                                    messages.success(request,'Successfully Loggedin')
+                                    return redirect('/')
+                                else:
+                                    messages.warning(request,"Please wait for one day till we verified your account")
+                                    return redirect('Seller_login')
                             else:
+                                auth.login(request,user)
+                                request.session['access_type']='seller'
                                 messages.warning(request,'Register Your Agency inorder to proceed')
                                 return redirect('RegisterAgency')
                         else:
@@ -578,8 +584,9 @@ def agencyRegister(request):
                     agencyAddress=request.POST.get('agencyAddress')
                 )
                 agency.save()
-                messages.success(request,'Agency Registered, You can now add tours')
-                return redirect('/')         
+                auth.logout(request)
+                messages.success(request,'Agency Registered, Please wait till we verify your details, then you can add tours')
+                return redirect('Seller_login')         
             else:
                 return render(request,'registeragency.html')
         else:
