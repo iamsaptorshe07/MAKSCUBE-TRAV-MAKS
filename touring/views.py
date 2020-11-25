@@ -13,6 +13,7 @@ from django.views.decorators.csrf import csrf_exempt
 from invoice.invoice_generator import render_to_pdf
 from django.template.loader import get_template
 from django.contrib.sites.shortcuts import get_current_site
+import datetime
 # Create your views here.
 
 def searchTour(request):
@@ -29,6 +30,7 @@ def advancedSearching(request):
 
 class AllToursView(ListView):
     model = Tour
+    queryset = Tour.objects.filter(publish_mode=True,last_booking_date__gte=str(datetime.date.today()),maximum_people__gte=1)
     paginate_by = 50
     template_name = 'touring/all_tours.html'
     ordering = ['-id']

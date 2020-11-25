@@ -175,6 +175,7 @@ def travelerAccountsSignup(request):
                     zipCode=request.POST.get('zip')
                 )
                 user.set_password(request.POST.get('password1'))
+                user.is_active = False
                 user.save()
                 res = messages_sender(request, user)
                 print(res)
@@ -210,7 +211,7 @@ def travellerLogin(request):
                             return redirect('/')
                         else:
                             messages.error(request,'Invalid Credential')
-                            return redirect('travelerAccountsSignup')
+                            return redirect('Traveller_Login')
                     else:
                         messages.warning(request,"You don't have any user account, Please register yourself as an user")
                         return redirect('travelerAccountsSignup')
@@ -222,7 +223,7 @@ def travellerLogin(request):
                 return redirect('travelerAccountsSignup')
         except Exception as problem:
             messages.warning(request, problem)
-            return redirect('travelerAccountsSignup')
+            return redirect('Traveller_Login')
     else:
         return render(request,'accounts/traveller_login.html')
 # Traveller Login handler Ends here-------------------------------------------------------------
@@ -245,10 +246,11 @@ def sellerLogin(request):
                                 messages.success(request,'Successfully Loggedin')
                                 return redirect('/')
                             else:
+                                messages.warning(request,'Register Your Agency inorder to proceed')
                                 return redirect('RegisterAgency')
                         else:
                             messages.error(request,'Invalid Credential')
-                            return redirect('sellerAgencyAccountSignup')
+                            return redirect('Seller_login')
                     else:
                         messages.warning(request,"You don't have any agency account, Please register yourself as an user")
                         return redirect('sellerAgencyAccountSignup')
@@ -260,7 +262,7 @@ def sellerLogin(request):
                 return redirect('sellerAgencyAccountSignup')
         except Exception as problem:
             messages.warning(request, problem)
-            return redirect('sellerAgencyAccountSignup')
+            return redirect('Seller_login')
     else:
         return render(request,'accounts/seller_login.html')
 # Agency Login handler Ends here-------------------------------------------------------------
@@ -371,6 +373,7 @@ def sellerAgencyAccountSignup(request):
                     zipCode = request.POST.get('zip')
                 )
                 user.set_password(request.POST.get('password1'))
+                user.is_active = False
                 user.save()
                 print("\n\n",request.POST.get('govIdName'),"\n")
                 govData = GovId(
