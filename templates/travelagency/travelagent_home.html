@@ -470,6 +470,28 @@
 		justify-content: center;
 		border: 5px dashed black;
 	}
+	.showImagesBtn{
+		display: none;
+		margin: 10px 10px 0 10px;
+		text-align: center;
+		font-size: 18px;
+		cursor: pointer;
+	}
+	.allUploadedImages{
+		display: flex;
+		justify-content: space-around;
+		align-items: center;
+		flex-wrap: wrap;
+	}
+	.uploadedImage{
+		width: 120px;
+		border-radius: 4px;
+		margin: 5px;
+		display: none;
+	}
+	.modal-footer{
+		font-weight: bold;
+	}
 </style>
 
 {% endblock stylesheets %}
@@ -674,6 +696,33 @@
 						</p>
 					</div>
 				</div>
+				<div class="showImagesBtn" data-toggle="modal" data-target="#exampleModalCenter">
+					Click Here To See Uploaded images
+				</div>
+			</div>
+			<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+				<div class="modal-dialog modal-dialog-centered" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLongTitle">Uploaded Images</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						</div>
+						<div class="modal-body allUploadedImages">
+							<img src="#" alt="Image 1" class="uploadedImage">
+							<img src="#" alt="Image 1" class="uploadedImage">
+							<img src="#" alt="Image 1" class="uploadedImage">
+							<img src="#" alt="Image 1" class="uploadedImage">
+							<img src="#" alt="Image 1" class="uploadedImage">
+							<img src="#" alt="Image 1" class="uploadedImage">
+						</div>
+						<div class="modal-footer">
+							You Can Edit Images After Creating Your Tour <br>
+							You Can Change The Last Image By Uploading Again
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 		<br>
@@ -733,6 +782,7 @@
 	integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
 
 <script type="text/javascript">
+	var globalVar1=1;
 	$(function () {
 		var mindate= new Date();
 		var tomorrowReal = new Date(mindate.getTime() + (24 * 60 * 60 * 1000));
@@ -820,6 +870,7 @@
 			removeCard(allCardLn,x);
 		}
 	}
+	
 	function addCard(a,b){
 		for (let i = a; i < b; i++) {
 			var content = document.createElement("div");
@@ -889,6 +940,7 @@
 		}
 	
 	}
+	
 	function removeCard(allCardLn,x){
 		let allCard=document.querySelectorAll('.card');
 		for(let i=allCardLn-1;i>=x;i--){
@@ -910,6 +962,7 @@
 
 		var dropzoneImg1=document.querySelector('.upload_img1_L1');
 		var spbtn=document.querySelector('.spimgs button');
+		var showImagesBtn=document.querySelector('.showImagesBtn');
 		$('#upload_img1').on({
 			'dragover':function(){
 				dropzoneImg1.style.borderColor='red';
@@ -918,6 +971,7 @@
 				dropzoneImg1.style.borderColor='green';
 				document.querySelector('.spimgnum').innerHTML = '1 image has been uploaded';
 				spbtn.style.display='flex';
+				showImagesBtn.style.display='flex';
 			}
 		})
 		.on('dragleave dragexit', function() {
@@ -994,6 +1048,17 @@
 		dropzoneImg1.style.display='block';
 	});
 	
+	document.querySelectorAll('.uploadedImage').forEach(function(el){
+		if(el.getAttribute('src')=='#'){
+			console.log('#');
+			el.classList.remove('d-flex');
+		}
+		else{
+			console.log(el.getAttribute('src'))
+			el.classList.add('d-flex');
+		}
+	});
+
 	document.querySelectorAll('.spimg').forEach(function(el){
 		el.addEventListener('change',function(){
 			readURL(this);
@@ -1001,9 +1066,15 @@
 	})
 	function readURL(input) {
 		if (input.files && input.files[0]) {
+			// let x=parseInt(document.querySelector('.spimgnum').innerHTML[0])+1;
+			var uploadedImage='.allUploadedImages img:nth-child('+globalVar1+')';
+			var allUploadedImages=document.querySelector(uploadedImage);
+			allUploadedImages.classList.add('d-flex');
+			// console.log(uploadedImage,allUploadedImages);
 			var reader = new FileReader();
 			reader.onload = function(e) {
 				$('#blah').attr('src', e.target.result);
+				allUploadedImages.setAttribute('src',e.target.result);
 				$('.sp1img').addClass('d-flex');
 			}
 			reader.readAsDataURL(input.files[0]);
@@ -1011,6 +1082,7 @@
 	}
 	
 	function anotherSpimg(){
+		globalVar1+=1;
 		var num=document.querySelector('.spimgnum').innerHTML;
 		// console.log(num,num[0]);
 		num=num[0];
@@ -1027,7 +1099,8 @@
 		y.style.display='flex';
 		y.value=null;
 		a.style.display='none';
-		b.style.display='flex';	
+		b.style.display='flex';
+		$('.sp1img').removeClass('d-flex');
 	}
 
 	$(function(){
