@@ -41,42 +41,47 @@ class AllToursView(ListView):
 def tourDetails(request,tourId,slug):
     if(Tour.objects.filter(tourSlug=slug).exists()):
         tour = Tour.objects.get(tourSlug=slug)
-        d=tour.description
+        if tour.publish_mode:
+            
+            description=tour.description
+            
+            tourImage = TourImage.objects.get(tour=tour)
+            images=[]
+            try:
+                images.append(tourImage.image1.url)
+            except:
+                pass
+            try:
+                images.append(tourImage.image2.url)
+            except:
+                pass
+            try:
+                images.append(tourImage.image3.url)
+            except:
+                pass
+            try:
+                images.append(tourImage.image4.url)
+            except:
+                pass
+            try:
+                images.append(tourImage.image5.url)
+            except:
+                pass
+            try:
+                images.append(tourImage.image6.url)
+            except:
+                pass
+            context = {
+                'Tour':tour,
+                'description': description,
+                'images' : images,
+            }
+            return render(request,'touring/tour_details.html',context=context)
         
-        tourImage = TourImage.objects.get(tour=tour)
-        images=[]
-        try:
-            images.append(tourImage.image1.url)
-        except:
-            pass
-        try:
-            images.append(tourImage.image2.url)
-        except:
-            pass
-        try:
-            images.append(tourImage.image3.url)
-        except:
-            pass
-        try:
-            images.append(tourImage.image4.url)
-        except:
-            pass
-        try:
-            images.append(tourImage.image5.url)
-        except:
-            pass
-        try:
-            images.append(tourImage.image6.url)
-        except:
-            pass
-        context = {
-            'Tour':tour,
-            'description': d,
-            'images' : images,
-        }
-        return render(request,'touring/tour_details.html',context=context)
+        else:
+            return render(request,'forbidden.html')
     else:
-        return HttpResponse("BAD REQUEST")
+        return render(request,'forbidden.html')
 
 
 def bookTour(request,tourId,agentId):
