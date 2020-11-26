@@ -8,6 +8,9 @@ class Tour(models.Model):
         ('Friends-Special','Friends-Special'),
         ('Couple-Friendly','Couple-Friendly'),
         ('Solo-Tour','Solo-Tour'),
+        ('Bike-tours','Bike-tours'),
+        ('Self-drive car-tours','Self-drive car-tours'),
+        ('Trecking-Special','Trecking-Special'),
         ('All','All')
     )
     seller = models.ForeignKey(User,on_delete=models.CASCADE,related_name='agencyOwner')
