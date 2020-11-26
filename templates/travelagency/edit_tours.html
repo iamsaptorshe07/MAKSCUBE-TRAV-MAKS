@@ -578,12 +578,12 @@
 	  <div class="cd">
 		<!-- <div class="block"><img src="{% static 'travelagency_img/calendar.png' %}"></div> -->
 		<label>Enter Date :</label>
-		<li>Startind Date<input id="txtF" name="sdate" class="form-control text-center" placeholder="mm/dd/yyyy"
-			onchange="fun();" value="{{Tour.startDate|date:'c'}}" readonly>
+		<li>Startind Date<input id="txtF" name="sdate" class="form-control text-center disable-click" 
+			placeholder="dd/mm/yyyy" value="{{Tour.startDate|date:'c'}}" readonly>
 		</li>
 		<br>
 		<li>Ending Date<input id="txtT" name="edate" class="form-control text-center cursor-none"
-			placeholder="(Please Select Start Date First)" onchange="fun();"
+			placeholder="(Please Select Start Date First)"
 			value="{{Tour.endDate|date:'c'}}" readonly>
 		</li>
 	  </div>
@@ -629,15 +629,18 @@
 	  <div class="cd">
 		<label>Other Information :</label><br>
 		<li class="">
-		  Enter Type of the Tour *
-		  <select class="form-control disable-click" readonly name="ttype" required>
-			<option class="hidden" id="tourtype" value="" disabled="" selected=""
-			  style="text-align: center;">Select Tour Type</option>
-			<option value="Family Special">Family Special</option>
-			<option value="Friends Special">Friends Special</option>
-			<option value="Couple Friendly">Couple Friendly</option>
-			<option value="Solo Tour">Solo Tour</option>
-		  </select>
+			Enter Type of the Tour *
+			<select class="form-control disable-click" readonly id="tourtype" name="ttype" required>
+				<option class="hidden" value="" disabled="" selected=""
+				style="text-align: center;">Select Tour Type</option>
+				<option value="Family-Special">Family Special</option>
+				<option value="Friends-Special">Friends Special</option>
+				<option value="Couple-Friendly">Couple Friendly</option>
+				<option value="Bike-tours">Bike Tours</option>
+				<option value="Self-drive car-tours">Self Drive Car Tours</option>
+				<option value="Trecking-Special">Trecking Special</option>
+				<option value="Solo-Tour">Solo Tour</option>
+			</select>
 		</li>
 		<br>
 		<li class="">
@@ -842,525 +845,564 @@
   integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
 
 <script type="text/javascript">
-  let globalVar1=1;
-  function enableediting() {
-	var publish="{{publish}}";
-	if(publish==='False'){
-	  $('input').removeAttr('readonly');
-	  $('input').attr('required', 'required');
-	  $('input').removeClass('disable-click');
-	  $('#txtF').removeAttr('required');
-	  $('#txtF').attr('readonly', 'true');
-	  $('textarea').removeAttr('readonly');
-	  $('button').removeClass('disable-click');
-	  $('select').removeClass('disable-click');
-	  $('#upload_img').removeAttr('required');
-	  $('#txtT').removeAttr('required');
-	  $('#txtT').removeClass('cursor-none');
-	  $('#bookinglimit').removeClass('cursor-none');
-	  $('.spimg').attr('required', false);
-	  $('#spoffer').attr('readonly', false);
-	  $('#upload_img').attr('readonly', false);
-	  $('#tourtype').attr('readonly', false);
-	  $('#timgnum').attr('readonly', false);
+	let globalVar1=1;
+	function enableediting() {
+		var publish="{{publish}}";
+		if(publish==='False'){
+			$('input').removeAttr('readonly');
+			$('input').attr('required', 'required');
+			$('input').removeClass('disable-click');
+			$('textarea').removeAttr('readonly');
+			$('button').removeClass('disable-click');
+			$('select').removeClass('disable-click');
+			$('#upload_img').removeAttr('required');
+			$('#txtT').removeAttr('required');
+			$('#txtT').removeClass('cursor-none');
+			$('#bookinglimit').removeClass('cursor-none');
+			$('.spimg').attr('required', false);
+			$('#spoffer').attr('readonly', false);
+			$('#upload_img').attr('readonly', false);
+			$('#tourtype').attr('readonly', false);
+			$('#timgnum').attr('readonly', false);
+		}
+		else{
+			$("input[name='seat']").removeAttr('readonly');
+			$("input[name='seat']").attr('required', 'required');
+		}
 	}
-	else{
-	  $("input[name='seat']").removeAttr('readonly');
-	  $("input[name='seat']").attr('required', 'required');
-	}
-  }
-  document.querySelectorAll('.spimg').forEach(function (el) {
-	el.addEventListener('change', function () {
-	  readURL(this);
-	});
-  })
-  function readURL(input) {
-	if (input.files && input.files[0]) {
-	  var uploadedImage='.allUploadedImages img:nth-child('+globalVar1+')';
-	  var allUploadedImages=document.querySelector(uploadedImage);
-	  allUploadedImages.classList.add('d-flex');
-	  var reader = new FileReader();
-	  reader.onload = function (e) {
-		// console.log(input,input.id);
-		var imgid = '#label_img' + input.id[10];
-		$(imgid).attr('src', e.target.result);
-		allUploadedImages.setAttribute('src',e.target.result);
-	  }
-	  reader.readAsDataURL(input.files[0]);
-	}
-  }
-  $(function () {
-	var spo="{{Tour.specialOffer}}";
-	console.log('spo ->  ',spo,'  <- spo');
-	var specialOffer='#spoffer option[value="'+spo+'"]';
-	console.log(specialOffer);
-	$(specialOffer).attr("selected", "selected");
-	if(document.getElementById('spoffer').value=='True'){
-	  $('#spofferdetails').val("{{Tour.specialOfferDescription}}");
-	}
-	else{
-	  console.log('false')
-	}
-	var mindate = "{{Tour.startDate}}";
-	mindate = new Date(mindate);
-	var today = new Date();
-	var tomorrowReal = new Date(today.getTime() + (24 * 60 * 60 * 1000));
-	var tomorrow = new Date(mindate.getTime() + (24 * 60 * 60 * 1000));
-	var yesterday = new Date(mindate.getTime() - (3*24 * 60 * 60 * 1000));
 
-	$('#txtT').datepicker({
-	  showAnim: 'drop',
-	  numberOfMonths: 1,
-	  dateFormat: 'dd/mm/yy',
-	  minDate: tomorrow
-	});
-	$('#bookinglimit').datepicker({
-	  minDate: tomorrowReal,
-	  maxDate: yesterday,
-	  showAnim: 'drop',
-	  numberOfMonths: 1,
-	  dateFormat: 'dd/mm/yy'
-	});
-  });
-  $(function () {
-	var ttype = "{{Tour.tour_type}}";
-	//console.log(ttype)
-	var ttype1 = document.getElementById('tourtype');
-	ttype1.value = ttype;
-
-	var sd = "{{Tour.startDate|date:'c'}}";
-	var d1=sd.substr(0,4);
-	var d2=sd.substr(5,2);
-	var d3=sd.substr(8,2);
-	var sd1=d3+'/'+d2+'/'+d1;
-	console.log(sd);
-	$('#txtF').val(sd1);
-
-	sd = new Date(sd);
-
-	var ed = "{{Tour.endDate|date:'c'}}";
-	var d1=ed.substr(0,4);
-	var d2=ed.substr(5,2);
-	var d3=ed.substr(8,2);
-	var ed1=d3+'/'+d2+'/'+d1;
+	document.querySelectorAll('.spimg').forEach(function (el) {
+		el.addEventListener('change', function () {
+		readURL(this);
+		});
+	})
+	function readURL(input) {
+		if (input.files && input.files[0]) {
+		var uploadedImage='.allUploadedImages img:nth-child('+globalVar1+')';
+		var allUploadedImages=document.querySelector(uploadedImage);
+		allUploadedImages.classList.add('d-flex');
+		var reader = new FileReader();
+		reader.onload = function (e) {
+			var imgid = '#label_img' + input.id[10];
+			$(imgid).attr('src', e.target.result);
+			allUploadedImages.setAttribute('src',e.target.result);
+		}
+		reader.readAsDataURL(input.files[0]);
+		}
+	}
 	
-	console.log(ed);
-	$('#txtT').val(ed1);
+  	$(function () {
+		var spo="{{Tour.specialOffer}}";
+		var specialOffer='#spoffer option[value="'+spo+'"]';
+		console.log(specialOffer);
+		$(specialOffer).attr("selected", "selected");
+		let spod = document.getElementById('spod');
+		spod.style.visibility = 'hidden';
+		if(document.getElementById('spoffer').value==='True'){
+			console.log('true');
+			$('#spofferdetails').val("{{Tour.specialOfferDescription}}");
+			setsp();
+		}
+		else{
+			console.log('false');
+		}
+		var mindate = "{{Tour.startDate}}";
+		var maxdate="{{Tour.endDate}}";
+		mindate = new Date(mindate);
+		maxdate=new Date(maxdate);
+		var today = new Date();
+		var tomorrowReal = new Date(today.getTime() + (24 * 60 * 60 * 1000));
+		var after1week=new Date(today.getTime() + (7*24 * 60 * 60 * 1000));
+		var tomorrow = new Date(mindate.getTime() + (24 * 60 * 60 * 1000));
+		var yesterday = new Date(mindate.getTime() - (3*24 * 60 * 60 * 1000));
+		var endDateBefore=new Date(maxdate.getTime() - (24 * 60 * 60 * 1000));
+		$('#txtF').datepicker({
+			showAnim: 'drop',
+			numberOfMonths: 1,
+			dateFormat: 'dd/mm/yy',
+			minDate: after1week,
+			maxDate:endDateBefore,
+			onSelect: function (sd) {
+				var d1=sd.substr(0,2);
+				var d2=sd.substr(3,2);
+				var d3=sd.substr(6,4);
+				sd=d2+'/'+d1+'/'+d3;
+				var k = new Date(sd);
+				var txtFtomorrow = new Date(k.getTime() + (24 * 60 * 60 * 1000));
+				var txtFyesterday = new Date(k.getTime() - (3*24 * 60 * 60 * 1000));
+				$('#txtT').datepicker("option", "minDate", txtFtomorrow);
+				$('#txtT').attr('required','required');
+				$('#txtT').attr('placeholder','dd/mm/yyyy');
+				$('#txtT').removeClass('cursor-none');
+				$('#bookinglimit').datepicker("option", "maxDate", txtFyesterday);
+				$('#bookinglimit').removeClass('cursor-none');
+				$('#bookinglimit').attr('placeholder','dd/mm/yyyy');
+				$('#bookinglimit').attr('required','required');
+				fun();
+			}
+		});
+		$('#txtT').datepicker({
+			showAnim: 'drop',
+			numberOfMonths: 1,
+			dateFormat: 'dd/mm/yy',
+			minDate: tomorrow,
+			onSelect: function (sd) {
+				var d1=sd.substr(0,2);
+				var d2=sd.substr(3,2);
+				var d3=sd.substr(6,4);
+				var selectdate=d2+'/'+d1+'/'+d3;
+				selectdate=new Date(selectdate);
+				selectdate=new Date(selectdate.getTime() - (24 * 60 * 60 * 1000));
+				$('#txtF').datepicker("option", "maxDate", selectdate);
+				fun();
+			}
+		});
+		$('#bookinglimit').datepicker({
+			minDate: tomorrowReal,
+			maxDate: yesterday,
+			showAnim: 'drop',
+			numberOfMonths: 1,
+			dateFormat: 'dd/mm/yy'
+		});
+	});
+	
+	$(function () {
+		var tourtypeValue="{{Tour.tour_type}}";
+		var tourtype='#tourtype option[value="'+tourtypeValue+'"]';
+		console.log(tourtypeValue,tourtype);
+		$(tourtype).attr("selected", "selected");
+		// var ttype = "{{Tour.tour_type}}";
+		// var ttype1 = document.getElementById('tourtype');
+		// ttype1.value = ttype;
 
-	ed = new Date(ed);
-	var d = ed.getTime() - sd.getTime();
-	var x = d / (1000 * 3600 * 24) + 1;
-	// console.log(sd,ed,x);
-	let ggg = x;
+		var bd="{{Tour.last_booking_date|date:'c'}}";
+		var d1=bd.substr(0,4);
+		var d2=bd.substr(5,2);
+		var d3=bd.substr(8,2);
+		var bd1=d3+'/'+d2+'/'+d1;
+		$('#bookinglimit').val(bd1);
 
-	var temp = "{{desc | linebreaksbr}}";
-	console.log(temp);
-	var t = temp.replace(/<br\s*\/?>/gi, '')
-	//var t=temp.replace('<br>',' ');
-	console.log(t);
-	var d2 = t.split('@@@@');
-	var ui = [];
-	for (let j = 0; j < ggg; j++) {
+		var sd = "{{Tour.startDate|date:'c'}}";
+		var d1=sd.substr(0,4);
+		var d2=sd.substr(5,2);
+		var d3=sd.substr(8,2);
+		var sd1=d3+'/'+d2+'/'+d1;
+		$('#txtF').val(sd1);
 
-	  x = d2[j].split('$$$$');
-	  ui.push(x[0]);
-	  ui.push(x[1]);
+		sd = new Date(sd);
+
+		var ed = "{{Tour.endDate|date:'c'}}";
+		var d1=ed.substr(0,4);
+		var d2=ed.substr(5,2);
+		var d3=ed.substr(8,2);
+		var ed1=d3+'/'+d2+'/'+d1;
+		
+		$('#txtT').val(ed1);
+
+		ed = new Date(ed);
+		var d = ed.getTime() - sd.getTime();
+		var x = d / (1000 * 3600 * 24) + 1;
+		let ggg = x;
+
+		var temp = "{{desc | linebreaksbr}}";
+		var t = temp.replace(/<br\s*\/?>/gi, '')
+		//var t=temp.replace('<br>',' ');
+		var d2 = t.split('@@@@');
+		var ui = [];
+		for (let j = 0; j < ggg; j++) {
+
+			x = d2[j].split('$$$$');
+			ui.push(x[0]);
+			ui.push(x[1]);
+		}
+
+		let ii = 0;
+		for (let i = 0; i < ggg * 2; i = i + 2, ii = ii + 1) {
+			var nodeHead = document.createTextNode('Day ' + (ii + 1));
+			var y = 'Day' + (ii + 1);
+			
+			var content = document.createElement("div");
+			content.classList.add('card');
+			var cardHead = document.createElement('div');
+			cardHead.classList.add('card-header');
+			var h3 = document.createElement('h3');
+			content.classList.add(y);
+			h3.appendChild(nodeHead);
+			cardHead.appendChild(h3);
+
+			var cardBody = document.createElement('div');
+			cardBody.classList.add('card-body');
+
+			var cardBody1 = document.createElement('div');
+			cardBody1.classList.add('col-md-12');
+			cardBody1.classList.add('title');
+
+			var cardBody1Content = document.createElement('div');
+			cardBody1Content.classList.add('form-group');
+
+			var cardBody1ContentInput = document.createElement('input');
+			// cardBody1ContentInput.prop("required", true);
+			cardBody1ContentInput.required = 'required';
+			cardBody1ContentInput.type = 'text';
+			cardBody1ContentInput.classList.add('form-control');			
+			cardBody1ContentInput.readOnly = "readonly";
+			cardBody1ContentInput.name = 'dayTitle' + (ii + 1);
+			var day = 'dayTitle' + (ii + 1);
+			cardBody1ContentInput.value = ui[i];
+
+			cardBody1Content.appendChild(cardBody1ContentInput);
+
+			// cardBody1.appendChild(cardBody1l);
+			cardBody1.appendChild(cardBody1Content);
+
+			var cardBodyl = document.createElement('label');
+			var cardBodyln = document.createTextNode('Descriptions :');
+
+			cardBodyl.appendChild(cardBodyln);
+
+
+			var cardBody2 = document.createElement('div');
+			cardBody2.classList.add('form-group');
+
+			var cardBodyTextarea = document.createElement('textarea');
+			// cardBodyTextarea.prop("required", true);
+			cardBodyTextarea.required = 'required';
+			cardBodyTextarea.minLength = "20";
+			cardBodyTextarea.classList.add('form-control');
+			cardBodyTextarea.placeholder = 'Describe Your Day ' + (ii + 1);
+			cardBodyTextarea.id = 'comment';
+			cardBodyTextarea.rows = "4";
+			cardBodyTextarea.name = 'dayDescription' + (ii + 1);
+			cardBodyTextarea.readOnly = "readonly";
+			cardBodyTextarea.value = ui[i + 1];
+
+			cardBody2.appendChild(cardBodyTextarea);
+
+			cardBody.appendChild(cardBody1);
+			cardBody.appendChild(cardBody2);
+
+			content.appendChild(cardHead);
+			content.appendChild(cardBody);
+
+			var cards = document.getElementById('cards');
+			cards.appendChild(content);
+		}
+  	});
+
+  	function fun() {
+		let allCard=document.querySelectorAll('.card');
+		var sd = document.getElementById('txtF').value;
+		// var d1=sd.substr(0,4);
+		// var d2=sd.substr(5,2);
+		// var d3=sd.substr(8,2);
+		// sd=d2+'/'+d3+'/'+d1;
+		// sd=new Date(sd);
+		var d1=sd.substr(0,2);
+		var d2=sd.substr(3,2);
+		var d3=sd.substr(6,4);
+		sd=d2+'/'+d1+'/'+d3;
+		sd = new Date(sd);
+		var ed = document.getElementById('txtT').value;
+		var d1=ed.substr(0,2);
+		var d2=ed.substr(3,2);
+		var d3=ed.substr(6,4);
+		ed=d2+'/'+d1+'/'+d3;
+		ed = new Date(ed);
+		var d = ed.getTime() - sd.getTime();
+		var x = d / (1000 * 3600 * 24) + 1;
+		allCardLn=allCard.length;
+		if(x>allCardLn){
+			addCard(allCardLn,x);
+		}
+		else if(x<allCardLn){
+			removeCard(allCardLn,x);
+		}
+  	}
+
+	function addCard(a,b){
+		for (let i = a; i < b; i++) {
+			var content = document.createElement("div");
+			content.classList.add('card');
+			var cardHead = document.createElement('div');
+			cardHead.classList.add('card-header');
+			var h3 = document.createElement('h3');
+			var nodeHead = document.createTextNode('Day ' + (i + 1));
+			var y = 'Day' + (i + 1);
+			content.classList.add(y);
+			h3.appendChild(nodeHead);
+			cardHead.appendChild(h3);
+
+			var cardBody = document.createElement('div');
+			cardBody.classList.add('card-body');
+
+			var cardBody1 = document.createElement('div');
+			cardBody1.classList.add('col-md-12');
+			cardBody1.classList.add('title');
+
+			var cardBody1Content = document.createElement('div');
+			cardBody1Content.classList.add('form-group');
+
+			var cardBody1ContentInput = document.createElement('input');
+			// cardBody1ContentInput.prop("required", true);
+			cardBody1ContentInput.required = 'required';
+			cardBody1ContentInput.type = 'text';
+			cardBody1ContentInput.classList.add('form-control');
+			cardBody1ContentInput.placeholder = 'Title ' + (i + 1);
+			cardBody1ContentInput.name = 'dayTitle' + (i + 1);
+			cardBody1ContentInput.maxLength='100';
+
+			cardBody1Content.appendChild(cardBody1ContentInput);
+
+			// cardBody1.appendChild(cardBody1l);
+			cardBody1.appendChild(cardBody1Content);
+
+			var cardBodyl = document.createElement('label');
+			var cardBodyln = document.createTextNode('Descriptions :');
+
+			cardBodyl.appendChild(cardBodyln);
+
+
+			var cardBody2 = document.createElement('div');
+			cardBody2.classList.add('form-group');
+
+			var cardBodyTextarea = document.createElement('textarea');
+			// cardBodyTextarea.prop("required", true);
+			cardBodyTextarea.required = 'required';
+			cardBodyTextarea.minLength = "20";
+			cardBodyTextarea.classList.add('form-control');
+			cardBodyTextarea.placeholder = 'Describe Your Day ' + (i + 1);
+			cardBodyTextarea.id = 'comment';
+			cardBodyTextarea.rows = "4";
+			cardBodyTextarea.name = 'dayDescription' + (i + 1);
+
+			cardBody2.appendChild(cardBodyTextarea);
+
+			cardBody.appendChild(cardBody1);
+			cardBody.appendChild(cardBody2);
+
+			content.appendChild(cardHead);
+			content.appendChild(cardBody);
+
+			var cards = document.getElementById('cards');
+			cards.appendChild(content);
+		}
+	
 	}
-
-
-	//temp=temp.split(', ');
-	let ii = 0;
-	for (let i = 0; i < ggg * 2; i = i + 2, ii = ii + 1) {
-	  console.log(ii);
-	  var nodeHead = document.createTextNode('Day ' + (ii + 1));
-	  var y = 'Day' + (ii + 1);
-	  
-	  var content = document.createElement("div");
-	  content.classList.add('card');
-	  var cardHead = document.createElement('div');
-	  cardHead.classList.add('card-header');
-	  var h3 = document.createElement('h3');
-	  content.classList.add(y);
-	  h3.appendChild(nodeHead);
-	  cardHead.appendChild(h3);
-
-	  var cardBody = document.createElement('div');
-	  cardBody.classList.add('card-body');
-
-	  var cardBody1 = document.createElement('div');
-	  cardBody1.classList.add('col-md-12');
-	  cardBody1.classList.add('title');
-
-	  var cardBody1Content = document.createElement('div');
-	  cardBody1Content.classList.add('form-group');
-
-	  var cardBody1ContentInput = document.createElement('input');
-	  // cardBody1ContentInput.prop("required", true);
-	  cardBody1ContentInput.required = 'required';
-	  cardBody1ContentInput.type = 'text';
-	  cardBody1ContentInput.classList.add('form-control');			
-	  cardBody1ContentInput.readOnly = "readonly";
-	  cardBody1ContentInput.name = 'dayTitle' + (ii + 1);
-	  var day = 'dayTitle' + (ii + 1);
-	  //console.log(desc[day],day,typeof(desc[day]));
-	  cardBody1ContentInput.value = ui[i];
-
-	  cardBody1Content.appendChild(cardBody1ContentInput);
-
-	  // cardBody1.appendChild(cardBody1l);
-	  cardBody1.appendChild(cardBody1Content);
-
-	  var cardBodyl = document.createElement('label');
-	  var cardBodyln = document.createTextNode('Descriptions :');
-
-	  cardBodyl.appendChild(cardBodyln);
-
-
-	  var cardBody2 = document.createElement('div');
-	  cardBody2.classList.add('form-group');
-
-	  var cardBodyTextarea = document.createElement('textarea');
-	  // cardBodyTextarea.prop("required", true);
-	  cardBodyTextarea.required = 'required';
-	  cardBodyTextarea.minLength = "20";
-	  cardBodyTextarea.classList.add('form-control');
-	  cardBodyTextarea.placeholder = 'Describe Your Day ' + (ii + 1);
-	  cardBodyTextarea.id = 'comment';
-	  cardBodyTextarea.rows = "4";
-	  cardBodyTextarea.name = 'dayDescription' + (ii + 1);
-	  cardBodyTextarea.readOnly = "readonly";
-	  cardBodyTextarea.value = ui[i + 1];
-
-	  cardBody2.appendChild(cardBodyTextarea);
-
-	  cardBody.appendChild(cardBody1);
-	  cardBody.appendChild(cardBody2);
-
-	  content.appendChild(cardHead);
-	  content.appendChild(cardBody);
-
-	  var cards = document.getElementById('cards');
-	  cards.appendChild(content);
+	
+	function removeCard(allCardLn,x){
+		let allCard=document.querySelectorAll('.card');
+		for(let i=allCardLn-1;i>=x;i--){
+			allCard[i].remove();
+		}
 	}
-  });
-
-  function fun() {
-	let allCard=document.querySelectorAll('.card');
-	var sd = "{{Tour.startDate|date:'c'}}";
-	var d1=sd.substr(0,4);
-	var d2=sd.substr(5,2);
-	var d3=sd.substr(8,2);
-	sd=d2+'/'+d3+'/'+d1;
-	sd=new Date(sd);
-	// var d1=sd.substr(0,2);
-	// var d2=sd.substr(3,2);
-	// var d3=sd.substr(6,4);
-	// sd=d2+'/'+d1+'/'+d3;
-	// sd = new Date(sd);
-	var ed = document.getElementById('txtT').value;
-	var d1=ed.substr(0,2);
-	var d2=ed.substr(3,2);
-	var d3=ed.substr(6,4);
-	ed=d2+'/'+d1+'/'+d3;
-	ed = new Date(ed);
-	var d = ed.getTime() - sd.getTime();
-	var x = d / (1000 * 3600 * 24) + 1;
-	allCardLn=allCard.length;
-	if(x>allCardLn){
-	  addCard(allCardLn,x);
-	}
-	else if(x<allCardLn){
-	  removeCard(allCardLn,x);
-	}
-  }
-  function addCard(a,b){
-	for (let i = a; i < b; i++) {
-	  var content = document.createElement("div");
-	  content.classList.add('card');
-	  var cardHead = document.createElement('div');
-	  cardHead.classList.add('card-header');
-	  var h3 = document.createElement('h3');
-	  var nodeHead = document.createTextNode('Day ' + (i + 1));
-	  var y = 'Day' + (i + 1);
-	  content.classList.add(y);
-	  h3.appendChild(nodeHead);
-	  cardHead.appendChild(h3);
-
-	  var cardBody = document.createElement('div');
-	  cardBody.classList.add('card-body');
-
-	  var cardBody1 = document.createElement('div');
-	  cardBody1.classList.add('col-md-12');
-	  cardBody1.classList.add('title');
-
-	  var cardBody1Content = document.createElement('div');
-	  cardBody1Content.classList.add('form-group');
-
-	  var cardBody1ContentInput = document.createElement('input');
-	  // cardBody1ContentInput.prop("required", true);
-	  cardBody1ContentInput.required = 'required';
-	  cardBody1ContentInput.type = 'text';
-	  cardBody1ContentInput.classList.add('form-control');
-	  cardBody1ContentInput.placeholder = 'Title ' + (i + 1);
-	  cardBody1ContentInput.name = 'dayTitle' + (i + 1);
-	  cardBody1ContentInput.maxLength='100';
-
-	  cardBody1Content.appendChild(cardBody1ContentInput);
-
-	  // cardBody1.appendChild(cardBody1l);
-	  cardBody1.appendChild(cardBody1Content);
-
-	  var cardBodyl = document.createElement('label');
-	  var cardBodyln = document.createTextNode('Descriptions :');
-
-	  cardBodyl.appendChild(cardBodyln);
-
-
-	  var cardBody2 = document.createElement('div');
-	  cardBody2.classList.add('form-group');
-
-	  var cardBodyTextarea = document.createElement('textarea');
-	  // cardBodyTextarea.prop("required", true);
-	  cardBodyTextarea.required = 'required';
-	  cardBodyTextarea.minLength = "20";
-	  cardBodyTextarea.classList.add('form-control');
-	  cardBodyTextarea.placeholder = 'Describe Your Day ' + (i + 1);
-	  cardBodyTextarea.id = 'comment';
-	  cardBodyTextarea.rows = "4";
-	  cardBodyTextarea.name = 'dayDescription' + (i + 1);
-
-	  cardBody2.appendChild(cardBodyTextarea);
-
-	  cardBody.appendChild(cardBody1);
-	  cardBody.appendChild(cardBody2);
-
-	  content.appendChild(cardHead);
-	  content.appendChild(cardBody);
-
-	  var cards = document.getElementById('cards');
-	  cards.appendChild(content);
-	}
-  
-  }
-  function removeCard(allCardLn,x){
-	let allCard=document.querySelectorAll('.card');
-	for(let i=allCardLn-1;i>=x;i--){
-	  allCard[i].remove();
-	}
-  }
 
   document.querySelectorAll('.uploadedImage').forEach(function(el){
-	if(el.getAttribute('src')=='#'){
-	  el.classList.remove('d-flex');
-	}
-	else{
-	  console.log(el.getAttribute('src'))
-	  el.classList.add('d-flex');
-	}
+		if(el.getAttribute('src')=='#'){
+			el.classList.remove('d-flex');
+		}
+		else{
+			el.classList.add('d-flex');
+		}
   });
 
-  $(function () {
-	var dropzone = document.getElementById('upload_img');
-	dropzone.ondrop = function (e) {
-	  dropzone.style.backgroundColor = 'white';
-	}
-	dropzone.ondragover = function () {
-	  dropzone.style.backgroundColor = 'gray';
-	}
-	dropzone.ondragleave = function () {
-	  dropzone.style.backgroundColor = 'white';
-	}
+	$(function () {
+		var dropzone = document.getElementById('upload_img');
+		dropzone.ondrop = function (e) {
+			dropzone.style.backgroundColor = 'white';
+		}
+		dropzone.ondragover = function () {
+			dropzone.style.backgroundColor = 'gray';
+		}
+		dropzone.ondragleave = function () {
+			dropzone.style.backgroundColor = 'white';
+		}
 
-	var tourimgnum = 6;
-	var optionsAsString = "";
-	for (var i = 0; i < tourimgnum; i++) {
-	  optionsAsString += "<option value='" + (i + 1) + "'>Image " + (i + 1) + "</option>";
-	}
-	$("select[name='timgnum']").append($(optionsAsString));
+		var tourimgnum = 6;
+		var optionsAsString = "";
+		for (var i = 0; i < tourimgnum; i++) {
+			optionsAsString += "<option value='" + (i + 1) + "'>Image " + (i + 1) + "</option>";
+		}
+		$("select[name='timgnum']").append($(optionsAsString));
 
-	var timgUpdate = document.querySelector('.timgUpdate');
-	var dropzoneImg1 = document.querySelector('.upload_img1_L1');
-	$('#upload_img1').on({
-	  'dragover': function () {
-		dropzoneImg1.style.borderColor = 'red';
-	  },
-	  'change': function () {
-		dropzoneImg1.style.borderColor = 'green';
-		timgUpdate.innerHTML = '*Image 1 has been updated';
-	  }
-	})
-	  .on('dragleave dragexit', function () {
-		dropzoneImg1.style.borderColor = 'black';
-	  });
-	var dropzoneImg2 = document.querySelector('.upload_img2_L2');
-	$('#upload_img2').on({
-	  'dragover': function () {
-		dropzoneImg2.style.borderColor = 'red';
-	  },
-	  'change': function () {
-		dropzoneImg2.style.borderColor = 'green';
-		timgUpdate.innerHTML = '*Image 2 has been updated';
-	  }
-	})
-	  .on('dragleave dragexit', function () {
-		dropzoneImg2.style.borderColor = 'black';
-	  });
-	var dropzoneImg3 = document.querySelector('.upload_img3_L3');
-	$('#upload_img3').on({
-	  'dragover': function () {
-		dropzoneImg3.style.borderColor = 'red';
-	  },
-	  'change': function () {
-		dropzoneImg3.style.borderColor = 'green';
-		timgUpdate.innerHTML = '*Image 3 has been updated';
-	  }
-	})
-	  .on('dragleave dragexit', function () {
-		dropzoneImg3.style.borderColor = 'black';
-	  });
-	var dropzoneImg4 = document.querySelector('.upload_img4_L4');
-	$('#upload_img4').on({
-	  'dragover': function () {
-		dropzoneImg4.style.borderColor = 'red';
-	  },
-	  'change': function () {
-		dropzoneImg4.style.borderColor = 'green';
-		timgUpdate.innerHTML = '*Image 4 has been updated';
-	  }
-	})
-	  .on('dragleave dragexit', function () {
-		dropzoneImg4.style.borderColor = 'black';
-	  });
-	var dropzoneImg5 = document.querySelector('.upload_img5_L5');
-	$('#upload_img5').on({
-	  'dragover': function () {
-		dropzoneImg5.style.borderColor = 'red';
-	  },
-	  'change': function () {
-		dropzoneImg5.style.borderColor = 'green';
-		timgUpdate.innerHTML = '*Image 5 has been updated';
-	  }
-	})
-	  .on('dragleave dragexit', function () {
-		dropzoneImg5.style.borderColor = 'black';
-	  });
-	var dropzoneImg6 = document.querySelector('.upload_img6_L6');
-	$('#upload_img6').on({
-	  'dragover': function () {
-		dropzoneImg6.style.borderColor = 'red';
-	  },
-	  'change': function () {
-		dropzoneImg6.style.borderColor = 'green';
-		timgUpdate.innerHTML = '*Image 6 has been updated';
-	  }
-	})
-	  .on('dragleave dragexit', function () {
-		dropzoneImg6.style.borderColor = 'black';
-	  });
-	var overview ="{{Tour.overview | linebreaksbr}}".replace('"','');
-	console.log(overview)
-	  $('textarea[name=overview]').val(overview);
-	var highlights ="{{Tour.highlight | linebreaksbr}}".replace('"','');
-	  $('textarea[name=highlight]').val(highlights);
-	var exclusive ="{{Tour.exclusive | linebreaksbr}}".replace('"','');
-	  $('textarea[name=exclusive]').val(exclusive);
-	var inclusive ="{{Tour.inclusive | linebreaksbr}}".replace('"','');
-	  $('textarea[name=inclusive]').val(inclusive);
+		var timgUpdate = document.querySelector('.timgUpdate');
+		var dropzoneImg1 = document.querySelector('.upload_img1_L1');
+		$('#upload_img1').on({
+		'dragover': function () {
+			dropzoneImg1.style.borderColor = 'red';
+		},
+		'change': function () {
+			dropzoneImg1.style.borderColor = 'green';
+			timgUpdate.innerHTML = '*Image 1 has been updated';
+		}
+		})
+		.on('dragleave dragexit', function () {
+			dropzoneImg1.style.borderColor = 'black';
+		});
+		var dropzoneImg2 = document.querySelector('.upload_img2_L2');
+		$('#upload_img2').on({
+		'dragover': function () {
+			dropzoneImg2.style.borderColor = 'red';
+		},
+		'change': function () {
+			dropzoneImg2.style.borderColor = 'green';
+			timgUpdate.innerHTML = '*Image 2 has been updated';
+		}
+		})
+		.on('dragleave dragexit', function () {
+			dropzoneImg2.style.borderColor = 'black';
+		});
+		var dropzoneImg3 = document.querySelector('.upload_img3_L3');
+		$('#upload_img3').on({
+		'dragover': function () {
+			dropzoneImg3.style.borderColor = 'red';
+		},
+		'change': function () {
+			dropzoneImg3.style.borderColor = 'green';
+			timgUpdate.innerHTML = '*Image 3 has been updated';
+		}
+		})
+		.on('dragleave dragexit', function () {
+			dropzoneImg3.style.borderColor = 'black';
+		});
+		var dropzoneImg4 = document.querySelector('.upload_img4_L4');
+		$('#upload_img4').on({
+		'dragover': function () {
+			dropzoneImg4.style.borderColor = 'red';
+		},
+		'change': function () {
+			dropzoneImg4.style.borderColor = 'green';
+			timgUpdate.innerHTML = '*Image 4 has been updated';
+		}
+		})
+		.on('dragleave dragexit', function () {
+			dropzoneImg4.style.borderColor = 'black';
+		});
+		var dropzoneImg5 = document.querySelector('.upload_img5_L5');
+		$('#upload_img5').on({
+		'dragover': function () {
+			dropzoneImg5.style.borderColor = 'red';
+		},
+		'change': function () {
+			dropzoneImg5.style.borderColor = 'green';
+			timgUpdate.innerHTML = '*Image 5 has been updated';
+		}
+		})
+		.on('dragleave dragexit', function () {
+			dropzoneImg5.style.borderColor = 'black';
+		});
+		var dropzoneImg6 = document.querySelector('.upload_img6_L6');
+		$('#upload_img6').on({
+		'dragover': function () {
+			dropzoneImg6.style.borderColor = 'red';
+		},
+		'change': function () {
+			dropzoneImg6.style.borderColor = 'green';
+			timgUpdate.innerHTML = '*Image 6 has been updated';
+		}
+		})
+		.on('dragleave dragexit', function () {
+			dropzoneImg6.style.borderColor = 'black';
+		});
+		var overview ="{{Tour.overview | linebreaksbr}}".replace('"','');
+		$('textarea[name=overview]').val(overview);
+		var highlights ="{{Tour.highlight | linebreaksbr}}".replace('"','');
+		$('textarea[name=highlight]').val(highlights);
+		var exclusive ="{{Tour.exclusive | linebreaksbr}}".replace('"','');
+		$('textarea[name=exclusive]').val(exclusive);
+		var inclusive ="{{Tour.inclusive | linebreaksbr}}".replace('"','');
+		$('textarea[name=inclusive]').val(inclusive);
 
-  });
-  function timgChange(obj) {
-	globalVar1=document.getElementById('timgnum').value;
-	var arrowonimg = document.querySelector('.arrowonimg');
-	arrowonimg.classList.add('d-flex');
-	var num = parseInt(obj.value);
-	var upload_img1_L = document.querySelectorAll('.upload_img1_L');
-	var spimg = document.querySelectorAll('.spimg');
-	upload_img1_L.forEach(function (el) {
-	  el.classList.remove('d-flex');
 	});
-	spimg.forEach(function (el) {
-	  el.classList.remove('d-flex');
-	})
-	var label = 'label_img' + num;
-	var imgfile = 'upload_img' + num;
-	var x = document.getElementById(imgfile);
-	var y = document.getElementById(label);
-	x.classList.add('d-flex');
-	y.classList.add('d-flex');
-  }
-
-  $(function () {
-	let spo = document.getElementById('spod');
-	spo.style.visibility = 'hidden';
-  })
-  function setsp() {
-	let spo = document.getElementById('spoffer');
-	let spod = document.getElementById('spod');
-	let spofferdetails = document.getElementById('spofferdetails');
-	if (spo.value !== 'True') {
-	  spod.style.visibility = 'hidden';
-	  $('#spofferdetails').removeAttr('required');
+	
+	function timgChange(obj) {
+		globalVar1=document.getElementById('timgnum').value;
+		var arrowonimg = document.querySelector('.arrowonimg');
+		arrowonimg.classList.add('d-flex');
+		var num = parseInt(obj.value);
+		var upload_img1_L = document.querySelectorAll('.upload_img1_L');
+		var spimg = document.querySelectorAll('.spimg');
+		upload_img1_L.forEach(function (el) {
+		el.classList.remove('d-flex');
+		});
+		spimg.forEach(function (el) {
+		el.classList.remove('d-flex');
+		})
+		var label = 'label_img' + num;
+		var imgfile = 'upload_img' + num;
+		var x = document.getElementById(imgfile);
+		var y = document.getElementById(label);
+		x.classList.add('d-flex');
+		y.classList.add('d-flex');
 	}
-	else {
-	  spod.style.visibility = 'visible';
-	  $('#spofferdetails').attr('required', 'required');
+
+	function setsp() {
+		let spo = document.getElementById('spoffer');
+		let spod = document.getElementById('spod');
+		let spofferdetails = document.getElementById('spofferdetails');
+		if (spo.value !== 'True') {
+			console.log('in setsp False');
+			spod.style.visibility = 'hidden';
+			$('#spofferdetails').removeAttr('required');
+		}
+		else {
+			console.log('in setsp True');
+			spod.style.visibility = 'visible';
+			$('#spofferdetails').attr('required', 'required');
+		}
 	}
-  }
 
-  function validator() {
-	let msg = [];
-	let ayan = document.querySelectorAll('.card');
-	//console.log(ayan,ayan.length);
-	if (ayan.length < 1) {
-	  msg.push('Something Went Wrong, Please Reload and Try Again. \n In Case of Dificulty Contact Us.');
+	function validator() {
+		let msg = [];
+		let ayan = document.querySelectorAll('.card');
+		if (ayan.length < 1) {
+		msg.push('Something Went Wrong, Please Reload and Try Again. \n In Case of Dificulty Contact Us.');
+		}
+		// msg.push('hello');
+		if (msg.length > 0) {
+		errormsg.innerHTML = msg.join('\n');
+		// errormsgbg.style.width="500px";
+		errormsg.style.padding = "8px";
+		errormsgbg.style.borderRadius = "5px";
+		errormsgbg.style.backgroundColor = '#FBD0F5';
+		errormsg.style.color = 'red';
+		errormsgbg.style.margin = '10px';
+		// errormsg.style.fontWeight="bold";
+		return false;
+		}
+		var inclusive=$('textarea[name=inclusive]').val();
+		inclusive=inclusive.replace(/(\r\n|\n|\r)/gm, "");
+		$('textarea[name=inclusive]').val(inclusive);
+
+		var exclusive=$('textarea[name=exclusive]').val();
+		exclusive=exclusive.replace(/(\r\n|\n|\r)/gm, "");
+		$('textarea[name=exclusive]').val(exclusive);
+
+		var highlight=$('textarea[name=highlight]').val();
+		highlight=highlight.replace(/(\r\n|\n|\r)/gm, "");
+		$('textarea[name=highlight]').val(highlight);
+
+		var overview=$('textarea[name=overview]').val();
+		overview=overview.replace(/(\r\n|\n|\r)/gm, "");
+		$('textarea[name=overview]').val(overview);
+		for(let i=1;i<ayan.length+1;i++){
+			var name='dayDescription'+i;
+			var XXX='textarea[name='+name+']';
+			var m=$(XXX).val();
+			m=m.replace(/(\r\n|\n|\r)/gm, "");
+			$(XXX).val(m);
+		}
+		return true;
 	}
-	// msg.push('hello');
-	if (msg.length > 0) {
-	  errormsg.innerHTML = msg.join('\n');
-	  // errormsgbg.style.width="500px";
-	  errormsg.style.padding = "8px";
-	  errormsgbg.style.borderRadius = "5px";
-	  errormsgbg.style.backgroundColor = '#FBD0F5';
-	  errormsg.style.color = 'red';
-	  errormsgbg.style.margin = '10px';
-	  // errormsg.style.fontWeight="bold";
-	  return false;
+	
+	function removeValidator() {
+
+		var errormsg = document.getElementById('errormsg');
+
+		var errormsgbg = document.getElementById('errormsgbg');
+		errormsg.innerHTML = null;
+		errormsg.style.padding = '0px';
+		errormsgbg.style.margin = '0px';
 	}
-	var inclusive=$('textarea[name=inclusive]').val();
-	inclusive=inclusive.replace(/(\r\n|\n|\r)/gm, "");
-	$('textarea[name=inclusive]').val(inclusive);
-
-	var exclusive=$('textarea[name=exclusive]').val();
-	exclusive=exclusive.replace(/(\r\n|\n|\r)/gm, "");
-	$('textarea[name=exclusive]').val(exclusive);
-
-	var highlight=$('textarea[name=highlight]').val();
-	highlight=highlight.replace(/(\r\n|\n|\r)/gm, "");
-	$('textarea[name=highlight]').val(highlight);
-
-	var overview=$('textarea[name=overview]').val();
-	overview=overview.replace(/(\r\n|\n|\r)/gm, "");
-	$('textarea[name=overview]').val(overview);
-	for(let i=1;i<ayan.length+1;i++){
-	  var name='dayDescription'+i;
-	  var XXX='textarea[name='+name+']';
-	  var m=$(XXX).val();
-	  // console.log(m);
-	  m=m.replace(/(\r\n|\n|\r)/gm, "");
-	  $(XXX).val(m);
-	  console.log($(XXX).val());
-	}
-	return true;
-  }
-  function removeValidator() {
-
-	var errormsg = document.getElementById('errormsg');
-
-	var errormsgbg = document.getElementById('errormsgbg');
-	errormsg.innerHTML = null;
-	errormsg.style.padding = '0px';
-	errormsgbg.style.margin = '0px';
-  }
 </script>
 
 <!-- JS ends here-->
