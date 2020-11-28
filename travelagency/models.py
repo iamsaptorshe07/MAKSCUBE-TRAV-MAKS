@@ -10,6 +10,12 @@ class Tour(models.Model):
         ('Solo-Tour','Solo-Tour'),
         ('All','All')
     )
+    SPECIAL_TOUR_TYPE = (
+        ('Bike-tours','Bike-tours'),
+        ('Self-drive','Self-drive'),
+        ('Trecking-Special','Trecking-Special'),
+        ('None','None')
+    )
     seller = models.ForeignKey(User,on_delete=models.CASCADE,related_name='agencyOwner')
     agency = models.ForeignKey(AgencyDetail,on_delete=models.CASCADE,related_name='tourAgency')
     maximum_people = models.IntegerField(default=30)
@@ -26,10 +32,10 @@ class Tour(models.Model):
     exclusive = models.TextField()
     highlight = models.TextField()
     price = models.FloatField()
-    tour_type = models.CharField(max_length=500, choices=TOUR_TYPE)
+    tour_type = models.CharField(max_length=50, choices=TOUR_TYPE)
+    special_tour_type=models.CharField(max_length=50, choices=SPECIAL_TOUR_TYPE,default='None')
     thumbnail = models.ImageField(upload_to="TourAccountThumbnail")
     last_booking_date = models.DateField()
-    noOfManPerRoom = models.IntegerField(default=2)
     specialOffer = models.BooleanField(default=False)
     specialOfferDescription = models.TextField(blank=True,null=True)
 
