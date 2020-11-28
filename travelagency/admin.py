@@ -6,10 +6,6 @@ class TourDetailsAdmin(admin.ModelAdmin):
     model = Tour
     list_display = ('tourId','agency','get_seller_id','get_agency_id','publish_mode','creationDate','tourHeading','startingLocation','endLocation','startDate','endDate',
     'highlight','price','tour_type','thumbnail','tags','overview','maximum_people',
-    'nearestLocation1','nearestLocation1_distance', 'nlocationconnected1',
-    'nearestLocation2','nearestLocation2_distance', 'nlocationconnected2',
-    'nearestLocation3','nearestLocation3_distance', 'nlocationconnected3',
-    'nearestLocation4','nearestLocation4_distance', 'nlocationconnected4',
     )
     search_fields = ['tourId','tourHeading','agency__agency_Id']
     list_filter = ('tour_type',)

@@ -3,16 +3,6 @@ from accounts.models import *
 from PIL import Image
     
 class Tour(models.Model):
-    TOUR_TYPE = (
-        ('Family-Special','Family-Special'), 
-        ('Friends-Special','Friends-Special'),
-        ('Couple-Friendly','Couple-Friendly'),
-        ('Solo-Tour','Solo-Tour'),
-        ('Bike-tours','Bike-tours'),
-        ('Self-drive car-tours','Self-drive car-tours'),
-        ('Trecking-Special','Trecking-Special'),
-        ('All','All')
-    )
     seller = models.ForeignKey(User,on_delete=models.CASCADE,related_name='agencyOwner')
     agency = models.ForeignKey(AgencyDetail,on_delete=models.CASCADE,related_name='tourAgency')
     maximum_people = models.IntegerField(default=30)
@@ -29,28 +19,15 @@ class Tour(models.Model):
     exclusive = models.TextField()
     highlight = models.TextField()
     price = models.FloatField()
-    tour_type = models.CharField(max_length=500, choices=TOUR_TYPE)
+    tour_type = models.CharField(max_length=1000)
     thumbnail = models.ImageField(upload_to="TourAccountThumbnail")
     last_booking_date = models.DateField()
     noOfManPerRoom = models.IntegerField(default=2)
     specialOffer = models.BooleanField(default=False)
     specialOfferDescription = models.TextField(blank=True,null=True)
-
     creationDate = models.DateField(auto_now_add=True)
     othersThings = models.TextField(blank=True,null=True)
     tags = models.CharField(max_length=300,blank=True,null=True)
-    nearestLocation1 = models.CharField(max_length=500, null=True,blank=True)
-    nearestLocation1_distance = models.FloatField(null=True, blank=True)
-    nlocationconnected1 = models.TextField(null=True, blank=True)
-    nearestLocation2 = models.CharField(max_length=500, null=True,blank=True)
-    nearestLocation2_distance = models.FloatField(null=True, blank=True)
-    nlocationconnected2 = models.TextField(null=True, blank=True)
-    nearestLocation3 = models.CharField(max_length=500, null=True,blank=True)
-    nearestLocation3_distance = models.FloatField(null=True, blank=True)
-    nlocationconnected3 = models.TextField(null=True, blank=True)
-    nearestLocation4 = models.CharField(max_length=500, null=True,blank=True)
-    nearestLocation4_distance = models.FloatField(null=True, blank=True)
-    nlocationconnected4 = models.TextField(null=True, blank=True)
     publish_mode = models.BooleanField(default=False)
 
     #### resize image
