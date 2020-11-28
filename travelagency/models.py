@@ -3,6 +3,13 @@ from accounts.models import *
 from PIL import Image
     
 class Tour(models.Model):
+    TOUR_TYPE = (
+        ('Family-Special','Family-Special'), 
+        ('Friends-Special','Friends-Special'),
+        ('Couple-Friendly','Couple-Friendly'),
+        ('Solo-Tour','Solo-Tour'),
+        ('All','All')
+    )
     seller = models.ForeignKey(User,on_delete=models.CASCADE,related_name='agencyOwner')
     agency = models.ForeignKey(AgencyDetail,on_delete=models.CASCADE,related_name='tourAgency')
     maximum_people = models.IntegerField(default=30)
@@ -19,15 +26,17 @@ class Tour(models.Model):
     exclusive = models.TextField()
     highlight = models.TextField()
     price = models.FloatField()
-    tour_type = models.CharField(max_length=1000)
+    tour_type = models.CharField(max_length=500, choices=TOUR_TYPE)
     thumbnail = models.ImageField(upload_to="TourAccountThumbnail")
     last_booking_date = models.DateField()
     noOfManPerRoom = models.IntegerField(default=2)
     specialOffer = models.BooleanField(default=False)
     specialOfferDescription = models.TextField(blank=True,null=True)
+
     creationDate = models.DateField(auto_now_add=True)
     othersThings = models.TextField(blank=True,null=True)
     tags = models.CharField(max_length=300,blank=True,null=True)
+    
     publish_mode = models.BooleanField(default=False)
 
     #### resize image
