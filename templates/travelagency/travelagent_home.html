@@ -580,8 +580,8 @@
 				<li>The Tour has to be booked before : <input name="bookinglimit" id="bookinglimit" 
 					class="form-control text-center cursor-none" placeholder="(Confirm The Tour Start Date First)">
 				</li><br>
-				<li>Number of People in a Room<input type="number" min="1" name="numOfMen" id="numOfMen" 
-					class="form-control text-center" placeholder="Number of People">
+				<li>Number of Seats *<input type="number" min="1" id="seat" 
+					placeholder="Total Number of Seats Available" class="form-control" name="seat" required >
 				</li>
 			</div>
 			<div class="cd">
@@ -608,8 +608,15 @@
 				</li>
 				<br>
 				<li class="">
-					Enter Number of Seats *
-					<input type="number" class="form-control" name="seat" placeholder="Max seat available" min="5" required />
+					Any Additional Feature *
+					<select name="additionalFeature" id="additionalFeature" class="form-control" required>
+						<option class="hidden" value="" disabled="" selected=""
+							style="text-align: center;">Select Additional Feature *</option>
+						<option value="Bike-tours">Bike Tours</option>
+						<option value="Self-drive car-tours">Self Drive Car Tours</option>
+						<option value="Trecking-Special">Trecking Special</option>
+						<option value="none">None</option>
+					</select>
 				</li>
 			</div>
 			<div class="cd">
@@ -622,9 +629,6 @@
 						<option value="Family-Special">Family Special</option>
 						<option value="Friends-Special">Friends Special</option>
 						<option value="Couple-Friendly">Couple Friendly</option>
-						<option value="Bike-tours">Bike Tours</option>
-						<option value="Self-drive car-tours">Self Drive Car Tours</option>
-						<option value="Trecking-Special">Trecking Special</option>
 						<option value="Solo-Tour">Solo Tour</option>
 						<option value="All">Applicable for All</option>
 					</select>
@@ -832,8 +836,9 @@
 				fun();
 			}
 		});
+		var bookingMinDate = new Date(mindate.getTime() + (24 * 60 * 60 * 1000));
 		$('#bookinglimit').datepicker({
-			minDate: mindate,
+			minDate: bookingMinDate,
 			showAnim: 'drop',
 			numberOfMonths: 1,
 			dateFormat: 'dd/mm/yy'
@@ -1135,28 +1140,28 @@
 		}
 		 
 		var inclusive=$('textarea[name=inclusive]').val();
-		inclusive=inclusive.replace(/(\r\n|\n|\r)/gm, "");
+		inclusive=inclusive.replace(/(\r\n|\n|\r)/gm, "\n");
 		$('textarea[name=inclusive]').val(inclusive);
 
 		var exclusive=$('textarea[name=exclusive]').val();
-		exclusive=exclusive.replace(/(\r\n|\n|\r)/gm, "");
+		exclusive=exclusive.replace(/(\r\n|\n|\r)/gm, "\n");
 		$('textarea[name=exclusive]').val(exclusive);
 
 		var highlight=$('textarea[name=highlight]').val();
-		highlight=highlight.replace(/(\r\n|\n|\r)/gm, "");
+		highlight=highlight.replace(/(\r\n|\n|\r)/gm, "\n");
 		$('textarea[name=highlight]').val(highlight);
 
 		var overview=$('textarea[name=overview]').val();
-		overview=overview.replace(/(\r\n|\n|\r)/gm, "");
+		overview=overview.replace(/(\r\n|\n|\r)/gm, "\n");
 		$('textarea[name=overview]').val(overview);
 		for(let i=1;i<ayan.length+1;i++){
 			var name='dayDescription'+i;
 			var XXX='textarea[name='+name+']';
 			var m=$(XXX).val();
 			// console.log(m);
-			m=m.replace(/(\r\n|\n|\r)/gm, "");
+			m=m.replace(/(\r\n|\n|\r)/gm, "\n");
 			$(XXX).val(m);
-			console.log($(XXX).val());
+			// console.log($(XXX).val());
 		}
 		return true;
 	}
