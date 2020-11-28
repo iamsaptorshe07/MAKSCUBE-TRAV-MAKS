@@ -6,6 +6,7 @@ from .models import *
 from .uniqueKey import *
 from django.contrib import messages
 from django.core.mail import send_mail 
+from django.core.mail import EmailMessage
 from django.core.mail import EmailMultiAlternatives 
 from django.template.loader import get_template 
 from django.template import Context 
@@ -44,7 +45,16 @@ def messages_sender(request,user):
         to_list=[to_email]
         from_email=settings.EMAIL_HOST_USER
         print(from_email,'\n\n',message,'\n\n')
-        send_mail(mail_subject,message,from_email,to_list,fail_silently=True)
+        #send_mail(mail_subject,message,from_email,to_list,fail_silently=True)
+        email = EmailMessage(
+            subject=mail_subject,
+            body=message,
+            from_email=from_email,
+            to=to_list,
+            #reply_to=['user@example.com'],
+            headers={'Content-Type': 'text/plain'},
+        )
+        email.send()
         return True
     except Exception as e:
         print(e)

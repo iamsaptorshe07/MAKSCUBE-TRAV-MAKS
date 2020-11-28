@@ -42,8 +42,6 @@ class Tour(models.Model):
     #### resize image
     def save(self):
         super().save()
-
-        
         img = Image.open(self.thumbnail.path)
         output_size = (468 , 312)
         img.resize(output_size)
