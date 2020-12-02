@@ -483,7 +483,7 @@
 	}
 
 	.form-control[readonly] {
-		background-color: #e1e2e1;
+		background-color: #18ec18;
 	}
 
 	.form-control {
@@ -509,6 +509,21 @@
 		justify-content: space-around;
 		align-items: center;
 		flex-wrap: wrap;
+	}
+	.uploadedThumbnail{
+		cursor: pointer;
+	}
+	#exampleModalCenter1 .modal-title{
+		color: #343a40;
+	}
+	#exampleModalCenter1 .modal-body{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	#exampleModalCenter1 .modal-body img{
+		width: 145px;
+		height: auto;
 	}
 </style>
 
@@ -651,9 +666,28 @@
 				<br>
 				<li class="">
 					Upload Your Thumbnail *<br>
-					<a style="color: rgb(181, 243, 218);" href='{{Tour.thumbnail.url}}'>Previously Uploaed Thumbnail</a>
+					<!-- <a style="color: rgb(181, 243, 218);" href='{{Tour.thumbnail.url}}'>Previously Uploaed Thumbnail</a> -->
+					
+					<div class="uploadedThumbnail" data-toggle="modal" data-target="#exampleModalCenter1">
+						Uploaded Thumbnail
+					</div>
 					<input type="file" name="thumbnail" id="upload_img" class="form-control upload disable-click"
 						accept='image/*' />
+					<div class="modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+						<div class="modal-dialog modal-dialog-centered" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+								<h5 class="modal-title" id="exampleModalLongTitle">Uploaded Images</h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+								</div>
+								<div class="modal-body">
+									<img src="{{Tour.thumbnail.url}}" alt="Thrumneil">
+								</div>
+							</div>
+						</div>
+					</div>
 
 				</li>
 			</div>
@@ -861,6 +895,7 @@
 			$('#upload_img').attr('readonly', false);
 			$('#tourtype').attr('readonly', false);
 			$('#timgnum').attr('readonly', false);
+			$('#additionalFeature').attr('readonly', false);
 		}
 		else {
 			$("input[name='seat']").removeAttr('readonly');
@@ -1206,15 +1241,18 @@
 
 	$(function () {
 		var dropzone = document.getElementById('upload_img');
-		dropzone.ondrop = function (e) {
-			dropzone.style.backgroundColor = 'white';
-		}
-		dropzone.ondragover = function () {
-			dropzone.style.backgroundColor = 'gray';
-		}
-		dropzone.ondragleave = function () {
-			dropzone.style.backgroundColor = 'white';
-		}
+		$('#upload_img').on({
+			'dragover':function(){
+				dropzone.style.backgroundColor='red';
+			},
+			'change':function(){
+				dropzone.style.backgroundColor='white';
+				readThumbnail(this);
+			}
+		})
+		.on('dragleave dragexit', function() {
+			dropzoneImg1.style.backgroundColor='white';
+		});
 
 		var tourimgnum = 6;
 		var optionsAsString = "";
@@ -1327,6 +1365,16 @@
 		// }
 
 	});
+
+	function readThumbnail(input){
+		if (input.files && input.files[0]) {
+			var reader = new FileReader();
+			reader.onload = function(e) {
+				$('#exampleModalCenter1 .modal-body img').attr('src', e.target.result);
+			}
+			reader.readAsDataURL(input.files[0]);
+		}
+	}
 
 	function timgChange(obj) {
 		globalVar1 = document.getElementById('timgnum').value;
