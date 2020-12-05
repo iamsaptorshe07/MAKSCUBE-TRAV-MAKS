@@ -9,6 +9,8 @@ from rest_framework.pagination import PageNumberPagination
 from rest_framework.generics import ListAPIView
 import datetime
 from django.db.models import Q
+from django.contrib.sites.shortcuts import get_current_site
+
 # Create your views here.
 
 class TourAPIView(ListAPIView):
@@ -34,6 +36,7 @@ def TourDetailsAPIView(request,slug):
     main_data = {
         'tourdata':data1.data,
         'tourimages':data2.data,
+        'weblink':get_current_site(request)
     }
     return Response(main_data)
     
