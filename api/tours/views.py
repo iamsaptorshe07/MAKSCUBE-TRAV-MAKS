@@ -33,10 +33,11 @@ def TourDetailsAPIView(request,slug):
         return Response(request,exception)
     data1 = TourSerializer(tour)
     data2 = TourImageSerializer(tourimages)
+    link = get_current_site(request)
     main_data = {
         'tourdata':data1.data,
         'tourimages':data2.data,
-        'weblink':get_current_site(request)
+        'weblink':link.domain
     }
     return Response(main_data)
     
