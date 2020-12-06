@@ -768,30 +768,7 @@
                     </div>
                 </div>
             </div>
-            <!--REview Section-->
-            <!--
-            <h1 class="reviewHead">Ratting & Reviews</h1>
-            <div id="reviews">
-                <div class="TourReview">
-                    <div class="stars">
-                        <ul>
-                            <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                            <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                            <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                            <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                            <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                        </ul>
-                    </div>
-                    <div class="reviewCon">
-                        Good Good Good Good Good Good Good Good 
-                    </div>
-                    <div class="reviewFrom">
-                        *posted by Ayan Koley
-                    </div>
-                </div>
-            </div>
-        -->
-            <!--Review Ends here -->
+
         </div>
         <div class="btns2">
             <a href="/tour/booktour/{{Tour.tourId}}/{{Tour.seller.userAccess.agentId}}">Book Now</a>
@@ -858,9 +835,8 @@
         var ggg=x;
         
         var temp = "{{description | linebreaksbr}}";
-        var tem=temp.replace(/<br\s*\/?>/gi,'')
-        var tem=temp.replace('<br>','');
-		var d2 = temp.split('@@@@')
+        var tem= temp.replace(/<br\s*\/?>/gi,'\n')
+		var d2 = tem.split('@@@@')
 		var ui=[]
         for(let j=0;j<ggg;j++){
 			x= d2[j].split('$$$$');

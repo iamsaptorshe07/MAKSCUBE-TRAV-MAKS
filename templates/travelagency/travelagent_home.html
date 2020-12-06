@@ -492,6 +492,22 @@
 	.modal-footer{
 		font-weight: bold;
 	}
+	.uploadedThumbnail{
+		display: none;
+		cursor: pointer;
+	}
+	#exampleModalCenter1 .modal-title{
+		color: #343a40;
+	}
+	#exampleModalCenter1 .modal-body{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	#exampleModalCenter1 .modal-body img{
+		width: 145px;
+		height: auto;
+	}
 </style>
 
 {% endblock stylesheets %}
@@ -635,8 +651,28 @@
 				</li>
 				<br><li class="">
 					Upload Your Thumbnail *
+					
+					<div class="uploadedThumbnail" data-toggle="modal" data-target="#exampleModalCenter1">
+						Uploaded Thumbnail
+					</div>
 					<input type="file" accept='image/*' name="thumbnail" id="upload_img" class="form-control upload" 
 					required />
+					
+					<div class="modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+						<div class="modal-dialog modal-dialog-centered" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+								<h5 class="modal-title" id="exampleModalLongTitle">Uploaded Images</h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+								</div>
+								<div class="modal-body">
+									<img src="#" alt="Thrumneil">
+								</div>
+							</div>
+						</div>
+					</div>
 				</li>
 			</div>
 			<div class="cd">
@@ -949,15 +985,19 @@
 
 	$(function () {
 		var dropzone = document.getElementById('upload_img');
-		dropzone.ondrop = function (e) {
-			dropzone.style.backgroundColor = 'white';
-		}
-		dropzone.ondragover = function () {
-			dropzone.style.backgroundColor = 'gray';
-		}
-		dropzone.ondragleave = function () {
-			dropzone.style.backgroundColor = 'white';
-		}
+		$('#upload_img').on({
+			'dragover':function(){
+				dropzone.style.backgroundColor='red';
+			},
+			'change':function(){
+				dropzone.style.backgroundColor='white';
+				$('.uploadedThumbnail').addClass('d-flex');
+				readThumbnail(this);
+			}
+		})
+		.on('dragleave dragexit', function() {
+			dropzoneImg1.style.backgroundColor='white';
+		});
 
 		var dropzoneImg1=document.querySelector('.upload_img1_L1');
 		var spbtn=document.querySelector('.spimgs button');
@@ -1080,6 +1120,16 @@
 		}
 	}
 	
+	function readThumbnail(input){
+		if (input.files && input.files[0]) {
+			var reader = new FileReader();
+			reader.onload = function(e) {
+				$('#exampleModalCenter1 .modal-body img').attr('src', e.target.result);
+			}
+			reader.readAsDataURL(input.files[0]);
+		}
+	}
+
 	function anotherSpimg(){
 		globalVar1+=1;
 		var num=document.querySelector('.spimgnum').innerHTML;

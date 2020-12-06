@@ -18,5 +18,6 @@ urlpatterns = [
 
     # Rest API URLs
     path('api/v1/accounts/',include('api.accountsAPI.urls'),name='accountsAPI'),
+    path('api/v1/tour-packages/',include('api.tours.urls'),name='TourAPI')
 ]
 urlpatterns = urlpatterns + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

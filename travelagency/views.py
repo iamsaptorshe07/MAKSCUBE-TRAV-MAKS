@@ -35,8 +35,8 @@ def addTour(request,uid,agid):
                 edate = tourDate(request.POST.get('edate'))
                 print("\n\n",edate,"\n\n")
 
-                noOfManPerRoom=request.POST.get('numOfMen')
-                print("\n\nnoOfManPerRoom--->>> ",noOfManPerRoom,"\n\n")
+                special_tour_type=request.POST.get('additionalFeature')
+                print("\n\nadditionalFeature--->>> ",special_tour_type,"\n\n")
                 specialOffer = request.POST.get('spoffer')
                 print("\n\nspecialOffer--->>> ",specialOffer,"\n\n")
                 if specialOffer:
@@ -59,7 +59,6 @@ def addTour(request,uid,agid):
                 print('\n\n',tourId,'\n\n')
                 description_dct = ""
                 for i in range(duration):
-                    for i in range(duration):
                         description_dct=description_dct+str(request.POST.get('dayTitle{}'.format(i+1))).strip()+"$$$$"+str(request.POST.get('dayDescription{}'.format(i+1))).strip()+"@@@@"
                 print(description_dct)
                 slug = ''
@@ -95,7 +94,7 @@ def addTour(request,uid,agid):
                     overview = overview.strip(),
                     maximum_people = maximum_people.strip(),
                     last_booking_date = last_booking_date,
-                    noOfManPerRoom =noOfManPerRoom,
+                    special_tour_type = special_tour_type,
                     specialOffer = specialOffer,
                     specialOfferDescription = specialOfferDescription,
                 )
@@ -168,8 +167,8 @@ def editTours(request,agentId,tourId):
                     price = request.POST.get('price')
                     ttype = request.POST.get('ttype')
                     
-                    noOfManPerRoom=request.POST.get('numOfMen')
-                    print("\n\nnoOfManPerRoom--->>> ",noOfManPerRoom,"\n\n")
+                    special_tour_type=request.POST.get('additionalFeature')
+                    print("\n\nspecial_tour_type--->>> ",special_tour_type,"\n\n")
                     specialOffer = request.POST.get('spoffer')
                     print("\n\nspecialOffer--->>> ",specialOffer,"\n\n")
                     if specialOffer:
@@ -220,7 +219,7 @@ def editTours(request,agentId,tourId):
                         tour.thumbnail = request.FILES.get('thumbnail')
                     tour.overview = overview.strip()
                     tour.maximum_people = maximum_people
-                    tour.nonoOfManPerRoom = noOfManPerRoom
+                    tour.special_tour_type = special_tour_type
                     tour.specialOffer = specialOffer
                     if specialOffer:
                         tour.specialOfferDescription = specialOfferDescription
