@@ -1,5 +1,6 @@
 from accounts.models import *
 from rest_framework import serializers
+from rest_framework import exceptions
 
 class AgentRegisterSerializer(serializers.ModelSerializer):
     class Meta:
@@ -56,4 +57,5 @@ class GovermentProofSerializer(serializers.ModelSerializer):
             )
             gov_proof.save()
             return gov_proof
+
 
