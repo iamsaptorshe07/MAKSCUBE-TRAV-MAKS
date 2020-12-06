@@ -49,7 +49,7 @@ div
   width: 100%;
   height: auto;
 } 
-.navbar{
+/*.navbar{
     background-color: #0d141c !important;
 
 }
@@ -113,7 +113,59 @@ font-size: 20px;
 .dropdown-menu {
   margin-top: 0;
 }
+*/
 
+.navbar{
+    background-color: #e6faff !important;
+
+}
+.navbar .nav-item .nav-link{
+    color:#050505 !important;
+		font-family: Helvatica;
+		font-size:19px !important;
+    }
+.nav-item dropdown :after {
+
+display: none !important;
+
+}	
+.navbar .nav-item .nav-link:hover{
+    background-color: #ddd;
+  color: black !important;
+  border-radius: 5px;
+  
+}
+.navbar-nav a {
+           
+            transition: 0.3s linear;
+        }
+		
+	
+	
+		
+	.fa-sign-out{
+		color: gold;
+	}
+	.fa-user{
+		color: #5f27cd;
+	}
+	.fa-align-left{
+		color:#ef1961;
+	}
+	.fa-phone-square{
+		color:#3ce825;
+	}
+	.fa-question-circle{
+		color: #d63737;
+	}
+	.fa-book{
+		color:#e8259a;
+	}
+.fa-car{
+font-size: 20px;
+ color: #2d67b2;
+}
+	
 
 .popular_places_area {
   padding-top: 142px;
@@ -839,11 +891,17 @@ ul{
     top:70% !important;
 	opacity: 0.5;
 }
+.footer-pad img{
+	transform: translateX(0px) !important;
+}
 }
 @media screen and (max-width: 768px) {
 .popup-btn2 a{
     top:70% !important;
 	opacity: 0.5;
+}
+.footer-pad img{
+	transform: translateX(0px) !important;
 }
 }
 

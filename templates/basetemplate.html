@@ -59,7 +59,7 @@
 <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="fa fa-chevron-up"></i></button>
     
     <!--Navbar Starts here-->
-    <div class="super_container">
+    <!--<div class="super_container">
       <nav class="navbar navbar-expand-lg fixed-top">
    <a class="navbar-brand text-white" href="/">
     <img src="{% static 'img/logo2.jpg' %}" width="50" height="50" class="d-inline-block align-top" alt="" loading="lazy" 
@@ -142,7 +142,93 @@
   </div>
 </nav>
 <!--Navbar Ends Here-->
-<br><br>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+  <a class="navbar-brand text-dark" href="/">
+    <img src="{% static 'img/logo2.jpg' %}" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy" 
+	style="border-radius:50%;">
+    <b>TRAVMAKS</b>
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+	                  <li class="nav-item">
+                        <a class="nav-link" href="/qna"><i class="fa fa-question-circle"></i>&nbsp; QNA</a>
+                    </li>
+                    
+					<li class="nav-item">
+                        <a class="nav-link" href="#-"><i class="fa fa-book"></i>&nbsp; Blog</a>
+                    </li>
+					
+                  <li class="nav-item">
+                      <a class="nav-link" href="#"><i class="fa fa-newspaper-o"></i>&nbsp; News</a>
+                    </li>
+				  <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="fa fa-pencil-square-o"></i>&nbsp; Design Your Tour</a>
+                </li>
+                    
+    </ul>
+    
+	<ul class="navbar-nav ml-auto">
+	<li class="nav-item">
+                        <a class="nav-link" href="/download-app"><i class="fa fa-download"></i>&nbsp; Download App</a>
+                    </li>
+	 {% if user.is_authenticated %}
+	<li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i>
+                                {{user.name}}
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-right dropdown-cyan" aria-labelledby="navbarDropdownMenuLink-4">
+                                {% if request.session.access_type == 'traveller' %}
+                                    <a class="dropdown-item" href="/accounts/editprofile/{{request.session.access_type}}/{{user.id}}">My Profile</a>
+                                    <div class="dropdown-divider"></div>
+                                    
+									<a class="dropdown-item" href="/traveller/booking-history">Booking History</a>
+                                    <div class="dropdown-divider"></div>
+                                    
+									<a class="dropdown-item" href="#">On Going Tours</a>
+                                    <div class="dropdown-divider"></div>
+                                    
+									<a class="dropdown-item" href="#">Wishlist</a>
+                                    <div class="dropdown-divider"></div>
+                                    
+									<a class="dropdown-item" href="#">Upcoming Tour</a>
+                                    <div class="dropdown-divider"></div>
+                                    
+									<a class="dropdown-item" href="/accounts/user/logout">Logout</a>
+                                {% elif request.session.access_type == 'seller' %}
+                                    <a class="dropdown-item" href="/accounts/editprofile/{{request.session.access_type}}/{{user.id}}">My Profile</a>
+                                    <div class="dropdown-divider"></div>
+                                    
+									<a class="dropdown-item" href="/travelagency/myagency/{{request.user.userAccess.agentId}}">Dashboard</a>
+                                    <div class="dropdown-divider"></div>
+                                    
+									<a class="dropdown-item" href="/accounts/user/logout">Logout</a>
+                                {% endif %}
+                            </div>
+    </li>
+        {% else %}
+        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i>
+                                Account
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right dropdown-cyan" aria-labelledby="navbarDropdownMenuLink-4">
+                                <a class="dropdown-item" href="/accounts/traveller/account/signup"><i class="fa fa-user-plus"></i>&nbsp;&nbsp;Signup</a>
+								<div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="/accounts/traveller/login"><i class="fa fa-sign-in"></i>&nbsp;&nbsp;Login</a>
+                                
+                            </div>
+
+        {% endif %}
+	</ul>
+  </div>
+</nav>
+
+<br>
     <!--Main body-->
     {% block body %}
     {% endblock body%}
