@@ -51,6 +51,7 @@ INSTALLED_APPS = [
 
     # REST API libraries
     'rest_framework',
+     'rest_framework.authtoken',
     #'knox',
 
     # WebApp Apps

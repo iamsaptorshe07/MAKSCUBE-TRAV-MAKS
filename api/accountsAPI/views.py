@@ -1,11 +1,6 @@
-from .serializers import *
-from rest_framework.views import APIView
-from rest_framework import generics, permissions
-from rest_framework.response import Response
-from rest_framework import status
+# Django Imports
 from django.http import *
 from django.views.decorators.csrf import csrf_exempt
-from accounts.models import *
 from django.core.mail import send_mail 
 from django.core.mail import EmailMultiAlternatives 
 from django.template.loader import get_template 
@@ -14,9 +9,32 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.utils.encoding import force_bytes, force_text  
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode  
 from django.template.loader import render_to_string
+from django.contrib.auth import authenticate, login, logout
+from django.views.decorators.csrf import csrf_exempt
+from django.utils.decorators import method_decorator
+# Account Info Import
+from accounts.models import *
 from accounts.tokens import activation_token
+
+#Project Setting Import
 from django.conf import settings
-# Create your views here.
+
+# Rest Framework Imports
+from .serializers import *
+from rest_framework.views import APIView
+from rest_framework import generics, permissions
+from rest_framework.response import Response
+from rest_framework import status
+
+#Login Imports 
+from django.contrib.auth import login, logout
+from rest_framework.authtoken.models import Token
+from rest_framework.authentication import TokenAuthentication
+
+
+
+#----------------------------------- Code Logic ------------------------------------------------
+#Activation Mail Sender
 def messages_sender(request,user):
     try:
         check_access_target = str(request.get_full_path()).split('/')
@@ -48,6 +66,7 @@ def messages_sender(request,user):
         return False
 
 
+# Travel - Agent Signup
 class TravelAgentSignup(APIView):
     def post(self, request, *args, **kwargs):
         account_field = ['email','name','DOB','phNo','gender','country','state','city','zipCode','address','password']
@@ -158,6 +177,152 @@ class TravelAgentSignup(APIView):
 
 
 
+# Travel Agent Login
+class TravelAgentLogin(APIView):
+    def post(self,request):
+        data = request.data
+        email = data.get('email',"")
+        password = data.get("password","")
+        if email and password:
+            if User.objects.filter(email=email).exists():
+                user = User.objects.get(email=email)
+                if user.is_active:
+                    if user.userAccess.agency_access is True:
+                        user = authenticate(email=email, password=password)
+                        if user is not None:
+                            if AgencyDetail.objects.filter(user=user).exists():
+                                agency = AgencyDetail.objects.get(user=user)
+                                if agency.verified is True:
+                                    login(request,user)
+                                    token,created = Token.objects.get_or_create(user=user)
+                                    return Response(
+                                        {
+                                            'token':token.key,
+                                            'status':200,
+                                            'message':'Successfully Loggedin'
+                                        }
+                                    )
+                                else:
+                                    return Response(
+                                        {
+                                            'status':404,
+                                            'message':'Your Agency Is Under Review wait for one day, till we verify your account'
+                                        }
+                                    )
+                            else:
+                                token,created = Token.objects.get_or_create(user=user)
+                                return Response(
+                                    {   'token':token.key,
+                                        'status':302,
+                                        'message':'Redirect to Agency Register Page'
+                                    }
+                                )
+                        else:
+                            return Response(
+                                {
+                                    'status':404,
+                                    'message':'Invalid Credentials'
+                                }
+                            )
+                    else:
+                        return Response(
+                            {
+                                'status':302,
+                                'message':"Don't have any agent account redirect to travel agent signup page!"
+                            }
+                        )
+                else:
+                    return Response(
+                        {
+                            'status':404,
+                            'message':'Check your mail sent on {} to activate the account'.format(user.creationTime)
+                        }
+                    )
+            else:
+                return Response(
+                    {
+                        'status':302,
+                        'message':'No user does not exists!',
+                    }
+                )
+
+        else:
+            return Response(
+                {
+                    'status':404,
+                    'message':'Email and Password Both Should Be Provided'
+                }
+            )
+    
+
+# Traveller - Noraml user Login
+class TravellerLogin(APIView):
+    def post(self,request):
+        data = request.data
+        email = data.get('email',"")
+        password = data.get("password","")
+        if email and password:
+            if User.objects.filter(email=email).exists():
+                user = User.objects.get(email=email)
+                if user.is_active:
+                    if user.userAccess.user_access is True:
+                        user = authenticate(email=email, password=password)
+                        if user is not None:
+                            login(request,user)
+                            token,created = Token.objects.get_or_create(user=user)
+                            return Response(
+                                {
+                                    'token':token.key,
+                                    'status':200,
+                                    'message':'Successfully Loggedin'
+                                }
+                            )
+                        
+                        else:
+                            return Response(
+                                {
+                                    'status':404,
+                                    'message':'Invalid Credentials'
+                                }
+                            )
+                    else:
+                        return Response(
+                            {
+                                'status':302,
+                                'message':"Don't have any user account redirect to user signup page!"
+                            }
+                        )
+                else:
+                    return Response(
+                        {
+                            'status':404,
+                            'message':'Check your mail sent on {} to activate the account'.format(user.creationTime)
+                        }
+                    )
+            else:
+                return Response(
+                    {
+                        'status':302,
+                        'message':'No user does not exists!',
+                    }
+                )
+
+        else:
+            return Response(
+                {
+                    'status':404,
+                    'message':'Email and Password Both Should Be Provided'
+                }
+            )
+        
 
 
-                     
+
+class LogoutView(APIView):
+    authentication_classes = (TokenAuthentication,)
+    def post(self,request):
+        logout(request)
+        return Response(
+            {'status':204,
+            'message':'Successfully Logout'}
+        )
