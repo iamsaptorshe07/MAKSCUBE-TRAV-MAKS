@@ -891,11 +891,17 @@ ul{
     top:70% !important;
 	opacity: 0.5;
 }
+.footer-pad img{
+	transform: translateX(0px) !important;
+}
 }
 @media screen and (max-width: 768px) {
 .popup-btn2 a{
     top:70% !important;
 	opacity: 0.5;
+}
+.footer-pad img{
+	transform: translateX(0px) !important;
 }
 }
 

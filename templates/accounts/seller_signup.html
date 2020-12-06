@@ -346,11 +346,25 @@ background-repeat: no-repeat;
     line-height: 1.428571429;
     border-radius: 15px;
     margin-top: 0; }
+@media screen and (max-width: 400px) {
+.steps-form .steps-row .steps-step .img-circle {
+    width: 60px;
+    height: 60px;
+    margin-top:10px;
+}
+.steps-step p{
+font-size:10px;
+}
+}
+
 @media screen and (max-width: 768px) {
 .steps-form .steps-row .steps-step .img-circle {
-    width: 80px;
-    height: 80px;
-    
+    width: 70px;
+    height: 70px;
+    margin-top:12px;
+}
+.steps-step p{
+font-size:10px;
 }
 .icon-bar {
 opacity: 0.5;
@@ -396,7 +410,7 @@ opacity: 0.5;
 {% block body %}
 <!-- HTML Starts here -->
 <div class="icon-bar">
-  <a href="#" class="facebook">Call us &nbsp;<i class="fa fa-phone-square fa-lg"></i></a> 
+  <a href="#" class="facebook">Call Us &nbsp;<i class="fa fa-phone-square fa-lg"></i></a> 
 </div>
 
 
