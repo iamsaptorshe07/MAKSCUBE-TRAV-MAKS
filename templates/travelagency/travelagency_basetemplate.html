@@ -98,6 +98,21 @@
 		.sidebar ul li a {
 			font-size: 26px;
 			font-weight: 500;
+			position: relative;
+		}
+		.sidebar ul li a::before{
+			content: '';
+			width: 100%;
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			height: 3px;
+			background-color: black;
+			max-width: 0px;
+			transition: 0.2s;
+		}
+		.sidebar ul li a:hover::before{
+			max-width: 100%;
 		}
         .sidebar ul li {
 			margin-left: 5px;
