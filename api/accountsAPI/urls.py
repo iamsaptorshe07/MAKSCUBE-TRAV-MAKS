@@ -8,6 +8,8 @@ urlpatterns = [
         path('travel-agent-login',TravelAgentLogin.as_view(),name='TravelAgentLogin'),
         # Traveller Login
         path('traveller-login',TravellerLogin.as_view(),name='TravellerLogin'),
+        # User Profile
+        path('user-profile',UserProfile.as_view(),name='UserProfile'),
         # Any user logout
         path('logout',LogoutView.as_view(),name='LogoutView')
     ]

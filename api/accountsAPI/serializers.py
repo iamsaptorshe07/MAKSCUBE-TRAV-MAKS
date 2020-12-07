@@ -2,11 +2,11 @@ from accounts.models import *
 from rest_framework import serializers
 from rest_framework import exceptions
 
-class AgentRegisterSerializer(serializers.ModelSerializer):
+class AccountSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = [
-            'email','name','DOB','phNo','gender','country','state','city','zipCode','address','password'
+            'email','name','DOB','phNo','gender','country','state','city','zipCode','address',#'password'
         ]
 
     def create(self,validate_data):
@@ -59,3 +59,28 @@ class GovermentProofSerializer(serializers.ModelSerializer):
             return gov_proof
 
 
+class AgencySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AgencyDetail
+        fields = [
+            #'user',
+            'agencyName','agency_Id','agencyPhNo','agencyCountry','agencyCity','agencyState',
+            'agencyZipCode','govApproved','govApprovedId','agencyAddress'
+        ]
+        def create(self,validate_data):
+            agency = AgencyDetail(
+                user = validate_data['user'],
+                agencyName = validate_data['agencyName'],
+                agency_Id = validate_data['agency_Id'],
+                agencyPhNo = validate_data['agencyPhNo'],
+                agencyCountry = validate_data['agencyCountry'],
+                agencyCity = validate_data['agencyCity'],
+                agencyState = validate_data['agencyState'],
+                agencyZipCode = validate_data['agencyZipCode'],
+                govApproved= validate_data['govApproved'],
+                govApprovedId = validate_data['govApprovedId'],
+                agencyAddress = validate_data['agencyAddress']
+
+            )
+            agency.save()
+            return agency

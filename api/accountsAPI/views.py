@@ -29,7 +29,7 @@ from rest_framework import status
 #Login Imports 
 from django.contrib.auth import login, logout
 from rest_framework.authtoken.models import Token
-from rest_framework.authentication import TokenAuthentication
+from rest_framework.authentication import TokenAuthentication, SessionAuthentication, BasicAuthentication
 
 
 
@@ -129,7 +129,7 @@ class TravelAgentSignup(APIView):
             print("\n",img,"\n")
             print("printed")
             [account_data, gov_data] = map(lambda keys: {x: my_data[x] for x in keys}, [account_field, goverment_proof])
-            agent_serializer = AgentRegisterSerializer(data=account_data)
+            agent_serializer = AccountSerializer(data=account_data)
             print("Worked till here")
             gov_data['govIdImage']=img
             if agent_serializer.is_valid():
@@ -194,6 +194,7 @@ class TravelAgentLogin(APIView):
                                 agency = AgencyDetail.objects.get(user=user)
                                 if agency.verified is True:
                                     login(request,user)
+                                    request.session['access_type']='seller'
                                     token,created = Token.objects.get_or_create(user=user)
                                     return Response(
                                         {
@@ -210,6 +211,8 @@ class TravelAgentLogin(APIView):
                                         }
                                     )
                             else:
+                                login(request,user)
+                                request.session['access_type']='seller'
                                 token,created = Token.objects.get_or_create(user=user)
                                 return Response(
                                     {   'token':token.key,
@@ -269,6 +272,7 @@ class TravellerLogin(APIView):
                         user = authenticate(email=email, password=password)
                         if user is not None:
                             login(request,user)
+                            request.session['access_type']='traveller'
                             token,created = Token.objects.get_or_create(user=user)
                             return Response(
                                 {
@@ -317,12 +321,63 @@ class TravellerLogin(APIView):
         
 
 
-
+# User Logout
 class LogoutView(APIView):
     authentication_classes = (TokenAuthentication,)
     def post(self,request):
-        logout(request)
-        return Response(
-            {'status':204,
-            'message':'Successfully Logout'}
-        )
+        if request.session.session_key:
+            print(request.session['access_type'])
+            logout(request)
+            return Response(
+                {'status':204,
+                'message':'Successfully Logout'}
+            )
+        else:
+            return Response(
+                {
+                    'status':404,
+                    'message':'No user to Logout!'
+                }
+            )
+
+
+
+
+# User Profile Visit
+class UserProfile(APIView):
+    authentication_classes = (TokenAuthentication,SessionAuthentication,BasicAuthentication)
+    def get(self,request):
+        if request.session.session_key:
+            if request.session['access_type']=='seller':
+                user_data = AccountSerializer(request.user)
+                agency = AgencyDetail.objects.get(user = request.user)
+                agency_data = AgencySerializer(agency)
+                main_data = {
+                    'status':200,
+                    'user_data':user_data.data,
+                    'agency_data':agency_data.data
+                }
+                return Response(main_data)
+            elif request.session['access_type']=='traveller':
+                user_data = AccountSerializer(request.user)
+                return Response(
+                    {
+                        'status':200,
+                        'user_data':user_data.data
+                    }
+                )
+            else:
+                return Response(
+                    {
+                        'status':404,
+                        'message':'Wrong Access Type'
+                    }
+                )
+        else:
+            return Response(
+                {
+                    'status':404,
+                    'message':"Not Authenticated"
+                }
+            )
+        
