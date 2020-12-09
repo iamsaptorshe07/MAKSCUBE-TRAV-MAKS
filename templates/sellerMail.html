@@ -1,5 +1,8 @@
 {% autoescape off %}
 Hi {{user.name}} 
-Thanks for your registration, Click on the link to setup your profile and activate your account
-Link: http://{{domain}}{% url 'activateSeller' uid=uid token=token %}
+Thanks for your registration, Click on the link to setup your profile and activate your account.
+<br> 
+<a href="http://{{domain}}{% url 'activateSeller' uid=uid token=token %}" style="background-color:#12cc12; font-size:13px; margin-left: 30%;
+    margin-top: 10px; padding:15px 30px; color:white; text-decoration:none;">Activate</a>
+	
 {% endautoescape %}

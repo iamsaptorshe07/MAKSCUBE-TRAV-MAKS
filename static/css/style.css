@@ -686,8 +686,8 @@ font-size: 20px;
 
 /* line 30, ../../Arafath/CL/December/231. Travel-02/HTML/scss/_destination.scss */
 .popular_destination_area .single_destination .thumb img {
-  height: 150px;
-  width: 150px;
+  width: 100%;
+  height: auto;
   border-radius: 5px;
 }
 
