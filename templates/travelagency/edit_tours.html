@@ -446,6 +446,9 @@
 		max-height: 145px;
 		border-radius: 4px;
 	}
+	input[type='file']{
+		overflow: hidden;
+	}
 </style>
 
 {% endblock travelagency_stylesheets %}
@@ -786,6 +789,7 @@
 		else {
 			$("input[name='seat']").removeAttr('readonly');
 			$("input[name='seat']").attr('required', 'required');
+			$(".submitbtn button").removeClass('disable-click');
 		}
 	}
 

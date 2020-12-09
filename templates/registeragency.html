@@ -2,100 +2,197 @@
 {% load static %}
 <!-- CSS starts here -->
 {% block stylesheets %}
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<style>
+  body{
+    background: linear-gradient(to right, #0f0c29, #302b63, #24243e);
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100%;
+    font-family: 'Numans', sans-serif;
+    }
+    .container{
+    height: 100%;
+    align-content: center;
+    margin-top:60px;
+    }
+
+    .card{
+    min-height: 370px;
+    border-radius: 4px;
+    padding: 15px;
+    max-width: 500px;
+    background-color: rgba(0,0,0,0.5) !important;
+    }
+    .note h2{
+      color: white;
+      font-weight: bold;
+    }
+    .card-header h3{
+      color: white;
+    }
+
+    .social_icon{
+    position: absolute;
+    right: 20px;
+    top: -45px;
+    }
+
+    .input-group-prepend span{
+    width: 50px;
+    background-color: #FFC312;
+    color: black;
+    border:0 !important;
+    }
+
+    input:focus{
+    outline: 0 0 0 0  !important;
+    box-shadow: 0 0 0 0 !important;
+
+    }
+
+    .remember{
+    color: white;
+    }
+
+    .remember input
+    {
+    width: 20px;
+    height: 20px;
+    margin-left: 15px;
+    margin-right: 5px;
+    }
+
+    .btnSubmit{
+    color: black;
+    background-color: #FFC312;
+    width: 100px;
+    padding: 5px 10px;
+    border-radius: 4px;
+    }
+
+    .btnSubmit:hover{
+    color: black;
+    background-color: white;
+    /* height: 40px; */
+    }
+
+    .links{
+    color: white;
+    }
+
+    .links a{
+    margin-left: 4px;
+    }
+    .card-bg{
+      position: relative;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+</style>
 {% endblock stylesheets %}
   <!-- CSS Ends here -->
 <!-- Body starts here -->
 {% block body %}
-  <div class="container register-form mt-5">
-    <div class="form">
-      <div class="note">
-        <h2>Register Your Agency</h2>
-      </div>
-      {% if messages %}
-                    {% for message in messages %}
-                    <div class="col-md-12">
-                        <div class="alert alert-{{message.tags}}" role="alert">
-                            {{message}}
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                    </div>
-                    {% endfor %}
-      {% endif %}
-      <form class="form-content" method="POST" action='/accounts/seller/account/register-agency' enctype="multipart/form-data" onsubmit="return registrationValidator()"  >
-        {% csrf_token %}
-          <div class="row">
-            <div class="col-md-12">
-              <div id="errormsgbg">
-                <div id="errormsg" onclick="getElementById('errormsg').innerHTML = null;getElementById('errormsg').style.padding='0px'"></div>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="form-group">
-              <input type="text" class="form-control" placeholder="Agency Name *" name="name" id="fullname" required />
-            </div>
-
-            <div class="form-group">
-              <input type="text" class="form-control"  minlength="10" maxlength="10" placeholder="Phone Number *" name="phone" id="phone" required />
-            </div>
-            <div class="form-group">
-              <select name="country" class="countries form-control" id="countryId"  required  >
-                <option value="">Select Country</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <select name="state" class="states form-control" id="stateId" required  >
-                <option value="">Select State</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <select name="city" class="cities form-control" id="cityId" required  >
-                <option value="">Select City</option>
-              </select>
-            </div>
-
-          </div>
-          <div class="col-md-6">
-
-            <div class="form-group">
-              <input type="number" class="form-control" placeholder="Zip Code *" name="zip" id="zip" required />
-            </div>
-            <div class="form-group">
-              <select class="form-control" id='govProof' name="govApproved" onchange='takeProof();' required >
-                <option class="hidden" selected='' value="" disabled=''>Government Approved or Not:</option>
-                <option value=1>Yes</option>
-                <option value=0>No</option>
-              </select>
-            </div>
-
-            <div class="form-group" style="display: none;" id='takeValue'>
-              <input type="text" class="form-control" placeholder="Enter Your Proof ID *" id="takeValued" name="govApprovedId" />
-            </div>
-            <script>
-              function takeProof() {
-                var getBox = document.getElementById('govProof');
-                var mvalue = getBox.options[getBox.selectedIndex].value;
-                if (mvalue == 1) {
-                  document.getElementById('takeValue').style.display = "block";
-                  document.getElementById('takeValued').required=true;
-                }
-                else {
-                  document.getElementById('takeValue').style.display = "none";
-                  document.getElementById('takeValued').required=false;
-                }
-              }
-            </script>
-            <div class="form-group">
-              <textarea class="form-control" name="agencyAddress" placeholder="Enter Your Agency Full Address*" rows="3" id="address" required  ></textarea>
-            </div>
-          </div>
+  <div class="container register-form">
+    <div class="card-bg">
+      <div class="card">
+        <div class="note">
+          <h2>Register Your Agency</h2>
         </div>
-        
-        <center><input type="submit" class="btnSubmit" value="Submit" /></center>
-      </form>
+        {% if messages %}
+                      {% for message in messages %}
+                      <div class="col-md-12">
+                          <div class="alert alert-{{message.tags}}" role="alert">
+                              {{message}}
+                              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                              </button>
+                          </div>
+                      </div>
+                      {% endfor %}
+        {% endif %}
+      
+        <div class="card-body">
+          <form class="form-content" method="POST" action='/accounts/seller/account/register-agency' enctype="multipart/form-data" onsubmit="return registrationValidator()"  >
+            {% csrf_token %}
+              <div class="row">
+                <div class="col-sm-12">
+                  <div id="errormsgbg">
+                    <div id="errormsg" onclick="getElementById('errormsg').innerHTML = null;getElementById('errormsg').style.padding='0px'"></div>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="Agency Name *" name="name" id="fullname" required />
+                </div>
+
+                <div class="form-group">
+                  <input type="text" class="form-control"  minlength="10" maxlength="10" placeholder="Phone Number *" name="phone" id="phone" required />
+                </div>
+                <div class="form-group">
+                  <select name="country" class="countries form-control" id="countryId"  required  >
+                    <option value="">Select Country</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <select name="state" class="states form-control" id="stateId" required  >
+                    <option value="">Select State</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <select name="city" class="cities form-control" id="cityId" required  >
+                    <option value="">Select City</option>
+                  </select>
+                </div>
+
+              </div>
+              <div class="col-sm-6">
+
+                <div class="form-group">
+                  <input type="number" class="form-control" placeholder="Zip Code *" name="zip" id="zip" required />
+                </div>
+                <div class="form-group">
+                  <select class="form-control" id='govProof' name="govApproved" onchange='takeProof();' required >
+                    <option class="hidden" selected='' value="" disabled=''>Government Approved or Not:</option>
+                    <option value=1>Yes</option>
+                    <option value=0>No</option>
+                  </select>
+                </div>
+
+                <div class="form-group" style="display: none;" id='takeValue'>
+                  <input type="text" class="form-control" placeholder="Enter Your Proof ID *" id="takeValued" name="govApprovedId" />
+                </div>
+                <script>
+                  function takeProof() {
+                    var getBox = document.getElementById('govProof');
+                    var mvalue = getBox.options[getBox.selectedIndex].value;
+                    if (mvalue == 1) {
+                      document.getElementById('takeValue').style.display = "block";
+                      document.getElementById('takeValued').required=true;
+                    }
+                    else {
+                      document.getElementById('takeValue').style.display = "none";
+                      document.getElementById('takeValued').required=false;
+                    }
+                  }
+                </script>
+                <div class="form-group">
+                  <textarea class="form-control" name="agencyAddress" placeholder="Enter Your Agency Full Address*" rows="3" id="address" required  ></textarea>
+                </div>
+              </div>
+            </div>
+            
+            <center><input type="submit" class="btnSubmit" value="Submit" /></center>
+          </form>
+        </div>
+      </div>
+    </div>
   </div>
-  </div>
+
   <script>
     function registrationValidator()
     {
