@@ -590,7 +590,7 @@ opacity: 0.5;
                             </select>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Enter Your Proof ID *" pattern="\d*" minlength="10" maxlength="12"
+                            <input type="text" class="form-control" placeholder="Enter Your Proof ID *" pattern="[A-Za-z0-9]+" minlength="10" maxlength="12"
                                 style="display: none;" name="govIdNo" id="govIdnumber" />
                         </div>
                         <script>
@@ -608,6 +608,9 @@ opacity: 0.5;
                                 document.getElementById('govIdnumber').style.display = "none";
                                 document.getElementById('govIdnumber').required = false;}
                             }
+							
+							
+							
                         </script>
                         <div class="form-group">
                             <input type="password" class="form-control" placeholder="Password *" name="password1"
