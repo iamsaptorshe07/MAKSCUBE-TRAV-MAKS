@@ -11,6 +11,8 @@ urlpatterns = [
         # User Profile
         path('user-profile',UserProfile.as_view(),name='UserProfile'),
         # Any user logout
-        path('logout',LogoutView.as_view(),name='LogoutView')
+        path('logout',LogoutView.as_view(),name='LogoutView'),
+        # Agency Register
+        path('agency-register',AgencyRegister.as_view(),name='AgencyRegister')
     ]
 

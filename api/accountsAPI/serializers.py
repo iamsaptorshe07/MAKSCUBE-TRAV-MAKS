@@ -6,7 +6,7 @@ class AccountSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = [
-            'email','name','DOB','phNo','gender','country','state','city','zipCode','address',#'password'
+            'email','name','DOB','phNo','gender','country','state','city','zipCode','address','password'
         ]
 
     def create(self,validate_data):
@@ -25,9 +25,15 @@ class AccountSerializer(serializers.ModelSerializer):
         )
         password = validate_data['password']
         user.set_password(password)
+        user.is_active = False
         user.save()
         return user
-
+class UserProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = [
+            'email','name','DOB','phNo','gender','country','state','city','zipCode','address'
+        ]
 
 class AgentAccessSerializer(serializers.ModelSerializer):
     class Meta:
@@ -63,7 +69,7 @@ class AgencySerializer(serializers.ModelSerializer):
     class Meta:
         model = AgencyDetail
         fields = [
-            #'user',
+            'user',
             'agencyName','agency_Id','agencyPhNo','agencyCountry','agencyCity','agencyState',
             'agencyZipCode','govApproved','govApprovedId','agencyAddress'
         ]

@@ -37,13 +37,14 @@ from rest_framework.authentication import TokenAuthentication, SessionAuthentica
 #Activation Mail Sender
 def messages_sender(request,user):
     try:
+        print("message process started")
         check_access_target = str(request.get_full_path()).split('/')
         print(check_access_target)
         if check_access_target[4]=='traveller-signup':
             email_temp = 'travellerMail'
         elif check_access_target[4]=='guide-signup':
             email_temp = 'guideMail'
-        elif check_access_target[4]=='travelagent-signup':
+        elif check_access_target[4]=='travel-agent-signup':
             email_temp = 'sellerMail'
         else:
             return False
@@ -66,9 +67,10 @@ def messages_sender(request,user):
         return False
 
 
-# Travel - Agent Signup
+# Travel - Agent Signup -----------------------------------------------
 class TravelAgentSignup(APIView):
     def post(self, request, *args, **kwargs):
+        #print("\n\nData\n\n:{}\n".format(request.data))
         account_field = ['email','name','DOB','phNo','gender','country','state','city','zipCode','address','password']
         goverment_proof = ['govIdType','govIdNo']
         if User.objects.filter(email=request.POST['email']).exists():
@@ -82,17 +84,19 @@ class TravelAgentSignup(APIView):
                     }
                     return Response(data)
                 else:
-                    my_data = request.POST
+                    my_data = request.data
+                    #print("Enter here")
+                    #print(my_data)
                     [account_data, gov_data] = map(lambda keys: {x: my_data[x] for x in keys}, [account_field, goverment_proof])
                     if GovId.objects.filter(user=user).exists():
-                        print('exist')
+                        #print('exist')
                         data = {
                             'status':406,
                             'message':'Agency account verification mail has been send! Please verify your self!'
                         }
                         return Response(data)
                     else:
-                        print("Come")
+                        #print("Come")
                         gov_data['user']=user
                         gov_data['govIdImage']=request.FILES.get('govIdImage')
                         gov_serializer = GovermentProofSerializer(data=gov_data)
@@ -124,13 +128,14 @@ class TravelAgentSignup(APIView):
                     }
                 return Response(data)
         else:
-            my_data = request.POST
+            my_data = request.data
             img = request.FILES['govIdImage']
-            print("\n",img,"\n")
-            print("printed")
+            #print("\n",img,"\n")
+            #print("printed")
             [account_data, gov_data] = map(lambda keys: {x: my_data[x] for x in keys}, [account_field, goverment_proof])
+            #print(account_data)
             agent_serializer = AccountSerializer(data=account_data)
-            print("Worked till here")
+            #print("Worked till here")
             gov_data['govIdImage']=img
             if agent_serializer.is_valid():
                 agent = agent_serializer.save()
@@ -139,6 +144,7 @@ class TravelAgentSignup(APIView):
                 if gov_serializer.is_valid():
                     gov_serializer.save()
                     res = messages_sender(request,agent)
+                    print(res)
                     if res is True:
                         data = {
                             'status':200,
@@ -165,19 +171,9 @@ class TravelAgentSignup(APIView):
                 return Response(data)
 
 
-    def get(self,request,*args,**kwargs):
-        print('\n\ncame\n\n')
-        data = {
-            'status':404,
-            'message':'Only Accepts POST Request'
-        }
-        return Response(
-            data
-        )                        
+# ------------------- Travel Agent Sign Up Ends Here ------------------------
 
-
-
-# Travel Agent Login
+# Travel Agent Login --------------------------------------------------------
 class TravelAgentLogin(APIView):
     def post(self,request):
         data = request.data
@@ -257,8 +253,9 @@ class TravelAgentLogin(APIView):
                 }
             )
     
+# Travel Agent Login Ends here --------------------------------------------------------
 
-# Traveller - Noraml user Login
+# Traveller - Noraml user Login --------------------------------------------------------
 class TravellerLogin(APIView):
     def post(self,request):
         data = request.data
@@ -319,9 +316,9 @@ class TravellerLogin(APIView):
                 }
             )
         
+# Traveller - Normal User Login Ends here -------------------------------------------------
 
-
-# User Logout
+# User Logout ------------------------------------------------------------------------------
 class LogoutView(APIView):
     authentication_classes = (TokenAuthentication,)
     def post(self,request):
@@ -340,16 +337,16 @@ class LogoutView(APIView):
                 }
             )
 
+# ------------ User Logout Ends here --------------------------------------
 
 
-
-# User Profile Visit
+# User Profile Visit Starts here  ------------------------------------------
 class UserProfile(APIView):
     authentication_classes = (TokenAuthentication,SessionAuthentication,BasicAuthentication)
     def get(self,request):
         if request.session.session_key:
             if request.session['access_type']=='seller':
-                user_data = AccountSerializer(request.user)
+                user_data = UserProfileSerializer(request.user)
                 agency = AgencyDetail.objects.get(user = request.user)
                 agency_data = AgencySerializer(agency)
                 main_data = {
@@ -359,7 +356,7 @@ class UserProfile(APIView):
                 }
                 return Response(main_data)
             elif request.session['access_type']=='traveller':
-                user_data = AccountSerializer(request.user)
+                user_data = UserProfileSerializer(request.user)
                 return Response(
                     {
                         'status':200,
@@ -381,3 +378,57 @@ class UserProfile(APIView):
                 }
             )
         
+# User Profile Visit Ends here ----------------------------------
+
+# Travel Agency Registration ----------------------------------
+class AgencyRegister(APIView):
+    authentication_classes = (TokenAuthentication,SessionAuthentication,BasicAuthentication)
+    def post(self,request):
+        if request.session.session_key:
+            if request.session['access_type']=='seller':
+                if AgencyDetail.objects.filter(user=request.user).exists() == False:
+                    data = request.data.dict()
+                    data['user']=request.user.id
+                    data['agency_Id'] = 'AGEN'+str(request.user.userAccess.agentId[4:])
+                    agency = AgencySerializer(data=data)
+                    if agency.is_valid():
+                        agency.save()
+                        logout(request)
+                        return Response(
+                            {
+                            'status':200,
+                            'message':'Agency Registered, please wait till the time we verify your agency'
+                            }
+                        )
+                    else:
+                        return Response(
+                            {
+                            'status':404,
+                            'message':'Some problem Occured'
+                            }
+                        )
+                else:
+                    return Response(
+                        {
+                            'status':404,
+                            "message":"Already have a agency registered!"
+                        }
+                    )
+            else:
+                return Response(
+                    {
+                        'status':404,
+                        'message':'Not Authorized to register your agency!'
+                    }
+                )
+        else:
+            return Response(
+                {
+                    'status':404,
+                    'message':'Not Authenticated!'
+                }
+            )
+
+
+
+# Travel Agency Registration Ends here ------------------------

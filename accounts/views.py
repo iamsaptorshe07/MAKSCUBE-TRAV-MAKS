@@ -607,7 +607,7 @@ def agencyRegister(request):
 
         
    
-
+# User Profile visiting
 def userProfile(request, account_type, uid):
     if request.method == 'POST':
         if (len(User.objects.filter(id=uid)) > 0):
