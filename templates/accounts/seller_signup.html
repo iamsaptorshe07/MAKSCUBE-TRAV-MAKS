@@ -383,7 +383,7 @@ opacity: 0.5;
   position: fixed;
   top: 50%;
   transform: translate(-35px,0px) rotate(-90deg);
-  z-index: 999999;
+  z-index: 9;
 }
 
 .icon-bar a {
@@ -404,6 +404,12 @@ opacity: 0.5;
 .fa-phone-square {
   background: #3B5998 !important;
   color: white;
+}
+
+.thumb-image{
+	height: 130px;
+    width: 130px;
+    margin-left: 160px;
 }
 </style>
 {% endblock stylesheets %}
@@ -559,10 +565,34 @@ opacity: 0.5;
                                 id="address" required />
                         </div>
                         <div class="form-group">
-                            <input type="file" name="govIdImage" accept='image/*' id="img" class="form-control" required />
-                            <label for="img" class="text-white">Click me to upload ID Proof</label>
+                            <input type="file" name="govIdImage" accept='image/*' id="fileUpload" multiple="multiple" class="form-control" required /> 
                         </div>
+						<label data-toggle="modal" data-target="#previewModal" style="cursor:pointer;" class="text-white">Click me to upload ID Proof</label>
                     </div>
+					
+					
+					
+					<div class="modal fade" id="previewModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Your Image</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true" style="color:black;">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="image-holder"></div>
+      </div>
+      <div class="modal-footer">
+        
+      </div>
+    </div>
+  </div>
+</div>
+					
+					
+					
                     <div class="col-md-6">
                         <div class="form-group">
                             <input type="text" placeholder="Birthdate" class="form-control" onfocus="(this.type='date')"
@@ -591,7 +621,8 @@ opacity: 0.5;
                         </div>
                         <div class="form-group">
                             <input type="text" class="form-control" placeholder="Enter Your Proof ID *" pattern="[A-Z0-9]+" minlength="10" maxlength="12"
-                                style="display: none;" name="govIdNo" id="govIdnumber" />
+                                style="display: none;" name="govIdNo" id="govIdnumber"  />
+							
                         </div>
                         <script>
                             function dis_able() {
@@ -600,16 +631,16 @@ opacity: 0.5;
                                     document.getElementById('govIdnumber').style.display = "block";
                                 document.getElementById('govIdnumber').required = true;
 	
-                                }else if (document.myform2.govIdName.value == 'PAN'){
+                                }
+								else if (document.myform2.govIdName.value == 'PAN'){
                                     document.getElementById('govIdnumber').style.display = "block";
                                 document.getElementById('govIdnumber').required = true;
 	
                                 }else{
                                 document.getElementById('govIdnumber').style.display = "none";
                                 document.getElementById('govIdnumber').required = false;}
+								
                             }
-							
-							
 							
                         </script>
                         <div class="form-group">
@@ -1332,5 +1363,38 @@ opacity: 0.5;
         errormsg.style.padding = '0px';
         errormsgbg.style.marginBottom = '0px';
     }
+	
+	
+	$(document).ready(function() {
+        $("#fileUpload").on('change', function() {
+          //Get count of selected files
+          var countFiles = $(this)[0].files.length;
+          var imgPath = $(this)[0].value;
+          var extn = imgPath.substring(imgPath.lastIndexOf('.') + 1).toLowerCase();
+          var image_holder = $("#image-holder");
+          image_holder.empty();
+          if (extn == "gif" || extn == "png" || extn == "jpg" || extn == "jpeg") {
+            if (typeof(FileReader) != "undefined") {
+              //loop for each file selected for uploaded.
+              for (var i = 0; i < countFiles; i++) 
+              {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                  $("<img />", {
+                    "src": e.target.result,
+                    "class": "thumb-image"
+                  }).appendTo(image_holder);
+                }
+                image_holder.show();
+                reader.readAsDataURL($(this)[0].files[i]);
+              }
+            } else {
+              alert("This browser does not support FileReader.");
+            }
+          } else {
+            alert("Pls select only images");
+          }
+        });
+      });
 </script>
 {% endblock body %}
