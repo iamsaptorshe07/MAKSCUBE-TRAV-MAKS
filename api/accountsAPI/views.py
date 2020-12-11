@@ -15,7 +15,7 @@ from django.utils.decorators import method_decorator
 # Account Info Import
 from accounts.models import *
 from accounts.tokens import activation_token
-
+from django.contrib.auth.hashers import check_password
 #Project Setting Import
 from django.conf import settings
 
@@ -429,6 +429,38 @@ class AgencyRegister(APIView):
                 }
             )
 
-
-
 # Travel Agency Registration Ends here ------------------------
+
+# Change Password ---------------------------------------------
+class ChangeMyPassword(APIView):
+     authentication_classes = (TokenAuthentication,SessionAuthentication,BasicAuthentication)
+     def post(self,request):
+         if request.session.session_key:
+            oldpass = request.POST.get('oldpassword')
+            pass1 = request.POST.get('password')
+            if check_password(oldpass,request.user.password):
+                request.user.set_password(pass1)
+                request.user.save()
+                return Response(
+                    {
+                        'status':200,
+                        'message':'Password Changed Successfully!'
+                    }
+                    )
+            else:
+                return Response(
+                    {
+                        'status':404,
+                        'message':'Enter correct current password'
+                    }
+                )
+        
+         else:
+             return Response(
+                 {
+                     'status':404,
+                     'message':'Not Authenticated!'
+                 }
+             )
+                
+# Change Password ends here -----------------------------------

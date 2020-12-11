@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     # REST API libraries
     'rest_framework',
      'rest_framework.authtoken',
+     'django_rest_passwordreset',
     #'knox',
 
     # WebApp Apps

@@ -48,3 +48,4 @@ xhtml2pdf==0.2.4
 zipp==3.1.0
 djangorestframework==3.12.2
 django-mathfilters
+django-rest-passwordreset==1.1.0
