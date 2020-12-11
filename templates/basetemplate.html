@@ -415,6 +415,13 @@
       document.body.scrollTop = 0;
       document.documentElement.scrollTop = 0;
     }
+    window.onbeforeunload = function (e) {
+        e = e || window.event;
+        if (e) {
+            e.returnValue = '';
+        }
+        return '';
+    };
   </script>
   <!--Javascript for continious ad ends here-->
 </body>
