@@ -2,9 +2,9 @@
 {% load static %}
 {% block stylesheets %}
 <style>
-body{
-padding-top:60px;
-}
+    body {
+        padding-top: 60px;
+    }
 </style>
 {% endblock stylesheets %}
 
@@ -12,106 +12,112 @@ padding-top:60px;
 <!--HTML Starts-->
 <div class="container">
 
-{% for order in Bookings %}
+    {% for order in Bookings %}
 
- <div class="card gedf-card">
-                    <div class="card-header">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="mr-2 text-muted">
-                                    <ul style="list-style-type:none;">
-									<li style="font-size:13px; margin-left:2px;">Booking Placed on</li>
-									<li style="font-size:13px;"><div class=" text-muted"><i class="fa fa-calendar-o"></i>&nbsp;{{order.creation_date}}</div>
-                                </div></li></ul>
-                                <div class="ml-4">
-                                    <ul style="list-style-type:none;">
-									<li style="font-size:13px;"><div class="h8 m-0 text-muted">Total</div></li>
-                                    <li style="font-size:13px;"><div class="h8 text-muted">₹{{order.payment_price}}</div></li>
-									</ul>
+    <div class="card gedf-card">
+        <div class="card-header">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="mr-2 text-muted">
+                        <ul style="list-style-type:none;">
+                            <li style="font-size:13px; margin-left:2px;">Booking Placed on</li>
+                            <li style="font-size:13px;">
+                                <div class=" text-muted"><i class="fa fa-calendar-o"></i>&nbsp;{{order.creation_date}}
                                 </div>
-								<br>
-								<br>
-								<br>
-								<br>
-								<br>
-								<div class="ml-4">
-                                    <ul style="list-style-type:none;">
-                                    
-									
-									<a id="popoverData{{order.id}}"  href="#" 
-data-content="<b>Billing Details</b><br>{{order.customer_name}}<br>{{order.customer_email}}<br>{{order.customer_phone}}<br>{{order.customer_address}}<br>"
-data-html="true"
- rel="popover" data-placement="bottom" 
- data-trigger="hover" style="font-size:16px; color:blue; :hover{text-decoration:underline;}">
- <b>
-{{request.user.name}}
-</b>
-</a>
-									
-									
-									</ul>
-                                </div>
-                            </div>
-                            <div>
-                                
-                                
-									<a id="popoverData2{{order.id}}" class="btn" href="#" 
-data-content="Total People : {{order.total_people}}<br>Tour ID : {{order.tour.tourId}}"
-data-html="true"
- rel="popover" data-placement="bottom" 
- data-trigger="hover" style="font-size:13px;">
-{{order.order_id}}</a>               
-                            </div>
-                        </div>
-                        
-
                     </div>
-					
-                    <div class="container">
-                    <div class="card-body">
-                        <div class=" h2 mb-2 ml-2">{{order.tour.tourHeading}}</div>
-                        <div class="row">
-						<div class="col-md-3">
-						<img src="{{order.tour.thumbnail.url}}" style="height:200px; width:200px;">
-						</div>
-						
-						<div class="col-md-6">
-						<ul style="list-style-type:none;">
-  <li><small><b>Agent Id</b>&nbsp;:&nbsp; {{order.agent.userAccess.agentId}}</small></li>
-  <li><small><b>Agency Id</b>&nbsp;:&nbsp; {{order.agency.agency_Id}}</small></li>
-  <li><small><b>Starting Date</b> &nbsp;:&nbsp; {{order.tour.startDate}}</small></li>
-  <li><small><b>Ending Date</b>&nbsp;:&nbsp; {{order.tour.endDate}}</small></li>
-  <li><small><b>Starting Locatin</b>&nbsp;:&nbsp; {{order.tour.startingLocation}}</small></li>
-  <li><small><b>Ending Locatin</b>&nbsp;: &nbsp;{{order.tour.endLocation}}</small></li>
-</ul>  
+                    </li>
+                    </ul>
+                    <div class="ml-4">
+                        <ul style="list-style-type:none;">
+                            <li style="font-size:13px;">
+                                <div class="h8 m-0 text-muted">Total</div>
+                            </li>
+                            <li style="font-size:13px;">
+                                <div class="h8 text-muted">₹{{order.payment_price}}</div>
+                            </li>
+                        </ul>
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <div class="ml-4">
+                        <ul style="list-style-type:none;">
 
-						</div>
-						<div class="col-md-3">
-						<button type="button" class="btn btn-block btn-dark">Write a Review </button><br>
-                            <a href="/traveller/generate-invoice/order={{order.order_id}}">
-						        <button type="button" class="btn btn-block btn-dark">Invoice</button>
-                            </a><br>
-						
-						<a href="#">
-						        <button type="button" class="btn btn-block btn-dark">Ticket</button>
+
+                            <a id="popoverData{{order.id}}" href="#"
+                                data-content="<b>Billing Details</b><br>{{order.customer_name}}<br>{{order.customer_email}}<br>{{order.customer_phone}}<br>{{order.customer_address}}<br>"
+                                data-html="true" rel="popover" data-placement="bottom" data-trigger="hover"
+                                style="font-size:16px; color:blue; :hover{text-decoration:underline;}">
+                                <b>
+                                    {{request.user.name}}
+                                </b>
                             </a>
-						</div>
+
+
+                        </ul>
                     </div>
-                    </div>
-                    </div>
-                    
                 </div>
-                <br>
-                <script type="text/javascript">
-	$('#popoverData{{order.id}}').popover();
-$('#popoverOption{{order.id}}').popover({ trigger: "hover" });
+                <div>
 
-$('#popoverData2{{order.id}}').popover();
-$('#popoverOption{{order.id}}').popover({ trigger: "hover" });
-</script>
 
-{% endfor %}
-				<!--Card end-->
+                    <a id="popoverData2{{order.id}}" class="btn" href="#"
+                        data-content="Total People : {{order.total_people}}<br>Tour ID : {{order.tour.tourId}}"
+                        data-html="true" rel="popover" data-placement="bottom" data-trigger="hover"
+                        style="font-size:13px;">
+                        {{order.order_id}}</a>
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="container">
+            <div class="card-body">
+                <div class=" h2 mb-2 ml-2">{{order.tour.tourHeading}}</div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <img src="{{order.tour.thumbnail.url}}" style="height:200px; width:200px;">
+                    </div>
+
+                    <div class="col-md-6">
+                        <ul style="list-style-type:none;">
+                            <li><small><b>Agent Id</b>&nbsp;:&nbsp; {{order.agent.userAccess.agentId}}</small></li>
+                            <li><small><b>Agency Id</b>&nbsp;:&nbsp; {{order.agency.agency_Id}}</small></li>
+                            <li><small><b>Starting Date</b> &nbsp;:&nbsp; {{order.tour.startDate}}</small></li>
+                            <li><small><b>Ending Date</b>&nbsp;:&nbsp; {{order.tour.endDate}}</small></li>
+                            <li><small><b>Starting Locatin</b>&nbsp;:&nbsp; {{order.tour.startingLocation}}</small></li>
+                            <li><small><b>Ending Locatin</b>&nbsp;: &nbsp;{{order.tour.endLocation}}</small></li>
+                        </ul>
+
+                    </div>
+                    <div class="col-md-3">
+                        <button type="button" class="btn btn-block btn-dark">Write a Review </button><br>
+                        <a href="/traveller/generate-invoice/order={{order.order_id}}">
+                            <button type="button" class="btn btn-block btn-dark">Invoice</button>
+                        </a><br>
+
+                        <a href="/beta">
+                            <button type="button" class="btn btn-block btn-dark">Ticket</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <br>
+    <script type="text/javascript">
+        $('#popoverData{{order.id}}').popover();
+        $('#popoverOption{{order.id}}').popover({ trigger: "hover" });
+
+        $('#popoverData2{{order.id}}').popover();
+        $('#popoverOption{{order.id}}').popover({ trigger: "hover" });
+    </script>
+
+    {% endfor %}
+    <!--Card end-->
 </div>
 
 
