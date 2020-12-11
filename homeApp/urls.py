@@ -11,5 +11,6 @@ urlpatterns = [
     path('terms-and-condition',termsAndCondition,name='termsAndCondition'),
     path('partner/benifits-of-joing-travmaks',partnerBenifits,name='partnerBenifits'),
     path('partnerportal-faq',partnerFAQ,name='partnerFAQ'),
-    path('download-app',downloadApp,name='downloadApp')
+    path('download-app',downloadApp,name='downloadApp'),
+    path('beta',betaMode,name='betaMode'),
     ]

@@ -35,3 +35,6 @@ def userPaymentPolicy(request):
 
 def downloadApp(request):
     return render(request,'home_app/downloadapp.html')
+
+def betaMode(request):
+    return render(request,'beta.html')

@@ -1,0 +1,75 @@
+{% extends 'basetemplate.html' %}
+{% load static %}
+{% block stylesheets %}
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" >
+
+<style>
+body, html {
+  height: 100%;
+  margin: 0;
+}
+
+.cmng {
+  background-image: url("{% static 'img/beta.jpg' %}");
+  height: 100%;
+  background-position: center;
+  background-size: cover;
+  position: relative;
+  color: white;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 25px;
+}
+.middle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+hr {
+  margin: auto;
+  width: 40%;
+}
+.fa-cog{
+animation: spin 2s linear infinite;
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.fa-bell{
+animation: ghonta 2s linear infinite;
+}
+@keyframes ghonta{
+    0%{
+        transform: rotate(10deg);
+    }
+    50%{
+        transform: rotate(-10deg);
+    }
+    100%{
+        transform: rotate(10deg);
+    }
+}
+</style>
+{% endblock stylesheets %}
+{% block body %}
+<div class="cmng">
+  <div class="middle">
+    <h1>COMING SOON <i class="fa fa-bell"></i></h1>
+    <hr>
+    <p>Working on Beta Mode <i class="fa fa-cog"></i></p>
+  
+  <form>
+    <div class="modal-body">
+        <input type="email" class="form-control" required placeholder="Your Email Address">
+    </div>
+    <div  class="modal-footer">
+        <button type="submit" class="btn btn-primary">Get Update</button>
+    </div>
+</form>
+</div>
+</div>
+
+{% endblock body %}
