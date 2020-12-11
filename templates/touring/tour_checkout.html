@@ -151,5 +151,12 @@ body {
     var quantityField=document.getElementById('quantityField');
     var bb={{Tour.maximum_people}};
     quantityField.setAttribute('max',bb);
+    window.onbeforeunload = function (e) {
+        e = e || window.event;
+        if (e) {
+            e.returnValue = '';
+        }
+        return '';
+    };
 </script>
 {% endblock body %}

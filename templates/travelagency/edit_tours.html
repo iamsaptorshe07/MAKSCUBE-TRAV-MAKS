@@ -1355,6 +1355,13 @@
 		errormsg.style.padding = '0px';
 		errormsgbg.style.margin = '0px';
 	}
+	window.onbeforeunload = function (e) {
+        e = e || window.event;
+        if (e) {
+            e.returnValue = '';
+        }
+        return '';
+    };
 </script>
 
 <!-- JS ends here-->

@@ -625,5 +625,12 @@
 
         })
 
+        window.onbeforeunload = function (e) {
+        e = e || window.event;
+        if (e) {
+            e.returnValue = '';
+        }
+        return '';
+    };
     </script>
 {% endblock body%}
