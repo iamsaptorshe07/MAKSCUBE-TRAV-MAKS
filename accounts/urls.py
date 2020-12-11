@@ -18,7 +18,7 @@ urlpatterns = [
 
     path('user/logout',userLogout,name='userLogout'),
 
-    path('editprofile/<str:account_type>/<int:uid>',userProfile,name='userProfile'),
+#    path('editprofile/<str:account_type>/<int:uid>',userProfile,name='userProfile'),
 
     path('change-password',changePassword,name='ChnagePassword'),
 
