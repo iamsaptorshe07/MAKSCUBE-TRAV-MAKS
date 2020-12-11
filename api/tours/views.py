@@ -1,16 +1,16 @@
 from django.shortcuts import render
 from rest_framework.response import Response
-from .serializers import TourSerializer,TourImageSerializer
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from travelagency.models import Tour, TourImage
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.generics import ListAPIView
+
+from api.travelagencyAPI.serializers import TourSerializer, TourImageSerializer
 import datetime
 from django.db.models import Q
 from django.contrib.sites.shortcuts import get_current_site
-
 # Create your views here.
 
 class TourAPIView(ListAPIView):
