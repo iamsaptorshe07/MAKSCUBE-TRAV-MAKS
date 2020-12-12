@@ -1,9 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>new project</title>
+{% extends 'basetemplate.html' %}
+{% load static %}
+{% block stylesheets %}
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
   <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" >
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css"/>
@@ -36,14 +33,14 @@ font-weight:bold;
 }
 }
 </style>
-</head>
-<body>
+{% endblock stylesheets %}
+{% block body %}
 <div class="page-wrap d-flex flex-row align-items-center">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-12 text-center">
 			
-                <span class="bdr d-block" style="">Bad Request <i class="fa fa-frown-o"></i></span>
+                <span class="bdr d-block" >Bad Request <i class="fa fa-frown-o"></i></span>
             
             </div>
         </div>
@@ -51,9 +48,5 @@ font-weight:bold;
 </div>
 
 	
-<script type="text/javascript">
 
-
-</script>
-</body>
-</html>
+{% endblock body %}

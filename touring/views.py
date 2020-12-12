@@ -39,45 +39,49 @@ class AllToursView(ListView):
 
 
 def tourDetails(request,tourId,slug):
-    if(Tour.objects.filter(tourSlug=slug).exists()):
+    if(Tour.objects.filter(tourSlug=slug,tourId=tourId).exists()):
         tour = Tour.objects.get(tourSlug=slug)
-        if tour.publish_mode:
+        if canBook(tour.last_booking_date):
+            if tour.publish_mode:
+                
+                description=tour.description
+                print(description)
+                
+                tourImage = TourImage.objects.get(tour=tour)
+                images=[]
+                try:
+                    images.append(tourImage.image1.url)
+                except:
+                    pass
+                try:
+                    images.append(tourImage.image2.url)
+                except:
+                    pass
+                try:
+                    images.append(tourImage.image3.url)
+                except:
+                    pass
+                try:
+                    images.append(tourImage.image4.url)
+                except:
+                    pass
+                try:
+                    images.append(tourImage.image5.url)
+                except:
+                    pass
+                try:
+                    images.append(tourImage.image6.url)
+                except:
+                    pass
+                context = {
+                    'Tour':tour,
+                    'description': description,
+                    'images' : images,
+                }
+                return render(request,'touring/tour_details.html',context=context)
             
-            description=tour.description
-            
-            tourImage = TourImage.objects.get(tour=tour)
-            images=[]
-            try:
-                images.append(tourImage.image1.url)
-            except:
-                pass
-            try:
-                images.append(tourImage.image2.url)
-            except:
-                pass
-            try:
-                images.append(tourImage.image3.url)
-            except:
-                pass
-            try:
-                images.append(tourImage.image4.url)
-            except:
-                pass
-            try:
-                images.append(tourImage.image5.url)
-            except:
-                pass
-            try:
-                images.append(tourImage.image6.url)
-            except:
-                pass
-            context = {
-                'Tour':tour,
-                'description': description,
-                'images' : images,
-            }
-            return render(request,'touring/tour_details.html',context=context)
-        
+            else:
+                return render(request,'forbidden.html')
         else:
             return render(request,'forbidden.html')
     else:

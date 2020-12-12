@@ -81,23 +81,23 @@ def tourDuration(sdate,edate):
     return duration.days
 
 
-def descriptionMaker(description_dct):
-    description = 'TRAVMAKS'
-    description = description + str(description_dct)
-    description = description.replace(' ','--')
-    return description+'TRAVMAKS'
+# def descriptionMaker(description_dct):
+#     description = 'TRAVMAKS'
+#     description = description + str(description_dct)
+#     description = description.replace(' ','--')
+#     return description+'TRAVMAKS'
 
-def descriptionExtractor(description_str):
-    description_str = description_str.strip('TRAVMAKS')
-    description = ast.literal_eval(description_str)
-    return description
+# def descriptionExtractor(description_str):
+#     description_str = description_str.strip('TRAVMAKS')
+#     description = ast.literal_eval(description_str)
+#     return description
 
-def testDec(dictionarywww):
-    print("Actual dic : \n",type(dictionarywww),"\n",dictionarywww)
-    x=descriptionMaker(dictionarywww)
-    print("\n\nDic to String :\n",type(x),"\n",x)
-    y=descriptionExtractor(x)
-    print("\n\nString to Dic :\n",type(y),"\n",y)
+# def testDec(dictionarywww):
+#     print("Actual dic : \n",type(dictionarywww),"\n",dictionarywww)
+#     x=descriptionMaker(dictionarywww)
+#     print("\n\nDic to String :\n",type(x),"\n",x)
+#     y=descriptionExtractor(x)
+#     print("\n\nString to Dic :\n",type(y),"\n",y)
 
 
 
