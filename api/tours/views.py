@@ -6,7 +6,7 @@ from rest_framework.response import Response
 from travelagency.models import Tour, TourImage
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.generics import ListAPIView
-
+from rest_framework.views import APIView
 from api.travelagencyAPI.serializers import TourSerializer, TourImageSerializer
 import datetime
 from django.db.models import Q
@@ -17,6 +17,26 @@ class TourAPIView(ListAPIView):
     queryset = Tour.objects.filter(publish_mode=True,last_booking_date__gte=str(datetime.date.today()),maximum_people__gte=1)
     serializer_class = TourSerializer
     pagination_class = PageNumberPagination
+
+
+@api_view(['GET'])
+def compareTourView(request):
+    print("\nEntered\n")
+    tour1 = int(request.GET.get('tour1'))
+    tour2 = int(request.GET.get('tour2'))
+    tour3 = int(request.GET.get('tour3'))
+    tour4 = int(request.GET.get('tour4'))
+    tour_data = Tour.objects.filter(Q(id=tour1) | Q(id=tour2) | Q(id=tour3) | Q(id=tour4)) 
+    print(tour_data)
+    data = TourSerializer(tour_data, many=True)
+    print("\n\n",data.data,"\n\n")
+    return Response(
+        {
+            'status':200,
+            'tour_data':data.data
+        }
+    )
+
 
 
 @api_view(['GET'])
@@ -42,5 +62,5 @@ def TourDetailsAPIView(request,slug):
     return Response(main_data)
     
     
-    
+
 
