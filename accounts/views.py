@@ -193,6 +193,7 @@ def travelerAccountsSignup(request):
                     messages.success(request, ' email to activatCheck youre the account')
                     return redirect('travelerAccountsSignup')
                 if res is False:
+                    user.delete()
                     messages.error(request, 'Internal Problem Occured')
                     return redirect('travelerAccountsSignup')
         except Exception as e:
@@ -314,8 +315,7 @@ def sellerAgencyAccountSignup(request):
                             messages.warning(request,'Agency account verification mail has been send! Please verify your self!')
                             return redirect('sellerAgencyAccountSignup')
                         else:
-                            print('okay works1233')
-                            #print(request.POST.get('govIdName'))
+                            
                             govData = GovId(
                             user=user,
                             govIdType=request.POST.get('govIdName'),
@@ -330,6 +330,7 @@ def sellerAgencyAccountSignup(request):
                                 messages.success(request,'Your user account is already exsits! Check your email to activate the agency account!')
                                 return redirect('traveler_accounts_signup')
                             if res is False:
+                                govData.delete()
                                 messages.error(request,'Internal Problem Occured')
                                 return redirect('traveler_accounts_signup')
                 else:
@@ -355,6 +356,7 @@ def sellerAgencyAccountSignup(request):
                             messages.success(request,'Your account is already exsits! Check your email to activate the agency account!')
                             return redirect('traveler_accounts_signup')
                         if res is False:
+                            govData.delete()
                             messages.error(request,'Internal Problem Occured')
                             return redirect('traveler_accounts_signup')
                         return redirect('traveler_accounts_signup')
@@ -406,6 +408,7 @@ def sellerAgencyAccountSignup(request):
                     messages.success(request,'Check your email to activate the account')
                     return redirect('sellerAgencyAccountSignup')
                 if res is False:
+                    user.delete()
                     messages.error(request,'Internal Problem Occured')
                     return redirect('sellerAgencyAccountSignup')
         except Exception as e:
@@ -458,15 +461,13 @@ def guideSignup(request):
                         res = messages_sender(request, user)
                         print(res)
                         if res is True:
-                            messages.success(request,
-                                             'As your account already exists we will use your old data just Check your email to activate the guide account')
+                            messages.success(request,'As your account already exists we will use your old data just Check your email to activate the guide account')
                             return redirect('guideSignup')
                         if res is False:
                             messages.error(request, 'Internal Problem Occured')
                             return redirect('guideSignup')
                 else:
-                    messages.warning(request, 'Account already exsits! Please verify your email! sent on {}'.format(
-                        user.creationTime))
+                    messages.warning(request, 'Account already exsits! Please verify your email! sent on {}'.format(user.creationTime))
                     return redirect('guideSignup')
             elif User.objects.filter(email=email).exists():
                 user = User.objects.get(email=email)
@@ -528,6 +529,7 @@ def guideSignup(request):
                     messages.success(request, 'Check your email to activate the account')
                     return redirect('guideSignup')
                 if res is False:
+                    user.delete()
                     messages.error(request, 'Internal Problem Occured')
                     return redirect('guideSignup')
         except Exception as e:
