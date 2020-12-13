@@ -624,33 +624,34 @@ def userProfile(request, account_type, uid):
                     messages.success(request, 'Successfully updated')
                     return redirect(request.META.get('HTTP_REFERER'))
                 elif account_type == 'seller':
-                    if request.POST.get('typo')=='agent':
-                        user.name = request.POST.get('name')
-                        user.DOB = request.POST.get('bdate')
-                        user.phNo = request.POST.get('phone')
-                        user.gender = request.POST.get('gender')
-                        user.zipCode = request.POST.get('zip')
-                        user.address = request.POST.get('address')
-                        user.userGov.govIdType = request.POST.get('govIdName')
-                        user.userGov.govIdNo = request.POST.get('govIdNo')
-                        if(request.FILES.get('govIdImage')!=None):
-                            user.userGov.govIdImage = request.FILES.get('govIdImage')
-                        user.save()
-                        user.userGov.save()
-                        messages.success(request, 'Successfully updated')
-                        return redirect(request.META.get('HTTP_REFERER'))
-                    elif request.POST.get('typo')=='agency':
-                        user.userAgency.agencyName = request.POST.get('name')
-                        user.userAgency.agencyPhNo = request.POST.get('phone')
-                        user.userAgency.agencyAddress = request.POST.get('address')
-                        user.userAgency.agencyZipCode = request.POST.get('zip')
-                        user.userAgency.govApproved = request.POST.get('govApproved')
-                        user.userAgency.govApprovedId = request.POST.get('govApprovedId')
-                        user.userAgency.save()
-                        messages.success(request, 'Successfully updated')
-                        return redirect(request.META.get('HTTP_REFERER'))
-                    else:
-                        return render(request,'forbidden.html')
+                    return render(request,'forbidden.html')
+                    # if request.POST.get('typo')=='agent':
+                    #     user.name = request.POST.get('name')
+                    #     user.DOB = request.POST.get('bdate')
+                    #     user.phNo = request.POST.get('phone')
+                    #     user.gender = request.POST.get('gender')
+                    #     user.zipCode = request.POST.get('zip')
+                    #     user.address = request.POST.get('address')
+                    #     user.userGov.govIdType = request.POST.get('govIdName')
+                    #     user.userGov.govIdNo = request.POST.get('govIdNo')
+                    #     if(request.FILES.get('govIdImage')!=None):
+                    #         user.userGov.govIdImage = request.FILES.get('govIdImage')
+                    #     user.save()
+                    #     user.userGov.save()
+                    #     messages.success(request, 'Successfully updated')
+                    #     return redirect(request.META.get('HTTP_REFERER'))
+                    # elif request.POST.get('typo')=='agency':
+                    #     user.userAgency.agencyName = request.POST.get('name')
+                    #     user.userAgency.agencyPhNo = request.POST.get('phone')
+                    #     user.userAgency.agencyAddress = request.POST.get('address')
+                    #     user.userAgency.agencyZipCode = request.POST.get('zip')
+                    #     user.userAgency.govApproved = request.POST.get('govApproved')
+                    #     user.userAgency.govApprovedId = request.POST.get('govApprovedId')
+                    #     user.userAgency.save()
+                    #     messages.success(request, 'Successfully updated')
+                    #     return redirect(request.META.get('HTTP_REFERER'))
+                    # else:
+                    #     return render(request,'forbidden.html')
                 else:
                     return render(request,'forbidden.html')
             else:
@@ -665,7 +666,8 @@ def userProfile(request, account_type, uid):
                 if account_type == 'traveller':
                     return render(request, 'accounts/travelleraccountedit.html')
                 elif account_type == 'seller':
-                    return render(request, 'accounts/selleraccountedit.html')
+                    return render(request,'forbidden.html')
+                    # return render(request, 'accounts/selleraccountedit.html')
                 else:
                     return render(request,'forbidden.html')
             else:
