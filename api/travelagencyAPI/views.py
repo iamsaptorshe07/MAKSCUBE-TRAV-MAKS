@@ -50,24 +50,74 @@ class MyAgencyTour(APIView):
 class TourDetail(APIView):
     authentication_classes = (TokenAuthentication,SessionAuthentication,BasicAuthentication)
     def get(self,request,tourId):
-        try:
-            tour = Tour.objects.get(tourId=tourId)
-            tourimages =TourImage.objects.get(tour=tour)
-        except Exception as e:
-            print(e)
-            exception = {
-                'status':404,
-                'message':'Does Not Exist'
-            }
-            return Response(exception,status = status.HTTP_404_NOT_FOUND)
-        data1 = TourSerializer(tour)
-        data2 = TourImageSerializer(tourimages)
-        data2 = dict(data2.data)
-        images = data2.items()
-        link = get_current_site(request)
-        main_data = {
-            'tourdata':data1.data,
-            'tourimages':images,
-            'weblink':link.domain
-        }
-        return Response(main_data)
+        if request.session.session_key:
+            if request.session['access_type']=='seller':
+                try:
+                    tour = Tour.objects.get(tourId=tourId,seller=request.user)
+                    tourimages =TourImage.objects.get(tour=tour)
+                except Exception as e:
+                    print(e)
+                    exception = {
+                        'status':404,
+                        'message':'Does Not Exist'
+                    }
+                    return Response(exception,status = status.HTTP_404_NOT_FOUND)
+                data1 = TourSerializer(tour)
+                data2 = TourImageSerializer(tourimages)
+                link = 'http://'+ str(get_current_site(request).domain)
+                images = list(dict(data2.data.items()).values())
+                mimg = []
+                for i in range(1,len(images)-1):
+                    if(images[i]!=None):
+                        images[i]=link+str(images[i])
+                        mimg.append(images[i])
+                main_data = {
+                    'tourdata':data1.data,
+                    'tourimages':mimg,
+                    'weblink':link
+                }
+                return Response(main_data)
+            else:
+                return Response(data={'message':'Not Authorized'}, status = status.HTTP_401_UNAUTHORIZED)
+        else:
+            return Response(data={'message':'Not Authenticated'},status=status.HTTP_400_BAD_REQUEST)
+    
+    def put(self,request,tourId):
+        if request.session.session_key:
+            if request.session['access_type']=='seller':
+                try:
+                    tour = Tour.objects.get(tourId=tourId,seller=request.user)
+                    tourimages =TourImage.objects.get(tour=tour)
+                except Exception as e:
+                    print(e)
+                    exception = {
+                        'status':404,
+                        'message':'Does Not Exist'
+                    }
+                    return Response(exception,status = status.HTTP_404_NOT_FOUND)
+                    # Start writting your editting logic
+            else:
+                return Response(data={'message':'Not Authorized'}, status = status.HTTP_401_UNAUTHORIZED)
+        else:
+            return Response(data={'message':'Not Authenticated'},status=status.HTTP_400_BAD_REQUEST)
+    
+    def delete(self,request,tourId):
+        if request.session.session_key:
+            if request.session['access_type']=='seller':
+                try:
+                    tour = Tour.objects.get(tourId=tourId,seller=request.user)
+                except Exception as e:
+                    print(e)
+                    exception = {
+                        'status':404,
+                        'message':'Does Not Exist'
+                    }
+                    return Response(exception,status = status.HTTP_404_NOT_FOUND)
+                tour.delete()
+                return Response(data={'message':'successfully deleted'},status=status.HTTP_200_OK)
+            else:
+                return Response(data={'message':'Not Authorized'}, status = status.HTTP_401_UNAUTHORIZED)
+        else:
+            return Response(data={'message':'Not Authenticated'},status=status.HTTP_400_BAD_REQUEST)
+                
+
