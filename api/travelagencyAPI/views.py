@@ -21,6 +21,8 @@ class MyAgencyTour(APIView):
                 tour = Tour.objects.filter(seller=request.user)
                 print("\n\n",tour,"\n\n")
                 tourSerializer = TourSerializer(tour,many=True)
+                for i in tourSerializer.data:
+                    i['thumbnail']=str('http://')+str(get_current_site(request).domain)+str(i['thumbnail'])
                 return Response(
                     {
                         'status':200,
