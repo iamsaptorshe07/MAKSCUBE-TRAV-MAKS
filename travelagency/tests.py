@@ -4,6 +4,9 @@ from .models import *
 import random,math,ast
 from datetime import date
 # Create your tests here.
+
+
+
 def tourIdMaker():
     
     charList='0123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM'
@@ -99,7 +102,90 @@ def tourDuration(sdate,edate):
 #     y=descriptionExtractor(x)
 #     print("\n\nString to Dic :\n",type(y),"\n",y)
 
+#automatically add tour
+def makeTour():
+    tours = Tour.objects.get()
+    
+    for tour in tours:
+        user = tour.seller
+        sdate = tour.startDate
+        edate =tour.endDate
 
+        special_tour_type=tour.special_tour_type
+        specialOffer = tour.specialOffer
+        if specialOffer:
+            specialOfferDescription = str(tour.specialOfferDescription).strip()
+
+        slocation = tour.startDate
+        elocation = tour.endDate
+        price = tour.price
+        maximum_people = tour.maximum_people
+        ttype = tour.tour_type
+        thumbnail = tour.thumbnail
+        ttitle = tour.tourHeading
+        inclusive = tour.inclusive
+        exclusive = tour.exclusive
+        highlight = tour.highlight
+        overview = tour.overview
+        tourId = tourIdMaker()
+        print('\n\n',tourId,'\n\n')
+        slug = ''
+        for character in ttitle:
+            if character.isalnum():
+                slug+=character
+        slug+='_tourfrom_{}to{}_startingfrom{}_by{}-{}_tourId-{}_{}'.format(
+            slocation,elocation,sdate,agid,uid,tourId,ttype
+        )
+        print('\n\n',slug,'\n\n')
+        description = tour.description
+        last_booking_date = tour.last_booking_date
+        tour = Tour(
+            #assign the values
+            seller = user,
+            agency = user.userAgency,
+            tourId = tourId,
+            tourSlug = slug.strip(),
+            tourHeading = ttitle.strip(),
+            startingLocation = slocation.strip(),
+            endLocation = elocation.strip(),
+            startDate = sdate,
+            endDate = edate,
+            description = description.strip(),
+            inclusive = inclusive.strip(),
+            exclusive = exclusive.strip(),
+            highlight = highlight.strip(),
+            price = price.strip(),
+            tour_type = ttype.strip(),
+            thumbnail = thumbnail,
+            overview = overview.strip(),
+            maximum_people = maximum_people.strip(),
+            last_booking_date = last_booking_date,
+            special_tour_type = special_tour_type,
+            specialOffer = specialOffer,
+            specialOfferDescription = specialOfferDescription,
+        )
+        tour.save()
+        image1 = request.FILES.get('image1')
+        image2 = request.FILES.get('image2')
+        image3 = request.FILES.get('image3')
+        image4 = request.FILES.get('image4')
+        image5 = request.FILES.get('image5')
+        image6 = request.FILES.get('image6')
+
+        tourImage = TourImage(
+                tour = tour,
+                image1 = image1,
+                image2 = image2,
+                image3 = image3,
+                image4 = image4,
+                image5 = image5,
+                image6 = image6
+
+        )
+
+        tourImage.save()
+
+#automatically add tour
 
 ''' Testing URL Handlere '''
 from django.shortcuts import render,redirect
