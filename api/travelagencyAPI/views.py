@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from travelagency.models import Tour
+from travelagency.models import Tour, TourImage
 
 from .serializers import TourSerializer, TourImageSerializer
 
@@ -47,3 +47,27 @@ class MyAgencyTour(APIView):
 
 
         
+class TourDetail(APIView):
+    authentication_classes = (TokenAuthentication,SessionAuthentication,BasicAuthentication)
+    def get(self,request,tourId):
+        try:
+            tour = Tour.objects.get(tourId=tourId)
+            tourimages =TourImage.objects.get(tour=tour)
+        except Exception as e:
+            print(e)
+            exception = {
+                'status':404,
+                'message':'Does Not Exist'
+            }
+            return Response(exception,status = status.HTTP_404_NOT_FOUND)
+        data1 = TourSerializer(tour)
+        data2 = TourImageSerializer(tourimages)
+        data2 = dict(data2.data)
+        images = data2.items()
+        link = get_current_site(request)
+        main_data = {
+            'tourdata':data1.data,
+            'tourimages':images,
+            'weblink':link.domain
+        }
+        return Response(main_data)

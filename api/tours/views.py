@@ -53,11 +53,17 @@ def TourDetailsAPIView(request,slug):
         return Response(request,exception)
     data1 = TourSerializer(tour)
     data2 = TourImageSerializer(tourimages)
-    link = get_current_site(request)
+    link = 'http://'+ str(get_current_site(request).domain)
+    images = list(dict(data2.data.items()).values())
+    mimg = []
+    for i in range(1,len(images)-1):
+        if(images[i]!=None):
+            images[i]=link+str(images[i])
+            mimg.append(images[i])
     main_data = {
         'tourdata':data1.data,
-        'tourimages':data2.data,
-        'weblink':link.domain
+        'tourimages':mimg,
+        'weblink':link
     }
     return Response(main_data)
     

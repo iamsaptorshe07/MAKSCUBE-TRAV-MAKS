@@ -340,9 +340,10 @@ class LogoutView(APIView):
 # ------------ User Logout Ends here --------------------------------------
 
 
-# User Profile Visit Starts here  ------------------------------------------
+# User Profile Visit, update Starts here  ------------------------------------------
 class UserProfile(APIView):
     authentication_classes = (TokenAuthentication,SessionAuthentication,BasicAuthentication)
+    # To get the profile data
     def get(self,request):
         if request.session.session_key:
             if request.session['access_type']=='seller':
@@ -377,8 +378,29 @@ class UserProfile(APIView):
                     'message':"Not Authenticated"
                 }
             )
-        
-# User Profile Visit Ends here ----------------------------------
+    # To update the data
+    def put(self,request):
+        if request.session.session_key:
+            if request.session['access_type']=='seller' or request.session['access_type']=='traveller':
+                data = request.data
+                user = request.user
+                userserializer = AccountSerializer(user,data=data,partial=True)
+                if userserializer.is_valid():
+                    userserializer.save()
+                    return Response(
+                        {
+                            'status':200,
+                            'message':'Successfully Update'
+                        }
+                    )
+                else:
+                    return Response(userserializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        else:
+            return Response(data ={
+                'message':'Bad Request'
+            }, status = status.HTTP_400_BAD_REQUEST,)
+
+# User Profile Visit and update Ends here ----------------------------------
 
 # Travel Agency Registration ----------------------------------
 class AgencyRegister(APIView):
