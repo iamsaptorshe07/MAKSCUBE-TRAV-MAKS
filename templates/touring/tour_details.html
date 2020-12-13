@@ -414,7 +414,7 @@
     .location span{
         padding: 5px 12px;
         border-radius: 18px;
-        background-color: #e5ebfe;
+        background-color: #cedaff;
         color: black;
         font-size: 20px;
         font-weight: bold;
@@ -546,6 +546,83 @@
         display: flex;
         flex-wrap: wrap;
     }
+    .interested{
+        display: flex;
+        margin: 15px 0;
+        align-items: center;
+    }
+    .interested span{    
+        padding: 5px 0;
+        border-radius: 18px;
+        background-color: #cedaff;
+        color: black;
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        margin: 4px 10px 0 0;
+        width: 130px;
+        cursor: pointer;
+    }
+    .ShareBtns{
+        overflow: hidden;
+    }
+    .interested label{
+        margin: 0;
+        position: relative;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .featured{
+        display: flex;
+        list-style: none;
+        flex-wrap: wrap;
+        max-height: 0px;
+        align-items: center;
+        transition-duration: 0.5s;
+    }
+    .featured li {
+        opacity: 0;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        transform: translate(0%, -100%);
+        transition-duration: 0.5s;
+        transition-property: opacity, transform;
+        transition-delay: calc(0.025s * (var(--length) - (var(--index) + 1)));
+        margin: 0 15px 10px 0;
+    }
+    input[name='features'] {
+        position: absolute;
+        left: -5000px;
+    }
+    .featured li.active {
+        opacity: 1;
+        transform: translateX(0);
+        transition-delay: calc(0.055s * var(--index));
+    }
+    input[name='features']:not(:checked) {
+        transition-delay: calc(0.025s * (var(--length) - (var(--index) + 1)));
+    }
+    .copiedAlert{
+        position: fixed;
+        z-index: 20;
+        width: 100%;
+        height: 60px;
+        background: #000;
+        color: white;
+        font-weight: bold;
+        font-size: 25px;
+        align-items: center;
+        justify-content: center;
+        display: none;
+        left: 0;
+        bottom: 0;
+    }
     @media screen and (max-width:990px){
         .tourDetails{
             position: relative;
@@ -658,7 +735,43 @@
                     <span class="text-success">You Can Cancel Within : 22/12/2020</span>
                     -->
                 </div>
+                <div class="interested">
+                    <input type="checkbox" name="features" id="features" value="premium">
+                    <span><img src="https://img.icons8.com/ios-filled/26/000000/add-bookmark.png"/>&nbsp;Save</span>
+                    <span>
+                        <label for="features">
+                            <img src="https://img.icons8.com/metro/26/000000/forward-arrow.png"/>&nbsp;Share
+                        </label>
+                    </span>
+                </div>
+                <div class="ShareBtns">
+                    <ul class="featured" style="--length: 5;display:flex;">
+                        <li style="--index: 0;">
+                            <img src="https://img.icons8.com/color/26/000000/whatsapp--v6.png"/>
+                            Whatsapp
+                        </li>
+                        <li style="--index: 1;">
+                            <img src="https://img.icons8.com/color/26/000000/gmail--v1.png"/>
+                            Gmail
+                        </li>
+                        <li style="--index: 2;">
+                            <img src="https://img.icons8.com/color/26/000000/facebook-circled--v5.png"/>
+                            Facebook
+                        </li>
+                        <li style="--index: 3;">
+                            <img src="https://img.icons8.com/cute-clipart/26/000000/instagram-new.png"/>
+                            Instragram
+                        </li>
+                        <li style="--index: 4;" onclick="copyUrl();">
+                            <img src="https://img.icons8.com/color/26/000000/copy--v2.png"/>
+                            Copy Url
+                        </li>
+                    </ul>
+                </div>
             </div>
+        </div>
+        <div class="copiedAlert">
+            The URL has been copied!
         </div>
         <div class="col-lg-3">
             <div class="suggestedTour">
@@ -1017,5 +1130,33 @@
         var date='Starting Date : '+sd+' || Ending Date : '+ed;
         document.querySelector('.tourType h4:nth-child(2)').innerHTML=date;
     });
+
+    $("input[name=features]").change(function(){
+        if($('input[name=features]').is(':checked')){
+            $('.featured li').addClass('active');
+            document.querySelector('.featured').style.maxHeight='100px';
+        }
+        else{
+            $('.featured li').removeClass('active');
+            document.querySelector('.featured').style.maxHeight='0px';
+        }
+    });
+
+    function copyUrl(){
+        var copyId=window.location.href;
+        var $inp=$("<input>");
+        $("body").append($inp);
+        // console.log($(""+copyId));
+        $inp.val(copyId);
+        // console.log($inp.val());
+        $inp.select();
+        // $inp.setSelectionRange(0, 99999);
+        document.execCommand("copy");
+        // $inp.remove();
+        document.querySelector('.copiedAlert').style.display='flex';
+        setTimeout(function(){
+            document.querySelector('.copiedAlert').style.display='none';
+        }, 2000);
+    }
 </script>
 {% endblock body %}
