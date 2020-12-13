@@ -41,7 +41,10 @@ class AllToursView(ListView):
 def tourDetails(request,tourId,slug):
     if(Tour.objects.filter(tourSlug=slug,tourId=tourId).exists()):
         tour = Tour.objects.get(tourSlug=slug)
-        if canBook(tour.last_booking_date):
+        
+        user=request.user
+        # Tour details for Travellers without login or with login starts------------------------------
+        if canBook(tour.last_booking_date): 
             if tour.publish_mode:
                 
                 description=tour.description
@@ -82,6 +85,53 @@ def tourDetails(request,tourId,slug):
             
             else:
                 return render(request,'forbidden.html')
+        # Tour details for Travellers without login or with login ends------------------------------
+
+        # Tour details for Sellers with login starts ------------------------------
+        
+        elif user.is_authenticated and request.session['access_type']=='seller':
+            agentId = tour.tourAgency.agency_Id
+            agencyDetail = AgencyDetail.objects.get(user=user)
+            if agentId==agencyDetail.agency_Id:
+                description=tour.description
+                print(description)
+                
+                tourImage = TourImage.objects.get(tour=tour)
+                images=[]
+                try:
+                    images.append(tourImage.image1.url)
+                except:
+                    pass
+                try:
+                    images.append(tourImage.image2.url)
+                except:
+                    pass
+                try:
+                    images.append(tourImage.image3.url)
+                except:
+                    pass
+                try:
+                    images.append(tourImage.image4.url)
+                except:
+                    pass
+                try:
+                    images.append(tourImage.image5.url)
+                except:
+                    pass
+                try:
+                    images.append(tourImage.image6.url)
+                except:
+                    pass
+                context = {
+                    'Tour':tour,
+                    'description': description,
+                    'images' : images,
+                }
+                return render(request,'touring/tour_details.html',context=context)
+            else:
+                return render(request,'forbidden.html')
+        # Tour details for Sellers with login ends ------------------------------
+            
         else:
             return render(request,'forbidden.html')
     else:
