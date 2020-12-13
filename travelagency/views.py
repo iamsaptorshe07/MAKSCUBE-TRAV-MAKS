@@ -350,8 +350,7 @@ def upcoming_tours(request,agentId):
     user = request.user
     if user.is_authenticated and request.session['access_type']=='seller':
         if user.userAccess.agentId == agentId:
-            # tours = Order.objects.filter(agent=user)
-            tours = Tour.objects.filter(seller=user)
+            tours = Order.objects.filter(agent=user)
             tour=[]
             print(tours)
             for i in tours:
@@ -372,8 +371,7 @@ def ongoing_tours(request,agentId):
     user = request.user
     if user.is_authenticated and request.session['access_type']=='seller':
         if user.userAccess.agentId == agentId:
-            # tours = Order.objects.filter(agent=user)
-            tours = Tour.objects.filter(seller=user)
+            tours = Order.objects.filter(agent=user)
             tour=[]
             for i in tours:
                 if i.startDate < date.today() and date.today() < i.endDate :

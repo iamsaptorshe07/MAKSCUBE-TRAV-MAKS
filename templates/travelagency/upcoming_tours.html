@@ -61,30 +61,32 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>Tour Id</th>
+                            <th>Order Id</th>
+                            <th>Date</th>
                             <th>Tour Name</th>
-                            <th>Published</th>
-                            <th>Starting Location</th>
-                            <th>Ending Location</th>
-                            <th>Start Date</th>
-                            <th>End Date</th>
-                            <th>Total Members</th>
+                            <th>Booking Status</th>
+                            <th>Agent approve</th>
                             <th>Booked By</th>
+                            <th>Total Members</th>
+                            <th>Email</th>
+                            <th>Phone Number</th>
+                            <th>Total Paid</th>
 
                         </tr>
                     </thead>
                     <tbody>
                         {% for tour in Tours %}
                         <tr>
-                            <td>{{tour.tourId}}</td>
-                            <td>{{tour.tourHeading }}</td>
-                            <td>{{tour.publish_mode}}</td>
-                            <td>{{tour.startingLocation }}</td>
-                            <td>{{tour.endLocation }}</td>
-                            <td>{{tour.startDate }}</td>
-                            <td>{{tour.endDate }}</td>
-                            <td>{{tour.maximum_people }}</td>
-                            <td>{{tour.seller.name }}</td>
+                            <td>{{tour.order_id}}</td>
+                            <td>{{tour.creation_date}}</td>
+                            <td>{{tour.tour.tourHeading }}</td>
+                            <td>{{tour.status }}</td>
+                            <td>{{tour.agent_approval}}</td>
+                            <td>{{tour.customer_name}}</td>
+                            <td>{{tour.total_people}}</td>
+                            <td>{{tour.customer_email}}</td>
+                            <td>{{tour.customer_phone}}</td>
+                            <td>{{tour.paid_by_user}}</td>
                         </tr>
 
                         {% endfor %}
