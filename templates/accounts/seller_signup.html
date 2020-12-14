@@ -489,14 +489,6 @@ opacity: 0.5;
                             </div>
                         </div>
                     </div>
-			   
-			   
-			   
-			   
-			   
-			   
-			   
-			   
 			   </div>
             <div class="col-md-8 border " id="frm">
                 <h2 class="pb-4 pt-4 text-center text-white">Get Your Online Presence</h2>
@@ -515,13 +507,6 @@ opacity: 0.5;
                     </div>
                     {% endfor %}
                     {% endif %}
-                    <div class="col-md-12">
-                        <div id="errormsgbg">
-                            <div id="errormsg" onclick="getElementById('errormsg').innerHTML = null;
-                                                getElementById('errormsg').style.padding='0px'">
-                            </div>
-                        </div>
-                    </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <input type="text" class="form-control" placeholder="Full Name *" name="name" id="fullname"
@@ -569,7 +554,7 @@ opacity: 0.5;
                         <div class="form-group">
                             <input type="file" name="govIdImage" accept='image/*' id="fileUpload" multiple="multiple" class="form-control" required /> 
                         </div>
-						<label data-toggle="modal" data-target="#previewModal" style="cursor:pointer;" class="text-white">Click me to upload ID Proof</label>
+						<label data-toggle="modal" data-target="#previewModal" style="cursor:pointer;" class="text-white">Preview of uploaded ID Proof</label>
                     </div>
 					
 					
@@ -1310,7 +1295,15 @@ opacity: 0.5;
         cy = cd.getFullYear();
         var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
         res = reg.test(mail);
-
+        flag=0;
+        for(let j=0;j<name.length;j++){
+            if(name[j]==' '){
+                flag=1;
+            }
+        }
+        if(flag==0){
+            msg.push('Please Enter a Valid Name.');
+        }
         if ((cy - dy) < 14) {
             msg.push("You must be 14 years old to Register.");
         }

@@ -1,8 +1,128 @@
 {% autoescape off %}
-Hi {{user.name}} 
-Thanks for your registration, Click on the link to setup your profile and activate your account.
-<br> 
-<a href="http://{{domain}}{% url 'activateSeller' uid=uid token=token %}" style="background-color:#12cc12; font-size:13px; margin-left: 30%;
-    margin-top: 10px; padding:15px 30px; color:white; text-decoration:none;">Activate</a>
+
+    <div style="background-color: #e1e1e1; margin: 0 !important; padding: 0 !important;">
+        <div
+            style="display: none; font-size: 1px; color: #fefefe; line-height: 1px; font-family: 'Lato', Helvetica, Arial, sans-serif; max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden;">
+            We're thrilled to have you here! Get ready to dive into your new account. </div>
+        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+            <!-- LOGO -->
+            <tr>
+                <td bgcolor="#1746e0" align="center">
+                    <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
+                        <tr>
+                            <td align="center" valign="top" style="padding: 40px 10px 40px 10px;"> </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td bgcolor="#1746e0" align="center" style="padding: 0px 10px 0px 10px;">
+                    <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
+                        <tr>
+                            <td bgcolor="#ffffff" align="center" valign="top"
+                                style="padding: 40px 20px 20px 20px; border-radius: 4px 4px 0px 0px; color: #111111; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 48px; font-weight: 400; letter-spacing: 4px; line-height: 48px;">
+                                <h1 style="font-size: 48px; font-weight: 400; margin: 2;">Welcome!</h1>
+                                <a href="http://{{domain}}"> <img src="https://scontent.fccu2-2.fna.fbcdn.net/v/t1.0-9/p960x960/128270861_100876885215114_6324762392831004524_o.jpg?_nc_cat=104&ccb=2&_nc_sid=85a577&_nc_ohc=sFbQU6XylLUAX86pEKS&_nc_ht=scontent.fccu2-2.fna&tp=6&oh=99af5ba6668d8104663b9d6f84fec0ff&oe=5FF9E2F9" width="125" height="120"
+                                        style="display: block; border: 0px;" /></a>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td bgcolor="#e1e1e1" align="center" style="padding: 0px 10px 0px 10px;">
+                    <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
+                        <tr>
+                            <td bgcolor="#ffffff" align="left"
+                                style="padding: 20px 30px 40px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
+                                <p style="margin: 0;">Hi {{user.name}}! We're excited to have you get started. First, you
+                                    need to confirm your
+                                    account. Just press the button below.</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td bgcolor="#ffffff" align="left">
+                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                    <tr>
+                                        <td bgcolor="#ffffff" align="center" style="padding: 20px 30px 60px 30px;">
+                                            <table border="0" cellspacing="0" cellpadding="0">
+                                                <tr>
+                                                    <td align="center" style="border-radius: 3px;" bgcolor="#1746e0">
+                                                        <!-- Confirm Button -->
+                                                        <a href="http://{{domain}}{% url 'activateSeller' uid=uid token=token %}"
+                                                            style="font-size: 20px; font-family: Helvetica, Arial, sans-serif; color: #ffffff; 
+                                                            text-decoration: none; background-color: #1746e0;text-decoration: none; padding: 15px 25px; 
+                                                            border-radius: 2px; border: 1px solid #1746e0; display: inline-block;">Confirm
+                                                            Account</button>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td bgcolor="#ffffff" align="left"
+                                style="padding: 0px 30px 0px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
+                                <p style="margin: 0;">If that doesn't work, copy and paste the following link in your
+                                    browser:</p>
+                            </td>
+                        </tr> <!-- COPY -->
+                        <tr>
+                            <td bgcolor="#ffffff" align="left"
+                                style="padding: 20px 30px 20px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
+                                <p style="margin: 0;"><a href="http://{{domain}}/contact-us" target="_blank"
+                                        style="color: #1746e0;">http://{{domain}}/contact-us</a></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td bgcolor="#ffffff" align="left"
+                                style="padding: 0px 30px 20px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
+                                <p style="margin: 0;">If you have any questions, just reply to this email—we're always happy
+                                    to help out.</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td bgcolor="#ffffff" align="left"
+                                style="padding: 0px 30px 40px 30px; border-radius: 0px 0px 4px 4px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
+                                <p style="margin: 0;">Cheers,<br>TRAVMAKS Team</p>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td bgcolor="#e1e1e1" align="center" style="padding: 30px 10px 0px 10px;">
+                    <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
+                        <tr>
+                            <td bgcolor="#FFECD1" align="center"
+                                style="padding: 30px 30px 30px 30px; border-radius: 4px 4px 4px 4px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
+                                <h2 style="font-size: 20px; font-weight: 400; color: #111111; margin: 0;">Need more help?
+                                </h2>
+                                <p style="margin: 0;"><a href="http://{{domain}}/contact-us" target="_blank"
+                                        style="color: #1746e0;">We&rsquo;re here
+                                        to help you out</a></p>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td bgcolor="#e1e1e1" align="center" style="padding: 0px 10px 0px 10px;">
+                    <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
+                        <tr>
+                            <td bgcolor="#e1e1e1" align="left"
+                                style="padding: 0px 30px 30px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; line-height: 18px;">
+                                <br>
+                                <p style="margin: 0;">If these emails get annoying, please feel free to <a href="#"
+                                        style="color: #111111; font-weight: 700;">unsubscribe</a>.</p>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
 	
 {% endautoescape %}

@@ -5,7 +5,8 @@ from django.http import *
 from .tests import *
 from django.contrib import messages
 from touring.models import *
-import datetime
+from datetime import datetime 
+from datetime import date
 
 # Create your views here.
 def travelagency_home(request,agid):
@@ -346,10 +347,43 @@ def booking_history(request,agentId):
 
 
 def upcoming_tours(request,agentId):
-      return render(request,'travelagency/upcoming_tours.html')
+    user = request.user
+    if user.is_authenticated and request.session['access_type']=='seller':
+        if user.userAccess.agentId == agentId:
+            tours = Order.objects.filter(agent=user)
+            tour=[]
+            print(tours)
+            for i in tours:
+                print(i)
+                if i.startDate > date.today():
+                    tour.append(i)
+            print(tour)
+            context = {
+                'Tours':tour
+            }
+            return render(request,'travelagency/upcoming_tours.html',context=context)
+        else:
+            return render(request,'forbidden.html')
+    else:
+        return render(request,'forbidden.html')
 
 def ongoing_tours(request,agentId):
-      return render(request,'travelagency/ongoing_tours.html')
+    user = request.user
+    if user.is_authenticated and request.session['access_type']=='seller':
+        if user.userAccess.agentId == agentId:
+            tours = Order.objects.filter(agent=user)
+            tour=[]
+            for i in tours:
+                if i.startDate < date.today() and date.today() < i.endDate :
+                    tour.append(i)
+            context = {
+                'Tours':tour
+            }
+            return render(request,'travelagency/ongoing_tours.html',context=context)
+        else:
+            return render(request,'forbidden.html')
+    else:
+        return render(request,'forbidden.html')
 
 def bookingNotification(request):
     user = request.user

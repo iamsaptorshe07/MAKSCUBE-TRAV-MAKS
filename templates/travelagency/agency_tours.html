@@ -258,14 +258,17 @@
                 <div class="gi8 gi"><img src="{{tour.thumbnail.url}}"><br><span style="font-weight:bold;border-bottom: 1px black solid;">Thumbnail</span></div>
                 <div class="gi9 gi">
                     <button type="button" class="deletebtn btn-success"
-                    onclick="window.open('#')">
-                    Preview</button>
+                    onclick="window.open('/tour/tourdetails/{{tour.tourId}}/{{tour.tourSlug}}')">
+                    Preview
+                </button>
                     <button type="button" class="editbtn" style="background-color: #053fae;color:whitesmoke"
                         onclick="location.href='/travelagency/agencytours/edit-tour/{{tour.seller.userAccess.agentId}}/{{tour.tourId}}'">
                         Edit
                     </button>
                     <button type="button" class="deletebtn btn-danger"
-                    onclick="deleteCon();">Delete</button>
+                    onclick="deleteCon();">
+                    Delete
+                </button>
                 </div>
                 <script>
                     function deleteCon(){

@@ -6,7 +6,7 @@ from rest_framework.response import Response
 from travelagency.models import Tour, TourImage
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.generics import ListAPIView
-
+from rest_framework.views import APIView
 from api.travelagencyAPI.serializers import TourSerializer, TourImageSerializer
 import datetime
 from django.db.models import Q
@@ -20,6 +20,26 @@ class TourAPIView(ListAPIView):
 
 
 @api_view(['GET'])
+def compareTourView(request):
+    print("\nEntered\n")
+    tour1 = int(request.GET.get('tour1'))
+    tour2 = int(request.GET.get('tour2'))
+    tour3 = int(request.GET.get('tour3'))
+    tour4 = int(request.GET.get('tour4'))
+    tour_data = Tour.objects.filter(Q(id=tour1) | Q(id=tour2) | Q(id=tour3) | Q(id=tour4)) 
+    print(tour_data)
+    data = TourSerializer(tour_data, many=True)
+    print("\n\n",data.data,"\n\n")
+    return Response(
+        {
+            'status':200,
+            'tour_data':data.data
+        }
+    )
+
+
+
+@api_view(['GET'])
 def TourDetailsAPIView(request,slug):
     try:
         tour = Tour.objects.get(tourSlug=slug)
@@ -30,17 +50,38 @@ def TourDetailsAPIView(request,slug):
             'status':404,
             'message':'Does Not Exist'
         }
-        return Response(request,exception)
+        return Response(data=exception,status = status.HTTP_404_NOT_FOUND)
     data1 = TourSerializer(tour)
     data2 = TourImageSerializer(tourimages)
-    link = get_current_site(request)
-    main_data = {
-        'tourdata':data1.data,
-        'tourimages':data2.data,
-        'weblink':link.domain
+    description_data = data1.data['description'].split('@@@@')
+    description = []
+    for i in description_data:
+        lst = i.split('$$$$')
+        description.append(lst)
+    day_title = []
+    day_description = []
+    for i in description:
+        day_title.append(i[0])
+        day_description.append(i[1])
+    data1 = dict(data1.data)
+    data1['description']={
+        'day_title':day_title,
+        'day_description':day_description
     }
-    return Response(main_data)
+    link = 'http://'+ str(get_current_site(request).domain)
+    images = list(dict(data2.data.items()).values())
+    mimg = []
+    for i in range(1,len(images)-1):
+        if(images[i]!=None):
+            images[i]=link+str(images[i])
+            mimg.append(images[i])
+    main_data = {
+        'tourdata':data1,
+        'tourimages':mimg,
+        'weblink':link
+    }
+    return Response(data = main_data, status = status.HTTP_200_OK)
     
     
-    
+
 
