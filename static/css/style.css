@@ -666,29 +666,13 @@ font-size: 20px;
 
 /* line 14, ../../Arafath/CL/December/231. Travel-02/HTML/scss/_destination.scss */
 .popular_destination_area .single_destination:before {
-  /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#040e27+0,040e27+100&0+0,0.7+100 */
-  background: -moz-linear-gradient(top, rgba(4, 14, 39, 0) 0%, rgba(4, 14, 39, 0.7) 100%);
-  /* FF3.6-15 */
-  background: -webkit-linear-gradient(top, rgba(4, 14, 39, 0) 0%, rgba(4, 14, 39, 0.7) 100%);
-  /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to bottom, rgba(4, 14, 39, 0) 0%, rgba(4, 14, 39, 0.7) 100%);
-  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00040e27', endColorstr='#b3040e27',GradientType=0 );
-  /* IE6-9 */
   content: '';
   left: 0;
   top: 0;
-  width: 100%;
+  width: 0;
   height: 100%;
   z-index: 2;
   position: absolute;
-}
-
-/* line 30, ../../Arafath/CL/December/231. Travel-02/HTML/scss/_destination.scss */
-.popular_destination_area .single_destination .thumb img {
-  width: 330px;
-  height: 250px;
-  border-radius: 5px;
 }
 
 /* line 35, ../../Arafath/CL/December/231. Travel-02/HTML/scss/_destination.scss */
