@@ -1,5 +1,5 @@
 from django.shortcuts import render
-
+from datetime import date
 from travelagency.models import Tour, TourImage
 
 from .serializers import TourSerializer, TourImageSerializer
@@ -128,6 +128,15 @@ class TourDetail(APIView):
                         'message':'Does Not Exist'
                     }
                     return Response(exception,status = status.HTTP_404_NOT_FOUND)
+                date_gap = date.today() - tour.creationDate
+                if date_gap.days > 2:
+                    return Response(
+                        data={
+                            'status':401,
+                            'message':'You are not authorized to delete the tour anymore'
+                            },
+                        status=status.HTTP_401_UNAUTHORIZED
+                        )
                 tour.delete()
                 return Response(data={'message':'successfully deleted'},status=status.HTTP_200_OK)
             else:
