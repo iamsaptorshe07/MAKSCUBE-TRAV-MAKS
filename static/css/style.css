@@ -116,7 +116,7 @@ font-size: 20px;
 */
 
 .navbar{
-    background-color: #e6faff !important;
+   background: linear-gradient(to left,  #00d2ff, #b3ffab, #12fff7) !important;
 
 }
 .navbar .nav-item .nav-link{
@@ -758,6 +758,7 @@ footer {
   background-color: #0d141c;
  color:#fff;
   margin-top:100px;
+  
 }
 
 footer a {
