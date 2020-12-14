@@ -192,10 +192,17 @@ position: absolute;
     }
 }
 .popular_destination_area .single_destination .thumb img {
-  width: 330px;
+  width: 100%;
   height: 250px;
   border-radius: 5px;
 }
+@media (max-width: 768px) {
+  .popular_destination_area .single_destination .thumb img {
+  width: 513px;
+  height: 310px;
+}
+}
+
 </style>
 <!--Slider strats here-->
 {% if messages %}
