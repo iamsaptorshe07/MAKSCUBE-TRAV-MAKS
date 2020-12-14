@@ -70,7 +70,6 @@ def messages_sender(request,user):
 # Travel - Agent Signup -----------------------------------------------
 class TravelAgentSignup(APIView):
     def post(self, request, *args, **kwargs):
-        #print("\n\nData\n\n:{}\n".format(request.data))
         account_field = ['email','name','DOB','phNo','gender','country','state','city','zipCode','address','password']
         goverment_proof = ['govIdType','govIdNo']
         if User.objects.filter(email=request.POST['email']).exists():
@@ -79,24 +78,20 @@ class TravelAgentSignup(APIView):
             if user.is_active:
                 if user.userAccess.agency_access is True:
                     data = {
-                        'status':406,
+                        'status':403,
                         'message':'User Already Exists'
                     }
-                    return Response(data)
+                    return Response(data,status=status.HTTP_403_FORBIDDEN)
                 else:
                     my_data = request.data
-                    #print("Enter here")
-                    #print(my_data)
                     [account_data, gov_data] = map(lambda keys: {x: my_data[x] for x in keys}, [account_field, goverment_proof])
                     if GovId.objects.filter(user=user).exists():
-                        #print('exist')
                         data = {
                             'status':406,
                             'message':'Agency account verification mail has been send! Please verify your self!'
                         }
                         return Response(data)
                     else:
-                        #print("Come")
                         gov_data['user']=user
                         gov_data['govIdImage']=request.FILES.get('govIdImage')
                         gov_serializer = GovermentProofSerializer(data=gov_data)
@@ -130,12 +125,8 @@ class TravelAgentSignup(APIView):
         else:
             my_data = request.data
             img = request.FILES['govIdImage']
-            #print("\n",img,"\n")
-            #print("printed")
             [account_data, gov_data] = map(lambda keys: {x: my_data[x] for x in keys}, [account_field, goverment_proof])
-            #print(account_data)
             agent_serializer = AccountSerializer(data=account_data)
-            #print("Worked till here")
             gov_data['govIdImage']=img
             if agent_serializer.is_valid():
                 agent = agent_serializer.save()
@@ -172,6 +163,86 @@ class TravelAgentSignup(APIView):
 
 
 # ------------------- Travel Agent Sign Up Ends Here ------------------------
+
+# Traveller Singup -----------------------------------------------------------
+class TravellerSignup(APIView):
+    def post(self,request):
+        data = request.data
+        print(data)
+        email = data['email']
+        if User.objects.filter(email=email).exists():
+            user = User.objects.get(email=email)
+            if user.is_active:
+                if user.userAccess.user_access is True:
+                    return_data = {
+                        'status':403,
+                        'message':'User Already Exists'
+                    }
+                    return Response(data=return_data,status=status.HTTP_403_FORBIDDEN)
+                else:
+                    res = messages_sender(request,user)
+                    if res is True:
+                        return Response(
+                            data = {
+                                'status':200,
+                                'message':'As your seller account already exists we will use your old account information, please verify your account to get the user access'
+                            },
+                            status = status.HTTP_200_OK
+                        )
+                    else:
+                        return Response(
+                            data = {
+                                'status':500,
+                                'message':"Internal Problem Occured"
+                            },
+                            status = status.HTTP_500_INTERNAL_SERVER_ERROR
+                        )
+            else:
+                return Response(
+                    data = {
+                        'status':"",
+                        'message':"Please Activate Your account first mail send on {}".format(user.creationTime)                    
+                        },
+                    status = status.HTTP_200_OK
+                )
+        else:
+            userSerializer = AccountSerializer(data=request.data)
+            if userSerializer.is_valid():
+                user = userSerializer.save()
+                print(user.id)
+                res = messages_sender(request,user)
+                if res is True:
+                    return Response(
+                        data = {
+                            'status':200,
+                            'message':'Account Created, Please Check the mail to verify your account'
+                        },
+                        status = status.HTTP_200_OK
+                    )
+                else:
+                    return Response(
+                        data = {
+                            'status':500,
+                            'message':'Internal Problem Occured'
+                        },
+                        status = status.HTTP_500_INTERNAL_SERVER_ERROR
+                    )
+            else:
+                return Response(
+                    data = {
+                        'staus':406,
+                        'message':userSerializer.errors
+                    },
+                    status = status.HTTP_406_NOT_ACCEPTABLE
+                )    
+
+
+
+
+        
+        
+
+# Traveller Signup Ends here --------------------------------------------------
 
 # Travel Agent Login --------------------------------------------------------
 class TravelAgentLogin(APIView):

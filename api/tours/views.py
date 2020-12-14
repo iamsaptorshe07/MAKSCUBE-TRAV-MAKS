@@ -50,9 +50,24 @@ def TourDetailsAPIView(request,slug):
             'status':404,
             'message':'Does Not Exist'
         }
-        return Response(request,exception)
+        return Response(data=exception,status = status.HTTP_404_NOT_FOUND)
     data1 = TourSerializer(tour)
     data2 = TourImageSerializer(tourimages)
+    description_data = data1.data['description'].split('@@@@')
+    description = []
+    for i in description_data:
+        lst = i.split('$$$$')
+        description.append(lst)
+    day_title = []
+    day_description = []
+    for i in description:
+        day_title.append(i[0])
+        day_description.append(i[1])
+    data1 = dict(data1.data)
+    data1['description']={
+        'day_title':day_title,
+        'day_description':day_description
+    }
     link = 'http://'+ str(get_current_site(request).domain)
     images = list(dict(data2.data.items()).values())
     mimg = []
@@ -61,11 +76,11 @@ def TourDetailsAPIView(request,slug):
             images[i]=link+str(images[i])
             mimg.append(images[i])
     main_data = {
-        'tourdata':data1.data,
+        'tourdata':data1,
         'tourimages':mimg,
         'weblink':link
     }
-    return Response(main_data)
+    return Response(data = main_data, status = status.HTTP_200_OK)
     
     
 

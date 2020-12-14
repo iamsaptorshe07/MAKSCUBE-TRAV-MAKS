@@ -8,6 +8,9 @@ urlpatterns = [
         #Travel Agency Login
         path('travel-agent-login',TravelAgentLogin.as_view(),name='TravelAgentLogin'),
 
+        # Traveller Signup
+        path('traveller-signup',TravellerSignup.as_view(),name='TravellerSignup'),
+
         # Traveller Login
         path('traveller-login',TravellerLogin.as_view(),name='TravellerLogin'),
 
