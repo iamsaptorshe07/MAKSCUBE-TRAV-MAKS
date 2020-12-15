@@ -116,7 +116,7 @@ font-size: 20px;
 */
 
 .navbar{
-   background: linear-gradient(to left,  #00d2ff, #b3ffab, #12fff7) !important;
+   background: linear-gradient(to right, #12fff7, #b3ffab ) !important;
 
 }
 .navbar .nav-item .nav-link{
@@ -787,12 +787,20 @@ ul.social-network li {
   background-color: #3B5998;
 }
 
-.social-network a.icoLinkedin:hover {
-  background-color: #007bb7;
+.social-network a.icoTwitter:hover {
+  background-color: #00aced;
+}
+.social-network a.icoInstagram:hover {
+  background: linear-gradient(to right, #833ab4, #fd1d1d, #fcb045);
+}
+.social-network a.icoPinterest:hover {
+  background-color:#cb2027;
 }
 
 .social-network a.icoFacebook:hover i,
-.social-network a.icoLinkedin:hover i {
+.social-network a.icoPinterest:hover i,
+.social-network a.icoTwitter:hover i,
+.social-network a.icoInstagram:hover i {
   color: #fff;
 }
 
