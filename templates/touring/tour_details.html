@@ -511,9 +511,9 @@
         margin-bottom: 15px;
     }
     .st{
-        margin-bottom: 15px;
+        margin: 0px 7px 15px 7px;
         align-items: center;
-        justify-content: space-around;
+        justify-content: flex-start;
         position: relative;
         display: flex;
         flex-flow: column;
@@ -604,6 +604,10 @@
         align-items: center;
         transition-duration: 0.5s;
         border-radius: 10px;
+    }
+    .ShareBtns ul li{
+        margin: 5px 0 0 0;
+        height: 100%;
     }
     .ShareBtns ul a{
         text-decoration: none;
@@ -761,26 +765,31 @@
                 </div>
                 <div class="ShareBtns">
                     <ul class="featured" style="--length: 5;display:flex;">
-                        <a href="#" id="ShareOnWapp" style="--index: 0;">
-                            <img src="{%static 'img/whatsapp.gif'%}" height="46px"/>
-                            Whatsapp
-                        </a>
-                        <a href="#" id="ShareOnTele" style="--index: 1;">
-                            <img src="{%static 'img/telegram.gif'%}" height="46px"/>
-                            Telegram
-                        </a>
-                        <a href="#" target="_blank" id="ShareOnFB" style="--index: 2;">
-                            <img src="{%static 'img/facebook.gif'%}" height="46px"/>
-                            Facebook
-                        </a>
-                        <a href="#" id="ShareOnInsta" style="--index: 3;">
-                            <img src="https://img.icons8.com/color/46/000000/instagram-new.png"/>
-                            Instragram
-                        </a>
-                        <a style="--index: 4;" onclick="copyUrl();">
-                            <img src="https://img.icons8.com/color/46/000000/copy--v2.png"/>
-                            Copy Url
-                        </a>
+                        <li>
+                            <a href="#" id="ShareOnWapp" style="--index: 0;">
+                                <img src="{%static 'img/whatsapp.gif'%}" height="46px"/>
+                                Whatsapp
+                            </a>
+                            <a href="#" target="_blank" id="ShareOnFB" style="--index: 2;">
+                                <img src="{%static 'img/facebook.gif'%}" height="46px"/>
+                                Facebook
+                            </a>
+                            <a style="--index: 4;" onclick="copyUrl();">
+                                <img src="https://img.icons8.com/color/46/000000/copy--v2.png"/>
+                                Copy Url
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" id="ShareOnTele" style="--index: 1;">
+                                <img src="{%static 'img/telegram.gif'%}" height="46px"/>
+                                Telegram
+                            </a>
+                            
+                            <a href="#" id="ShareByEmail" target="_blank" style="--index: 3;">
+                                <img src="{%static 'img/gmail.gif'%}" height="44px"/>
+                                Email
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -1161,10 +1170,14 @@
         var ShareOnWapp='whatsapp://send?text='+window.location.href;
         var ShareOnFB="//www.facebook.com/sharer/sharer.php?u="+TourLink+"&quote=Check This";
         var ShareOnTele="tg://msg_url?url="+TourLink+"&text=CheckThis";
-        // console.log(TourLink,ShareOnFB);
+        var ShareByEmail='//mail.google.com/mail/?view=cm&fs=1&tf=1&to=&su='+
+                        'Check This Tour'+'&body='+
+                        TourLink+
+                        '&ui=2&tf=1&pli=1';
         $('#ShareOnWapp').attr('href',ShareOnWapp);
         $('#ShareOnFB').attr('href',ShareOnFB);
         $('#ShareOnTele').attr('href',ShareOnTele);
+        $('#ShareByEmail').attr('href',ShareByEmail);
     });
 
     // $('body').click(function(event){
