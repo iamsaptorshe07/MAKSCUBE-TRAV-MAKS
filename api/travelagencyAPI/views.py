@@ -1,9 +1,9 @@
 from django.shortcuts import render
 from datetime import date
 from travelagency.models import Tour, TourImage
-
+from touring.models import Order
 from .serializers import TourSerializer, TourImageSerializer
-
+from api.tours.serializers import OrderSerializer
 # Create your views here.
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -144,4 +144,40 @@ class TourDetail(APIView):
         else:
             return Response(data={'message':'Not Authenticated'},status=status.HTTP_400_BAD_REQUEST)
                 
+
+class OngoingTour(APIView):
+    authentication_classes = (TokenAuthentication,SessionAuthentication,BasicAuthentication)
+    def get(self,request):
+        if request.session.session_key:
+            if request.session['access_type']=='seller':
+                ongoingTour = Order.objects.filter(agent=request.user)
+                orders = []
+                for i in ongoingTour:
+                    if i.tour.startDate >= date.today() and t.tour.endDate<=date.today():
+                        orders.append(i)
+                order_serializer = OrderSerializer(orders,many=True)
+                return Response(
+                    data = {
+                        'status':200,
+                        'ongoingTours':order_serializer.data
+                    },
+                    status = status.HTTP_200_OK
+                )
+            else:
+                return Response(
+                    data = {
+                        'status':401,
+                        'message':"Not Authorized"
+                    },
+                    status = status.HTTP_401_UNAUTHORIZED
+                )
+        else:
+            return Response(
+                data = {
+                    'status':404,
+                    'message':"Not Authenticated"
+                },
+                status = status.HTTP_400_BAD_REQUEST
+            )
+        
 
