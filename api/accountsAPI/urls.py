@@ -25,6 +25,9 @@ urlpatterns = [
 
         #Forgot Password / Reset Password
         path('password_reset/',include('django_rest_passwordreset.urls'), name='password_reset'),
+
+        # Change Password
+        path('change-password',ChangeMyPassword.as_view(),name='Chnagepassword')
 ]
     
 

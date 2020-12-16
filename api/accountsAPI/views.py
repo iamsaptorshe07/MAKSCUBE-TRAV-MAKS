@@ -529,31 +529,34 @@ class ChangeMyPassword(APIView):
      authentication_classes = (TokenAuthentication,SessionAuthentication,BasicAuthentication)
      def post(self,request):
          if request.session.session_key:
-            oldpass = request.POST.get('oldpassword')
-            pass1 = request.POST.get('password')
-            if check_password(oldpass,request.user.password):
-                request.user.set_password(pass1)
+            data = request.data
+            print(data)
+            if check_password(data['oldpassword'],request.user.password):
+                request.user.set_password(data['password'])
                 request.user.save()
                 return Response(
                     {
                         'status':200,
                         'message':'Password Changed Successfully!'
-                    }
+                    },
+                    status = status.HTTP_200_OK
                     )
             else:
                 return Response(
                     {
-                        'status':404,
+                        'status':406,
                         'message':'Enter correct current password'
-                    }
+                    },
+                    status = status.HTTP_406_NOT_ACCEPTABLE
                 )
         
          else:
              return Response(
                  {
-                     'status':404,
+                     'status':403,
                      'message':'Not Authenticated!'
-                 }
+                 },
+                 status = status.HTTP_403_FORBIDDEN
              )
                 
 # Change Password ends here -----------------------------------
