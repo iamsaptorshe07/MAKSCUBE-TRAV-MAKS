@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from datetime import date
 from travelagency.models import Tour, TourImage
-from touring.models import Order
+from touring.models import Order,Cancelled_Order
 from .serializers import TourSerializer, TourImageSerializer
 from api.tours.serializers import OrderSerializer
 # Create your views here.
@@ -180,4 +180,87 @@ class OngoingTour(APIView):
                 status = status.HTTP_400_BAD_REQUEST
             )
         
+# Order Accept or Decline API
+class AcceptOrDeclineTour(APIView):
+    authentication_classes = (TokenAuthentication,SessionAuthentication,BasicAuthentication)
+    def put(self,request,orderId):
+        if request.session.session_key:
+            if request.session['access_type']=='seller':
+                if Order.objects.filter(order_id = orderId,agent = request.user).exists():
+                    order = Order.object.get(order_id = orderId)
+                    agent_approval = request.data
+                    if agent_approval['approval']==True:
+                        order.agent_approval = True
+                        return Response(
+                            data = {
+                                'status':200,
+                                'message':"Congratualations! We are glad that you get booking through us"
+                            },
+                            status = status.HTTP_200_OK
+                        )
+                    elif agent_approval['approval'] == False:
+                        cancelled_order = Cancelled_Order(
+                            order_id = order.order_id,
+                            tour = order.tour,
+                            customer = order.customer,
+                            customer_name = order.customer_name,
+                            customer_email = order.customer_email,
+                            customer_phone = order.customer_phone,
+                            customer_address = order.customer_address,
+                            agent = order.agent,
+                            agency = order.agency,
+                            total_people = order.total_people,
+                            paid_by_user = order.paid_by_user,
+                            total_price = order.total_price,
+                            creation_date = order.creation_date,
+                            cancelled_by = "AGENT",
+                        )
+                        cancelled_order.save()
+                        tour = order.tour
+                        tour.maximum_people+=order.total_people
+                        tour.save()
+                        order.delete()
+                        return Response(
+                            data = {
+                                'status':200,
+                                'mesaage':"Our Executives will call you please provide us a valid reason for not accepting the offer"
+                            },
+                            status = status.HTTP_200_OK
+                        )
+                    else:
+                        return Response(
+                            data={
+                                'status':406,
+                                'message':"Send either true or false, only boolean value is allowed"
+                            },
+                            status = status.HTTP_406_NOT_ACCEPTABLE 
+                            )
+                else:
+                    return Response(
+                            data={
+                                'status':404,
+                                'message':"Order Not Found!"
+                            },
+                            status = status.HTTP_404_NOT_FOUND
+                            )
+            else:
+                return Response(
+                            data={
+                                'status':401,
+                                'message':"Not Authorized!"
+                            }, 
+                            status = status.HTTP_401_UNAUTHORIZED
+                            )
+        else:
+            return Response(
+                            data = {
+                                'status':400,
+                                'message':"Not Authenticated!"
+                            },
+                            status = status.HTTP_400_BAD_REQUEST
+                            )
+
+                    
+
+
 
