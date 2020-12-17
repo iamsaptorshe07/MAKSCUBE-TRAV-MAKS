@@ -898,7 +898,7 @@ ul{
 }
 .popup-btn2 a{
     top:70% !important;
-	opacity: 0.5;
+	opacity: 0.8;
 }
 .footer-pad img{
 	transform: translateX(0px) !important;
@@ -908,7 +908,7 @@ ul{
 @media screen and (max-width: 768px) {
 .popup-btn2 a{
     top:70% !important;
-	opacity: 0.5;
+	opacity: 0.8;
 }
 ul.paymentmode{
 		margin-left:110px;
