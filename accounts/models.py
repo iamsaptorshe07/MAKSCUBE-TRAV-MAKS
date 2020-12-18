@@ -176,6 +176,7 @@ class GovId(models.Model):
 class AgencyDetail(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='userAgency')
     agencyName = models.CharField(max_length=50)
+    agency_logo = models.ImageField(null=True,blank=True)
     agency_Id = models.CharField(max_length=50)
     agencyPhNo = models.BigIntegerField()
     agencyCountry = models.CharField(max_length=25)

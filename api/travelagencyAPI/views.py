@@ -150,10 +150,10 @@ class OngoingTour(APIView):
     def get(self,request):
         if request.session.session_key:
             if request.session['access_type']=='seller':
-                ongoingTour = Order.objects.filter(agent=request.user)
+                ongoingTour = Order.objects.filter(agent=request.user,status=True,agent_approval=True)
                 orders = []
                 for i in ongoingTour:
-                    if i.tour.startDate >= date.today() and t.tour.endDate<=date.today():
+                    if i.tour.startDate >= date.today() and i.tour.endDate<=date.today():
                         orders.append(i)
                 order_serializer = OrderSerializer(orders,many=True)
                 return Response(
@@ -293,6 +293,76 @@ class IncomingOrderStack(APIView):
                 },
                 status = status.HTTP_400_BAD_REQUEST
             )
+
+
+class UpcomingTour(APIView):
+    authentication_classes = (TokenAuthentication,SessionAuthentication,BasicAuthentication)
+    def get(self,request):
+        if request.session.session_key:
+            if request.session['access_type']=='seller':
+                upcomingTour = Order.objects.filter(agent=request.user,status=True,agent_approval=True)
+                orders = []
+                for i in upcomingTour:
+                    if i.tour.startDate > date.today():
+                        orders.append(i)
+                order_serializer = OrderSerializer(orders,many=True)
+                return Response(
+                    data = {
+                        'status':200,
+                        'upcomingTours':order_serializer.data
+                    },
+                    status = status.HTTP_200_OK
+                )
+            else:
+                return Response(
+                    data = {
+                        'status':401,
+                        'message':"Not Authorized"
+                    },
+                    status = status.HTTP_401_UNAUTHORIZED
+                )
+        else:
+            return Response(
+                data = {
+                    'status':404,
+                    'message':"Not Authenticated"
+                },
+                status = status.HTTP_400_BAD_REQUEST
+            )
+
+
+class OrderBookingHistory(APIView):
+    authentication_classes = (TokenAuthentication,SessionAuthentication,BasicAuthentication)
+    def get(self,request):
+        if request.session.session_key:
+            if request.session['access_type']=='seller':
+                order_history = Order.objects.filter(agent=request.user,status=True,agent_approval=True)
+                order_serializer = OrderSerializer(order_history,many=True)
+                return Response(
+                    data = {
+                        'status':200,
+                        'orderHistory':order_serializer.data
+                    },
+                    status = status.HTTP_200_OK
+                )
+            else:
+                return Response(
+                    data = {
+                        'status':401,
+                        'message':"Not Authorized"
+                    },
+                    status = status.HTTP_401_UNAUTHORIZED
+                )
+        else:
+            return Response(
+                data = {
+                    'status':404,
+                    'message':"Not Authenticated"
+                },
+                status = status.HTTP_400_BAD_REQUEST
+            )
+
+
 
 
 
