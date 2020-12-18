@@ -1,0 +1,103 @@
+{% extends 'travelagency/travelagency_basetemplate.html' %}
+{% load static %}
+
+{% block travelagency_stylesheets %}
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Ubuntu:wght@400;500;700&display=swap');
+
+    th {
+        background-color: #4b6cb7;
+        color: white;
+    }
+
+    tr:hover {
+        background-color: #4d4dff;
+        color: #fff;
+    }
+
+    .fa-plane {
+        color: #4B79A1;
+    }
+
+    .invoice {
+        position: relative;
+        background: #fff;
+        border: 1px solid #f4f4f4;
+        padding: 20px;
+        margin: 10px 25px;
+    }
+
+    .page-header {
+        margin: 10px 0 20px 0;
+        font-size: 22px;
+    }
+
+    @media screen and (max-width: 850px) {
+        .tble {
+            transform: translate(0px, 96px);
+            margin: auto;
+        }
+    }
+</style>
+{% endblock travelagency_stylesheets %}
+
+{% block travelagency_body %}
+<section class="tble"
+    style="width: 95%;  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+    <section class="invoice">
+        <!-- title row -->
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="page-header">
+                    <h3 style="font-family:'Ubuntu', sans-serif;"> <i class="fa fa-plane"></i> Upcoming Tour</h3>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Table row -->
+        <div class="row">
+            <div class="col-xs-12 table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Order Id</th>
+                            <th>Date</th>
+                            <th>Tour Name</th>
+                            <th>Booking Status</th>
+                            <th>Agent approve</th>
+                            <th>Booked By</th>
+                            <th>Total Members</th>
+                            <th>Email</th>
+                            <th>Phone Number</th>
+                            <th>Total Paid</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for tour in Tours %}
+                        <tr>
+                            <td>{{tour.order_id}}</td>
+                            <td>{{tour.creation_date}}</td>
+                            <td>{{tour.tour.tourHeading }}</td>
+                            <td>{{tour.status }}</td>
+                            <td>{{tour.agent_approval}}</td>
+                            <td>{{tour.customer_name}}</td>
+                            <td>{{tour.total_people}}</td>
+                            <td>{{tour.customer_email}}</td>
+                            <td>{{tour.customer_phone}}</td>
+                            <td>{{tour.paid_by_user}}</td>
+                        </tr>
+
+                        {% endfor %}
+                        
+
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+</section>
+
+{% endblock travelagency_body %}
