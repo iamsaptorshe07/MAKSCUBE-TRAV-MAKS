@@ -335,9 +335,15 @@ def booking_history(request,agentId):
     user = request.user
     if user.is_authenticated and request.session['access_type']=='seller':
         if user.userAccess.agentId == agentId:
+            total_profit=0
             tours = Order.objects.filter(agent=user)
+            for i in tours:
+                total_profit=total_profit+i.paid_by_user
+            
+            print(total_profit)
             context = {
-                'Tours':tours
+                'Tours':tours,
+                'Profit':total_profit
             }
             return render(request,'travelagency/booking_history.html',context=context)
         else:
@@ -352,12 +358,11 @@ def upcoming_tours(request,agentId):
         if user.userAccess.agentId == agentId:
             tours = Order.objects.filter(agent=user)
             Tour=[]
-            print(tours)
+            total_profit=0
             for i in tours:
                 print(i)
                 if i.tour.startDate > date.today():
                     Tour.append(i)
-            print(Tour)
             context = {
                 'Tours':Tour
             }
