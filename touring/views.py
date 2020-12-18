@@ -158,10 +158,10 @@ def bookTour(request,tourId,agentId):
                     ttl_people = int(request.POST.get('total_people')) 
                     print(ttl_people)
                     if ttl_people>tour.maximum_people:
-                        messages.error(request,"Don't try to be oversmart! -- Maximum Tourist no should be {}".format(tour.maximum_people))
+                        messages.error(request,"Don't try to be oversmart!(শুটিয়ে লাল করে দেবো,চ্যাংড়ামো বার করে দেব) -- Maximum Tourist no should be {}".format(tour.maximum_people))
                         return redirect('/tour/booktour/{}/{}'.format(tour.tourId,tour.seller.userAccess.agentId))
                     if ttl_people <= 0:
-                        messages.error(request,'Minimum Tourist no should be 1')
+                        messages.error(request,'শুটিয়ে লাল করে দেবো,চ্যাংড়ামো বার করে দেব - - Minimum Tourist no should be 1')
                         return redirect('/tour/booktour/{}/{}'.format(tour.tourId,tour.seller.userAccess.agentId))
                     else:
                         name = request.POST.get('name')
