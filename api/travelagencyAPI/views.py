@@ -153,7 +153,7 @@ class OngoingTour(APIView):
                 ongoingTour = Order.objects.filter(agent=request.user,status=True,agent_approval=True)
                 orders = []
                 for i in ongoingTour:
-                    if i.tour.startDate >= date.today() and i.tour.endDate<=date.today():
+                    if date.today() >= i.tour.startDate and date.today() <= i.tour.endDate:
                         orders.append(i)
                 order_serializer = OrderSerializer(orders,many=True)
                 return Response(
