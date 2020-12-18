@@ -85,12 +85,20 @@ def tourDetails(request,tourId,slug):
             
             else:
                 return render(request,'forbidden.html')
-        # Tour details for Travellers without login or with login ends------------------------------
+        # Tour details for Travellers without login or with login ends------------------------------   
+        else:
+            return render(request,'forbidden.html')
+    else:
+        return render(request,'forbidden.html')
 
+def preview(request,tourId):
+    if(Tour.objects.filter(tourId=tourId).exists()):
+        tour = Tour.objects.get(tourId=tourId)
+        user=request.user
         # Tour details for Sellers with login starts ------------------------------
         
-        elif user.is_authenticated and request.session['access_type']=='seller':
-            agentId = tour.tourAgency.agency_Id
+        if user.is_authenticated and request.session['access_type']=='seller':
+            agentId = tour.agency.agency_Id
             agencyDetail = AgencyDetail.objects.get(user=user)
             if agentId==agencyDetail.agency_Id:
                 description=tour.description
