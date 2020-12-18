@@ -106,7 +106,6 @@ def activateSeller(request, uid, token):
 
 # Traveller account creation and login page handler and also signup of traveller handler function ---- Old one
 
-# Traveller Login handler Starts here ----------------------------------------
 # Traveller Signup Main Page
 def travelerAccountsSignup(request):
     if request.method == 'POST':
@@ -124,8 +123,7 @@ def travelerAccountsSignup(request):
                         res = messages_sender(request, user)
                         print(res)
                         if res is True:
-                            messages.success(request,
-                                             'As your seller account already exists we will use your old data just Check your email to activate the user account')
+                            messages.success(request,'As your seller account already exists we will use your old data just Check your email to activate the user account')
                             return redirect('travelerAccountsSignup')
                         if res is False:
                             messages.error(request, 'Internal Problem Occured')
@@ -297,8 +295,6 @@ def userLogout(request):
 # User logout ends here --------------
 
 # Seller (Agency and Guide) account creation and login page handler and also signup of seller handler function ----
-    
-
 def sellerAgencyAccountSignup(request):
     if request.method == 'POST':
         try:
@@ -328,11 +324,11 @@ def sellerAgencyAccountSignup(request):
                             print(res)
                             if res is True:
                                 messages.success(request,'Your user account is already exsits! Check your email to activate the agency account!')
-                                return redirect('traveler_accounts_signup')
+                                return redirect('sellerAgencyAccountSignup')
                             if res is False:
                                 govData.delete()
                                 messages.error(request,'Internal Problem Occured')
-                                return redirect('traveler_accounts_signup')
+                                return redirect('sellerAgencyAccountSignup')
                 else:
                     messages.warning(request,'Account already exsits! Check your email to activate the user account!')
                     return redirect('sellerAgencyAccountSignup')
