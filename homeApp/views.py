@@ -27,6 +27,9 @@ def termsAndCondition(request):
 def partnerBenifits(request):
     return render(request,'home_app/partnerbenifits.html')
 
+def partnerBenifitsTavellers(request):
+    return render(request,'home_app/partnerbenifitstravellers.html')
+
 def partnerFAQ(request):
     return render(request,'home_app/partnerfaq.html')
 

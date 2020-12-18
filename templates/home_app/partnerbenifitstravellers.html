@@ -1,0 +1,259 @@
+{% extends 'basetemplate.html' %}
+{% load static %}
+{% block stylesheets %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css">
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+
+<link rel="stylesheet" href="{% static 'homeapp_css/benefit_travellers.css'%}">
+
+{% endblock stylesheets %}
+
+{% block body %}
+<!-- Benifits of joining us -->
+<main>
+<section id="heading">
+    <div class="container">
+        <div class="row">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="col-lg-6 headingCardBg">
+                <div class="headingCard">
+                    <h1>TRAVMAKS</h1>
+                    <p>We make your <strong class="spanstrong">Travel</strong> easy</p>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Amet accusantium, officiis incidunt
+                        et ullam repudiandae rerum ipsa ratione consectetur rem quod in optio maiores consequuntur 
+                        dolor error, alias odio dignissimos!
+                    </p>
+                    <div class="btns">
+                        <button type="button"><a href="/accounts/traveller/account/signup">Sign Up</a></button>
+                        <button type="button"><a href="/terms-and-condition">T&C</a></button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="row specialityCardBg">
+                    <div class="specialityCard">
+                        <span><img src="https://img.icons8.com/fluent/64/000000/hot-price.png"/></span>
+                        <h4>Hot Price</h4>
+                        <p>Book tour in hot prices and get maximum discounts on your dream tours
+                        </p>
+                    </div>
+                    <div class="specialityCard">
+                        <span><img src="https://img.icons8.com/dusk/64/000000/show-property.png"/></span>
+                        <h4>Know Everything</h4>
+                        <p>
+                            Know every details regarding tours and agency management before travelling. Ask directly
+                            for any doubt.
+                        </p>
+                    </div>
+                    <div class="specialityCard">
+                        <span><img src="https://img.icons8.com/officel/64/000000/reviewer-female.png"/></span>
+                        <h4>Reviews</h4>
+                        <p>Get the best tours for you based on people's ratting and reviews
+                        </p>
+                    </div>
+                    <div class="specialityCard">
+                        <span><img src="https://img.icons8.com/clouds/64/000000/worldwide-location.png"/></span>
+                        <h4>Specially for You</h4>
+                        <p>Choose the best tour that meets your expectation according to your location, price range and date range
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="YouNotAlone">
+    <div>
+        <span><img src="https://img.icons8.com/color/70/000000/travel-agency.png"/></span>
+        <h1>100+</h1>
+        <p>agencies to book from</p>
+    </div>
+    <div>
+        <span><img src="https://img.icons8.com/clouds/70/000000/passenger-with-baggage.png"/></span>
+        <h1>2000+</h1>
+        <p>travellers have booked</p>
+    </div>
+    <div>
+        <span><img src="{%static 'homeapp_css/globe.svg'%}" height="70px" alt=""></span>
+        <h1>450+</h1>
+        <p>cities to visit</p>
+    </div>
+</section><br><br>
+<section class="container">
+    <div class="row">
+        <div class="col-lg-6 featuresBg">
+            <h2>Our <span class="spanstrong">Special</span> Features</h2>
+            <div class="feature">
+                <div class="imgbg"><img src="{% static 'homeapp_css/calendar.svg'%}" height="40px"></div>
+                <p>You can design your own tour and get almost a perfect one</p>
+            </div>
+            <div class="feature">
+                <div class="imgbg"><img src="https://img.icons8.com/fluent/40/000000/compare.png"/></div>
+                <p>You can compare two tours and select the better one for you</p>
+            </div>
+        </div>
+        <div class="col-lg-6 clockbg">
+            <div class="imgbg">
+                <div class="clock">
+                    <div class="outer-clock-face">
+                      <div class="marking marking-one"></div>
+                      <div class="marking marking-two"></div>
+                      <div class="marking marking-three"></div>
+                      <div class="marking marking-four"></div>
+                      <div class="inner-clock-face">
+                        <div class="hand hour-hand"></div>
+                        <div class="hand min-hand"></div>
+                        <div class="hand second-hand"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <h2>We are <span class="spanstrong">Available</span> 24 x 7 hours</h2>
+        </div>
+    </div>
+</section><br><br>
+<section id="TravmaksForBusiness">
+    <h2 class="ml-3">TRAVMAKS for <span class="spanstrong">BUSINESS</span></h2>
+    <div class="tfbTop">
+        <div>
+            <div class="imgbg"><img src="{%static 'homeapp_css/registration.svg'%}" height="70px" alt=""></div>
+            <div class="tfbcon">
+                <h4>Register Your Agency</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, accusamus?</p>
+                <a href="#">Know More</a>
+            </div>
+        </div>
+        <div>
+            <div class="imgbg"><img src="{%static 'homeapp_css/icons8-upload-to-the-cloud.gif'%}" height="70px" alt=""></div>
+            <div class="tfbcon">
+                <h4>Upload Tours</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, accusamus?</p>
+                <a href="#">Know More</a>
+            </div>
+        </div>
+        <div>
+            <div class="imgbg"><img src="https://img.icons8.com/ios-filled/70/000000/attract-customers.png"/></div>
+            <div class="tfbcon">
+                <h4>Get Customers</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, accusamus?</p>
+                <a href="#">Know More</a>
+            </div>
+        </div>
+    </div>
+    <div class="tfbBtm">
+        <a href="/accounts/seller/account/signup">
+            <p>Register as Agency</p>
+            <span><img src="https://img.icons8.com/metro/26/000000/long-arrow-right.png"/></span>
+        </a>
+        <a href="/contact-us">
+            <p>Contact Us</p>
+            <span><img src="https://img.icons8.com/metro/26/000000/long-arrow-right.png"/></span>
+        </a>
+    </div>
+</section><br><br><br>
+</main>
+
+<script src="https://code.jquery.com/jquery-3.5.1.js" 
+    integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" 
+    crossorigin="anonymous">
+</script>
+<script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script src="//geodata.solutions/includes/countrystatecity.js"></script>
+
+<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
+<script>
+function openNav() {
+    document.getElementById("myNav").style.height = "110vh";
+}
+
+function closeNav() {
+    document.getElementById("myNav").style.height = "0%";
+}
+$(function(){
+    
+    var swiper = new Swiper('.swiper-container', {
+        spaceBetween: 30,
+        effect:'fade',
+        loop:true,
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+        navigation: {
+            nextEl: '.ab',
+            prevEl: '.pb',
+        },
+    });
+
+    let x=230;
+    let y=500;
+    let z=330;
+    $(window).scroll(function(){         
+        var h=$(window).scrollTop();
+        var th=$('#testimonials').height();
+        var hh=$('#heading').height();
+        th=th/2+hh;
+        if(h>th && x>229){
+            fun1();
+    }
+    })
+    function fun1(){
+        const counter1=document.querySelector('.counter1');
+        const counter2=document.querySelector('.counter2');
+        const counter3=document.querySelector('.counter3');
+        setInterval(update3,27);
+        setInterval(update2,42);
+        setInterval(update1,50);
+        function update1(){
+            counter1.innerHTML=x;
+            if(x>0){
+                x--;
+            }
+        }
+        function update2(){
+            counter2.innerHTML=x;
+            if(z>0){
+                z--;
+            }
+        }
+        function update3(){
+            counter3.innerHTML=y;
+            if(y>0){
+                y--;
+            }
+        }
+    }
+})
+
+</script>
+<script>
+    const secondHand = document.querySelector('.second-hand');
+    const minsHand = document.querySelector('.min-hand');
+    const hourHand = document.querySelector('.hour-hand');
+
+    function setDate() {
+        const now = new Date();
+
+        const seconds = now.getSeconds();
+        const secondsDegrees = ((seconds / 60) * 360) + 90;
+        secondHand.style.transform = `rotate(${secondsDegrees}deg)`;
+
+        const mins = now.getMinutes();
+        const minsDegrees = ((mins / 60) * 360) + ((seconds/60)*6) + 90;
+        minsHand.style.transform = `rotate(${minsDegrees}deg)`;
+
+        const hour = now.getHours();
+        const hourDegrees = ((hour / 12) * 360) + ((mins/60)*30) + 90;
+        hourHand.style.transform = `rotate(${hourDegrees}deg)`;
+    }
+
+    setInterval(setDate, 1000);
+
+    setDate();
+</script>
+{% endblock body %}

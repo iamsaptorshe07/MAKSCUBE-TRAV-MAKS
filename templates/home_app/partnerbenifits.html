@@ -13,265 +13,24 @@
 {% block body %}
 <!-- Benifits of joining us -->
 <main>
+<div class="requestCall">
+    <span>Request a Call</span>
+</div>
 <section id="heading">
     <div class="container">
         <div class="row">
-            <div class="col-md-12">
-                <form  method="POST" action='/accounts/seller/account/signup' enctype="multipart/form-data" 
-                    onsubmit="return registrationValidator();">
-                    <h1>Travmaks</h1>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident quia.</p>
-                    <div class="fc">
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Full Name *"
-                             name="name" id='fullname' required />
-                        </div>
-                        <div class="form-group">
-                            <input type="email" class="form-control" placeholder="Your Email *"
-                             name="email" id="mail" required/>
-                        </div>
-                    </div>
-                    <div class="fc">
-                        <span>
-                            <div class="maxl">
-                                <label class="radio inline"> 
-                                    <span style="display:inline-block">Gender</span> <br>
-                                    <input type="radio" name="gender" value="Male" checked>
-                                    <span> Male </span> 
-                                </label>
-                                <label class="radio inline"> 
-                                    <input type="radio" name="gender" value="Female">
-                                    <span>Female </span> 
-                                </label>
-                                <label class="radio inline"> 
-                                    <input type="radio" name="gender" value="Other">
-                                    <span>Others</span> 
-                                </label>
-                            </div>
-                        </span>
-                        <div class="form-group">
-                            <input type="text" minlength="10" maxlength="10" class="form-control" 
-                                placeholder="Your Phone *" name="phone" id="phone" required/>
-                        </div>
-                    </div>
-                    <div class="fc">
-                        <div class="form-group bd">
-                            <input type="date" placeholder="Birthdate" name="bdate"
-                            class="form-control"  id="bdate" required/>
-                        </div>
-                    </div>
-                    <div class="fc">
-                        <span>
-                            <div class="form-group">
-                                <select class="form-control countries" name="country" id="countryId" required>
-                                    <option value="">Select Country</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <select class="form-control states" name="state" id="stateId" required>
-                                    <option value="">Select State</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <select class="form-control cities" name="city" id="cityId" required>
-                                    <option value="">Select City</option>
-                                </select>
-                            </div>
-                        </span>
-                        <span>
-                            <div class="txtar form-group">
-                                <textarea type="text" name="address" id="address" required 
-                                placeholder="Enter Full Address *"></textarea>
-                            </div>
-                            <div class="form-group">
-                                <input type="number" class="form-control" placeholder="Enter ZIP Code *" 
-                                name="zip" id="zip" required />
-                            </div>
-                        </span>
-                    </div>
-                    <div class="fc">
-                        <span>
-                            <div class="form-group">
-                                <select name="govIdName" id="proofType" class="form-control" required>
-                                    <option class="hidden" id="proofType" value="" disabled=""
-                                        selected="">Select ID Proof type</option>
-                                    <option value="ADHAR">ADHAR</option>
-                                    <option value="PAN">PAN</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Enter Your Proof ID *" 
-                                name="govIdNo" id="govIdNo" required/>
-                            </div>
-                        </span>
-                        <span>
-                            <div class="form-group txtxar">
-                                <input type="file" name="govIdImage" id="img" class="form-control" required/>
-                                <label for="img" class="text-white">Click me to upload ID Proof</label>
-                            </div>
-                        </span>
-                    </div>
-                    <div class="fc">
-                        <div class="form-group">
-                            <input type="password" class="form-control" placeholder="Password *" name="password1" 
-                            id="password1" required/>
-                        </div>
-                        <div class="form-group">
-                            <input type="password" class="form-control" placeholder="Confirm Password *" 
-                            name="password2" id="password2" required/>
-                        </div>
-                    </div>
-                    <div class="fc">
-                        <div class="form-group">
-                            <input type="checkbox" name="tac" id="tacc" required>
-                            <button type="button" class="tac" onclick="openNav();">
-                                I accept the Terms and Condition
-                            </button>
-                        </div>
-                    </div>
-                    <div class="fc">
-                        <div class="form-group btns">
-                            <button class="signup btn-primary" type="submit">Sign Up</button>
-                            <a class="whyus btn-primary js-scroll-trigger" href="#testihead">Why Us</a>
-                        </div>
-                        
-                        <div id="errormsgbg">
-                            <div id="errormsg" onclick="removeValidator();"></div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    <div id="myNav" class="overlay">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <div class="overlay-content">
-            <div class="main1">
-                <div class="container">
-                    <div class="row">
-                        <div class="heading col-md-12">
-                            <img src="{% static 'homeapp_css/tc.png' %}">
-                            <h1>Terms & Conditions</h1>
-                            <img src="{% static 'homeapp_css/tc.png' %}">
-                        </div>
-                    </div>
-                </div>
-                <div class="container">
-                    <div class="row">
-                        <div class="left col-md-3">
-                            <ul>
-                                <a href="#tc1"><li class="tc1 moo" onclick="fun('tc1');">Applicability</li></a>
-                                <a href="#tc2"><li class="tc2" onclick="fun('tc2');">Introduction</li> </a>
-                                <a href="#tc3"> <li class="tc3" onclick="fun('tc3');">Liability</li></a> 
-                                <a href="#tc4"><li class="tc4" onclick="fun('tc4');">Eligibility</li></a> 
-                                <a href="#tc5"> <li class="tc5" onclick="fun('tc5');">Intellectual Property</li></a>  
-                                <a href="#tc6"><li class="tc6" onclick="fun('tc6');">Responsibility</li></a> 
-                                <a href="#tc7"><li class="tc7" onclick="fun('tc7');">SECURITY</li></a> 
-                                <a href="#tc8"><li class="tc8" onclick="fun('tc8');">FEES AND PAYMENT</li></a>  
-                                <a href="#tc9"><li class="tc9" onclick="fun('tc9');">ADVERTISEMENT</li></a>
-                                <a href="#tc10"><li class="tc10" onclick="fun('tc10');">FRADULENTS</li></a>
-                                <a href="#tc11"><li class="tc11" onclick="fun('tc11');">Others</li></a>
-                            </ul>
-                        </div>
-                        <div class="right col-md-9">
-                            <div class="head">
-                                <div id="tc1">
-                                    <h3 style="width: 100%;display: flex;"><p class="a">Applicability Of Terms and Conditions</p><p class="b"></p></h3>
-                                    <p>
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Terms and Condition is applicable for any individual who enquires / requests about or buys any travelling package through TRAVMAKS official website, mobile application, Facebook page, Facebook Group, Instagram account, or any sales person, or any other sales channel.
-                                    </p>
-                                </div>
-                                <div id="tc2">
-                                    <h3>Introduction :</h3>
-                                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The Website is intended to be used by bonafide User(s) for a legitimate use. User shall not distribute exchange, modify, sell or transmit anything from the Website, including but not limited to any text, images, audio and video, for any business, commercial or public purpose.  
-                                        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Access to certain features of the Website may only be available to registered User(s). The process of registration required the User to answer certain questions or provide certain information that may or may not be personal in nature. Some such fields may be mandatory or optional. User represents and warrants that all information supplied to TRAVMAKS is true and accurate. TRAVMAKS reserves the right, in its sole discretion, to terminate the access to the Website and the services offered on the same or any portion thereof at any time, without notice, for general maintenance or any other reason whatsoever. 
-                                        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TRAVMAKS reserves the right to periodically make improvements or changes in its Website at any time without any prior notice to the User. User(s) are requested to report any content on the Website which is deemed to be unlawful, objectionable, libelous, defamatory, obscene, harassing, invasive to privacy, abusive, fraudulent, against any religious beliefs, spam, or is violative of any applicable law to complain@travmaks.in On receiving such report, TRAVMAKS reserves the right to investigate and/or take such action as the Company may deem appropriate.
-                                        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The User Agreement grants a limited, non-exclusive, non-transferable right to use this Website as expressly permitted in this User Agreement. The User agrees not to interrupt or attempt to interrupt the operation of the Website in any manner whatsoever.
-                                    </p>
-                                </div>
-                                <div id="tc3">
-                                    <h3>Limited Liability Of TRAVMAKS :</h3>
-                                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TRAVMAKS only acts as a connector between Service provider (Travel agencies and Guides) and users. TRAVMAKS’s liability is limited to providing the user affirmed tour/travel booking as selected by the user.
-                                        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Any issue or concern faced by the user at the time of arrival or during the tour operation will be sole responsibility of the service provider. 
-                                        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TRAVMAKS will not be responsible for the demonstrations, exclusions, mistakes, portrayals, guarantees, breaks or carelessness on part of any Service Provider, unless it is explicitly committed by TRAVMAKS .
-                                        <br>&nbsp;•	TRAVMAKS is not responsible for the standard of services as provided by the respective Service Providers.
-                                        <br>&nbsp;•	TRAVMAKS provides no guarantee with regard to their quality or fitness as represented by provider.
-                                        
-                                        <br>&nbsp;** TRAVMAKS is only an online platform which connects the travel lovers (users) with the travel agencies and individual guides all over the India, Through our application we connect the user with different service providers to make their travelling easy. TRAVMAKS is not a Travel agency itself. **
-                                    </p>
-                                </div>
-                                <div id="tc4">
-                                    <h3>Eligibility To Use:</h3>
-                                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The User must be atleast 18 years of age and must have the legitimate position to go into an agreement. so as become a User and use the services of TRAVMAKS. 
-                                        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;If you are a minor or are below the age of 18 years, you shall not register as a User of the Website and shall not transact on or use the Website.
-                                        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;As a minor if you wish to use or transact on the Website, such use or transaction shall only be made by a person of legal contracting age (legal guardian or parents). We reserve the right to terminate your membership and access to the Website if it is discovered that you are a minor or incompetent to contract according to the law or any information pertaining to your age entered at the time of creation of account is false. 
-                                        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Prior to utilizing the Website, moving toward any Sales Channels or buying the travel packages of TRAVMAKS, the Users will necessarily peruse and comprehend this User Agreement/Terms & Conditions and shall be deemed to have accepted this User Agreement as a binding document that governs User's dealings and transactions with TRAVMAKS. In the event that the User disagrees with any aspect of this Agreement, at that point the User must not buy any package and must not access or approach the Sales Channels of TRAVMAKS.
-                                    </p>
-                                </div>
-                                <div id="tc5">
-                                    <h3>Intellectual Property  </h3>
-                                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;All content provided through various Sales Channels, including but not limited to audio, images, software, text, icons and such similar content ("Content"), are registered by TRAVMAK and protected under applicable intellectual property laws. User cannot use this Content for any other purpose. TRAVMAKS does not grant the User a license, right or authority to use such proprietary logos, service marks, or trademarks in any manner. Any unauthorized use of the Content, will be in violation of the applicable law.
-                                        <br>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TRAVMAKS respects the intellectual property rights of others. If you notice any act of infringement on the Website, you are requested to send us a written notice/ intimation which must include the following information;
-                                            
-                                        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; •  	Clear identification of such copyrighted work that you claim has been infringed;
-                                        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; •	Location of the material on the Website, including but not limited to the link of the infringing material;
-                                        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; •	The proof that the alleged copyrighted work is owned by you;
-                                        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; •	Contact information;
-                                        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Any complain notices can be sent to MMT by email at complain@travmaks.in
-                                    </p>
-                                </div>
-                                <div id="tc6">
-                                    <h3>User Responsibility </h3>
-                                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Users are advised to check the description of the tour package carefully before making a booking. 
-                                        <br>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;If a User intends to make a booking on behalf of another person, it shall be the responsibility of the User to inform such person about the terms of this Agreement, including all rules and restrictions applicable thereto. 
-                                        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;User also authorizes TRAVMAKS's representative to contact such user over phone, message and email. This consent shall supersede any preferences set by such User through national customer preference register (NCPR) or any other similar preferences
-                                    </p>
-                                </div>
-                                <div id="tc7">
-                                    <h3>SECURITY AND ACCOUNT RELATED INFORMATION</h3>
-                                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;While registering on TRAVMAKS website user needs to enter some information which may or may not be personal in nature.
-                                        <br>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;We try our best to make sure that user entered data are totally safe and secured at our end. But User must understands that any information that is provided to this Website may be read or intercepted by others due to any breach of security at the User's end.
-                                        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;User shall be solely responsible for maintaining the confidentiality of both the password and the account as well as for all activities on the account. It is the duty of the User to notify TRAVMAKS immediately in writing of any unauthorized use of their password or account or any other breach of security. TRAVMAKS will not be liable for any loss that may be incurred by the User as a result of unauthorized use of the password or account, either with or without the User's knowledge. The User shall not use anyone else's account at any time.
-                                        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;We don’t store user’s bank account details, credit / debit card or net banking details except the transaction id, bank transaction ID, bank name generated at the time of payment.  
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TRAVMAKS will always make its best to ensure that the content on its websites or other sales channels are free of any virus or such other malwares. However, any data or information downloaded or otherwise obtained through the use of the Website or any other Sales Channel is done entirely at the User's own discretion and risk and they will be solely responsible for any damage to their computer systems or loss of data that may result from the download of such data or information.
-                                    </p>
-                                </div>
-                                <div id="tc8">
-                                    <h3>FEES AND PAYMENT </h3>
-                                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;In addition to the cost of booking as charged by the Service Providers, TRAVMAKS reserves the right to charge certain fees in the nature of convenience fees or service fees. 
-                                        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;In the rare circumstance of a booking not getting confirmed or cancelled at last moment for any reason whatsoever, TRAVMAKS will process the whole refund of the booking amount paid by the User and intimate the User about the same. TRAVMAKS is not under any obligation to provide an alternate booking in lieu of or to compensate or replace the unconfirmed booking. All subsequent bookings will be treated as new transactions. Any applicable refund will be processed as per the defined policies of the service provider and TRAVMAKS as the case may be.
-                                        <br>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The User shall be completely responsible for all charges, fees, duties, taxes, and assessments arising out of the use of the service, as per the applicable laws.
-                                        
-                                        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The User agrees and understands that all payments shall only be made to bank accounts of TRAVMAKS. TRAVMAKS or its representatives or employees shall never ask a customer to transfer money to any private account or to an account not held in the name of TRAVMAKS. The User agrees that if that user transfers any amount against any booking or transaction to any bank account that is not legitimately held by TRAVMAKS or to any personal account of any person, TRAVMAKS shall not be held liable for the same. User shall not hold any right to recover from TRAVMAKS any amount which is transferred by the User to any third party. In any case the booking gets cancelled as we don’t store user’s bank account information, our representative will call customer to take minimal details (Account Holder Name, Branch Name, IFSC Code )  to transfer money in the customer’s bank account directly.
-                                        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The User will not share his personal sensitive information like credit/debit card number, CVV, OTP, card expiry date, user IDs, passwords etc. with any person including the travel agents, employees or representatives of TRAVMAKS. The User shall immediately inform TRAVMAKS if such details are demanded by any of its agents' employees or representatives. TRAVMAKS shall not be liable for any loss that the User incurs for sharing the aforesaid details.
-                                        <br>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;For more details visit our  Payment Policy Page : Link – <strong style="color: blue;text-decoration: underline;"><a target="_blank" href="https://www.travmaks.in/user/payment-policy">https:www.travmaks.in/user/payment-policy</a></strong> 
-                                    </p>
-                                </div>
-                                <div id="tc9">
-                                    <h3>ADVERTISEMENT ON TRAVMAKS</h3>
-                                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The Website may contain links to third party websites. TRAVMAKS does not control such websites and is not responsible for its contents. If a User accesses any third-party website, the same shall be done entirely at the User's risk and TRAVMAKS shall assume no liability for the same.
-                                        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TRAVMAKS is not responsible for any errors, omissions or representations on any of its pages, links or any linked website pages to the extent such information is updated or provided directly by the Service Providers or the advertisers.
-                                        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TRAVMAKS does not endorse any advertisers on its Website, or any linked sites in any manner. The Users are requested to verify the accuracy of all information provided on the third-party web pages.
-                                        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The linked sites are not under the control of TRAVMAKS and hence TRAVMAKS is not responsible for the contents of any linked site(s) or any further links on such site(s), or any changes or updates to such sites. TRAVMAKS is providing these links to the Users only as a convenience.
-                                    </p>
-                                </div>
-                                <div id="tc10">
-                                    <h3>FAKE CALL AND OTHER FRADULENTS</h3>
-                                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TRAVMAKS's employees or authorized representatives will never contact a User asking for his/ her credit or debit card number, expiry date, CVV, net banking login, passwords, OTP etc. nor will they ever request for a fund transfer to a personal or an individual bank account. Further, they will also not ask a User to install any third-party applications that enable them to view a User's mobile or computer screen.
-            
-                                        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Acting on any of these requests may make you a victim of fraud, and may potentially lead to loss of your valuable money or information.
-                                        
-                                        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; If you are ever asked for any of the aforesaid information, please report it immediately on <strong style="color: blue;text-decoration: underline;"><a target="_blank" href="http://www.complain@travmaks.in">complain@travmaks.in</a></strong>.
-                                    </p>
-                                </div>
-                                <div id="tc11">
-                                    <h3>**  Disclaimer : **</h3>
-                                    <p style="font-weight: 700;">Terms and Condition may changes on time to time without any prior notice to the user / service provider, it is user’s responsibility to go through the Terms and Condition Page each time before using the website. 
-                        
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
+            <div class="col-md-6">
+                <div class="headingCard" data-tilt data-tilt-max="5">
+                    <h1>TRAVMAKS</h1>
+                    <p>We make your <strong class="spanstrong">Travel</strong> easy</p>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Amet accusantium, officiis incidunt
+                        et ullam repudiandae rerum ipsa ratione consectetur rem quod in optio maiores consequuntur 
+                        dolor error, alias odio dignissimos!
+                    </p>
+                    <div class="btns">
+                        <button type="button"><a href="/accounts/seller/account/signup">Sign Up</a></button>
+                        <button type="button"><a href="/terms-and-condition">T&C</a></button>
                     </div>
                 </div>
             </div>
@@ -279,11 +38,64 @@
     </div>
 </section>
 <br>
-<h1 id="testihead">Reason to chose us...</h1><br>
+<section id="values">
+    <div class="container">
+        <div class="row">
+            <h1 class="col-lg-12 pl-0">Our <span class="spanstrong">Values</span></h1>
+            <div class="col-lg-7">
+                <div class="row mr-2">
+                    <div class="col-md-6">
+                        <h4>Honesty</h4>
+                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magnam ex vel eveniet
+                        </p>
+                    </div>
+                    <div class="col-md-6">
+                        <h4>Integrity</h4>
+                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magnam ex vel eveniet
+                        </p>
+                    </div>
+                    <div class="col-md-6">
+                        <h4>Trust</h4>
+                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magnam ex vel eveniet
+                        </p>
+                    </div>
+                    <div class="col-md-6">
+                        <h4>Teamwork</h4>
+                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magnam ex vel eveniet
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <h4>You Are Not Alone!</h4>
+                <div class="row ml-3">
+                    <div class="col-sm-6">
+                        <h1>45</h1>
+                        Agency Registered
+                    </div>
+                    <div class="col-sm-6">
+                        <h1>205</h1>
+                        Tourists Joined
+                    </div>
+                    <div class="col-sm-6">
+                        <h1>103</h1>
+                        Delevered in Different Cities
+                    </div>
+                    <div class="col-sm-6">
+                        <h1>4501+</h1>
+                        Tours Booked
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<br><br><br>
+<h1 id="testihead">Reasons to chose us...</h1><br>
 <div class="container">
     <div class="row">
-        <div class="col-md-6">
-            <h2>1. Our <strong>Special</strong> Features</h2>
+        <div class="col-lg-6 featuresBg">
+            <h2>1. Our <strong class="spanstrong">Special</strong> Features</h2>
             <div class="feature">
                 <div class="imgbg"><img src="{% static 'homeapp_css/dashboard.svg'%}" alt=""></div>
                 <p>You will get a dashboard to visualize and keep track everything</p>
@@ -293,7 +105,7 @@
                 <p>You will get a transaction record book</p>
             </div>
         </div>
-        <div class="col-md-6 clockbg">
+        <div class="col-lg-6 clockbg">
             <div class="imgbg">
                 <div class="clock">
                     <div class="outer-clock-face">
@@ -309,137 +121,11 @@
                     </div>
                 </div>
             </div>
-            <h2>2. We are <strong>Available</strong> 24 x 7 hours</h2>
+            <h2>2. We are <strong class="spanstrong">Available</strong> 24 x 7 hours</h2>
         </div>
     </div>
 </div>
-<div class="col-md-12 testihead">
-    <h2>3. Our <strong>Customers</strong> Love Us</h2>
-</div><br>
-<section id="testimonials">
-    
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4 col-sm-4 wow slideInLeft">
-
-                <div class="vertical-heading">
-                    <h5>We Are</h5>
-                    <h2>What Our <br><strong>Customers</strong> Say</h2>
-                </div>
-
-            </div>
-
-            <div class="col-md-8 review" data-wow-duration="2s">
-                <div class="swiper-container">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <h1>Quality Support</h1><br>
-                            <span>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                            </span>
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <img src="{%static 'homeapp_css/tc.png'%}" alt="">
-                                </div>
-                                <div class="col-md-9">
-                                    <h6>Alex Farguson</h6>
-                                    <p>Manager, xyz</p>
-                                    <p>Lorem ipsum dolor sit amet con nesciunt qui veniam ullam provident quasi.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <h1>Good Work</h1><br>
-                            <span>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                            </span>
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <img src="{%static 'homeapp_css/tc.png'%}" alt="">
-                                </div>
-                                <div class="col-md-9">
-                                    <h6>Alex Farguson</h6>
-                                    <p>Manager, xyz</p>
-                                    <p>Lorem ipsum dolor sit amet con nesciunt qui veniam ullam provident quasi.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <h1>Imprassive</h1><br>
-                            <span>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                            </span>
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <img src="{%static 'homeapp_css/tc.png'%}" alt="">
-                                </div>
-                                <div class="col-md-9">
-                                    
-                                    <h6>Alex Farguson</h6>
-                                    <p>Manager, xyz</p>
-                                    <p>Lorem ipsum dolor sit amet con nesciunt qui veniam ullam provident quasi.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <h1>Better Growth</h1><br>
-                            <span>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                            </span>
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <img src="{%static 'homeapp_css/tc.png'%}" alt="">
-                                </div>
-                                <div class="col-md-9">
-                                    <h6>Alex Farguson</h6>
-                                    <p>Manager, xyz</p>
-                                    <p>Lorem ipsum dolor sit amet con nesciunt qui veniam ullam provident quasi.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Add Pagination -->
-                    <div class="swiper-pagination"></div>
-                    <!-- Add Arrows -->
-                        <!-- <div class="swiper-button-next"></div>
-                        <div class="swiper-button-prev"></div>
-                     -->
-                    <div class="arrow">
-                        <i class="fa fa-arrow-circle-left pb" aria-hidden="true"></i>
-                        <i class="fa fa-arrow-circle-right ab" aria-hidden="true"></i>
-                        <!-- <button class="pb">h</button>
-                        <button class="ab">hello</button> -->
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-<!-- <br> -->
-
+<br><br>
 <section id="stats">
 
     <div class="content-box-md">
@@ -451,7 +137,7 @@
                 <div class="col-md-12 wow slideInLeft">
 
                     <div class="vertical-heading">
-                        <h2><br>4. Getting best services <br>at <strong>Minimal </strong>cost! <br>ain't it great?</h2>
+                        <h2><br>4. Getting best services <br>at <strong class="spanstrong">Minimal </strong>cost! <br>ain't it great?</h2>
                     </div>
 
                 </div>
@@ -506,30 +192,120 @@
     </div>
 
 </section>
-<section class="online">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <h2>5. Great Way to Put Your Bussiness Online</h2><br>
-            </div>
-            <div class="col-md-6 onlinel">
-                <div class="row">
-                    <div class="col-md-2"><i class="fa fa-coffee" aria-hidden="true"></i></div>
-                    <div class="col-md-10">
-                        <h2>Online Presence</h2>
-                        <p>In today's era it's a nessecity to have online presence of a business,
-                            Put your businesss online with us and grow!
-                        </p>
+<br><br>
+<section id="testimonials">
+    <h1 id="testihead">4. Our <strong class="spanstrong">Customers</strong> love us <br>
+        <span style="font-size: 18px;position: absolute;transform: translateX(-48%);">We are what our customers say</span>
+    </h1><br>
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <div class="review row">
+                    <div class="reviewProfile col-md-6">
+                        <div class="rCircle1"></div>
+                        <div class="rCircle2"></div>
+                        <div class="rCircle3">
+                            <img src="{%static 'img/c1.jpg'%}" alt="Agency Thumneil">
+                        </div>
+                        <div class="rCircle4"></div>
+                        <div class="rName">Ayan Koley</div>
+                        <div class="rPost">Founder, Koley Tours</div>
                     </div>
+                    <div class="reviewCon col-md-6">
+                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Amet accusantium, officiis incidunt
+                        et ullam repudiandae rerum ipsa ratione consectetur rem quod in optio maiores consequuntur 
+                        dolor error, alias odio dignissimos!
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate deserunt labore 
+                        cupiditate, non harum dolores. Porro ab, quia doloribus voluptas atque aspernatur ullam 
+                        iusto pariatur. Inventore quae eligendi exercitationem nemo.
+                    </div>
+                    <i class="fa fa-quote-left" aria-hidden="true"></i>
                 </div>
             </div>
-            <div class="col-md-6 onliner">
-                <div class="row">
-                    <div class="col-md-2"><i class="fa fa-wpexplorer" aria-hidden="true"></i></div>
-                    <div class="col-md-10">
-                        <h2>Rechebility</h2>
-                        <p>Get global rechebility with maximum benefit and minimal cost</p>
+            <div class="swiper-slide">
+                <div class="review row">
+                    <div class="reviewProfile col-md-6">
+                        <div class="rCircle1"></div>
+                        <div class="rCircle2"></div>
+                        <div class="rCircle3">
+                            <img src="{%static 'img/c1.jpg'%}" alt="Agency Thumneil">
+                        </div>
+                        <div class="rCircle4"></div>
+                        <div class="rName">Ayan Koley</div>
+                        <div class="rPost">Founder, Koley Tours</div>
                     </div>
+                    <div class="reviewCon col-md-6">
+                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Amet accusantium, officiis incidunt
+                        et ullam repudiandae rerum ipsa ratione consectetur rem quod in optio maiores consequuntur 
+                        dolor error, alias odio dignissimos!
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate deserunt labore 
+                        cupiditate, non harum dolores. Porro ab, quia doloribus voluptas atque aspernatur ullam 
+                        iusto pariatur. Inventore quae eligendi exercitationem nemo.
+                    </div>
+                    <i class="fa fa-quote-left" aria-hidden="true"></i>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="review row">
+                    <div class="reviewProfile col-md-6">
+                        <div class="rCircle1"></div>
+                        <div class="rCircle2"></div>
+                        <div class="rCircle3">
+                            <img src="{%static 'img/c1.jpg'%}" alt="Agency Thumneil">
+                        </div>
+                        <div class="rCircle4"></div>
+                        <div class="rName">Ayan Koley</div>
+                        <div class="rPost">Founder, Koley Tours</div>
+                    </div>
+                    <div class="reviewCon col-md-6">
+                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Amet accusantium, officiis incidunt
+                        et ullam repudiandae rerum ipsa ratione consectetur rem quod in optio maiores consequuntur 
+                        dolor error, alias odio dignissimos!
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate deserunt labore 
+                        cupiditate, non harum dolores. Porro ab, quia doloribus voluptas atque aspernatur ullam 
+                        iusto pariatur. Inventore quae eligendi exercitationem nemo.
+                    </div>
+                    <i class="fa fa-quote-left" aria-hidden="true"></i>
+                </div>
+            </div>
+        </div>
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+    </div>
+</section>
+
+<section class="online mt-5">
+    <div class="container">
+        <h1 id="testihead">
+            5. <strong class="spanstrong">Best</strong> way to put your business online
+        </h1><br>
+        <div class="row">
+            <div class="col-lg-6 onlinel">
+                <div class="onlineHead">
+                    <i class="fa fa-coffee" aria-hidden="true"></i>
+                    <h2>Online Presence & Reachability</h2>
+                </div>
+                <div class="onlineBody">
+                    <p>In today's era it's a nessecity to have online presence for a business. With us you are
+                        getting a online platform where we will do the marketting for you and get you customers.
+                        Let's put your businesss online with us and grow together!
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-6 onliner">
+                <div class="onlineHead">
+                    <i class="fa fa-wpexplorer" aria-hidden="true"></i>
+                    <h2 class="font-weight-bold">Look Forward</h2>
+                </div>
+                <div class="onlineBody">
+                    <p>
+                        Travmaks is a Travel platform where you can upload your tour and get customers. It will
+                        cost you <span class="text-danger font-weight-bold">0</span> rupees to start. We will charge you 
+                        the minimal amount as 7 to 10% only when you get customers from our platform. For you It's 
+                        all profit and no loss plus you get a chance to increase you customer percentage. So let's
+                        look forward and register your agency ASAP.                
+                    </p>
                 </div>
             </div>
         </div>
@@ -544,29 +320,22 @@
 <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script src="//geodata.solutions/includes/countrystatecity.js"></script>
+<script src="https://unpkg.com/tilt.js@1.2.1/dest/tilt.jquery.min.js"></script>
 
 <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
 <script>
-function openNav() {
-    document.getElementById("myNav").style.height = "110vh";
-}
-
-function closeNav() {
-    document.getElementById("myNav").style.height = "0%";
-}
 $(function(){
-    
     var swiper = new Swiper('.swiper-container', {
         spaceBetween: 30,
-        effect:'fade',
+        effect: 'slide',
         loop:true,
         pagination: {
             el: '.swiper-pagination',
             clickable: true,
         },
         navigation: {
-            nextEl: '.ab',
-            prevEl: '.pb',
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
         },
     });
 
@@ -582,6 +351,17 @@ $(function(){
             fun1();
     }
     })
+
+    const tilt = $('.js-tilt').tilt();
+    // Destroy instance
+    tilt.tilt.destroy.call(tilt);
+
+    // Get values of instance
+    tilt.tilt.getValues.call(tilt); // returns [{},{},etc..]
+
+    // Reset instance
+    tilt.tilt.reset.call(tilt);
+
     function fun1(){
         const counter1=document.querySelector('.counter1');
         const counter2=document.querySelector('.counter2');
@@ -610,151 +390,6 @@ $(function(){
     }
 })
 
-</script>
-<script>
-    
-    function fun(x){
-        document.body.scrollTop=0;
-        document.documentElement.scrollTop=0;
-        var y=document.getElementsByClassName(x);
-        $('.moo').removeClass('moo');
-        $(y).addClass('moo');
-    }
-    $('.head').scroll(function() {
-        var st1=$('.head').scrollTop();
-        var a1=$('#tc1').outerHeight();
-        var a2=$('#tc2').outerHeight();
-        var a3=$('#tc3').outerHeight();
-        var a4=$('#tc4').outerHeight();
-        var a5=$('#tc5').outerHeight();
-        var a6=$('#tc6').outerHeight();
-        var a7=$('#tc7').outerHeight();
-        var a8=$('#tc8').outerHeight();
-        var a9=$('#tc9').outerHeight();
-        var a10=$('#tc10').outerHeight();
-        // console.log(st2);
-        if(st1<a1){
-            $('.moo').removeClass('moo');
-            $('.tc1').addClass('moo');
-        }
-        if(st1>a1){
-            $('.moo').removeClass('moo');
-            $('.tc2').addClass('moo');
-        }
-        if(st1>a1+a2){
-            $('.moo').removeClass('moo');
-            $('.tc3').addClass('moo');
-        }
-        if(st1>a1+a2+a3+10){
-            $('.moo').removeClass('moo');
-            $('.tc4').addClass('moo');
-        }
-        if(st1>a1+a2+a3+a4+30){
-            $('.moo').removeClass('moo');
-            $('.tc5').addClass('moo');
-        }
-        if(st1>a1+a2+a3+a4+a5+90){
-            $('.moo').removeClass('moo');
-            $('.tc6').addClass('moo');
-        }
-        if(st1>a1+a2+a3+a4+a5+a6+100){
-            $('.moo').removeClass('moo');
-            $('.tc7').addClass('moo');
-        }
-        if(st1>a1+a2+a3+a4+a5+a6+a7+115){
-            $('.moo').removeClass('moo');
-            $('.tc8').addClass('moo');
-        }
-        if(st1>a1+a2+a3+a4+a5+a6+a7+a8+120){
-            $('.moo').removeClass('moo');
-            $('.tc9').addClass('moo');
-        }
-        if(st1>a1+a2+a3+a4+a5+a6+a7+a8+a9+120){
-            $('.moo').removeClass('moo');
-            $('.tc10').addClass('moo');
-        }
-        if(st1>a1+a2+a3+a4+a5+a6+a7+a8+a9+121){
-            $('.moo').removeClass('moo');
-            $('.tc11').addClass('moo');
-        }
-    })
-    
-</script>
-<script>
-    function registrationValidator()
-    {
-        var name = document.getElementById('fullname').value;
-        var bdate = document.getElementById('bdate').value;
-        var country = document.getElementById('countryId').value;
-        var state = document.getElementById('stateId').value;
-        var district = document.getElementById('cityId').value;
-        var zip = document.getElementById('zip').value;
-        var address = document.getElementById('address').value;
-        var mail = document.getElementById('mail').value;
-        var password1 = document.getElementById('password1').value;
-        var password2 = document.getElementById('password2').value;
-        var gender = document.getElementsByName('gender');
-        const errormsgbg=document.getElementById('errormsgbg');
-        const errormsg=document.getElementById('errormsg');
-        var phone=document.getElementById('phone').value;
-        var msg=new Array();
-        dy=parseInt(bdate);
-        cd=new Date();
-        cy=cd.getFullYear();
-        var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
-        res = reg.test(mail);
-
-        if((cy-dy)<14){
-            msg.push("You must be 14 years old to Register.");
-        }
-        if(res==false)
-        {
-            msg.push("Enter Proper Email.");
-        }
-        if(phone!=Number(phone)){
-            msg.push("Your phone must be number.");
-        }
-        if(phone.length!=10){
-            msg.push("Please Enter a valid Phone number.");
-        }
-        if(zip.length!=6){
-            msg.push("Please Enter a valid Zip Code.");  
-        }
-        if(password1.length<8)
-        {
-            msg.push("Your Password must contain atleast 8 characters.");
-        }
-        else{
-            for(let i=0;i<password1.length;i++){
-                if(password1[i]==='<'||password1[i]==='>'){
-                    msg.push("< / > not allowed");
-                }
-            }
-            if(password1!==password2){
-                msg.push("Password didn't match.");
-            }
-        }
-        if(msg.length>0){
-            errormsg.innerHTML=msg.join("\n");
-            errormsgbg.style.width="500px";
-            errormsg.style.padding="8px";
-            errormsgbg.style.borderRadius="5px";
-            errormsgbg.style.backgroundColor='#FBD0F5';
-            errormsg.style.color='red';
-            errormsgbg.style.marginBottom='10px';
-            errormsg.style.transform='translateY(-10px)';
-            return false;
-        }
-        return false;
-        console.log('he');
-    }
-    function removeValidator(){
-        var errormsg=document.getElementById('errormsg');
-        var errormsgbg=document.getElementById('errormsgbg');
-        errormsg.innerHTML = null;
-        errormsg.style.padding='0px';
-        errormsgbg.style.marginBottom='0px';
-    }
 </script>
 <script>
     const secondHand = document.querySelector('.second-hand');

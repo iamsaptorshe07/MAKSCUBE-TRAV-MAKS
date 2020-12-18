@@ -1,0 +1,409 @@
+#testihead{
+    text-align: center;
+}
+footer{
+    margin-top: 0;
+}
+.spanstrong{
+    font-weight: bolder;
+    color: crimson;
+}
+
+/* heading heading heading heading heading heading heading heading heading heading heading heading */
+#heading{
+    background: url("tour-bg.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+#heading, #heading > div > div{
+    position: relative;
+    height: auto;
+    min-height: calc(100vh - 60px);
+}
+.headingCardBg{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.headingCard{
+    width: 420px;
+    color: antiquewhite;
+    position: sticky;
+    top: 50%;
+    transform: translateY(-100%);
+}
+.specialityCard{
+    padding: 30px 15px;
+    width: 230px;
+    position: relative;
+    height: 280px;
+    background-color: #410452f0;
+    border-radius: 5px;
+    color: white;
+    margin: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+}
+.specialityCard span{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: 0.4s;
+}
+.specialityCard:hover span{
+    transform: translateY(-180%);
+}
+.specialityCard h4{
+    position: absolute;
+    transition: 0.4s;
+    color: peachpuff;
+    top: 60%;
+}
+.specialityCard:hover h4{
+    transform: translateY(-225%);
+}
+.specialityCard p{
+    transition: 0.4s;
+    position: absolute;
+    padding: 0 18px;
+    top: 100%;
+    font-weight: 600;
+}
+.specialityCard:hover p{
+    transform: translateY(-130px);
+}
+.specialityCardBg{
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.headingCard .btns{
+    bottom: 0;
+    display: flex;
+    align-items: center;
+}
+.headingCard .btns button{
+    margin: 0 10px 0 0;
+    width: 120px;
+    padding: 3px 5px;
+    border-radius: 4px;
+    outline: none!important;
+    font-weight: bold;
+    border: none!important;
+    background-color: #80b2e7;
+}
+.headingCard .btns button a{
+    color: black;
+    text-decoration: none!important;
+    width: 100%;
+    height: 100%;
+    border-radius: 4px;
+}
+
+#YouNotAlone{
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 30px 0;
+    background-color: rgba(188, 223, 255, 0.28);
+}
+#YouNotAlone > div{
+    margin: 0 30px;
+    width: 160px;
+    height: 160px;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+}
+#YouNotAlone h1{
+    color: crimson;
+}
+.specialityCard h4, .feature p{
+    text-transform: capitalize;
+}
+/* feature feature feature feature feature feature feature feature feature feature feature feature */
+.featuresBg{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+.feature{
+    height: 120px;
+    width: 440px;
+    border-radius: 5px;
+    background-color:#d5e4ff;
+    display: flex;
+    margin: 10px;
+}
+.feature .imgbg{
+    width: 100px;
+    height: 100px;
+    background-color: #C7EBEE;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 10px solid #f7f7f7ba;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}
+.feature .imgbg img{
+    position: absolute;
+    height: 40%;
+}
+.feature p{
+    margin-left: 60px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-self: center;
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 0;
+    padding-right: 10px;
+}
+
+/* clock clock clock clock clock clock clock clock clock clock clock clock clock clock clock clock */
+
+.clock {
+    width: 185px;
+    height: 185px;
+    border: 10px solid #545271;
+    border-radius: 50%;
+    position: relative;
+    -webkit-box-shadow: 0 20px 30px rgba(104,75,106,0.65);
+    -moz-box-shadow: 0 20px 30px rgba(104,75,106,0.65);
+    box-shadow: 0 20px 30px rgba(104,75,106,0.65);
+    background: #545271;
+}
+
+.outer-clock-face {
+position: relative;
+width: 100%;
+height: 100%;
+border-radius: 100%;
+background: #fefefc;
+-webkit-box-shadow: 0 20px 10px rgba(62,47,63,0.45);
+-moz-box-shadow: 0 20px 10px rgba(62,47,63,0.45);
+box-shadow: 0 20px 10px rgba(62,47,63,0.45);
+overflow: hidden;
+}
+
+.outer-clock-face::after {
+-webkit-transform: rotate(90deg);
+-moz-transform: rotate(90deg);
+transform: rotate(90deg)
+}
+
+.outer-clock-face::before,
+.outer-clock-face::after,
+.outer-clock-face .marking{
+content: '';
+position: absolute;
+width: 6px;
+height: 100%;
+background: #b8b8c5;
+z-index: 0;
+left: 49%;
+}
+
+.outer-clock-face .marking {
+background: #bdbdcb;
+width: 3px;
+}
+
+.outer-clock-face .marking.marking-one {
+-webkit-transform: rotate(30deg);
+-moz-transform: rotate(30deg);
+transform: rotate(30deg)
+}
+
+.outer-clock-face .marking.marking-two {
+-webkit-transform: rotate(60deg);
+-moz-transform: rotate(60deg);
+transform: rotate(60deg)
+}
+
+.outer-clock-face .marking.marking-three {
+-webkit-transform: rotate(120deg);
+-moz-transform: rotate(120deg);
+transform: rotate(120deg)
+}
+
+.outer-clock-face .marking.marking-four {
+-webkit-transform: rotate(150deg);
+-moz-transform: rotate(150deg);
+transform: rotate(150deg)
+}
+
+.inner-clock-face {
+position: absolute;
+top: 10%;
+left: 10%;
+width: 80%;
+height: 80%;
+background: #fefefc;
+-webkit-border-radius: 100%;
+-moz-border-radius: 100%;
+border-radius: 100%;
+z-index: 1;
+}
+
+.inner-clock-face::before {
+content: '';
+position: absolute;
+top: 50%;
+left: 50%;
+width: 16px;
+height: 16px;
+border-radius: 18px;
+margin-left: -9px;
+margin-top: -6px;
+background: #4d4b63;
+z-index: 11;
+}
+
+.hand {
+width: 50%;
+right: 50%;
+height: 6px;
+background: #61afff;
+position: absolute;
+top: 50%;
+border-radius: 6px;
+transform-origin: 100%;
+transform: rotate(90deg);
+transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.hand.hour-hand {
+width: 20%;
+z-index: 3;
+}
+
+.hand.min-hand {
+height: 3px;
+z-index: 10;
+width: 35%;
+}
+  
+.hand.second-hand {
+    background: #ff5e5e;
+    width: 40%;
+}
+.clockbg{
+    flex-flow: column;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;   
+}
+.clockbg .imgbg{
+    position: relative;
+    height: 190px;
+    width: 190px;
+}
+
+/* Business Business Business Business Business Business Business Business Business Business */
+.tfbcon a{
+    text-decoration: none!important;
+    color: brown;
+}
+.tfbcon a::before{
+    content: '';
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    max-width: 0%;
+    height: 2px;
+    transition: 0.3s;
+    position: absolute;
+    background-color: brown;
+}
+.tfbcon a:hover::before{
+    max-width: 10ch;
+}
+.tfbTop{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.tfbTop > div{
+    margin: 10px 20px;
+    position: relative;
+    width: 310px;
+    height: 260px;
+    padding: 30px 15px;
+    border-radius: 5px;
+    background-color: #ffffff;
+    border: rgba(0, 0, 0, 0.39) 1px solid;
+    box-shadow: rgba(0, 0, 0, 0.39) 2px 2px;
+}
+.tfbBtm{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin: 15px 0;
+}
+.tfbBtm a{
+    text-decoration: none!important;
+    position: relative;
+    font-size: 29px;
+    margin: 0 20px;
+    color: rgb(22, 22, 22);
+    display: flex;
+    font-weight: 600;
+}
+.tfbBtm p{
+    margin: 0 10px 5px 0;
+}
+.tfbBtm a::before{
+    content: '';
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    transition: 0.3s;
+    position: absolute;
+    background-color: rgb(22, 22, 22);
+}
+
+@media screen and (max-width: 800px) {
+    .feature{
+        width: 280px;
+    }
+    .feature p{
+        font-size: 16px;
+    }
+}
+@media screen and (max-width:400px){
+    .feature{
+        left: 20px;
+    }
+}
+
+@media screen and (max-width:992px){
+    .headingCard{
+        transform: translateY(0);
+    }
+}
+@media screen and (min-width:1200px){
+    .specialityCardBg{
+        margin-top: 50px;
+    }
+    .specialityCardBg > div:nth-child(even){
+        transform: translateY(100px);
+    }
+}

@@ -756,8 +756,11 @@
                 </div>
                 <div class="interested">
                     <input type="checkbox" name="features" id="features" value="premium">
-                    <span><img src="https://img.icons8.com/ios-filled/26/000000/add-bookmark.png"/>&nbsp;Save</span>
-                    <span>
+                    <span class="SaveBtn">
+                        <img src="https://img.icons8.com/ios-filled/26/000000/add-bookmark.png"/>&nbsp;
+                        <p>Save</p>
+                    </span>
+                    <span class="ShareBtn">
                         <label for="features">
                             <img src="https://img.icons8.com/metro/26/000000/forward-arrow.png"/>&nbsp;Share
                         </label>
@@ -766,7 +769,7 @@
                 <div class="ShareBtns">
                     <ul class="featured" style="--length: 5;display:flex;">
                         <li>
-                            <a href="#" id="ShareOnWapp" style="--index: 0;">
+                            <a href="#" id="ShareOnWapp" data-action="share/whatsapp/share" style="--index: 0;">
                                 <img src="{%static 'img/whatsapp.gif'%}" height="46px"/>
                                 Whatsapp
                             </a>
@@ -947,7 +950,7 @@
     integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous">
 </script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-<!--<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>-->
+<!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script> -->
 
 <script type="text/javascript">
     $(function(){
@@ -1164,10 +1167,29 @@
         }
     });
 
+    $('body').click(function(event){
+        if ($('input[name=features]').is(':checked')) {
+            $('input[name=features]').click();
+        }
+    });
+
+    $('.SaveBtn').on('click',function(){
+        console.log($('.SaveBtn').css('background-color')=='rgb(206, 218, 255)');
+        if($('.SaveBtn').css('background-color')=='rgb(206, 218, 255)'){
+            console.log('hi');
+            document.querySelector('.SaveBtn').style.backgroundColor='#5ad15a';
+            document.querySelector('.SaveBtn p').innerHTML='Saved';
+        }
+        else{
+            document.querySelector('.SaveBtn').style.backgroundColor='#cedaff';
+            document.querySelector('.SaveBtn p').innerHTML='Save';
+        }
+    });
+
     $(function(){
         var TourLink=window.location.href;
         var TourName='Check';
-        var ShareOnWapp='whatsapp://send?text='+window.location.href;
+        var ShareOnWapp='whatsapp://send?text='+TourLink;
         var ShareOnFB="//www.facebook.com/sharer/sharer.php?u="+TourLink+"&quote=Check This";
         var ShareOnTele="tg://msg_url?url="+TourLink+"&text=CheckThis";
         var ShareByEmail='//mail.google.com/mail/?view=cm&fs=1&tf=1&to=&su='+
@@ -1180,12 +1202,6 @@
         $('#ShareByEmail').attr('href',ShareByEmail);
     });
 
-    // $('body').click(function(event){
-    //     if ($('input[name=features]').is(':checked')) {
-    //         $('input[name=features]').click();
-    //     }
-    // });
-
     function copyUrl(){
         var copyId=window.location.href;
         var $inp=$("<input>");
@@ -1194,6 +1210,7 @@
         $inp.val(copyId);
         // console.log($inp.val());
         $inp.select();
+        console.log(copyId.localeCompare($inp.val()));
         // $inp.setSelectionRange(0, 99999);
         document.execCommand("copy");
         $inp.remove();

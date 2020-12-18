@@ -10,6 +10,7 @@ urlpatterns = [
     path('user-payment-policy',userPaymentPolicy,name='userPaymentPolicy'),
     path('terms-and-condition',termsAndCondition,name='termsAndCondition'),
     path('partner/benifits-of-joing-travmaks',partnerBenifits,name='partnerBenifits'),
+    path('benifits-of-joing-travmaks',partnerBenifitsTavellers,name='partnerBenifitsTavellers'),
     path('partnerportal-faq',partnerFAQ,name='partnerFAQ'),
     path('download-app',downloadApp,name='downloadApp'),
     path('beta',betaMode,name='betaMode'),
