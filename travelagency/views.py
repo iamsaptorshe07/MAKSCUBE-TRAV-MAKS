@@ -351,15 +351,15 @@ def upcoming_tours(request,agentId):
     if user.is_authenticated and request.session['access_type']=='seller':
         if user.userAccess.agentId == agentId:
             tours = Order.objects.filter(agent=user)
-            tour=[]
+            Tour=[]
             print(tours)
             for i in tours:
                 print(i)
-                if i.startDate > date.today():
-                    tour.append(i)
-            print(tour)
+                if i.tour.startDate > date.today():
+                    Tour.append(i)
+            print(Tour)
             context = {
-                'Tours':tour
+                'Tours':Tour
             }
             return render(request,'travelagency/upcoming_tours.html',context=context)
         else:
@@ -372,12 +372,12 @@ def ongoing_tours(request,agentId):
     if user.is_authenticated and request.session['access_type']=='seller':
         if user.userAccess.agentId == agentId:
             tours = Order.objects.filter(agent=user)
-            tour=[]
+            Tour=[]
             for i in tours:
-                if i.startDate < date.today() and date.today() < i.endDate :
-                    tour.append(i)
+                if i.tour.startDate < date.today() and date.today() < i.tour.endDate :
+                    Tour.append(i)
             context = {
-                'Tours':tour
+                'Tours':Tour
             }
             return render(request,'travelagency/ongoing_tours.html',context=context)
         else:
