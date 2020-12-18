@@ -155,6 +155,8 @@ def bookTour(request,tourId,agentId):
             if Tour.objects.filter(tourId=tourId,seller=seller_account.user).exists():
                 tour = Tour.objects.get(tourId=tourId,seller=seller_account.user)
                 if request.method == 'POST':
+                    if int(request.POST.get('total_people'))>tour.maximum_people:
+                        return render(request,'forbidden.html')
                     name = request.POST.get('name')
                     email = request.POST.get('email')
                     phone = request.POST.get('phone')
