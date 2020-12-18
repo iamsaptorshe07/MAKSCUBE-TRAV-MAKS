@@ -155,52 +155,56 @@ def bookTour(request,tourId,agentId):
             if Tour.objects.filter(tourId=tourId,seller=seller_account.user).exists():
                 tour = Tour.objects.get(tourId=tourId,seller=seller_account.user)
                 if request.method == 'POST':
-                    if int(request.POST.get('total_people'))>tour.maximum_people:
-                        return render(request,'forbidden.html')
-                    if int(request.POST.get('total_people'))==0:
+                    ttl_people = int(request.POST.get('total_people')) 
+                    print(ttl_people)
+                    if ttl_people>tour.maximum_people:
+                        messages.error(request,"Don't try to be oversmart! -- Maximum Tourist no should be {}".format(tour.maximum_people))
+                        return redirect('/tour/booktour/{}/{}'.format(tour.tourId,tour.seller.userAccess.agentId))
+                    if ttl_people <= 0:
                         messages.error(request,'Minimum Tourist no should be 1')
-                        return redirect('bookTour')
-                    name = request.POST.get('name')
-                    email = request.POST.get('email')
-                    phone = request.POST.get('phone')
-                    address = request.POST.get('address')
-                    total_people = int(request.POST.get('total_people'))
-                    total_payment = tour.price * total_people
-                    payment = total_payment*(10/100)
-                    order_id = OrderIdGenerator()
-                    order = Order(
-                        order_id = order_id,
-                        customer = user,
-                        customer_email = email,
-                        customer_phone = phone,
-                        customer_address = address,
-                        total_people = total_people,
-                        customer_name = name,
-                        agent = tour.seller,
-                        agency = tour.seller.userAgency,
-                        total_price = total_payment,
-                        paid_by_user = payment,
-                        tour = tour,
-                    )
-                    order.save()
-                    MID = 'MjGguD53343847273362'
-                    MKEY='3KD6MeB%t&QDio!7'
-                    paytmParams = {
-                        "MID" : MID,
-                        "WEBSITE" : "WEBSTAGING",
-                        "INDUSTRY_TYPE_ID" : "Retail",
-                        "CHANNEL_ID" : "WEB",
-                        "ORDER_ID" : order.order_id,
-                        "CUST_ID" : order.customer.userAccess.userId,
-                        "MOBILE_NO" : order.customer_phone,
-                        "EMAIL" : order.customer_email,
-                        "TXN_AMOUNT" : str(order.paid_by_user),
-                        "CALLBACK_URL" : "http://{}/tour/paytm-payment-recieve".format(get_current_site(request)),
-                    }
-                    checksum = Checksum.generateSignature(paytmParams, MKEY)
-                    paytmParams['CHECKSUMHASH']= checksum
-                    print(paytmParams)
-                    return render(request,'paytm/paytm.html',{'data':paytmParams})
+                        return redirect('/tour/booktour/{}/{}'.format(tour.tourId,tour.seller.userAccess.agentId))
+                    else:
+                        name = request.POST.get('name')
+                        email = request.POST.get('email')
+                        phone = request.POST.get('phone')
+                        address = request.POST.get('address')
+                        total_people = int(request.POST.get('total_people'))
+                        total_payment = tour.price * total_people
+                        payment = total_payment*(10/100)
+                        order_id = OrderIdGenerator()
+                        order = Order(
+                            order_id = order_id,
+                            customer = user,
+                            customer_email = email,
+                            customer_phone = phone,
+                            customer_address = address,
+                            total_people = total_people,
+                            customer_name = name,
+                            agent = tour.seller,
+                            agency = tour.seller.userAgency,
+                            total_price = total_payment,
+                            paid_by_user = payment,
+                            tour = tour,
+                        )
+                        order.save()
+                        MID = 'MjGguD53343847273362'
+                        MKEY='3KD6MeB%t&QDio!7'
+                        paytmParams = {
+                            "MID" : MID,
+                            "WEBSITE" : "WEBSTAGING",
+                            "INDUSTRY_TYPE_ID" : "Retail",
+                            "CHANNEL_ID" : "WEB",
+                            "ORDER_ID" : order.order_id,
+                            "CUST_ID" : order.customer.userAccess.userId,
+                            "MOBILE_NO" : order.customer_phone,
+                            "EMAIL" : order.customer_email,
+                            "TXN_AMOUNT" : str(order.paid_by_user),
+                            "CALLBACK_URL" : "http://{}/tour/paytm-payment-recieve".format(get_current_site(request)),
+                        }
+                        checksum = Checksum.generateSignature(paytmParams, MKEY)
+                        paytmParams['CHECKSUMHASH']= checksum
+                        print(paytmParams)
+                        return render(request,'paytm/paytm.html',{'data':paytmParams})
                 else:
                     return render(request,'touring/tour_checkout.html',context={'Tour':tour})
             else:
