@@ -1,49 +1,99 @@
-{% extends 'travelagency/travelagency_basetemplate.html' %}
+{% extends 'basetemplate.html' %}
 {% load static %}
 
-{% block travelagency_stylesheets %}
+{% block stylesheets %}
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Ubuntu:wght@400;500;700&display=swap');
-
-    th {
-        background-color: #4b6cb7;
-        color: white;
+    footer{
+        margin-top: 0;
     }
 
-    tr:hover {
-        background-color: #4d4dff;
-        color: #fff;
-    }
-
+    th,td{
+        vertical-align: middle!important;
+        text-align: center!important;
+  }
     .fa-plane {
         color: #4B79A1;
     }
 
     .invoice {
         position: relative;
-        background: #fff;
+        background: #f7fafd;
         border: 1px solid #f4f4f4;
         padding: 20px;
         margin: 10px 25px;
     }
 
+    .table {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.table td, .table th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.table tr:nth-child(even){background-color: #f2f2f2;}
+
+.table tr:hover {background-color: #ddd;}
+
+.table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+}
     .page-header {
         margin: 10px 0 20px 0;
         font-size: 22px;
     }
-
+    .table thead tr {
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+    }
+    tbody{
+        border-bottom-left-radius: 4px;
+        border-bottom-right-radius: 4px;
+    }
+    .table tbody tr:last-child {
+        border-bottom-left-radius: 4px;
+        border-bottom-right-radius: 4px;
+    }
+    .table tbody tr:last-child td:first-child {
+        border-bottom-left-radius: 4px;
+    }
+    .table tbody tr:last-child td:last-child {
+        border-bottom-right-radius: 4px;
+    }
+    .table thead tr th:first-child {
+        border-top-left-radius: 4px;
+    }
+    .table thead tr th:last-child {
+        border-top-right-radius: 4px;
+    }
+    .table thead{
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+    }
+    .table {
+        border-radius: 4px;
+        border-collapse: separate !important;
+        border-spacing: 0px!important;
+    }
     @media screen and (max-width: 850px) {
         .tble {
-            transform: translate(0px, 96px);
             margin: auto;
         }
     }
 </style>
-{% endblock travelagency_stylesheets %}
+{% endblock stylesheets %}
 
-{% block travelagency_body %}
+{% block body %}
 <section class="tble"
-    style="width: 95%;  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+    style="width: 100%;height:100%;">
     <section class="invoice">
         <!-- title row -->
         <div class="row">
@@ -100,4 +150,4 @@
     </section>
 </section>
 
-{% endblock travelagency_body %}
+{% endblock body %}
