@@ -157,6 +157,9 @@ def bookTour(request,tourId,agentId):
                 if request.method == 'POST':
                     if int(request.POST.get('total_people'))>tour.maximum_people:
                         return render(request,'forbidden.html')
+                    if int(request.POST.get('total_people'))==0:
+                        messages.error(request,'Minimum Tourist no should be 1')
+                        return redirect('bookTour')
                     name = request.POST.get('name')
                     email = request.POST.get('email')
                     phone = request.POST.get('phone')
