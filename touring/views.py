@@ -146,6 +146,20 @@ def preview(request,tourId):
         return render(request,'forbidden.html')
 
 
+def tourComparison(request):
+    tour1 = request.GET.get('tour1')
+    tour2 = request.GET.get('tour2')
+    tour3 = request.GET.get('tour3')
+    tour4 = request.GET.get('tour4')
+    context = {
+        'Tour1':tour1,
+        'Tour2':tour2,
+        'Tour3':tour3,
+        'Tour4':tour4,
+    }
+    return render(request,'touring/tour_comparison.html',context=context)
+
+
 def bookTour(request,tourId,agentId):
     user = request.user
     if user.is_authenticated and request.session['access_type']=='traveller':
