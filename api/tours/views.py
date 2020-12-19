@@ -51,9 +51,9 @@ class SearchTour(APIView):
                 status = status.HTTP_406_NOT_ACCEPTABLE
             )
         if sLocation != None and eLocation != None:
-            tour1 = Tour.objects.filter(startingLocation__icontains=slocation,endLocation__icontains=elocation,publish_mode = True,
+            tour1 = Tour.objects.filter(startingLocation__icontains=sLocation,endLocation__icontains=eLocation,publish_mode = True,
             last_booking_date__gte=str(datetime.date.today()),maximum_people__gte=1)
-            tour2 = Tour.objects.filter(Q(tourHeading__icontains = slocation) | Q(tourHeading__icontains = elocation),publish_mode = True,
+            tour2 = Tour.objects.filter(Q(tourHeading__icontains = sLocation) | Q(tourHeading__icontains = eLocation),publish_mode = True,
                 last_booking_date__gte=str(datetime.date.today()),maximum_people__gte=1)
             tours = tour1.union(tour2)
             tour_data = TourSerializer(tours,many=True)
