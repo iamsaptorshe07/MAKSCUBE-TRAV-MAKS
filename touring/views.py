@@ -36,7 +36,21 @@ class SearchTour(ListView):
 
 
 def advancedSearching(request):
-    pass
+    if request.method == 'POST':
+        startLocSearch = request.POST['startLocSearch']
+        endLocSearch = request.POST['endLocSearch']
+        startDateSearch = request.POST['startDateSearch']
+        endDateSearch = request.POST['endDateSearch']
+        amountRange=request.POST['amountRange']
+        duration=request.POST['duration']
+        print("\n\n\n\n",startLocSearch,endLocSearch,startDateSearch,endDateSearch,amountRange,duration,"\n\n\n\n")
+        # tour=Tour.objects.get(tourId=1)
+        # context = {
+        #         'Tours':tour
+        #     }
+        return render(request,'touring/all_tours.html')#,context=context)
+    else:
+        return render(request,'forbidden.html')
 
 class AllToursView(ListView):
     model = Tour
