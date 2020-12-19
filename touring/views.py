@@ -14,16 +14,24 @@ from invoice.invoice_generator import render_to_pdf
 from django.template.loader import get_template
 from django.contrib.sites.shortcuts import get_current_site
 import datetime
+from django.db.models import Q
 # Create your views here.
+class SearchTour(ListView):
+    model = Tour
+    paginate_by = 50
+    template_name = 'touring/all_tours.html'
+    ordering = ['-id']
+    context_object_name = 'Tour'
 
-def searchTour(request):
-    slocation = request.GET.get('sLocation')
-    elocation = request.GET.get('eLocation')
-    tours = Tour.objects.filter(startingLocation__icontains=slocation,endLocation__icontains=elocation)
-    context = {
-        'Tours':tours,
-    }
-    return render(request,'touring/tour_search.html',context=context)
+    def get_queryset(self):
+        slocation = self.request.GET.get('sLocation')
+        elocation = self.request.GET.get('eLocation')
+        tour1 = Tour.objects.filter(startingLocation__icontains=slocation,endLocation__icontains=elocation)
+        tour2 = Tour.objects.filter(Q(tourHeading__icontains = slocation) | Q(tourHeading__icontains = elocation))
+        tours = tour1.union(tour2)
+        return tours
+
+
 
 def advancedSearching(request):
     pass
