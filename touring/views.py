@@ -26,8 +26,10 @@ class SearchTour(ListView):
     def get_queryset(self):
         slocation = self.request.GET.get('sLocation')
         elocation = self.request.GET.get('eLocation')
-        tour1 = Tour.objects.filter(startingLocation__icontains=slocation,endLocation__icontains=elocation)
-        tour2 = Tour.objects.filter(Q(tourHeading__icontains = slocation) | Q(tourHeading__icontains = elocation))
+        tour1 = Tour.objects.filter(startingLocation__icontains=slocation,endLocation__icontains=elocation,publish_mode = True,
+            last_booking_date__gte=str(datetime.date.today()),maximum_people__gte=1)
+        tour2 = Tour.objects.filter(Q(tourHeading__icontains = slocation) | Q(tourHeading__icontains = elocation),publish_mode = True,
+            last_booking_date__gte=str(datetime.date.today()),maximum_people__gte=1)
         tours = tour1.union(tour2)
         return tours
 
