@@ -1,14 +1,751 @@
 {% extends 'basetemplate.html' %}
 {% load static %}
 {% block stylesheets %}
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css">
+<style>
+    body{
+        background-color: #e3f1ffe3;
+    }
+    #compare{
+        width: 100%;
+        min-height: 90vh;
+    }
+    #compare .container{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        position: relative;
+        max-width: 100%;
+        width: 100%;
+        padding: 30px;
+    }
+    .compareCard{
+        position: relative;
+        margin: 15px 20px;
+        width: 300px;
+        height: 450px;
+        border-radius: 10px;
+        background-color: #ffffff;
+        padding: 30px;
+        border: 1px solid #c1d0eb;
+        box-shadow: 2px 2px rgba(0, 0, 0, 0.26);
+    }
+    .cc1::after{
+        content: '';
+        width: 100%;
+        height: 15px;
+        background-color: rgb(36, 46, 143);
+        position: absolute;
+        top: 0;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        left: 0;
+    }
+    .cc2::after{
+        content: '';
+        width: 100%;
+        height: 15px;
+        background-color: rgb(20, 117, 61);
+        position: absolute;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        top: 0;
+        left: 0;
+    }
+    .cc3::after{
+        content: '';
+        width: 100%;
+        height: 15px;
+        background-color: rgb(154, 58, 173);
+        position: absolute;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        top: 0;
+        left: 0;
+    }
+    .cc4::after{
+        content: '';
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        width: 100%;
+        height: 15px;
+        background-color: rgb(72 ,82, 95);
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    h1,h2,h3,h4,h5,h6,p{
+        margin: 0;
+    }
+    .swiper-container {
+        width: 100%;
+        height: 100%;
+    }
+    .swiper-slide {
+        font-size: 14px;
+        background: #edededb0;
+        border-radius: 4px;
+        padding: 10px;
+        flex-flow: column;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+    }
+    .swiper-slide h5{
+        margin-top: 180px;
+    }
+    .swiper-slide h6{
+        width: 100%;
+    }
+    .swiper-pagination{
+        bottom: 0!important;
+    }
+    .swiper-pagination-bullet {
+      width: 20px;
+      height: 20px;
+      text-align: center;
+      line-height: 20px;
+      font-size: 12px;
+      color: #000;
+      opacity: 1;
+      background: rgba(0, 0, 0, 0.2);
+    }
 
+    .swiper-pagination-bullet-active {
+      color: #fff;
+      background: #007aff;
+    }
+
+    .selectBtns{
+        margin: 100px 0 80px 0;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        position: relative;
+        justify-content: left;
+        width: 340px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    .selectBtns h4{
+        margin-bottom: 15px;
+    }
+    .tourCon{
+        position: relative;
+        width: 100%;
+        height: 347px;
+        border-radius: 4px;
+    }
+    .tourCon > div{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        display: none;
+        border-radius: 4px;
+    }
+    .tourCon > div.outlook{
+        display: block;
+        padding-left: 10px;
+        line-height: 1.7;
+    }
+    .tourHead{
+        margin-bottom: 10px;
+        color:rgb(27 ,33, 73);
+        text-align: center;
+    }
+    .stylishScroll{
+        overflow-y: scroll;
+        height: 100%;
+    }
+    .stylishScroll::-webkit-scrollbar-track
+    {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        background-color: #F5F5F5;
+    }
+
+    .stylishScroll::-webkit-scrollbar
+    {
+        width: 6px;
+        background-color: #F5F5F5;
+    }
+
+    .stylishScroll::-webkit-scrollbar-thumb
+    {
+        background-color: #000000;
+    }
+    .inclusive, .exclusive, .highlight, .overview, .outlook{
+        padding: 10px;
+        background: #edededb0;
+        border-radius: 4px;
+    }
+
+    .line1{
+        position: fixed;
+        z-index: 30;
+        width: 30%;
+        left: 30px;
+        top: 50%;
+        border-radius: 100px;
+        background-color: rgba(29, 56, 177, 0.253);
+        height: 110px;
+        transform: rotateZ(-15deg) translateY(-50%);
+    }
+    .line2{    
+        position: fixed;
+        z-index: 30;
+        width: 60%;
+        left: 40%;
+        top: 50%;
+        border-radius: 100px;
+        background-color: rgb(235, 40 ,110 , 19%);
+        height: 95px;
+        transform: rotateZ(-15deg) translateY(-260%);
+    }
+    #compare > div.container::before{
+        position: absolute;
+        content: '';
+        border-bottom: 2px dashed black;
+        left: 50%;
+        transform: translateX(-50%);
+        top: -30px;
+        width: 80%;
+        height: 1px;
+    }
+    .compareCard::before{
+        content: '';
+        left: 50%;
+        transform: translateX(-50%);
+        position: absolute;
+        width: 1px;
+        top: -65px;
+        height: 60px;
+        z-index: -1;
+        border-left: 2px dashed black;
+    }
+    .selectBtns::before{
+        content: '';
+        left: 50%;
+        top: 90px;
+        transform: translateX(-50%);
+        position: absolute;
+        width: 1px;
+        height: 40px;
+        border-left: 2px dashed black;
+    }
+    .tourLayout{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: 30;
+        background-color: rgb(42, 43, 48);
+        border-radius: 10px;
+        left: 0;
+        top: 0;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 30px;
+    }
+    .tourLayout a{
+        color: bisque;
+        font-size: 30px;
+    }
+</style>
 {% endblock stylesheets %}
 
 {% block body %}
+<!-- <siv class="line1"></siv>
+<siv class="line2"></siv>
+<siv class="line3"></siv>
+<siv class="line4"></siv>
+<siv class="line5"></siv>
+<siv class="line6"></siv>
+<siv class="line7"></siv> -->
+<section id="compare">
+    <div class="selectBtns">
+        <h4>Compare Tours by :</h4><br>
+        <select name="topic" class="form-control" id="topic" onchange="changeTopic();">
+            <option value="outlook">Outlook</option>
+            <option value="inclusive">Inclusive</option>
+            <option value="exclusive">Exclusive</option>
+            <option value="highlight">Highlight</option>
+            <option value="overview">Overview</option>
+            <option value="daysDetails">Days Details</option>
+        </select>
+    </div>
+    <div class="container">
+        <div class="compareCard cc1">
+            <div class="tourLayout">
+                <a href="#">Select Tour</a>
+            </div>
+            <div class="tourHead">
+                <h3>Tour Id : tourid</h3>
+            </div>
+            <div class="tourCon">
+                <div class="outlook">
+                    <h5 class="text-center mb-2">Outlook</h5>
+                    <p>Tour Type : Couple Friendly</p>
+                    <p>Ratting : 4.5</p>
+                    <p>Starting Date : 26/12/2020</p>
+                    <p>Ending Date : 01/01/2021</p>
+                    <p>Starting Location : Kolkata</p>
+                    <p>Ending Location : Delhi</p>
+                    <p>Price/People : $8712</p>
+                    <p>Last Date to Book : 19/12/2020</p>
+                </div>
+                <div class="inclusive stylishScroll">
+                    <h5 class="text-center mb-2">Tour Inclusive</h5>
+                    <div>
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque, veritatis veniam 
+                        nam cumque quaerat labore placeat error esse dolores dicta blanditiis laborum, numquam 
+                        provident ratione deleniti velit sit! In, et.
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque, veritatis veniam 
+                        nam cumque quaerat labore placeat error esse dolores dicta blanditiis laborum, numquam 
+                        provident ratione deleniti velit sit! In, et.
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque, veritatis veniam 
+                        nam cumque quaerat labore placeat error esse dolores dicta blanditiis laborum, numquam 
+                        provident ratione deleniti velit sit! In, et.
+                    </div>
+                </div>
+                <div class="exclusive stylishScroll">
+                    <h5 class="text-center mb-2">Tour Exclusive</h5>
+                    <div>
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque, veritatis veniam 
+                        nam cumque quaerat labore placeat error esse dolores dicta blanditiis laborum, numquam 
+                        provident ratione deleniti velit sit! In, et.
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque, veritatis veniam 
+                        nam cumque quaerat labore placeat error esse dolores dicta blanditiis laborum, numquam 
+                        provident ratione deleniti velit sit! In, et.
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque, veritatis veniam 
+                        nam cumque quaerat labore placeat error esse dolores dicta blanditiis laborum, numquam 
+                        provident ratione deleniti velit sit! In, et.
+                    </div>
+                </div>
+                <div class="highlight stylishScroll">
+                    <h5 class="text-center mb-2">Tour Highlight</h5>
+                    <div>
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque, veritatis veniam 
+                        nam cumque quaerat labore placeat error esse dolores dicta blanditiis laborum, numquam 
+                        provident ratione deleniti velit sit! In, et.
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque, veritatis veniam 
+                        nam cumque quaerat labore placeat error esse dolores dicta blanditiis laborum, numquam 
+                        provident ratione deleniti velit sit! In, et.
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque, veritatis veniam 
+                        nam cumque quaerat labore placeat error esse dolores dicta blanditiis laborum, numquam 
+                        provident ratione deleniti velit sit! In, et.
+                    </div>
+                </div>
+                <div class="overview stylishScroll">
+                    <h5 class="text-center mb-2">Tour Overview</h5>
+                    <div>
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque, veritatis veniam 
+                        nam cumque quaerat labore placeat error esse dolores dicta blanditiis laborum, numquam 
+                        provident ratione deleniti velit sit! In, et.
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque, veritatis veniam 
+                        nam cumque quaerat labore placeat error esse dolores dicta blanditiis laborum, numquam 
+                        provident ratione deleniti velit sit! In, et.
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque, veritatis veniam 
+                        nam cumque quaerat labore placeat error esse dolores dicta blanditiis laborum, numquam 
+                        provident ratione deleniti velit sit! In, et.
+                    </div>
+                </div>
+                <div class="daysDetails">  
+                    <div class="swiper-container">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide stylishScroll">
+                                <h5 class="text-center mb-2">Day 1</h5>
+                                <h6>Day 1 Title</h6>
+                                <p>
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque, veritatis veniam 
+                        nam cumque quaerat labore placeat error esse dolores dicta blanditiis laborum, numquam 
+                        provident ratione deleniti velit sit! In, et.
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque, veritatis veniam 
+                        nam cumque quaerat labore placeat error esse dolores dicta blanditiis laborum, numquam 
+                        provident ratione deleniti velit sit! In, et.
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque, veritatis veniam 
+                        nam cumque quaerat labore placeat error esse dolores dicta blanditiis laborum, numquam 
+                        provident ratione deleniti velit sit! In, et.
+                                </p>
+                            </div>
+                            <div class="swiper-slide stylishScroll">Slide 2</div>
+                        </div>
+                        <div class="swiper-pagination"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="compareCard cc2">
+            <div class="tourLayout">
+                <a href="#">Select Tour</a>
+            </div>
+            <div class="tourHead">
+                <h3>Tour Id : tourid</h3>
+            </div>
+            <div class="tourCon">
+                <div class="outlook">
+                    <h5 class="text-center mb-2">Outlook</h5>
+                    <p>Tour Type : Couple Friendly</p>
+                    <p>Ratting : 4.5</p>
+                    <p>Starting Date : 26/12/2020</p>
+                    <p>Ending Date : 01/01/2021</p>
+                    <p>Starting Location : Kolkata</p>
+                    <p>Ending Location : Delhi</p>
+                    <p>Price/People : $8712</p>
+                    <p>Last Date to Book : 19/12/2020</p>
+                </div>
+                <div class="inclusive stylishScroll">
+                    <h5 class="text-center mb-2">Tour Inclusive</h5>
+                    <div>
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque, veritatis veniam 
+                        nam cumque quaerat labore placeat error esse dolores dicta blanditiis laborum, numquam 
+                        provident ratione deleniti velit sit! In, et.
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque, veritatis veniam 
+                        nam cumque quaerat labore placeat error esse dolores dicta blanditiis laborum, numquam 
+                        provident ratione deleniti velit sit! In, et.
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque, veritatis veniam 
+                        nam cumque quaerat labore placeat error esse dolores dicta blanditiis laborum, numquam 
+                        provident ratione deleniti velit sit! In, et.
+                    </div>
+                </div>
+                <div class="exclusive stylishScroll">
+                    <h5 class="text-center mb-2">Tour Exclusive</h5>
+                    <div>
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque, veritatis veniam 
+                        nam cumque quaerat labore placeat error esse dolores dicta blanditiis laborum, numquam 
+                        provident ratione deleniti velit sit! In, et.
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque, veritatis veniam 
+                        nam cumque quaerat labore placeat error esse dolores dicta blanditiis laborum, numquam 
+                        provident ratione deleniti velit sit! In, et.
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque, veritatis veniam 
+                        nam cumque quaerat labore placeat error esse dolores dicta blanditiis laborum, numquam 
+                        provident ratione deleniti velit sit! In, et.
+                    </div>
+                </div>
+                <div class="highlight stylishScroll">
+                    <h5 class="text-center mb-2">Tour Highlight</h5>
+                    <div>
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque, veritatis veniam 
+                        nam cumque quaerat labore placeat error esse dolores dicta blanditiis laborum, numquam 
+                        provident ratione deleniti velit sit! In, et.
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque, veritatis veniam 
+                        nam cumque quaerat labore placeat error esse dolores dicta blanditiis laborum, numquam 
+                        provident ratione deleniti velit sit! In, et.
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque, veritatis veniam 
+                        nam cumque quaerat labore placeat error esse dolores dicta blanditiis laborum, numquam 
+                        provident ratione deleniti velit sit! In, et.
+                    </div>
+                </div>
+                <div class="overview stylishScroll">
+                    <h5 class="text-center mb-2">Tour Overview</h5>
+                    <div>
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque, veritatis veniam 
+                        nam cumque quaerat labore placeat error esse dolores dicta blanditiis laborum, numquam 
+                        provident ratione deleniti velit sit! In, et.
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque, veritatis veniam 
+                        nam cumque quaerat labore placeat error esse dolores dicta blanditiis laborum, numquam 
+                        provident ratione deleniti velit sit! In, et.
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque, veritatis veniam 
+                        nam cumque quaerat labore placeat error esse dolores dicta blanditiis laborum, numquam 
+                        provident ratione deleniti velit sit! In, et.
+                    </div>
+                </div>
+                <div class="daysDetails">  
+                    <div class="swiper-container">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide stylishScroll">
+                                <h5 class="text-center mb-2">Day 1</h5>
+                                <h6>Day 1 Title</h6>
+                                <p>
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque, veritatis veniam 
+                        nam cumque quaerat labore placeat error esse dolores dicta blanditiis laborum, numquam 
+                        provident ratione deleniti velit sit! In, et.
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque, veritatis veniam 
+                        nam cumque quaerat labore placeat error esse dolores dicta blanditiis laborum, numquam 
+                        provident ratione deleniti velit sit! In, et.
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque, veritatis veniam 
+                        nam cumque quaerat labore placeat error esse dolores dicta blanditiis laborum, numquam 
+                        provident ratione deleniti velit sit! In, et.
+                                </p>
+                            </div>
+                            <div class="swiper-slide stylishScroll">Slide 2</div>
+                        </div>
+                        <div class="swiper-pagination"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="compareCard cc3">
+            <div class="tourLayout">
+                <a href="#">Select Tour</a>
+            </div>
+            <div class="tourHead">
+                <h3>Tour Id : tourid</h3>
+            </div>
+            <div class="tourCon">
+                <div class="outlook">
+                    <h5 class="text-center mb-2">Outlook</h5>
+                    <p>Tour Type : Couple Friendly</p>
+                    <p>Ratting : 4.5</p>
+                    <p>Starting Date : 26/12/2020</p>
+                    <p>Ending Date : 01/01/2021</p>
+                    <p>Starting Location : Kolkata</p>
+                    <p>Ending Location : Delhi</p>
+                    <p>Price/People : $8712</p>
+                    <p>Last Date to Book : 19/12/2020</p>
+                </div>
+                <div class="inclusive stylishScroll">
+                    <h5 class="text-center mb-2">Tour Inclusive</h5>
+                    <div>
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque, veritatis veniam 
+                        nam cumque quaerat labore placeat error esse dolores dicta blanditiis laborum, numquam 
+                        provident ratione deleniti velit sit! In, et.
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque, veritatis veniam 
+                        nam cumque quaerat labore placeat error esse dolores dicta blanditiis laborum, numquam 
+                        provident ratione deleniti velit sit! In, et.
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque, veritatis veniam 
+                        nam cumque quaerat labore placeat error esse dolores dicta blanditiis laborum, numquam 
+                        provident ratione deleniti velit sit! In, et.
+                    </div>
+                </div>
+                <div class="exclusive stylishScroll">
+                    <h5 class="text-center mb-2">Tour Exclusive</h5>
+                    <div>
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque, veritatis veniam 
+                        nam cumque quaerat labore placeat error esse dolores dicta blanditiis laborum, numquam 
+                        provident ratione deleniti velit sit! In, et.
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque, veritatis veniam 
+                        nam cumque quaerat labore placeat error esse dolores dicta blanditiis laborum, numquam 
+                        provident ratione deleniti velit sit! In, et.
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque, veritatis veniam 
+                        nam cumque quaerat labore placeat error esse dolores dicta blanditiis laborum, numquam 
+                        provident ratione deleniti velit sit! In, et.
+                    </div>
+                </div>
+                <div class="highlight stylishScroll">
+                    <h5 class="text-center mb-2">Tour Highlight</h5>
+                    <div>
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque, veritatis veniam 
+                        nam cumque quaerat labore placeat error esse dolores dicta blanditiis laborum, numquam 
+                        provident ratione deleniti velit sit! In, et.
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque, veritatis veniam 
+                        nam cumque quaerat labore placeat error esse dolores dicta blanditiis laborum, numquam 
+                        provident ratione deleniti velit sit! In, et.
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque, veritatis veniam 
+                        nam cumque quaerat labore placeat error esse dolores dicta blanditiis laborum, numquam 
+                        provident ratione deleniti velit sit! In, et.
+                    </div>
+                </div>
+                <div class="overview stylishScroll">
+                    <h5 class="text-center mb-2">Tour Overview</h5>
+                    <div>
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque, veritatis veniam 
+                        nam cumque quaerat labore placeat error esse dolores dicta blanditiis laborum, numquam 
+                        provident ratione deleniti velit sit! In, et.
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque, veritatis veniam 
+                        nam cumque quaerat labore placeat error esse dolores dicta blanditiis laborum, numquam 
+                        provident ratione deleniti velit sit! In, et.
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque, veritatis veniam 
+                        nam cumque quaerat labore placeat error esse dolores dicta blanditiis laborum, numquam 
+                        provident ratione deleniti velit sit! In, et.
+                    </div>
+                </div>
+                <div class="daysDetails">  
+                    <div class="swiper-container">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide stylishScroll">
+                                <h5 class="text-center mb-2">Day 1</h5>
+                                <h6>Day 1 Title</h6>
+                                <p>
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque, veritatis veniam 
+                        nam cumque quaerat labore placeat error esse dolores dicta blanditiis laborum, numquam 
+                        provident ratione deleniti velit sit! In, et.
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque, veritatis veniam 
+                        nam cumque quaerat labore placeat error esse dolores dicta blanditiis laborum, numquam 
+                        provident ratione deleniti velit sit! In, et.
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque, veritatis veniam 
+                        nam cumque quaerat labore placeat error esse dolores dicta blanditiis laborum, numquam 
+                        provident ratione deleniti velit sit! In, et.
+                                </p>
+                            </div>
+                            <div class="swiper-slide stylishScroll">Slide 2</div>
+                        </div>
+                        <div class="swiper-pagination"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="compareCard cc4">
+            <div class="tourLayout">
+                <a href="#">Select Tour</a>
+            </div>
+            <div class="tourHead">
+                <h3>Tour Id : tourid</h3>
+            </div>
+            <div class="tourCon">
+                <div class="outlook">
+                    <h5 class="text-center mb-2">Outlook</h5>
+                    <p>Tour Type : Couple Friendly</p>
+                    <p>Ratting : 4.5</p>
+                    <p>Starting Date : 26/12/2020</p>
+                    <p>Ending Date : 01/01/2021</p>
+                    <p>Starting Location : Kolkata</p>
+                    <p>Ending Location : Delhi</p>
+                    <p>Price/People : $8712</p>
+                    <p>Last Date to Book : 19/12/2020</p>
+                </div>
+                <div class="inclusive stylishScroll">
+                    <h5 class="text-center mb-2">Tour Inclusive</h5>
+                    <div>
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque, veritatis veniam 
+                        nam cumque quaerat labore placeat error esse dolores dicta blanditiis laborum, numquam 
+                        provident ratione deleniti velit sit! In, et.
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque, veritatis veniam 
+                        nam cumque quaerat labore placeat error esse dolores dicta blanditiis laborum, numquam 
+                        provident ratione deleniti velit sit! In, et.
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque, veritatis veniam 
+                        nam cumque quaerat labore placeat error esse dolores dicta blanditiis laborum, numquam 
+                        provident ratione deleniti velit sit! In, et.
+                    </div>
+                </div>
+                <div class="exclusive stylishScroll">
+                    <h5 class="text-center mb-2">Tour Exclusive</h5>
+                    <div>
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque, veritatis veniam 
+                        nam cumque quaerat labore placeat error esse dolores dicta blanditiis laborum, numquam 
+                        provident ratione deleniti velit sit! In, et.
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque, veritatis veniam 
+                        nam cumque quaerat labore placeat error esse dolores dicta blanditiis laborum, numquam 
+                        provident ratione deleniti velit sit! In, et.
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque, veritatis veniam 
+                        nam cumque quaerat labore placeat error esse dolores dicta blanditiis laborum, numquam 
+                        provident ratione deleniti velit sit! In, et.
+                    </div>
+                </div>
+                <div class="highlight stylishScroll">
+                    <h5 class="text-center mb-2">Tour Highlight</h5>
+                    <div>
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque, veritatis veniam 
+                        nam cumque quaerat labore placeat error esse dolores dicta blanditiis laborum, numquam 
+                        provident ratione deleniti velit sit! In, et.
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque, veritatis veniam 
+                        nam cumque quaerat labore placeat error esse dolores dicta blanditiis laborum, numquam 
+                        provident ratione deleniti velit sit! In, et.
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque, veritatis veniam 
+                        nam cumque quaerat labore placeat error esse dolores dicta blanditiis laborum, numquam 
+                        provident ratione deleniti velit sit! In, et.
+                    </div>
+                </div>
+                <div class="overview stylishScroll">
+                    <h5 class="text-center mb-2">Tour Overview</h5>
+                    <div>
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque, veritatis veniam 
+                        nam cumque quaerat labore placeat error esse dolores dicta blanditiis laborum, numquam 
+                        provident ratione deleniti velit sit! In, et.
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque, veritatis veniam 
+                        nam cumque quaerat labore placeat error esse dolores dicta blanditiis laborum, numquam 
+                        provident ratione deleniti velit sit! In, et.
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque, veritatis veniam 
+                        nam cumque quaerat labore placeat error esse dolores dicta blanditiis laborum, numquam 
+                        provident ratione deleniti velit sit! In, et.
+                    </div>
+                </div>
+                <div class="daysDetails">  
+                    <div class="swiper-container">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide stylishScroll">
+                                <h5 class="text-center mb-2">Day 1</h5>
+                                <h6>Day 1 Title</h6>
+                                <p>
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque, veritatis veniam 
+                        nam cumque quaerat labore placeat error esse dolores dicta blanditiis laborum, numquam 
+                        provident ratione deleniti velit sit! In, et.
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque, veritatis veniam 
+                        nam cumque quaerat labore placeat error esse dolores dicta blanditiis laborum, numquam 
+                        provident ratione deleniti velit sit! In, et.
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque, veritatis veniam 
+                        nam cumque quaerat labore placeat error esse dolores dicta blanditiis laborum, numquam 
+                        provident ratione deleniti velit sit! In, et.
+                                </p>
+                            </div>
+                            <div class="swiper-slide stylishScroll">Slide 2</div>
+                        </div>
+                        <div class="swiper-pagination"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script type="text/javascript">
-    var tour1 = {{Tour1}};
-    var tour2 = {{Tour2}};
-    var tour3 = {{Tour3}};
-    var tour4 = {{Tour4}};
+    var tour1 = "{{Tour1}}";
+    var tour2 = "{{Tour2}}";
+    var tour3 = "{{Tour3}}";
+    var tour4 = "{{Tour4}}";
+    console.log(tour1)
+
+    function changeTopic(){
+        var value=$("#topic option:selected").val();
+        document.querySelectorAll('.tourCon > div').forEach(function(el){
+            el.style.display='none';
+        });
+        if(value==='inclusive'){
+            document.querySelectorAll('.inclusive').forEach(function(el){
+                el.style.display='block';
+            });
+        }
+        else if(value==='exclusive'){
+            document.querySelectorAll('.exclusive').forEach(function(el){
+                el.style.display='block';
+            });
+        }
+        else if(value==='outlook'){
+            document.querySelectorAll('.outlook').forEach(function(el){
+                el.style.display='block';
+            });
+        }
+        else if(value==='highlight'){
+            document.querySelectorAll('.highlight').forEach(function(el){
+                el.style.display='block';
+            });
+        }
+        else if(value==='daysDetails'){
+            document.querySelectorAll('.daysDetails').forEach(function(el){
+                el.style.display='block';
+            });
+            var swiper = new Swiper('.swiper-container', {
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                    renderBullet: function (index, className) {
+                        return '<span class="' + className + '">' + (index + 1) + '</span>';
+                    },
+                },
+            });
+            document.querySelectorAll('.swiper-container').forEach(function(el){
+                el.style.paddingBottom=document.querySelector('.swiper-pagination').offsetHeight+'px';
+            });
+        }
+        else if(value==='overview'){
+            document.querySelectorAll('.overview').forEach(function(el){
+                el.style.display='block';
+            });
+        }
+    }
+
+    $(function(){
+        var 
+    });
 </script>
 {% endblock body %}
