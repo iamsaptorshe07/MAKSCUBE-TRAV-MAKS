@@ -20,7 +20,7 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
-  <!-- <script>
+  <script>
     document.addEventListener('contextmenu', event => event.preventDefault());document.onkeydown = function(e) {
     if (e.ctrlKey && 
         (e.keyCode === 67 || 
@@ -40,7 +40,7 @@
         return true;
       }
     });
-  </script> -->
+  </script>
   <style>
     body {
       -webkit-user-select: none;
@@ -49,6 +49,7 @@
       user-select: none
     }
   </style>
+  
   <style>
     #myBtn {
       display: none;
@@ -76,19 +77,24 @@
     #myBtn:hover {
       background-color: #555;
     }
-
-    @media screen and (max-width: 400px) {
-      ul.paymentmode {
-        margin-left: 56px !important;
-      }
+    .fb-page, .fb-page > span, .fb-page > span > iframe{
+      max-width: 100%!important;
+      border-radius: 4px;
     }
-  </style>
-  <style>
-    body {
-      -webkit-user-select: none;
-      -moz-user-select: -moz-none;
-      -ms-user-select: none;
-      user-select: none
+    .mainfooter .container .row:nth-child(2) .col-lg-3{
+      margin-top: 5px;
+      margin-bottom: 5px;
+    }
+    .paymentmode li{
+      margin: 3px;
+    }
+    .paymentmode img{
+      border-radius: 3px;
+    }
+    @media screen and (max-width:900px){
+      .paymentmode{
+        justify-content: center;
+      }
     }
   </style>
   {% block stylesheets %}
@@ -375,13 +381,13 @@
         </div>
 
         <div class="row">
-          <div class="col-md-3">
+          <div class="col-lg-3">
             <div>
               <h4>TRAVMAKS</h4>
               <ul class="list-unstyled">
                 <li>
                   <div class="fb-page" data-href="https://www.facebook.com/Travmaks-100874308548705"
-                    data-tabs="timeline" data-width="200" data-height="70" data-small-header="false"
+                    data-tabs="timeline" style="width: 100%;" data-height="70" data-small-header="false"
                     data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
                     <blockquote cite="https://www.facebook.com/Travmaks-100874308548705" class="fb-xfbml-parse-ignore">
                       <a href="https://www.facebook.com/Travmaks-100874308548705">Travmaks</a>
@@ -394,7 +400,7 @@
             </div>
           </div>
 
-          <div class="col-md-3">
+          <div class="col-lg-3">
             <div>
               <h4>Booking & Complaint</h4>
               <ul class="list-unstyled">
@@ -404,9 +410,9 @@
             </div>
           </div>
 
-          <div class="col-md-3">
+          <div class="col-lg-3">
             <h4>We Accept</h4>
-            <ul class="paymentmode">
+            <ul class="paymentmode" style="flex-wrap: wrap;">
               <li><a><img src="{% static 'img/paytm.jpg' %}" alt=""></a></li>&nbsp;
               <li><a><img src="{% static 'img/phonepay.png' %}" alt=""></a></li>&nbsp;
               <li><a><img src="{% static 'img/master.png' %}" alt=""></a></li>&nbsp;
@@ -418,11 +424,11 @@
 
           </div>
 
-          <div class="col-md-3">
-            <h4>MAKS CUBE Social</h4>
+          <div class="col-lg-3">
+            <h4>MAKS CUBE</h4>
             <ul>
               <li>
-                <div class="fb-page" data-href="https://www.facebook.com/makscub3" data-tabs="timeline" data-width="200"
+                <div class="fb-page" data-href="https://www.facebook.com/makscub3" data-tabs="timeline" style="width: 100%;"
                   data-height="70" data-small-header="false" data-adapt-container-width="true" data-hide-cover="true"
                   data-show-facepile="true">
                   <blockquote cite="https://www.facebook.com/makscub3" class="fb-xfbml-parse-ignore"><a
@@ -529,34 +535,13 @@
   </script>
   <!--Javascript for continious ad ends here-->
 </body>
-<script>
-  document.addEventListener('contextmenu', event => event.preventDefault()); document.onkeydown = function (e) {
-    if (e.ctrlKey &&
-      (e.keyCode === 67 ||
-        e.keyCode === 86 ||
-        e.keyCode === 85 ||
-        e.keyCode === 117)) {
-      return false;
-    } else {
-      return true;
-    }
-  };
-  $(document).keypress("u", function (e) {
-    if (e.ctrlKey) {
-      return false;
-    }
-    else {
-      return true;
-    }
-  });
-</script>
 
 <script>
 
   var height = document.documentElement.scrollHeight - document.querySelector('.mainfooter').scrollHeight;
   // console.log(height);
   if (height <= 380) {
-    document.querySelector('.mainfooter').style.transform = 'translateY(50%)'
+    document.querySelector('.mainfooter').style.transform = 'translateY(50%)';
   }
 </script>
 
