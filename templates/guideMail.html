@@ -1,8 +1,12 @@
 {% autoescape off %}
-Hi {{user.name}} 
-Thanks for your registration, Click on the link to setup your profile and activate your account
-Link: http://{{domain}}{% url 'activateGuide' uid=uid token=token %}
-<div style="background-color: #e1e1e1; margin: 0 !important; padding: 0 !important;">
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Activation</title>
+</head>
+
+<body style="background-color: #e1e1e1; margin: 0 !important; padding: 0 !important;">
     <div
         style="display: none; font-size: 1px; color: #fefefe; line-height: 1px; font-family: 'Lato', Helvetica, Arial, sans-serif; max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden;">
         We're thrilled to have you here! Get ready to dive into your new account. </div>
@@ -24,8 +28,9 @@ Link: http://{{domain}}{% url 'activateGuide' uid=uid token=token %}
                         <td bgcolor="#ffffff" align="center" valign="top"
                             style="padding: 40px 20px 20px 20px; border-radius: 4px 4px 0px 0px; color: #111111; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 48px; font-weight: 400; letter-spacing: 4px; line-height: 48px;">
                             <h1 style="font-size: 48px; font-weight: 400; margin: 2;">Welcome!</h1>
-                            <a href="http://{{domain}}"> <img src="https://scontent.fccu2-2.fna.fbcdn.net/v/t1.0-9/p960x960/128270861_100876885215114_6324762392831004524_o.jpg?_nc_cat=104&ccb=2&_nc_sid=85a577&_nc_ohc=sFbQU6XylLUAX86pEKS&_nc_ht=scontent.fccu2-2.fna&tp=6&oh=99af5ba6668d8104663b9d6f84fec0ff&oe=5FF9E2F9" width="125" height="120"
-                                    style="display: block; border: 0px;" /></a>
+                            <a href="http://{{domain}}"> <img
+                                    src="https://scontent.fccu2-2.fna.fbcdn.net/v/t1.0-9/p960x960/128270861_100876885215114_6324762392831004524_o.jpg?_nc_cat=104&ccb=2&_nc_sid=85a577&_nc_ohc=sFbQU6XylLUAX86pEKS&_nc_ht=scontent.fccu2-2.fna&tp=6&oh=99af5ba6668d8104663b9d6f84fec0ff&oe=5FF9E2F9"
+                                    width="125" height="120" style="display: block; border: 0px;" /></a>
                         </td>
                     </tr>
                 </table>
@@ -37,7 +42,7 @@ Link: http://{{domain}}{% url 'activateGuide' uid=uid token=token %}
                     <tr>
                         <td bgcolor="#ffffff" align="left"
                             style="padding: 20px 30px 40px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
-                            <p style="margin: 0;">Hi {{user.name}}! We're excited to have you get started. First, you
+                            <p style="margin: 0;">Hi {{user}}! We're excited to have you get started. First, you
                                 need to confirm your
                                 account. Just press the button below.</p>
                         </td>
@@ -55,9 +60,8 @@ Link: http://{{domain}}{% url 'activateGuide' uid=uid token=token %}
                                                         style="font-size: 20px; font-family: Helvetica, Arial, sans-serif; color: #ffffff; 
                                                         text-decoration: none; background-color: #1746e0;text-decoration: none; padding: 15px 25px; 
                                                         border-radius: 2px; border: 1px solid #1746e0; display: inline-block;">Confirm
-                                                        Account</button>
+                                                        Account</a>
                                                 </td>
-                                                
                                             </tr>
                                         </table>
                                     </td>
@@ -65,13 +69,7 @@ Link: http://{{domain}}{% url 'activateGuide' uid=uid token=token %}
                             </table>
                         </td>
                     </tr>
-                    <tr>
-                        <td bgcolor="#ffffff" align="left"
-                            style="padding: 0px 30px 0px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
-                            <p style="margin: 0;">If that doesn't work, copy and paste the following link in your
-                                browser:</p>
-                        </td>
-                    </tr> <!-- COPY -->
+                   
                     <tr>
                         <td bgcolor="#ffffff" align="left"
                             style="padding: 20px 30px 20px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
@@ -126,5 +124,8 @@ Link: http://{{domain}}{% url 'activateGuide' uid=uid token=token %}
             </td>
         </tr>
     </table>
-</div>
+</body>
+
+</html>
+
 {% endautoescape %}

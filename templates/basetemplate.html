@@ -42,11 +42,11 @@
     });
   </script> -->
   <style>
-    body{
-      -webkit-user-select:none;
-      -moz-user-select:-moz-none;
-      -ms-user-select:none;
-      user-select:none
+    body {
+      -webkit-user-select: none;
+      -moz-user-select: -moz-none;
+      -ms-user-select: none;
+      user-select: none
     }
   </style>
   <style>
@@ -76,23 +76,35 @@
     #myBtn:hover {
       background-color: #555;
     }
-	
-	@media screen and (max-width: 400px) {
-	ul.paymentmode{
-		margin-left:56px !important;
-	}
-	}
+
+    @media screen and (max-width: 400px) {
+      ul.paymentmode {
+        margin-left: 56px !important;
+      }
+    }
+  </style>
+  <style>
+    body {
+      -webkit-user-select: none;
+      -moz-user-select: -moz-none;
+      -ms-user-select: none;
+      user-select: none
+    }
   </style>
   {% block stylesheets %}
   {% endblock stylesheets %}
 </head>
 
 <body id="page-top" onload="removeLoader();" style="margin-top: 60px;">
-<div id="fb-root"></div>
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v9.0&appId=205716276789665&autoLogAppEvents=1" nonce="Jh8JHyfE"></script>
+  <div id="fb-root"></div>
+  <script async defer crossorigin="anonymous"
+    src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v9.0&appId=205716276789665&autoLogAppEvents=1"
+    nonce="Jh8JHyfE"></script>
 
-<div id="fb-root"></div>
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v9.0&appId=205716276789665&autoLogAppEvents=1" nonce="F5IZ9oMp"></script>
+  <div id="fb-root"></div>
+  <script async defer crossorigin="anonymous"
+    src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v9.0&appId=205716276789665&autoLogAppEvents=1"
+    nonce="F5IZ9oMp"></script>
   <div id="preload">
     <img id="loading-image" src="{% static 'img/loader1.gif' %}" alt="loader" />
   </div>
@@ -200,8 +212,9 @@
       <b class="text-white">TRAVMAKS</b>
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style="background-color:#fff;">
-      <span class="navbar-toggler-icon" ></span>
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+      style="background-color:#fff;">
+      <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
@@ -243,18 +256,21 @@
             <a class="dropdown-item" href="/traveller/booking-history">Booking History</a>
             <div class="dropdown-divider"></div>
 
-            <a class="dropdown-item" href="/travelagency/ongoing-tours-traveller/{{request.user.userAccess.userId}}">On Going Tours</a>
+            <a class="dropdown-item" href="/travelagency/ongoing-tours-traveller/{{request.user.userAccess.userId}}">On
+              Going Tours</a>
             <div class="dropdown-divider"></div>
 
             <a class="dropdown-item" href="#">Wishlist</a>
             <div class="dropdown-divider"></div>
 
-            <a class="dropdown-item" href="/travelagency/upcoming-tours-traveller/{{request.user.userAccess.userId}}">Upcoming Tour</a>
+            <a class="dropdown-item"
+              href="/travelagency/upcoming-tours-traveller/{{request.user.userAccess.userId}}">Upcoming Tour</a>
             <div class="dropdown-divider"></div>
 
             <a class="dropdown-item" href="/accounts/user/logout">Logout</a>
             {% elif request.session.access_type == 'seller' %}
-            <a class="dropdown-item" href="/travelagency/agencytours/{{request.user.id}}/{{request.user.userAccess.agentId}}">My
+            <a class="dropdown-item"
+              href="/travelagency/agencytours/{{request.user.id}}/{{request.user.userAccess.agentId}}">My
               Profile</a>
             <div class="dropdown-divider"></div>
 
@@ -348,13 +364,15 @@
           <div class="col-md-2">
             <h4>Follow Us</h4>
             <ul class="social-network social-circle">
-              <li><a href="https://www.facebook.com/Travmaks-100874308548705/" class="icoFacebook" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+              <li><a href="https://www.facebook.com/Travmaks-100874308548705/" class="icoFacebook" title="Facebook"><i
+                    class="fa fa-facebook"></i></a></li>
               <li><a href="#" class="icoInstagram" title="Instagram"><i class="fa fa-instagram"></i></a></li>
               <li><a href="#" class="icoPinterest" title="Pinterest"><i class="fa fa-pinterest"></i></a></li>
               <li class="my-4"><a href="#" class="icoTwitter" title="Twitter"><i class="fa fa-twitter"></i></a></li>
               <li class="my-4"><a href="#" class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
-              <li class="my-4"><a href="#" class="icoYoutube" title="Youtube"><i class="fa fa-youtube-play"></i></a></li>
-			  </ul>
+              <li class="my-4"><a href="#" class="icoYoutube" title="Youtube"><i class="fa fa-youtube-play"></i></a>
+              </li>
+            </ul>
           </div>
 
           <div class="col-md-2">
@@ -367,23 +385,29 @@
             </div>
           </div>
         </div>
-		
-		<div class="row">
-		<div class="col-md-3">
-            <div >
+
+        <div class="row">
+          <div class="col-md-3">
+            <div>
               <h4>TRAVMAKS</h4>
               <ul class="list-unstyled">
                 <li>
-				<div class="fb-page" data-href="https://www.facebook.com/Travmaks-100874308548705" data-tabs="timeline" data-width="200" data-height="70" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/Travmaks-100874308548705" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/Travmaks-100874308548705">Travmaks</a></blockquote></div>
-				
-				</li><br>
-				
+                  <div class="fb-page" data-href="https://www.facebook.com/Travmaks-100874308548705"
+                    data-tabs="timeline" data-width="200" data-height="70" data-small-header="false"
+                    data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
+                    <blockquote cite="https://www.facebook.com/Travmaks-100874308548705" class="fb-xfbml-parse-ignore">
+                      <a href="https://www.facebook.com/Travmaks-100874308548705">Travmaks</a>
+                    </blockquote>
+                  </div>
+
+                </li><br>
+
               </ul>
             </div>
           </div>
-		  
-		  <div class="col-md-3">
-            <div >
+
+          <div class="col-md-3">
+            <div>
               <h4>Booking & Complaint</h4>
               <ul class="list-unstyled">
                 <li><i class="fa fa-envelope fa-lg"></i>&nbsp;: booking@travmaks.in</li>
@@ -391,31 +415,38 @@
               </ul>
             </div>
           </div>
-		  
-		  <div class="col-md-3">
+
+          <div class="col-md-3">
             <h4>We Accept</h4>
             <ul class="paymentmode">
               <li><a><img src="{% static 'img/paytm.jpg' %}" alt=""></a></li>&nbsp;
-              <li><a><img src="{% static 'img/phonepay.png' %}" alt=""></a></li>&nbsp;	
-              <li><a><img src="{% static 'img/master.png' %}" alt="" ></a></li>&nbsp;	
-              <li><a><img src="{% static 'img/visa.png' %}" alt="" ></a></li>&nbsp;
+              <li><a><img src="{% static 'img/phonepay.png' %}" alt=""></a></li>&nbsp;
+              <li><a><img src="{% static 'img/master.png' %}" alt=""></a></li>&nbsp;
+              <li><a><img src="{% static 'img/visa.png' %}" alt=""></a></li>&nbsp;
               <li><a><img src="{% static 'img/paypal.png' %}" alt=""></a></li>&nbsp;
-              <li><a><img src="{% static 'img/rupay.jpg' %}" alt="" ></a></li>
-              
-			  </ul>
-			  
-			  </div>
-		  
-		  <div class="col-md-3">
+              <li><a><img src="{% static 'img/rupay.jpg' %}" alt=""></a></li>
+
+            </ul>
+
+          </div>
+
+          <div class="col-md-3">
             <h4>MAKS CUBE Social</h4>
             <ul>
-              <li><div class="fb-page" data-href="https://www.facebook.com/makscub3" data-tabs="timeline" data-width="200" data-height="70" data-small-header="false" data-adapt-container-width="true" data-hide-cover="true" data-show-facepile="true"><blockquote cite="https://www.facebook.com/makscub3" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/makscub3">MAKS CUBE</a></blockquote></div></li>
-              </ul><br>
+              <li>
+                <div class="fb-page" data-href="https://www.facebook.com/makscub3" data-tabs="timeline" data-width="200"
+                  data-height="70" data-small-header="false" data-adapt-container-width="true" data-hide-cover="true"
+                  data-show-facepile="true">
+                  <blockquote cite="https://www.facebook.com/makscub3" class="fb-xfbml-parse-ignore"><a
+                      href="https://www.facebook.com/makscub3">MAKS CUBE</a></blockquote>
+                </div>
+              </li>
+            </ul><br>
           </div>
-		  
-		</div>
-        
-		<div class="row">
+
+        </div>
+
+        <div class="row">
           <div class="col-md-12 copy">
 
             <h5 style="color:#fff; text-align:center;">Copyright &copy; TRAVMAKS || Design and Developed by <a
@@ -506,17 +537,39 @@
       document.body.scrollTop = 0;
       document.documentElement.scrollTop = 0;
     }
-    
+
   </script>
   <!--Javascript for continious ad ends here-->
 </body>
+<script>
+  document.addEventListener('contextmenu', event => event.preventDefault()); document.onkeydown = function (e) {
+    if (e.ctrlKey &&
+      (e.keyCode === 67 ||
+        e.keyCode === 86 ||
+        e.keyCode === 85 ||
+        e.keyCode === 117)) {
+      return false;
+    } else {
+      return true;
+    }
+  };
+  $(document).keypress("u", function (e) {
+    if (e.ctrlKey) {
+      return false;
+    }
+    else {
+      return true;
+    }
+  });
+</script>
 
 <script>
 
   var height = document.documentElement.scrollHeight - document.querySelector('.mainfooter').scrollHeight;
   // console.log(height);
-  if(height<=380){
-    document.querySelector('.mainfooter').style.transform='translateY(50%)'
+  if (height <= 380) {
+    document.querySelector('.mainfooter').style.transform = 'translateY(50%)'
   }
 </script>
+
 </html>

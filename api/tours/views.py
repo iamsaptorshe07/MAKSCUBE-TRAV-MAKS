@@ -40,8 +40,8 @@ def compareTourView(request):
 class SearchTour(APIView):
     def get(self,request):
         try:
-            start_location = request.GET.get('startLocation')
-            end_location = request.GET.get('endLocation')
+            sLocation = request.GET.get('sLocation')
+            eLocation = request.GET.get('eLocation')
         except Exception as problem:
             return Response(
                 {
@@ -50,11 +50,12 @@ class SearchTour(APIView):
                 },
                 status = status.HTTP_406_NOT_ACCEPTABLE
             )
-        if start_location != None and end_location != None:
-            tours = Tour.objects.filter(startingLocation__icontains = start_location, 
-            endLocation__icontains = end_location, publish_mode = True,
-            last_booking_date__gte=str(datetime.date.today()),maximum_people__gte=1
-            )
+        if sLocation != None and eLocation != None:
+            tour1 = Tour.objects.filter(startingLocation__icontains=sLocation,endLocation__icontains=eLocation,publish_mode = True,
+            last_booking_date__gte=str(datetime.date.today()),maximum_people__gte=1)
+            tour2 = Tour.objects.filter(Q(tourHeading__icontains = sLocation) | Q(tourHeading__icontains = eLocation),publish_mode = True,
+                last_booking_date__gte=str(datetime.date.today()),maximum_people__gte=1)
+            tours = tour1.union(tour2)
             tour_data = TourSerializer(tours,many=True)
             return Response(
                 {
@@ -67,7 +68,7 @@ class SearchTour(APIView):
             return Response(
                 {
                     'status':406,
-                    'message':"startLocation and endLocation can not be NULL"
+                    'message':"sLocation and eLocation can not be NULL"
                 },
                 status = status.HTTP_406_NOT_ACCEPTABLE
             )

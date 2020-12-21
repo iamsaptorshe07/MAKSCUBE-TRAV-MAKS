@@ -4,46 +4,52 @@
 {% block stylesheets %}
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <style>
-    p{
+    p {
         margin: 0;
     }
-    .tourTypeSearch{
+
+    .tourTypeSearch {
         display: flex;
         align-items: center;
         justify-content: center;
         flex-wrap: wrap;
         padding: 20px 0;
         margin-top: 30px;
-        border-top: 1px solid rgba(0,0,0,.64);
-        border-bottom: 1px solid rgba(0,0,0,.64);
+        border-top: 1px solid rgba(0, 0, 0, .64);
+        border-bottom: 1px solid rgba(0, 0, 0, .64);
     }
-    .tourTypeSearch span{
+
+    .tourTypeSearch span {
         margin: 10px 15px;
         width: auto;
         height: auto;
         border-radius: 25px;
         padding: 2px 10px;
-        border: 1px solid rgba(0,0,0,.64);
+        border: 1px solid rgba(0, 0, 0, .64);
         display: flex;
         align-items: center;
         justify-content: center;
         font-weight: 500;
     }
-    .tourTypeSearch span:hover{
+
+    .tourTypeSearch span:hover {
         color: #fff;
         background-color: #EC5B24;
         border-color: #EC5B24;
     }
-    .tourTypeSearch span.active{
+
+    .tourTypeSearch span.active {
         color: #fff;
         background-color: #EC5B24;
         border-color: #EC5B24;
     }
-    #tours{
+
+    #tours {
         margin-top: 30px;
         position: relative;
     }
-    #tours .selectbg{
+
+    #tours .selectbg {
         height: 35px;
         align-items: center;
         justify-content: center;
@@ -52,12 +58,14 @@
         top: 0;
         right: 0;
     }
-    #tours .selectbg select{
+
+    #tours .selectbg select {
         background-color: #e6edf3;
-        outline: none!important;
+        outline: none !important;
         border: none;
     }
-    .tours{
+
+    .tours {
         margin-top: 60px;
         position: relative;
         display: flex;
@@ -66,7 +74,8 @@
         align-items: center;
         perspective: 10000px;
     }
-    .tour{
+
+    .tour {
         margin: 15px 0 55px 0;
         width: 280px;
         min-height: 375px;
@@ -75,7 +84,8 @@
         border-top-left-radius: 50%;
         transition: .2s;
     }
-    .tour .imgbg{
+
+    .tour .imgbg {
         position: relative;
         top: 0;
         left: 0;
@@ -84,7 +94,8 @@
         border-radius: 4px 4px 0 0;
         border-top-left-radius: 50%;
     }
-    .tour .imgbg img{
+
+    .tour .imgbg img {
         position: absolute;
         top: 0;
         left: 0;
@@ -94,7 +105,8 @@
         z-index: 2;
         transition: 0.6s;
     }
-    .tour .imgbg span{
+
+    .tour .imgbg span {
         z-index: 1;
         position: absolute;
         bottom: 0;
@@ -105,140 +117,171 @@
         align-items: center;
         justify-content: center;
         background-color: rgb(5, 26, 95);
-        border: 1px solid rgba(0,0,0,.38);
+        border: 1px solid rgba(0, 0, 0, .38);
     }
-    .tour .imgbg span a{
+
+    .tour .imgbg span a {
         color: #ffffff;
     }
-    .tour .content{
+
+    .tour .content {
         width: 280px;
         min-height: 115px;
         position: relative;
         top: 0;
         left: 0;
-        border: 1px solid rgba(0,0,0,.38);
+        border: 1px solid rgba(0, 0, 0, .38);
         border-radius: 0 0 4px 4px;
     }
-    .tour:hover{
-        box-shadow: 2px 2px rgba(0,0,0,.38);
+
+    .tour:hover {
+        box-shadow: 2px 2px rgba(0, 0, 0, .38);
     }
-    .tour:hover .imgbg img{
+
+    .tour:hover .imgbg img {
         transform: translateY(-35px);
         border-top-left-radius: 50%;
     }
-    .tour .content div{
+
+    .tour .content div {
         width: 100%;
         padding: 1px 10px;
         display: flex;
         font-size: 16px;
-        color:rgba(0,0,0,.38);
+        color: rgba(0, 0, 0, .38);
         align-items: center;
         justify-content: space-between;
     }
-    .tour .content .con1{
+
+    .tour .content .con1 {
         word-break: break-word;
         font-size: 20px;
         font-weight: bold;
         color: rgb(255 43 61 / 68%);
     }
-    .tour .content .con2{
+
+    .tour .content .con2 {
         color: black;
     }
-    .stars{
+
+    .stars {
         position: absolute;
         top: 0;
         left: 0;
     }
-    .stars ul{
+
+    .stars ul {
         margin: 0;
         list-style: none;
         transition: 0.6s;
     }
-    .stars ul li{
+
+    .stars ul li {
         margin: 0;
     }
-    .stars ul li i{
+
+    .stars ul li i {
         color: rgb(5, 26, 95);
         font-size: 22px;
         transition: 0.6s;
     }
-    .tour:hover .stars ul{
-        transform: translateX(-10px);   
+
+    .tour:hover .stars ul {
+        transform: translateX(-10px);
     }
-    .tour:hover .stars ul li:nth-child(1) i{
-        transform: translate(130px,-60px);   
+
+    .tour:hover .stars ul li:nth-child(1) i {
+        transform: translate(130px, -60px);
     }
-    .tour:hover .stars ul li:nth-child(2) i{
-        transform: translate(90px,-80px);   
+
+    .tour:hover .stars ul li:nth-child(2) i {
+        transform: translate(90px, -80px);
     }
-    .tour:hover .stars ul li:nth-child(3) i{
-        transform: translate(51px,-90px);   
+
+    .tour:hover .stars ul li:nth-child(3) i {
+        transform: translate(51px, -90px);
     }
-    .tour:hover .stars ul li:nth-child(4) i{
-        transform: translate(19px,-90px);   
+
+    .tour:hover .stars ul li:nth-child(4) i {
+        transform: translate(19px, -90px);
     }
-    .tour:hover .stars ul li:nth-child(5) i{
-        transform: translate(0px,-80px);
+
+    .tour:hover .stars ul li:nth-child(5) i {
+        transform: translate(0px, -80px);
     }
-    .noMatchFound{
+
+    .noMatchFound {
         position: absolute;
         display: none;
         font-size: 30px;
         font-weight: bold;
     }
-    .searchbtn{
+
+    .searchbtn {
         width: 150px;
         padding: 2px 0;
         border-radius: 4px;
         background-color: #EC5B24;
         color: white;
     }
-    .plagination{
+
+    .plagination {
         display: flex;
         align-items: center;
         justify-content: center;
         flex-wrap: wrap;
         padding: 20px 0;
-        border-top: 1px solid rgba(0,0,0,.64);
-        border-bottom: 1px solid rgba(0,0,0,.64);
+        border-top: 1px solid rgba(0, 0, 0, .64);
+        border-bottom: 1px solid rgba(0, 0, 0, .64);
     }
-    .right-arrow-img, .left-arrow-img{
+
+    .right-arrow-img,
+    .left-arrow-img {
         display: flex;
         align-items: center;
         justify-content: center;
         height: 30px;
     }
-    .right-arrow-img img, .left-arrow-img img{
+
+    .right-arrow-img img,
+    .left-arrow-img img {
         height: 25px;
     }
-    .fa-circle{
+
+    .fa-circle {
         color: rgb(153 148 148);
         margin: 0 3px;
     }
-    .p-circles{
+
+    .p-circles {
         height: 30px;
         display: flex;
         justify-content: space-around;
         align-items: center;
     }
-    .p-last-page{
+
+    .p-last-page {
         color: black;
         font-size: 20px;
         font-weight: bold;
     }
-    .plagination .fa-2x{
+
+    .plagination .fa-2x {
         font-size: 20px;
     }
-    .plagination .fa-3x{
+
+    .plagination .fa-3x {
         font-size: 25px;
     }
-    .step-links{
+
+    .step-links {
         width: 320px;
         display: flex;
         justify-content: center;
         align-items: center;
     }
-    .current{
+
+    .current {
         min-width: 30px;
         max-width: 30px;
         min-height: 30px;
@@ -249,7 +292,8 @@
         border-radius: 50%;
         background-color: black;
     }
-    .current p{        
+
+    .current p {
         color: #ffffff;
         font-weight: bolder;
         font-size: 17px;
@@ -262,40 +306,55 @@
 <main class="pt-5">
     <div class="container">
         <div class="row">
-            <form class="col-lg-12" id="searchTour" action="" method="GET" onsubmit="return check1();">
+            <form class="col-lg-12" id="searchTour" action="/tour/advanced-search" method="GET"
+                onsubmit="return check1();">
+                {% csrf_token %}
+                {% if messages %}
+                {% for message in messages %}
+                <div class="col-md-12">
+                    <div class="alert alert-{{message.tags}}" role="alert">
+                        {{message}}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                </div>
+                {% endfor %}
+                {% endif %}
                 <div class="row">
                     <div class="col-md-6">
                         <p>Starting From :</p>
                         <input type="text" class="form-control" name="startLocSearch" id="startLocSearch"
-                        placeholder="Enter Stating Point" required />
+                            placeholder="Enter Stating Point" required />
                     </div>
                     <div class="col-md-6">
                         <p>Visiting To :</p>
                         <input type="text" class="form-control" name="endLocSearch" id="endLocSearch"
-                        placeholder="Enter Visiting Point" required />
+                            placeholder="Enter Visiting Point" required />
                     </div>
                 </div><br>
                 <div class="row">
                     <div class="col-md-4">
                         <p>Departure after :</p>
                         <input type="text" class="form-control" name="startDateSearch" id="startDateSearch"
-                        placeholder="Enter Stating Date" required />
+                            placeholder="Enter Stating Date" required />
                         <p>Returning within :</p>
                         <input type="text" class="form-control" name="endDateSearch" id="endDateSearch"
-                        placeholder="Enter Ending Date" required />
+                            placeholder="Enter Ending Date" required />
                     </div>
                     <div class="col-md-4 d-flex justify-content-center flex-column">
                         <p>
                             <label for="amount">Price range:</label><br>
-                            <input type="text" id="amount" readonly 
-                            style="border:0; color:rgb(255 43 61 / 68%); font-weight:bold;">
+                            <input type="text" id="amount" name="amountRange" readonly
+                                style="border:0; color:rgb(255 43 61 / 68%); font-weight:bold;">
                         </p>
                         <div id="slider-range"></div>
                     </div>
                     <div class="col-md-4 d-flex justify-content-around flex-column align-items-center">
                         <div class="w-100">
                             <label>Select Tour Duration (Date)</label>
-                            <input type="number" class="form-control" placeholder="Tour Duration" min="2">
+                            <input type="number" name="duration" class="form-control" placeholder="Tour Duration"
+                                min="2">
                         </div>
                         <button type="submit" class="searchbtn mt-3">Search</button>
                     </div>
@@ -356,9 +415,9 @@
 
         <!--Pagination -->
         <center>
-        <div class="container plagination mt-5">
-            <span class="step-links">
-                {% if page_obj.has_previous %}
+            <div class="container plagination mt-5">
+                <span class="step-links">
+                    {% if page_obj.has_previous %}
                     <a href="?page=1" class="p-last-page">First</a>
                     &nbsp;
                     <span class="p-circles">
@@ -370,21 +429,21 @@
                     <a href="?page={{ page_obj.previous_page_number }}" class="left-arrow-img">
                         <img src="{%static 'img/left-arrow.svg'%}">
                     </a>
-                {% endif %}
-        
-                <span class="current">
-                    &nbsp;<p>
-                        {{ page_obj.number }}
-                    </p>
-                    &nbsp;
-                </span>
-        
-                {% if page_obj.has_next %}
-                    
+                    {% endif %}
+
+                    <span class="current">
+                        &nbsp;<p>
+                            {{ page_obj.number }}
+                        </p>
+                        &nbsp;
+                    </span>
+
+                    {% if page_obj.has_next %}
+
                     <a href="?page={{ page_obj.next_page_number }}" class="right-arrow-img">
                         <img src="{%static 'img/arrow-point-to-right.svg'%}">
-                    </a> 
-                    
+                    </a>
+
                     &nbsp;
                     <span class="p-circles">
                         <i class="fa fa-circle fa-3x" aria-hidden="true"></i>
@@ -392,73 +451,72 @@
                         <i class="fa fa-circle" aria-hidden="true"></i>
                     </span>
                     &nbsp;
-                    
+
                     <a href="?page={{ page_obj.paginator.num_pages }}" class="p-last-page">Last</a>
-                    
-                {% endif %}
-            </span>
-        </div>
-    </center>
+
+                    {% endif %}
+                </span>
+            </div>
+        </center>
         <!--Pagination-->
     </div>
 </main>
-<script src="https://code.jquery.com/jquery-3.5.1.js" 
-    integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" 
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
     crossorigin="anonymous">
-</script>
+    </script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
-    $('.tour').hover(function(){
+    $('.tour').hover(function () {
         $('.stars ul li i').removeClass('fa-star');
         $('.stars ul li i').removeClass('fa-star-o');
         $('.stars ul li i').removeClass('fa-star-half-o');
-        var ratting=$(this).attr('data-ratting');
-        ratting=parseFloat(ratting);
-        var x=parseInt(ratting);
-        if(x==4){
-            if(ratting>4){
+        var ratting = $(this).attr('data-ratting');
+        ratting = parseFloat(ratting);
+        var x = parseInt(ratting);
+        if (x == 4) {
+            if (ratting > 4) {
                 $('.stars ul li i').addClass('fa-star');
                 $('.stars ul li:nth-child(1) i').addClass('fa-star-half-o');
             }
-            else{
+            else {
                 $('.stars ul li i').addClass('fa-star');
                 $('.stars ul li:nth-child(1) i').addClass('fa-star-o');
             }
         }
-        if(x==3){
-            if(ratting>3){
+        if (x == 3) {
+            if (ratting > 3) {
                 $('.stars ul li i').addClass('fa-star');
                 $('.stars ul li:nth-child(2) i').addClass('fa-star-half-o');
                 $('.stars ul li:nth-child(1) i').addClass('fa-star-o');
             }
-            else{
+            else {
                 $('.stars ul li i').addClass('fa-star');
                 $('.stars ul li:nth-child(2) i').addClass('fa-star-o');
                 $('.stars ul li:nth-child(1) i').addClass('fa-star-o');
             }
         }
-        if(x==2){
-            if(ratting>2){
+        if (x == 2) {
+            if (ratting > 2) {
                 $('.stars ul li i').addClass('fa-star');
                 $('.stars ul li:nth-child(3) i').addClass('fa-star-half-o');
                 $('.stars ul li:nth-child(1) i').addClass('fa-star-o');
                 $('.stars ul li:nth-child(2) i').addClass('fa-star-o');
             }
-            else{
+            else {
                 $('.stars ul li i').addClass('fa-star');
                 $('.stars ul li:nth-child(3) i').addClass('fa-star-o');
                 $('.stars ul li:nth-child(1) i').addClass('fa-star-o');
                 $('.stars ul li:nth-child(2) i').addClass('fa-star-o');
             }
         }
-        if(x==1){
-            if(ratting>1){
+        if (x == 1) {
+            if (ratting > 1) {
                 $('.stars ul li i').addClass('fa-star-o');
                 $('.stars ul li:nth-child(4) i').addClass('fa-star-half-o');
                 $('.stars ul li:nth-child(5) i').addClass('fa-star');
                 $('.stars ul li:nth-child(5) i').removeClass('fa-star-o');
             }
-            else{
+            else {
                 $('.stars ul li i').addClass('fa-star-o');
                 $('.stars ul li:nth-child(4) i').addClass('fa-star-o');
                 $('.stars ul li:nth-child(5) i').addClass('fa-star');
@@ -466,115 +524,115 @@
             }
         }
     });
-    
-    $(function(){
-        var x=document.querySelectorAll('.tour').length;
-        if(x==0){
+
+    $(function () {
+        var x = document.querySelectorAll('.tour').length;
+        if (x == 0) {
             $('.noMatchFound').addClass('d-flex');
         }
-        else{
+        else {
             $('.noMatchFound').removeClass('d-flex');
         }
     });
 
-    $(function(){
-        $('.list').click(function(){
-            const value=$(this).attr('data-filter');
-            if(value == 'all'){
-                $('.tour').not('.'+value).show('100');
+    $(function () {
+        $('.list').click(function () {
+            const value = $(this).attr('data-filter');
+            if (value == 'all') {
+                $('.tour').not('.' + value).show('100');
             }
-            else{
-                $('.tour').not('.'+value).hide('100');
-                $('.tour').filter('.'+value).show('100');
-                setTimeout(function(){
-                    let c=0;
-                    document.querySelectorAll('.tour').forEach(function(tour){
-                        if(tour.style.display !== 'none'){
-                            c+=1;
+            else {
+                $('.tour').not('.' + value).hide('100');
+                $('.tour').filter('.' + value).show('100');
+                setTimeout(function () {
+                    let c = 0;
+                    document.querySelectorAll('.tour').forEach(function (tour) {
+                        if (tour.style.display !== 'none') {
+                            c += 1;
                         }
-                        if(c==0){
+                        if (c == 0) {
                             $('.noMatchFound').addClass('d-flex');
                         }
-                        else{
+                        else {
                             $('.noMatchFound').removeClass('d-flex');
                         }
                     });
-                },500);
+                }, 500);
             }
         })
-        $('.list').click(function(){
+        $('.list').click(function () {
             $(this).addClass('active').siblings().removeClass('active');
         })
     });
-    
-    $(function(){
-        var rattings=[];
-        var prices=[];
-        document.querySelectorAll('.tour').forEach(function(tour){
-            var ratting=tour.getAttribute('data-ratting');
-            ratting=parseFloat(ratting);
+
+    $(function () {
+        var rattings = [];
+        var prices = [];
+        document.querySelectorAll('.tour').forEach(function (tour) {
+            var ratting = tour.getAttribute('data-ratting');
+            ratting = parseFloat(ratting);
             rattings.push(ratting);
         });
-        document.querySelectorAll('.con2 p:nth-child(2)').forEach(function(el){
-            var price=el.innerHTML;
-            price=price.substr(0,price.length-1);
-            price=parseFloat(price);
+        document.querySelectorAll('.con2 p:nth-child(2)').forEach(function (el) {
+            var price = el.innerHTML;
+            price = price.substr(0, price.length - 1);
+            price = parseFloat(price);
             prices.push(price);
         });
         // console.log(prices,rattings);
     });
 
-    $( function() {
-        $( "#slider-range" ).slider({
+    $(function () {
+        $("#slider-range").slider({
             range: true,
             min: 0,
             max: 500,
-            values: [ 75, 300 ],
-            slide: function( event, ui ) {
-                $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+            values: [75, 300],
+            slide: function (event, ui) {
+                $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
             }
         });
-        $( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
-            " - $" + $( "#slider-range" ).slider( "values", 1 ) );
+        $("#amount").val("$" + $("#slider-range").slider("values", 0) +
+            " - $" + $("#slider-range").slider("values", 1));
     });
 
-    $(function(){
-        var mindate= new Date();
-		var tomorrowReal = new Date(mindate.getTime() + (24 * 60 * 60 * 1000));
-		$('#startDateSearch').datepicker({
-			numberOfMonths: 1,
-			showAnim: 'drop',
-			minDate: mindate,
-			dateFormat: 'dd/mm/yy',
-			onSelect: function (sd) {
-				var d1=sd.substr(0,2);
-				var d2=sd.substr(3,2);
-				var d3=sd.substr(6,4);
-				sd=d2+'/'+d1+'/'+d3;
-				var k = new Date(sd);
+    $(function () {
+        var mindate = new Date();
+        var tomorrowReal = new Date(mindate.getTime() + (24 * 60 * 60 * 1000));
+        $('#startDateSearch').datepicker({
+            numberOfMonths: 1,
+            showAnim: 'drop',
+            minDate: mindate,
+            dateFormat: 'dd/mm/yy',
+            onSelect: function (sd) {
+                var d1 = sd.substr(0, 2);
+                var d2 = sd.substr(3, 2);
+                var d3 = sd.substr(6, 4);
+                sd = d2 + '/' + d1 + '/' + d3;
+                var k = new Date(sd);
 
-				console.log(k,k.getTime());
-				var tomorrow = new Date(k.getTime() + (24 * 60 * 60 * 1000));
-				$('#endDateSearch').datepicker("option", "minDate", tomorrow);
-			}
-		});
-		$('#endDateSearch').datepicker({
-			numberOfMonths: 1,
-			showAnim: 'drop',
-			minDate: mindate,
-			dateFormat: 'dd/mm/yy',
-			onSelect: function (sd) {
-				var d1=sd.substr(0,2);
-				var d2=sd.substr(3,2);
-				var d3=sd.substr(6,4);
-				sd=d2+'/'+d1+'/'+d3;
-				var k = new Date(sd);
+                console.log(k, k.getTime());
+                var tomorrow = new Date(k.getTime() + (24 * 60 * 60 * 1000));
+                $('#endDateSearch').datepicker("option", "minDate", tomorrow);
+            }
+        });
+        $('#endDateSearch').datepicker({
+            numberOfMonths: 1,
+            showAnim: 'drop',
+            minDate: mindate,
+            dateFormat: 'dd/mm/yy',
+            onSelect: function (sd) {
+                var d1 = sd.substr(0, 2);
+                var d2 = sd.substr(3, 2);
+                var d3 = sd.substr(6, 4);
+                sd = d2 + '/' + d1 + '/' + d3;
+                var k = new Date(sd);
 
-				console.log(k,k.getTime());
-				var yesterday = new Date(k.getTime() - (24 * 60 * 60 * 1000));
-				$('#startDateSearch').datepicker("option", "maxDate", yesterday);
-			}
-		});
+                console.log(k, k.getTime());
+                var yesterday = new Date(k.getTime() - (24 * 60 * 60 * 1000));
+                $('#startDateSearch').datepicker("option", "maxDate", yesterday);
+            }
+        });
     });
 
     function check1() {

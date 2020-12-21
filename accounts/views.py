@@ -14,6 +14,7 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.utils.encoding import force_bytes, force_text  
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode  
 from django.template.loader import render_to_string
+from django.utils.html import strip_tags
 from .tokens import activation_token 
 from django.utils.dateparse import parse_date
 from django.conf import settings
@@ -34,26 +35,25 @@ def messages_sender(request,user):
         else:
             return False
         site = get_current_site(request)
-        mail_subject = 'Site Activation Link'
-        message = render_to_string('{}.html'.format(email_temp), {
-            'user': user,
+        mail_subject = 'Travmaks Account Activation Link'
+        context={
+            'user': user.name,
             'domain': site,
             'uid':user.id,
-            'token':activation_token.make_token(user)
-                    })
-        to_email=user.email
-        to_list=[to_email]
+            'token':activation_token.make_token(user)                   
+        }
+        html_message = render_to_string('{}.html'.format(email_temp),context=context)
+        message = strip_tags(html_message)
+        to_email_list=[user.email]
         from_email=settings.EMAIL_HOST_USER
-        print(from_email,'\n\n',message,'\n\n')
-        #send_mail(mail_subject,message,from_email,to_list,fail_silently=True)
-        email = EmailMessage(
-            subject=mail_subject,
-            body=message,
-            from_email=from_email,
-            to=to_list,
-            #reply_to=['user@example.com'],
-            headers={'Content-Type': 'text/plain'},
+        print(from_email,'\n\n',message,'\n\n',to_email_list,'\n\n')
+        email = EmailMultiAlternatives(
+            mail_subject,
+            message,
+            from_email,
+            to_email_list
         )
+        email.attach_alternative(html_message,"text/html")
         email.send()
         return True
     except Exception as e:
@@ -76,7 +76,7 @@ def activateTraveller(request, uid, token):
                 user.save()
                 access.save()
             messages.success(request,'Account activated please login')
-            return redirect('travelerAccountsSignup')
+            return redirect('travellerLogin')
         else:
             return render(request,'404.html')
     else:
@@ -186,7 +186,7 @@ def travelerAccountsSignup(request):
                 user.is_active = False
                 user.save()
                 res = messages_sender(request, user)
-                print(res)
+                print("Email return :",res)
                 if res is True:
                     messages.success(request, ' email to activatCheck youre the account')
                     return redirect('travelerAccountsSignup')

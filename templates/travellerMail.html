@@ -1,6 +1,12 @@
 {% autoescape off %}
+<!DOCTYPE html>
+<html>
 
-<div style="background-color: #e1e1e1; margin: 0 !important; padding: 0 !important;">
+<head>
+    <title>Activation</title>
+</head>
+
+<body style="background-color: #e1e1e1; margin: 0 !important; padding: 0 !important;">
     <div
         style="display: none; font-size: 1px; color: #fefefe; line-height: 1px; font-family: 'Lato', Helvetica, Arial, sans-serif; max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden;">
         We're thrilled to have you here! Get ready to dive into your new account. </div>
@@ -36,7 +42,7 @@
                     <tr>
                         <td bgcolor="#ffffff" align="left"
                             style="padding: 20px 30px 40px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
-                            <p style="margin: 0;">Hi {{user.name}}! We're excited to have you get started. First, you
+                            <p style="margin: 0;">Hi {{user}}! We're excited to have you get started. First, you
                                 need to confirm your
                                 account. Just press the button below.</p>
                         </td>
@@ -50,11 +56,11 @@
                                             <tr>
                                                 <td align="center" style="border-radius: 3px;" bgcolor="#1746e0">
                                                     <!-- Confirm Button -->
-                                                    <button href="http://{{domain}}{% url 'activateTraveller' uid=uid token=token %}"
+                                                    <a href="http://{{domain}}{% url 'activateTraveller' uid=uid token=token %}"
                                                         style="font-size: 20px; font-family: Helvetica, Arial, sans-serif; color: #ffffff; 
                                                         text-decoration: none; background-color: #1746e0;text-decoration: none; padding: 15px 25px; 
                                                         border-radius: 2px; border: 1px solid #1746e0; display: inline-block;">Confirm
-                                                        Account</button>
+                                                        Account</a>
                                                 </td>
                                             </tr>
                                         </table>
@@ -63,13 +69,7 @@
                             </table>
                         </td>
                     </tr>
-                    <tr>
-                        <td bgcolor="#ffffff" align="left"
-                            style="padding: 0px 30px 0px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
-                            <p style="margin: 0;">If that doesn't work, copy and paste the following link in your
-                                browser:</p>
-                        </td>
-                    </tr> <!-- COPY -->
+
                     <tr>
                         <td bgcolor="#ffffff" align="left"
                             style="padding: 20px 30px 20px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
@@ -124,5 +124,8 @@
             </td>
         </tr>
     </table>
-</div>
+</body>
+
+</html>
+
 {% endautoescape %}

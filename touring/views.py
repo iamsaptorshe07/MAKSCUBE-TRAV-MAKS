@@ -14,19 +14,43 @@ from invoice.invoice_generator import render_to_pdf
 from django.template.loader import get_template
 from django.contrib.sites.shortcuts import get_current_site
 import datetime
+from django.db.models import Q
 # Create your views here.
+class SearchTour(ListView):
+    model = Tour
+    paginate_by = 50
+    template_name = 'touring/all_tours.html'
+    ordering = ['-id']
+    context_object_name = 'Tour'
 
-def searchTour(request):
-    slocation = request.GET.get('sLocation')
-    elocation = request.GET.get('eLocation')
-    tours = Tour.objects.filter(startingLocation__icontains=slocation,endLocation__icontains=elocation)
-    context = {
-        'Tours':tours,
-    }
-    return render(request,'touring/tour_search.html',context=context)
+    def get_queryset(self):
+        slocation = self.request.GET.get('sLocation')
+        elocation = self.request.GET.get('eLocation')
+        tour1 = Tour.objects.filter(startingLocation__icontains=slocation,endLocation__icontains=elocation,publish_mode = True,
+            last_booking_date__gte=str(datetime.date.today()),maximum_people__gte=1)
+        tour2 = Tour.objects.filter(Q(tourHeading__icontains = slocation) | Q(tourHeading__icontains = elocation),publish_mode = True,
+            last_booking_date__gte=str(datetime.date.today()),maximum_people__gte=1)
+        tours = tour1.union(tour2)
+        return tours
+
+
 
 def advancedSearching(request):
-    pass
+    if request.method == 'POST':
+        startLocSearch = request.POST['startLocSearch']
+        endLocSearch = request.POST['endLocSearch']
+        startDateSearch = request.POST['startDateSearch']
+        endDateSearch = request.POST['endDateSearch']
+        amountRange=request.POST['amountRange']
+        duration=request.POST['duration']
+        print("\n\n\n\n",startLocSearch,endLocSearch,startDateSearch,endDateSearch,amountRange,duration,"\n\n\n\n")
+        # tour=Tour.objects.get(tourId=1)
+        # context = {
+        #         'Tours':tour
+        #     }
+        return render(request,'touring/all_tours.html')#,context=context)
+    else:
+        return render(request,'forbidden.html')
 
 class AllToursView(ListView):
     model = Tour
@@ -134,6 +158,7 @@ def preview(request,tourId):
                     'Tour':tour,
                     'description': description,
                     'images' : images,
+                    'publish': tour.publish_mode,
                 }
                 return render(request,'touring/tour_details.html',context=context)
             else:
