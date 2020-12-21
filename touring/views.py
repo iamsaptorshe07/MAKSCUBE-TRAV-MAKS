@@ -158,6 +158,7 @@ def preview(request,tourId):
                     'Tour':tour,
                     'description': description,
                     'images' : images,
+                    'publish': tour.publish_mode,
                 }
                 return render(request,'touring/tour_details.html',context=context)
             else:
