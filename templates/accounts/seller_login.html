@@ -104,19 +104,33 @@ margin-left: 4px;
                     {% endif %}
 			</div>
 			<div class="card-body">
-				<form method="POST" action='/accounts/seller/login'>
-					{% csrf_token %}
+				<form method="post" class="login_form" name="form" action="/accounts/seller/login" onsubmit="return validated()">
+	{% csrf_token %}
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fa fa-user"></i></span>
 						</div>
-						<input type="email" class="form-control" placeholder="email" name="email">
+						<input type="email" class="form-control" placeholder="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required>
+						<div id="em_error" style="margin-top:5px;
+  width:345px;
+  color:#c62828;
+  background:rgbs(255,0,0,0.1);
+  text-align:center;
+  padding:5px 8px;
+ display:none;">Fill up your Email</div>
 					</div>
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fa fa-key"></i></span>
 						</div>
-						<input type="password" class="form-control" placeholder="password" name="password">
+						<input type="password" class="form-control" placeholder="password" name="password" required>
+						<div id="pass_error" style="margin-top:5px;
+  width:345px;
+  color:#c62828;
+  background:rgbs(255,0,0,0.1);
+  text-align:center;
+  padding:5px 8px;
+ display:none;">Enter valid password</div>
 					</div>
 					<!--
 					<div class="row align-items-center remember">
@@ -141,6 +155,53 @@ margin-left: 4px;
 </div>
 <!-- HTML Ends here -->
 <!-- JS Starts here -->
-
+<script type="text/javascript">
+   var email = document.forms['form']['email'];  
+   var password = document.forms['form']['password'];  
+    
+	var em_error = document.getElementById('em_error');	
+	var pass_error = document.getElementById('pass_error');	
+	
+	email.addEventListener('textInput',email_Verify);
+	password.addEventListener('textInput',pass_Verify);
+	
+	
+	function validated(){
+			if(email.value.length<9){
+			email.style.border= "1px solid red";
+			em_error.style.display= "block";
+			email.focus();
+			return false;
+			
+			} 
+			if(password.value.length<9){
+			password.style.border= "1px solid red";
+			pass_error.style.display= "block";
+			password.focus();
+			return false;
+			
+			}
+	
+	}
+	
+	function email_Verify(){
+		if(email.value.length>=8){
+			email.style.border= "1px solid silver";
+			em_error.style.display= "none";
+			return true;
+			
+			}	
+	
+	}
+	function pass_Verify(){
+		if(password.value.length>=8){
+			password.style.border= "1px solid silver";
+			pass_error.style.display= "none";
+			return true;
+			
+			}	
+	
+	}
+</script>
 <!-- JS Ends here -->
 {% endblock body %}
