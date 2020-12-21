@@ -384,6 +384,19 @@ href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 {% endblock stylesheets %}
 
 {% block body %}
+
+<div id="preload">
+    <img id="loading-image" src="{% static 'img/loader1.gif' %}" alt="loader" />
+</div>
+
+<script type="text/javascript">
+    var loader = document.getElementById('preload');
+    function removeLoader() {
+      setTimeout(function () {
+        loader.style.display = 'none';
+      }, 3000);
+    }
+</script>
 <body>
     <section id="heading">
         <div class="vidcon">

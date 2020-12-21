@@ -6,6 +6,9 @@
 
 
 <style>
+    .disable-click{
+		pointer-events: none;
+    }
     h1,h2,h3,h4,h5,h6,p{
         margin: 0;
     }
@@ -710,6 +713,19 @@
 
 {% block body %}
 
+<!-- loader -->
+<div id="preload">
+    <img id="loading-image" src="{% static 'img/loader1.gif' %}" alt="loader" />
+</div>
+
+<script type="text/javascript">
+    var loader = document.getElementById('preload');
+    function removeLoader() {
+      setTimeout(function () {
+        loader.style.display = 'none';
+      }, 3000);
+    }
+</script>
 <div class="container pt-3">
     <div class="row">
         <div class="heading col-lg-9">
@@ -957,28 +973,31 @@
 
 <script type="text/javascript">
     $(function(){
+        var publish="{{ publish }}";
+        console.log(publish);
+        if(publish=='false'){
+            $('.SaveBtn').addClass('disable-click');
+            $('.ShareBtn').addClass('disable-click');
+            $('.btns a').addClass('disable-click');
+            $('.btns2 a').addClass('disable-click');
+        }
         var sd="{{Tour.startDate|date:'c'}}";
-        console.log(sd)
         var d1=sd.substr(0,4);
 				var d2=sd.substr(5,2);
 				var d3=sd.substr(8,2);
 				sd=d1+'/'+d2+'/'+d3;
 		sd = new Date(sd);
-        console.log(d1,d2,d3,sd)
 		var ed="{{Tour.endDate|date:'c'}}";
-        console.log(ed)
         var d11=ed.substr(0,4);
 				var d12=ed.substr(5,2);
 				var d13=ed.substr(8,2);
 				ed=d11+'/'+d12+'/'+d13;
 		ed = new Date(ed);
-        console.log(ed)
 		var d = ed.getTime() - sd.getTime();
         var x = d / (1000 * 3600 * 24) + 1;
         var ggg=x;
         
         var temp = "{{description | linebreaksbr}}";
-        console.log(temp)
         var tem= temp.replace(/<br\s*\/?>/gi,'\n')
 		var d2 = tem.split('@@@@')
 		var ui=[]
@@ -1177,9 +1196,7 @@
     });
 
     $('.SaveBtn').on('click',function(){
-        console.log($('.SaveBtn').css('background-color')=='rgb(206, 218, 255)');
         if($('.SaveBtn').css('background-color')=='rgb(206, 218, 255)'){
-            console.log('hi');
             document.querySelector('.SaveBtn').style.backgroundColor='#5ad15a';
             document.querySelector('.SaveBtn p').innerHTML='Saved';
         }
@@ -1209,11 +1226,8 @@
         var copyId=window.location.href;
         var $inp=$("<input>");
         $("body").append($inp);
-        // console.log($(""+copyId));
         $inp.val(copyId);
-        // console.log($inp.val());
         $inp.select();
-        console.log(copyId.localeCompare($inp.val()));
         // $inp.setSelectionRange(0, 99999);
         document.execCommand("copy");
         $inp.remove();
