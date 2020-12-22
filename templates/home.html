@@ -1,14 +1,25 @@
 {% extends 'basetemplate.html' %}
-
+{% load static %}
 {% block body %}
 <!--Continous advertisement starts here-->
+<div id="preload">
+    <img id="loading-image" src="{% static 'img/loader1.gif' %}" alt="loader" />
+</div>
 
+<script type="text/javascript">
+    var loader = document.getElementById('preload');
+    function removeLoader() {
+      setTimeout(function () {
+        loader.style.display = 'none';
+      }, 3000);
+    }
+</script>
 <!--Continious Advertisements sections ends -->
 <style>
     
 
     /*search tab*/
-    .card {
+    #crd {
 
         margin-bottom: 30px;
         margin-top: -80px;
@@ -19,7 +30,18 @@
         box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
     }
 
-    .card .card-header {
+@media only screen and (max-width: 767px) {
+  #crd {
+
+        margin-top: -70px;
+        }
+  #crd .card-header {
+        margin-top: -18px;
+     
+    }
+}
+
+    #crd .card-header {
         border-radius: 3px;
         padding: 1rem 15px;
         margin-left: 15px;
@@ -29,21 +51,21 @@
 
     }
 
-    .card .card-body {
+    #crd .card-body {
         padding: 15px 30px;
     }
 
-    .card .card-header-primary {
+    #crd .card-header-primary {
         /*background-image: linear-gradient(to bottom,#02aab0 ,#00cdac);*/
         background-color: #0d141c;
         box-shadow: 0 5px 20px 0 rgba(0, 0, 0, .2), 0 13px 24px -11px rgba(156, 39, 176, .6);
     }
 
-    .card-nav-tabs .card-header {
+    #crd-nav-tabs .card-header {
         margin-top: -30px !important;
     }
 
-    .card .card-header .nav-tabs {
+    #crd .card-header .nav-tabs {
         padding: 0;
     }
 
@@ -270,7 +292,7 @@ position: absolute;
                                 &nbsp;
                                 <li class="nav-item ">
                                     <a class="nav-link">
-                                        <h6 class="anim" style="text-align:center">
+                                        <h6 class="anim nowrap" >
                                         TRAVMAKS Connects You With The Best In Class Travel Agencies Accross The Globe
                                         </h6>
                                     </a>

@@ -386,48 +386,6 @@ def ongoing_tours(request,agentId):
     else:
         return render(request,'forbidden.html')
 
-
-
-def upcoming_tours_traveller(request,userId):
-    user = request.user
-    if user.is_authenticated and request.session['access_type']=='traveller':
-        # print("\n\n\n",userId,user.userAccess.userId,"\n\n\n")
-        if user.userAccess.userId == userId:
-            tours = Order.objects.filter(customer=user)
-            Tour=[]
-            for i in tours:
-                print(i)
-                if i.tour.startDate > date.today():
-                    Tour.append(i)
-            context = {
-                'Tours':Tour
-            }
-            return render(request,'travelagency/upcoming_tours_traveller.html',context=context)
-        else:
-            return render(request,'forbidden.html')
-    else:
-        return render(request,'forbidden.html')
-
-def ongoing_tours_traveller(request,userId):
-    user = request.user
-    if user.is_authenticated and request.session['access_type']=='traveller':
-        if user.userAccess.userId == userId:
-            tours = Order.objects.filter(customer=user)
-            Tour=[]
-            for i in tours:
-                if i.tour.startDate < date.today() and date.today() < i.tour.endDate :
-                    Tour.append(i)
-            context = {
-                'Tours':Tour
-            }
-            return render(request,'travelagency/ongoing_tours_traveller.html',context=context)
-        else:
-            return render(request,'forbidden.html')
-    else:
-        return render(request,'forbidden.html')
-
-
-
 def bookingNotification(request):
     user = request.user
     if user.is_authenticated and request.session['access_type']=='seller':

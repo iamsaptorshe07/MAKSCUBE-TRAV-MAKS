@@ -15,7 +15,8 @@ def bookingHistory(request):
         if user.is_authenticated and request.session['access_type']=='traveller':
             bookings = Order.objects.filter(customer=user).order_by('-id')
             context = {
-                'Bookings':bookings
+                'Bookings':bookings,
+
             }
             return render(request,'traveller/bookingtour_history.html',context=context)
         else:
@@ -69,8 +70,43 @@ def invoiceGenerator(request,orderID):
     else:
         return render(request,'forbidden.html')
 
-def ongoingTour(request):
-    return render(request,'traveller/ongoing_tour.html')
+def ongoingTour(request,userId):
+    user = request.user
+    if user.is_authenticated and request.session['access_type']=='traveller':
+        if user.userAccess.userId == userId:
+            tours = Order.objects.filter(customer=user)
+            Tour=[]
+            for i in tours:
+                if i.tour.startDate < date.today() and date.today() < i.tour.endDate :
+                    Tour.append(i)
+            context = {
+                'Tours':Tour,
+                'uid':userId,
+                'len':len(Tour),
+            }
+            return render(request,'traveller/ongoing_tour.html',context=context)
+        else:
+            return render(request,'forbidden.html')
+    else:
+        return render(request,'forbidden.html')
 
-def upcomingTour(request):
-    return render(request,'traveller/upcoming_tour.html')
+def upcomingTour(request,userId):
+    user = request.user
+    if user.is_authenticated and request.session['access_type']=='traveller':
+        if user.userAccess.userId == userId:
+            tours = Order.objects.filter(customer=user)
+            Tour=[]
+            for i in tours:
+                print(i)
+                if i.tour.startDate > date.today():
+                    Tour.append(i)
+            context = {
+                'Tours':Tour,
+                'uid':userId,
+                'len':len(Tour),
+            }
+            return render(request,'traveller/upcoming_tour.html',context=context)
+        else:
+            return render(request,'forbidden.html')
+    else:
+        return render(request,'forbidden.html')
