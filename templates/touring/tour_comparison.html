@@ -261,6 +261,17 @@
         color: bisque;
         font-size: 30px;
     }
+    .outlook h5, .outlook p{
+        font-weight: 700;
+    }
+    .tourCon h5{
+        border-bottom: 1px dotted black;
+        padding-bottom: 2px;
+    }
+    .better{
+        font-weight: 800!important;
+        color: green;
+    }
 </style>
 {% endblock stylesheets %}
 
@@ -296,12 +307,12 @@
                 <div class="outlook">
                     <h5 class="text-center mb-2">Outlook</h5>
                     <p>Tour Type : Couple Friendly</p>
-                    <p>Ratting : 4.5</p>
+                    <p>Ratting : 1.5</p>
                     <p>Starting Date : 26/12/2020</p>
                     <p>Ending Date : 01/01/2021</p>
                     <p>Starting Location : Kolkata</p>
                     <p>Ending Location : Delhi</p>
-                    <p>Price/People : $8712</p>
+                    <p>Price/People : $871</p>
                     <p>Last Date to Book : 19/12/2020</p>
                 </div>
                 <div class="inclusive stylishScroll">
@@ -401,7 +412,7 @@
                     <p>Ending Date : 01/01/2021</p>
                     <p>Starting Location : Kolkata</p>
                     <p>Ending Location : Delhi</p>
-                    <p>Price/People : $8712</p>
+                    <p>Price/People : $8772</p>
                     <p>Last Date to Book : 19/12/2020</p>
                 </div>
                 <div class="inclusive stylishScroll">
@@ -501,7 +512,7 @@
                     <p>Ending Date : 01/01/2021</p>
                     <p>Starting Location : Kolkata</p>
                     <p>Ending Location : Delhi</p>
-                    <p>Price/People : $8712</p>
+                    <p>Price/People : $8722</p>
                     <p>Last Date to Book : 19/12/2020</p>
                 </div>
                 <div class="inclusive stylishScroll">
@@ -596,12 +607,12 @@
                 <div class="outlook">
                     <h5 class="text-center mb-2">Outlook</h5>
                     <p>Tour Type : Couple Friendly</p>
-                    <p>Ratting : 4.5</p>
+                    <p>Ratting : 3.5</p>
                     <p>Starting Date : 26/12/2020</p>
                     <p>Ending Date : 01/01/2021</p>
                     <p>Starting Location : Kolkata</p>
                     <p>Ending Location : Delhi</p>
-                    <p>Price/People : $8712</p>
+                    <p>Price/People : $871</p>
                     <p>Last Date to Book : 19/12/2020</p>
                 </div>
                 <div class="inclusive stylishScroll">
@@ -745,7 +756,42 @@
     }
 
     $(function(){
-        var x=4;
+        var numberOfTours=4;
+        $('.tourLayout').removeClass('d-flex');
+        if(numberOfTours==0){
+            $('.tourLayout').addClass('d-flex');
+        }
+        else if(numberOfTours==1){
+            $('.cc2 .tourLayout').addClass('d-flex');
+            $('.cc4 .tourLayout').addClass('d-flex');
+            $('.cc3 .tourLayout').addClass('d-flex');
+        }
+        else if(numberOfTours==2){
+            $('.cc3 .tourLayout').addClass('d-flex');
+            $('.cc4 .tourLayout').addClass('d-flex');
+        }
+        else if(numberOfTours==3){
+            $('.cc4 .tourLayout').addClass('d-flex');
+        }
+        var p1=document.querySelector('.cc1 .outlook p:nth-child(8)').innerHTML.substr(16,10);
+        var p2=document.querySelector('.cc2 .outlook p:nth-child(8)').innerHTML.substr(16,10);
+        var p3=document.querySelector('.cc3 .outlook p:nth-child(8)').innerHTML.substr(16,10);
+        var p4=document.querySelector('.cc4 .outlook p:nth-child(8)').innerHTML.substr(16,10);
+        var r1=document.querySelector('.cc1 .outlook p:nth-child(3)').innerHTML.substr(10,3);
+        var r2=document.querySelector('.cc2 .outlook p:nth-child(3)').innerHTML.substr(10,3);
+        var r3=document.querySelector('.cc3 .outlook p:nth-child(3)').innerHTML.substr(10,3);
+        var r4=document.querySelector('.cc4 .outlook p:nth-child(3)').innerHTML.substr(10,3);
+        var pmin=Math.min(p1,p2,p3,p4);
+        var rmax=Math.max(r1,r2,r3,r4);
+        console.log(pmin,rmax);
+        if(p1==pmin){$('.cc1 .outlook p:nth-child(8)').addClass('better')}
+        if(p2==pmin){$('.cc2 .outlook p:nth-child(8)').addClass('better')}
+        if(p3==pmin){$('.cc3 .outlook p:nth-child(8)').addClass('better')}
+        if(p4==pmin){$('.cc4 .outlook p:nth-child(8)').addClass('better')}
+        if(r1==rmax){$('.cc1 .outlook p:nth-child(3)').addClass('better')}
+        if(r2==rmax){$('.cc2 .outlook p:nth-child(3)').addClass('better')}
+        if(r3==rmax){$('.cc3 .outlook p:nth-child(3)').addClass('better')}
+        if(r4==rmax){$('.cc4 .outlook p:nth-child(3)').addClass('better')}
     });
 </script>
 {% endblock body %}
