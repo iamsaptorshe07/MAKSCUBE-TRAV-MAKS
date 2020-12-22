@@ -8,10 +8,7 @@
 
     body {
         background: #fff;
-    }
-
-    .bcontent {
-        margin-top: 20px;
+        padding-top: 30px;
     }
 
     .fa-plane {
@@ -36,8 +33,11 @@
     }
 </script>
 <div class="container bcontent">
-    <h2 style="font-family:'Ubuntu', sans-serif;"><i class="fa fa-plane"></i>Ongoing Tour</h2>
+    <h2 style="font-family:'Ubuntu', sans-serif;"><i class="fa fa-plane"></i>&nbsp; Ongoing Tour</h2>
     <hr />
+    {% if len == 0 %}
+    <h3 class="mt-3">No Ongoing Tour Aveilable</h3>
+    {% endif %}
     {% for tour in Tours %}
     <div class="card">
         <div class="card-header">
@@ -112,5 +112,9 @@
     </div>
     {% endfor %}
 </div>
+<!-- <script>
+    var len="{{len}}";
+    console.log(len,typeof(len));
+</script> -->
 {% endblock body %}
 <!--Main content Ends-->

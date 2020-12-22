@@ -3,7 +3,7 @@
 {% block stylesheets %}
 <style>
     body {
-        padding-top: 60px;
+        padding-top: 30px;
     }
 </style>
 {% endblock stylesheets %}
@@ -24,7 +24,12 @@
     }
 </script>
 <div class="container">
+    <h2 style="font-family:'Ubuntu', sans-serif;"><i class="fa fa-plane"></i>&nbsp; Booking History</h2>
+    <hr />
 
+    {% if len == 0 %}
+    <h3 class="mt-3">Booking History is Empty</h3>
+    {% endif %}
     {% for order in Bookings %}
 
     <div class="card gedf-card">
@@ -133,6 +138,10 @@
     <!--Card end-->
 </div>
 
+<!-- <script>
+    var len="{{len}}";
+    console.log(len,typeof(len));
+</script> -->
 
 <!--HTML Ends-->
 

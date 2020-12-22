@@ -456,6 +456,18 @@
 {% block travelagency_body %}
 
 <!--Put normal html here -->
+<div id="preload">
+    <img id="loading-image" src="{% static 'img/loader1.gif' %}" alt="loader" />
+</div>
+
+<script type="text/javascript">
+    var loader = document.getElementById('preload');
+    function removeLoader() {
+      setTimeout(function () {
+        loader.style.display = 'none';
+      }, 3000);
+    }
+</script>
 <div class="main">
 	<form class="content" method="POST"
 		action='/travelagency/agencytours/edit-tour/{{request.user.userAccess.agentId}}/{{Tour.tourId}}'
