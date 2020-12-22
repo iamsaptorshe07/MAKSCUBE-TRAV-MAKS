@@ -10,10 +10,6 @@ urlpatterns = [
     path('booking-history/<agentId>',booking_history,name='bookingHistory'),
     path('upcoming-tours/<agentId>',upcoming_tours,name='upcomingTours'),
     path('ongoing-tours/<agentId>',ongoing_tours,name='ongoingTours'),
-
-    path('upcoming-tours-traveller/<userId>',upcoming_tours_traveller,name='upcomingTours_traveller'),
-    path('ongoing-tours-traveller/<userId>',ongoing_tours_traveller,name='ongoingTours_traveller'),
-
     path('notifications',bookingNotification,name='bookingNotification'),
     path('accept-package-booking-order/<orderId>',acceptOrder,name='acceptOrder'),
     path('decline-package-booking-order/<orderId>',declineOrder,name='declineOrder'),

@@ -103,7 +103,7 @@ def tourDetails(request,tourId,slug):
                 context = {
                     'Tour':tour,
                     'description': description,
-                    'images' : images,
+                    'images' : images, 
                 }
                 return render(request,'touring/tour_details.html',context=context)
             
@@ -158,7 +158,7 @@ def preview(request,tourId):
                     'Tour':tour,
                     'description': description,
                     'images' : images,
-                    'publish': tour.publish_mode,
+                    'Preview': 'true',
                 }
                 return render(request,'touring/tour_details.html',context=context)
             else:

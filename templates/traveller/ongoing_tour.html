@@ -4,91 +4,113 @@
 <!-- Stylesheets starts-->
 {% block stylesheets %}
 <style>
-   @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Ubuntu:wght@400;500;700&display=swap');
-body{
-background:#fff;
-}
-.bcontent {
-            margin-top: 20px;
-        }
- .fa-plane{
-      color:#4B79A1;
-  }
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Ubuntu:wght@400;500;700&display=swap');
 
-  </style>
+    body {
+        background: #fff;
+    }
+
+    .bcontent {
+        margin-top: 20px;
+    }
+
+    .fa-plane {
+        color: #4B79A1;
+    }
+</style>
 {% endblock %}
 <!--Stylesheets Ends -->
 <!-- Main content starts -->
 {% block body %}
-<div class="container bcontent">
-        <h2 style="font-family:'Ubuntu', sans-serif;"><i class="fa fa-plane"></i>Ongoing Tour</h2>
-        <hr />
-        <div class="card">
-            <div class="card-header">
-			<div class="col-md-12">
-            <div class="row">
-			
-			<div class="col-md-4">
-            <h3>TRAVMAKS CO.</h3>
-			</div>
-			
-			<div class="col-md-4">
-            <h6>Booked by:</h6>
-			 <a id="popoverData" href="#" data-content="<b>Billing Details</b><br>User Name <br>User Email<br>User Contact no.<br>User Address" rel="popover" data-html="true" data-placement="bottom" data-trigger="hover" 
-			  style="transform: translate(-15px,0px); font-weight:bold;">
-			 Gobinda Ghosh</a>
-			
-			<script>
-$('#popoverData').popover();
-$('#popoverOption').popover({ trigger: "hover" });
-</script>
+<!-- loader -->
+<div id="preload">
+    <img id="loading-image" src="{% static 'img/loader1.gif' %}" alt="loader" />
+</div>
 
-			
-			</div>
-			
-			<div class="col-md-2">
-            <h5>User Id:</h5>
-			<p>5jgt56g</p>
-			</div>
-			
-			<div class="col-md-2">
-            <h6>Booking Placed On:</h6>
-			<p class="text-muted"><i class="fa fa-calendar-o"></i>&nbsp;12/2/2020</p>
-			</div>
-			
-			</div>
-			</div>
-			</div>
-            <div class="card-body">
+<script type="text/javascript">
+    var loader = document.getElementById('preload');
+    function removeLoader() {
+      setTimeout(function () {
+        loader.style.display = 'none';
+      }, 3000);
+    }
+</script>
+<div class="container bcontent">
+    <h2 style="font-family:'Ubuntu', sans-serif;"><i class="fa fa-plane"></i>Ongoing Tour</h2>
+    <hr />
+    {% for tour in Tours %}
+    <div class="card">
+        <div class="card-header">
             <div class="col-md-12">
-            <div class="row">
-			
-                <div class="col-md-4">
-				<h5>Kolkata to Siliguri</h5>
-				<img src="{% static 'img/s3.jpg' %}" alt="" style="height:200px; width:auto;">
+                <div class="row">
+
+                    <div class="col-md-4">
+                        <h3>TRAVMAKS CO.</h3>
+                    </div>
+
+                    <div class="col-md-4">
+                        <h6>Booked by:</h6>
+                        <a id="popoverData{{tour.id}}" href="#"
+                            data-content="<b>Billing Details</b>
+                            <br>{{tour.customer_name}} 
+                            <br>{{tour.customer_email}}
+                            <br>{{tour.customer_phone}}
+                            <br>{{tour.customer_address}}"
+                            rel="popover" data-html="true" data-placement="bottom" data-trigger="hover"
+                            style="transform: translate(-15px,0px); font-weight:bold;">
+                            {{tour.customer_name}}</a>
+
+                        <script>
+                            $('#popoverData{{tour.id}}').popover();
+                            $('#popoverOption').popover({ trigger: "hover" });
+                        </script>
+
+
+                    </div>
+                    <div class="col-md-2">
+                        <h5>User Id:</h5>
+                        <p>{{uid}}</p>
+                    </div>
+
+                    <div class="col-md-2">
+                        <h6>Booking Placed On:</h6>
+                        <p class="text-muted"><i class="fa fa-calendar-o"></i>&nbsp;{{tour.creation_date}}</p>
+                    </div>
+
+                </div>
             </div>
-            
-			<div class="col-md-5">
-			<ul style="list-style-type:none; margin-top:30px;">
-  <li><small><b>Agency Id</b>&nbsp;:&nbsp;</small></li>
-  <li><small><b>Agency Id</b>&nbsp;:&nbsp;</small></li>
-  <li><small><b>Tour Id</b> &nbsp;:&nbsp;</small></li>
-  <li><small><b>Total People</b>&nbsp;:&nbsp;</small></li>
-  <li><small><b>Amount</b>&nbsp;:&nbsp;</small></li>
-</ul>
-			</div>
-			
-			<div class="col-md-3 mt-4">
-			<button type="button" class="btn btn-block btn-dark">Ticket </button><br>
-                            <a href="#">
-						        <button type="button" class="btn btn-block btn-dark">Invoice</button>
-                            </a>
-			</div>
-		
-            </div>
-            </div>
+        </div>
+        <div class="card-body">
+            <div class="col-md-12">
+                <div class="row">
+
+                    <div class="col-md-4">
+                        <h5>{{tour.tour.tourHeading}}</h5>
+                        <img src="{{tour.tour.thumbnail.url}}" alt="" style="height:200px; width:auto;">
+                    </div>
+
+                    <div class="col-md-5">
+                        <ul style="list-style-type:none; margin-top:30px;">
+                            <li><small><b>Agency Id</b>&nbsp;:{{tour.agency.agency_Id}}&nbsp;</small></li>
+                            <li><small><b>Agent Id</b>&nbsp;:{{tour.agent.userAccess.agentId}}&nbsp;</small></li>
+                            <li><small><b>Tour Id</b> &nbsp;:{{tour.tour.tourId}}&nbsp;</small></li>
+                            <li><small><b>Total People</b>&nbsp;:{{tour.total_people}}&nbsp;</small></li>
+                            <li><small><b>Amount</b>&nbsp;:{{tour.paid_by_user}}&nbsp;</small></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-md-3 mt-4">
+                        <button type="button" class="btn btn-block btn-dark">Ticket </button><br>
+                        <a href="/traveller/generate-invoice/order={{tour.order_id}}">
+                            <button type="button" class="btn btn-block btn-dark">Invoice</button>
+                        </a>
+                    </div>
+
+                </div>
             </div>
         </div>
     </div>
+    {% endfor %}
+</div>
 {% endblock body %}
 <!--Main content Ends-->

@@ -4,6 +4,6 @@ from django.urls import path
 urlpatterns = [
     path('booking-history',bookingHistory,name='bookingHistory'),
     path('generate-invoice/order=<orderID>',invoiceGenerator,name='invoiceGenerator'),
-    path('ongoing-tours',ongoingTour,name='ongoingTour'),
-    path('upcoming-tours',upcomingTour,name='upcomingTour'),
+    path('ongoing-tours/<userId>',ongoingTour,name='ongoingTour'),
+    path('upcoming-tours/<userId>',upcomingTour,name='upcomingTour'),
 ]

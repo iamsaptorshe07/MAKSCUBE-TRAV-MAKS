@@ -973,9 +973,9 @@
 
 <script type="text/javascript">
     $(function(){
-        var publish="{{ publish }}";
+        var publish="{{Preview | linebreaksbr}}";
         console.log(publish);
-        if(publish=='false'){
+        if(publish=='true'){
             $('.SaveBtn').addClass('disable-click');
             $('.ShareBtn').addClass('disable-click');
             $('.btns a').addClass('disable-click');
