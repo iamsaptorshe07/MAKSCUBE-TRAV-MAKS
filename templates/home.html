@@ -1,8 +1,19 @@
 {% extends 'basetemplate.html' %}
-
+{% load static %}
 {% block body %}
 <!--Continous advertisement starts here-->
+<div id="preload">
+    <img id="loading-image" src="{% static 'img/loader1.gif' %}" alt="loader" />
+</div>
 
+<script type="text/javascript">
+    var loader = document.getElementById('preload');
+    function removeLoader() {
+      setTimeout(function () {
+        loader.style.display = 'none';
+      }, 3000);
+    }
+</script>
 <!--Continious Advertisements sections ends -->
 <style>
     

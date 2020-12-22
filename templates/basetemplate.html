@@ -21,22 +21,22 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
   <script>
-    document.addEventListener('contextmenu', event => event.preventDefault());document.onkeydown = function(e) {
-    if (e.ctrlKey && 
-        (e.keyCode === 67 || 
-          e.keyCode === 86 || 
-          e.keyCode === 85 || 
+    document.addEventListener('contextmenu', event => event.preventDefault()); document.onkeydown = function (e) {
+      if (e.ctrlKey &&
+        (e.keyCode === 67 ||
+          e.keyCode === 86 ||
+          e.keyCode === 85 ||
           e.keyCode === 117)) {
         return false;
-    } else {
+      } else {
         return true;
-    }
+      }
     };
-    $(document).keypress("u",function(e) {
-      if(e.ctrlKey){
+    $(document).keypress("u", function (e) {
+      if (e.ctrlKey) {
         return false;
       }
-      else{
+      else {
         return true;
       }
     });
@@ -49,7 +49,7 @@
       user-select: none
     }
   </style>
-  
+
   <style>
     #myBtn {
       display: none;
@@ -77,22 +77,29 @@
     #myBtn:hover {
       background-color: #555;
     }
-    .fb-page, .fb-page > span, .fb-page > span > iframe{
-      max-width: 100%!important;
+
+    .fb-page,
+    .fb-page>span,
+    .fb-page>span>iframe {
+      max-width: 100% !important;
       border-radius: 4px;
     }
-    .mainfooter .container .row:nth-child(2) .col-lg-3{
+
+    .mainfooter .container .row:nth-child(2) .col-lg-3 {
       margin-top: 5px;
       margin-bottom: 5px;
     }
-    .paymentmode li{
+
+    .paymentmode li {
       margin: 3px;
     }
-    .paymentmode img{
+
+    .paymentmode img {
       border-radius: 3px;
     }
-    @media screen and (max-width:900px){
-      .paymentmode{
+
+    @media screen and (max-width:900px) {
+      .paymentmode {
         justify-content: center;
       }
     }
@@ -247,18 +254,18 @@
               Profile</a>
             <div class="dropdown-divider"></div>
 
-            <a class="dropdown-item" href="/traveller/booking-history">Booking History</a>
-            <div class="dropdown-divider"></div>
-
-            <a class="dropdown-item" href="/travelagency/ongoing-tours-traveller/{{request.user.userAccess.userId}}">On
-              Going Tours</a>
-            <div class="dropdown-divider"></div>
-
             <a class="dropdown-item" href="#">Wishlist</a>
             <div class="dropdown-divider"></div>
 
-            <a class="dropdown-item"
-              href="/travelagency/upcoming-tours-traveller/{{request.user.userAccess.userId}}">Upcoming Tour</a>
+            <a class="dropdown-item" href="/traveller/upcoming-tours/{{request.user.userAccess.userId}}">Upcoming
+              Tour</a>
+            <div class="dropdown-divider"></div>
+
+            <a class="dropdown-item" href="/traveller/ongoing-tours/{{request.user.userAccess.userId}}">On
+              Going Tours</a>
+            <div class="dropdown-divider"></div>
+
+            <a class="dropdown-item" href="/traveller/booking-history">Booking History</a>
             <div class="dropdown-divider"></div>
 
             <a class="dropdown-item" href="/accounts/user/logout">Logout</a>
@@ -428,9 +435,9 @@
             <h4>MAKS CUBE</h4>
             <ul>
               <li>
-                <div class="fb-page" data-href="https://www.facebook.com/makscub3" data-tabs="timeline" style="width: 100%;"
-                  data-height="70" data-small-header="false" data-adapt-container-width="true" data-hide-cover="true"
-                  data-show-facepile="true">
+                <div class="fb-page" data-href="https://www.facebook.com/makscub3" data-tabs="timeline"
+                  style="width: 100%;" data-height="70" data-small-header="false" data-adapt-container-width="true"
+                  data-hide-cover="true" data-show-facepile="true">
                   <blockquote cite="https://www.facebook.com/makscub3" class="fb-xfbml-parse-ignore"><a
                       href="https://www.facebook.com/makscub3">MAKS CUBE</a></blockquote>
                 </div>
