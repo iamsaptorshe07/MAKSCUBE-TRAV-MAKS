@@ -97,6 +97,9 @@
     .paymentmode img {
       border-radius: 3px;
     }
+    .navbar{
+      height: 60px;
+    }
 
     @media screen and (max-width:900px) {
       .paymentmode {
@@ -120,91 +123,6 @@
     nonce="F5IZ9oMp"></script>
 
   <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="fa fa-chevron-up"></i></button>
-
-  <!--Navbar Starts here-->
-  <!--<div class="super_container">
-      <nav class="navbar navbar-expand-lg fixed-top">
-   <a class="navbar-brand text-white" href="/">
-    <img src="{% static 'img/logo2.jpg' %}" width="50" height="50" class="d-inline-block align-top" alt="" loading="lazy" 
-	style="border-radius:50%;">
-    <b>TRAVMAKS</b>
-  </a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-	                  <li class="nav-item">
-                        <a class="nav-link" href="/qna"><i class="fa fa-question-circle"></i>&nbsp; QNA</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#-"><i class="fa fa-book"></i>&nbsp; Blog</a>
-                    </li>
-                  </li><li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fa fa-pencil-square-o"></i>&nbsp; Design Your Tour</a>
-                </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="#"><i class="fa fa-newspaper-o"></i>&nbsp; News</a>
-                    </li>
-    </ul>
-	<ul class="navbar-nav ml-auto">
-	<li class="nav-item">
-                        <a class="nav-link" href="/download-app"><i class="fa fa-download"></i>&nbsp; Download App</a>
-                    </li>
-	 {% if user.is_authenticated %}
-	<li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i>
-                                {{user.name}}
-                            </a>
-
-                            <div class="dropdown-menu dropdown-menu-right dropdown-cyan" aria-labelledby="navbarDropdownMenuLink-4">
-                                {% if request.session.access_type == 'traveller' %}
-                                    <a class="dropdown-item" href="/accounts/editprofile/{{request.session.access_type}}/{{user.id}}">My Profile</a>
-                                    <div class="dropdown-divider"></div>
-                                    
-									<a class="dropdown-item" href="/traveller/booking-history">Booking History</a>
-                                    <div class="dropdown-divider"></div>
-                                    
-									<a class="dropdown-item" href="#">On Going Tours</a>
-                                    <div class="dropdown-divider"></div>
-                                    
-									<a class="dropdown-item" href="#">Wishlist</a>
-                                    <div class="dropdown-divider"></div>
-                                    
-									<a class="dropdown-item" href="#">Upcoming Tour</a>
-                                    <div class="dropdown-divider"></div>
-                                    
-									<a class="dropdown-item" href="/accounts/user/logout">Logout</a>
-                                {% elif request.session.access_type == 'seller' %}
-                                    <a class="dropdown-item" href="/accounts/editprofile/{{request.session.access_type}}/{{user.id}}">My Profile</a>
-                                    <div class="dropdown-divider"></div>
-                                    
-									<a class="dropdown-item" href="/travelagency/myagency/{{request.user.userAccess.agentId}}">Dashboard</a>
-                                    <div class="dropdown-divider"></div>
-                                    
-									<a class="dropdown-item" href="/accounts/user/logout">Logout</a>
-                                {% endif %}
-                            </div>
-    </li>
-        {% else %}
-        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i>
-                                Account
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right dropdown-cyan" aria-labelledby="navbarDropdownMenuLink-4">
-                                <a class="dropdown-item" href="/accounts/traveller/account/signup"><i class="fa fa-user-plus"></i>&nbsp;&nbsp;Signup</a>
-								<div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="/accounts/traveller/login"><i class="fa fa-sign-in"></i>&nbsp;&nbsp;Login</a>
-                                
-                            </div>
-
-        {% endif %}
-	</ul>
-    
-  </div>
-</nav>
-<!--Navbar Ends Here-->
 
   <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
     <a class="navbar-brand text-dark" href="/">
@@ -317,10 +235,8 @@
               <ul class="list-unstyled">
                 <li><a href="/accounts/seller/account/signup">Agent Signup</a></li>
                 <li><a href="/accounts/seller/login">Agent Login</a></li>
-                <li><a href="#">TRAVMAKS Specialised Agency portal</a></li>
-                <!--<li><a href="/accounts/guide/account/signup">Travel Guide Signup</a></li>
-                <li><a href="/accounts/guide/login">Travel Guide Login</a></li>-->
-                <li><a href="/partner/benifits-of-joing-travmaks"> Benefits of joining us</a></li>
+                <li><a href="/beta">TRAVMAKS Specialised Agency portal</a></li>
+                <li><a href="/partner/benifits-of-joing-travmaks">Benefits of Joining Us As A Partner</a></li>
                 <li><a href="/partnerportal-faq">FAQs</a></li>
               </ul>
             </div>
@@ -334,6 +250,7 @@
                 <li><a href="/user-payment-policy">Payment Policy</a></li>
                 <li><a href="/user-privacy-policy">Privacy Policy</a></li>
                 <li><a href="/terms-and-condition">Terms & Conditions</a></li>
+                <li><a href="/benifits-of-joing-travmaks">Why to Choose Us</a></li>
                 <li><a href="/user-FAQ">FAQs</a></li>
               </ul>
             </div>
