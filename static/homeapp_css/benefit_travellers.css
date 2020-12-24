@@ -404,6 +404,6 @@ width: 35%;
         margin-top: 50px;
     }
     .specialityCardBg > div:nth-child(even){
-        transform: translateY(100px);
+        transform: translateY(70px);
     }
 }

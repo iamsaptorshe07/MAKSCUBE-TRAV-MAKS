@@ -8,16 +8,21 @@ body, html {
   height: 100%;
   margin: 0;
 }
-
+footer{
+  transform: none!important;
+}
+#page-top{
+  margin-top: 0!important;
+}
 .cmng {
-  background-image: url("{% static 'img/beta.jpg' %}");
-  height: 100%;
+  height: auto;
   background-position: center;
   background-size: cover;
   position: relative;
   color: white;
   font-family: "Courier New", Courier, monospace;
   font-size: 25px;
+  overflow-x: hidden;
 }
 .middle {
   position: absolute;
@@ -60,10 +65,50 @@ footer {
     color: #fff;
     margin-top: -1px;
 }
+.cmng img{
+  width: 100%;
+  height: auto;
+  position: relative;
+  top: 0;
+  min-height: 500px;
+  min-width: 700px;
+  left: 0;
+  max-height: 100vh;
+    filter: brightness(0.4);
+}
+@media screen and (max-width:950px){
+  .middle{
+    width: 80%;
+    transform: translate(-50%,-40%);
+  }
+}
+@media screen and (max-width:750px){
+  .middle h1{
+    font-size: 26px;
+  }
+}
+@media screen and (max-width:600px){
+  .middle{
+    width: 100%;
+    padding: 30px;
+  }
+  .middle h1{
+    font-size: 22px;
+  }
+  .middle p{
+    font-size: 19px;
+  }
+  h1,p{
+    margin: 0;
+  }
+}
 </style>
 {% endblock stylesheets %}
 {% block body %}
 <div class="cmng">
+  <!-- <div class="cnmgbg"> -->
+    <img src="{% static 'img/beta.jpg' %}" alt="">
+  <!-- </div> -->
   <div class="middle">
     <h1>THIS FEATURE IS COMING SOON <i class="fa fa-bell"></i></h1>
     <hr>
