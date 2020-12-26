@@ -253,8 +253,12 @@ background-repeat: no-repeat;
     }
 
     @media screen and (max-width: 400px) {
-        #frm {
-            left: 0px;
+        #rgt{
+		right:0 !important;
+		}
+		
+		#frm {
+            left: 0 !important;
             margin-top: 10px;
         }
 
@@ -289,14 +293,17 @@ background-repeat: no-repeat;
     }
 
     @media screen and (max-width: 900px) {
-        #frm {
-            left: 0px;
-            margin-top: 10px;
+		#rgt{
+		right:55px;
+		}
+	   #frm {
+            left: 80px;
+            margin-top: 9px;
         }
 
-        .btn-orange-styl {
-            width: 100%;
-            margin-bottom: 10px;
+        .btnRegister {
+
+        margin-left: -20px;
         }
         .highl{
         width: 22rem;
@@ -425,7 +432,7 @@ opacity: 0.5;
         <div class="container">
         <div class="container">
         <div class="row ">
-            <div class=" col-md-4 text-center">
+            <div class=" col-md-4 text-center" id="rgt">
                 <div class="col-md-4 pt-2 ">
                     <div class="box text-center">
                         <iframe width="330" height="330" src="https://www.youtube.com/embed/nMBmLLpo9CA" frameborder="0"
