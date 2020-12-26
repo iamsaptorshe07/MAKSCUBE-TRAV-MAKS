@@ -67,6 +67,7 @@
 
     #crd .card-header .nav-tabs {
         padding: 0;
+        /* justify-content: space-between; */
     }
 
     .nav-tabs {
@@ -74,7 +75,9 @@
         border-radius: 3px;
         padding: 0 15px;
     }
-
+    #crd .nav-item{
+        margin: 0!important;
+    }
     .nav {
         display: flex;
         flex-wrap: wrap;
@@ -282,30 +285,20 @@ position: absolute;
                 <div class="card-header card-header-primary">
                     <div class="nav-tabs-navigation">
                         <div class="nav-tabs-wrapper">
-                            <ul class="nav nav-tabs" data-tabs="tabs">
-                                <li class="nav-item">
-                                    <a class="nav-link active" href="#tour" data-toggle="tab">
-                                        <i class="fa fa-search"></i>
+                            <ul class="nav nav-tabs row" data-tabs="tabs">
+                                <li class="nav-item col-md-3">
+                                    <a class="nav-link active d-flex justify-content-center align-items-center" href="#tour" data-toggle="tab">
+                                        <i class="fa fa-search" style="margin: 0 5px;transform: translateX(-5px);"></i>
                                         Find Tour Packages
                                     </a>
-                                </li> 
-                                &nbsp;
-                                <li class="nav-item ">
+                                </li>
+                                <li class="nav-item col-md-9">
                                     <a class="nav-link">
                                         <h6 class="anim nowrap" >
                                         TRAVMAKS Connects You With The Best In Class Travel Agencies Accross The Globe
                                         </h6>
                                     </a>
                                 </li>
-                                <!--
-                                <li class="nav-item justify-content-center">
-                                    <a class="nav-link" href="#guide" data-toggle="tab">
-                                        <i class="fa fa-id-badge"></i>
-                                        Guide
-                                    </a>
-                                </li>
-                            -->
-
                             </ul>
                         </div>
                     </div>
@@ -315,19 +308,19 @@ position: absolute;
                         <div class="tab-pane active" id="tour">
                             <form class="form-content" action="/tour/search" method="GET">
                                 <div class="row">
-                                    <div class="col-md-5">
+                                    <div class="col-md-6">
                                         <div class="form-group">
                                             <input type="text" class="form-control" placeholder="Starting Location *" minlength="3"
                                                 name="sLocation" required/>
                                         </div>
                                     </div>
-                                    <div class="col-md-5">
+                                    <div class="col-md-6">
                                         <div class="form-group">
                                             <input type="text" class="form-control" placeholder="Ending Location *" minlength="3"
                                                 name="eLocation" required/>
                                         </div>
                                     </div>
-                                    <div class="col-md-10">
+                                    <div class="col-md-12">
                                         <button type="submit" class="btn text-white" style="background-color: #0d141c;">Find Tours</button>
                                     </div>
                                 </div>

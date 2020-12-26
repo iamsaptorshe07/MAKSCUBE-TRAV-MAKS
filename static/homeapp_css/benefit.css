@@ -52,10 +52,10 @@ footer{
     align-items: center;
 }
 .headingCard{
-    background: rgba( 159, 23, 23, 0.05 );
+    background: rgb(51, 61, 69 , 5%);
     box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-    backdrop-filter: blur( 2.5px );
-    -webkit-backdrop-filter: blur( 2.5px );
+    backdrop-filter: blur( 7.5px );
+    -webkit-backdrop-filter: blur( 7.5px );
     border-radius: 10px;
     border: 1px solid rgba( 255, 255, 255, 0.18 );
 
@@ -63,7 +63,7 @@ footer{
     width: 340px;
     height: 380px;
     padding: 30px 15px;
-    color: antiquewhite;
+    color: white;
 }
 .headingCard h1{
     margin: 0;

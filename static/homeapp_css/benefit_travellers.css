@@ -11,7 +11,7 @@ footer{
 
 /* heading heading heading heading heading heading heading heading heading heading heading heading */
 #heading{
-    background: url("tour-bg.jpg");
+    background: url(tour-bg.jpg);
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -27,18 +27,28 @@ footer{
     justify-content: center;
 }
 .headingCard{
+    background: rgb(43 45 51 / 19%);
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 4.5px );
+    -webkit-backdrop-filter: blur( 2.5px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    cursor: context-menu;
+    width: 340px;
+    height: 380px;
+    padding: 30px 15px;
     width: 420px;
-    color: antiquewhite;
+    color: #fffefc;
     position: sticky;
     top: 50%;
-    transform: translateY(-100%);
+    transform: translateY(-70%);
 }
 .specialityCard{
     padding: 30px 15px;
     width: 230px;
     position: relative;
     height: 280px;
-    background-color: #410452f0;
+    background-color: #2f2d2fd1;
     border-radius: 5px;
     color: white;
     margin: 15px;
