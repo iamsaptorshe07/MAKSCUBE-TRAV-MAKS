@@ -33,24 +33,32 @@ class SearchTour(ListView):
         tours = tour1.union(tour2)
         return tours
 
+class AdvancedSearching(ListView):
+    model = Tour
+    paginate_by = 50
+    template_name = 'touring/all_tours.html'
+    ordering = ['-id']
+    context_object_name = 'Tour'
 
+    def get_queryset(self):
+        startLocSearch = self.request.GET.get('startLocSearch')
+        endLocSearch = self.request.GET.get('endLocSearch')
+        startDateSearch = self.request.GET.get('startDateSearch')
+        endDateSearch = self.request.GET.get('endDateSearch')
+        startPrice=self.request.GET.get('startPrice')
+        endPrice=self.request.GET.get('endPrice')
+        minDuration=self.request.GET.get('minDuration')
+        maxDuration = self.request.GET.get('maxDuration')
+        tour1 = Tour.objects.filter(startingLocation__icontains=startLocSearch,endLocation__icontains=endLocSearch,
+        publish_mode = True,startDate__gte=startDateSearch,endDate__lte=endDateSearch,price__gte=startPrice,price__lte=endPrice,
+        last_booking_date__gte=str(datetime.date.today()),maximum_people__gte=1)
+        tours = []
+        for i in tour1:
+            day = i.startDate - i.endDate
+            if day>=minDuration and day<=maxDuration:
+                tours.append(i)
+        return tours
 
-def advancedSearching(request):
-    if request.method == 'POST':
-        startLocSearch = request.POST['startLocSearch']
-        endLocSearch = request.POST['endLocSearch']
-        startDateSearch = request.POST['startDateSearch']
-        endDateSearch = request.POST['endDateSearch']
-        amountRange=request.POST['amountRange']
-        duration=request.POST['duration']
-        print("\n\n\n\n",startLocSearch,endLocSearch,startDateSearch,endDateSearch,amountRange,duration,"\n\n\n\n")
-        # tour=Tour.objects.get(tourId=1)
-        # context = {
-        #         'Tours':tour
-        #     }
-        return render(request,'touring/all_tours.html')#,context=context)
-    else:
-        return render(request,'forbidden.html')
 
 class AllToursView(ListView):
     model = Tour
