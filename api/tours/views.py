@@ -21,12 +21,27 @@ class TourAPIView(ListAPIView):
 
 @api_view(['GET'])
 def compareTourView(request):
-    print("\nEntered\n")
-    tour1 = int(request.GET.get('tour1'))
-    tour2 = int(request.GET.get('tour2'))
-    tour3 = int(request.GET.get('tour3'))
-    tour4 = int(request.GET.get('tour4'))
-    tour_data = Tour.objects.filter(Q(id=tour1) | Q(id=tour2) | Q(id=tour3) | Q(id=tour4)) 
+    print("\nApi Entered\n")
+    tour1 = request.GET.get('tour1')
+    tour2 = request.GET.get('tour2')
+    tourList=-1
+    try:
+        tour3 = request.GET.get('tour3')
+        tourList=tourList+1
+    except:
+        print("Tour3 is not here... :|")
+    try:
+        tour4 = request.GET.get('tour4')
+        tourList=tourList+1
+    except:
+        print("Tour4 is not here... :|")
+    if tourList==-1 :
+        tour_data = Tour.objects.filter(Q(tourId=tour1) | Q(tourId=tour2))
+    elif tourList==0:
+        tour_data = Tour.objects.filter(Q(tourId=tour1) | Q(tourId=tour2) | Q(tourId=tour3))
+    elif tourList==1:
+        tour_data = Tour.objects.filter(Q(tourId=tour1) | Q(tourId=tour2) | Q(tourId=tour3) | Q(tourId=tour4))
+
     print(tour_data)
     data = TourSerializer(tour_data, many=True)
     print("\n\n",data.data,"\n\n")

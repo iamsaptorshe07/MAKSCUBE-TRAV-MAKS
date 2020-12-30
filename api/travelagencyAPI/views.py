@@ -336,7 +336,9 @@ class OrderBookingHistory(APIView):
     def get(self,request):
         if request.session.session_key:
             if request.session['access_type']=='seller':
-                order_history = Order.objects.filter(agent=request.user,status=True,agent_approval=True)
+                success_history = Order.objects.filter(agent=request.user,status=True,agent_approval=True)
+                cancel_history = Cancelled_Order.filter(agent=request.user,status=True,agent_approval=True)
+                order_history = success_history.union(cancel_history).order_by('-creation_date')
                 order_serializer = OrderSerializer(order_history,many=True)
                 return Response(
                     data = {

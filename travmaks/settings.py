@@ -65,6 +65,9 @@ INSTALLED_APPS = [
 
     # API Apps
     'api.accountsAPI',
+    'api.tours',
+    'api.travelagencyAPI',
+    'api.travellerAPI',
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 MIDDLEWARE = [

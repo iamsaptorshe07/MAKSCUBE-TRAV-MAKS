@@ -664,8 +664,7 @@ def userProfile(request, account_type, uid):
                 if account_type == 'traveller':
                     return render(request, 'accounts/travelleraccountedit.html')
                 elif account_type == 'seller':
-                    return render(request,'forbidden.html')
-                    # return render(request, 'accounts/selleraccountedit.html')
+                    return render(request, 'accounts/selleraccountedit.html')
                 else:
                     return render(request,'forbidden.html')
             else:

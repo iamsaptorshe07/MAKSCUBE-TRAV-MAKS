@@ -228,7 +228,7 @@
                                                     </div>
                                                     <div class="col">
                                                         <input class="btn btn-primary" type='button' name="AgencyEdit"
-                                                            value='Edit Agency Details'
+                                                            value='View Agency Details'
                                                             onclick="hideAgent(),showChangeAgency();"></div>
                                                     <div class="col">
                                                         <input class="btn btn-primary" type='button'
@@ -272,12 +272,7 @@
                                                     </li>
                                                 </ul>
                                                 <div class="tab-content pt-3">
-
                                                     <div class="tab-pane active">
-                                                        <form class="form" onvalidate="" method="POST"
-                                                            action="{{request.path}}" enctype="multipart/form-data"
-                                                            onsubmit="return validAgency()">
-                                                            {% csrf_token %}
                                                             <div class="row">
                                                                 <div class="col">
                                                                     <div class="row">
@@ -364,11 +359,6 @@
                                                                                 <input type="text" class="form-control"
                                                                                     value="agency"
                                                                                     name="typo" hidden/>
-                                                                                <button type="submit"
-                                                                                
-                                                                                    class="form-control btn-primary btn-sm mt-2" >
-                                                                                    SAVE CHANGES
-                                                                                </button>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -382,7 +372,6 @@
 
                                                                 </div>
                                                             </div>
-                                                        </form>
                                                     </div>
                                                 </div>
                                             </div>
