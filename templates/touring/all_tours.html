@@ -34,14 +34,14 @@
 
     .tourTypeSearch span:hover {
         color: #fff;
-        background-color: #EC5B24;
-        border-color: #EC5B24;
+        background-color:#007bff;
+        border-color:#007bff;
     }
 
     .tourTypeSearch span.active {
         color: #fff;
-        background-color: #EC5B24;
-        border-color: #EC5B24;
+        background-color:#007bff;
+        border-color:#007bff;
     }
 
     #tours {
@@ -113,15 +113,19 @@
         left: 0;
         width: 100%;
         height: 35px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
         background-color: rgb(5, 26, 95);
         border: 1px solid rgba(0, 0, 0, .38);
     }
 
     .tour .imgbg span a {
+        position: relative;
         color: #ffffff;
+        text-decoration: none!important;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     .tour .content {
@@ -143,12 +147,12 @@
         border-top-left-radius: 50%;
     }
 
-    .tour .content div {
+    .tour .content > div {
         width: 100%;
         padding: 1px 10px;
         display: flex;
         font-size: 16px;
-        color: rgba(0, 0, 0, .38);
+        color: rgb(118,118,118);
         align-items: center;
         justify-content: space-between;
     }
@@ -157,7 +161,7 @@
         word-break: break-word;
         font-size: 20px;
         font-weight: bold;
-        color: rgb(255 43 61 / 68%);
+        color: rgb(38, 47, 97, 55%);
     }
 
     .tour .content .con2 {
@@ -221,7 +225,7 @@
         width: 150px;
         padding: 2px 0;
         border-radius: 4px;
-        background-color: #EC5B24;
+        background-color:#007bff;
         color: white;
     }
 
@@ -298,6 +302,69 @@
         font-weight: bolder;
         font-size: 17px;
     }
+    .mCheckBox{
+        width: 14px;
+        height: 14px;
+        position: relative;
+        border: 1px solid black;
+        border-radius: 3px;
+        background-color: transparent;
+        padding: 0;
+    }
+    .mCheckBox.checked{
+        background-color: #007bff;
+    }
+    .mCheckBox.checked::before{
+        content: '✓';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 10px;
+        color: white;
+    }
+    .compareList{
+        position: fixed;
+        right: 20px;
+        bottom: 90px;
+        background-color: violet;
+        width: 340px;
+        height: 340px;
+        overflow-x: visible;
+        display: none;
+        align-items: stretch;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        padding: 30px;
+        z-index: 1000;
+    }
+    .compareBtns{
+        z-index: 1000;
+        position: fixed;
+        right: 20px;
+        bottom: 40px;
+        width: 170px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: left;
+    }
+    .compareBtns button{
+        width: 170px;
+        position: absolute;
+        left: 0;
+        height: 50px;
+        top: 0;
+        padding: 2px 0;
+        transition: 0.4s;
+    }
+    .compareBtns:hover .btn-danger, .compareList:hover + .compareBtns .btn-danger{
+        transform: translateX(-100%);
+    }
 </style>
 {% endblock %}
 <!--Stylesheets Ends -->
@@ -317,7 +384,7 @@
     }
 </script>
 <main class="pt-5">
-    <div class="container">
+    <div class="container mb-5">
         <div class="row">
             <form class="col-lg-12" id="searchTour" action="/tour/advanced-search" method="GET"
                 onsubmit="return check1();">
@@ -338,12 +405,12 @@
                     <div class="col-md-6">
                         <p>Starting From :</p>
                         <input type="text" class="form-control" name="startLocSearch" id="startLocSearch"
-                            placeholder="Enter Stating Point" required />
+                            placeholder="Enter Stating Location" required />
                     </div>
                     <div class="col-md-6">
                         <p>Visiting To :</p>
                         <input type="text" class="form-control" name="endLocSearch" id="endLocSearch"
-                            placeholder="Enter Visiting Point" required />
+                            placeholder="Enter Visiting Location" required />
                     </div>
                 </div><br>
                 <div class="row">
@@ -359,17 +426,25 @@
                         <p>
                             <label for="amount">Price range:</label><br>
                             <input type="text" id="amount" name="amountRange" readonly
-                                style="border:0; color:rgb(255 43 61 / 68%); font-weight:bold;">
+                                style="border:0;font-weight:bold;color:#007bff;">
                         </p>
                         <div id="slider-range"></div>
                     </div>
                     <div class="col-md-4 d-flex justify-content-around flex-column align-items-center">
                         <div class="w-100">
-                            <label>Select Tour Duration (Date)</label>
-                            <input type="number" name="duration" class="form-control" placeholder="Tour Duration"
+                            <label>Min Tour Duration (Dates)</label>
+                            <input type="number" name="minDuration" class="form-control" placeholder="Tour Duration"
                                 min="2">
                         </div>
-                        <button type="submit" class="searchbtn mt-3">Search</button>
+                        <div class="w-100">
+                            <label>Max Tour Duration (Dates)</label>
+                            <input type="number" name="maxDuration" class="form-control" placeholder="Tour Duration"
+                                min="2" max="365">
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <button type="submit" class="btn-primary"
+                            style="width: 150px;padding: 2px 0;border-radius: 4px;">Search</button>
                     </div>
                 </div>
             </form>
@@ -410,15 +485,27 @@
                             <span><a href="/tour/tourdetails/{{tour.tourId}}/{{tour.tourSlug}}">Know More</a></span>
                         </div>
                         <div class="content">
-                            <div class="con1"> {{tour.tourHeading}}</div>
+                            <div class="con1">{{tour.tourHeading}}</div>
                             <div class="con2">
                                 <p>
                                     {{tour.startingLocation}} -> {{tour.endLocation}}
                                 </p>
+                            </div>
+                            <div class="con2">
                                 <p>{{tour.price}}&#8377</p>
                             </div>
                             <div class="con3">{{tour.startDate}} -> {{tour.endDate}}</div>
                             <div class="con4">(Book before {{tour.last_booking_date}})</div>
+                            <div class="con4" 
+                                style="justify-content: left;"
+                                data-id="{{tour.tourId}}"
+                                data-img="{{tour.thumbnail.url}}"
+                                onclick="addInCompareList1(this,this.getAttribute('data-id'),this.getAttribute('data-img'));">
+                                <div class="mCheckBox mr-2">
+
+                                </div>
+                                Add to Compare Tours
+                            </div>
                         </div>
                     </div>
                     {% endfor %}
@@ -473,12 +560,42 @@
         </center>
         <!--Pagination-->
     </div>
+    <div class="compareList">
+    </div>
+    <div class="compareBtns">
+        <button type="button" class="btn-danger" style="z-index: 1" onclick="removeTours();">
+            Remove All
+        </button>
+        <button type="button" class="btn-success" style="z-index: 2" onclick="compare();">
+            Compare Tours
+        </button>
+    </div>
 </main>
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
     crossorigin="anonymous">
     </script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
+    function addInCompareList1(obj,id,img){
+        if($(obj).children().css('background-color')=='rgb(0, 123, 255)'){
+            $(obj).children().removeClass('checked');
+        }
+        else{
+            $(obj).children().addClass('checked');
+            addInCompareList2(id,img);
+        }
+    }
+
+    function addInCompareList2(id,img){
+
+    }
+
+    $('.compareBtns').hover(function(){
+        $('.compareList').addClass('d-flex');
+    }), function(){
+        $('.compareList').removeClass('d-flex');
+    }
+
     $('.tour').hover(function () {
         $('.stars ul li i').removeClass('fa-star');
         $('.stars ul li i').removeClass('fa-star-o');
@@ -553,6 +670,7 @@
             const value = $(this).attr('data-filter');
             if (value == 'all') {
                 $('.tour').not('.' + value).show('100');
+                $('.noMatchFound').removeClass('d-flex');
             }
             else {
                 $('.tour').not('.' + value).hide('100');
@@ -598,9 +716,9 @@
     $(function () {
         $("#slider-range").slider({
             range: true,
-            min: 0,
-            max: 500,
-            values: [75, 300],
+            min: 150,
+            max: 50000,
+            values: [5000, 10000],
             slide: function (event, ui) {
                 $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
             }

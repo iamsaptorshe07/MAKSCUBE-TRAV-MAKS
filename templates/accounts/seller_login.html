@@ -3,80 +3,80 @@
 <!-- CSS Starts here -->
 {% block stylesheets %}
 <style>
-body{
-background: linear-gradient(to right, #0f0c29, #302b63, #24243e);
-background-size: cover;
-background-repeat: no-repeat;
-height: 100%;
-font-family: 'Numans', sans-serif;
-}
-.container{
-height: 100%;
-align-content: center;
-margin-top:60px;
-}
+	body {
+		background: linear-gradient(to right, #0f0c29, #302b63, #24243e);
+		background-size: cover;
+		background-repeat: no-repeat;
+		height: 100%;
+		font-family: 'Numans', sans-serif;
+	}
 
-.card{
-min-height: 370px;
-margin-top: auto;
-margin-bottom: auto;
-width: 400px;
-background-color: rgba(0,0,0,0.5) !important;
-}
+	.container {
+		height: 100%;
+		align-content: center;
+		margin-top: 60px;
+	}
 
-.card-header h3{
-color: white;
-}
+	.card {
+		min-height: 370px;
+		margin-top: auto;
+		margin-bottom: auto;
+		width: 400px;
+		background-color: rgba(0, 0, 0, 0.5) !important;
+	}
 
-.social_icon{
-position: absolute;
-right: 20px;
-top: -45px;
-}
+	.card-header h3 {
+		color: white;
+	}
 
-.input-group-prepend span{
-width: 50px;
-background-color: #FFC312;
-color: black;
-border:0 !important;
-}
+	.social_icon {
+		position: absolute;
+		right: 20px;
+		top: -45px;
+	}
 
-input:focus{
-outline: 0 0 0 0  !important;
-box-shadow: 0 0 0 0 !important;
+	.input-group-prepend span {
+		width: 50px;
+		background-color: #FFC312;
+		color: black;
+		border: 0 !important;
+	}
 
-}
+	input:focus {
+		outline: 0 0 0 0 !important;
+		box-shadow: 0 0 0 0 !important;
 
-.remember{
-color: white;
-}
+	}
 
-.remember input
-{
-width: 20px;
-height: 20px;
-margin-left: 15px;
-margin-right: 5px;
-}
+	.remember {
+		color: white;
+	}
 
-.login_btn{
-color: black;
-background-color: #FFC312;
-width: 100px;
-}
+	.remember input {
+		width: 20px;
+		height: 20px;
+		margin-left: 15px;
+		margin-right: 5px;
+	}
 
-.login_btn:hover{
-color: black;
-background-color: white;
-}
+	.login_btn {
+		color: black;
+		background-color: #FFC312;
+		width: 100px;
+	}
 
-.links{
-color: white;
-}
+	.login_btn:hover {
+		color: black;
+		background-color: white;
+	}
 
-.links a{
-margin-left: 4px;
-}
+	.links {
+		color: white;
+	}
+
+	.links a {
+		margin-left: 4px;
+	}
 </style>
 {% endblock stylesheets %}
 <!-- CSS Ends here -->
@@ -91,26 +91,28 @@ margin-left: 4px;
 			<div class="card-header">
 				<h3>Sign In</h3>
 				{% if messages %}
-                    {% for message in messages %}
-                    <div class="col-md-12">
-                        <div class="alert alert-{{message.tags}}" role="alert">
-                            {{message}}
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                    </div>
-                    {% endfor %}
-                    {% endif %}
+				{% for message in messages %}
+				<div class="col-md-12">
+					<div class="alert alert-{{message.tags}}" role="alert">
+						{{message}}
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+				</div>
+				{% endfor %}
+				{% endif %}
 			</div>
 			<div class="card-body">
-				<form method="post" class="login_form" name="form" action="/accounts/seller/login" onsubmit="return validated()">
-	{% csrf_token %}
+				<form method="post" class="login_form" name="form" action="/accounts/seller/login"
+					onsubmit="return validated()">
+					{% csrf_token %}
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fa fa-user"></i></span>
 						</div>
-						<input type="email" class="form-control" placeholder="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required>
+						<input type="email" class="form-control" placeholder="email" name="email"
+							pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required>
 						<div id="em_error" style="margin-top:5px;
   width:345px;
   color:#c62828;
@@ -156,51 +158,51 @@ margin-left: 4px;
 <!-- HTML Ends here -->
 <!-- JS Starts here -->
 <script type="text/javascript">
-   var email = document.forms['form']['email'];  
-   var password = document.forms['form']['password'];  
-    
-	var em_error = document.getElementById('em_error');	
-	var pass_error = document.getElementById('pass_error');	
-	
-	email.addEventListener('textInput',email_Verify);
-	password.addEventListener('textInput',pass_Verify);
-	
-	
-	function validated(){
-			if(email.value.length<9){
-			email.style.border= "1px solid red";
-			em_error.style.display= "block";
+	var email = document.forms['form']['email'];
+	var password = document.forms['form']['password'];
+
+	var em_error = document.getElementById('em_error');
+	var pass_error = document.getElementById('pass_error');
+
+	email.addEventListener('textInput', email_Verify);
+	password.addEventListener('textInput', pass_Verify);
+
+
+	function validated() {
+		if (email.value.length < 2) {
+			email.style.border = "1px solid red";
+			em_error.style.display = "block";
 			email.focus();
 			return false;
-			
-			} 
-			if(password.value.length<9){
-			password.style.border= "1px solid red";
-			pass_error.style.display= "block";
+
+		}
+		if (password.value.length < 2) {
+			password.style.border = "1px solid red";
+			pass_error.style.display = "block";
 			password.focus();
 			return false;
-			
-			}
-	
+
+		}
+
 	}
-	
-	function email_Verify(){
-		if(email.value.length>=8){
-			email.style.border= "1px solid silver";
-			em_error.style.display= "none";
+
+	function email_Verify() {
+		if (email.value.length >= 2) {
+			email.style.border = "1px solid silver";
+			em_error.style.display = "none";
 			return true;
-			
-			}	
-	
+
+		}
+
 	}
-	function pass_Verify(){
-		if(password.value.length>=9){
-			password.style.border= "1px solid silver";
-			pass_error.style.display= "none";
+	function pass_Verify() {
+		if (password.value.length >= 2) {
+			password.style.border = "1px solid silver";
+			pass_error.style.display = "none";
 			return true;
-			
-			}	
-	
+
+		}
+
 	}
 </script>
 <!-- JS Ends here -->
