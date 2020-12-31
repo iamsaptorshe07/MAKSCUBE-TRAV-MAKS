@@ -7,6 +7,8 @@ from django.http import *
 from django.contrib import messages
 from datetime import date
 from .models import WishList
+from django.http import  HttpResponse
+from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
 
 
@@ -112,12 +114,18 @@ def upcomingTour(request,userId):
     else:
         return render(request,'forbidden.html')
 
-
+@csrf_exempt
 def wishList(request):
     user = request.user
     if user.is_authenticated and request.session['access_type']=='traveller':
         if request.method == 'POST':
-            pass
+            tour = request.POST.get('post_id')
+            wishlist = WishList(
+                tour = tour,
+                user = user,
+            )
+            wishlist.save()
+            return HttpResponse("Success!")
         else:
             wishlist = WishList.objects.filter(user=user)
             context = {
