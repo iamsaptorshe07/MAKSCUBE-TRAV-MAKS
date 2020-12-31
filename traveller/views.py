@@ -6,6 +6,7 @@ from travelagency.models import *
 from django.http import *
 from django.contrib import messages
 from datetime import date
+from .models import WishList
 # Create your views here.
 
 
@@ -108,5 +109,20 @@ def upcomingTour(request,userId):
             return render(request,'traveller/upcoming_tour.html',context=context)
         else:
             return render(request,'forbidden.html')
+    else:
+        return render(request,'forbidden.html')
+
+
+def wishList(request):
+    user = request.user
+    if user.is_authenticated and request.session['access_type']=='traveller':
+        if request.method == 'POST':
+            pass
+        else:
+            wishlist = WishList.objects.filter(user=user)
+            context = {
+                'wishlist':wishlist,
+            }
+            return render(request,'traveller/wishlist.html',context=context)
     else:
         return render(request,'forbidden.html')
