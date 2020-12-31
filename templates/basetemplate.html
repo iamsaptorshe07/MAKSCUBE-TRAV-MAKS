@@ -118,6 +118,7 @@
 
 <body id="page-top" onload="removeLoader();" style="margin-top: 60px;">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  
   <div id="fb-root"></div>
   <script async defer crossorigin="anonymous"
     src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v9.0&appId=205716276789665&autoLogAppEvents=1"
@@ -178,7 +179,7 @@
               Profile</a>
             <div class="dropdown-divider"></div>
 
-            <a class="dropdown-item" href="#">Wishlist</a>
+            <a class="dropdown-item" href="/traveller/wishlist">Wishlist</a>
             <div class="dropdown-divider"></div>
 
             <a class="dropdown-item" href="/traveller/upcoming-tours/{{request.user.userAccess.userId}}">Upcoming
