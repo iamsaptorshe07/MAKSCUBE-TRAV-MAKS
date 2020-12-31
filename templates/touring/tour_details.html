@@ -712,7 +712,8 @@
 {% endblock stylesheets %}
 
 {% block body %}
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src="jquery-3.5.1.min.js"></script>
 <!-- loader -->
 <div id="preload">
     <img id="loading-image" src="{% static 'img/loader1.gif' %}" alt="loader" />
@@ -775,10 +776,32 @@
                 </div>
                 <div class="interested">
                     <input type="checkbox" name="features" id="features" value="premium">
-                    <span class="SaveBtn">
+                    {% if request.user.is_authenticated and request.session.access_type == 'traveller' %}
+                    <span class="SaveBtn" id="save{{Tour.tourId}}" href="#" data-catid="{{ Tour.tourId }}">
                         <img src="https://img.icons8.com/ios-filled/26/000000/add-bookmark.png"/>&nbsp;
                         <p>Save</p>
                     </span>
+                    <script type="text/javascript">
+                        $('.SaveBtn').click(function(){
+                        console.log("Button Clicked");
+                        var catid;
+                        catid = $(this).attr("data-catid");
+                        console.log(catid);
+                        $(this).ajax({
+                            url: "/traveller/wishlist",
+                            method:"POST",
+                            data:{
+                                     post_id: catid
+                            },
+                            success: function( data ) 
+                            {
+                                $( '#like'+ catid ).style.backgroundColor='#5ad15a';
+                                $( '#like'+ catid ).innerHTML='Added';
+                            }
+                         });
+                    });
+                    </script>
+                    {% endif %}
                     <span class="ShareBtn">
                         <label for="features">
                             <img src="https://img.icons8.com/metro/26/000000/forward-arrow.png"/>&nbsp;Share
@@ -1194,7 +1217,7 @@
             $('input[name=features]').click();
         }
     });
-
+    /*
     $('.SaveBtn').on('click',function(){
         if($('.SaveBtn').css('background-color')=='rgb(206, 218, 255)'){
             document.querySelector('.SaveBtn').style.backgroundColor='#5ad15a';
@@ -1205,7 +1228,7 @@
             document.querySelector('.SaveBtn p').innerHTML='Save';
         }
     });
-
+    */
     $(function(){
         var TourLink=window.location.href;
         var TourName='Check';

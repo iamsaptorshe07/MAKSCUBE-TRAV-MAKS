@@ -7,6 +7,8 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.authentication import TokenAuthentication, SessionAuthentication, BasicAuthentication
 from django.contrib.sites.shortcuts import get_current_site
+from traveller.models import WishList
+from .serializers import WishListSerializer
 
 # Create your views here.
 class UpcomingTour(APIView):
@@ -84,7 +86,7 @@ class MyBookingHistory(APIView):
     authentication_classes = (TokenAuthentication,SessionAuthentication,BasicAuthentication)
     def get(self,request):
         if request.session.session_key:
-            if request.session['access_type']=='seller':
+            if request.session['access_type']=='traveller':
                 success_history = Order.objects.filter(customer=request.user,status=True,agent_approval=True)
                 cancel_history = Cancelled_Order.filter(customer=request.user,status=True,agent_approval=True)
                 order_history = success_history.union(cancel_history).order_by('-creation_date')
@@ -116,6 +118,34 @@ class MyBookingHistory(APIView):
 
 
 class WishList(APIView):
-    pass
+    authentication_classes = (TokenAuthentication,SessionAuthentication,BasicAuthentication)
+    def get(self,request):
+        if request.session.session_key:
+            if request.session['access_type']=='traveller':
+                wishlist = WishList.objects.filter(user=user)
+                wishlistSerializer = wishlistSerializer(wishlist,many=True)
+                return Response(
+                    data = {
+                    'status':200,
+                    'wishlist':wishlistSerializer.data
+                    },
+                    status=status.HTTP_200_OK
+                )
+            else:
+                return Response(
+                    data = {
+                        'status':401,
+                        'message':"Not Authorized"
+                    },
+                    status = status.HTTP_401_UNAUTHORIZED
+                )
+        else:
+            return Response(
+                data = {
+                    'status':404,
+                    'message':"Not Authenticated"
+                },
+                status = status.HTTP_400_BAD_REQUEST
+            )
 
 
