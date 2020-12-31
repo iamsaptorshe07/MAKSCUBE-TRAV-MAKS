@@ -338,9 +338,7 @@ background-repeat: no-repeat;
     width: 130px;
     margin-left: 160px;
 }
-#rgt{
-		transform: translate(20px,0) !important;
-}
+
 
 
 /*Responsive*/
@@ -353,60 +351,7 @@ background-repeat: no-repeat;
 .steps-step p{
 font-size:10px;
 }
-
-		#rgt{
-		transform: translate(-50px,0) !important;
-		}
-	   #frm {
-             transform: translate(50px,0) !important;
-
-        }
-		.btnRegister {
-
-        margin-left: -20px;
-        }
-		
-		.ifrm{
-		height:280px;
-		width:260px;
-		transform: translate(14px,0) !important;
-    
-		}
-		
-		.highlight {
-    width: 17rem !important;
-	transform: translate(14px,0) !important;
-    
-		}
-		
-        }
-		
-	@media screen and (max-width: 599px) {
-        #rgt{
-		right:0 !important;
-		}
-		
-		#frm {
-            left: 0 !important;
-            margin-top: 10px;
-			
-        }
-        }
-	
-
-    @media screen and (min-width: 600px) {
-        #rgt{
-		right:0 !important;
-		}
-		#frm {
-            left: 0px;
-            margin-top: 10px;
-        }
-
-        .btn-orange-styl {
-            width: 100%;
-            margin-bottom: 10px;
-        }
+@media screen and (min-width: 600px) {
         .highl{
         width: 22rem;
         height: 10rem;
@@ -414,43 +359,7 @@ font-size:10px;
     }
     
     }
-	
 		
-		
-		
-	@media screen and (min-width: 800px) {
-		#rgt{
-		transform: translate(-50px,0) !important;
-		}
-	   #frm {
-             transform: translate(50px,0) !important;
-
-        }
-		.highlight {
-        width: 17rem !important;
-    
-        }
-        }
-
-    @media screen and (min-width: 900px) {
-		#rgt{
-		right:55px !important;
-		}
-	   #frm {
-            left: 80px !important;
-            margin-top: 9px;
-        }
-
-        .btnRegister {
-
-        margin-left: -20px;
-        }
-        .highl{
-        width: 22rem;
-        height: 10rem;
-        font-size: 20px;
-    }
-    }
 		@media screen and (min-width: 400px) {
 .steps-form .steps-row .steps-step .img-circle {
     width: 60px;
@@ -462,19 +371,6 @@ font-size:10px;
 }
 
 }
-
-#rgt{
-		transform: translate(0,0);
-		}
-	   #frm {
-             transform: translate(0,0);
-
-        }
-
-        .btn-orange-styl {
-            width: 100%;
-            margin-bottom: 10px;
-        }
 
         .highl{
         width: 22rem;
@@ -497,16 +393,15 @@ font-size:10px;
 
 
 
-<section class="testimonial1 py-5">
+<section class="regis py-5">
         <div class="container">
-        <div class="row " id="flx">
-            <div class=" col-md-4 text-center" id="rgt">
-                <div class="col-md-4 pt-2 ">
-                    <div class="box text-center">
+        <div class="row">
+            <div class=" col-md-6 text-center" id="rgt">
+                      
                         <iframe width="330" height="330" src="https://www.youtube.com/embed/nMBmLLpo9CA" frameborder="0"
                             allow="fullscreen" style="border-radius:20px;" class="ifrm"></iframe>
-                    </div>
-                </div><br>
+                    
+                <br>
              <div class="highlight">100% Free signup</div><br>
              <div class="highlight ">
 			 <a href="#" data-toggle="modal" data-target="#contactModalCenter">
@@ -565,7 +460,7 @@ font-size:10px;
                         </div>
                     </div>
 			   </div>
-            <div class="col-md-8 border " id="frm">
+            <div class="col-md-6 border " id="frm">
                 <h2 class="pb-4 pt-4 text-center text-white">Get Your Online Presence</h2>
                 <form class="row register-form" method="POST" action='/accounts/seller/account/signup' name="myform2"
                     enctype="multipart/form-data" onsubmit="return registrationValidator();">
