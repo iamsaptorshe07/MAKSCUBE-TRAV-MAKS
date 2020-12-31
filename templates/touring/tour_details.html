@@ -781,26 +781,6 @@
                         <img src="https://img.icons8.com/ios-filled/26/000000/add-bookmark.png"/>&nbsp;
                         <p>Save</p>
                     </span>
-                    <script type="text/javascript">
-                        $('.SaveBtn').click(function(){
-                        console.log("Button Clicked");
-                        var catid;
-                        catid = $(this).attr("data-catid");
-                        console.log(catid);
-                        $(this).ajax({
-                            url: "/traveller/wishlist",
-                            method:"POST",
-                            data:{
-                                     post_id: catid
-                            },
-                            success: function( data ) 
-                            {
-                                $( '#like'+ catid ).style.backgroundColor='#5ad15a';
-                                $( '#like'+ catid ).innerHTML='Added';
-                            }
-                         });
-                    });
-                    </script>
                     {% endif %}
                     <span class="ShareBtn">
                         <label for="features">
@@ -988,10 +968,10 @@
     </div>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.5.1.js" 
+<!-- <script src="https://code.jquery.com/jquery-3.5.1.js" 
     integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous">
 </script>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script> -->
 <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script> -->
 
 <script type="text/javascript">
@@ -1259,5 +1239,28 @@
             document.querySelector('.copiedAlert').style.display='none';
         }, 2000);
     }
+
+</script>
+
+<script type="text/javascript">
+    $('.SaveBtn').click(function(e){
+        // e.preventDefault();
+        console.log("Button Clicked");
+        var catid;
+        catid = $(this).attr("data-catid");
+        console.log(catid);
+        $.ajax({
+            'url': "/traveller/wishlist",
+            'type':"POST",
+            'data':{
+                post_id: catid
+            },
+            'success': function( data ) 
+            {
+                document.querySelector( '#save'+ catid ).style.backgroundColor='#5ad15a';
+                document.querySelector( '#save'+ catid ).innerHTML='Added';
+            }
+        });
+    });
 </script>
 {% endblock body %}

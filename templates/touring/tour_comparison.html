@@ -468,7 +468,7 @@
                     <p>Ending Date : 01/01/2021</p>
                     <p>Starting Location : Kolkata</p>
                     <p>Ending Location : Delhi</p>
-                    <p>Price/People : $871</p>
+                    <p>Price/People : $9999999999999999999</p>
                     <p>Last Date to Book : 19/12/2020</p>
                     <div class="outlookBtns">
                         <button type="button" class="btn-primary">
@@ -532,7 +532,7 @@
                     <p>Ending Date : 01/01/2021</p>
                     <p>Starting Location : Kolkata</p>
                     <p>Ending Location : Delhi</p>
-                    <p>Price/People : $871</p>
+                    <p>Price/People : $9999999999999999999</p>
                     <p>Last Date to Book : 19/12/2020</p>
                     <div class="outlookBtns">
                         <button type="button" class="btn-primary">
@@ -598,8 +598,49 @@
     var thumbnail=['#','#','#','#'];
 
     var numberOfTours=0;
+
+    function getCookie(cname) {
+        var name = cname + "=";
+        var decodedCookie = decodeURIComponent(document.cookie);
+        var ca = decodedCookie.split(';');
+        for(var i = 0; i <ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+            }
+        }
+        return "";
+    }
+
     $(function(){
-        fetch('/api/v1/tour-packages/compare-tour?tour1=TRAVMAKSTOURxBPT6s&tour2=TRAVMAKSTOURxH6M2B&tour3=TRAVMAKSTOURx5FthK')
+        var cookie1=getCookie('Compare');
+        cookie1=cookie1.substring(1);
+        var ToursToCompare=[];
+        var link='/api/v1/tour-packages/compare-tour?tour1=';
+        ToursToCompare.push(cookie1.split(','));
+        if(ToursToCompare[0].length==4){
+            console.log(4);
+            link=link+ToursToCompare[0][0]+'&tour2='+ToursToCompare[0][1]+'&tour3='+ToursToCompare[0][2]+'&tour4='+
+                ToursToCompare[0][3];
+        }
+        else if(ToursToCompare[0].length==3){
+            console.log(4);
+            link=link+ToursToCompare[0][0]+'&tour2='+ToursToCompare[0][1]+'&tour3='+ToursToCompare[0][2];
+        }
+        else if(ToursToCompare[0].length==2){
+            console.log(4);
+            link=link+ToursToCompare[0][0]+'&tour2='+ToursToCompare[0][1];
+        }
+        else if(ToursToCompare[0].length==1){
+            console.log(4);
+            link=link+ToursToCompare[0][0];
+        }
+        console.log(ToursToCompare[0][0],ToursToCompare[0][1],'&tour2=')
+        console.log(link);
+        fetch(link)
         .then(res=>res.json())
         .then(data=>{
             numberOfTours=data.tour_data.length;

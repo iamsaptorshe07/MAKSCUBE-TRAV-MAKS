@@ -120,6 +120,7 @@ def wishList(request):
     if user.is_authenticated and request.session['access_type']=='traveller':
         if request.method == 'POST':
             tour = request.POST.get('post_id')
+            tour = Tour.objects.get(tourId=tour)
             wishlist = WishList(
                 tour = tour,
                 user = user,
