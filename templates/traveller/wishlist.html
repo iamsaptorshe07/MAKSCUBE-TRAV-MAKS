@@ -1,9 +1,180 @@
 {% extends 'basetemplate.html' %}
 {% load static %}
 {% block styleshets %}
+<style>
+body{
+    background:#f1f3f6;
+    margin-top:40px;
+}
 
+.cart-item {
+  position: relative;
+  margin-bottom: 30px;
+  padding: 0 50px 0 10px;
+  background-color: #fff;
+  box-shadow: 0 12px 20px 1px rgba(64, 64, 64, .09);
+}
+.cart-item .cart-item-label {
+  display: block;
+  margin-bottom: 15px;
+  color: #8c8c8c;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.cart-item .cart-item-product {
+  display: table;
+  width: 420px;
+  text-decoration: none;
+}
+.cart-item .cart-item-product-thumb, .cart-item .cart-item-product-info {
+  display: table-cell;
+  vertical-align: top;
+}
+.cart-item .cart-item-product-thumb {
+  width: 110px;
+}
+.cart-item .cart-item-product-thumb > img {
+  display: block;
+  width: 150px;
+  height: 150px;
+}
+.cart-item .cart-item-product-info {
+  padding-top: 5px;
+  padding-left: 15px;
+}
+.cart-item .cart-item-product-info > span {
+  display: block;
+  margin-bottom: 2px;
+  color: #404040;
+  font-size: 12px;
+}
+.cart-item .cart-item-product-title {
+  margin-bottom: 8px;
+  transition: color, 0.3s;
+  color: #343b43;
+  font-size: 16px;
+  font-weight: bold;
+}
+.cart-item .cart-item-product:hover .cart-item-product-title {
+  color: #ac32e4;
+}
+.cart-item .count-input {
+  display: inline-block;
+  width: 85px;
+}
+.cart-item .remove-item {
+  right: -10px !important;
+}
+@media (max-width: 991px) {
+  .cart-item {
+    padding-right: 30px;
+  }
+  .cart-item .cart-item-product {
+    width: auto;
+  }
+}
+@media (max-width: 768px) {
+  .cart-item {
+    padding-right: 10px;
+    padding-bottom: 15px;
+  }
+  .cart-item .cart-item-product {
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+  .cart-item .cart-item-product-thumb, .cart-item .cart-item-product-info {
+    display: block;
+  }
+  .cart-item .cart-item-product-thumb {
+    margin: 0 auto 10px;
+  }
+  .cart-item .cart-item-product-info {
+    padding-left: 0;
+  }
+  .cart-item .cart-item-label {
+    margin-bottom: 8px;
+  }
+}
+
+.remove-item {
+  display: block;
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  width: 22px;
+  height: 22px;
+  padding-left: 1px;
+  border-radius: 50%;
+  background-color: #ff5252;
+  color: #fff;
+  line-height: 23px;
+  text-align: center;
+  box-shadow: 0 3px 12px 0 rgba(255, 82, 82, .5);
+  cursor: pointer;
+}
+.card-wrapper {
+  margin: 30px -15px;
+}
+@media (max-width: 576px) {
+  .card-wrapper .jp-card-container {
+    width: 260px !important;
+  }
+  .card-wrapper .jp-card {
+    min-width: 250px !important;
+  }
+}
+</style>
 {% endblock stylesheets %}
 
 {% block body %}
+<div class="container mb-4">
+    
+        <!-- Wishlist-->
+        <div class="col-md-12 m-auto">
+            <!-- Item-->
+            <div class="cart-item d-md-flex justify-content-between"><span class="remove-item"><i class="fa fa-trash"></i></span>
+                <div class="px-3 my-3">
+                    <a class="cart-item-product" href="#">
+                        <div class="cart-item-product-thumb"><img src="3.jpg" alt="Product"></div>
+                        <div class="cart-item-product-info">
+                            <h4 class="cart-item-product-title">Tour Name</h4>
+                            <div class="text-lg text-body font-weight-medium pb-1">$910.00</div><span>Availability: <span class="text-success font-weight-medium">In Stock</span></span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <!-- Item-->
+            <div class="cart-item d-md-flex justify-content-between"><span class="remove-item"><i class="fa fa-trash"></i></span>
+                <div class="px-3 my-3">
+                    <a class="cart-item-product" href="#">
+                        <div class="cart-item-product-thumb"><img src="dig4.jpg" alt="Product"></div>
+                        <div class="cart-item-product-info">
+                            <h4 class="cart-item-product-title">Tour Name</h4>
+                            <div class="text-lg text-body font-weight-medium pb-1">$1,450.00</div><span>Availability: <span class="text-warning font-weight-medium">2 - 3 Weeks</span></span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <!-- Item-->
+            <div class="cart-item d-md-flex justify-content-between"><span class="remove-item"><i class="fa fa-trash"></i></span>
+                <div class="px-3 my-3">
+                    <a class="cart-item-product" href="#">
+                        <div class="cart-item-product-thumb"><img src="dig3.jpg" alt="Product"></div>
+                        <div class="cart-item-product-info">
+                            <h4 class="cart-item-product-title">Tour Name</h4>
+                            <div class="text-lg text-body font-weight-medium pb-1">$188.50</div><span>Availability: <span class="text-success font-weight-medium">In Stock</span></span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="custom-control custom-checkbox">
+                <input class="custom-control-input" type="checkbox" checked="" id="inform-me">
+                <label class="custom-control-label" for="inform-me">Inform me when item from my wishlist is available</label>
+            </div>
+        </div>
+    
+</div>
 
 {% endblock body %}
