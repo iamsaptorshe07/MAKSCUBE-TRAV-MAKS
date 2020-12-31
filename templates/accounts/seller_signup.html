@@ -204,7 +204,7 @@ background-repeat: no-repeat;
     }
 
     .highlight {
-        width: 26rem !important;
+        width: 100% !important;
         height: 5rem;
         margin: 0px auto;
         background-color: rgb(255, 225, 128);
@@ -227,7 +227,7 @@ background-repeat: no-repeat;
     }
 
    .highl{
-        width: 30rem;
+        width: 28rem;
         height: 10rem;
         margin: 0px auto;
          background: linear-gradient(to right, #093028, #237a57);
@@ -237,7 +237,7 @@ background-repeat: no-repeat;
         justify-content: center;
         -webkit-box-align: center;
         align-items: center;
-        font-size: 25px;
+        font-size: 23px;
         border-radius: 15px;
         font-weight: bold;
         color: rgb(244, 246, 252);
@@ -248,7 +248,6 @@ background-repeat: no-repeat;
 }
     #frm {
         background-color: rgb(0, 85, 128) !important;
-        left: 90px;
         border-radius: 10px;
     }
 
@@ -351,16 +350,8 @@ background-repeat: no-repeat;
 .steps-step p{
 font-size:10px;
 }
-@media screen and (min-width: 600px) {
-        .highl{
-        width: 22rem;
-        height: 10rem;
-        font-size: 20px;
-    }
-    
-    }
-		
-		@media screen and (min-width: 400px) {
+}		
+	@media screen and (min-width: 400px) {
 .steps-form .steps-row .steps-step .img-circle {
     width: 60px;
     height: 60px;
@@ -372,17 +363,9 @@ font-size:10px;
 
 }
 
-        .highl{
-        width: 22rem;
-        height: 10rem;
-        font-size: 20px;
-    
-	}
-	.highlight {
-    width: 16rem !important;
-		}
+        
 	
-	}
+	
 </style>
 {% endblock stylesheets %}
 {% block body %}
@@ -396,7 +379,7 @@ font-size:10px;
 <section class="regis py-5">
         <div class="container">
         <div class="row">
-            <div class=" col-md-6 text-center" id="rgt">
+            <div class=" col-lg-4 text-center" id="rgt">
                       
                         <iframe width="330" height="330" src="https://www.youtube.com/embed/nMBmLLpo9CA" frameborder="0"
                             allow="fullscreen" style="border-radius:20px;" class="ifrm"></iframe>
@@ -460,7 +443,9 @@ font-size:10px;
                         </div>
                     </div>
 			   </div>
-            <div class="col-md-6 border " id="frm">
+			   
+			   
+            <div class="col-lg-8 border mt-1" id="frm">
                 <h2 class="pb-4 pt-4 text-center text-white">Get Your Online Presence</h2>
                 <form class="row register-form" method="POST" action='/accounts/seller/account/signup' name="myform2"
                     enctype="multipart/form-data" onsubmit="return registrationValidator();">
@@ -933,24 +918,24 @@ font-size:10px;
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-6 col-md-6">
+            <div class="col-lg-6">
                 <div class="single-featur">
                     <div class="highl">Dashboard to visualize and keep track your monthly sales</div>
                 
                    
                 </div>
             </div>
-            <div class="col-lg-6 col-md-6">
+            <div class="col-lg-6">
                 <div class="single-featur">
                     <div class="highl">Transaction Record Book</div>
                 </div>
             </div>
-			<div class="col-lg-6 col-md-6">
+			<div class="col-lg-6">
                 <div class="single-featur">
                     <div class="highl">Revenue Management</div>
                 </div>
             </div>
-			<div class="col-lg-6 col-md-6">
+			<div class="col-lg-6">
                 <div class="single-featur">
                     <div class="highl">Tour Management</div>
                 </div>
