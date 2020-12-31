@@ -1,6 +1,6 @@
 {% extends 'basetemplate.html' %}
 {% load static %}
-{% block styleshets %}
+{% block stylesheets %}
 <style>
 body{
     background:#f1f3f6;
@@ -129,52 +129,32 @@ body{
 {% endblock stylesheets %}
 
 {% block body %}
-<div class="container mb-4">
-    
+<div class="container my-4">
         <!-- Wishlist-->
         <div class="col-md-12 m-auto">
             <!-- Item-->
+            {% if Wishlist %}
+            {% for item in Wishlist %}
             <div class="cart-item d-md-flex justify-content-between"><span class="remove-item"><i class="fa fa-trash"></i></span>
                 <div class="px-3 my-3">
                     <a class="cart-item-product" href="#">
-                        <div class="cart-item-product-thumb"><img src="3.jpg" alt="Product"></div>
+                        <div class="cart-item-product-thumb"><img src="{{item.tour.thumbnail.url}}" alt="Product"></div>
                         <div class="cart-item-product-info">
-                            <h4 class="cart-item-product-title">Tour Name</h4>
-                            <div class="text-lg text-body font-weight-medium pb-1">$910.00</div><span>Availability: <span class="text-success font-weight-medium">In Stock</span></span>
+                            <h4 class="cart-item-product-title">{{ item.tour.tourHeading }}</h4>
+                            <div class="text-lg text-body font-weight-medium pb-1">{{item.tour.price}}</div><span>Availability: <span class="text-success font-weight-medium">In Stock</span></span>
                         </div>
                     </a>
                 </div>
             </div>
-            <!-- Item-->
-            <div class="cart-item d-md-flex justify-content-between"><span class="remove-item"><i class="fa fa-trash"></i></span>
-                <div class="px-3 my-3">
-                    <a class="cart-item-product" href="#">
-                        <div class="cart-item-product-thumb"><img src="dig4.jpg" alt="Product"></div>
-                        <div class="cart-item-product-info">
-                            <h4 class="cart-item-product-title">Tour Name</h4>
-                            <div class="text-lg text-body font-weight-medium pb-1">$1,450.00</div><span>Availability: <span class="text-warning font-weight-medium">2 - 3 Weeks</span></span>
-                        </div>
-                    </a>
-                </div>
+          `{% endfor %}
+          {% else %}
+            <div class="container my-3">
+            <h2>No items in your wishlist</h2>
             </div>
-            <!-- Item-->
-            <div class="cart-item d-md-flex justify-content-between"><span class="remove-item"><i class="fa fa-trash"></i></span>
-                <div class="px-3 my-3">
-                    <a class="cart-item-product" href="#">
-                        <div class="cart-item-product-thumb"><img src="dig3.jpg" alt="Product"></div>
-                        <div class="cart-item-product-info">
-                            <h4 class="cart-item-product-title">Tour Name</h4>
-                            <div class="text-lg text-body font-weight-medium pb-1">$188.50</div><span>Availability: <span class="text-success font-weight-medium">In Stock</span></span>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="custom-control custom-checkbox">
-                <input class="custom-control-input" type="checkbox" checked="" id="inform-me">
-                <label class="custom-control-label" for="inform-me">Inform me when item from my wishlist is available</label>
-            </div>
+          {% endif %}
+      
+            
         </div>
     
 </div>
-
 {% endblock body %}

@@ -129,8 +129,10 @@ def wishList(request):
         else:
             wishlist = WishList.objects.filter(user=user)
             context = {
-                'wishlist':wishlist,
+                'Wishlist':wishlist,
             }
+            for i in wishlist:
+                print(i.tour.price)
             return render(request,'traveller/wishlist.html',context=context)
     else:
         return render(request,'forbidden.html')
