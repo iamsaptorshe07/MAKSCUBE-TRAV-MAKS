@@ -147,5 +147,43 @@ class WishList(APIView):
                 },
                 status = status.HTTP_400_BAD_REQUEST
             )
+    
+    def post(self,request):
+        if request.session.session_key:
+            if request.session['access_type']=='traveller':
+                tour = request.POST.get('tourId')
+                tour = Tour.objects.get(tourId=tour)
+                if WishList.objects.filter(tour=tour,user=user).exists():
+                    wishlist = WishList.objects.get(tour=tour,user=user)
+                    wishlist.delete()
+                else:
+                    wishlist = WishList(
+                        tour = tour,
+                        user = user,
+                    )
+                    wishlist.save()
+                return Response(
+                    data = {
+                    'status':200,
+                    'message':"Success!"
+                    },
+                    status=status.HTTP_200_OK
+                )
+            else:
+                return Response(
+                    data = {
+                        'status':401,
+                        'message':"Not Authorized"
+                    },
+                    status = status.HTTP_401_UNAUTHORIZED
+                )
+        else:
+            return Response(
+                data = {
+                    'status':404,
+                    'message':"Not Authenticated"
+                },
+                status = status.HTTP_400_BAD_REQUEST
+            )
 
 
