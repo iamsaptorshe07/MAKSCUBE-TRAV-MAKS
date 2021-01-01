@@ -121,11 +121,15 @@ def wishList(request):
         if request.method == 'POST':
             tour = request.POST.get('post_id')
             tour = Tour.objects.get(tourId=tour)
-            wishlist = WishList(
-                tour = tour,
-                user = user,
-            )
-            wishlist.save()
+            if WishList.objects.filter(tour=tour,user=user).exists():
+                wishlist = WishList.objects.get(tour=tour,user=user)
+                wishlist.delete()
+            else:
+                wishlist = WishList(
+                    tour = tour,
+                    user = user,
+                )
+                wishlist.save()
             return HttpResponse("Success!")
         else:
             wishlist = WishList.objects.filter(user=user)

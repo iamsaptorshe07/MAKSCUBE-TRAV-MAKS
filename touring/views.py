@@ -15,6 +15,7 @@ from django.template.loader import get_template
 from django.contrib.sites.shortcuts import get_current_site
 import datetime
 from django.db.models import Q
+from traveller.models import WishList
 # Create your views here.
 class SearchTour(ListView):
     model = Tour
@@ -73,15 +74,15 @@ class AllToursView(ListView):
 def tourDetails(request,tourId,slug):
     if(Tour.objects.filter(tourSlug=slug,tourId=tourId).exists()):
         tour = Tour.objects.get(tourSlug=slug)
-        
         user=request.user
         # Tour details for Travellers without login or with login starts------------------------------
         if canBook(tour.last_booking_date): 
             if tour.publish_mode:
-                
+                wishlist = False
+                if WishList.objects.filter(tour=tour,user=user).exists():
+                    wishlist = True
                 description=tour.description
                 print(description)
-                
                 tourImage = TourImage.objects.get(tour=tour)
                 images=[]
                 try:
@@ -111,7 +112,8 @@ def tourDetails(request,tourId,slug):
                 context = {
                     'Tour':tour,
                     'description': description,
-                    'images' : images, 
+                    'images' : images,
+                    'wishlist':wishlist, 
                 }
                 return render(request,'touring/tour_details.html',context=context)
             
