@@ -1272,7 +1272,6 @@
                 'success': function( data ) 
                 {
                     document.querySelector('.SaveBtn').style.backgroundColor='rgb(40,167,69)';
-                    // $(this).addClass('btn-success');
                     document.querySelector('.SaveBtn p').innerHTML='Added';
                     document.querySelector('.SaveBtn').style.color='white';
                 }
@@ -1280,10 +1279,22 @@
         }
         else{
             console.log('removed');
-            document.querySelector('.SaveBtn').style.backgroundColor='rgb(206, 218, 255)';
-            // $(this).removeClass('btn-success');
-            document.querySelector('.SaveBtn').style.color='black';
-            document.querySelector('.SaveBtn p').innerHTML='Save';
+            var catid;
+            catid = $(this).attr("data-catid");
+            console.log(catid);
+            $.ajax({
+                'url': "/traveller/wishlist",
+                'type':"POST",
+                'data':{
+                    post_id: catid
+                },
+                'success': function( data ) 
+                {
+                    document.querySelector('.SaveBtn').style.backgroundColor='rgb(206, 218, 255)';
+                    document.querySelector('.SaveBtn').style.color='black';
+                    document.querySelector('.SaveBtn p').innerHTML='Save';
+                }
+            });
         }
         
     });
