@@ -699,7 +699,7 @@
         $('.cc1 .exclusive001').html(exclusive[0]);
         $('.cc1 .overview001').html(overview[0]);
         $('.cc1 .highlight001').html(highlight[0]);
-        $('.cc1 .outlookBtnsBook').attr('href',`/tour/booktour/${tourid[0]}/{{Tour.seller.userAccess.agentId}}`);
+        $('.cc1 .outlookBtnsBook').attr('href',`/tour/tourdetails/${tourid[0]}/${slag[0]}`);
         var desc1=desc[0];
         var d=desc1.split('@@@@');
         // console.log(d);
@@ -750,7 +750,7 @@
         $('.cc2 .exclusive001').html(exclusive[1]);
         $('.cc2 .overview001').html(overview[1]);
         $('.cc2 .highlight001').html(highlight[1]);
-        $('.cc2 .outlookBtnsBook').attr('href',`/tour/booktour/${tourid[0]}/{{Tour.seller.userAccess.agentId}}`);
+        $('.cc2 .outlookBtnsBook').attr('href',`/tour/tourdetails/${tourid[1]}/${slag[1]}`);
         var desc2=desc[1];
         var d=desc2.split('@@@@');
         // console.log(d);
@@ -801,7 +801,7 @@
         $('.cc3 .exclusive001').html(exclusive[2]);
         $('.cc3 .overview001').html(overview[2]);
         $('.cc3 .highlight001').html(highlight[2]);
-        $('.cc3 .outlookBtnsBook').attr('href',`/tour/booktour/${tourid[0]}/{{Tour.seller.userAccess.agentId}}`);
+        $('.cc3 .outlookBtnsBook').attr('href',`/tour/tourdetails/${tourid[2]}/${slag[2]}`);
         var desc3=desc[2];
         var d=desc3.split('@@@@');
         // console.log(d);
@@ -852,7 +852,7 @@
         $('.cc4 .exclusive001').html(exclusive[3]);
         $('.cc4 .overview001').html(overview[3]);
         $('.cc4 .highlight001').html(highlight[3]);
-        $('.cc4 .outlookBtnsBook').attr('href',`/tour/booktour/${tourid[0]}/{{Tour.seller.userAccess.agentId}}`);
+        $('.cc4 .outlookBtnsBook').attr('href',`/tour/tourdetails/${tourid[4]}/${slag[4]}`);
         var desc4=desc[3];
         var d=desc4.split('@@@@');
         // console.log(d);
@@ -936,10 +936,10 @@
         else if(numberOfTours==3){
             $('.cc4 .tourLayout').addClass('d-flex');
         }
-        var p1=document.querySelector('.cc1 .outlook p:nth-child(8)').innerHTML.substr(16,10);
-        var p2=document.querySelector('.cc2 .outlook p:nth-child(8)').innerHTML.substr(16,10);
-        var p3=document.querySelector('.cc3 .outlook p:nth-child(8)').innerHTML.substr(16,10);
-        var p4=document.querySelector('.cc4 .outlook p:nth-child(8)').innerHTML.substr(16,10);
+        var p1=document.querySelector('.cc1 .outlook p:nth-child(8)').innerHTML.substr(16);
+        var p2=document.querySelector('.cc2 .outlook p:nth-child(8)').innerHTML.substr(16);
+        var p3=document.querySelector('.cc3 .outlook p:nth-child(8)').innerHTML.substr(16);
+        var p4=document.querySelector('.cc4 .outlook p:nth-child(8)').innerHTML.substr(16);
         var r1=document.querySelector('.cc1 .outlook p:nth-child(3)').innerHTML.substr(10,3);
         var r2=document.querySelector('.cc2 .outlook p:nth-child(3)').innerHTML.substr(10,3);
         var r3=document.querySelector('.cc3 .outlook p:nth-child(3)').innerHTML.substr(10,3);
