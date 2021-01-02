@@ -79,8 +79,9 @@ def tourDetails(request,tourId,slug):
         if canBook(tour.last_booking_date): 
             if tour.publish_mode:
                 wishlist = False
-                if WishList.objects.filter(tour=tour,user=user).exists():
-                    wishlist = True
+                if user.is_authenticated and request.session['access_type']=='traveller':
+                    if WishList.objects.filter(tour=tour,user=user).exists():
+                        wishlist = True
                 description=tour.description
                 print(description)
                 tourImage = TourImage.objects.get(tour=tour)
