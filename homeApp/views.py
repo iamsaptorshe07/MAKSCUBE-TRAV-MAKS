@@ -7,6 +7,7 @@ from django.db.models import Q
 def index(request):
     tour = Tour.objects.filter(publish_mode=True,last_booking_date__gte=str(datetime.date.today()),maximum_people__gte=1)
     context = {'Tour' : tour}
+    print(request.build_absolute_uri())
     return render(request,'home.html', context=context)
 
 def aboutUs(request):

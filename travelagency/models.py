@@ -71,5 +71,15 @@ class TourImage(models.Model):
     image6 = models.ImageField(upload_to="TourPreview",null=True,blank=True)
     image7 = models.ImageField(upload_to="TourPreview",null=True,blank=True)
 
+class TourQuery(models.Model):
+    name = models.CharField(max_length=500)
+    email = models.EmailField(max_length=100)
+    phone = models.CharField(max_length=20)
+    tour = models.ForeignKey(Tour,on_delete=models.CASCADE,related_name='tourQuery')
+    agent = models.ForeignKey(User,on_delete=models.CASCADE,related_name='agent')
+    subject = models.CharField(max_length=500)
+    query = models.TextField()
+
+
 
 

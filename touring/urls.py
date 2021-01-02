@@ -10,4 +10,5 @@ urlpatterns = [
     path('booktour/<tourId>/<agentId>',bookTour,name='bookTour'),
     path('paytm-payment-recieve',recievePayment,name='recievePayment'),
     path('tour-comparison',tourComparison,name='tourComparison'),
+    path('tour-query/<tourId>/<agentId>',tourQuery,name='tourQuery')
     ]
