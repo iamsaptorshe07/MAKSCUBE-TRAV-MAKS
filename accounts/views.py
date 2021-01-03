@@ -612,15 +612,19 @@ def userProfile(request, account_type, uid):
             user = User.objects.get(id=uid)
             if user == request.user:
                 if account_type == 'traveller':
-                    user.name = request.POST.get('name')
-                    user.DOB = request.POST.get('bdate')
-                    user.phNo = request.POST.get('phone')
-                    user.gender = request.POST.get('gender')
-                    user.zipCode = request.POST.get('zip')
-                    user.address = request.POST.get('address')
-                    user.save()
-                    messages.success(request, 'Successfully updated')
-                    return redirect(request.META.get('HTTP_REFERER'))
+                    if user.userAccess.agency_access is True:
+                        messages.error(request,"You can't change your details as you have a seller account")
+                        return redirect(request.META.get('HTTP_REFERER'))
+                    else:
+                        user.name = request.POST.get('name')
+                        user.DOB = request.POST.get('bdate')
+                        user.phNo = request.POST.get('phone')
+                        user.gender = request.POST.get('gender')
+                        user.zipCode = request.POST.get('zip')
+                        user.address = request.POST.get('address')
+                        user.save()
+                        messages.success(request, 'Successfully updated')
+                        return redirect(request.META.get('HTTP_REFERER'))
                 elif account_type == 'seller':
                     return render(request,'forbidden.html')
                     # if request.POST.get('typo')=='agent':

@@ -25,7 +25,18 @@
     }
 </script>
         <hr>
-		
+		{% if messages %}
+                    {% for message in messages %}
+                    <div class="col-md-12">
+                        <div class="alert alert-{{message.tags}}" role="alert">
+                            {{message}}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    {% endif %}
         <div class="container mt-5">
             <div class="row flex-lg-nowrap">
                 <div class="col">

@@ -258,6 +258,18 @@
 
 {% block body %}
     <main>
+        {% if messages %}
+    {% for message in messages %}
+                    <div class="col-md-12 mt-3">
+                        <div class="alert alert-{{message.tags}}" role="alert">
+                            {{message}}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    </div>
+                    {% endfor %}
+{% endif %}
         <section id="contact">
             <div class="container">
                 <div class="row">
@@ -288,7 +300,8 @@
                         
                         <div id="contact-right">
 
-                            <form onsubmit="return validator()">
+                            <form onsubmit="return validator()" method='POST' action='/contact-us'>
+                                {% csrf_token %}
                                 <h1>Send Message</h1>
                                 <p>We are available 24x7 hours, Please leave a message for any kind of doubt or interest.</p>
 
@@ -296,28 +309,28 @@
 
                                     <div class="col-md-6 col-sm-6">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" id="name" minlength="5" required placeholder="Your Name">
+                                            <input type="text" class="form-control" id="name" minlength="5" required placeholder="Your Name" name='name'>
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-sm-6">
                                         <div class="form-group">
-                                            <input type="email" class="form-control" id="email" required placeholder="Email Address">
+                                            <input type="email" class="form-control" id="email" required placeholder="Email Address" name='email'>
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-sm-6">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" required id="phone" placeholder="Phone No.">
+                                            <input type="text" class="form-control" required id="phone" placeholder="Phone No." name='phone'>
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-sm-6">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" minlength="5" required id="subject" placeholder="Subject">
+                                            <input type="text" class="form-control" minlength="5" required id="subject" placeholder="Subject" name='subject'>
                                         </div>
                                     </div>
 
                                 </div>
                                 <div class="form-group">
-                                    <textarea class="form-control" id="message" minlength="20" placeholder="Message" required></textarea>
+                                    <textarea class="form-control" id="message" minlength="20" placeholder="Message" required name="message"></textarea>
                                 </div>
                                 <div id="errormsgbg">
                                     <div id="errormsg" 
