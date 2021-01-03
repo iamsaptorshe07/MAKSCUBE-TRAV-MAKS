@@ -345,11 +345,12 @@
                     <div class="outlookBtns">
                         <button type="button" class="btn-primary">
                             <a href="#" class="outlookBtnsBook">
-                                <p>Book Now</p>
+                                <p>Know More</p>
                             </a>
                         </button>
-                        <button type="button" class="btn-primary" onclick="saveTour(this);">
-                            Save Tour
+                        <button type="button" class="btn-primary SaveBtn" id=""
+                        data-catId="" onclick="saveTour(this);">
+                            Wishlist
                         </button>
                     </div>
                 </div>
@@ -409,11 +410,12 @@
                     <div class="outlookBtns">
                         <button type="button" class="btn-primary">
                             <a href="/tour/booktour/{{Tour.tourId}}/{{Tour.seller.userAccess.agentId}}">
-                                <p>Book Now</p>
+                                <p>Know More</p>
                             </a>
                         </button>
-                        <button type="button" class="btn-primary" onclick="saveTour(this);">
-                            Save Tour
+                        <button type="button" class="btn-primary SaveBtn" id=""
+                        data-catId="" onclick="saveTour(this);">
+                            Wishlist
                         </button>
                     </div>
                 </div>
@@ -473,11 +475,12 @@
                     <div class="outlookBtns">
                         <button type="button" class="btn-primary">
                             <a href="/tour/booktour/{{Tour.tourId}}/{{Tour.seller.userAccess.agentId}}">
-                                <p>Book Now</p>
+                                <p>Know More</p>
                             </a>
                         </button>
-                        <button type="button" class="btn-primary" onclick="saveTour(this);">
-                            Save Tour
+                        <button type="button" class="btn-primary SaveBtn" id=""
+                        data-catId="" onclick="saveTour(this);">
+                            Wishlist
                         </button>
                     </div>
                 </div>
@@ -537,11 +540,12 @@
                     <div class="outlookBtns">
                         <button type="button" class="btn-primary">
                             <a href="/tour/booktour/{{Tour.tourId}}/{{Tour.seller.userAccess.agentId}}">
-                                <p>Book Now</p>
+                                <p>Know More</p>
                             </a>
                         </button>
-                        <button type="button" class="btn-primary" onclick="saveTour(this);">
-                            Save Tour
+                        <button type="button" class="btn-primary SaveBtn" id=""
+                        data-catId="" onclick="saveTour(this);">
+                            Wishlist
                         </button>
                     </div>
                 </div>
@@ -699,6 +703,8 @@
         $('.cc1 .exclusive001').html(exclusive[0]);
         $('.cc1 .overview001').html(overview[0]);
         $('.cc1 .highlight001').html(highlight[0]);
+        $('.cc1 .SaveBtn').attr('data-catId',tourid[0]);
+        $('.cc1 .SaveBtn').attr('id',`save${tourid[0]}`);
         $('.cc1 .outlookBtnsBook').attr('href',`/tour/tourdetails/${tourid[0]}/${slag[0]}`);
         var desc1=desc[0];
         var d=desc1.split('@@@@');
@@ -751,6 +757,8 @@
         $('.cc2 .overview001').html(overview[1]);
         $('.cc2 .highlight001').html(highlight[1]);
         $('.cc2 .outlookBtnsBook').attr('href',`/tour/tourdetails/${tourid[1]}/${slag[1]}`);
+        $('.cc2 .SaveBtn').attr('data-catId',tourid[1]);
+        $('.cc2 .SaveBtn').attr('id',`save${tourid[1]}`);
         var desc2=desc[1];
         var d=desc2.split('@@@@');
         // console.log(d);
@@ -802,6 +810,8 @@
         $('.cc3 .overview001').html(overview[2]);
         $('.cc3 .highlight001').html(highlight[2]);
         $('.cc3 .outlookBtnsBook').attr('href',`/tour/tourdetails/${tourid[2]}/${slag[2]}`);
+        $('.cc3 .SaveBtn').attr('data-catId',tourid[2]);
+        $('.cc3 .SaveBtn').attr('id',`save${tourid[2]}`);
         var desc3=desc[2];
         var d=desc3.split('@@@@');
         // console.log(d);
@@ -853,6 +863,8 @@
         $('.cc4 .overview001').html(overview[3]);
         $('.cc4 .highlight001').html(highlight[3]);
         $('.cc4 .outlookBtnsBook').attr('href',`/tour/tourdetails/${tourid[3]}/${slag[3]}`);
+        $('.cc4 .SaveBtn').attr('data-catId',tourid[3]);
+        $('.cc4 .SaveBtn').attr('id',`save${tourid[3]}`);
         var desc4=desc[3];
         var d=desc4.split('@@@@');
         // console.log(d);
@@ -969,5 +981,63 @@
             $(obj).removeClass('btn-success');
         }
     }
+
+    
+    $(function(){
+        var wishlist = ['True','False','True','False'];
+        console.log(wishlist);
+        for(let i=1;i<=4;i++){
+            let xx='.cc'+i+' .SaveBtn';
+            if(wishlist[i]=='True'){
+                $(xx).html('Saved');
+                $(xx).removeClass('btn-primary');
+                $(xx).addClass('btn-success');
+            }
+            (xx,$(xx).attr('data-catId'))
+        }
+    });
+
+    function saveTour(obj){
+        // e.preventDefault();
+        if($(obj).css('background-color')=='rgb(0, 105, 217)'){
+            console.log('adding');
+            var catid;
+            catid = $(obj).attr("data-catId");
+            console.log(catid);
+            $.ajax({
+                'url': "/traveller/wishlist",
+                'type':"POST",
+                'data':{
+                    post_id: catid
+                },
+                'success': function( data ) 
+                {
+                    $(obj).html('Saved');
+                    $(obj).removeClass('btn-primary');
+                    $(obj).addClass('btn-success');
+                }
+            });
+        }
+        else{
+            console.log('was added, removing');
+            var catid;
+            catid = $(obj).attr("data-catid");
+            console.log(catid);
+            $.ajax({
+                'url': "/traveller/wishlist",
+                'type':"POST",
+                'data':{
+                    post_id: catid
+                },
+                'success': function( data ) 
+                {
+                    $(obj).html('Wishlist');
+                    $(obj).removeClass('btn-success');
+                    $(obj).addClass('btn-primary');
+                }
+            });
+        }   
+    }
+
 </script>
 {% endblock body %}
