@@ -99,6 +99,9 @@
     .navbar{
       height: 60px;
     }
+    .navbar .nav-item .nav-link{
+      background: #0d141c;
+    }
 
     @media screen and (max-width:900px) {
       .paymentmode {
@@ -110,6 +113,17 @@
     }
     nav .dropdown-menu{
       top: 95%!important;
+    }
+    @media screen and (max-width:990px) {
+      nav{
+        padding: 0.5rem 0!important;
+      }
+      .navbar-brand{
+        margin-left: 1rem;
+      }
+      .navbar-toggler{
+        margin-right: 1rem;
+      }
     }
   </style>
   {% block stylesheets %}

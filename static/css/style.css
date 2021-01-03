@@ -41,80 +41,7 @@ div
     -moz-box-sizing: border-box;
     box-sizing: border-box;sss
 }
-.owl-dots{
-		display: none;
-}
-.owl-carousel owl-theme.item img{
-	display: block;
-  width: 100%;
-  height: auto;
-} 
-/*.navbar{
-    background-color: #0d141c !important;
-
-}
-.navbar .nav-item .nav-link{
-    color:#fff !important;
-		font-family: Helvatica;
-		font-size: 20px;
-		
-    }
-.nav-item dropdown :after {
-
-display: none !important;
-
-}	
-.navbar .nav-item .nav-link:hover{
-    background-color: #ddd;
-  color: black !important;
-  border-radius: 5px;
-  
-}
-.navbar-nav a {
-           
-            transition: 0.3s linear;
-        }
-.navbar-toggler{
-background-color: #fff !important;
-}
-	
-	.fa-sign-out{
-		color: gold;
-	}
-	.fa-user{
-		color: #5f27cd;
-	}
-	.fa-align-left{
-		color:#ef1961;
-	}
-	.fa-phone-square{
-		color:#3ce825;
-	}
-	.fa-question-circle{
-		color: #d63737;
-	}
-	.fa-book{
-		color:#e8259a;
-	}
-.fa-car{
-font-size: 20px;
- color: #2d67b2;
-}
-
-
-.dropdown-toggle::after {
-   transition: transform 0.15s linear; 
-}
-
-.show.dropdown .dropdown-toggle::after {
-  transform: translateY(3px);
-}
-
-.dropdown-menu {
-  margin-top: 0;
-}
-*/
-
+/*Navbar */
 .navbar{
    background-color: #0d141c !important;
 
@@ -167,7 +94,9 @@ display: none !important;
 font-size: 20px;
  color: #2d67b2;
 }
-	
+
+
+/*Navbar End*/	
 
 .popular_places_area {
   padding-top: 142px;
