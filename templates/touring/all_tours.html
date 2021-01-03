@@ -331,16 +331,20 @@
         position: fixed;
         right: 20px;
         bottom: 90px;
-        background-color: violet;
+        background-color: rgb(226, 222, 248);
+        border-top-left-radius: 6px;
+        border-top-right-radius: 6px;
         width: 340px;
-        height: 340px;
         overflow-x: visible;
-        display: none;
+        display: flex;
         align-items: stretch;
         justify-content: space-around;
         flex-wrap: wrap;
         padding: 30px;
         z-index: 1000;
+        transform: scale(0);
+        transition: 0.3s;
+        transform-origin: right bottom;
     }
     .compareBtns{
         z-index: 1000;
@@ -349,7 +353,7 @@
         bottom: 40px;
         width: 170px;
         height: 50px;
-        display: flex;
+        display: none;
         align-items: center;
         justify-content: left;
     }
@@ -360,10 +364,43 @@
         height: 50px;
         top: 0;
         padding: 2px 0;
-        transition: 0.4s;
+        transition: 0.3s;
     }
     .compareBtns:hover .btn-danger, .compareList:hover + .compareBtns .btn-danger{
         transform: translateX(-100%);
+    }
+    .compareList.d-flex{
+        transform: scale(1);
+    }
+    .selectedTour{
+        width: 125px;
+        height: 120px;
+        position: relative;
+        display: flex;
+        font-weight: bold;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        margin: 3px 0;
+    }
+    .selectedTour .imgbg{
+        width: 100px;
+        height: 100px;
+        position: relative;
+    }
+    .selectedTour .imgbg img{
+        border-radius: 4px;
+        height: 100%;
+        position: absolute;
+        width: 100%;
+    }
+    .selectedTour i{
+        position: absolute;
+        top: 5px;
+        left: 100px;
+    }
+    .selectedTour p{
+        word-break: break-all;
     }
 </style>
 {% endblock %}
@@ -563,7 +600,7 @@
     <div class="compareList">
     </div>
     <div class="compareBtns">
-        <button type="button" class="btn-danger" style="z-index: 1" onclick="removeTours();">
+        <button type="button" class="btn-danger" style="z-index: 1" onclick="removeAllTours();">
             Remove All
         </button>
         <button type="button" class="btn-success" style="z-index: 2" onclick="compare();">
@@ -576,24 +613,105 @@
     </script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
+ 
+    var g_compareList=[];
+    var removeByAttr = function(arr, attr, value){
+        var i = arr.length;
+        while(i--){
+        if( arr[i] 
+            && arr[i].hasOwnProperty(attr) 
+            && (arguments.length > 1 && arr[i][attr] === value ) ){ 
+                arr.splice(i,1);
+        }
+        }
+        return arr;
+    }
+    
     function addInCompareList1(obj,id,img){
         if($(obj).children().css('background-color')=='rgb(0, 123, 255)'){
             $(obj).children().removeClass('checked');
+            var item=[id,img];
+            removeByAttr(g_compareList,0,id);
+            let i=0;
+            document.querySelectorAll('.selectedTour p').forEach(function(el,i){
+                var cl=document.querySelector('.compareList');
+                if(el.innerHTML==id){
+                    cl.removeChild(cl.childNodes[i]);
+                }
+                else{i=i+1}
+            });
         }
         else{
-            $(obj).children().addClass('checked');
-            addInCompareList2(id,img);
+            if(g_compareList.length<4){
+                $(obj).children().addClass('checked');
+                g_compareList.push([id,img]);
+                addInCompareList2();
+            }
+            else{
+                alert('You can only compare 4 tours at a time.');
+            }
+        }
+        if(g_compareList.length>=1){
+            $('.compareBtns').addClass('d-flex');
+        }
+        else{
+            $('.compareBtns').removeClass('d-flex');
         }
     }
 
-    function addInCompareList2(id,img){
+    function addInCompareList2(){
+        $('.compareList').empty();
+        for(let i=0;i<g_compareList.length;i++){
+            var id1=g_compareList[i][0];
+            var img1=g_compareList[i][1];
+            var selectedTour=   `<div class="selectedTour">
+                                    <div class="imgbg">
+                                        <img src="${img1}" alt="selectedTour">
+                                    </div>
+                                    <p>${id1}</p>
+                                </div>`;
+            $('.compareList').append(selectedTour);
+        }
+    }
 
+    function removeAllTours(){
+        $('.compareList').empty();
+        g_compareList=[];
+        $('.mCheckBox').removeClass('checked');
+        if(g_compareList.length>=1){
+            $('.compareBtns').addClass('d-flex');
+        }
+        else{
+            $('.compareBtns').removeClass('d-flex');
+        }
     }
 
     $('.compareBtns').hover(function(){
         $('.compareList').addClass('d-flex');
-    }), function(){
+    }, function(){
         $('.compareList').removeClass('d-flex');
+    });
+    $('.compareList').hover(function(){
+        $('.compareList').addClass('d-flex');
+    }, function(){
+        $('.compareList').removeClass('d-flex');
+    });
+
+    function compare(){
+        var cname='Compare';
+        var cvalue='';
+        document.querySelectorAll('.selectedTour p').forEach(function(el){
+            cvalue=cvalue+','+(el.innerHTML);
+        });
+        setCookie(cname,cvalue,1);
+        window.location.href = "/tour/tour-comparison";
+    }
+
+    function setCookie(cname, cvalue, exdays){
+        var d = new Date();
+        d.setTime(d.getTime() + (exdays*24*60*60*1000));
+        var expires = "expires="+ d.toUTCString();
+        document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
     }
 
     $('.tour').hover(function () {

@@ -15,6 +15,7 @@ from django.template.loader import get_template
 from django.contrib.sites.shortcuts import get_current_site
 import datetime
 from django.db.models import Q
+from traveller.models import WishList
 # Create your views here.
 class SearchTour(ListView):
     model = Tour
@@ -73,15 +74,16 @@ class AllToursView(ListView):
 def tourDetails(request,tourId,slug):
     if(Tour.objects.filter(tourSlug=slug,tourId=tourId).exists()):
         tour = Tour.objects.get(tourSlug=slug)
-        
         user=request.user
         # Tour details for Travellers without login or with login starts------------------------------
         if canBook(tour.last_booking_date): 
             if tour.publish_mode:
-                
+                wishlist = False
+                if user.is_authenticated and request.session['access_type']=='traveller':
+                    if WishList.objects.filter(tour=tour,user=user).exists():
+                        wishlist = True
                 description=tour.description
                 print(description)
-                
                 tourImage = TourImage.objects.get(tour=tour)
                 images=[]
                 try:
@@ -111,7 +113,8 @@ def tourDetails(request,tourId,slug):
                 context = {
                     'Tour':tour,
                     'description': description,
-                    'images' : images, 
+                    'images' : images,
+                    'wishlist':wishlist, 
                 }
                 return render(request,'touring/tour_details.html',context=context)
             
@@ -181,6 +184,37 @@ def preview(request,tourId):
 
 def tourComparison(request):
     return render(request,'touring/tour_comparison.html')
+
+
+def tourQuery(request,tourId,agentId):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        phone = request.POST.get('phone')
+        name = request.POST.get('name')
+        subject = request.POST.get('subject')
+        query = request.POST.get('query')
+        if Tour.objects.filter(tourId=tourId).exists() and AccountType.objects.filter(agentId=agentId).exists():
+            account = AccountType.objects.get(agentId=agentId)
+            if Tour.objects.filter(tourId=tourId,seller = account.user).exists():
+                tour = Tour.objects.get(tourId=tourId,seller = account.user)
+                query = TourQuery(
+                    email = email,
+                    name = name,
+                    phone = phone,
+                    tour = tour,
+                    agent = account.user,
+                    subject = subject,
+                    query = query
+                )
+                query.save()
+                messages.success(request,"Recieved Your Query, Our Sales Team will contact you soon")
+                return redirect('/tour/tourdetails/{}/{}'.format(tour.tourId,tour.tourSlug))
+            else:
+                return redirect('/tour/tourdetails/{}/{}'.format(tour.tourId,tour.tourSlug))
+        else:
+            return redirect('/tour/tourdetails/{}/{}'.format(tour.tourId,tour.tourSlug))
+    else:
+        return render(request,'forbidden.html')
 
 
 def bookTour(request,tourId,agentId):

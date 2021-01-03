@@ -88,6 +88,41 @@ class SearchTour(APIView):
                 status = status.HTTP_406_NOT_ACCEPTABLE
             )
 
+class AdvancedSearch(APIView):
+     def get(self,request):
+        try:
+            startLocSearch = request.GET.get('startLocSearch')
+            endLocSearch = request.GET.get('endLocSearch')
+            startDateSearch = request.GET.get('startDateSearch')
+            endDateSearch = request.GET.get('endDateSearch')
+            startPrice= request.GET.get('startPrice')
+            endPrice = request.GET.get('endPrice')
+            minDuration=request.GET.get('minDuration')
+            maxDuration = request.GET.get('maxDuration')
+        except Exception as problem:
+            return Response(
+                {
+                    'status':406,
+                    'message':problem
+                },
+                status = status.HTTP_406_NOT_ACCEPTABLE
+            )
+        tour1 = Tour.objects.filter(startingLocation__icontains=startLocSearch,endLocation__icontains=endLocSearch,
+        publish_mode = True,startDate__gte=startDateSearch,endDate__lte=endDateSearch,price__gte=startPrice,price__lte=endPrice,
+        last_booking_date__gte=str(datetime.date.today()),maximum_people__gte=1)
+        tours = []
+        for i in tour1:
+            day = i.startDate - i.endDate
+            if day>=minDuration and day<=maxDuration:
+                tours.append(i)
+        tour_data = TourSerializer(tours,many=True)
+        return Response(
+            {
+                'status':200,
+                'tours':tour_data.data
+            },
+            status = status.HTTP_200_OK
+        )
 
 
 @api_view(['GET'])

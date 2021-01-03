@@ -120,17 +120,24 @@ def wishList(request):
     if user.is_authenticated and request.session['access_type']=='traveller':
         if request.method == 'POST':
             tour = request.POST.get('post_id')
-            wishlist = WishList(
-                tour = tour,
-                user = user,
-            )
-            wishlist.save()
+            tour = Tour.objects.get(tourId=tour)
+            if WishList.objects.filter(tour=tour,user=user).exists():
+                wishlist = WishList.objects.get(tour=tour,user=user)
+                wishlist.delete()
+            else:
+                wishlist = WishList(
+                    tour = tour,
+                    user = user,
+                )
+                wishlist.save()
             return HttpResponse("Success!")
         else:
             wishlist = WishList.objects.filter(user=user)
             context = {
-                'wishlist':wishlist,
+                'Wishlist':wishlist,
             }
+            for i in wishlist:
+                print(i.tour.price)
             return render(request,'traveller/wishlist.html',context=context)
     else:
         return render(request,'forbidden.html')
