@@ -81,5 +81,10 @@ class TourQuery(models.Model):
     query = models.TextField()
 
 
+class Review(models.Model):
+    rating = models.IntegerField(null=True,blank=True)
+    comment = models.TextField(null=True,blank=True)
+    user = models.ForeignKey(User,on_delete=models.CASCADE,related_name='user')
+    tour = models.ForeignKey(Tour,on_delete=models.CASCADE,related_name='tour')
 
 
