@@ -141,3 +141,33 @@ def wishList(request):
             return render(request,'traveller/wishlist.html',context=context)
     else:
         return render(request,'forbidden.html')
+
+
+def writeReview(request,tourId):
+    if request.method == 'POST':
+        user = request.user
+        if user.is_authenticated and request.session['access_type']=='traveller':
+            if Tour.objects.filter(tourId=tourId).exists():
+                tour = Tour.objects.get(tourId=tourId)
+                rating = int(request.POST.get('rating'))
+                comment = request.POST.get('comment')
+                if rating>5:
+                    rating = 5
+                elif rating<0:
+                    rating = 1
+                review = Review(
+                    tour = tour,
+                    user = user,
+                    rating = rating,
+                    comment = comment 
+                )
+                review.save()
+                messages.success(request,'Recieved Your Rating Thank You')
+                return redirect('bookingHistory')
+            else:
+                return render(request,'forbidden.html')
+        else:
+            return render(request,'forbidden.html')
+    else:
+        return render(request,'forbidden.html')
+
