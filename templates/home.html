@@ -17,120 +17,108 @@
 <!--Continious Advertisements sections ends -->
 <style>
     
-
-    /*search tab*/
-    #crd {
-
-        margin-bottom: 30px;
-        margin-top: -80px;
-        border-radius: 6px;
-        color: rgba(0, 0, 0, .87);
-        background: #fff;
-        width: 100%;
-        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
-    }
-
-@media only screen and (max-width: 767px) {
-  #crd {
-
-        margin-top: -70px;
-        }
-  #crd .card-header {
-        margin-top: -18px;
-     
-    }
+/* Home Section */
+#home{
+    height: 550px;
+    justify-content: center;
+    align-items: center;
 }
 
-    #crd .card-header {
-        border-radius: 3px;
-        padding: 1rem 15px;
-        margin-left: 15px;
-        margin-right: 15px;
-        margin-top: -30px;
-        border: 0;
+#home::before{ 
+    content: "";
+    position: absolute;
+    background: url("{% static 'img/land1.jpg' %}") no-repeat center center/cover;
+    height: 650px;
+    top:0px;
+    left:0px;
+    width: 100%;
+    z-index: -1;
+    opacity:0.89;
+}
 
-    }
+#home h1{
+    color:white;
+    text-align: center;
+    font-family: 'Bree Serif', serif;
+	transform:translate(0,150px);
+}
 
-    #crd .card-body {
-        padding: 15px 30px;
-    }
 
-    #crd .card-header-primary {
-        /*background-image: linear-gradient(to bottom,#02aab0 ,#00cdac);*/
-        background-color: #0d141c;
-        box-shadow: 0 5px 20px 0 rgba(0, 0, 0, .2), 0 13px 24px -11px rgba(156, 39, 176, .6);
-    }
+@media screen and (min-width: 420px) and (max-width: 1023px){
+    #home{
+    height: 370px; 
+    padding: 3px 28px;
+}
 
-    #crd-nav-tabs .card-header {
-        margin-top: -30px !important;
-    }
+#home::before{
+    height: 480px; 
+}
+}
 
-    #crd .card-header .nav-tabs {
-        padding: 0;
-        /* justify-content: space-between; */
-    }
+  /*search bar*/
+.search-sec{
+    background: rgba(255,255,255,0.26);
+	padding: 2rem;
+	margin-top: 220px;
+    z-index: 1;
+    position: relative;
+	margin-left:80px;
+	margin-right:80px;
+	 box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	 border-radius:20px;
+ 
+}
 
-    .nav-tabs {
-        border: 0;
-        border-radius: 3px;
-        padding: 0 15px;
-    }
-    #crd .nav-item{
-        margin: 0!important;
-    }
-    .nav {
-        display: flex;
-        flex-wrap: wrap;
-        padding-left: 0;
-        margin-bottom: 0;
-        list-style: none;
-    }
+.hdng {
+    width: 247px;
+    height: 55px;
+    background: #FFFFFF;
+    margin-left: auto;
+    margin-right: auto;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    line-height: 55px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 25px;
+    color: #2e2e2e;
+    font-weight: 400;
+    text-align: center;
+	transform:translate(0,12px);
+}
 
-    .nav-tabs .nav-item {
-        margin-bottom: -1px;
-    }
+.search-sec label{
+	color: #262626;
+    font-size: 18px;
+    font-weight: 600;
+	margin-bottom:20px;
+   }
+.search-slt{
+    display: block;
+    width: 100%;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #F9D423;
+    height: calc(3rem + 2px) !important;
+    border-radius:0;
+	border-radius:20px;
+}
 
-    .nav-tabs .nav-item .nav-link.active {
-        background-color: hsla(0, 0%, 100%, .2);
-        transition: background-color .3s .2s;
-    }
-
-    .nav-tabs .nav-item .nav-link {
-        border: 0 !important;
-        color: #fff !important;
-        font-weight: 500;
-        font-size: 20px;
-    }
-
-    .nav-tabs .nav-item .nav-link {
-        color: #fff;
-        border: 0;
-        margin: 0;
-        border-radius: 3px;
-        line-height: 24px;
-        text-transform: uppercase;
-        font-size: 12px;
-        padding: 10px 15px;
-        background-color: transparent;
-        transition: background-color .3s 0s;
-    }
-
-    .nav-link {
-        display: block;
-    }
-
-    .nav-tabs .nav-item .material-icons {
-        margin: -1px 5px 0 0;
-        vertical-align: middle;
-    }
-
-    .nav .nav-item {
-        position: relative;
-    }
+.wrn-btn{
+    width: 100%;
+    font-size: 16px;
+    font-weight: 400;
+    text-transform: capitalize;
+     height: calc(3rem + 2px) !important;
+     border-radius:0;
+	 border-radius:20px;
+	 margin-top:45px;
+}
 
     /*Floating Card */
     .flt {
-        margin-top: 20px;
+        margin-top: 150px;
     }
 
     .flt .btn {
@@ -250,7 +238,7 @@ position: absolute;
                     </div>
                     {% endfor %}
 {% endif %}
-<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+<!--<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item active">
       <img class="d-block w-100" src="../static/img/s3.jpg" alt="">
@@ -277,55 +265,6 @@ position: absolute;
     <a href="#" style="opacity: 0.9!important;">24x7 Support &nbsp;<i class="fa fa-life-ring"></i></a>
 </div>
 <br>
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <!-- Tabs with icons on Card -->
-            <div class="card card-nav-tabs" id="crd">
-                <div class="card-header card-header-primary">
-                    <div class="nav-tabs-navigation">
-                        <div class="nav-tabs-wrapper">
-                            <ul class="nav nav-tabs row" data-tabs="tabs">
-                                <li class="nav-item col-md-3">
-                                    <a class="nav-link active d-flex justify-content-center align-items-center" href="#tour" data-toggle="tab">
-                                        <i class="fa fa-search" style="margin: 0 5px;transform: translateX(-5px);"></i>
-                                        Find Tour Packages
-                                    </a>
-                                </li>
-                                <li class="nav-item col-md-9">
-                                    <a class="nav-link">
-                                        <h6 class="anim nowrap" >
-                                        TRAVMAKS Connects You With The Best In Class Travel Agencies Accross The Globe
-                                        </h6>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div><br>
-                <div class="card-body ">
-                    <div class="tab-content text-center">
-                        <div class="tab-pane active" id="tour">
-                            <form class="form-content" action="/tour/search" method="GET">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="Starting Location *" minlength="3"
-                                                name="sLocation" required/>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="Ending Location *" minlength="3"
-                                                name="eLocation" required/>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <button type="submit" class="btn text-white" style="background-color: #0d141c;">Find Tours</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
                     <!--
                         <div class="tab-pane" id="guide">
                             <div class="form-content">
@@ -372,31 +311,58 @@ position: absolute;
                                 </div>
                             </div>
                         </div>
-                    -->
+                    
                     </div>
                 </div>
 
-                <!-- End Tabs with icons on Card -->
-
+               
             </div>
         </div>
     </div>
 </div>
+</div>
+  End Tabs with icons on Card -->
+
+<section id="home">
+        <h1 class="text-white">Lorem ipsum dolor</h1>
+        
+		<div class="search-sec" >
+    <div class="container">
+        <form>
+            <div class="row">
+			    <div class="col-lg-12">
+				<h2 class="hdng">Search for your trip</h2>
+            
+                    <div class="wht" style="background:#fff; padding:2rem; border-radius:5px;">
+                    <div class="row">
+                        <div class=" col-md-4 p-1">
+						<label> Starting Location:</label>
+                            <input type="text" class="form-control search-slt" placeholder="Ending Location*">
+                        </div>
+                         <div class="col-md-4  p-1">
+						 <label> Ending Location:</label>
+                            <input type="text" class="form-control search-slt" placeholder="Starting Location*">
+                        </div>
+                          
+                        <div class=" col-md-4 p-1">
+                            <button type="button" class="btn btn-warning wrn-btn">Search</button>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    </div>
+    </section>
+
+
+
 
 
 <div class="container">
     <div class="row">
-        <div class="col-md-3 mt-4">
-            <div class="card flt">
-                <div class="card-img-block">
-                    <img class="card-img-top" src="../static/img/solo.jpg" alt="Card image cap">
-                </div>
-                <div class="card-body pt-0">
-                    <h5 class="card-title">Solo Tours</h5>
-                    <a href="#" class="btn btn-primary">View More</a>
-                </div>
-            </div>
-        </div>
+        
         <div class="col-md-3 mt-4">
             <div class="card flt">
                 <div class="card-img-block">
@@ -430,7 +396,17 @@ position: absolute;
                 </div>
             </div>
         </div>
-
+		<div class="col-md-3 mt-4">
+            <div class="card flt">
+                <div class="card-img-block">
+                    <img class="card-img-top" src="../static/img/solo.jpg" alt="Card image cap">
+                </div>
+                <div class="card-body pt-0">
+                    <h5 class="card-title">Solo Tours</h5>
+                    <a href="#" class="btn btn-primary">View More</a>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 <!--Random design-->
