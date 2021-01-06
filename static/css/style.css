@@ -821,7 +821,12 @@ ul{
   .footer-middle{
     text-align:center;
   }
-  
+.search-sec{
+    padding: 1rem;
+	margin-left:50px;
+	margin-right:50px;
+	}
+} 
  
 
 
@@ -848,15 +853,13 @@ ul{
   .footer-middle{
     text-align:center;
   }
+  .col-lg{
+	  max-width:100%;
+	  
+  }
   }
  
 
-@media screen and (max-width: 900px)  {
-  .footer-middle{
-    text-align:center;
-  }
- 
-}
 
 
 .heading.heading-icon {

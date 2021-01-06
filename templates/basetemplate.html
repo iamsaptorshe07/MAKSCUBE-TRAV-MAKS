@@ -84,7 +84,7 @@
       border-radius: 4px;
     }
 
-    .mainfooter .container .row:nth-child(2) .col-lg-3 {
+    .mainfooter .container .row:nth-child(2) .col-md-3 {
       margin-top: 5px;
       margin-bottom: 5px;
     }
@@ -124,7 +124,9 @@
       .navbar-toggler{
         margin-right: 1rem;
       }
-    }
+ 
+ }
+  
   </style>
   {% block stylesheets %}
   {% endblock stylesheets %}
@@ -145,7 +147,7 @@
 
   <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="fa fa-chevron-up"></i></button>
 
-  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+  <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
     <a class="navbar-brand text-dark" href="/">
       <img src="{% static 'img/logo2.jpg' %}" width="30" height="30" class="d-inline-block align-top" alt=""
         loading="lazy" style="border-radius:50%;">
@@ -246,13 +248,14 @@
   </div>
   <!--Footer-->
   <footer class="mainfooter" role="contentinfo">
-    <div class="footer-middle">
+    <div class="footer-middle ">
       <div class="container">
+      <div class="col-lg-12">
         <div class="row">
           <div class="col-md-2">
             <!--Column1-->
             <div class="footer-pad">
-              <h4>Partner Portal</h4>
+              <h4>Travel Agency Portal</h4>
               <ul class="list-unstyled">
                 <li><a href="/accounts/seller/account/signup">Agent Signup</a></li>
                 <li><a href="/accounts/seller/login">Agent Login</a></li>
@@ -265,18 +268,60 @@
           <!--Column1-->
           <div class="col-md-2">
             <div class="footer-pad">
-              <h4>User portal</h4>
+              <h4>Guide Portal</h4>
               <ul class="list-unstyled">
-                <li><a href="/user-payment-policy">Payment Security</a></li>
-                <li><a href="/user-payment-policy">Payment Policy</a></li>
-                <li><a href="/user-privacy-policy">Privacy Policy</a></li>
-                <li><a href="/terms-and-condition">Terms & Conditions</a></li>
-                <li><a href="/benifits-of-joing-travmaks">Why to Choose Us</a></li>
-                <li><a href="/user-FAQ">FAQs</a></li>
+                <li><a href="/accounts/seller/account/signup">Guide Signup</a></li>
+                <li><a href="/accounts/seller/login">Guide Login</a></li>
+                <li><a href="/beta">TRAVMAKS Specialised Guide portal</a></li>
+                <li><a href="/partner/benifits-of-joing-travmaks">Benefits of Joining Us As A Guide</a></li>
+                <li><a href="/partnerportal-faq">FAQs</a></li>
+              </ul>
+            </div>
+          </div>
+          
+          
+          <!--Column1-->
+          <div class="col-md-2">
+            <div class="footer-pad">
+              <h4>Homestays Portal</h4>
+              <ul class="list-unstyled">
+                <li><a href="/accounts/seller/account/signup">Homestays Owner Signup</a></li>
+                <li><a href="/accounts/seller/login">Homestays Owner Login</a></li>
+                <li><a href="/beta">TRAVMAKS Specialised Homestays portal</a></li>
+                <li><a href="/partner/benifits-of-joing-travmaks">Benefits of Joining Us As A Homestays Partner</a></li>
+                <li><a href="/partnerportal-faq">FAQs</a></li>
               </ul>
             </div>
           </div>
           <div class="col-md-2">
+             <div class="footer-pad">
+              <h4>Our Station Cab Portal</h4>
+              <ul class="list-unstyled">
+                <li><a href="/accounts/seller/account/signup">Cab Owner Signup</a></li>
+                <li><a href="/accounts/seller/login">Cab Owner Login</a></li>
+                <li><a href="/beta">TRAVMAKS Specialised Cab Owner portal</a></li>
+                <li><a href="/partner/benifits-of-joing-travmaks">Benefits of Joining Us As A Cab Owner</a></li>
+                <li><a href="/partnerportal-faq">FAQs</a></li>
+              </ul>
+            </div>
+          </div>
+			
+			<div class="col-md-2">
+            <!--Column1-->
+            <div class="footer-pad">
+              <h4>Vehicle Renting Portal</h4>
+              <ul class="list-unstyled">
+                <li><a href="/accounts/seller/account/signup">Vehicle Owner Signup</a></li>
+                <li><a href="/accounts/seller/login">Vehicle Owner Login</a></li>
+                <li><a href="/beta">TRAVMAKS Specialised Vehicle Owner portal</a></li>
+                <li><a href="/partner/benifits-of-joing-travmaks">Benefits of Joining Us As A Vehicle Owner</a></li>
+                <li><a href="/partnerportal-faq">FAQs</a></li>
+              </ul>
+            </div>
+          </div>
+			
+		  
+		  <div class="col-md-2">
             <!--Column1-->
             <div class="footer-pad">
               <h4>About TRAVMAKS</h4>
@@ -288,8 +333,28 @@
               </ul>
             </div>
           </div>
+
+          
+        </div>
+		<br>
+		<br>
+		<div class="row">
+          <div class="col-md-3">
+            <div class="footer-pad">
+              <h4>User portal</h4>
+              <ul class="list-unstyled">
+                <li><a href="/user-payment-policy">Payment Security</a></li>
+                <li><a href="/user-payment-policy">Payment Policy</a></li>
+                <li><a href="/user-privacy-policy">Privacy Policy</a></li>
+                <li><a href="/terms-and-condition">Terms & Conditions</a></li>
+                <li><a href="/benifits-of-joing-travmaks">Why to Choose Us</a></li>
+                <li><a href="/user-FAQ">FAQs</a></li>
+              </ul>
+            </div>
+          </div>
+          
           <!--Column1-->
-          <div class="col-md-2">
+          <div class="col-md-3">
             <div class="footer-pad">
               <h4>Other Section</h4>
               <ul class="list-unstyled">
@@ -300,7 +365,7 @@
               </ul>
             </div>
           </div>
-          <div class="col-md-2">
+          <div class="col-md-3">
             <h4>Follow Us</h4>
             <ul class="social-network social-circle">
               <li><a href="https://www.facebook.com/Travmaks-100874308548705/" class="icoFacebook" title="Facebook"><i
@@ -314,7 +379,7 @@
             </ul>
           </div>
 
-          <div class="col-md-2">
+          <div class="col-md-3">
             <div class="footer-pad">
               <h4>Parent Company</h4>
               <a href="http://makscube.pythonanywhere.com" target="_blank">
@@ -323,16 +388,17 @@
               </a>
             </div>
           </div>
+          
         </div>
 
         <div class="row">
-          <div class="col-lg-3">
+          <div class="col-md-3">
             <div>
               <h4>TRAVMAKS</h4>
               <ul class="list-unstyled">
                 <li>
                   <div class="fb-page" data-href="https://www.facebook.com/Travmaks-100874308548705"
-                    data-tabs="timeline" style="width: 100%;" data-height="70" data-small-header="false"
+                    data-tabs="timeline" style="width: 100%;" data-height="70" data-mdall-header="false"
                     data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
                     <blockquote cite="https://www.facebook.com/Travmaks-100874308548705" class="fb-xfbml-parse-ignore">
                       <a href="https://www.facebook.com/Travmaks-100874308548705">Travmaks</a>
@@ -345,17 +411,17 @@
             </div>
           </div>
 
-          <div class="col-lg-3">
+          <div class="col-md-3">
             <div>
               <h4>Booking & Complaint</h4>
               <ul class="list-unstyled">
-                <li><i class="fa fa-envelope fa-lg"></i>&nbsp;: booking@travmaks.in</li>
-                <li><i class="fa fa-envelope fa-lg"></i>&nbsp;: complaint@travmaks.in</li>
+                <li><i class="fa fa-envelope fa-md"></i>&nbsp;: booking@travmaks.in</li>
+                <li><i class="fa fa-envelope fa-md"></i>&nbsp;: complaint@travmaks.in</li>
               </ul>
             </div>
           </div>
 
-          <div class="col-lg-3">
+          <div class="col-md-3">
             <h4>We Accept</h4>
             <ul class="paymentmode" style="flex-wrap: wrap;">
               <li><a><img src="{% static 'img/paytm.jpg' %}" alt=""></a></li>&nbsp;
@@ -369,12 +435,12 @@
 
           </div>
 
-          <div class="col-lg-3">
+          <div class="col-md-3">
             <h4>MAKS CUBE</h4>
             <ul>
               <li>
                 <div class="fb-page" data-href="https://www.facebook.com/makscub3" data-tabs="timeline"
-                  style="width: 100%;" data-height="70" data-small-header="false" data-adapt-container-width="true"
+                  style="width: 100%;" data-height="70" data-mdall-header="false" data-adapt-container-width="true"
                   data-hide-cover="true" data-show-facepile="true">
                   <blockquote cite="https://www.facebook.com/makscub3" class="fb-xfbml-parse-ignore"><a
                       href="https://www.facebook.com/makscub3">MAKS CUBE</a></blockquote>
@@ -384,6 +450,8 @@
           </div>
 
         </div>
+		
+		
 
         <div class="row">
           <div class="col-md-12 copy">
@@ -395,6 +463,7 @@
         </div>
 
 
+      </div>
       </div>
     </div>
     </div>
