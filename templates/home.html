@@ -374,7 +374,7 @@ position: absolute;
         
 		<div class="search-sec" >
     <div class="container">
-        <form>
+        <form action="/tour/search" method="GET">
             <div class="row">
 			    <div class="col-lg-12">
 				<h2 class="hdng">Search for your trip</h2>
@@ -383,15 +383,17 @@ position: absolute;
                     <div class="row">
                         <div class=" col-md-4 p-1">
 						<label> Starting Location:</label>
-                            <input type="text" class="form-control search-slt" placeholder="Ending Location*">
+                            <input type="text" class="form-control search-slt" placeholder="Starting Location *" minlength="3"
+                                                name="sLocation" required/>
                         </div>
                          <div class="col-md-4  p-1">
 						 <label> Ending Location:</label>
-                            <input type="text" class="form-control search-slt" placeholder="Starting Location*">
+                            <input type="text" class="form-control search-slt" placeholder="Ending Location *" minlength="3"
+                                                name="eLocation" required/>
                         </div>
                           
                         <div class=" col-md-4 p-1">
-                            <button type="button" class="btn btn-warning wrn-btn">Search</button>
+                            <button type="submit" class="btn btn-warning wrn-btn">Search</button>
                         </div>
                     </div>
                 </div>
