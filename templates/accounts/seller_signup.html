@@ -507,9 +507,11 @@ font-size:10px;
                                 id="address" required />
                         </div>
                         <div class="form-group">
-                            <input type="file" name="govIdImage" accept='image/*' id="fileUpload" multiple="multiple" class="form-control" required /> 
+                            <input type="file" name="govIdImage" accept='image/*' id="fileUpload" multiple
+                            class="form-control" required /> 
                         </div>
-						<label data-toggle="modal" data-target="#previewModal" style="cursor:pointer;" class="text-white">Preview of uploaded ID Proof</label>
+                        <label data-toggle="modal" data-target="#previewModal" style="cursor:pointer;" 
+                        class="text-white">Preview of uploaded ID Proof</label>
                     </div>
 					
 					
@@ -559,6 +561,7 @@ font-size:10px;
                                     type</option>
                                 <option value="ADHAR">ADHAR</option>
                                 <option value="PAN">PAN</option>
+                                <option value="VOTER">VOTER</option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -575,6 +578,11 @@ font-size:10px;
 	
                                 }
 								else if (document.myform2.govIdName.value == 'PAN'){
+                                    document.getElementById('govIdnumber').style.display = "block";
+                                document.getElementById('govIdnumber').required = true;
+	
+                                }
+								else if (document.myform2.govIdName.value == 'VOTER'){
                                     document.getElementById('govIdnumber').style.display = "block";
                                 document.getElementById('govIdnumber').required = true;
 	
@@ -870,7 +878,7 @@ font-size:10px;
 
 <br>
 <br>
-<section id="69">
+<section>
 <div class="container my-3">
         <div class="row">
         <div class="col-md-4">
@@ -879,8 +887,8 @@ font-size:10px;
 				<!--<span class="fnt"><i class="fa fa-map-marker fa-3x"></i></span>-->
 				<img src="{% static 'img/map.png' %}" style="height:60px; width:40px;">
 				</div>
-                <div class="text-info text-center mt-3"><h4>No of Countries</h4></div>
-                <div class="text-info text-center mt-2"><h1>69</h1></div>
+                <div class="text-info text-center mt-3"><h4>No of Cities</h4></div>
+                <div class="text-info text-center mt-2"><h1>45+</h1></div>
             </div>
         </div>
         <div class="col-md-4">
@@ -890,7 +898,7 @@ font-size:10px;
 				<img src="{% static 'img/user.png' %}" style="height:60px; width:50px;">
 				</div>
                 <div class="text-info text-center mt-3"><h4>No of Agents Connected</h4></div>
-                <div class="text-info text-center mt-2"><h1>69</h1></div>
+                <div class="text-info text-center mt-2"><h1>100+</h1></div>
             </div>
         </div>
         <div class="col-md-4">
@@ -900,7 +908,7 @@ font-size:10px;
 				<img src="{% static 'img/globe.jpg' %}" style="height:60px; width:60px;">
 				</div>
                 <div class="text-info text-center mt-3"><h4>No of Tour Books</h4></div>
-                <div class="text-info text-center mt-2"><h1>69</h1></div>
+                <div class="text-info text-center mt-2"><h1>300+</h1></div>
             </div>
         </div>
      
@@ -1247,7 +1255,9 @@ font-size:10px;
         var password2 = document.getElementById('password2').value;
         var gender = document.getElementsByName('gender');
         var phone = document.getElementById('phone').value;
+        var govIdnumber = document.getElementById('govIdnumber').value;
         var agree = document.getElementById('agree').value;
+        var govId=document.myform2.govIdName.value;
         var msg = new Array();
         dy = parseInt(bdate);
         cd = new Date();
@@ -1255,6 +1265,9 @@ font-size:10px;
         var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
         res = reg.test(mail);
         flag=0;
+        if ($("#fileUpload")[0].files.length > 2) {
+            msg.push('You can only upload maximum 2 files');            
+        }
         for(let j=0;j<name.length;j++){
             if(name[j]==' '){
                 flag=1;
@@ -1289,6 +1302,9 @@ font-size:10px;
             msg.push("Please Enter a valid Zip Code.");
         }
 
+        if (password1 == Number(password1)) {
+            msg.push("Only Number can't be a password");
+        }
         if (password1.length < 8) {
             msg.push("Your Password must contain atleast 8 characters.");
         }
@@ -1297,8 +1313,18 @@ font-size:10px;
                 msg.push("Password didn't match.");
             }
         }
+        if(govId=='VOTER'){
+            if(govIdnumber.length!=10){
+                msg.push("Put a valid Voter card number");
+            }
+        }
+        if(govId=='ADHAR'){
+            if(govIdnumber.length!=12){
+                msg.push("Put a valid Adhar card number");
+            }
+        }
         if (msg.length > 0) {
-            errormsg.innerHTML = msg.join("\n");
+            errormsg.innerHTML = msg.join(", ");
             errormsgbg.style.width = "500px";
             errormsg.style.padding = "8px";
             errormsgbg.style.borderRadius = "5px";

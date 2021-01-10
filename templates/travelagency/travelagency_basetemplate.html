@@ -61,11 +61,13 @@
 			top: 50%;
             padding-top: 0;
             position: fixed;
+			transform-origin: left top;
 			width: 100%;
-            max-height: 0%;
+            /* max-height: 0%; */
 			height: 100%;
-			max-width: 0%;
+			/* max-width: 0%; */
 			transition: 0.3s;
+			transform: scale(0);
 			background: rgb(186, 224, 245);
 			background: linear-gradient(90deg, rgba(186, 224, 245, 1) 21%, rgba(221, 221, 237, 1) 57%, rgba(143, 228, 245, 1) 100%);
 		}
@@ -74,6 +76,7 @@
 			top: 0;
 			max-width: 100%;
 			max-height: 100%;
+			transform: scale(1);
 		}
         .nav-link{
             padding: .5rem 0.5rem;
@@ -172,33 +175,40 @@
 </div>
 <div class="sidebar">
     <ul>
-        <li class="nav-item">
+		<li class="nav-item" style="cursor: pointer;" 
+			onclick="window.location.href='/travelagency/myagency/{{request.user.userAccess.agentId}}'">
             <img src="{% static 'travelagency_img/calendar.png' %}">
             <a class="nav-link" href="/travelagency/myagency/{{request.user.userAccess.agentId}}">Dashboard</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" style="cursor: pointer;" 
+			onclick="window.location.href='/travelagency/agencytours/{{request.user.id}}/{{request.user.userAccess.agentId}}'">
             <img src="{% static 'travelagency_img/map.png' %}">
             <a class="nav-link "
                 href="/travelagency/agencytours/{{request.user.id}}/{{request.user.userAccess.agentId}}">Agency
                 Tours</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" style="cursor: pointer;" 
+			onclick="window.location.href='#'">
             <img src="{% static 'travelagency_img/clipboard.png' %}">
             <a class="nav-link" href="#">Agency Earning</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" style="cursor: pointer;" 
+			onclick="window.location.href='/travelagency/ongoing-tours/{{request.user.userAccess.agentId}}'">
             <img src="{% static 'travelagency_img/picture.png' %}">
             <a class="nav-link" href="/travelagency/ongoing-tours/{{request.user.userAccess.agentId}}">Ongoing Tour</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" style="cursor: pointer;" 
+			onclick="window.location.href='/travelagency/booking-history/{{request.user.userAccess.agentId}}'">
             <img src="{% static 'travelagency_img/job.png' %}">
             <a class="nav-link" href="/travelagency/booking-history/{{request.user.userAccess.agentId}}">Booking History</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" style="cursor: pointer;" 
+			onclick="window.location.href='/travelagency/upcoming-tours/{{request.user.userAccess.agentId}}'">
             <img src="{% static 'travelagency_img/upcoming.png' %}">
             <a class="nav-link" href="/travelagency/upcoming-tours/{{request.user.userAccess.agentId}}">Upcoming Tours</a>
 		</li>
-		<li class="nav-item">
+		<li class="nav-item" style="cursor: pointer;" 
+			onclick="window.location.href='/travelagency/notifications'">
 			<img src="{% static 'travelagency_img/notification.png' %}">
 			<a class="nav-link" href="/travelagency/notifications">Incoming Order</a>
 		</li>
@@ -212,7 +222,8 @@
 </div>
 <script>
 	function openNavs(){
-		if($('.sidebar').css('max-width')=='0%'){
+		// console.log($('.sidebar').css('transform'))
+		if($('.sidebar').css('transform')=='matrix(0, 0, 0, 0, 0, 0)'){
 			// console.log(document.querySelectorAll('.sidebar ul li'));
 			// console.log(document.querySelector('.openNavs span:nth-child(1)'));
 			document.querySelector('.sidebar').classList.add('opend');
