@@ -45,7 +45,7 @@
     color:white;
     text-align: center;
     font-family: 'Bree Serif', serif;
-	transform:translate(0,150px);
+	transform:translate(0,110px);
 }
 
 
@@ -63,8 +63,8 @@
   /*search bar*/
 .search-sec{
     background: rgba(255,255,255,0.26);
+	top: -368px;
 	padding: 2rem;
-	margin-top: 220px;
     z-index: 1;
     position: relative;
 	margin-left:80px;
@@ -73,6 +73,8 @@
 	 border-radius:20px;
  
 }
+
+
 
 .hdng {
     width: 247px;
@@ -90,7 +92,11 @@
     text-align: center;
 	transform:translate(0,12px);
 	}
-
+.wht{
+background:#fff;
+ padding:2rem;
+ border-radius:5px;
+}
 .search-sec label{
 	color: #262626;
     font-size: 18px;
@@ -106,8 +112,8 @@
     background-image: none;
     border: 1px solid #F9D423;
     height: calc(3rem + 2px) !important;
-    border-radius:0;
-	border-radius:20px;
+    border-radius:20px;
+	
 }
 
 .wrn-btn{
@@ -121,13 +127,19 @@
      height: calc(3rem + 2px) !important;
      border-radius:0;
 	 border-radius:20px;
-	 margin-top:45px;
+	/* margin-top:45px;*/
 }
-
+input,
+input::-webkit-input-placeholder {
+    font-family: 'Oswald', sans-serif;
+	font-size: 18px !important;
+	font-weight: 400 !important;
+	
+}
     /*Floating Card */
-    .flt {
-        margin-top: 150px;
-    }
+    #floating{
+	margin-top:100px;
+	}
 
     .flt .btn {
         border-radius: 2px;
@@ -223,36 +235,14 @@ position: absolute;
   height: 310px;
 }
 }
-	@media only screen and (max-width: 767px) {
-  .carousel-item img{
-	height:80vh
-	}
-}
 
-@media screen and (max-width: 400px) {
+
+@media only screen and (max-width: 991px){
 
 .search-sec{
-    padding: 1rem;
-	margin-left:50px;
-	margin-right:50px;
-	}
-	.flt {
-        margin-top: 200px;
-    }
 	
-}
-@media screen and (max-width: 600px) {
-.search-sec{
-    padding: 1rem;
-	}
-	.flt {
-        margin-top: 400px;
-    }
-}
-@media screen and (max-width: 768px) {
-
-.search-sec{
-    padding: 2rem;
+    top: auto !important;
+	padding: 2rem;
 	margin-left:10px;
 	margin-right:10px;
 	}
@@ -267,14 +257,19 @@ position: absolute;
 	margin-bottom:20px;
 	margin-left:1px !important;
    }
+   .wht{
+   width:100% !important;
+   }
+   .hdng {
+    width: 100%;
+    }
+	#floating{
+	margin-top:auto;
+	}
+
 }
 
-@media screen and (max-width: 900px) {
-.search-sec{
-    padding: 1rem;
-	 
-}
-}
+
 </style>
 <!--Slider strats here-->
 {% if messages %}
@@ -377,27 +372,28 @@ position: absolute;
 <section id="home">
         <h1 class="text-bold mt-4">One Stop Solution For Travellers</h1>
         
-		<div class="search-sec" >
+		
+    </section>
+
+<div class="search-sec" >
     <div class="container">
         <form action="/tour/search" method="GET">
             <div class="row">
 			    <div class="col-lg-12">
 				<h2 class="hdng">Search for your trip</h2>
             
-                    <div class="wht" style="background:#fff; padding:2rem; border-radius:5px;">
+                    <div class="wht">
                     <div class="row">
-                        <div class=" col-md-4 p-1">
-						<label> Starting Location:</label>
-                            <input type="text" class="form-control search-slt" placeholder="Starting Location *" minlength="3"
+                        <div class=" col-md-4 p-2">
+						    <input type="text" class="form-control search-slt" placeholder="Starting Location *" minlength="3"
                                                 name="sLocation" required/>
                         </div>
-                         <div class="col-md-4  p-1">
-						 <label> Ending Location:</label>
-                            <input type="text" class="form-control search-slt" placeholder="Ending Location *" minlength="3"
+                         <div class="col-md-4  p-2">
+						    <input type="text" class="form-control search-slt" placeholder="Ending Location *" minlength="3"
                                                 name="eLocation" required/>
                         </div>
                           
-                        <div class=" col-md-4 p-1">
+                        <div class=" col-md-4 p-2">
                             <button type="submit" class="btn btn-warning wrn-btn">Search</button>
                         </div>
                     </div>
@@ -407,12 +403,11 @@ position: absolute;
         </form>
     </div>
     </div>
-    </section>
 
 
 
 
-
+<section id="floating">
 <div class="container">
     <div class="row">
         
@@ -462,6 +457,7 @@ position: absolute;
         </div>
     </div>
 </div>
+</section>
 <!--Random design-->
 <br><br><br><br>
 <div class="travel_variation_area ">
