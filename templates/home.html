@@ -267,7 +267,15 @@ position: absolute;
 	}
 
 }
-
+.LATtour{
+    max-width: 340px;
+}
+#floating .row{
+    justify-content: center;
+}
+#floating .mt-4{
+    width: 300px;
+}
 
 </style>
 <!--Slider strats here-->
@@ -507,7 +515,7 @@ position: absolute;
         </div>
         <div class="row">
             {% for tour in Tour %}
-            <div class="col-lg-3 col-md-6">
+            <div class="col-lg-3 col-md-6 LATtour">
                 <div class="single_destination">
                     <div class="thumb">
                         <img src="{{tour.thumbnail.url}}" alt="">
