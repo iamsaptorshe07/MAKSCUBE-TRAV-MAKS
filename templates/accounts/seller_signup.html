@@ -7,6 +7,7 @@
 <style>
     body {
         background: rgba(204, 239, 255, 0);
+		margin-top: 30px;
     }
 
     span {
@@ -26,10 +27,13 @@ background-repeat: no-repeat;
         padding: 15px;
         font-size: 20px;
         border-radius: 20px;
-        margin-left: 20px;
         margin-bottom: 10px;
+		
     }
 
+	.btnRegister:hover{
+	color:#000000;
+	}
 
     /*Service*/
     .section-title {
@@ -262,7 +266,8 @@ background-repeat: no-repeat;
 .steps-form {
     display: table;
     width: 100%;
-    position: relative; 
+    position: relative;
+		justify-content: space-between;
 	}
 .steps-form .steps-row {
     display: table-row; 
@@ -285,15 +290,16 @@ background-repeat: no-repeat;
     font-weight:bold;
 	}
 
-.steps-form .steps-row .steps-step .img-circle {
-    width: 130px;
-    height: 130px;
+.steps-form .steps-row .steps-step .img {
+    width: 60px;
+    height: 60px;
     text-align: center;
-    padding: 6px 0;
+    padding: 0 2px;
     font-size: 12px;
     line-height: 1.428571429;
     border-radius: 15px;
-    margin-top: 0; }
+    margin-top: 15px; 
+	}
 
 
 .my-card
@@ -305,7 +311,7 @@ background-repeat: no-repeat;
 }
 
 .icon-bar {
-	background: #007bb5;
+	background: linear-gradient(to right, rgb(255, 81, 47), rgb(240, 152, 25));
   position: fixed;
   top: 50%;
   transform: translate(-35px,0px) rotate(-90deg);
@@ -341,29 +347,35 @@ background-repeat: no-repeat;
 
 
 /*Responsive*/
-@media screen and (min-width: 768px) {
-.steps-form .steps-row .steps-step .img-circle {
-    width: 70px;
-    height: 70px;
-    margin-top:12px;
-}
-.steps-step p{
-font-size:10px;
-}
-}		
-	@media screen and (min-width: 400px) {
-.steps-form .steps-row .steps-step .img-circle {
-    width: 60px;
-    height: 60px;
-    margin-top:10px;
-}
-.steps-step p{
-font-size:10px;
+		
+	@media screen and (max-width: 400px) {
+
+.highl{
+	width: 20rem;
+    height: 8rem;
+    font-size:19px;
 }
 
+}
+
+@media screen and (max-width: 768px) {
+
+.highl{
+	width: 20rem;
+    height: 8rem;
+    font-size:19px;
+}
+.icon-bar{
+opacity: 0.8;
+}
+
+.steps-step p{
+font-size:12px;
+}
 }
 
         
+ 
 	
 	
 </style>
@@ -395,17 +407,17 @@ font-size:10px;
                
 			   <div class="modal fade" id="contactModalCenter" tabindex="-1" role="dialog"
                         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
                             <div class="modal-content">
                                 <div class="modal-header" style="border-bottom:none;">
                                     
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="background-color:#000000;">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
                                 <div class="modal-body">
                                     <h2 class="mainh ml-3">Contact Us</h2>
-    <div class="col-md-12">
+    <div class="col-lg-12">
 	
         <div class="row">
             <div class="col-md-6">
@@ -610,7 +622,7 @@ font-size:10px;
                                 data-target="#exampleModalLong">Terms & Conditions</a>
                         </p>
                     </div>
-                    <div class="col-md-3" style="margin-left:30px;">
+                    <div class="col-md-12 mr-auto">
                         <input type="submit" class="btnRegister" value="Register" />
                     </div>
 
@@ -964,23 +976,23 @@ font-size:10px;
 			<div class="steps-form">
       <div class="steps-row setup-panel">
         <div class="steps-step">
-		<img class="img-circle" src="{% static 'img/b3.jpg' %}">
+		<img class="img" src="{% static 'img/b3.jpg' %}">
           <p>Sign Up</p>
         </div>
         <div class="steps-step">
-		<img src="{% static 'img/b2.jpg' %}" class="img-circle" >
+		<img src="{% static 'img/b2.jpg' %}" class="img" >
           <p>Verify Documents</p>
         </div>
         <div class="steps-step">
-		<img src="{% static 'img/b3.jpg' %}" class="img-circle">
+		<img src="{% static 'img/b3.jpg' %}" class="img">
           <p>Get the Application</p>
         </div>
 		<div class="steps-step">
-		<img src="{% static 'img/b4.jpg' %}" class="img-circle">
+		<img src="{% static 'img/b4.jpg' %}" class="img">
           <p>Add Tours</p>
         </div>
 		<div class="steps-step">
-		<img src="{% static 'img/b3.jpg' %}" class="img-circle">
+		<img src="{% static 'img/b3.jpg' %}" class="img">
           <p>Get Booking</p>
         </div>
       </div>
