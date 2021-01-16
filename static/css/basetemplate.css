@@ -95,6 +95,13 @@ footer {
   
 }
 
+.footer-middle h4{
+	border-left: 3px solid #eeeeee !important;
+	padding-left: 10px;
+    
+    
+}
+
 footer a {
   color: #fff;
   font-size: 14px;
@@ -118,7 +125,9 @@ footer a:hover {
   color: #fff;
 }
 
-
+footer ul li a i{
+	margin-right: 5px;
+}
 
 ul.social-network {
   list-style: none;
@@ -230,6 +239,7 @@ ul.social-network li {
     padding-bottom: 20px;
     text-transform: uppercase;
 }
+
 ul{
   margin:0;
   padding:0;
@@ -256,7 +266,13 @@ ul{
 
 .footer-middle{
     text-align:center;
+	
   }
+  	.footer-middle h4{
+     padding-left: 0 !important;
+    border-left: transparent !important;
+  
+}
 }
 
 @media screen and (max-width: 600px)  {
