@@ -64,6 +64,7 @@ INSTALLED_APPS = [
     'traveller',
 
     # API Apps
+    'api.home',
     'api.accountsAPI',
     'api.tours',
     'api.travelagencyAPI',
