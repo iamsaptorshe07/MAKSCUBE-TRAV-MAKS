@@ -3,531 +3,546 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-  <title> TRAVMAKS </title>
-  <link rel="icon" href="{% static 'img/logo2.jpg' %}" type="image/gif" sizes="50x50">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
-  <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <title> TRAVMAKS </title>
+    <link rel="icon" href="{% static 'img/logo2.jpg' %}" type="image/gif" sizes="50x50">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-  <link rel="stylesheet" href="{% static 'css/style.css' %}">
- <script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/basetemplate.css' %}">
+<!--<script>
     document.addEventListener('contextmenu', event => event.preventDefault()); document.onkeydown = function (e) {
-      if (e.ctrlKey &&
-        (e.keyCode === 67 ||
-          e.keyCode === 85 ||
-          e.keyCode === 117)) {
-        return false;
-      } else {
-        return true;
-      }
+        if (e.ctrlKey &&
+          (e.keyCode === 67 ||
+            e.keyCode === 85 ||
+            e.keyCode === 117)) {
+          return false;
+        } else {
+          return true;
+        }
     };
     $(document).keypress("u", function (e) {
-      if (e.ctrlKey) {
-        return false;
-      }
-      else {
-        return true;
-      }
+        if (e.ctrlKey) {
+          return false;
+        }
+        else {
+          return true;
+        }
     });
-  </script>
-  <style>
+</script>-->
+<style>
     body {
-      -webkit-user-select: none;
-      -moz-user-select: -moz-none;
-      -ms-user-select: none;
-      user-select: none
+		margin-top:80px;
+        -webkit-user-select: none;
+        -moz-user-select: -moz-none;
+        -ms-user-select: none;
+        user-select: none
     }
-  </style>
+</style>
 
-  <style>
+<style>
+    
     #myBtn {
-      display: none;
-      position: fixed;
-      bottom: 20px;
-      right: 30px;
-      z-index: 99;
-      font-size: 18px;
-      border: none;
-      outline: none;
-      background-color: #212529;
-      color: white;
-      cursor: pointer;
-      padding: 15px;
-      border-radius: 4px;
+        display: none;
+        position: fixed;
+        bottom: 20px;
+        right: 30px;
+        z-index: 99;
+        font-size: 18px;
+        border: none;
+        outline: none;
+        background-color: #212529;
+        color: white;
+        cursor: pointer;
+        padding: 15px;
+        border-radius: 4px;
     }
 
     .mainfooter {
-      overflow-x: hidden;
-      bottom: 0;
-      left: 0;
-      z-index: 2;
+        overflow-x: hidden;
+        bottom: 0;
+        left: 0;
+        z-index: 2;
     }
 
     #myBtn:hover {
-      background-color: #555;
+        background-color: #555;
     }
 
     .fb-page,
     .fb-page>span,
     .fb-page>span>iframe {
-      max-width: 100% !important;
-      border-radius: 4px;
+        max-width: 100% !important;
+        border-radius: 4px;
     }
 
     .mainfooter .container .row:nth-child(2) .col-md-3 {
-      margin-top: 5px;
-      margin-bottom: 5px;
+        margin-top: 5px;
+        margin-bottom: 5px;
     }
 
     .paymentmode li {
-      margin: 3px;
+        margin: 3px;
     }
 
     .paymentmode img {
-      border-radius: 3px;
+        border-radius: 3px;
     }
-    .navbar{
-      height: 60px;
-    }
-    .navbar .nav-item .nav-link{
-      background: #0d141c;
-    }
+    
+</style>
 
-    @media screen and (max-width:900px) {
-      .paymentmode {
-        justify-content: center;
-      }
+<script>
+    function runOnload(){
+        removeLoader();
+        checkCookie();
     }
-    .nav-item{
-      margin: 0 3px;
-    }
-    nav .dropdown-menu{
-      top: 95%!important;
-    }
-    @media screen and (max-width:990px) {
-      nav{
-        padding: 0.5rem 0!important;
-      }
-      .navbar-brand{
-        margin-left: 1rem;
-      }
-      .navbar-toggler{
-        margin-right: 1rem;
-      }
- 
- }
-  
-  </style>
-  {% block stylesheets %}
-  {% endblock stylesheets %}
+</script>
+{% block stylesheets %}
+{% endblock stylesheets %}
 </head>
 
-<body id="page-top" onload="removeLoader();">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-  
-  <div id="fb-root"></div>
-  <script async defer crossorigin="anonymous"
-    src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v9.0&appId=205716276789665&autoLogAppEvents=1"
-    nonce="Jh8JHyfE"></script>
+<body id="page-top" onload="runOnload();">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous"
+      src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v9.0&appId=205716276789665&autoLogAppEvents=1"
+      nonce="Jh8JHyfE"></script>
 
-  <div id="fb-root"></div>
-  <script async defer crossorigin="anonymous"
-    src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v9.0&appId=205716276789665&autoLogAppEvents=1"
-    nonce="F5IZ9oMp"></script>
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous"
+      src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v9.0&appId=205716276789665&autoLogAppEvents=1"
+      nonce="F5IZ9oMp"></script>
 
-  <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="fa fa-chevron-up"></i></button>
+    <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="fa fa-chevron-up"></i></button>
 
-  <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
-    <a class="navbar-brand text-dark" href="/">
-      <img src="{% static 'img/logo2.jpg' %}" width="30" height="30" class="d-inline-block align-top" alt=""
-        loading="lazy" style="border-radius:50%;">
-      <b class="text-white">TRAVMAKS</b>
-    </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
-      style="background-color:#fff;">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <a class="navbar-brand text-dark" href="/">
+            <img src="{% static 'img/logo2.jpg' %}" width="30" height="30" class="d-inline-block align-top" alt=""
+                loading="lazy" style="border-radius:50%;">
+            <b class="text-white">TRAVMAKS</b>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+            style="background-color:#fff;">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-    <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="/beta">QNA</a>
-        </li>
+        <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/beta">QNA</a>
+                </li>
 
-        <li class="nav-item">
-          <a class="nav-link" href="/beta">Blog</a>
-        </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/beta">Blog</a>
+                </li>
 
-        <li class="nav-item">
-          <a class="nav-link" href="/beta">News</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/beta">Design Your Tour</a>
-        </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/beta">News</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/beta">Design Your Tour</a>
+                </li>
 
-      </ul>
+            </ul>
 
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="/download-app"><i class="fa fa-download"></i>Download App</a>
-        </li>
-        {% if user.is_authenticated %}
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown" aria-haspopup="true"
-            aria-expanded="false"><i class="fa fa-user"></i>
-            {{user.name}}
-          </a>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/download-app"><i class="fa fa-download"></i> Download App</a>
+                </li>
+                {% if user.is_authenticated %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown" aria-haspopup="true"
+                      aria-expanded="false"><i class="fa fa-user"></i>
+                      {{user.name}}
+                    </a>
 
-          <div class="dropdown-menu dropdown-menu-right dropdown-cyan" aria-labelledby="navbarDropdownMenuLink-4">
-            {% if request.session.access_type == 'traveller' %}
-            <a class="dropdown-item" href="/accounts/editprofile/{{request.session.access_type}}/{{user.id}}">My
-              Profile</a>
-            <div class="dropdown-divider"></div>
+                    <div class="dropdown-menu dropdown-menu-right dropdown-cyan" aria-labelledby="navbarDropdownMenuLink-4">
+                        {% if request.session.access_type == 'traveller' %}
+                        <a class="dropdown-item" href="/accounts/editprofile/{{request.session.access_type}}/{{user.id}}">My
+                          Profile</a>
+                        <div class="dropdown-divider"></div>
 
-            <a class="dropdown-item" href="/traveller/wishlist">Wishlist</a>
-            <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/traveller/wishlist">Wishlist</a>
+                        <div class="dropdown-divider"></div>
 
-            <a class="dropdown-item" href="/traveller/upcoming-tours/{{request.user.userAccess.userId}}">Upcoming
-              Tour</a>
-            <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/traveller/upcoming-tours/{{request.user.userAccess.userId}}">Upcoming
+                          Tour</a>
+                        <div class="dropdown-divider"></div>
 
-            <a class="dropdown-item" href="/traveller/ongoing-tours/{{request.user.userAccess.userId}}">On
-              Going Tours</a>
-            <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/traveller/ongoing-tours/{{request.user.userAccess.userId}}">On
+                          Going Tours</a>
+                        <div class="dropdown-divider"></div>
 
-            <a class="dropdown-item" href="/traveller/booking-history">Booking History</a>
-            <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/traveller/booking-history">Booking History</a>
+                        <div class="dropdown-divider"></div>
 
-            <a class="dropdown-item" href="/accounts/user/logout">Logout</a>
-            {% elif request.session.access_type == 'seller' %}
-            <a class="dropdown-item"
-              href="/accounts/editprofile/{{request.session.access_type}}/{{user.id}}">My
-              Profile</a>
-            <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/accounts/user/logout">Logout</a>
+                        {% elif request.session.access_type == 'seller' %}
+                        <a class="dropdown-item"
+                          href="/accounts/editprofile/{{request.session.access_type}}/{{user.id}}">My
+                          Profile</a>
+                        <div class="dropdown-divider"></div>
 
-            <a class="dropdown-item" href="/travelagency/myagency/{{request.user.userAccess.agentId}}">Dashboard</a>
-            <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/travelagency/myagency/{{request.user.userAccess.agentId}}">Dashboard</a>
+                        <div class="dropdown-divider"></div>
 
-            <a class="dropdown-item" href="/accounts/user/logout">Logout</a>
-            {% endif %}
-          </div>
-        </li>
-        {% else %}
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown" aria-haspopup="true"
-            aria-expanded="false"><i class="fa fa-user"></i>
-            Account
-          </a>
-          <div class="dropdown-menu dropdown-menu-right dropdown-cyan" aria-labelledby="navbarDropdownMenuLink-4">
-            <a class="dropdown-item" href="/accounts/traveller/account/signup"><i
-                class="fa fa-user-plus"></i>&nbsp;&nbsp;Signup</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="/accounts/traveller/login"><i class="fa fa-sign-in"></i>&nbsp;&nbsp;Login</a>
+                        <a class="dropdown-item" href="/accounts/user/logout">Logout</a>
+                        {% endif %}
+                    </div>
+                </li>
+                {% else %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false"><i class="fa fa-user"></i>
+                        Account
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right dropdown-cyan" aria-labelledby="navbarDropdownMenuLink-4">
+                        <a class="dropdown-item" href="/accounts/traveller/account/signup"><i
+                            class="fa fa-user-plus"></i>&nbsp;&nbsp;Signup</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/accounts/traveller/login"><i class="fa fa-sign-in"></i>&nbsp;&nbsp;Login</a>
 
-          </div>
-
-          {% endif %}
-      </ul>
+                    </div>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+    <!--Main body-->
+    {% block body %}
+    {% endblock body%}
+    <!--Main body ends here-->
     </div>
-  </nav>
-  <!--Main body-->
-  {% block body %}
-  {% endblock body%}
-  <!--Main body ends here-->
-  </div>
-  <!--Footer-->
-  <footer class="mainfooter" role="contentinfo">
-    <div class="footer-middle ">
-      <div class="container">
-      <div class="col-lg-12">
-        <div class="row">
-          <div class="col-md-2">
-            <!--Column1-->
-            <div class="footer-pad">
-              <h4>Travel Agency Portal</h4>
-              <ul class="list-unstyled">
-                <li><a href="/accounts/seller/account/signup">Agent Signup</a></li>
-                <li><a href="/accounts/seller/login">Agent Login</a></li>
-                <li><a href="/beta">TRAVMAKS Specialised Agency portal</a></li>
-                <li><a href="/partner/benifits-of-joing-travmaks">Benefits of Joining Us As A Partner</a></li>
-                <li><a href="/partnerportal-faq">FAQs</a></li>
-              </ul>
-            </div>
-          </div>
-          <!--Column1-->
-          <div class="col-md-2">
-            <div class="footer-pad">
-              <h4>Guide Portal</h4>
-              <ul class="list-unstyled">
-                <li><a href="/accounts/seller/account/signup">Guide Signup</a></li>
-                <li><a href="/accounts/seller/login">Guide Login</a></li>
-                <li><a href="/beta">TRAVMAKS Specialised Guide portal</a></li>
-                <li><a href="/partner/benifits-of-joing-travmaks">Benefits of Joining Us As A Guide</a></li>
-                <li><a href="/partnerportal-faq">FAQs</a></li>
-              </ul>
-            </div>
-          </div>
-          
-          
-          <!--Column1-->
-          <div class="col-md-2">
-            <div class="footer-pad">
-              <h4>Homestays Portal</h4>
-              <ul class="list-unstyled">
-                <li><a href="/accounts/seller/account/signup">Homestays Owner Signup</a></li>
-                <li><a href="/accounts/seller/login">Homestays Owner Login</a></li>
-                <li><a href="/beta">TRAVMAKS Specialised Homestays portal</a></li>
-                <li><a href="/partner/benifits-of-joing-travmaks">Benefits of Joining Us As A Homestays Partner</a></li>
-                <li><a href="/partnerportal-faq">FAQs</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-md-2">
-             <div class="footer-pad">
-              <h4>Our Station Cab Portal</h4>
-              <ul class="list-unstyled">
-                <li><a href="/accounts/seller/account/signup">Cab Owner Signup</a></li>
-                <li><a href="/accounts/seller/login">Cab Owner Login</a></li>
-                <li><a href="/beta">TRAVMAKS Specialised Cab Owner portal</a></li>
-                <li><a href="/partner/benifits-of-joing-travmaks">Benefits of Joining Us As A Cab Owner</a></li>
-                <li><a href="/partnerportal-faq">FAQs</a></li>
-              </ul>
-            </div>
-          </div>
-			
-			<div class="col-md-2">
-            <!--Column1-->
-            <div class="footer-pad">
-              <h4>Vehicle Renting Portal</h4>
-              <ul class="list-unstyled">
-                <li><a href="/accounts/seller/account/signup">Vehicle Owner Signup</a></li>
-                <li><a href="/accounts/seller/login">Vehicle Owner Login</a></li>
-                <li><a href="/beta">TRAVMAKS Specialised Vehicle Owner portal</a></li>
-                <li><a href="/partner/benifits-of-joing-travmaks">Benefits of Joining Us As A Vehicle Owner</a></li>
-                <li><a href="/partnerportal-faq">FAQs</a></li>
-              </ul>
-            </div>
-          </div>
-			
-		  
-		  <div class="col-md-2">
-            <!--Column1-->
-            <div class="footer-pad">
-              <h4>About TRAVMAKS</h4>
-              <ul class="list-unstyled">
-                <li><a href="#">Website Tutorial</a></li>
-                <li><a href="/about-us">About Us</a></li>
-                <li><a href="/contact-us">Contact Us</a></li>
-                <li><a href="/contact-us">Report a Bug</a></li>
-              </ul>
-            </div>
-          </div>
+    <!--Footer-->
+    <footer class="mainfooter" role="contentinfo">
+        <div class="footer-middle ">
+            <div class="container">
+                <div class="col-lg-12">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <!--Column1-->
+                                    <div class="footer-pad">
+                                        <h4>Travel Agency Portal</h4>
+                                        <ul class="list-unstyled">
+                                            <li><a href="/accounts/seller/account/signup"><i class="fa fa-angle-double-right"></i>Agent Signup</a></li>
+                                            <li><a href="/accounts/seller/login"><i class="fa fa-angle-double-right"></i>Agent Login</a></li>
+                                            <li><a href="/beta"><i class="fa fa-angle-double-right"></i>TRAVMAKS Specialised Agency portal</a></li>
+                                            <li><a href="/partner/benifits-of-joing-travmaks"><i class="fa fa-angle-double-right"></i>Benefits of Joining Us As A Partner</a></li>
+                                            <li><a href="/partnerportal-faq"><i class="fa fa-angle-double-right"></i>FAQs</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!--Column1-->
+                                <div class="col-md-4">
+                                    <div class="footer-pad">
+                                        <h4>Guide Portal</h4>
+                                        <ul class="list-unstyled">
+                                            <li><a href="/accounts/seller/account/signup"><i class="fa fa-angle-double-right"></i>Guide Signup</a></li>
+                                            <li><a href="/accounts/seller/login"><i class="fa fa-angle-double-right"></i>Guide Login</a></li>
+                                            <li><a href="/beta"><i class="fa fa-angle-double-right"></i>TRAVMAKS Specialised Guide portal</a></li>
+                                            <li><a href="/partner/benifits-of-joing-travmaks"><i class="fa fa-angle-double-right"></i>Benefits of Joining Us As A Guide</a></li>
+                                            <li><a href="/partnerportal-faq"><i class="fa fa-angle-double-right"></i>FAQs</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!--Column1-->
+                                <div class="col-md-4">
+                                    <div class="footer-pad">
+                                        <h4>Homestays Portal</h4>
+                                        <ul class="list-unstyled">
+                                            <li><a href="/accounts/seller/account/signup"><i class="fa fa-angle-double-right"></i>Homestays Owner Signup</a></li>
+                                            <li><a href="/accounts/seller/login"><i class="fa fa-angle-double-right"></i>Homestays Owner Login</a></li>
+                                            <li><a href="/beta"><i class="fa fa-angle-double-right"></i>TRAVMAKS Specialised Homestays portal</a></li>
+                                            <li><a href="/partner/benifits-of-joing-travmaks"><i class="fa fa-angle-double-right"></i>Benefits of Joining Us As A Homestays Partner</a></li>
+                                            <li><a href="/partnerportal-faq"><i class="fa fa-angle-double-right"></i>FAQs</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="footer-pad">
+                                        <h4>Our Station Cab Portal</h4>
+                                        <ul class="list-unstyled">
+                                            <li><a href="/accounts/seller/account/signup"><i class="fa fa-angle-double-right"></i>Cab Owner Signup</a></li>
+                                            <li><a href="/accounts/seller/login"><i class="fa fa-angle-double-right"></i>Cab Owner Login</a></li>
+                                            <li><a href="/beta"><i class="fa fa-angle-double-right"></i>TRAVMAKS Specialised Cab Owner portal</a></li>
+                                            <li><a href="/partner/benifits-of-joing-travmaks"><i class="fa fa-angle-double-right"></i>Benefits of Joining Us As A Cab Owner</a></li>
+                                            <li><a href="/partnerportal-faq"><i class="fa fa-angle-double-right"></i>FAQs</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <!--Column1-->
+                                    <div class="footer-pad">
+                                        <h4>Vehicle Renting Portal</h4>
+                                        <ul class="list-unstyled">
+                                            <li><a href="/accounts/seller/account/signup"><i class="fa fa-angle-double-right"></i>Vehicle Owner Signup</a></li>
+                                            <li><a href="/accounts/seller/login"><i class="fa fa-angle-double-right"></i>Vehicle Owner Login</a></li>
+                                            <li><a href="/beta"><i class="fa fa-angle-double-right"></i>TRAVMAKS Specialised Vehicle Owner portal</a></li>
+                                            <li><a href="/partner/benifits-of-joing-travmaks"><i class="fa fa-angle-double-right"></i>Benefits of Joining Us As A Vehicle Owner</a></li>
+                                            <li><a href="/partnerportal-faq"><i class="fa fa-angle-double-right"></i>FAQs</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                <!--Column1-->
+                                    <div class="footer-pad">
+                                        <h4>About TRAVMAKS</h4>
+                                        <ul class="list-unstyled">
+                                            <li><a href="#"><i class="fa fa-angle-double-right"></i>Website Tutorial</a></li>
+                                            <li><a href="/about-us"><i class="fa fa-angle-double-right"></i>About Us</a></li>
+                                            <li><a href="/contact-us"><i class="fa fa-angle-double-right"></i>Contact Us</a></li>
+                                            <li><a href="/contact-us"><i class="fa fa-angle-double-right"></i>Report a Bug</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="footer-pad">
+                                <h4>User portal</h4>
+                                <ul class="list-unstyled">
+                                    <li><a href="/user-payment-policy"><i class="fa fa-angle-double-right"></i>Payment Security</a></li>
+                                    <li><a href="/user-payment-policy"><i class="fa fa-angle-double-right"></i>Payment Policy</a></li>
+                                    <li><a href="/user-privacy-policy"><i class="fa fa-angle-double-right"></i>Privacy Policy</a></li>
+                                    <li><a href="/terms-and-condition"><i class="fa fa-angle-double-right"></i>Terms & Conditions</a></li>
+                                    <li><a href="/benifits-of-joing-travmaks"><i class="fa fa-angle-double-right"></i>Why to Choose Us</a></li>
+                                    <li><a href="/user-FAQ"><i class="fa fa-angle-double-right"></i>FAQs</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!--Column1-->
+                        <div class="col-md-3">
+                            <div class="footer-pad">
+                                <h4>Other Section</h4>
+                                <ul class="list-unstyled">
+                                    <li><a href="#"><i class="fa fa-angle-double-right"></i>Become an affilate </a></li>
+                                    <li><a href="#"><i class="fa fa-angle-double-right"></i>Our Partners </a></li>
+                                    <li><a href="#"><i class="fa fa-angle-double-right"></i>Investor Portal</a></li>
+                                    <li><a href="#"><i class="fa fa-angle-double-right"></i>Advertise on our Website</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <h4>Follow Us</h4>
+                            <ul class="social-network social-circle">
+                                <li><a href="https://www.facebook.com/Travmaks-100874308548705/" class="icoFacebook" title="Facebook"><i
+                                      class="fa fa-facebook"></i></a></li>
+                                <li><a href="#" class="icoInstagram" title="Instagram"><i class="fa fa-instagram"></i></a></li>
+                                <li><a href="#" class="icoPinterest" title="Pinterest"><i class="fa fa-pinterest"></i></a></li>
+                                <li class="my-4"><a href="#" class="icoTwitter" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                                <li class="my-4"><a href="#" class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
+                                <li class="my-4"><a href="#" class="icoYoutube" title="Youtube"><i class="fa fa-youtube-play"></i></a>
+                                </li>
+                            </ul>
+                        </div>
 
-          
-        </div>
-		<br>
-		<br>
-		<div class="row">
-          <div class="col-md-3">
-            <div class="footer-pad">
-              <h4>User portal</h4>
-              <ul class="list-unstyled">
-                <li><a href="/user-payment-policy">Payment Security</a></li>
-                <li><a href="/user-payment-policy">Payment Policy</a></li>
-                <li><a href="/user-privacy-policy">Privacy Policy</a></li>
-                <li><a href="/terms-and-condition">Terms & Conditions</a></li>
-                <li><a href="/benifits-of-joing-travmaks">Why to Choose Us</a></li>
-                <li><a href="/user-FAQ">FAQs</a></li>
-              </ul>
-            </div>
-          </div>
-          
-          <!--Column1-->
-          <div class="col-md-3">
-            <div class="footer-pad">
-              <h4>Other Section</h4>
-              <ul class="list-unstyled">
-                <li><a href="#">Become an affilate </a></li>
-                <li><a href="#">Our Partners </a></li>
-                <li><a href="#">Investor Portal</a></li>
-                <li><a href="#">Advertise on our Website</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-md-3">
-            <h4>Follow Us</h4>
-            <ul class="social-network social-circle">
-              <li><a href="https://www.facebook.com/Travmaks-100874308548705/" class="icoFacebook" title="Facebook"><i
-                    class="fa fa-facebook"></i></a></li>
-              <li><a href="#" class="icoInstagram" title="Instagram"><i class="fa fa-instagram"></i></a></li>
-              <li><a href="#" class="icoPinterest" title="Pinterest"><i class="fa fa-pinterest"></i></a></li>
-              <li class="my-4"><a href="#" class="icoTwitter" title="Twitter"><i class="fa fa-twitter"></i></a></li>
-              <li class="my-4"><a href="#" class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
-              <li class="my-4"><a href="#" class="icoYoutube" title="Youtube"><i class="fa fa-youtube-play"></i></a>
-              </li>
-            </ul>
-          </div>
+                        <div class="col-md-3">
+                            <div class="footer-pad">
+                                <h4>Parent Company</h4>
+                                <a href="http://makscube.pythonanywhere.com" target="_blank">
+                                    <img src="{% static 'about_img/logo.png' %}" alt="" width="200px" height="auto"
+                                      style="transform:translateX(-40px);">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-3">
+                        <div>
+                          <h4>TRAVMAKS</h4>
+                          <ul class="list-unstyled">
+                            <li>
+                              <div class="fb-page" data-href="https://www.facebook.com/Travmaks-100874308548705"
+                                data-tabs="timeline" style="width: 100%;" data-height="70" data-mdall-header="false"
+                                data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
+                                <blockquote cite="https://www.facebook.com/Travmaks-100874308548705" class="fb-xfbml-parse-ignore">
+                                  <a href="https://www.facebook.com/Travmaks-100874308548705">Travmaks</a>
+                                </blockquote>
+                              </div>
 
-          <div class="col-md-3">
-            <div class="footer-pad">
-              <h4>Parent Company</h4>
-              <a href="http://makscube.pythonanywhere.com" target="_blank">
-                <img src="{% static 'about_img/logo.png' %}" alt="" width="200px" height="auto"
-                  style="transform:translateX(-40px);">
-              </a>
-            </div>
-          </div>
-          
-        </div>
+                            </li><br>
 
-        <div class="row">
-          <div class="col-md-3">
-            <div>
-              <h4>TRAVMAKS</h4>
-              <ul class="list-unstyled">
-                <li>
-                  <div class="fb-page" data-href="https://www.facebook.com/Travmaks-100874308548705"
-                    data-tabs="timeline" style="width: 100%;" data-height="70" data-mdall-header="false"
-                    data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
-                    <blockquote cite="https://www.facebook.com/Travmaks-100874308548705" class="fb-xfbml-parse-ignore">
-                      <a href="https://www.facebook.com/Travmaks-100874308548705">Travmaks</a>
-                    </blockquote>
-                  </div>
+                          </ul>
+                        </div>
+                      </div>
 
-                </li><br>
+                      <div class="col-md-3">
+                        <div>
+                          <h4>Booking & Complaint</h4>
+                          <ul class="list-unstyled">
+                            <li><i class="fa fa-envelope fa-md"></i>&nbsp;: booking@travmaks.in</li>
+                            <li><i class="fa fa-envelope fa-md"></i>&nbsp;: complaint@travmaks.in</li>
+                          </ul>
+                        </div>
+                      </div>
 
-              </ul>
-            </div>
-          </div>
+                      <div class="col-md-3">
+                        <h4>We Accept</h4>
+                        <ul class="paymentmode" style="flex-wrap: wrap;">
+                          <li><a><img src="{% static 'img/paytm.jpg' %}" alt=""></a></li>&nbsp;
+                          <li><a><img src="{% static 'img/phonepay.png' %}" alt=""></a></li>&nbsp;
+                          <li><a><img src="{% static 'img/master.png' %}" alt=""></a></li>&nbsp;
+                          <li><a><img src="{% static 'img/visa.png' %}" alt=""></a></li>&nbsp;
+                          <li><a><img src="{% static 'img/paypal.png' %}" alt=""></a></li>&nbsp;
+                          <li><a><img src="{% static 'img/rupay.jpg' %}" alt=""></a></li>
 
-          <div class="col-md-3">
-            <div>
-              <h4>Booking & Complaint</h4>
-              <ul class="list-unstyled">
-                <li><i class="fa fa-envelope fa-md"></i>&nbsp;: booking@travmaks.in</li>
-                <li><i class="fa fa-envelope fa-md"></i>&nbsp;: complaint@travmaks.in</li>
-              </ul>
-            </div>
-          </div>
+                        </ul>
 
-          <div class="col-md-3">
-            <h4>We Accept</h4>
-            <ul class="paymentmode" style="flex-wrap: wrap;">
-              <li><a><img src="{% static 'img/paytm.jpg' %}" alt=""></a></li>&nbsp;
-              <li><a><img src="{% static 'img/phonepay.png' %}" alt=""></a></li>&nbsp;
-              <li><a><img src="{% static 'img/master.png' %}" alt=""></a></li>&nbsp;
-              <li><a><img src="{% static 'img/visa.png' %}" alt=""></a></li>&nbsp;
-              <li><a><img src="{% static 'img/paypal.png' %}" alt=""></a></li>&nbsp;
-              <li><a><img src="{% static 'img/rupay.jpg' %}" alt=""></a></li>
+                      </div>
 
-            </ul>
+                      <div class="col-md-3">
+                        <h4>MAKS CUBE</h4>
+                        <ul>
+                          <li>
+                            <div class="fb-page" data-href="https://www.facebook.com/makscub3" data-tabs="timeline"
+                              style="width: 100%;" data-height="70" data-mdall-header="false" data-adapt-container-width="true"
+                              data-hide-cover="true" data-show-facepile="true">
+                              <blockquote cite="https://www.facebook.com/makscub3" class="fb-xfbml-parse-ignore"><a
+                                  href="https://www.facebook.com/makscub3">MAKS CUBE</a></blockquote>
+                            </div>
+                          </li>
+                        </ul><br>
+                      </div>
 
-          </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 copy">
 
-          <div class="col-md-3">
-            <h4>MAKS CUBE</h4>
-            <ul>
-              <li>
-                <div class="fb-page" data-href="https://www.facebook.com/makscub3" data-tabs="timeline"
-                  style="width: 100%;" data-height="70" data-mdall-header="false" data-adapt-container-width="true"
-                  data-hide-cover="true" data-show-facepile="true">
-                  <blockquote cite="https://www.facebook.com/makscub3" class="fb-xfbml-parse-ignore"><a
-                      href="https://www.facebook.com/makscub3">MAKS CUBE</a></blockquote>
+                            <h5 style="color:#fff; text-align:center;">Copyright &copy; TRAVMAKS || Design and Developed by <a
+                                href="http://makscube.pythonanywhere.com" target="_blank" class="afoot">
+                                MAKS CUBE</a></h5>
+                        </div>
+                    </div>
                 </div>
-              </li>
-            </ul><br>
-          </div>
-
+            </div>
         </div>
-		
-		
-
-        <div class="row">
-          <div class="col-md-12 copy">
-
-            <h5 style="color:#fff; text-align:center;">Copyright &copy; TRAVMAKS || Design and Developed by <a
-                href="http://makscube.pythonanywhere.com" target="_blank" class="afoot">
-                MAKS CUBE</a></h5>
-          </div>
         </div>
-
-
-      </div>
-      </div>
-    </div>
-    </div>
-  </footer>
+    </footer>
+    
+</body>
   <!--Footer Ends here-->
   <!--Javascript for continous advertisement-->
-  <script type="text/javascript">
+<script type="text/javascript">
+    function setCookie(cname,cvalue,exdays) {
+        var d = new Date();
+        d.setTime(d.getTime() + (exdays*24*60*60*1000));
+        var expires = "expires=" + d.toGMTString();
+        document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+    }
+
+    function getCookie(cname) {
+        var name = cname + "=";
+        var decodedCookie = decodeURIComponent(document.cookie);
+        var ca = decodedCookie.split(';');
+        for(var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') {
+              c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+              return c.substring(name.length, c.length);
+            }
+        }
+        return "";
+    }
+
+    function checkCookie() {
+        var cookieAccepted=getCookie("cookieAccept");
+        if (cookieAccepted != "") {
+            // alert("Welcome again");
+        }else {
+            var v = confirm('Please accept our cookies to use all the facilities');
+            if(v == true){
+                cookieAccepted="Yes";
+                setCookie("cookieAccept", cookieAccepted, 365);
+            }
+            else{
+                window.location.href='https://www.google.com';
+            }
+        }
+    }
+
     const $dropdown = $(".dropdown");
     const $dropdownToggle = $(".dropdown-toggle");
     const $dropdownMenu = $(".dropdown-menu");
     const showClass = "show";
 
     $(window).on("load resize", function () {
-      if (this.matchMedia("(min-width: 768px)").matches) {
-        $dropdown.hover(
-          function () {
-            const $this = $(this);
-            $this.addClass(showClass);
-            $this.find($dropdownToggle).attr("aria-expanded", "true");
-            $this.find($dropdownMenu).addClass(showClass);
-          },
-          function () {
-            const $this = $(this);
-            $this.removeClass(showClass);
-            $this.find($dropdownToggle).attr("aria-expanded", "false");
-            $this.find($dropdownMenu).removeClass(showClass);
-          }
-        );
-      } else {
-        $dropdown.off("mouseenter mouseleave");
-      }
+        if (this.matchMedia("(min-width: 768px)").matches) {
+            $dropdown.hover(
+                function () {
+                    const $this = $(this);
+                    $this.addClass(showClass);
+                    $this.find($dropdownToggle).attr("aria-expanded", "true");
+                    $this.find($dropdownMenu).addClass(showClass);
+                },
+                function () {
+                    const $this = $(this);
+                    $this.removeClass(showClass);
+                    $this.find($dropdownToggle).attr("aria-expanded", "false");
+                    $this.find($dropdownMenu).removeClass(showClass);
+                }
+            );
+        }
+        else {
+            $dropdown.off("mouseenter mouseleave");
+        }
     });
 
     $('.owl-carousel').owlCarousel({
-      loop: true,
-      margin: 10,
-      nav: false,
-      pagination: false,
-      autoplay: 1000,
-      responsive: {
-        0: {
-          items: 7
-        },
-        600: {
-          items: 7
-        },
-        1000: {
-          items: 7
+        loop: true,
+        margin: 10,
+        nav: false,
+        pagination: false,
+        autoplay: 1000,
+        responsive: {
+            0: {
+                items: 7
+            },
+            600: {
+                items: 7
+            },
+            1000: {
+                items: 7
+            }
         }
-      }
     })
     jQuery(document).ready(function ($) {
-      $(window).scroll(function () {
-        if ($(document).scrollTop() > 150) {
-          // Navigation Bar
-          $('.navbar').removeClass('fadeIn');
-          $('body').addClass('shrink');
-          $('.navbar').addClass('animated fadeInDown');
-        } else {
-          $('.navbar').removeClass('fadeInDown');
-          $('body').removeClass('shrink');
-          $('.navbar').addClass('animated fadeIn');
-        }
-      });
+        $(window).scroll(function () {
+            if ($(document).scrollTop() > 150) {
+                // Navigation Bar
+                $('.navbar').removeClass('fadeIn');
+                $('body').addClass('shrink');
+                $('.navbar').addClass('animated fadeInDown');
+            } else {
+                $('.navbar').removeClass('fadeInDown');
+                $('body').removeClass('shrink');
+                $('.navbar').addClass('animated fadeIn');
+            }
+        });
     });
 
     var mybutton = document.getElementById("myBtn");
@@ -535,20 +550,19 @@
     window.onscroll = function () { scrollFunction() };
 
     function scrollFunction() {
-      if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 200) {
-        mybutton.style.display = "block";
-      } else {
-        mybutton.style.display = "none";
-      }
+        if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 200) {
+            mybutton.style.display = "block";
+        } else {
+            mybutton.style.display = "none";
+        }
     }
     function topFunction() {
-      document.body.scrollTop = 0;
-      document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
     }
 
-  </script>
+</script>
   <!--Javascript for continious ad ends here-->
-</body>
 
 <script>
 
