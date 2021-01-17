@@ -3,16 +3,16 @@ from .views import *
 from django.contrib.auth import views as auth_views
 urlpatterns = [
     #path('guide/account',sellerGuideSignup,name='guide_accounts_signup'),
-    path('guide/account/signup',guideSignup,name='guideSignup'),
+    #path('guide/account/signup',guideSignup,name='guideSignup'),
     path('traveller/account/signup',travelerAccountsSignup,name='travelerAccountsSignup'),
     path('seller/account/signup', sellerAgencyAccountSignup, name='sellerAgencyAccountSignup'),
     path('seller/account/register-agency',agencyRegister,name='RegisterAgency'),
     
-    path('activate/guide/<uid>/<token>',activateGuide, name='activateGuide'),
+    p#ath('activate/guide/<uid>/<token>',activateGuide, name='activateGuide'),
     path('activate/seller/<uid>/<token>',activateSeller, name='activateSeller'),
     path('activate/traveller/<uid>/<token>',activateTraveller, name='activateTraveller'),
     
-    path('guide/login',guideLogin,name='Guide_Login'),
+    #path('guide/login',guideLogin,name='Guide_Login'),
     path('traveller/login',travellerLogin,name='Traveller_Login'),
     path('seller/login',sellerLogin,name='Seller_login'),    
 

@@ -1,10 +1,13 @@
 {% extends 'basetemplate.html' %}
 {% load static %}
+<!-- CSS Starts here -->
 {% block stylesheets %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <style>
     body {
-        background: rgb(204, 239, 255);
-        margin-top: 30px;
+        background: rgba(204, 239, 255, 0);
+		margin-top: 30px;
     }
 
     span {
@@ -19,18 +22,24 @@ background-repeat: no-repeat;
 }*/
     .btnRegister {
 
-        background: -webkit-linear-gradient(to right, #f7b733, #fc4a1a);
-        background: linear-gradient(to right, #f7b733, #fc4a1a);
+        background: linear-gradient(to right, #f7971e, #ffd200);
         color: #fff;
-        padding: 10px;
+        padding: 15px;
         font-size: 20px;
-        border-radius: 30px;
-        margin-left: 20px;
+        border-radius: 20px;
         margin-bottom: 10px;
+		
     }
 
+	.btnRegister:hover{
+	color:#000000;
+	}
 
     /*Service*/
+    .section-title {
+  margin-bottom: 60px;
+}
+
     #service .card {
         border: none;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -128,21 +137,13 @@ background-repeat: no-repeat;
     }
 
     /*-- testimonial Section CSS --*/
-
-    #testimonial h2 {
-        margin-top: 30px;
-        font-style: italic;
-        color: black;
-        font-size: 26px;
-        text-align: center;
-    }
-
+    
     #testimonial .client-img {
-        width: 100px;
-        height: 100px;
+        width: 80px;
+        height: 80px;
         overflow: hidden;
         border: 3px solid #fff;
-        margin: 0px auto;
+        margin: 100px auto;
         border-radius: 100%;
         position: absolute;
         left: 0px;
@@ -162,9 +163,15 @@ background-repeat: no-repeat;
         font-style: italic;
         text-align: right;
     }
+    #testimonial h2{
+        font-size: 40px;
+        margin-top: auto;
+    }
 
     #testimonial p {
         font-size: 15px;
+        margin: 100px auto;
+       
     }
 
     #testimonial .client-img img {
@@ -201,10 +208,10 @@ background-repeat: no-repeat;
     }
 
     .highlight {
-        width: 20rem;
+        width: 100% !important;
         height: 5rem;
         margin: 0px auto;
-        background-color: rgb(255, 223, 128);
+        background-color: rgb(255, 225, 128);
         text-align: center;
         display: flex;
         -webkit-box-pack: center;
@@ -215,72 +222,245 @@ background-repeat: no-repeat;
         border-radius: 15px;
         font-weight: bold;
         color: rgb(56, 73, 107);
+		transition: all .2s ease-in-out;
     }
 
     .highlight:hover {
-        background: blue;
-        color: #fff;
-        cursor: pointer;
+       
+        transform: scale(1.1);
     }
 
+   .highl{
+        width: 28rem;
+        height: 10rem;
+        margin: 0px auto;
+         background: linear-gradient(to right, #093028, #237a57);
+        text-align: center;
+        display: flex;
+        -webkit-box-pack: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        align-items: center;
+        font-size: 23px;
+        border-radius: 15px;
+        font-weight: bold;
+        color: rgb(244, 246, 252);
+        transition: all .2s ease-in-out;
+    }
+    .highl:hover{
+	transform: scale(1.1);
+}
     #frm {
         background-color: rgb(0, 85, 128) !important;
-        left: 90px;
         border-radius: 10px;
     }
 
-    @media screen and (max-width: 400px) {
-        #frm {
-            left: 0px;
-            margin-top: 10px;
-        }
+    
 
-        .btnRegister {
-            float: right;
-        }
-    }
+    .single-featur {
+	padding: 30px 10px;
+	position: relative;
+	text-align: center;
+	margin-bottom: 30px;
+}
+.steps-form {
+    display: table;
+    width: 100%;
+    position: relative;
+		justify-content: space-between;
+	}
+.steps-form .steps-row {
+    display: table-row; 
+	}
+.steps-form .steps-row:before {
+    top: 50px;
+    bottom: 0;
+    position: absolute;
+    content: " ";
+    width: 100%;
+    height: 2px;
+    background-color: #ee2a24; 
+	}
+.steps-form .steps-row .steps-step {
+    display: table-cell;
+    text-align: center;
+    position: relative; }
+.steps-form .steps-row .steps-step p {
+    margin-top: 0.5rem; 
+    font-weight:bold;
+	}
 
-    @media screen and (max-width: 600px) {
-        #frm {
-            left: 0px;
-            margin-top: 10px;
-        }
+.steps-form .steps-row .steps-step .img {
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    padding: 0 2px;
+    font-size: 12px;
+    line-height: 1.428571429;
+    border-radius: 15px;
+    margin-top: 15px; 
+	}
 
-        @media screen and (max-width: 900px) {
-            #frm {
-                left: 0px;
-                margin-top: 10px;
-            }
 
-            .btn-orange-styl {
-                width: 100%;
-                margin-bottom: 10px;
-            }
-        }
+.my-card
+{
+    position:absolute;
+    left:40%;
+    top:-40px;
+    border-radius:50%;
+}
+
+.icon-bar {
+	background: linear-gradient(to right, rgb(255, 81, 47), rgb(240, 152, 25));
+  position: fixed;
+  top: 50%;
+  transform: translate(-35px,0px) rotate(-90deg);
+  z-index: 9;
+}
+
+.icon-bar a {
+  display: block;
+  text-align: center;
+  padding: 16px;
+  transition: all 0.3s ease;
+  color: white;
+  font-size: 20px;
+  
+}
+
+.icon-bar a:hover {
+  background-color: #000;
+  text-decoration: none;
+}
+
+.fa-phone-square {
+  background: #3B5998 !important;
+  color: white;
+}
+
+.thumb-image{
+	height: 130px;
+    width: 130px;
+    margin-left: 160px;
+}
+
+
+
+/*Responsive*/
+		
+	@media screen and (max-width: 400px) {
+
+.highl{
+	width: 20rem;
+    height: 8rem;
+    font-size:19px;
+}
+
+}
+
+@media screen and (max-width: 768px) {
+
+.highl{
+	width: 20rem;
+    height: 8rem;
+    font-size:19px;
+}
+.icon-bar{
+opacity: 0.8;
+}
+
+.steps-step p{
+font-size:12px;
+}
+}
+
+        
+ 
+	
+	
 </style>
 {% endblock stylesheets %}
 {% block body %}
 <!-- HTML Starts here -->
-<section class="testimonial1 py-5">
-    <div class="container">
-        <div class="row ">
-            <div class=" col-md-4 text-center">
-                <div class="col-md-4 pt-2 ">
-                    <div class="box text-center">
-                        <iframe width="330" height="330" src="https://www.youtube.com/embed/nMBmLLpo9CA" frameborder="0"
-                            allow="fullscreen" style="border-radius:20px;"></iframe>
-                    </div>
-                </div>
-                <h3 class="pb-4 pt-2 text-center ">Our Software Features</h3>
-                <div class="highlight">Dashboard to visualize and keep track your monthly sales</div><br>
-                <div class="highlight">Transaction Record Book</div><br>
+<div class="icon-bar">
+  <a href="#" class="facebook">Call Us &nbsp;<i class="fa fa-phone-square fa-lg"></i></a> 
+</div>
 
+
+
+<section class="regis py-5">
+        <div class="container">
+        <div class="row">
+            <div class=" col-xl-4 text-center" id="rgt">
+                      
+                        <iframe width="330" height="330" src="https://www.youtube.com/embed/nMBmLLpo9CA" frameborder="0"
+                            allow="fullscreen" style="border-radius:20px;" class="ifrm"></iframe>
+                    
+                <br>
+             <div class="highlight">100% Free signup</div><br>
+             <div class="highlight ">
+			 <a href="#" data-toggle="modal" data-target="#contactModalCenter">
+          <button type="button" class="btn btn-cont btn-block"><p style="font-weight:bold; font-size:19px; color: rgb(56, 73, 107);"><i class="fa fa-phone fa-lg"></i>&nbsp;
+		  Request a Call</p></button>
+                </a>
+			 </div>
+               
+			   <div class="modal fade" id="contactModalCenter" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header" style="border-bottom:none;">
+                                    
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="background-color:#000000;">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <h2 class="mainh ml-3">Contact Us</h2>
+    <div class="col-lg-12">
+	
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="First Name *" value="" />
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Email *" value="" />
+                </div>
+                <div class="form-group">
+                    <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="Message *"
+                        rows="3"></textarea>
+                </div>
 
             </div>
-            <div class="col-md-8 border " id="frm">
-                <h4 class="pb-4 text-center text-white">Get Your Online Presence</h4>
-                <form class="row register-form" method="POST" action='/accounts/guide/account/signup'
-                    enctype="multipart/form-data" name="myform2" onsubmit="return registrationValidator()">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <input type="email" class="form-control" placeholder="Last Name *" value="" />
+                </div>
+                <div class="form-group">
+                    <input type="text" minlength="10" maxlength="10" name="txtEmpPhone" class="form-control"
+                        placeholder="Your Phone *" value="" />
+                </div>
+
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Travel Id *" value="" />
+                </div>
+                <button type="button" class="btn btn-success">Button</button>
+            </div>
+        </div>
+    </div>
+                                </div>
+                             
+                            </div>
+                        </div>
+                    </div>
+			   </div>
+			   
+			   
+            <div class="col-xl-8 border mt-1" id="frm">
+                <h2 class="pb-4 pt-4 text-center text-white">You are just two step away to become a TRAVMAKS Guide</h2>
+                <form class="row register-form" method="POST" action='/accounts/guide/account/signup' name="myform2"
+                    enctype="multipart/form-data" onsubmit="return registrationValidator();">
                     {% csrf_token %}
                     {% if messages %}
                     {% for message in messages %}
@@ -294,7 +474,6 @@ background-repeat: no-repeat;
                     </div>
                     {% endfor %}
                     {% endif %}
-
                     <div class="col-md-6">
                         <div class="form-group">
                             <input type="text" class="form-control" placeholder="Full Name *" name="name" id="fullname"
@@ -336,11 +515,40 @@ background-repeat: no-repeat;
                         <!-- External JS portion ends here-->
 
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Enter Full Address *" name='address'
+                            <input type="text" class="form-control" placeholder="Enter Full Address *" name='address' minlength="10" maxlength="100"
                                 id="address" required />
                         </div>
-
+                        <div class="form-group">
+                            <input type="file" name="govIdImage" accept='image/*' id="fileUpload" multiple
+                            class="form-control" required /> 
+                        </div>
+                        <label data-toggle="modal" data-target="#previewModal" style="cursor:pointer;" 
+                        class="text-white">Preview of uploaded ID Proof</label>
                     </div>
+					
+					
+					
+					<div class="modal fade" id="previewModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Your Image</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true" style="color:black;">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="image-holder"></div>
+      </div>
+      <div class="modal-footer">
+        
+      </div>
+    </div>
+  </div>
+</div>
+					
+					
+					
                     <div class="col-md-6">
                         <div class="form-group">
                             <input type="text" placeholder="Birthdate" class="form-control" onfocus="(this.type='date')"
@@ -351,141 +559,85 @@ background-repeat: no-repeat;
                                 required />
                         </div>
                         <div class="form-group">
-                            <input type="text" minlength="10" maxlength="10" name="phone" class="form-control"
+                            <input type="text" pattern="\d*" minlength="10" maxlength="10" name="phone" class="form-control"
                                 placeholder="Your Phone *" id="phone" value="" required />
+                            <span id="mobileno" class="text-danger font-weight-bold"></span>
                         </div>
                         <div class="form-group">
-                            <input type="number" class="form-control" placeholder="Enter ZIP Code *" name="zip" id="zip"
+                            <input type="text" class="form-control" placeholder="Enter ZIP Code *" pattern="\d*" name="zip" id="zip" minlength="6" maxlength="6"
                                 required />
                         </div>
                         <div class="form-group">
-                            <select name="govIdName" id="proofType" class="form-control" required onchange="dis_able()">
+                            <select name="govIdName" id="ddlModels" class="form-control" required onchange="dis_able()">
                                 <option class="hidden" id="proofType" value="" disabled="" selected="">Select ID Proof
                                     type</option>
                                 <option value="ADHAR">ADHAR</option>
                                 <option value="PAN">PAN</option>
+                                <option value="VOTER">VOTER</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Enter Your Proof ID *"
-                                style="display: none;" name="govIdNo" id="govIdnumber" />
+                            <input type="text" class="form-control" placeholder="Enter Your Proof ID *" pattern="[A-Z0-9]+" minlength="10" maxlength="12"
+                                style="display: none;" name="govIdNo" id="govIdnumber"  />
+							
                         </div>
                         <script>
                             function dis_able() {
+                                
                                 if (document.myform2.govIdName.value == 'ADHAR'){
                                     document.getElementById('govIdnumber').style.display = "block";
                                 document.getElementById('govIdnumber').required = true;
 	
-                                }else if (document.myform2.govIdName.value == 'PAN'){
+                                }
+								else if (document.myform2.govIdName.value == 'PAN'){
+                                    document.getElementById('govIdnumber').style.display = "block";
+                                document.getElementById('govIdnumber').required = true;
+	
+                                }
+								else if (document.myform2.govIdName.value == 'VOTER'){
                                     document.getElementById('govIdnumber').style.display = "block";
                                 document.getElementById('govIdnumber').required = true;
 	
                                 }else{
                                 document.getElementById('govIdnumber').style.display = "none";
                                 document.getElementById('govIdnumber').required = false;}
+								
                             }
+							
                         </script>
-
                         <div class="form-group">
                             <input type="password" class="form-control" placeholder="Password *" name="password1"
-                                id="password1" required />
+                                id="password1" minlength="8" maxlength="30"  required />
                         </div>
                         <div class="form-group">
                             <input type="password" class="form-control" placeholder="Confirm Password *"
-                                name='password2' id="password2" required />
+                                name='password2' id="password2" minlength="8" maxlength="30"  required />
                         </div>
+                    </div>
 
 
-                        <div class="col-md-12 text-white">
-                            <div class="row">
-                                <p class="checkbox-inline"><input type="checkbox" value="" required></p>&nbsp;
+                    <div class="col-md-8 ml-2 text-white">
+                        <p class="checkbox-inline"><input type="checkbox" name="agree" id="agree" value="" required />
+                            I accept the&nbsp;<a href="#" class="text-warning" data-toggle="modal"
+                                data-target="#exampleModalLong">Terms & Conditions</a>
+                        </p>
+                    </div>
+                    <div class="col-md-12 mr-auto">
+                        <input type="submit" class="btnRegister" value="Register" />
+                    </div>
 
-                                <p> I accept the&nbsp;<a class="text-warning" data-toggle="modal" href="#" data-target="exampleModalLong">Terms & Conditions</a></p>
-
-                                <input type="submit" class="btnRegister" value="Register" />
-                            </div>
-                        </div>
                 </form>
-                <script>
-                    function registrationValidator() {
-                        var name = document.getElementById('fullname').value;
-                        var bdate = document.getElementById('bdate').value;
-                        var country = document.getElementById('countryId').value;
-                        var state = document.getElementById('stateId').value;
-                        var district = document.getElementById('cityId').value;
-                        var zip = document.getElementById('zip').value;
-                        var address = document.getElementById('address').value;
-                        var mail = document.getElementById('mail').value;
-                        var password1 = document.getElementById('password1').value;
-                        var password2 = document.getElementById('password2').value;
-                        var gender = document.getElementsByName('gender');
-                        var phone = document.getElementById('phone').value;
-                        var msg = new Array();
-                        dy = parseInt(bdate);
-                        cd = new Date();
-                        cy = cd.getFullYear();
-                        var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
-                        res = reg.test(mail);
 
-                        if ((cy - dy) < 14) {
-                            msg.push("You must be 14 years old to Register.");
-                        }
-                        if (fullname == "") {
-                            msg.push("Enter your Name.");
-                        }
-                        if (res == false) {
-                            msg.push("Enter Proper Email.");
-                        }
-                        if (phone != Number(phone)) {
-                            msg.push("Your phone must be number.");
-                        }
-                        if (phone.length != 10) {
-                            msg.push("Please Enter a valid Phone number.");
-                        }
-                        if (zip.length != 6) {
-                            msg.push("Please Enter a valid Zip Code.");
-                        }
-                        if (password1.length < 8) {
-                            msg.push("Your Password must contain atleast 8 characters.");
-                        }
-                        else {
-                            for (let i = 0; i < password1.length; i++) {
-                                if (password1[i] === '<' || password1[i] === '>') {
-                                    msg.push("< / > not allowed.");
-                                }
-                            }
-                            if (password1 !== password2) {
-                                msg.push("Password didn't match.");
-                            }
-                        }
-                        if (msg.length > 0) {
-                            errormsg.innerHTML = msg.join("\n");
-                            errormsgbg.style.width = "500px";
-                            errormsg.style.padding = "8px";
-                            errormsgbg.style.borderRadius = "5px";
-                            errormsgbg.style.backgroundColor = '#FBD0F5';
-                            errormsg.style.color = 'red';
-                            errormsgbg.style.marginBottom = '10px';
-                            // errormsg.style.fontWeight="bold";
-                            return false;
-                        }
-                        return true;
-
-                    }
-                    function removeValidator() {
-                        var errormsg = document.getElementById('errormsg');
-
-                        var errormsgbg = document.getElementById('errormsgbg');
-                        errormsg.innerHTML = null;
-                        errormsg.style.padding = '0px';
-                        errormsgbg.style.marginBottom = '0px';
-                    }
-                </script>
-
-
+                <div class="col-md-12">
+                    <div id="errormsgbg">
+                        <div id="errormsg" onclick="removeValidator();"></div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
+        </div>
+
+        
 </section>
 <!-- Modal -->
 <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
@@ -735,7 +887,120 @@ background-repeat: no-repeat;
         </div>
     </div>
 </div>
+
+<br>
+<br>
+<section>
+<div class="container my-3">
+        <div class="row">
+        <div class="col-md-4">
+            <div class="mx-sm-1 p-3">
+                <div class="text-info p-3 my-card" >
+				<!--<span class="fnt"><i class="fa fa-map-marker fa-3x"></i></span>-->
+				<img src="{% static 'img/map.png' %}" style="height:60px; width:40px;">
+				</div>
+                <div class="text-info text-center mt-3"><h4>No of Cities</h4></div>
+                <div class="text-info text-center mt-2"><h1>45+</h1></div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class=" mx-sm-1 p-3">
+                <div class="text-info  p-3 my-card">
+				<!--<span class="fnt"><i class="fa fa-user-o fa-3x"></i></span>-->
+				<img src="{% static 'img/user.png' %}" style="height:60px; width:50px;">
+				</div>
+                <div class="text-info text-center mt-3"><h4>No of Guides Connected</h4></div>
+                <div class="text-info text-center mt-2"><h1>500+</h1></div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class=" mx-sm-1 p-3">
+                <div class="text-info p-3 my-card" >
+				<!--<span class="fnt"><i class="fa fa fa-pencil fa-3x"></i></span>-->
+				<img src="{% static 'img/globe.jpg' %}" style="height:60px; width:60px;">
+				</div>
+                <div class="text-info text-center mt-3"><h4>No of Booking</h4></div>
+                <div class="text-info text-center mt-2"><h1>300+</h1></div>
+            </div>
+        </div>
+     
+		</div>
+		</div>
+		</section>
+		<br><br>
+<section class="features-area pt-100 pb-70" id="features">
+    <div class="container my-3">
+        <div class="row">
+            <div class="col-xl-8 mx-auto text-center">
+                <div class="section-title">
+                    <h5 class="section-title h1 text-center pb-4">Our Software Features</h5>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="single-featur">
+                    <div class="highl">Dashboard to visualize and keep track your monthly sales</div>
+                
+                   
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="single-featur">
+                    <div class="highl">Transaction Record Book</div>
+                </div>
+            </div>
+			<div class="col-lg-6">
+                <div class="single-featur">
+                    <div class="highl">Revenue Management</div>
+                </div>
+            </div>
+			<div class="col-lg-6">
+                <div class="single-featur">
+                    <div class="highl">Tour Management</div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </section>
 <!--Service-->
+<br>
+<section class="features-area pt-100 pb-70" id="features">
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-xl-8 mx-auto text-center">
+                <div class="section-title">
+                    <h5 class="section-title h1 text-center pb-4">Steps to become a TRAVMAKS Guide</h5>
+                </div>
+            </div>
+			<div class="steps-form">
+      <div class="steps-row setup-panel">
+        <div class="steps-step">
+		<img class="img" src="{% static 'img/b3.jpg' %}">
+          <p>Sign Up</p>
+        </div>
+        <div class="steps-step">
+		<img src="{% static 'img/b2.jpg' %}" class="img" >
+          <p>Verify Documents</p>
+        </div>
+        <div class="steps-step">
+		<img src="{% static 'img/b3.jpg' %}" class="img">
+          <p>Add your Service area</p>
+        </div>
+		<div class="steps-step">
+		<img src="{% static 'img/b3.jpg' %}" class="img">
+          <p>Get Booking and Earn Money</p>
+        </div>
+      </div>
+    </div>
+        </div>
+        
+    </div>
+  </section>
+<br>
+<br>
+<br>
+<br>
 <section id="service" class="pb-5">
     <div class="container">
         <h5 class="section-title h1 text-center pb-4">Our Benefits</h5>
@@ -774,7 +1039,7 @@ background-repeat: no-repeat;
                         <div class="frontside">
                             <div class="card">
                                 <div class="card-body text-center">
-                                    <i class="fa fa-globe"></i>
+                                    <i class="fa fa-phone-square"></i>
                                     <h4 class="card-title">24*7 interactions with customers</h4>
                                 </div>
                             </div>
@@ -886,7 +1151,7 @@ background-repeat: no-repeat;
                         <div class="frontside">
                             <div class="card">
                                 <div class="card-body text-center">
-                                    <i class="fa fa-globe"></i>
+                                    <i class="fa fa-graduation-cap"></i>
                                     <h4 class="card-title"> Free stuff training</h4>
                                 </div>
                             </div>
@@ -913,16 +1178,16 @@ background-repeat: no-repeat;
 </section>
 <!-- Service -->
 
-<!-- Testimonials Section -->
-<section id="testimonial">
+<!-- Testimonial Section start -->
+<section id="testimonial" style="transform: translate(0px,100px);">
     <div class="container">
         <div class="row">
             <div class="col-12">
                 <div class="section-title">
-                    <h2>Client Testimonials</h2>
+                    <h2 class="text-center">Our Testimonials</h2>
                 </div>
             </div>
-            <div class="col-12">
+            <div class="col-12" id="dwn" style="transform: translate(0px,-100px);">
                 <div id="testimonialCarousel" class="carousel slide" data-ride="carousel">
                     <!-- Slide Indicators -->
                     <ol class="carousel-indicators">
@@ -983,4 +1248,143 @@ background-repeat: no-repeat;
 <!-- Geo data Solutions API-->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="//geodata.solutions/includes/countrystatecity.js"></script>
+<script>
+    function registrationValidator() {
+        var name = document.getElementById('fullname').value;
+        var bdate = document.getElementById('bdate').value;
+        var country = document.getElementById('countryId').value;
+        var state = document.getElementById('stateId').value;
+        var district = document.getElementById('cityId').value;
+        var zip = document.getElementById('zip').value;
+        var address = document.getElementById('address').value;
+        var mail = document.getElementById('mail').value;
+        var proofType = document.getElementById('proofType').value;
+        var password1 = document.getElementById('password1').value;
+        var password2 = document.getElementById('password2').value;
+        var gender = document.getElementsByName('gender');
+        var phone = document.getElementById('phone').value;
+        var govIdnumber = document.getElementById('govIdnumber').value;
+        var agree = document.getElementById('agree').value;
+        var govId=document.myform2.govIdName.value;
+        var msg = new Array();
+        dy = parseInt(bdate);
+        cd = new Date();
+        cy = cd.getFullYear();
+        var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+        res = reg.test(mail);
+        flag=0;
+        if ($("#fileUpload")[0].files.length > 2) {
+            msg.push('You can only upload maximum 2 files');            
+        }
+        for(let j=0;j<name.length;j++){
+            if(name[j]==' '){
+                flag=1;
+            }
+        }
+        if(flag==0){
+            msg.push('Please Enter a Valid Name.');
+        }
+        if ((cy - dy) < 14) {
+            msg.push("You must be 14 years old to Register.");
+        }
+        if (fullname == "") {
+            msg.push("Enter your Name.");
+        }
+        if (res == false) {
+            msg.push("Enter Proper Email.");
+        }
+        if (phone != Number(phone)) {
+            msg.push("Your phone must be number.");
+        }
+        if (phone.length != 10) {
+            msg.push("Please Enter a valid Phone number.");
+        }
+        if (agree.checked == false)
+         {
+            msg.push("please select our terms & conditions");
+            document.getElementbyId("confirm").focus();
+            return false;
+        }
+
+        if (zip.length != 6) {
+            msg.push("Please Enter a valid Zip Code.");
+        }
+
+        if (password1 == Number(password1)) {
+            msg.push("Only Number can't be a password");
+        }
+        if (password1.length < 8) {
+            msg.push("Your Password must contain atleast 8 characters.");
+        }
+        else {
+            if (password1 != password2) {
+                msg.push("Password didn't match.");
+            }
+        }
+        if(govId=='VOTER'){
+            if(govIdnumber.length!=10){
+                msg.push("Put a valid Voter card number");
+            }
+        }
+        if(govId=='ADHAR'){
+            if(govIdnumber.length!=12){
+                msg.push("Put a valid Adhar card number");
+            }
+        }
+        if (msg.length > 0) {
+            errormsg.innerHTML = msg.join(", ");
+            errormsgbg.style.width = "500px";
+            errormsg.style.padding = "8px";
+            errormsgbg.style.borderRadius = "5px";
+            errormsgbg.style.backgroundColor = '#FBD0F5';
+            errormsg.style.color = 'red';
+            errormsgbg.style.marginBottom = '10px';
+            // errormsg.style.fontWeight="bold";
+            return false;
+        }
+        return true;
+
+    }
+    function removeValidator() {
+        var errormsg = document.getElementById('errormsg');
+
+        var errormsgbg = document.getElementById('errormsgbg');
+        errormsg.innerHTML = null;
+        errormsg.style.padding = '0px';
+        errormsgbg.style.marginBottom = '0px';
+    }
+	
+	
+	$(document).ready(function() {
+        $("#fileUpload").on('change', function() {
+          //Get count of selected files
+          var countFiles = $(this)[0].files.length;
+          var imgPath = $(this)[0].value;
+          var extn = imgPath.substring(imgPath.lastIndexOf('.') + 1).toLowerCase();
+          var image_holder = $("#image-holder");
+          image_holder.empty();
+          if (extn == "gif" || extn == "png" || extn == "jpg" || extn == "jpeg") {
+            if (typeof(FileReader) != "undefined") {
+              //loop for each file selected for uploaded.
+              for (var i = 0; i < countFiles; i++) 
+              {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                  $("<img />", {
+                    "src": e.target.result,
+                    "class": "thumb-image"
+                  }).appendTo(image_holder);
+                }
+                image_holder.show();
+                reader.readAsDataURL($(this)[0].files[i]);
+              }
+            } else {
+              alert("This browser does not support FileReader.");
+            }
+          } else {
+            alert("Pls select only images");
+          }
+        });
+      });
+</script>
 {% endblock body %}

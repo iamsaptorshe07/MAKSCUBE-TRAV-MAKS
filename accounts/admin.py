@@ -94,6 +94,8 @@ class AgencyDetailsAdmin(admin.ModelAdmin):
     list_display = ('user','agencyName','agency_Id','agencyPhNo','agencyCountry','agencyCity','agencyState','agencyZipCode','govApproved','govApprovedId','agencyAddress')
     search_fields = ['user__email','agencyName','govApprovedId','agencyPhNo','agency_Id']
     list_filter = ('govApproved','agencyCountry','agencyCity','agencyState','agencyZipCode',)
+
+    
 # Now register the new UserAdmin...
 admin.site.register(User, UserAdmin)
 admin.site.unregister(Group)
@@ -101,3 +103,5 @@ admin.site.register(PhoneVerification)
 admin.site.register(AccountType, AccountTypeAdmin)
 admin.site.register(GovId,GovtIdAdmin)
 admin.site.register(AgencyDetail, AgencyDetailsAdmin)
+admin.site.register(GuideServiceArea)
+admin.site.register(GuideService)
