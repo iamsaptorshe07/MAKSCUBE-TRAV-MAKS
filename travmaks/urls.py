@@ -21,5 +21,6 @@ urlpatterns = [
     path('api/v1/tour-packages/',include('api.tours.urls'),name='TourAPI'),
     path('api/v1/travel-agency/',include('api.travelagencyAPI.urls'),name='TravelAgencyAPI'),
     path('api/v1/traveller/',include('api.travellerAPI.urls'),name='TravellerAPI'),
+    path('api/v1/home-app/',include('api.home.urls'),name='homeApp')
 ]
 urlpatterns = urlpatterns + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

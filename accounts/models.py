@@ -195,3 +195,15 @@ class AgencyDetail(models.Model):
 
 
 # Agency type ends here ------------------
+
+# Guide Service 
+class GuideServiceArea(models.Model):
+    area = models.CharField(max_length=100)
+    state = models.CharField(max_length=100)
+    country = models.CharField(max_length=100)
+    zip = models.CharField(max_length=20)
+
+class GuideService(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='guideservice')
+    service_area = models.ManyToManyField(GuideServiceArea)
+    verified = models.BooleanField(default=False)
