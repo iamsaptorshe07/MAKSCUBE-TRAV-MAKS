@@ -8,7 +8,7 @@ urlpatterns = [
     path('seller/account/signup', sellerAgencyAccountSignup, name='sellerAgencyAccountSignup'),
     path('seller/account/register-agency',agencyRegister,name='RegisterAgency'),
     
-    p#ath('activate/guide/<uid>/<token>',activateGuide, name='activateGuide'),
+    #path('activate/guide/<uid>/<token>',activateGuide, name='activateGuide'),
     path('activate/seller/<uid>/<token>',activateSeller, name='activateSeller'),
     path('activate/traveller/<uid>/<token>',activateTraveller, name='activateTraveller'),
     
