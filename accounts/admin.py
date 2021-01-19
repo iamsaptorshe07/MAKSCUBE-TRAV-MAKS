@@ -91,9 +91,9 @@ class GovtIdAdmin(admin.ModelAdmin):
 
 class AgencyDetailsAdmin(admin.ModelAdmin):
     model = AgencyDetail
-    list_display = ('user','agencyName','agency_Id','agencyPhNo','agencyCountry','agencyCity','agencyState','agencyZipCode','govApproved','govApprovedId','agencyAddress')
+    list_display = ('agencyName','user','agency_Id','agencyPhNo','agencyCountry','agencyCity','agencyState','agencyZipCode','agencyAddress','govApproved','govApprovedId','verified','travmaks_partner')
     search_fields = ['user__email','agencyName','govApprovedId','agencyPhNo','agency_Id']
-    list_filter = ('govApproved','agencyCountry','agencyCity','agencyState','agencyZipCode',)
+    list_filter = ('govApproved','agencyCountry','travmaks_partner','verified')
 
     
 # Now register the new UserAdmin...

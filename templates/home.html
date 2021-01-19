@@ -378,9 +378,7 @@ position: absolute;
 
 <section id="home">
         <h1 class="text-bold mt-4">One Stop Solution For Travellers</h1>
-        
-		
-    </section>
+</section>
 
 <div class="search-sec" >
     <div class="container">
@@ -502,14 +500,13 @@ position: absolute;
 </div>
 <!--End from-->
 <!--Latest added destination-->
+{% if Tour %}
 <div class="popular_destination_area">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-6">
                 <div class="section_title text-center mb_70">
                     <h2>Latest Added Tours</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam,.</p>
                 </div>
             </div>
         </div>
@@ -557,6 +554,16 @@ position: absolute;
         </div>
     </div>
 </div>
+{% else %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <div class="section_title text-center mb_70">
+                <h2>No Tours Yet</h2>
+            </div>
+        </div>
+    </div>
+{% endif %}
 <!--Latest added destination ends here-->
 
 <!--Data Sciene tours-->

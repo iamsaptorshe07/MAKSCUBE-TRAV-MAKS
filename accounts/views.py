@@ -65,18 +65,21 @@ def activateTraveller(request, uid, token):
         user = User.objects.get(id=uid)
         if user is not None and activation_token.check_token(user,token):
             if user.is_active:
-                userAccess = AccountType.objects.get(user=user)
-                userAccess.user_access = True
-                userAccess.userId=travellerId()
-                user.save()
-                userAccess.save()
+                if user.userAccess.user_access:
+                    return render(request,'404.html')
+                else:
+                    userAccess = AccountType.objects.get(user=user)
+                    userAccess.user_access = True
+                    userAccess.userId=travellerId()
+                    user.save()
+                    userAccess.save()
             else:
                 user.is_active= True
                 access = AccountType(user=user,user_access=True,userId=travellerId())
                 user.save()
                 access.save()
             messages.success(request,'Account activated please login')
-            return redirect('travellerLogin')
+            return redirect('Traveller_Login')
         else:
             return render(request,'404.html')
     else:
@@ -86,23 +89,30 @@ This function is responsible for sending the account(Seller - Agency and guide) 
 responsible for handling the signup request of the sellers (Travel agency not guide)
 '''
 def activateSeller(request, uid, token):
-    user = User.objects.get(id=uid)
-    if user is not None and activation_token.check_token(user,token):
-        if user.is_active:
-            userAccess = AccountType.objects.get(user=user)
-            userAccess.agency_access = True
-            userAccess.agentId=sellerId()
-            user.save()
-            userAccess.save()
+    if User.objects.filter(id=uid).exists():
+        user = User.objects.get(id=uid)
+        if user is not None and activation_token.check_token(user,token):
+            if user.is_active:
+                if user.userAccess.agency_access:
+                    return render(request,'404.html')
+                else:
+                    userAccess = AccountType.objects.get(user=user)
+                    userAccess.agency_access = True
+                    userAccess.agentId=sellerId()
+                    user.save()
+                    userAccess.save()
+            else:
+                user.is_active = True
+                access =AccountType(user=user,agency_access=True,agentId=sellerId())
+                user.save()
+                access.save()
+            messages.success(request,'Account Activated, Please Login to register your agency')
+            return redirect('Seller_login')
         else:
-            user.is_active = True
-            access =AccountType(user=user,agency_access=True,agentId=sellerId())
-            user.save()
-            access.save()
-        messages.success(request,'Account Activated, Please Login to register your agency')
-        return redirect('Seller_login')
+            return render(request,'404.html')
     else:
         return render(request,'404.html')
+
 
 # Traveller account creation and login page handler and also signup of traveller handler function ---- Old one
 
@@ -350,12 +360,12 @@ def sellerAgencyAccountSignup(request):
                         print(res)
                         if res is True:
                             messages.success(request,'Your account is already exsits! Check your email to activate the agency account!')
-                            return redirect('traveler_accounts_signup')
+                            return redirect('travelerAccountsSignup')
                         if res is False:
                             govData.delete()
                             messages.error(request,'Internal Problem Occured')
-                            return redirect('traveler_accounts_signup')
-                        return redirect('traveler_accounts_signup')
+                            return redirect('travelerAccountsSignup')
+
                 else:
                     messages.warning(request,'Account already exsits! Check your email to activate the user account!')
                     return redirect('sellerAgencyAccountSignup')
@@ -379,12 +389,12 @@ def sellerAgencyAccountSignup(request):
                         print(res)
                         if res is True:
                             messages.success(request,'Your account is already exsits! Check your email to activate the agency account!')
-                            return redirect('traveler_accounts_signup')
+                            return redirect('travelerAccountsSignup')
                         if res is False:
                             govData.delete()
                             messages.error(request,'Internal Problem Occured')
-                            return redirect('traveler_accounts_signup')
-                        return redirect('traveler_accounts_signup')
+                            return redirect('travelerAccountsSignup')
+
                 else:
                     messages.warning(request,'Account already exsits! Check your email to activate the user account!')
                     return redirect('sellerAgencyAccountSignup')
@@ -466,74 +476,77 @@ def agencyRegister(request):
    
 # User Profile visiting
 def userProfile(request, account_type, uid):
-    if request.method == 'POST':
-        if (len(User.objects.filter(id=uid)) > 0):
-            user = User.objects.get(id=uid)
-            if user == request.user:
-                if account_type == 'traveller':
-                    if user.userAccess.agency_access is True:
-                        messages.error(request,"You can't change your details as you have a seller account")
-                        return redirect(request.META.get('HTTP_REFERER'))
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            if (len(User.objects.filter(id=uid)) > 0):
+                user = User.objects.get(id=uid)
+                if user == request.user:
+                    if account_type == 'traveller':
+                        if user.userAccess.agency_access is True:
+                            messages.error(request,"You can't change your details as you have a seller account")
+                            return redirect(request.META.get('HTTP_REFERER'))
+                        else:
+                            user.name = request.POST.get('name')
+                            user.DOB = request.POST.get('bdate')
+                            user.phNo = request.POST.get('phone')
+                            user.gender = request.POST.get('gender')
+                            user.zipCode = request.POST.get('zip')
+                            user.address = request.POST.get('address')
+                            user.save()
+                            messages.success(request, 'Successfully updated')
+                            return redirect(request.META.get('HTTP_REFERER'))
+                    elif account_type == 'seller':
+                        return render(request,'forbidden.html')
+                        # if request.POST.get('typo')=='agent':
+                        #     user.name = request.POST.get('name')
+                        #     user.DOB = request.POST.get('bdate')
+                        #     user.phNo = request.POST.get('phone')
+                        #     user.gender = request.POST.get('gender')
+                        #     user.zipCode = request.POST.get('zip')
+                        #     user.address = request.POST.get('address')
+                        #     user.userGov.govIdType = request.POST.get('govIdName')
+                        #     user.userGov.govIdNo = request.POST.get('govIdNo')
+                        #     if(request.FILES.get('govIdImage')!=None):
+                        #         user.userGov.govIdImage = request.FILES.get('govIdImage')
+                        #     user.save()
+                        #     user.userGov.save()
+                        #     messages.success(request, 'Successfully updated')
+                        #     return redirect(request.META.get('HTTP_REFERER'))
+                        # elif request.POST.get('typo')=='agency':
+                        #     user.userAgency.agencyName = request.POST.get('name')
+                        #     user.userAgency.agencyPhNo = request.POST.get('phone')
+                        #     user.userAgency.agencyAddress = request.POST.get('address')
+                        #     user.userAgency.agencyZipCode = request.POST.get('zip')
+                        #     user.userAgency.govApproved = request.POST.get('govApproved')
+                        #     user.userAgency.govApprovedId = request.POST.get('govApprovedId')
+                        #     user.userAgency.save()
+                        #     messages.success(request, 'Successfully updated')
+                        #     return redirect(request.META.get('HTTP_REFERER'))
+                        # else:
+                        #     return render(request,'forbidden.html')
                     else:
-                        user.name = request.POST.get('name')
-                        user.DOB = request.POST.get('bdate')
-                        user.phNo = request.POST.get('phone')
-                        user.gender = request.POST.get('gender')
-                        user.zipCode = request.POST.get('zip')
-                        user.address = request.POST.get('address')
-                        user.save()
-                        messages.success(request, 'Successfully updated')
-                        return redirect(request.META.get('HTTP_REFERER'))
-                elif account_type == 'seller':
-                    return render(request,'forbidden.html')
-                    # if request.POST.get('typo')=='agent':
-                    #     user.name = request.POST.get('name')
-                    #     user.DOB = request.POST.get('bdate')
-                    #     user.phNo = request.POST.get('phone')
-                    #     user.gender = request.POST.get('gender')
-                    #     user.zipCode = request.POST.get('zip')
-                    #     user.address = request.POST.get('address')
-                    #     user.userGov.govIdType = request.POST.get('govIdName')
-                    #     user.userGov.govIdNo = request.POST.get('govIdNo')
-                    #     if(request.FILES.get('govIdImage')!=None):
-                    #         user.userGov.govIdImage = request.FILES.get('govIdImage')
-                    #     user.save()
-                    #     user.userGov.save()
-                    #     messages.success(request, 'Successfully updated')
-                    #     return redirect(request.META.get('HTTP_REFERER'))
-                    # elif request.POST.get('typo')=='agency':
-                    #     user.userAgency.agencyName = request.POST.get('name')
-                    #     user.userAgency.agencyPhNo = request.POST.get('phone')
-                    #     user.userAgency.agencyAddress = request.POST.get('address')
-                    #     user.userAgency.agencyZipCode = request.POST.get('zip')
-                    #     user.userAgency.govApproved = request.POST.get('govApproved')
-                    #     user.userAgency.govApprovedId = request.POST.get('govApprovedId')
-                    #     user.userAgency.save()
-                    #     messages.success(request, 'Successfully updated')
-                    #     return redirect(request.META.get('HTTP_REFERER'))
-                    # else:
-                    #     return render(request,'forbidden.html')
+                        return render(request,'forbidden.html')
                 else:
                     return render(request,'forbidden.html')
             else:
                 return render(request,'forbidden.html')
-        else:
-            return render(request,'forbidden.html')
 
-    else:
-        if (len(User.objects.filter(id=uid)) > 0):
-            user = User.objects.get(id=uid)
-            if user == request.user:
-                if account_type == 'traveller':
-                    return render(request, 'accounts/travelleraccountedit.html')
-                elif account_type == 'seller':
-                    return render(request, 'accounts/selleraccountedit.html')
+        else:
+            if (len(User.objects.filter(id=uid)) > 0):
+                user = User.objects.get(id=uid)
+                if user == request.user:
+                    if account_type == 'traveller':
+                        return render(request, 'accounts/travelleraccountedit.html')
+                    elif account_type == 'seller':
+                        return render(request, 'accounts/selleraccountedit.html')
+                    else:
+                        return render(request,'forbidden.html')
                 else:
                     return render(request,'forbidden.html')
             else:
                 return render(request,'forbidden.html')
-        else:
-            return render(request,'forbidden.html')
+    else:
+        return render(request,'forbidden.html')
 
 ''' 
 Author : Saptorshe

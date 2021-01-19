@@ -55,9 +55,11 @@
                                                 <div class="tab-content pt-3">
 
                                                     <div class="tab-pane active">
+
+                                                        <!--
                                                         <form class="form" onvalidate="" method="POST"
                                                             action="{{request.path}}" enctype="multipart/form-data"
-                                                            id="sellerform" onsubmit="return validSeller()">
+                                                            id="sellerform" onsubmit="return validSeller()"> -->
                                                             {% csrf_token %}
                                                             <input type="text" class="form-control"
                                                                                     value="agent"
@@ -200,10 +202,12 @@
                                                                     <div class="row">
                                                                         <div class="col-12">
                                                                             <div class="form-group">
+                                                                                <!--
                                                                                 <button type="submit" name="submit" id="saveSeller"
                                                                                     class="form-control btn-primary btn-sm mt-2" disabled>
                                                                                     SAVE CHANGES
                                                                                 </button>
+                                                                            -->
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -218,7 +222,7 @@
 
                                                                 </div>
                                                             </div>
-                                                        </form>
+                                                        <!--</form>-->
                                                         <hr>
 
                                                     </div>
