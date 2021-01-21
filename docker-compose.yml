@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+    web:
+        build: .
+        command: python manage.py crontab show
+        
+        ports: 
+            - 8000:8000
