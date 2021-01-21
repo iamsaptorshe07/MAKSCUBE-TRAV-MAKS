@@ -95,7 +95,7 @@ class FamilyTour(ListView):
 
 class FriendsTour(ListView):
     model = Tour
-    queryset = Tour.objects.filter(Q(tour_type='Friends-Special' | Q(tour_type='All')),publish_mode=True,last_booking_date__gte=str(datetime.date.today()),maximum_people__gte=1)
+    queryset = Tour.objects.filter(Q(tour_type='Friends-Special') | Q(tour_type='All'),publish_mode=True,last_booking_date__gte=str(datetime.date.today()),maximum_people__gte=1)
     paginate_by = 50
     template_name = 'touring/all_tours.html'
     ordering = ['-id']
