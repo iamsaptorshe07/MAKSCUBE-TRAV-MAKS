@@ -71,7 +71,7 @@ class AllToursView(ListView):
     
 class SoloTour(ListView):
     model = Tour
-    queryset = Tour.objects.filter(publish_mode=True,last_booking_date__gte=str(datetime.date.today()),maximum_people__gte=1,tour_type='Solo-Tour')
+    queryset = Tour.objects.filter(Q(tour_type='Solo-Tour') | Q(tour_type='All'),publish_mode=True,last_booking_date__gte=str(datetime.date.today()),maximum_people__gte=1)
     paginate_by = 50
     template_name = 'touring/all_tours.html'
     ordering = ['-id']
@@ -79,7 +79,7 @@ class SoloTour(ListView):
 
 class CoupleTour(ListView):
     model = Tour
-    queryset = Tour.objects.filter(publish_mode=True,last_booking_date__gte=str(datetime.date.today()),maximum_people__gte=1,tour_type='Couple-Friendly')
+    queryset = Tour.objects.filter(Q(tour_type='Couple-Friendly') | Q(tour_type='All'),publish_mode=True,last_booking_date__gte=str(datetime.date.today()),maximum_people__gte=1)
     paginate_by = 50
     template_name = 'touring/all_tours.html'
     ordering = ['-id']
@@ -87,7 +87,7 @@ class CoupleTour(ListView):
 
 class FamilyTour(ListView):
     model = Tour
-    queryset = Tour.objects.filter(publish_mode=True,last_booking_date__gte=str(datetime.date.today()),maximum_people__gte=1,tour_type='Family-Special')
+    queryset = Tour.objects.filter(Q(tour_type='Family-Special') | Q(tour_type='All'),publish_mode=True,last_booking_date__gte=str(datetime.date.today()),maximum_people__gte=1)
     paginate_by = 50
     template_name = 'touring/all_tours.html'
     ordering = ['-id']
@@ -95,7 +95,7 @@ class FamilyTour(ListView):
 
 class FriendsTour(ListView):
     model = Tour
-    queryset = Tour.objects.filter(publish_mode=True,last_booking_date__gte=str(datetime.date.today()),maximum_people__gte=1,tour_type='Friends-Special')
+    queryset = Tour.objects.filter(Q(tour_type='Friends-Special' | Q(tour_type='All')),publish_mode=True,last_booking_date__gte=str(datetime.date.today()),maximum_people__gte=1)
     paginate_by = 50
     template_name = 'touring/all_tours.html'
     ordering = ['-id']
