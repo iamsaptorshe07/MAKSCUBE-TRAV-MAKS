@@ -69,7 +69,37 @@ class AllToursView(ListView):
     ordering = ['-id']
     context_object_name = 'Tour'
     
+class SoloTour(ListView):
+    model = Tour
+    queryset = Tour.objects.filter(Q(tour_type='Solo-Tour') | Q(tour_type='All'),publish_mode=True,last_booking_date__gte=str(datetime.date.today()),maximum_people__gte=1)
+    paginate_by = 50
+    template_name = 'touring/all_tours.html'
+    ordering = ['-id']
+    context_object_name = 'Tour'
 
+class CoupleTour(ListView):
+    model = Tour
+    queryset = Tour.objects.filter(Q(tour_type='Couple-Friendly') | Q(tour_type='All'),publish_mode=True,last_booking_date__gte=str(datetime.date.today()),maximum_people__gte=1)
+    paginate_by = 50
+    template_name = 'touring/all_tours.html'
+    ordering = ['-id']
+    context_object_name = 'Tour'
+
+class FamilyTour(ListView):
+    model = Tour
+    queryset = Tour.objects.filter(Q(tour_type='Family-Special') | Q(tour_type='All'),publish_mode=True,last_booking_date__gte=str(datetime.date.today()),maximum_people__gte=1)
+    paginate_by = 50
+    template_name = 'touring/all_tours.html'
+    ordering = ['-id']
+    context_object_name = 'Tour'
+
+class FriendsTour(ListView):
+    model = Tour
+    queryset = Tour.objects.filter(Q(tour_type='Friends-Special') | Q(tour_type='All'),publish_mode=True,last_booking_date__gte=str(datetime.date.today()),maximum_people__gte=1)
+    paginate_by = 50
+    template_name = 'touring/all_tours.html'
+    ordering = ['-id']
+    context_object_name = 'Tour'
 
 def tourDetails(request,tourId,slug):
     if(Tour.objects.filter(tourSlug=slug,tourId=tourId).exists()):

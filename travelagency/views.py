@@ -158,7 +158,6 @@ def editTours(request,agentId,tourId):
         if user.userAccess.agentId == agentId:
             if Tour.objects.filter(tourId=tourId,seller=user).exists():
                 tour = Tour.objects.get(tourId=tourId)
-                
                 if request.method == 'POST':
                     sdate = tourDate(request.POST.get('sdate'))
                     edate = tourDate(request.POST.get('edate'))
