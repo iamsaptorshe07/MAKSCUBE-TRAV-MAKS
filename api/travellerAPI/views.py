@@ -9,7 +9,7 @@ from rest_framework.authentication import TokenAuthentication, SessionAuthentica
 from django.contrib.sites.shortcuts import get_current_site
 from traveller.models import WishList
 from .serializers import WishListSerializer
-
+from travelagency.models import Tour
 # Create your views here.
 class UpcomingTour(APIView):
     authentication_classes = (TokenAuthentication,SessionAuthentication,BasicAuthentication)
@@ -117,17 +117,26 @@ class MyBookingHistory(APIView):
 
 
 
-class WishList(APIView):
+class WishListAPI(APIView):
     authentication_classes = (TokenAuthentication,SessionAuthentication,BasicAuthentication)
     def get(self,request):
         if request.session.session_key:
+            user = request.user
             if request.session['access_type']=='traveller':
                 wishlist = WishList.objects.filter(user=user)
-                wishlistSerializer = wishlistSerializer(wishlist,many=True)
+                wishlist= WishListSerializer(wishlist,many=True)
+                data = wishlist.data
+                print(data)
+                for i in data:
+                    site = str(get_current_site(request))
+                    tour = Tour.objects.get(id=i['tour'])
+                    i['tour_name']=tour.tourHeading
+                    i['tour_thumbnail']=site + tour.thumbnail.url
+                    i['tour_slug']=tour.tourSlug
                 return Response(
                     data = {
                     'status':200,
-                    'wishlist':wishlistSerializer.data
+                    'wishlist':wishlist.data
                     },
                     status=status.HTTP_200_OK
                 )
