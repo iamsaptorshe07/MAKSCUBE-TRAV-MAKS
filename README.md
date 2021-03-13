@@ -1,7 +1,4 @@
 # TRAVMAKS-
-Sprint 3 started
-  Automate all the task
-  Tour Comparison
-  Design Tour
-  Blog
-  QNA
+Sprint 4 started
+  Rbuilding the Travmaks from the scratch
+  
