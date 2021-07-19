@@ -107,7 +107,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'travmaks$travmaks',
         'USER':'travmaks',
-        'PASSWORD':'fuckyouall07!',
+        'PASSWORD':'',
         'HOST':'travmaks.mysql.pythonanywhere-services.com',
     }
 }
@@ -171,6 +171,6 @@ MAILER_EMAIL_BACKEND = EMAIL_BACKEND
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT=587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'makscub3e@gmail.com'
-EMAIL_HOST_PASSWORD = 'Weareteammaks07!'
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
 
